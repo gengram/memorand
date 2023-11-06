@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class DBUtil {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/memorand";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "n0m3l0";
+    private static final String DB_PASSWORD = "1234";
 
     public static Connection getConnection() {
         Connection connection = null;
