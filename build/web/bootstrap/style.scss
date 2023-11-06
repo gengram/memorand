@@ -1,0 +1,18 @@
+$primary: #18988b;
+$body: #222222;
+$secondary: #636569;
+$tertiary: #b1b1b1;
+
+$theme-colors: (
+  "primary": $primary,
+  "body": $body,
+  "secondary": $secondary,
+  "tertiary": $tertiary
+);
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+:root {
+    --bs-body-font-family: 'Manrope', sans-serif;
+}
