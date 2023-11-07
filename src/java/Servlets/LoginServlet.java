@@ -1,6 +1,6 @@
 package Servlets;
 
-import Conect.DBUtil;
+import Conect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,11 +15,15 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         String id_usuario = request.getParameter("id_usuario");
         String pass_usuario = request.getParameter("pass_usuario");
-        Connection conn = DBUtil.getConnection();
+        
+        Conexion dbu = new Conexion();
+        
+        Connection conn = dbu.getConnection();
 
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM usuarios WHERE id_usuario = ? AND pass_usuario = ?");

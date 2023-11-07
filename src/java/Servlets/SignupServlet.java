@@ -1,5 +1,5 @@
 package Servlets;
-import Conect.DBUtil;
+import Conect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +22,10 @@ public class SignupServlet extends HttpServlet {
         String nombre_usuario = request.getParameter("nombre_usuario");
         String paterno_usuario = request.getParameter("paterno_usuario");
         String materno_usuario = request.getParameter("materno_usuario");
-
-        Connection conn = DBUtil.getConnection();
+        
+        Conexion dbu = new Conexion();
+        
+        Connection conn = dbu.getConnection();
 
         try {
             

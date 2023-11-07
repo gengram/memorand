@@ -5,18 +5,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public abstract class Connect<T> implements Serializable 
-{
-    
-    // PARÁMETROS CONEXIÓN
+public class Conexion implements Serializable {
+
+    public static String server = "127.0.0.1";
+    public static String port = "3306";
+    public static String db = "memorand";
     public static String user = "root";
     public static String password = "n0m3l0";
-    public static String db = "memorand";
-    public static String port = "3306";
+
+    public Conexion() {}
     
-    // VERIFICA QUE EL DRIVER DE MYSQL FUNCIONE
-    public boolean testDriver() 
-    {
+    public boolean testDriver() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             return true;
@@ -27,9 +26,8 @@ public abstract class Connect<T> implements Serializable
         return false;
     }
     
-    // CONEXIÓN CON LA BASE DE DATOS
-    public Connection getConnection(String user, String password, String db, String server) 
-    {
+    public Connection getConnection() {
+        
         String url = null;
         
         if (user == null || password == null || db == null || server == null) {
@@ -56,14 +54,8 @@ public abstract class Connect<T> implements Serializable
         
     }
     
-    // INICIA LA CONEXIÓN CON LOS DATOS PROPORCIONADOS
-    public Connection getConnection() {
-        return getConnection(user, password, db,"127.0.0.1");
-    }
-    
-    // CIERRA LA CONEXIÓN
-    public void closeConnection(Connection connection) 
-    {
+    public void closeConnection(Connection connection) {
+        
         try {
             if (connection == null) {
                 return;
@@ -76,6 +68,6 @@ public abstract class Connect<T> implements Serializable
         catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }
     
+    }
 }
