@@ -1,6 +1,7 @@
 <%-- 
     Memorand by Gengram © 2023
 --%>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding:1%;">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.jsp">

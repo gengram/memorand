@@ -1,5 +1,5 @@
 package Servlets;
-import Conect.Conexion;
+import Connect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

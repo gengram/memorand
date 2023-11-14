@@ -1,13 +1,12 @@
 <%-- 
     Memorand by Gengram © 2023
 --%>
-
 <div class="modal fade" tabindex="-1" role="dialog" id="modalLogin">
-    
+
     <div class="modal-dialog modal-dialog-centered text-center" role="document">
-        
+
         <div class="modal-content rounded-4 shadow">
-            
+
             <div class="modal-header p-5 pb-4 border-bottom-0">
                 <h1 class="fw-bold mb-0 fs-2 text-primary ">Iniciar Sesi&oacute;n</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,22 +15,22 @@
             <div class="modal-body p-5 pt-2">
 
                 <form action="login" method="post">
-                    
-                    <div class="form-floating mb-4">
-                        <input type="text" name="id_usuario" id="id_usuario" required placeholder="Usuario"><br>
+
+                    <div class="form-floating">
+                        <input type="email" class="form-control-sm rounded-3" name="correo_usuario" id="correo_usuario" required placeholder="Correo electr&oacute;nico"><br>
                     </div>
-                    
-                    <div class="form-floating mb-4">
-                        <input type="password" name="pass_usuario" id="pass_usuario" required placeholder="Contraseña"><br>
+
+                    <div class="form-floating">
+                        <input type="password" class="form-control-sm rounded-3" name="pass_usuario" id="pass_usuario" required placeholder="Contrase&ntilde;a"><br>
                     </div>
-                    
+
                     <input type="submit" value="Iniciar sesión" class="w-100 mb-2 btn btn-lg rounded-3 custom-bsign">
                 </form>
-             
+
                 <small class="text-body-secondary"> <a type="button" data-bs-target="#modalSignin" data-bs-toggle="modal">¿No tienes cuenta? Reg&iacute;strate</a></small>
                 <hr class="my-4">
                 <p class="mb-3 text-primary" style="font-size: 70%;">Condiciones de uso | Política de privacidad</p>
-                
+
             </div>
         </div>
     </div>
@@ -69,6 +68,5 @@
         </div>
     </div>
 </div>
-
 
 
