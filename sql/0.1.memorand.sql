@@ -7,7 +7,7 @@ create table usuarios(
 	correo_usuario varchar(32),
 	pass_usuario varchar(24),
 	tipo_usuario varchar(8),
-	nombre_usuario varchar(24),
-	paterno_usuario varchar(16),
-	materno_usuario varchar(16)
+	nom_usuario varchar(24),
+	pat_usuario varchar(16),
+	mat_usuario varchar(16)
 );
