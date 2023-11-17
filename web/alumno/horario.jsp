@@ -7,10 +7,13 @@
     <head>
         
         <jsp:include page="../recursos/import.jsp"/>
-        <link rel="stylesheet" href="../recursos/bootstrap.css"  type="text/css">
+        
+        <link rel="stylesheet" href="../recursos/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="../recursos/styles.css" type="text/css">
-
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" />
+
+        
         <style>
             .zoom-button {
                 transition: transform 0.2s;
@@ -21,6 +24,18 @@
             .zoom-button:hover {
                 transform: scale(1.2);
             }
+            .iconos {
+                display: none;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .btn:hover .iconos {
+                display: block;
+            }
+
         </style>
         <title>Horario</title>
     </head>
@@ -132,6 +147,7 @@
         </div>
         <jsp:include page="../recursos/footer.jsp"/>
     </body>
+    
     <div class="modal fade" tabindex="-1" role="dialog" id="modalAgregarRutina">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content rounded-4 shadow">
@@ -169,7 +185,42 @@
             </div>
         </div>
     </div>
+    
+    <div class="modal" tabindex="-1" role="dialog" id="modalEditar">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Rutina</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="hora_inicio_editar">Hora de Inicio</label>
+                            <input type="time" class="form-control" id="hora_inicio_editar">
+                        </div>
+                        <div class="form-group">
+                            <label for="rutinaname_editar">Nombre de la Rutina</label>
+                            <input type="text" class="form-control" id="rutinaname_editar">
+                        </div>
+                        <div class="form-group">
+                            <label for="hora_final_editar">Hora de Finalización</label>
+                            <input type="time" class="form-control" id="hora_final_editar">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="guardarCambios">Guardar Cambios</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Variables para llevar el conteo de los botones por día
         var nidL = 1;
         var nidM = 1;
         var nidMi = 1;
@@ -177,122 +228,130 @@
         var nidV = 1;
         var nidS = 1;
         var nidD = 1;
-        let did = 'dia';
+
+        // Esta función guarda el estado actual de los botones en localStorage
+        function guardarEstado() {
+            let estado = [];
+            ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'].forEach(dia => {
+                let botones = document.querySelectorAll("#botones" + dia + " ul.list-group li");
+                botones.forEach(boton => {
+                    estado.push({
+                        dia: dia,
+                        id: boton.id,
+                        texto: boton.innerText
+                    });
+                });
+            });
+            localStorage.setItem('estadoBotones', JSON.stringify(estado));
+        }
+
+        // Esta función reconstruye los botones al cargar la página
+        function reconstruirBotones() {
+            let estado = JSON.parse(localStorage.getItem('estadoBotones')) || [];
+            estado.forEach(item => {
+                // Usa la función crearBoton para incluir los iconos y eventos
+                let nuevoBoton = crearBoton(item.texto, item.id);
+
+                document.getElementById("botones" + item.dia).querySelector("ul.list-group").appendChild(nuevoBoton);
+            });
+        }
+        // Evento para agregar botones y guardar el estado
         document.getElementById("agregarBtn").addEventListener("click", function () {
-            // Verifica si ya hay 6 botones
             let horin = document.getElementById('hora_inicio').value;
             let horfin = document.getElementById('hora_final').value;
             let rutina = document.getElementById('rutinaname').value;
             let dia = document.getElementById('dias').value;
-            var botonesActuales = document.querySelectorAll("#botones" + dia + " " + "ul.list-group li").length;
-            if (dia === "Lunes") {
-                did = 'L-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + nidL;
-                    nidL++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
+            var botonesActuales = document.querySelectorAll("#botones" + dia + " ul.list-group li").length;
 
-                    document.getElementById("botonesLunes").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidL = 1;
-                }
-            } else if (dia === "Martes") {
-                did = 'M-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + +nidM;
-                    nidM++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
+            if (botonesActuales < 7) {
+                var textoBoton = horin + "\n" + rutina + "\n" + horfin;
+                var idBoton = "btnRutina" + dia[0] + "-" + (dia === 'Miercoles' ? 'Mi' : dia[0]) + botonesActuales + 1;
+                var nuevoBoton = crearBoton(textoBoton, idBoton);
 
-                    document.getElementById("botonesMartes").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidM = 1;
-                }
-            } else if (dia === "Miercoles") {
-                did = 'Mi-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + +nidMi;
-                    nidMi++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
-
-                    document.getElementById("botonesMiercoles").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidMi = 1;
-                }
-            } else if (dia === "Jueves") {
-                did = 'J-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + +nidJ;
-                    nidJ++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
-
-                    document.getElementById("botonesJueves").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidJ = 1;
-                }
-            } else if (dia === "Viernes") {
-                did = 'V-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + +nidV;
-                    nidV++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
-
-                    document.getElementById("botonesViernes").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidV = 1;
-                }
-            } else if (dia === "Sabado") {
-                did = 'S-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + +nidS;
-                    nidS++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
-
-                    document.getElementById("botonesSabado").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidS = 1;
-                }
-            } else if (dia === "Domingo") {
-                did = 'D-';
-                if (botonesActuales < 7) {
-                    var nuevoBoton = document.createElement("li");
-                    nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
-                    nuevoBoton.id = "btnRutina" + did + +nidD;
-                    nidD++;
-                    nuevoBoton.innerText = horin + "\n" + rutina + "\n" + horfin;
-
-                    document.getElementById("botonesDomingo").querySelector("ul.list-group").appendChild(nuevoBoton);
-                    alert("Se ha agregado.");
-                } else {
-                    alert("Se ha alcanzado el límite de 6 botones.");
-                    nidD = 1;
-                }
+                document.getElementById("botones" + dia).querySelector("ul.list-group").appendChild(nuevoBoton);
+                alert("Se ha agregado.");
+            } else {
+                alert("Se ha alcanzado el límite de 6 botones.");
             }
 
+            // Luego de agregar un botón, guardar el estado
+            guardarEstado();
         });
 
+        
+        function crearBoton(texto, id) {
+            var nuevoBoton = document.createElement("li");
+            nuevoBoton.className = "btn zoom-button list-group-item shadow border-primary border-1 rounded-4 mt-2";
+            nuevoBoton.id = id;
+
+            // Agregar texto e icono de borrar al botón
+            nuevoBoton.innerHTML = texto +
+                '<span class="iconos">' +
+                '<i class="bi bi-trash borrar"></i>' +
+                '</span>';
+
+            // Evento para el botón que abre el modal de edición
+            nuevoBoton.addEventListener('click', function(event) {
+                event.stopPropagation(); // Evita que se active el evento del icono de borrar
+                abrirModalEditar(nuevoBoton);
+            });
+
+            // Evento para el icono de borrar
+            nuevoBoton.querySelector('.borrar').addEventListener('click', function(event) {
+                event.stopPropagation(); // Evita que se active el evento del botón
+                nuevoBoton.remove();
+                guardarEstado(); // Actualizar el estado en localStorage
+            });
+
+            return nuevoBoton;
+        }
+
+
+        function abrirModalEditar(boton) {
+            var datos = boton.innerText.split('\n');
+            document.getElementById('hora_inicio_editar').value = datos[0];
+            document.getElementById('rutinaname_editar').value = datos[1];
+            document.getElementById('hora_final_editar').value = datos[2];
+
+            // Configurar una función para actualizar los datos del botón después de la edición
+            document.getElementById('guardarCambios').onclick = function() {
+                boton.innerText = document.getElementById('hora_inicio_editar').value + '\n' +
+                                  document.getElementById('rutinaname_editar').value + '\n' +
+                                  document.getElementById('hora_final_editar').value;
+                guardarEstado(); // Actualizar el estado en localStorage
+                $('#modalEditar').modal('hide');
+            };
+
+            $('#modalEditar').modal('show');
+        }
+        document.getElementById('guardarCambios').onclick = function() {
+        // Obtén los valores actualizados del modal
+        var horaInicioActualizada = document.getElementById('hora_inicio_editar').value;
+        var nombreRutinaActualizado = document.getElementById('rutinaname_editar').value;
+        var horaFinalActualizada = document.getElementById('hora_final_editar').value;
+
+        // Actualiza el botón con el nuevo contenido y los iconos
+        boton.innerHTML = horaInicioActualizada + "\n" + nombreRutinaActualizado + "\n" + horaFinalActualizada +
+            '<span class="iconos">' +
+            '<i class="bi bi-trash borrar"></i>' +
+            '</span>';
+
+        // Vuelve a agregar el evento de clic para el icono de borrar
+        boton.querySelector('.borrar').addEventListener('click', function(event) {
+            event.stopPropagation(); // Evita que se active el evento del botón
+            boton.remove();
+            guardarEstado(); // Actualizar el estado en localStorage
+        });
+
+        guardarEstado(); // Actualizar el estado en localStorage
+        $('#modalEditar').modal('hide');
+    };
+
+
+
+
+        // Reconstruir botones cuando se carga el documento
+        document.addEventListener('DOMContentLoaded', reconstruirBotones);
     </script>
+
 </html>
