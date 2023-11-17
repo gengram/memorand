@@ -38,6 +38,7 @@ public class ListaInstituciones extends HttpServlet {
             out.println("<th>Nombre</th>");
             out.println("<th>Lim. profes</th>");
             out.println("<th>Lim. alumnos</th>");
+            out.println("<th>Acciones</th>");
             out.println("</tr>");
             
             while (resultSet.next()) {
@@ -48,14 +49,14 @@ public class ListaInstituciones extends HttpServlet {
                 out.println("<td>" + resultSet.getString("nombre_institucion") + "</td>");
                 out.println("<td>" + resultSet.getString("limite_profes") + "</td>");
                 out.println("<td>" + resultSet.getString("limite_alumnos") + "</td>");
+                out.println("<td> <a href=\"#\">Editar</a> <a href=\"bajainstitucion?id_institucion=" + resultSet.getString("id_institucion") + "\">Borrar</a> </td>");
                 
                 out.println("</tr>");
                 
             }
-
-            out.println("<a href=\"staff/index.jsp\">Regresar</a>");
-            
             out.println("</table>");
+            
+            out.println("<a href=\"staff/index.jsp\">Regresar</a>");
             out.println("</body>");
             out.println("</html>");
             
@@ -79,4 +80,3 @@ public class ListaInstituciones extends HttpServlet {
     }
     
 }
-

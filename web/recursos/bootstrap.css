@@ -8525,6 +8525,10 @@ textarea.form-control-lg {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-yellow-m-3-rgb), var(--bs-text-opacity)) !important;
 }
+.text-memorand {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-primary-bg-subtle), var(--bs-text-opacity)) !important;
+}
 
 .text-success {
     --bs-text-opacity: 1;
