@@ -26,8 +26,50 @@
                 padding: 10px;
                 min-height: 200px;
             }
+            .loader {
+                border: 4px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 4px solid #3498db;
+                width: 20px;
+                height: 20px;
+                animation: spin 2s linear infinite;
+            }
+            #textoInput {
+                width: 100%;
+                margin-top: 10px;
+                background-color: transparent; /* Fondo transparente */
+                border: none; /* Borde transparente */
+                color: black; /* Color del texto */
+            }
+            #imagenInput, #textoInput {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+            .notebook {
+                background-color: #fff;
+                width: 210mm; /* Ancho aproximado de una hoja de cuaderno A4 */
+                height: 297mm; /* Altura aproximada de una hoja de cuaderno A4 */
+                margin: 20mm auto;
+                box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Sombra para simular el efecto de página */
+                position: relative;
+                overflow: hidden;
+                background-image: linear-gradient(to bottom, #000 1px, transparent 1px);
+                background-size: 100% 25px; /* Espaciado de las líneas horizontales */
+            }
 
-        </style>
+            .margin-line {
+                position: absolute;
+                left: 25mm; /* Ajuste de la línea vertical al margen izquierdo */
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background-color: #ff0000; /* Color de la línea vertical roja */
+            }
+        </style> 
     </head>
     <body>
         <jsp:include page="../recursos/navbar.jsp"/>
@@ -42,6 +84,9 @@
                             <button class="btn btn-secondary">B</button>
                             <button class="btn btn-secondary">I</button>
                             <button class="btn btn-secondary">U</button>
+                            <input type="file" id="imagenInput" accept="image/*">
+                            <button class="btn btn-secondary" onclick="extraerTextoDeImagen()">Extraer Texto</button>
+                            <div id="loader" class="loader" style="display:none;"></div>
                             <select class="form-control font-family">
                                 <option value="Arial">Arial</option>
                                 <option value="Times New Roman">Times New Roman</option>
@@ -55,6 +100,7 @@
                         </div>
                         <div class="text-editor" contenteditable="true">
                             <!-- El área de edición de texto -->
+                            <input class="text-editor" contenteditable="true" type="text" id="textoInput" placeholder="Texto de la imagen se mostrará aquí">
                         </div>
                     </div>
                 </div>
@@ -67,6 +113,45 @@
                 </div>
             </div>
         </div>
+        <!-- Cuaderno -->
+        <div class="notebook">
+            <div class="margin-line"></div>
+        </div>
         <jsp:include page="../recursos/footer.jsp"/>
+        <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2"></script>
+    
+        <script>
+            function extraerTextoDeImagen() {
+                var imagenInput = document.getElementById('imagenInput');
+                var textoInput = document.getElementById('textoInput');
+                var loader = document.getElementById('loader');
+                var file = imagenInput.files[0];
+
+                if (file) {
+                    loader.style.display = 'inline-block'; // Mostrar el indicador de carga
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var imgDataUrl = e.target.result;
+
+                        Tesseract.recognize(
+                            imgDataUrl,
+                            'spa',
+                            { logger: m => console.log(m) }
+                        ).then(({ data: { text } }) => {
+                            textoInput.value = text; // Muestra el texto extraído
+                            loader.style.display = 'none'; // Ocultar el indicador de carga
+                        }).catch(err => {
+                            console.error(err);
+                            alert('Error al procesar la imagen');
+                            loader.style.display = 'none';
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Por favor, carga una imagen.');
+                }
+            }
+        </script>
     </body>
+    
 </html>
