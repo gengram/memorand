@@ -24,7 +24,6 @@
                 height: 100px; /* Ajusta la altura según tus necesidades */
                 margin: 0 10px; /* Ajusta el margen según tus necesidades */
             }
-<<<<<<< HEAD
             .loader {
                 border: 4px solid #f3f3f3;
                 border-radius: 50%;
@@ -69,9 +68,6 @@
                 background-color: #ff0000; /* Color de la línea vertical roja */
             }
         </style> 
-=======
-        </style>
->>>>>>> 097d7585242fa389511148797ec2d3935fe9fe10
     </head>
     <body>
         <jsp:include page="../recursos/navbar.jsp"/>
@@ -80,7 +76,6 @@
                 <div class="col-1">
                     <br><br><br>
                 </div>
-<<<<<<< HEAD
                 <div class="col-10" style="background-color: #fd7e14">
                     <div class="container">
                         <div class="toolbar">

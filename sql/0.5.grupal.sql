@@ -33,6 +33,20 @@ create table inscriben (
 	foreign key (id_asigna) references asignaturas (id_asigna)
 );
 
+create table asignasgrupo (
+	id_asigna varchar(16),
+	id_grupo varchar(16),
+	foreign key (id_asigna) references asignaturas (id_asigna),
+	foreign key (id_grupo) references grupos (id_grupo)
+);
+
+create table gruposinst (
+        id_grupo varchar(16),
+	id_inst varchar(16),
+        foreign key (id_grupo) references grupos (id_grupo),
+	foreign key (id_inst) references instituciones (id_inst)
+);
+
 create table grupotarea (
         id_grupo varchar(16),
         id_tarea varchar(16),

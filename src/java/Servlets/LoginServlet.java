@@ -1,6 +1,8 @@
 package Servlets;
 
 import Connect.Conexion;
+import Beans.Usuarios;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +20,10 @@ public class LoginServlet extends HttpServlet {
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        String correo_usuario = request.getParameter("correo_usuario");
-        String pass_usuario = request.getParameter("pass_usuario");
+        Usuarios usuario = new Usuarios();
+        
+        usuario.setCorreo_usuario(request.getParameter("correo_usuario"));
+        usuario.setPass_usuario(request.getParameter("pass_usuario"));
         
         Conexion dbu = new Conexion();
         Connection conn = dbu.getConnection();
@@ -27,30 +31,30 @@ public class LoginServlet extends HttpServlet {
         try {
             
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM usuarios WHERE correo_usuario = ? AND pass_usuario = ?");
-            preparedStatement.setString(1,correo_usuario);
-            preparedStatement.setString(2,pass_usuario);
+            preparedStatement.setString(1,usuario.getCorreo_usuario());
+            preparedStatement.setString(2,usuario.getPass_usuario());
             
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 
-                String id_usuario = resultSet.getString("id_usuario");
-                String tipo_usuario = resultSet.getString("tipo_usuario");
-                String nombre_usuario = resultSet.getString("nombre_usuario");
-                String paterno_usuario = resultSet.getString("paterno_usuario");
-                String materno_usuario = resultSet.getString("materno_usuario");
+                usuario.setId_usuario(resultSet.getString("id_usuario"));
+                usuario.setTipo_usuario(resultSet.getString("tipo_usuario"));
+                usuario.setNom_usuario(resultSet.getString("nom_usuario"));
+                usuario.setPat_usuario(resultSet.getString("pat_usuario"));
+                usuario.setMat_usuario(resultSet.getString("mat_usuario"));
                 
-                if (tipo_usuario != null) {
+                if (usuario.getTipo_usuario() != null) {
                     
                     HttpSession session = request.getSession();
-                    session.setAttribute("id_usuario",id_usuario);
-                    session.setAttribute("correo_usuario",correo_usuario);
-                    session.setAttribute("tipo_usuario",tipo_usuario);
-                    session.setAttribute("nombre_usuario",nombre_usuario);
-                    session.setAttribute("paterno_usuario",paterno_usuario);
-                    session.setAttribute("materno_usuario",materno_usuario);
+                    session.setAttribute("id_usuario",usuario.getId_usuario());
+                    session.setAttribute("correo_usuario",usuario.getCorreo_usuario());
+                    session.setAttribute("tipo_usuario",usuario.getTipo_usuario());
+                    session.setAttribute("nom_usuario",usuario.getNom_usuario());
+                    session.setAttribute("pat_usuario",usuario.getPat_usuario());
+                    session.setAttribute("mat_usuario",usuario.getMat_usuario());
                     
-                    switch (tipo_usuario) {
+                    switch (usuario.getTipo_usuario()) {
                         case "admin":
                             response.sendRedirect("/memorand/admin/");
                             break;
