@@ -23,6 +23,8 @@
         <script src="../recursos/voice_1text.js"></script>
         <script src="../recursos/imageTtext.js"></script>
         <script src="../recursos/style_edit.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+        <script src="jspdf.min.js"></script>
     </head>
     <body>
         <jsp:include page="../recursos/navbar.jsp"/>
@@ -60,7 +62,7 @@
                                         <div class="input-group mb-3">
                                             <button class="btn btn-focus custom-blog border-2" type="button" id="btnStart"><i class="bi bi-mic"></i></button>
                                             <button class="btn btn-focus custom-blog border-2" type="button" id="btnStop"><i class="bi bi-mic-mute"></i></button>
-                                            <input class="form-control text-editor border-2" type="text"role="textbox" contenteditable="true">
+                                            <input class="form-control text-editor border-2" type="text"role="textbox" contenteditable="true" id="titulo">
                                         </div>
 
                                         <div class="mb-3">
@@ -93,8 +95,8 @@
                                             </div>
                                         </div>
                                         <div class="col-6 text-end">
-                                            <button class="btn custom-bsign">
-                                                Descargar <i class="bi bi-filetype-pdf custom-icon3" ></i>
+                                            <button class="btn custom-bsign" onclick="generatePDF()">
+                                                Descargar <i class="bi bi-filetype-pdf custom-icon3"></i>
                                             </button>
                                             <button class="btn custom-bsign"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
                                                 <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5v-13Z"/>
@@ -120,4 +122,38 @@
         </div>
         <jsp:include page="../recursos/footer.jsp"/>
     </body>
+    <script>
+        function generatePDF() {
+            let titulo = document.getElementById('titulo').value;
+            let contenido = document.getElementById('contE').textContent;
+
+            const pdf = new jsPDF('p', 'pt', 'letter');
+            pdf.setFontSize(12);
+
+            // Verifica si el título está vacío
+            if (titulo.trim() !== '') {
+                pdf.text(20, 40, titulo); // Ajustar las coordenadas según sea necesario
+            }
+
+            const lineHeight = 20; // Ajusta esto según el tamaño de fuente y el espaciado deseado
+            const margin = 20; // Márgenes laterales
+            const maxLineLength = 550; // Máximo ancho de línea
+            const maxHeight = 800; // Máximo alto antes de cambiar de página
+
+            let lines = pdf.splitTextToSize(contenido, maxLineLength); // Divide el texto en líneas
+            let y = 80; // Inicio del texto en la primera página
+
+            for (let i = 0; i < lines.length; i++) {
+                if (y > maxHeight) {
+                    pdf.addPage();
+                    y = 40; // Inicio del texto en nuevas páginas
+                }
+                pdf.text(margin, y, lines[i]);
+                y += lineHeight;
+            }
+
+            pdf.save(titulo + ".pdf");
+        }
+
+    </script>
 </html>
