@@ -2130,6 +2130,7 @@ progress {
     -moz-appearance: none;
     appearance: none;
     border-radius: var(--bs-border-radius);
+    border-color: #27988A;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2143,7 +2144,7 @@ progress {
 .form-control[type=file]:not(:disabled):not([readonly]) {
     cursor: pointer;
 }
-.form-control, .form-control-sm:focus {
+.form-control:focus, .form-control-sm:focus, .btn-focus:focus{
     color: var(--bs-body-color);
     background-color: var(--bs-body-bg);
     border-color: #87E1D1;
@@ -2229,6 +2230,7 @@ progress {
     background-color: var(--bs-body-bg);
     background-clip: padding-box;
     border: var(--bs-border-width) solid var(--bs-border-color);
+    border-color: #87E1D1;
     border-radius: var(--bs-border-radius-sm); /* Utilizando el radio de borde para el tamaño pequeño */
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

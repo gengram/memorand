@@ -1,15 +1,15 @@
 <%-- 
     Memorand by Gengram © 2023
 --%>
-
+<jsp:include page="../recursos/sidelbar.jsp"/>
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding:1%;">
     <div class="container-fluid">
         <!-- Barra lateral -->
-        
+
         <button type="button" class="btn border-0 rounded-circle" style="color: #27988A;" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
             <i class="bi bi-list" style="font-size: 28px;"></i>
         </button>
-        
+
         <!-- Empresa -->
         <a class="navbar-brand" href="/memorand/alumno/">
             <img src="../images/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:40%">
@@ -62,7 +62,7 @@
                     <li>
                         <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
                             <i class="bi bi-android" style="color: #27988A"></i>
-                             Mi cuenta
+                            Mi cuenta
                         </a>
                     </li>
                     <li><hr class="dropdown-divider"></li>

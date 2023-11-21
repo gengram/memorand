@@ -22,7 +22,6 @@
     </style>
     <body>
         <jsp:include page="../recursos/navbar.jsp"/>
-        <jsp:include page="../recursos/sidelbar.jsp"/>
         <div class="container text-center" >
             <div class="row" >
                 <div class="col-1">
