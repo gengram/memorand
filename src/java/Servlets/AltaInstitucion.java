@@ -1,6 +1,7 @@
 package Servlets;
 
 import Random.*;
+import Beans.Instituciones;
 import Connect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,12 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 public class AltaInstitucion extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
+        Instituciones institucion = new Instituciones();
         RandomId r = new RandomId();
-        String id_inst = r.generarId(16);
-        String nom_inst = request.getParameter("nom_inst");
-        String lim_profes = request.getParameter("lim_profes");
-        String lim_alumnos = request.getParameter("lim_alumnos");
+        
+        institucion.setId_inst(r.generarId(16));
+        institucion.setNom_inst(request.getParameter("nom_inst"));
+        institucion.setLim_profes(request.getParameter("lim_profes"));
+        institucion.setLim_alumnos(request.getParameter("lim_alumnos"));
 
         Conexion dbu = new Conexion();
         Connection conn = dbu.getConnection();
@@ -29,10 +32,10 @@ public class AltaInstitucion extends HttpServlet {
         try {
 
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO instituciones (id_inst, nom_inst, lim_profes, lim_alumnos) VALUES (?, ?, ?, ?)");
-            preparedStatement.setString(1, id_inst);
-            preparedStatement.setString(2, nom_inst);
-            preparedStatement.setString(3, lim_profes);
-            preparedStatement.setString(4, lim_alumnos);
+            preparedStatement.setString(1, institucion.getId_inst());
+            preparedStatement.setString(2, institucion.getNom_inst());
+            preparedStatement.setString(3, institucion.getLim_profes());
+            preparedStatement.setString(4, institucion.getLim_alumnos());
 
             int result = preparedStatement.executeUpdate();
 

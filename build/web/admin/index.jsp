@@ -1,17 +1,45 @@
-<%-- 
-    Document   : index
-    Created on : 8 nov. 2023, 20:42:43
-    Author     : zunig
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Inicio administrador</title>
     </head>
+
+    <%
+        String tipo_usuario = (String) session.getAttribute("tipo_usuario");
+        String nom_usuario = (String) session.getAttribute("nom_usuario");
+        String pat_usuario  = (String) session.getAttribute("pat_usuario");
+        
+        if (tipo_usuario == null || !tipo_usuario.equals("admin")) {
+            response.sendRedirect("../index.jsp");
+        }
+    %>
+
     <body>
-        <h1>Hello Admin!</h1>
+        <h1>Memorand ${tipo_usuario}</h1>
+        <h2>Bienvenido, ${nom_usuario} ${pat_usuario}</h2>
+        <a href="../logout">Cerrar sesión</a>
+
+        <h2>Alumnos</h2>
+        <a href="#">Ver alumnos</a> <br> 
+        <a href="#">Nuevo alumno</a> <br> 
+        <a href="#">Cargar documento de alumnos</a> <br> 
+
+        <h2>Profesores</h2>
+        <a href="#">Ver profesores</a> <br> 
+        <a href="#">Nueva profesor</a> <br> 
+        <a href="#">Cargar documento de profesores</a>
+        
+        <h2>Grupos</h2>
+        <a href="#">Ver grupos</a> <br> 
+        <a href="#">Nuevo grupo</a>
+        
+        <h2>Asignaturas</h2>
+        <a href="#">Ver asignaturas</a> <br> 
+        <a href="#">Nueva asignatura</a>
+        
     </body>
 </html>

@@ -1,6 +1,8 @@
 package Servlets;
 
 import Random.*;
+import Beans.Pertenecen;
+import Beans.Usuarios;
 import Connect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,16 +19,17 @@ import javax.servlet.http.HttpServletResponse;
 public class AltaAdministrador extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
+        Usuarios admin = new Usuarios();
         RandomId r = new RandomId();
-
-        String id_usuario = r.generarId(16);
-        String correo_usuario = request.getParameter("correo_usuario");
-        String pass_usuario = request.getParameter("pass_usuario");
-        String tipo_usuario = "admin";
-        String nom_usuario = request.getParameter("nom_usuario");
-        String pat_usuario = request.getParameter("pat_usuario");
-        String mat_usuario = request.getParameter("mat_usuario");
+        
+        admin.setId_usuario(r.generarId(16));
+        admin.setCorreo_usuario(request.getParameter("correo_usuario"));
+        admin.setPass_usuario(request.getParameter("pass_usuario"));
+        admin.setTipo_usuario("admin");
+        admin.setNom_usuario(request.getParameter("nom_usuario"));
+        admin.setPat_usuario(request.getParameter("pat_usuario"));
+        admin.setMat_usuario(request.getParameter("mat_usuario"));
 
         String nom_inst = request.getParameter("nom_inst");
 
@@ -36,13 +39,13 @@ public class AltaAdministrador extends HttpServlet {
         try {
 
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO usuarios (id_usuario, correo_usuario, pass_usuario, tipo_usuario, nom_usuario, pat_usuario, mat_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, id_usuario);
-            preparedStatement.setString(2, correo_usuario);
-            preparedStatement.setString(3, pass_usuario);
-            preparedStatement.setString(4, tipo_usuario);
-            preparedStatement.setString(5, nom_usuario);
-            preparedStatement.setString(6, pat_usuario);
-            preparedStatement.setString(7, mat_usuario);
+            preparedStatement.setString(1, admin.getId_usuario());
+            preparedStatement.setString(2, admin.getCorreo_usuario());
+            preparedStatement.setString(3, admin.getPass_usuario());
+            preparedStatement.setString(4, admin.getTipo_usuario());
+            preparedStatement.setString(5, admin.getNom_usuario());
+            preparedStatement.setString(6, admin.getPat_usuario());
+            preparedStatement.setString(7, admin.getMat_usuario());
 
             int result = preparedStatement.executeUpdate();
 
@@ -59,7 +62,7 @@ public class AltaAdministrador extends HttpServlet {
                     
                     PreparedStatement psPertenecen = conn.prepareStatement("INSERT INTO pertenecen (id_inst, id_usuario) VALUES (?, ?)");
                     psPertenecen.setString(1, id_inst);
-                    psPertenecen.setString(2, id_usuario);
+                    psPertenecen.setString(2, admin.getId_usuario());
 
                     int rPertenecen = psPertenecen.executeUpdate();
 
