@@ -11,7 +11,8 @@ public class Conexion implements Serializable {
     public static String port = "3306";
     public static String db = "memorand";
     public static String user = "root";
-    public static String password = "1234";
+    public static String password = "n0m3l0";
+    public static String password1 = "1234";
 
     public Conexion() {}
     
@@ -26,32 +27,41 @@ public class Conexion implements Serializable {
         return false;
     }
     
-    public Connection getConnection() {
-        
+    public Connection getConnection( boolean isServer ) 
+    {    
         String url = null;
         
-        if (user == null || password == null || db == null || server == null) {
+        if (user == null || password == null || db == null || server == null) 
+        {
             return null;
         }
         
-        if ("".equals(user) || "".equals(password) || "".equals(db) || "".equals(server)) {
+        if ("".equals(user) || "".equals(password) || "".equals(db) || "".equals(server)) 
+        {
             return null;
         }
+        if( isServer )
+        {
+            url = String.format("jdbc:mysql://%s:%s/%s?user=%s&password=%s", server, port, db, user, password1);
+        }
+        else
+        {
+            url = String.format("jdbc:mysql://%s:%s/%s?user=%s&password=%s", server, port, db, user, password);
+        }
         
-        url = String.format("jdbc:mysql://%s:%s/%s?user=%s&password=%s", server, port, db, user, password);
-        
-        try {
+        try 
+        {
             if (!testDriver()) 
             {
                 return null;
             }
             return DriverManager.getConnection(url);
         } 
-        catch (SQLException ex) {
+        catch (SQLException ex) 
+        {
             ex.printStackTrace();
         }
         return null;
-        
     }
     
     public void closeConnection(Connection connection) {

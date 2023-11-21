@@ -1,6 +1,5 @@
 package Servlets;
 
-import Connect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.ConnectionUtil;
 
 @WebServlet("/bajainst")
 public class BajaInstituciones extends HttpServlet {
@@ -19,8 +19,7 @@ public class BajaInstituciones extends HttpServlet {
 
         String id_inst = request.getParameter("id_inst");
 
-        Conexion dbu = new Conexion();
-        Connection conn = dbu.getConnection();
+        Connection conn = ConnectionUtil.getConnection(request);
 
         try {
 

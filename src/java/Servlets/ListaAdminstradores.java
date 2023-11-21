@@ -1,6 +1,5 @@
 package Servlets;
 
-import Connect.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import util.ConnectionUtil;
 
 @WebServlet("/listaadmin")
 public class ListaAdminstradores extends HttpServlet {
@@ -32,8 +32,7 @@ public class ListaAdminstradores extends HttpServlet {
         }
 
         //CONEXION DB
-        Conexion dbu = new Conexion();
-        Connection conn = dbu.getConnection();
+        Connection conn = ConnectionUtil.getConnection(request);
 
         //SERVLET
         PrintWriter out = response.getWriter();

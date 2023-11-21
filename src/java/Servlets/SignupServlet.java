@@ -1,5 +1,4 @@
 package Servlets;
-import Connect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.ConnectionUtil;
 
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
@@ -23,9 +23,7 @@ public class SignupServlet extends HttpServlet {
         String paterno_usuario = request.getParameter("paterno_usuario");
         String materno_usuario = request.getParameter("materno_usuario");
         
-        Conexion dbu = new Conexion();
-        
-        Connection conn = dbu.getConnection();
+        Connection conn = ConnectionUtil.getConnection(request);
 
         try {
             

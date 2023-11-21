@@ -1,6 +1,5 @@
 package Servlets;
 
-import Connect.Conexion;
 import Beans.Usuarios;
 
 import java.io.IOException;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import util.ConnectionUtil;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -22,11 +22,11 @@ public class LoginServlet extends HttpServlet {
         
         Usuarios usuario = new Usuarios();
         
+        
         usuario.setCorreo_usuario(request.getParameter("correo_usuario"));
         usuario.setPass_usuario(request.getParameter("pass_usuario"));
         
-        Conexion dbu = new Conexion();
-        Connection conn = dbu.getConnection();
+        Connection conn = ConnectionUtil.getConnection(request);
 
         try {
             
@@ -75,7 +75,8 @@ public class LoginServlet extends HttpServlet {
             } else {
                 response.sendRedirect("index.jsp?error=1");
             }
-        } catch (SQLException e) {
+        } catch (SQLException e) 
+        {
             e.printStackTrace();
             response.sendRedirect("index.jsp?error=2");
         }

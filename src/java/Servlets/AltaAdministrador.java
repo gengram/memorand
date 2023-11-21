@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.ConnectionUtil;
 
 @WebServlet("/altaadmin")
 public class AltaAdministrador extends HttpServlet {
@@ -33,8 +34,8 @@ public class AltaAdministrador extends HttpServlet {
 
         String nom_inst = request.getParameter("nom_inst");
 
-        Conexion dbu = new Conexion();
-        Connection conn = dbu.getConnection();
+        
+        Connection conn = ConnectionUtil.getConnection(request);
 
         try {
 

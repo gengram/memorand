@@ -2,7 +2,6 @@ package Servlets;
 
 import Random.*;
 import Beans.Instituciones;
-import Connect.Conexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.ConnectionUtil;
 
 @WebServlet("/altainst")
 public class AltaInstitucion extends HttpServlet {
@@ -26,8 +26,7 @@ public class AltaInstitucion extends HttpServlet {
         institucion.setLim_profes(request.getParameter("lim_profes"));
         institucion.setLim_alumnos(request.getParameter("lim_alumnos"));
 
-        Conexion dbu = new Conexion();
-        Connection conn = dbu.getConnection();
+        Connection conn = ConnectionUtil.getConnection(request);
 
         try {
 
