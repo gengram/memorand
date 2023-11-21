@@ -40,6 +40,6 @@
         <h2>Asignaturas</h2>
         <a href="#">Ver asignaturas</a> <br> 
         <a href="#">Nueva asignatura</a>
-        
     </body>
+    
 </html>

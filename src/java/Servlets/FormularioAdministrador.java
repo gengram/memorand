@@ -64,7 +64,7 @@ public class FormularioAdministrador extends HttpServlet {
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/admin.jsp?a="+accion);
         dispatcher.forward(request, response);
+        
     }
-
 }
 

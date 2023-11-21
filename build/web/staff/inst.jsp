@@ -16,6 +16,7 @@
         
         String accion = request.getParameter("a");
 
+        //PROTECCION
         String tipo_usuario = (String) session.getAttribute("tipo_usuario");
         if (tipo_usuario == null || !tipo_usuario.equals("staff")) {
             response.sendRedirect("../index.jsp");
@@ -56,9 +57,9 @@
         <form action="../editainst" method="post">
 
             <input type="text" name="id_inst" id="id_inst" value="<%=id_inst%>" hidden="true">
-            <input type="text" name="nom_inst" id="nom_inst" placeholder="Nombre institucion" value="<%=nom_inst%>" required>
-            <input type="text" name="lim_profes" id="lim_profes" placeholder="Limite de profesores" value="<%=lim_profes%>" required>
-            <input type="text" name="lim_alumnos" id="lim_alumnos" placeholder="Limite de alumnos" value="<%=lim_alumnos%>" required>
+            <input type="text" name="nom_inst" id="nom_inst" placeholder="Nuevo nombre" value="<%=nom_inst%>" required>
+            <input type="text" name="lim_profes" id="lim_profes" placeholder="Nuevo Lim. Profes" value="<%=lim_profes%>" required>
+            <input type="text" name="lim_alumnos" id="lim_alumnos" placeholder="Nuevo Lim. Alumnos" value="<%=lim_alumnos%>" required>
 
             <input type="submit" value="Editar institucion">
 
