@@ -7,6 +7,8 @@ public class RandomId {
     private static String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static SecureRandom random = new SecureRandom();
 
+    public RandomId() {}
+
     public String generarId (int length) {
         
         StringBuilder sb = new StringBuilder(length);

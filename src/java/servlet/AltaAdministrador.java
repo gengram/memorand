@@ -1,9 +1,6 @@
 package servlet;
 
-import random.RandomId;
-import bean.Pertenecen;
 import bean.Usuarios;
-import util.ConnectionData;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import random.RandomId;
 import util.ConnectionUtil;
 
 @WebServlet("/altaadmin")
@@ -52,32 +50,37 @@ public class AltaAdministrador extends HttpServlet {
 
             if (result > 0) {
                 
-                PreparedStatement psObtener = conn.prepareStatement("SELECT * FROM instituciones WHERE nom_inst = ?");
-                psObtener.setString(1, nom_inst);
+                if (!(nom_inst == null)) {
                 
-                ResultSet rsObtener = psObtener.executeQuery();
-                
-                if (rsObtener.next()) {
-                    
-                    String id_inst = rsObtener.getString("id_inst");
-                    
-                    PreparedStatement psPertenecen = conn.prepareStatement("INSERT INTO pertenecen (id_inst, id_usuario) VALUES (?, ?)");
-                    psPertenecen.setString(1, id_inst);
-                    psPertenecen.setString(2, admin.getId_usuario());
+                    PreparedStatement psObtener = conn.prepareStatement("SELECT * FROM instituciones WHERE nom_inst = ?");
+                    psObtener.setString(1, nom_inst);
 
-                    int rPertenecen = psPertenecen.executeUpdate();
+                    ResultSet rsObtener = psObtener.executeQuery();
 
-                    if (rPertenecen > 0) {
-                        response.sendRedirect("listaadmin");
+                    if (rsObtener.next()) {
+
+                        String id_inst = rsObtener.getString("id_inst");
+
+                        PreparedStatement psPertenecen = conn.prepareStatement("INSERT INTO pertenecen (id_inst, id_usuario) VALUES (?, ?)");
+                        psPertenecen.setString(1, id_inst);
+                        psPertenecen.setString(2, admin.getId_usuario());
+
+                        int rPertenecen = psPertenecen.executeUpdate();
+
+                        if (rPertenecen > 0) {
+                            response.sendRedirect("listaadmin");
+                        } else {
+                            response.sendRedirect("staff/index.jsp?error=1");
+                        }
                     } else {
-                        response.sendRedirect("staff/index.jsp?error=1");
+                        response.sendRedirect("staff/index.jsp?error=2");
                     }
-                } else {
-                    response.sendRedirect("staff/index.jsp?error=2");
                 }
+                
+                response.sendRedirect("staff/index.jsp?error=3");
 
             } else {
-                response.sendRedirect("staff/index.jsp?error=3");
+                response.sendRedirect("staff/index.jsp?error=4");
             }
 
         } catch (SQLException e) {

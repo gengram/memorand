@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ConnectionUtil {
 
     public static boolean isServer(HttpServletRequest request) {
-        return request.getRequestURI().contains("gerdoc");
+        return request.getRequestURL().toString().contains("gerdoc");
     }
 
     public static Connection getConnection(HttpServletRequest request) {
