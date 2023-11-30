@@ -1,15 +1,19 @@
+// memorand by Gengram
 package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Instituciones implements Serializable{
+public class Instituciones implements Serializable {
+
     private String id_inst;
     private String nom_inst;
-    private String lim_profes;
-    private String lim_alumnos;
-    
-    public Instituciones(){}
+    private String tipo_inst;
+    private String lim_lider;
+    private String lim_part;
+    private String lim_grupo;
+    private String lim_sector;
+
+    public Instituciones() {}
 
     public String getId_inst() {
         return id_inst;
@@ -27,20 +31,44 @@ public class Instituciones implements Serializable{
         this.nom_inst = nom_inst;
     }
 
-    public String getLim_profes() {
-        return lim_profes;
+    public String getTipo_inst() {
+        return tipo_inst;
     }
 
-    public void setLim_profes(String lim_profes) {
-        this.lim_profes = lim_profes;
+    public void setTipo_inst(String tipo_inst) {
+        this.tipo_inst = tipo_inst;
     }
 
-    public String getLim_alumnos() {
-        return lim_alumnos;
+    public String getLim_lider() {
+        return lim_lider;
     }
 
-    public void setLim_alumnos(String lim_alumnos) {
-        this.lim_alumnos = lim_alumnos;
+    public void setLim_lider(String lim_lider) {
+        this.lim_lider = lim_lider;
+    }
+
+    public String getLim_part() {
+        return lim_part;
+    }
+
+    public void setLim_part(String lim_part) {
+        this.lim_part = lim_part;
+    }
+
+    public String getLim_grupo() {
+        return lim_grupo;
+    }
+
+    public void setLim_grupo(String lim_grupo) {
+        this.lim_grupo = lim_grupo;
+    }
+
+    public String getLim_sector() {
+        return lim_sector;
+    }
+
+    public void setLim_sector(String lim_sector) {
+        this.lim_sector = lim_sector;
     }
     
 }

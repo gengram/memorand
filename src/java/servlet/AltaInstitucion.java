@@ -23,18 +23,24 @@ public class AltaInstitucion extends HttpServlet {
         
         institucion.setId_inst(r.generarId(16));
         institucion.setNom_inst(request.getParameter("nom_inst"));
-        institucion.setLim_profes(request.getParameter("lim_profes"));
-        institucion.setLim_alumnos(request.getParameter("lim_alumnos"));
+        institucion.setTipo_inst(request.getParameter("tipo_inst"));
+        institucion.setLim_lider(request.getParameter("lim_lider"));
+        institucion.setLim_part(request.getParameter("lim_part"));
+        institucion.setLim_grupo(request.getParameter("lim_grupo"));
+        institucion.setLim_sector(request.getParameter("lim_sector"));
 
         Connection conn = ConnectionUtil.getConnection(request);
 
         try {
 
-            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO instituciones (id_inst, nom_inst, lim_profes, lim_alumnos) VALUES (?, ?, ?, ?)");
+            PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO instituciones (id_inst, nom_inst, tipo_inst, lim_lider, lim_part, lim_grupo, lim_sector) VALUES (?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, institucion.getId_inst());
             preparedStatement.setString(2, institucion.getNom_inst());
-            preparedStatement.setString(3, institucion.getLim_profes());
-            preparedStatement.setString(4, institucion.getLim_alumnos());
+            preparedStatement.setString(3, institucion.getTipo_inst());
+            preparedStatement.setString(4, institucion.getLim_lider());
+            preparedStatement.setString(6, institucion.getLim_part());
+            preparedStatement.setString(6, institucion.getLim_grupo());
+            preparedStatement.setString(7, institucion.getLim_sector());
 
             int result = preparedStatement.executeUpdate();
 

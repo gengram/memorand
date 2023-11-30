@@ -12,18 +12,21 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/ListaInstituciones.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/ListaInstituciones.java</file>
             <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/web/staff/admin.jsp</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/EditarInstitucion.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/BajaInstituciones.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/BajaAdministrador.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/AltaAdministrador.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/BajaInstituciones.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/util/ConnectionData.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/BajaAdministrador.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/LoginServlet.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/ListaAdminstradores.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/EditarAdministrador.java</file>
             <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/web/staff/index.jsp</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/EditarInstitucion.java</file>
             <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/web/staff/inst.jsp</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/AltaAdministrador.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/FormularioAdministrador.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/AltaInstitucion.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/ListaAdminstradores.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/Servlets/EditarAdministrador.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/FormularioAdministrador.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/AltaInstitucion.java</file>
+            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/util/ConnectionUtil.java</file>
             <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/web/admin/index.jsp</file>
         </group>
     </open-files>

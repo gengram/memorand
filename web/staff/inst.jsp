@@ -13,7 +13,7 @@
         String nom_inst = request.getParameter("n");
         String lim_profes = request.getParameter("lp");
         String lim_alumnos = request.getParameter("la");
-        
+
         String accion = request.getParameter("a");
 
         //PROTECCION
@@ -35,8 +35,18 @@
         <form action="../altainst" method="post">
 
             <input type="text" name="nom_inst" id="nom_inst" placeholder="Nombre institucion" required>
-            <input type="text" name="lim_profes" id="lim_profes" placeholder="Limite de profesores" required>
-            <input type="text" name="lim_alumnos" id="lim_alumnos" placeholder="Limite de alumnos" required>
+            <select name="tipo_inst" id="tipo_inst" placeholder="Selecciona" required>
+                <option value="pescolar">Escolar Lite</option>
+                <option value="mescolar">Escolar Medio</option>
+                <option value="gescolar">Escolar Grande</option>
+                <option value="pempresa">Empresa Lite</option>
+                <option value="mempresa">Empresa Medio</option>
+                <option value="gempresa">Empresa Grande</option>
+            </select>
+            <input type="text" name="lim_lider" id="lim_lider" placeholder="Limite de lideres" required>
+            <input type="text" name="lim_part" id="lim_part" placeholder="Limite de participantes" required>
+            <input type="text" name="lim_grupo" id="lim_grupo" placeholder="Limite de grupos" required>
+            <input type="text" name="lim_sector" id="lim_sector" placeholder="Limite de sectores" required>
 
             <input type="submit" value="Alta institucion">
 
@@ -64,7 +74,7 @@
             <input type="submit" value="Editar institucion">
 
         </form>
-            
+
         <br>
         <a href="../listainst">Regresar</a>
 
@@ -72,19 +82,29 @@
                 }
                 if ("nuevo2".equals(accion)) {
         %>
-        
+
         <h1>Nueva institucion</h1>
 
         <form action="../altainst" method="post">
 
             <input type="text" name="nom_inst" id="nom_inst" placeholder="Nombre institucion" required>
-            <input type="text" name="lim_profes" id="lim_profes" placeholder="Limite de profesores" required>
-            <input type="text" name="lim_alumnos" id="lim_alumnos" placeholder="Limite de alumnos" required>
+            <select name="tipo_inst" id="tipo_inst" placeholder="Selecciona" required>
+                <option value="pescolar">Escolar Lite</option>
+                <option value="mescolar">Escolar Medio</option>
+                <option value="gescolar">Escolar Grande</option>
+                <option value="pempresa">Empresa Lite</option>
+                <option value="mempresa">Empresa Medio</option>
+                <option value="gempresa">Empresa Grande</option>
+            </select>
+            <input type="text" name="lim_lider" id="lim_lider" placeholder="Limite de lideres" required>
+            <input type="text" name="lim_part" id="lim_part" placeholder="Limite de participantes" required>
+            <input type="text" name="lim_grupo" id="lim_grupo" placeholder="Limite de grupos" required>
+            <input type="text" name="lim_sector" id="lim_sector" placeholder="Limite de sectores" required>
 
             <input type="submit" value="Alta institucion">
 
         </form>
-        
+
         <br>
         <a href="../listainst">Regresar</a>
 

@@ -3,8 +3,11 @@ use memorand;
 create table instituciones(
 	id_inst varchar(16) primary key not null,
 	nom_inst varchar(24),
-	lim_profes varchar(8),
-	lim_alumnos varchar(8)
+	tipo_inst varchar(16),
+	lim_lider varchar(8),
+	lim_part varchar(8),
+    lim_grupo varchar(4),
+    lim_sector varchar(4)
 );
 
 create table pertenecen (

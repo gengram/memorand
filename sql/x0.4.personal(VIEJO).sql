@@ -39,11 +39,11 @@ create table apuntes (
 	usado_apunte varchar(2)
 );
 
-create table cuentan (
-        id_usuario varchar(16),
-        id_personal varchar(16),
-        foreign key (id_usuario) references usuarios (id_usuario),
-        foreign key (id_personal) references personales (id_personal)
+create table ordenan (
+	id_usuario varchar(16),
+	id_personal varchar(16),
+	foreign key (id_usuario) references usuarios (id_usuario),
+    foreign key (id_personal) references personales (id_personal)
 );
 
 
@@ -58,20 +58,20 @@ create table personalidea (
 	id_personal varchar(16),
 	id_idea varchar(16),
 	foreign key (id_personal) references personales (id_personal),
-        foreign key (id_idea) references ideas (id_idea)
+	foreign key (id_idea) references ideas (id_idea)
 );
 
 create table personalrutina (
-        id_personal varchar(16),
-        id_rutina varchar(16),
-        foreign key (id_personal) references personales (id_personal),
-        foreign key (id_rutina) references rutinas (id_rutina)
+	id_personal varchar(16),
+	id_rutina varchar(16),
+	foreign key (id_personal) references personales (id_personal),
+	foreign key (id_rutina) references rutinas (id_rutina)
 );
 
 create table personalapunte (
-        id_personal varchar(16),
-        id_apunte varchar(16),
-        foreign key (id_personal) references personales (id_personal),
-        foreign key (id_apunte) references apuntes (id_apunte)
+	id_personal varchar(16),
+	id_apunte varchar(16),
+	foreign key (id_personal) references personales (id_personal),
+	foreign key (id_apunte) references apuntes (id_apunte)
 );
 

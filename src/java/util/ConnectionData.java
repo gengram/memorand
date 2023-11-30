@@ -17,6 +17,7 @@ public class ConnectionData implements Serializable {
     public ConnectionData() {}
 
     public boolean testDriver() {
+        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             return true;
@@ -24,9 +25,11 @@ public class ConnectionData implements Serializable {
             ex.printStackTrace();
         }
         return false;
+        
     }
 
     public Connection getConnection(boolean isServer) {
+        
         String url = null;
 
         if (user == null || password == null || db == null || server == null) {
@@ -36,6 +39,7 @@ public class ConnectionData implements Serializable {
         if ("".equals(user) || "".equals(password) || "".equals(db) || "".equals(server)) {
             return null;
         }
+        
         if (isServer) {
             url = String.format("jdbc:mysql://%s:%s/%s?user=%s&password=%s", server, port, db, user, password1);
         } else {
@@ -51,6 +55,7 @@ public class ConnectionData implements Serializable {
             ex.printStackTrace();
         }
         return null;
+        
     }
 
     public void closeConnection(Connection connection) {

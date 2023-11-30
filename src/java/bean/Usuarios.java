@@ -1,9 +1,10 @@
+// memorand by Gengram
 package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Usuarios implements Serializable{
+public class Usuarios implements Serializable {
+
     private String id_usuario;
     private String correo_usuario;
     private String pass_usuario;
@@ -11,8 +12,9 @@ public class Usuarios implements Serializable{
     private String nom_usuario;
     private String pat_usuario;
     private String mat_usuario;
-    
-    public Usuarios(){}
+    private String est_usuario;
+
+    public Usuarios() {}
 
     public String getId_usuario() {
         return id_usuario;
@@ -69,4 +71,13 @@ public class Usuarios implements Serializable{
     public void setMat_usuario(String mat_usuario) {
         this.mat_usuario = mat_usuario;
     }
+
+    public String getEst_usuario() {
+        return est_usuario;
+    }
+
+    public void setEst_usuario(String est_usuario) {
+        this.est_usuario = est_usuario;
+    }
+    
 }

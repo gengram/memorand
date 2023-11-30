@@ -9,5 +9,6 @@ create table usuarios(
 	tipo_usuario varchar(8),
 	nom_usuario varchar(24),
 	pat_usuario varchar(16),
-	mat_usuario varchar(16)
+	mat_usuario varchar(16),
+    est_usuario varchar(2)
 );

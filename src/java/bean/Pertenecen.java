@@ -1,14 +1,24 @@
+// memorand by Gengram
 package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Pertenecen implements Serializable{
-     private String id_inst;
-     private String id_usuario;
-     
-     public Pertenecen(){}
+public class Pertenecen implements Serializable {
+    
+    private String id_perten;
+    private String id_inst;
+    private String id_usuario;
 
+    public Pertenecen() {}
+
+    public String getId_perten() {
+        return id_perten;
+    }
+
+    public void setId_perten(String id_perten) {
+        this.id_perten = id_perten;
+    }
+    
     public String getId_inst() {
         return id_inst;
     }
@@ -24,4 +34,5 @@ public class Pertenecen implements Serializable{
     public void setId_usuario(String id_usuario) {
         this.id_usuario = id_usuario;
     }
+
 }
