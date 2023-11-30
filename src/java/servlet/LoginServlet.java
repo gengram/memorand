@@ -1,6 +1,6 @@
-// memorand by Gengrams
 package servlet;
 
+import bean.Instituciones;
 import bean.Usuarios;
 
 import java.io.IOException;
@@ -24,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 
         // BEANS
         Usuarios usuario = new Usuarios();
+        Instituciones instituciones = new Instituciones();
 
         // GUARDA DATOS DEL FORMULARIO
         usuario.setCorreo_usuario(request.getParameter("correo_usuario"));
@@ -69,23 +70,30 @@ public class LoginServlet extends HttpServlet {
                     else {
 
                         // QUERY OBTIENE INSTITUCION
-                        PreparedStatement psInst = c.prepareStatement("SELECT * FROM pertenecen WHERE id_usuario = ? LIMIT 1");
+                        PreparedStatement psInst = c.prepareStatement("SELECT instituciones.id_inst, nom_inst FROM instituciones INNER JOIN pertenecen ON instituciones.id_inst = pertenecen.id_inst WHERE pertenecen.id_usuario = ? LIMIT 1");
                         psInst.setString(1, usuario.getId_usuario());
                         // RESULT SET
                         ResultSet rsInst = psInst.executeQuery();
 
                         if (rsInst.next()) {
-
+                            instituciones.setId_inst(rsInst.getString(1));
+                            instituciones.setNom_inst(rsInst.getString(2));
                         }
 
                         switch (usuario.getTipo_usuario()) {
                             case "admin":
+                                session.setAttribute("id_inst",instituciones.getId_inst());
+                                session.setAttribute("nom_inst",instituciones.getNom_inst());
                                 response.sendRedirect("/memorand/admin/");
                                 break;
                             case "profesor":
+                                session.setAttribute("id_inst",instituciones.getId_inst());
+                                session.setAttribute("nom_inst",instituciones.getNom_inst());
                                 response.sendRedirect("/memorand/profesor/");
                                 break;
                             case "alumno":
+                                session.setAttribute("id_inst",instituciones.getId_inst());
+                                session.setAttribute("nom_inst",instituciones.getNom_inst());
                                 response.sendRedirect("/memorand/alumno/");
                                 break;
                             default:
