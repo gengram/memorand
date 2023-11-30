@@ -63,17 +63,32 @@ public class ListaInstituciones extends HttpServlet {
             out.println("<table border=\"2\">");
             out.println("<tr>");
             out.println("<th>Nombre</th>");
-            out.println("<th>Lim. profes</th>");
-            out.println("<th>Lim. alumnos</th>");
+            out.println("<th>Tipo</th>");
+            out.println("<th>Lim. lideres</th>");
+            out.println("<th>Lim. participantes</th>");
+            out.println("<th>Lim. grupos</th>");
+            out.println("<th>Lim. sectores</th>");
             out.println("<th>Acciones</th>");
             out.println("</tr>");
 
             while (resultSet.next()) {
                 out.println("<tr>");
                 out.println("<td>" + resultSet.getString("nom_inst") + "</td>");
-                out.println("<td>" + resultSet.getString("lim_profes") + "</td>");
-                out.println("<td>" + resultSet.getString("lim_alumnos") + "</td>");
-                out.println("<td> <a href=\"staff/inst.jsp?a=editar&i="+resultSet.getString("id_inst")+"&n="+resultSet.getString("nom_inst")+"&lp="+resultSet.getString("lim_profes")+"&la="+resultSet.getString("lim_alumnos")+" \">Editar</a> <a href=\"bajainst?id_inst=" + resultSet.getString("id_inst") + "\">Borrar</a> </td>");
+                out.println("<td>" + resultSet.getString("tipo_inst") + "</td>");
+                out.println("<td>" + resultSet.getString("lim_lider") + "</td>");
+                out.println("<td>" + resultSet.getString("lim_part") + "</td>");
+                out.println("<td>" + resultSet.getString("lim_grupo") + "</td>");
+                out.println("<td>" + resultSet.getString("lim_sector") + "</td>");
+                out.println("<td> <a href=\"staff/inst.jsp?a=editar&i="+resultSet.getString("id_inst")
+                        +"&n="+resultSet.getString("nom_inst")
+                        +"&t="+resultSet.getString("tipo_inst")
+                        +"&l="+resultSet.getString("lim_lider")
+                        +"&p="+resultSet.getString("lim_part")
+                        +"&g="+resultSet.getString("lim_grupo")
+                        +"&s="+resultSet.getString("lim_sector")
+                        +" \">Editar</a>"
+                        + "<a href=\"bajainst?id_inst=" + resultSet.getString("id_inst")
+                        + "\">Borrar</a> </td>");
                 out.println("</tr>");
             }
             

@@ -37,8 +37,10 @@ public class FormularioAdministrador extends HttpServlet {
                 Instituciones institucion = new Instituciones();
                 institucion.setId_inst(resultSet.getString("id_inst"));
                 institucion.setNom_inst(resultSet.getString("nom_inst"));
-                institucion.setLim_lider(resultSet.getString("lim_profes"));
-                institucion.setLim_part(resultSet.getString("lim_alumnos"));
+                institucion.setLim_lider(resultSet.getString("lim_lider"));
+                institucion.setLim_part(resultSet.getString("lim_part"));
+                institucion.setLim_grupo(resultSet.getString("lim_grupo"));
+                institucion.setLim_sector(resultSet.getString("lim_sector"));
                 
                 instituciones.add(institucion);
             }

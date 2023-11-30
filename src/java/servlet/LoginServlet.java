@@ -94,13 +94,15 @@ public class LoginServlet extends HttpServlet {
 
                     }
 
+                } else {
+                    response.sendRedirect("index.jsp?error=1");
                 }
 
             } else {
-                response.sendRedirect("index.jsp?error=1");
+                response.sendRedirect("index.jsp?error=2");
             }
         } catch (SQLException e) {
-            response.sendRedirect("index.jsp?error=2");
+            response.sendRedirect("index.jsp?error=3");
         }
     }
 }

@@ -17,10 +17,10 @@ import util.ConnectionUtil;
 public class AltaInstitucion extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         Instituciones institucion = new Instituciones();
         RandomId r = new RandomId();
-        
+
         institucion.setId_inst(r.generarId(16));
         institucion.setNom_inst(request.getParameter("nom_inst"));
         institucion.setTipo_inst(request.getParameter("tipo_inst"));
@@ -38,7 +38,7 @@ public class AltaInstitucion extends HttpServlet {
             preparedStatement.setString(2, institucion.getNom_inst());
             preparedStatement.setString(3, institucion.getTipo_inst());
             preparedStatement.setString(4, institucion.getLim_lider());
-            preparedStatement.setString(6, institucion.getLim_part());
+            preparedStatement.setString(5, institucion.getLim_part());
             preparedStatement.setString(6, institucion.getLim_grupo());
             preparedStatement.setString(7, institucion.getLim_sector());
 
@@ -52,7 +52,16 @@ public class AltaInstitucion extends HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            response.sendRedirect("staff/index.jsp?error=2");
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close(); // Cerrar la conexión
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // Manejar cualquier excepción al cerrar la conexión
+            }
         }
-
     }
+    
 }

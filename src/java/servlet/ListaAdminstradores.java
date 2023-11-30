@@ -67,6 +67,7 @@ public class ListaAdminstradores extends HttpServlet {
             out.println("<th>Nombre</th>");
             out.println("<th>Paterno</th>");
             out.println("<th>Materno</th>");
+            out.println("<th>Estado</th>");
             out.println("<th>Institucion</th>");
             out.println("<th>Acciones</th>");
             out.println("</tr>");
@@ -78,6 +79,12 @@ public class ListaAdminstradores extends HttpServlet {
                 out.println("<td>" + rsUsuarios.getString("nom_usuario") + "</td>");
                 out.println("<td>" + rsUsuarios.getString("pat_usuario") + "</td>");
                 out.println("<td>" + rsUsuarios.getString("mat_usuario") + "</td>");
+                
+                // CAMBIA TEXTO ESTADO
+                if (rsUsuarios.getString("est_usuario").contains("si"))
+                    out.println("<td>Activo</td>");
+                else
+                    out.println("<td>Inactivo</td>");
                 
                 // SELECCIONA LA INSTITUCION A LA QUE CADA USUARIO PERTENECE
                 PreparedStatement psInstitucion = conn.prepareStatement("SELECT nom_inst FROM instituciones INNER JOIN pertenecen ON instituciones.id_inst = pertenecen.id_inst WHERE pertenecen.id_usuario = ?");
@@ -91,7 +98,15 @@ public class ListaAdminstradores extends HttpServlet {
                     out.println("<td>NINGUNA</td>");
                 }
                 
-                out.println("<td> <a href=\"nuevoadmin?a=editar&i="+rsUsuarios.getString("id_usuario")+"&c="+rsUsuarios.getString("correo_usuario")+"&n="+rsUsuarios.getString("nom_usuario")+"&p="+rsUsuarios.getString("pat_usuario")+"&m="+rsUsuarios.getString("mat_usuario")+" \">Editar</a> <a href=\"bajaadmin?id_usuario="+rsUsuarios.getString("id_usuario")+" \">Borrar</a> </td>");
+                out.println("<td> <a href=\"nuevoadmin?a=editar&i="+rsUsuarios.getString("id_usuario")
+                        +"&c="+rsUsuarios.getString("correo_usuario")
+                        +"&n="+rsUsuarios.getString("nom_usuario")
+                        +"&p="+rsUsuarios.getString("pat_usuario")
+                        +"&m="+rsUsuarios.getString("mat_usuario")
+                        +"&e="+rsUsuarios.getString("est_usuario")
+                        +" \">Editar</a>"
+                        +"<a href=\"bajaadmin?id_usuario="+rsUsuarios.getString("id_usuario")
+                        +" \">Borrar</a> </td>");
                 out.println("</tr>");
             }
 

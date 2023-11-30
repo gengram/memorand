@@ -35,26 +35,26 @@ public class BajaInstituciones extends HttpServlet {
                 psPertenecen.executeUpdate();
             }
 
-            // DELETE INSCRIBEN
-            PreparedStatement psVerifica2 = conn.prepareStatement("SELECT EXISTS(SELECT * FROM inscriben WHERE id_inst = ?) AS output");
+            // DELETE INSTGRUPOS
+            PreparedStatement psVerifica2 = conn.prepareStatement("SELECT EXISTS(SELECT * FROM instgrupos WHERE id_inst = ?) AS output");
             psVerifica2.setString(1, id_inst);
             ResultSet rsVerifica2 = psVerifica2.executeQuery();
 
             rsVerifica2.next();
             if (rsVerifica2.getInt("output") > 0) {
-                PreparedStatement psPertenecen = conn.prepareStatement("DELETE FROM inscriben WHERE id_inst = ?");
+                PreparedStatement psPertenecen = conn.prepareStatement("DELETE FROM instgrupos WHERE id_inst = ?");
                 psPertenecen.setString(1, id_inst);
                 psPertenecen.executeUpdate();
             }
-
-            // DELETE GRUPOSINST
-            PreparedStatement psVerifica3 = conn.prepareStatement("SELECT EXISTS(SELECT * FROM gruposinst WHERE id_inst = ?) AS output");
+            
+            // DELETE INSTSECTOR
+            PreparedStatement psVerifica3 = conn.prepareStatement("SELECT EXISTS(SELECT * FROM instsector WHERE id_inst = ?) AS output");
             psVerifica3.setString(1, id_inst);
             ResultSet rsVerifica3 = psVerifica3.executeQuery();
 
             rsVerifica3.next();
             if (rsVerifica3.getInt("output") > 0) {
-                PreparedStatement psPertenecen = conn.prepareStatement("DELETE FROM gruposinst WHERE id_inst = ?");
+                PreparedStatement psPertenecen = conn.prepareStatement("DELETE FROM instsector WHERE id_inst = ?");
                 psPertenecen.setString(1, id_inst);
                 psPertenecen.executeUpdate();
             }
