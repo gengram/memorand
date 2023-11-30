@@ -2,13 +2,13 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Personales implements Serializable{
-    private String id_personal;
-    private String color_personal;
-    private String fondo_personal;
+public class Personales implements Serializable {
     
-    public Personales(){}
+    private String id_personal;
+    private String id_color;
+    private String id_fondo;
+
+    public Personales() {}
 
     public String getId_personal() {
         return id_personal;
@@ -18,21 +18,20 @@ public class Personales implements Serializable{
         this.id_personal = id_personal;
     }
 
-    public String getColor_personal() {
-        return color_personal;
+    public String getId_color() {
+        return id_color;
     }
 
-    public void setColor_personal(String color_personal) {
-        this.color_personal = color_personal;
+    public void setId_color(String id_color) {
+        this.id_color = id_color;
     }
 
-    public String getFondo_personal() {
-        return fondo_personal;
+    public String getId_fondo() {
+        return id_fondo;
     }
 
-    public void setFondo_personal(String fondo_personal) {
-        this.fondo_personal = fondo_personal;
+    public void setId_fondo(String id_fondo) {
+        this.id_fondo = id_fondo;
     }
-    
     
 }

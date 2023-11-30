@@ -2,17 +2,17 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Pendientes implements Serializable{
+public class Pendientes implements Serializable {
+    
     private String id_pend;
     private String nom_pend;
-    private String info_pend; 
-    private String fecha_pend; 
-    private String inicio_pend; 
+    private String info_pend;
+    private String fecha_pend;
+    private String inicio_pend;
     private String final_pend;
     private String estado_pend;
-    
-    public Pendientes(){}
+
+    public Pendientes() {}
 
     public String getId_pend() {
         return id_pend;

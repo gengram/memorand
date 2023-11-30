@@ -2,12 +2,12 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Grupos implements Serializable{
+public class Grupos implements Serializable {
+
     private String id_grupo;
     private String nom_grupo;
-    
-    public Grupos(){}
+
+    public Grupos() {}
 
     public String getId_grupo() {
         return id_grupo;
@@ -24,5 +24,5 @@ public class Grupos implements Serializable{
     public void setNom_grupo(String nom_grupo) {
         this.nom_grupo = nom_grupo;
     }
-    
+
 }

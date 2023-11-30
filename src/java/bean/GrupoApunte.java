@@ -2,19 +2,19 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class GrupoApunte implements Serializable{
-    private String id_grupo;
-    private String id_apunte;
+public class GrupoApunte implements Serializable {
     
-    public GrupoApunte(){}
+    private String id_tienen;
+    private String id_apunte;
 
-    public String getId_grupo() {
-        return id_grupo;
+    public GrupoApunte() {}
+
+    public String getId_tienen() {
+        return id_tienen;
     }
 
-    public void setId_grupo(String id_grupo) {
-        this.id_grupo = id_grupo;
+    public void setId_tienen(String id_tienen) {
+        this.id_tienen = id_tienen;
     }
 
     public String getId_apunte() {

@@ -2,13 +2,13 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Ideas implements Serializable{
-    private String id_idea;
-    private String texto_idea;
-    private String fecha_idea;
+public class Ideas implements Serializable {
     
-    public Ideas(){}
+    String id_idea;
+    String texto_idea;
+    String fecha_idea;
+
+    public Ideas() {}
 
     public String getId_idea() {
         return id_idea;

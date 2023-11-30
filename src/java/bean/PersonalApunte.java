@@ -2,12 +2,12 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class PersonalApunte implements Serializable{
+public class PersonalApunte implements Serializable {
+    
     private String id_personal;
     private String id_apunte;
-    
-    public PersonalApunte(){}
+
+    public PersonalApunte() {}
 
     public String getId_personal() {
         return id_personal;

@@ -2,12 +2,12 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class PersonalPend implements Serializable{
-    private String id_personal;
-    private String id_pend;
+public class PersonalPend implements Serializable {
     
-    public PersonalPend(){}
+    private String id_personal;
+    private String id_pendiente;
+
+    public PersonalPend() {}
 
     public String getId_personal() {
         return id_personal;
@@ -17,12 +17,12 @@ public class PersonalPend implements Serializable{
         this.id_personal = id_personal;
     }
 
-    public String getId_pend() {
-        return id_pend;
+    public String getId_pendiente() {
+        return id_pendiente;
     }
 
-    public void setId_pend(String id_pend) {
-        this.id_pend = id_pend;
+    public void setId_pendiente(String id_pendiente) {
+        this.id_pendiente = id_pendiente;
     }
     
 }

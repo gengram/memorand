@@ -2,16 +2,16 @@ package bean;
 
 import java.io.Serializable;
 
-/*Memorand by Gengram © 2023*/
-public class Apuntes implements Serializable{
+public class Apuntes implements Serializable {
+    
     private String id_apunte;
     private String nom_apunte;
     private String texto_apunte;
     private String fecha_apunte;
     private String autor_apunte;
     private String usado_apunte;
-    
-    public Apuntes(){}
+
+    public Apuntes() {}
 
     public String getId_apunte() {
         return id_apunte;
