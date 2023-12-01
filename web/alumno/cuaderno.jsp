@@ -5,23 +5,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="../recursos/import.jsp"/>
-        <link rel="stylesheet" href="../recursos/bootstrap.css"  type="text/css">
-        <link rel="stylesheet" href="../recursos/styles.css"  type="text/css">
+        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
+        <link rel="stylesheet" href="../recursos/estilos/styless.css"  type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <title>Apunte</title>
-        <style>
-
-            .vertical-divider {
-                border-left: 1px solid #ccc; /* Puedes ajustar el color y el grosor según tus necesidades */
-                height: 100px; /* Ajusta la altura según tus necesidades */
-                margin: 0 10px; /* Ajusta el margen según tus necesidades */
-            }
-        </style>
-
+       
     </head>
     <body>
-        <jsp:include page="../recursos/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
         <div class="container text-center" >
             <div class="row" >
                 <div class="col-1">
@@ -36,7 +29,7 @@
                                         Cuaderno</h1><br>
                                 </div>
                                 <div class="col-1 ms-5">
-                                    <button class= "custom-bsign mt-5" data-bs-toggle="modal" data-bs-target="#modalCuaderno">
+                                    <button class= "custom-bsign mt-5" data-bs-toggle="modal" data-bs-target="#modalApunte">
                                         <i class="bi bi-plus-lg"></i>
                                     </button>
                                 </div>
@@ -143,7 +136,41 @@
                 </div>
             </div>
         </div>
-        <jsp:include page="../recursos/footer.jsp"/>
+        <jsp:include page="../recursos/paginas/footer.jsp"/>
     </body>
-        
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalApunte">
+        <div class="modal-dialog modal-dialog-centered text-center modal-sm" role="document">
+            <div class="modal-content rounded-4 shadow">
+
+                <div class="modal-body p-5 pt-2 mt-4">
+
+                    <form action="login" method="post">
+                        <div class="form-check ">
+                            <input class="form-check-input border-1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <input class="form-check-input border-1" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="redirigirPagina('apunte.jsp')">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                <b>Apunte</b>
+                            </label>
+
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input border-1" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                            <input class="form-check-input border-1" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="redirigirPagina('idea.jsp')">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                <b>Idea</b>
+                            </label>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function redirigirPagina(pagina) {
+            window.location.href = pagina;
+        }
+    </script>
+
 </html>

@@ -109,3 +109,29 @@
     color: #F5A800;
 }
 
+.custom-file-input-label {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #27988A; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #27988A; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Ocultar el input de archivo por defecto */
+.custom-file-input[type="file"] {
+    display: none;
+}
+.cropper-container .cropper-dashed {
+    display: none;
+}
+
+.vertical-divider {
+    border-left: 1px solid #ccc; /* Puedes ajustar el color y el grosor según tus necesidades */
+    height: 100px; /* Ajusta la altura según tus necesidades */
+    margin: 0 10px; /* Ajusta el margen según tus necesidades */
+}

@@ -1,7 +1,7 @@
 <%-- 
     Memorand by Gengram © 2023
 --%>
-<jsp:include page="../recursos/sidelbar.jsp"/>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding:1%;">
     <div class="container-fluid">
         <!-- Barra lateral -->
@@ -12,7 +12,7 @@
 
         <!-- Empresa -->
         <a class="navbar-brand" href="/memorand/alumno/">
-            <img src="../images/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:40%">
+            <img src="../recursos/imagenes/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:40%">
         </a>
 
         <!-- Barra para buscar -->
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+                        <a class="dropdown-item d-flex gap-2 align-items-center" href="/memorand/alumno/micuenta.jsp">
                             <i class="bi bi-android" style="color: #27988A"></i>
                             Mi cuenta
                         </a>

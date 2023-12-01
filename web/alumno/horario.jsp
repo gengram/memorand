@@ -6,9 +6,9 @@
 <html>
     <head>
         
-        <jsp:include page="../recursos/import.jsp"/>
-        <link rel="stylesheet" href="../recursos/bootstrap.css"  type="text/css">
-        <link rel="stylesheet" href="../recursos/styles.css" type="text/css">
+        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
+        <link rel="stylesheet" href="../recursos/estilos/styless.css" type="text/css">
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <style>
@@ -25,8 +25,8 @@
         <title>Horario</title>
     </head>
     <body>
-        <jsp:include page="../recursos/navbar.jsp"/>
-
+        <jsp:include page="../recursos/paginas/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
         <div class="container text-center" >
             <div class="row" >
                 <div class="col-1">
@@ -130,7 +130,7 @@
                 </div>
             </div>
         </div>
-        <jsp:include page="../recursos/footer.jsp"/>
+        <jsp:include page="../recursos/paginas/footer.jsp"/>
     </body>
     <div class="modal fade" tabindex="-1" role="dialog" id="modalAgregarRutina">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">

@@ -5,29 +5,32 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="../recursos/import.jsp"/>
+        <jsp:include page="../recursos/paginas/import.jsp"/>
 
         <title>Apunte</title>
         <!-- Edit-Image -->
         <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.css">
         <!-- Style -->
-        <link rel="stylesheet" href="../recursos/bootstrap.css"  type="text/css">
-        <link rel="stylesheet" href="../recursos/styles.css"  type="text/css">
+        <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
+        <link rel="stylesheet" href="../recursos/estilos/styless.css"  type="text/css">
         <!-- Image-Text -->
         <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2"></script>
         <!-- Fuente -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <!-- Scripts -->
-        <script src="../recursos/voice-text.js"></script>
-        <script src="../recursos/voice_1text.js"></script>
-        <script src="../recursos/imageTtext.js"></script>
-        <script src="../recursos/style_edit.js"></script>
+        <script src="../recursos/scripts/voice-text.js"></script>
+        <script src="../recursos/scripts/voice_1text.js"></script>
+        <script src="../recursos/scripts/imageTtext.js"></script>
+        <script src="../recursos/scripts/style_edit.js"></script>
+        <script src="../recursos/scripts/jspdf.min.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-        <script src="jspdf.min.js"></script>
     </head>
+    
     <body>
-        <jsp:include page="../recursos/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
         <div class="container text-center" >
             <div class="row" >
                 <div class="col-1">
@@ -112,15 +115,11 @@
                     </div>
                 </div>
                 <div class="col-1">
-                    <button type="button" class="btn border-0 rounded-circle ms-5" style="color: #27988A;" data-bs-toggle="dropdown" aria-expanded="false">
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                        <i class="bi bi-question-circle-fill" style="font-size: 30px;"></i>
-                        <br>
-                    </button>
+                    
                 </div>
             </div>
         </div>
-        <jsp:include page="../recursos/footer.jsp"/>
+        <jsp:include page="../recursos/paginas/footer.jsp"/>
     </body>
     <script>
         function generatePDF() {

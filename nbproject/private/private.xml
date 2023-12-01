@@ -12,33 +12,9 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/PersonalIdea.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/web/staff/admin.jsp</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Pendientes.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/web/staff/inst.jsp</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/FormularioAdministrador.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/PersonalPend.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Tareas.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Grupos.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/AltaInstitucion.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Tienen.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Ordenan.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Personales.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Ideas.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Instituciones.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Rutinas.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/GrupoApunte.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Pertenecen.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Usuarios.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/PersonalRutina.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/servlet/LoginServlet.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/GrupoTarea.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Sectores.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/PersonalApunte.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/InstGrupos.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Inscriben.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/Apuntes.java</file>
-            <file>file:/C:/Users/nicojrz/OneDrive/Escritorio/memorand/src/java/bean/InstSector.java</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/staff/inst.jsp</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/staff/index.jsp</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/staff/admin.jsp</file>
         </group>
     </open-files>
 </project-private>

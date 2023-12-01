@@ -5,12 +5,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="../recursos/import.jsp"/>
+        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
+        <link rel="stylesheet" href="../recursos/estilos/styles.css" type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <title>Clases</title>
     </head>
     <body>
-        <jsp:include page="../recursos/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
         <div class="container text-center" >
             <div class="row" >
                 <div class="col-1">
@@ -64,7 +67,6 @@
                     </div>
                 </div> 
                 <div class="col-1">
-                    <img src="images/extras/circles.png" class="img-fluid float-start mx-4 mt-5" alt="icon" width="35" height="25">
                     <button type="button" class="btn border-0 rounded-circle ms-2" style="color: #27988A;" data-bs-toggle="dropdown" aria-expanded="false">
                         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                         <i class="bi bi-question-circle-fill" style="font-size: 30px;"></i>
@@ -74,6 +76,6 @@
             </div>
         </div>
     </div>
-    <jsp:include page="../recursos/footer.jsp"/>
+    <jsp:include page="../recursos/estilos/footer.jsp"/>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="../recursos/import.jsp"/>
-        <link rel="stylesheet" href="../recursos/bootstrap.css"  type="text/css">
-        <link rel="stylesheet" href="../recursos/styles.css" type="text/css">
+        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
+        <link rel="stylesheet" href="../recursos/estilos/styless.css" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
         <title>Calendario</title>
 
@@ -15,9 +15,11 @@
                 display: none;
             }
         </style>
+        <script src="../recursos/scripts/calendario.js"></script>
     </head>
     <body>
-        <jsp:include page="../recursos/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/navbar.jsp"/>
+        <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
         <div class="container text-center" >
             <div class="row" >
                 <div class="col-1">
@@ -75,15 +77,11 @@
                     </div> 
                 </div>
                 <div class="col-1">
-                    <button type="button" class="btn border-0 rounded-circle ms-5" style="color: #27988A;" data-bs-toggle="dropdown" aria-expanded="false">
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                        <i class="bi bi-question-circle-fill" style="font-size: 30px;"></i>
-                        <br>
-                    </button>
+                    
                 </div>
             </div>
         </div>
-        <jsp:include page="../recursos/calendarJS.jsp"/>
-        <jsp:include page="../recursos/footer.jsp"/>
+        <jsp:include page="../recursos/paginas/calendarioJS.jsp"/>
+        <jsp:include page="../recursos/paginas/footer.jsp"/>
     </body>
 </html>

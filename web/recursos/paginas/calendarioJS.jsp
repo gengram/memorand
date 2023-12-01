@@ -28,9 +28,6 @@
                 dia.classList.add("border-white");
                 calendarBody.style.borderCollapse = "collapse";
                 semana.style.borderBottom = "none";
-
-
-
                 if ((j === 0 || j === 6) && i > 0) {
                     dia.classList.add("text-white");
                     dia.style.backgroundColor = "#7BC3BC";
@@ -40,7 +37,6 @@
                     dia.innerText = "";
                 } else if (date <= totalDays) {
                     dia.innerText = date;
-
                     if (year === hoy.getFullYear() && month === hoy.getMonth() && date === hoy.getDate()) {
                         dia.style.backgroundColor = "#7BC3BC";
                         dia.style.color = "#FAECB0";
@@ -51,7 +47,7 @@
 
                     date++;
                 }
-                
+
 
                 semana.appendChild(dia);
             }
@@ -76,7 +72,7 @@
             mesSelectorBody.appendChild(mes);
         }
     }
-    
+
     function drawMesesSelector() {
         let mesSelectorBody = document.getElementById("meses");
         mesSelectorBody.innerHTML = "";
@@ -140,6 +136,7 @@
         document.getElementById("añoSelector").style.display = "block";
         document.getElementById("mesSelector").style.display = "none";
     });
+
 
     drawCalendario();
 </script>

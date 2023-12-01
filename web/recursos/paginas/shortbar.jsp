@@ -5,7 +5,7 @@
         
         <!-- Logo Memorand-->
         <a class="navbar-brand" href="index.jsp">
-            <img src="images/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:50%">
+            <img src="recursos/imagenes/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:50%">
         </a>
         
         <!-- Modal de inicio de sesión -->
