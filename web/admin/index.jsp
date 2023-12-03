@@ -34,8 +34,8 @@
         <a href="#">Nueva profesor</a> <br> 
         
         <h2>Grupos</h2>
-        <a href="#">Ver grupos</a> <br> 
-        <a href="#">Nuevo grupo</a>
+        <a href="../listagrupo?a=v">Ver grupos</a> <br> 
+        <a href="grupo.jsp?a=n">Nuevo grupo</a>
         
         <h2>Asignaturas</h2>
         <a href="#">Ver asignaturas</a> <br> 

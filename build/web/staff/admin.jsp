@@ -37,11 +37,13 @@
             <input type="text" name="mat_usuario" id="mat_usuario" placeholder="Apellido materno" required>
 
             <select name="est_usuario" id="est_usuario" placeholder="Selecciona">
+                <option value="" selected disabled hidden>Selecciona</option>
                 <option value="si">Activo</option>
                 <option value="no">Inactivo</option>
             </select>
 
             <select name="nom_inst" id="nom_inst" placeholder="Selecciona">
+                <option value="" selected disabled hidden>Selecciona</option>
                 <c:forEach items="${inst}" var="institucion">
                     <option value="${institucion.nom_inst}">${institucion.nom_inst}</option>
                 </c:forEach>
@@ -78,11 +80,13 @@
             <input type="text" name="mat_usuario" id="mat_usuario" placeholder="Apellido materno" value="<%=mat_usuario%>" required>
             
             <select name="est_usuario" id="est_usuario" placeholder="Selecciona">
+                <option value="" selected disabled hidden>Selecciona</option>
                 <option value="si">Activo</option>
                 <option value="no">Inactivo</option>
             </select>
 
             <select name="nom_inst" id="nom_inst" placeholder="Selecciona">
+                <option value="" selected disabled hidden>Selecciona</option>
                 <c:forEach items="${inst}" var="institucion">
                     <option value="${institucion.nom_inst}">${institucion.nom_inst}</option>
                 </c:forEach>
@@ -111,11 +115,13 @@
             <input type="text" name="mat_usuario" id="mat_usuario" placeholder="Apellido materno" required>
 
             <select name="est_usuario" id="est_usuario" placeholder="Selecciona">
+                <option value="" selected disabled hidden>Selecciona</option>
                 <option value="si">Activo</option>
                 <option value="no">Inactivo</option>
             </select>
 
             <select name="nom_inst" id="nom_inst" placeholder="Selecciona">
+                <option value="" selected disabled hidden>Selecciona</option>
                 <c:forEach items="${inst}" var="institucion">
                     <option value="${institucion.nom_inst}">${institucion.nom_inst}</option>
                 </c:forEach>
