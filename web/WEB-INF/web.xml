@@ -9,4 +9,13 @@
             30
         </session-timeout>
     </session-config>
+    <servlet>
+        <servlet-name>AgregarPendienteServlet</servlet-name>
+        <servlet-class>com.miaplicacion.AgregarPendienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AgregarPendienteServlet</servlet-name>
+        <url-pattern>/agregarPendiente</url-pattern>
+    </servlet-mapping>
+
 </web-app>
