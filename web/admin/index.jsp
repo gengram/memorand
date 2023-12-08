@@ -26,20 +26,20 @@
         <a href="../logout">Cerrar sesión</a>
 
         <h2>Alumnos</h2>
-        <a href="#">Ver alumnos</a> <br> 
-        <a href="#">Nuevo alumno</a> <br> 
+        <a href="../listaalumno?a=v">Ver alumnos</a> <br> 
+        <a href="alumno.jsp?a=n">Nuevo alumno</a> <br> 
 
         <h2>Profesores</h2>
-        <a href="#">Ver profesores</a> <br> 
-        <a href="#">Nueva profesor</a> <br> 
+        <a href="../listaprof?a=v">Ver profesores</a> <br> 
+        <a href="profesor.jsp?a=n">Nueva profesor</a> <br> 
         
         <h2>Grupos</h2>
         <a href="../listagrupo?a=v">Ver grupos</a> <br> 
         <a href="grupo.jsp?a=n">Nuevo grupo</a>
         
         <h2>Asignaturas</h2>
-        <a href="#">Ver asignaturas</a> <br> 
-        <a href="#">Nueva asignatura</a>
+        <a href="../listaasigna?a=v">Ver asignaturas</a> <br> 
+        <a href="asignatura.jsp?a=n">Nueva asignatura</a>
     </body>
     
 </html>
