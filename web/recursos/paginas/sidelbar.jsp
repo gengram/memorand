@@ -40,7 +40,7 @@
             </li>
             <li>
                 <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Foro">
-                    <a href="foro.jsp" class="nav-link py-3  border-bottom rounded-0"  data-bs-toggle="tooltip" data-bs-placement="right">
+                    <a href="#.jsp" class="nav-link py-3  border-bottom rounded-0"  data-bs-toggle="tooltip" data-bs-placement="right" >
                         <svg width="35" height="35" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h48v48h-48z" fill="none"/><path d="M42 12h-4v18h-26v4c0 1.1.9 2 2 2h22l8 8v-30c0-1.1-.9-2-2-2zm-8 12v-18c0-1.1-.9-2-2-2h-26c-1.1 0-2 .9-2 2v28l8-8h20c1.1 0 2-.9 2-2z"/></svg>
                     </a>
                 </span>
