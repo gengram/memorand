@@ -4,7 +4,7 @@
 <div class="container-fluid bg-body-tertiary" style="padding:5%;" id="contacto">
     <div class="row">
         <div class="col-4 text-center">
-            <a href="http://gengram.gerdoc.com/"><img src="../recursos/imagenes/logotypes/logoextG.png" alt="gengram" style="width: 30%;"></a>
+            <a href="http://gengram.gerdoc.com/"><img src="recursos/imagenes/logotypes/logoextG.png" alt="gengram" style="width: 30%;"></a>
             <h2 class="text-body-tertiary"><strong>Contacto</strong></h2>
             <h6 class="text-body-tertiary">&copy; gengram 2023</h6>
         </div>

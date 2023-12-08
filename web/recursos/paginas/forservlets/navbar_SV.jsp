@@ -1,7 +1,6 @@
 <%-- 
     Memorand by Gengram © 2023
 --%>
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding:1%;">
     <div class="container-fluid">
         <!-- Barra lateral -->
@@ -12,16 +11,17 @@
 
         <!-- Empresa -->
         <a class="navbar-brand" href="/memorand/alumno/">
-            <img src="../recursos/imagenes/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:40%">
+            <img src="recursos/imagenes/logotypes/me-logoEX.png" alt="memorand" width="200" style="margin-left:40%">
         </a>
 
-        <!-- Barra para buscar -->
+        <!-- Barra para buscar 
         <form class="d-flex" role="search" style="margin-left:40%">
             <input class="form-control-sm me-2" type="search" placeholder="Buscar" aria-label="Search">
             <button class="btn custom-bsign" type="submit"><i class="bi bi-search"></i></button>
         </form>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 15%;">
-            <!-- Noticaciones -->
+        -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 75%;">
+            <!-- Noticaciones
             <div class="btn-group dropstart mx-3">
                 <button type="button" class="btn border-0 rounded-circle" style="color: #27988A;" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-bell-fill" style="font-size: 22px;"></i>
@@ -43,9 +43,11 @@
                             <span class="d-inline-block bg-info rounded-circle p-1"></span>
                             Preparate
                         </a></li>
-                    <!-- Dropdown menu links -->
+                     
                 </ul>
-            </div>
+            </div>            
+            -->
+
 
             <!-- Perfil -->
             <div class="btn-group dropstart">
@@ -53,6 +55,7 @@
                     <i class="bi bi-gear-fill" style="font-size: 22px;"></i>
                 </button>
                 <ul class="dropdown-menu my-4">
+                    <!--
                     <li>
                         <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
                             <i class="bi bi-android" style="color: #27988A"></i>
@@ -65,11 +68,12 @@
                             Mi cuenta
                         </a>
                     </li>
+                    -->
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../logout">
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="logout">
                             <i class="bi bi-box-arrow-left" style="color: #27988A"></i>
-                            Salir
+                            Cerrar Sesi&oacute;n
                         </a>
                     </li>
                 </ul>

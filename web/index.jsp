@@ -6,7 +6,7 @@
 <html lang="es" data-bs-theme="auto">
     
     <head>
-        <jsp:include page="recursos/paginas/import.jsp"/>
+        <jsp:include page="recursos/import.jsp"/>
         <link rel="stylesheet" href="recursos/estilos/bootstrap.css"  type="text/css">
         <link rel="stylesheet" href="recursos/estilos/styless.css"  type="text/css">
         <title>Memorand</title>
@@ -46,18 +46,23 @@
             </div>
         </div>
         
-        <footer class="d-flex justify-content-between align-items-center  mt-4  border-top sticky-top">
-            <a href="http://gengram.gerdoc.com/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img  src="recursos/imagenes/logotypes/logoextG.png" alt="gengram" style="width: 30%;">
-            </a>
-
-            <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Gengram srl.</p>
-
-            <ul class="nav col-md-3 justify-content-end ">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary my-3"><i class="bi bi-envelope-open-fill"></i>    Escribenos</a></li>
-                <li class="nav-item"><a href="https://github.com/mygengram" class="nav-link px-2 text-body-secondary mx-5 my-3"><i class="bi bi-github"></i>     Github</a></li>
-            </ul>
-        </footer>
+        <div class="container-fluid bg-body-tertiary" style="padding:5%;" id="contacto">
+            <div class="row">
+                <div class="col-4 text-center">
+                    <a href="http://gengram.gerdoc.com/"><img src="recursos/imagenes/logotypes/logoextG.png" alt="gengram" style="width: 30%;"></a>
+                    <h2 class="text-body-tertiary"><strong>Contacto</strong></h2>
+                    <h6 class="text-body-tertiary">&copy; gengram 2023</h6>
+                </div>
+                <div class="col-8 text-left">
+                    <a style="text-decoration: none" href="mailto:mygengram@gmail.com?Subject=Hola">
+                        <h6><i class="fa fa-envelope"></i>  Escr&iacute;benos</h6>
+                    </a>
+                    <a style="text-decoration: none" href="https://github.com/mygengram">
+                        <h6><i class="bi bi-github"></i>  Repositorios</h6>
+                    </a>
+                </div>
+            </div>
+        </div>
         
     </body>
     
