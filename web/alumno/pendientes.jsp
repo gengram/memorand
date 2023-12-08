@@ -24,6 +24,15 @@
     </style>
     <title>Pendientes</title>
 </head>
+
+<%
+        //PROTECCION
+        String tipo_usuario = (String) session.getAttribute("tipo_usuario");
+        if (tipo_usuario == null || !tipo_usuario.equals("alumno")) {
+            response.sendRedirect("../index.jsp");
+        }
+    %>
+    
 <body>
     <jsp:include page="../recursos/paginas/navbar.jsp"/>
     <jsp:include page="../recursos/paginas/sidelbar.jsp"/>

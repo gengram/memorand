@@ -16,18 +16,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import util.ConnectionUtil;
 
-@WebServlet("/alumno/chat/verchat")
+@WebServlet("/alumno/verchat")
 public class ListaChat extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         String id_inst = null;
+        String id_usuario = null;
         ArrayList<Usuarios> usuarios = new ArrayList<>();
 
         HttpSession session = request.getSession(false);
 
         if (session != null) {
             id_inst = (String) session.getAttribute("id_inst");
+            id_usuario = (String) session.getAttribute("id_usuario");
             if (id_inst == null) {
                 response.sendRedirect("index.jsp?error=noinst");
             }
@@ -45,13 +47,17 @@ public class ListaChat extends HttpServlet {
             ResultSet rsGrupos = psGrupos.executeQuery();
 
             while (rsGrupos.next()) {
-
-                Usuarios usuario = new Usuarios();
-                usuario.setId_usuario(rsGrupos.getString("id_usuario"));
-                usuario.setNom_usuario(rsGrupos.getString("nom_usuario"));
-                usuario.setPat_usuario(rsGrupos.getString("pat_usuario"));
-                usuarios.add(usuario);
                 
+                if (!(rsGrupos.getString("id_usuario").equals(id_usuario))) {
+                
+                    Usuarios usuario = new Usuarios();
+                    usuario.setId_usuario(rsGrupos.getString("id_usuario"));
+                    usuario.setNom_usuario(rsGrupos.getString("nom_usuario"));
+                    usuario.setPat_usuario(rsGrupos.getString("pat_usuario"));
+                    usuarios.add(usuario);
+                
+                }
+
             }
 
         } catch (SQLException e) {
@@ -69,7 +75,7 @@ public class ListaChat extends HttpServlet {
         
         if(session != null) {
             request.setAttribute("usuarios",usuarios);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("chats.jsp");
             dispatcher.forward(request, response);
         } else {
             response.sendRedirect("index.jsp?error=1");

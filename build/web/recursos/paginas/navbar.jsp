@@ -67,7 +67,7 @@
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="logout">
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../logout">
                             <i class="bi bi-box-arrow-left" style="color: #27988A"></i>
                             Salir
                         </a>

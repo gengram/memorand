@@ -21,6 +21,7 @@ public class ChatWebsocketEndpoint {
     
     @OnMessage
     public String onMessage(Session session, MessageModel message) {
+        
         System.out.println("Mensaje: " + message);
         for (Session s: sessions) {
             try {

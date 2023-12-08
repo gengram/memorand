@@ -11,6 +11,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <title>Clases</title>
     </head>
+    <%
+        //PROTECCION
+        String tipo_usuario = (String) session.getAttribute("tipo_usuario");
+        if (tipo_usuario == null || !tipo_usuario.equals("alumno")) {
+            response.sendRedirect("../index.jsp");
+        }
+    %>
     <body>
         <jsp:include page="../recursos/paginas/navbar.jsp"/>
         <jsp:include page="../recursos/paginas/sidelbar.jsp"/>

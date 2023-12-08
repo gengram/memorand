@@ -6,13 +6,13 @@ websocket.onmessage = function(event) {
     
     onMessage(event);
     
-}
+};
 
 websocket.onopen = function() {
     
     onOpen();
     
-}
+};
 
 function onOpen() {
     
@@ -36,23 +36,40 @@ function onMessage(event) {
 
 function display(dataString) {
     var data = JSON.parse(dataString);
-    var contentMessage = "<p>User: " + data.username + " Dice: " + data.content + "</p>";
-    document.getElementById("output").innerHTML += contentMessage + "</br>";
+
     
+    if (data.username === document.getElementById("username_to").value) {
+        
+        var contentMessage = "<p>" + data.usernom + ": " + data.content + "</p>";
+        document.getElementById("output").innerHTML += contentMessage + "</br>";
+        
+    }
+    if (data.username === document.getElementById("username_in").value) {
+        
+        var contentMessage = "<p>" + data.usernom + ": " + data.content + "</p>";
+        document.getElementById("output").innerHTML += contentMessage + "</br>";
+        
+    }
     
 }
 
 function send() {
     
+    var userto = document.getElementById("username_to").value;
+    var nomto = document.getElementById("nom_to").value;
     var message = document.getElementById("message_in").value;
-    var username = document.getElementById("username_in").value;
+    var userin = document.getElementById("username_in").value;
+    var nomin = document.getElementById("nom_in").value;
     
     var json = {
+        "touser": userto,
+        "tonom": nomto,
         "content": message,
-        "username": username
+        "username": userin,
+        "usernom": nomin
     };
     
-    console.log("Enviando " + message);
+    console.log(nomin + " enviando: " + message + " a: " + nomto);
     websocket.send(JSON.stringify(json));
     
 }
