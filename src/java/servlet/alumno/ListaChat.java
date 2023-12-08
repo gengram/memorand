@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import util.ConnectionUtil;
 
-@WebServlet("alumno/chat/verchat")
+@WebServlet("/alumno/chat/verchat")
 public class ListaChat extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
