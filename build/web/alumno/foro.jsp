@@ -11,7 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    
     <%
         //PROTECCION
         String tipo_usuario = (String) session.getAttribute("tipo_usuario");
@@ -19,7 +18,6 @@
             response.sendRedirect("../index.jsp");
         }
     %>
-    
     <body>
         <h1>Hello World!</h1>
         <jsp:include page="../recursos/paginas/sidelbar.jsp"/>

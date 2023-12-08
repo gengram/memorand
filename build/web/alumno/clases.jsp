@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <jsp:include page="../recursos/import.jsp"/>
         <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
         <link rel="stylesheet" href="../recursos/estilos/styles.css" type="text/css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">

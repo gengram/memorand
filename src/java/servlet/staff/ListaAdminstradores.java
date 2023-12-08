@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,20 +49,44 @@ public class ListaAdminstradores extends HttpServlet {
 
             // HEAD
             out.println("<head>");
+            RequestDispatcher importa = request.getRequestDispatcher("recursos/paginas/import.jsp");
+            importa.include(request, response);
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"recursos/estilos/bootstrap.css\">");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"recursos/estilos/styless.css\">");
+            out.println("<link rel=\"shortcut icon\" href=\"recursos/imagenes/logotypes/me-logoP.png\">");
             out.println("<title>Listado administradores</title>");
             out.println("</head>");
             // FIN HEAD
 
             //BODY
             out.println("<body>");
-            out.println("<h1>Listado de Administradores</h1>");
-            out.println("<a href=\"nuevoadmin?a=nuevo2\">Nuevo administrador</a>");
-            out.println("<br>");
-            out.println("<br>");
+            
+            RequestDispatcher navbar = request.getRequestDispatcher("recursos/paginas/forservlets/navbar_SV.jsp");
+            navbar.include(request, response);
+
+            RequestDispatcher sidelbar = request.getRequestDispatcher("recursos/paginas/forservlets/sidelbar_SV.jsp");
+            sidelbar.include(request, response);
+            
+            out.println("<div class='container text-center'>");
+                out.println("<div class='row'>");
+                    out.println("<div class='col-1'></div>");
+                    out.println("<div class='col-10 mt-3'>");
+                        out.println("<div class='row row-cols-2'>");
+                            out.println("<div class=\"col6\"> ");
+                                out.println("<h1>Listado de Administradores</h1>");
+                            out.println("</div>");
+                            out.println("<div class=\"col6\">");
+                                out.println("<br>");
+                                out.println("<a class=\"btn custom-bsign mt-5\" href=\"staff/admin.jsp?a=nuevo2\">Nuevo administrador</a>");
+                                out.println("<a class=\"btn custom-bsign mt-5\" href=\"staff/index.jsp\">Regresar</a>");
+                            out.println("</div>");
+                                out.println("<br>");
+                                out.println("<br>");
+                        out.println("</div>");
 
             // TABLA
-            out.println("<table border=\"2\">");
-            out.println("<tr>");
+            out.println("<table class=\"table mt-5\" ");
+            out.println("<thead class=\"table-light\">");
             out.println("<th>Correo</th>");
             out.println("<th>Contraseña</th>");
             out.println("<th>Nombre</th>");
@@ -70,10 +95,10 @@ public class ListaAdminstradores extends HttpServlet {
             out.println("<th>Estado</th>");
             out.println("<th>Institucion</th>");
             out.println("<th>Acciones</th>");
-            out.println("</tr>");
+            out.println("</thead>");
 
             while (rsUsuarios.next()) {
-                out.println("<tr>");
+                out.println("<tbody>");
                 out.println("<td>" + rsUsuarios.getString("correo_usuario") + "</td>");
                 out.println("<td>" + rsUsuarios.getString("pass_usuario") + "</td>");
                 out.println("<td>" + rsUsuarios.getString("nom_usuario") + "</td>");
@@ -107,14 +132,35 @@ public class ListaAdminstradores extends HttpServlet {
                         +" \">Editar</a>"
                         +"<a href=\"bajaadmin?id_usuario="+rsUsuarios.getString("id_usuario")
                         +" \">Borrar</a> </td>");
-                out.println("</tr>");
+                out.println("</tbody>");
             }
 
             out.println("</table>");
             // FIN TABLA
 
             out.println("<br>");
-            out.println("<a href=\"staff/index.jsp\">Regresar</a>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("<br>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("</div>");
+            out.println("</div>");
+
+            RequestDispatcher footer = request.getRequestDispatcher("recursos/paginas/forservlets/footer_SV.jsp");
+            footer.include(request, response);
             out.println("</body>");
             // FIN BODY
 

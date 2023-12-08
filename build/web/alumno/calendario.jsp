@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <jsp:include page="../recursos/import.jsp"/>
         <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
         <link rel="stylesheet" href="../recursos/estilos/styless.css" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
@@ -17,7 +17,6 @@
         </style>
         <script src="../recursos/scripts/calendario.js"></script>
     </head>
-    
     <%
         //PROTECCION
         String tipo_usuario = (String) session.getAttribute("tipo_usuario");
@@ -25,7 +24,6 @@
             response.sendRedirect("../index.jsp");
         }
     %>
-    
     <body>
         <jsp:include page="../recursos/paginas/navbar.jsp"/>
         <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
@@ -84,7 +82,9 @@
                             <button id="btnElegirAño" class="btn custom-bsign">Elegir Año</button>
                         </div>
                     </div> 
+                    <br><br><br><br>
                 </div>
+                
                 <div class="col-1">
                     
                 </div>

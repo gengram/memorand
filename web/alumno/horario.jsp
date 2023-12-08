@@ -6,7 +6,7 @@
 <html>
     <head>
         
-        <jsp:include page="../recursos/paginas/import.jsp"/>
+        <jsp:include page="../recursos/import.jsp"/>
         <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
         <link rel="stylesheet" href="../recursos/estilos/styless.css" type="text/css">
 
@@ -24,7 +24,6 @@
         </style>
         <title>Horario</title>
     </head>
-    
     <%
         //PROTECCION
         String tipo_usuario = (String) session.getAttribute("tipo_usuario");
@@ -32,7 +31,6 @@
             response.sendRedirect("../index.jsp");
         }
     %>
-    
     <body>
         <jsp:include page="../recursos/paginas/navbar.jsp"/>
         <jsp:include page="../recursos/paginas/sidelbar.jsp"/>
