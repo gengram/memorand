@@ -47,7 +47,7 @@
             </li>
             <li>
                 <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Chat">
-                    <a href="chat.jsp" class="nav-link py-3  border-bottom rounded-0"  data-bs-toggle="tooltip" data-bs-placement="right">
+                    <a href="chat/index.jsp" class="nav-link py-3  border-bottom rounded-0"  data-bs-toggle="tooltip" data-bs-placement="right">
                         <i class="bi bi-telegram custom-icon2"></i>
                     </a>
                 </span>

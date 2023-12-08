@@ -49,10 +49,10 @@
 
     <%
         //PROTECCION
-        /*String tipo_usuario = (String) session.getAttribute("tipo_usuario");
+        String tipo_usuario = (String) session.getAttribute("tipo_usuario");
         if (tipo_usuario == null || !tipo_usuario.equals("alumno")) {
             response.sendRedirect("../index.jsp");
-        }*/
+        }
     %>
     
 <body>

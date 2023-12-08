@@ -23,7 +23,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-6">
-                                <img  src="recursos/imagenes/extras/inicioM.png" class="img-fluid float-start mx-4 mt-5 shadow-lg mb-5" alt="icon" width="600" height="550">
+                                <img  src="recursos/imagenes/extras/inici.png" class="img-fluid float-start mx-4 mt-5 shadow-lg mb-5" alt="icon" width="600" height="550">
                                 <h4 class="mt-5 mb-5 p-2 text-justify text-start">Gestiona tus rutinas, tareas y convive con tus compañeros en todo momento.</h4>
                                 <br><br><br><br>
                             </div>
