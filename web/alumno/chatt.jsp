@@ -16,11 +16,11 @@
                 <div class="col-12 mt-5 ms-5 card shadow-lg" style="max-width: 1400px; max-height: 650px;">
                     <div class="card-body">
                         <section class="d-flex h-90 overflow-hidden">
-                            <div class="bg-white col-xl-3 col-lg-4 col-12 p-6 shadow-lg">
+                            <!--<div class="bg-white col-xl-3 col-lg-4 col-12 p-6 shadow-lg">
                                 <h3 class="text-2xl mb-8">Chat en línea</h3>
 
                                 <div class="overflow-auto h-85">
-                                    <!-- Ejemplo de mensaje -->
+                                     Ejemplo de mensaje 
                                     <div class="bg-gray-100 mb-4 p-4 rounded shadow-sm">
                                         <img src="../recursos/imagenes/extras/user-01.jpg" class="rounded-full w-12 me-4">
                                         <div class="w-full overflow-hidden">
@@ -53,7 +53,7 @@
                                     </div>
 
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="bg-gray-100 col-xl-9 col-lg-8 d-none d-lg-block shadow">
                                 <div class="py-4 px-5 border-bottom">

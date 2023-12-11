@@ -125,7 +125,6 @@
                 </div>
             </div>
         </div>
-        <jsp:include page="../recursos/paginas/footer.jsp"/>
     </body>
     <script>
         function generatePDF() {

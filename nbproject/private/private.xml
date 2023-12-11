@@ -12,15 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/staff/index.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/servlet/staff/ListaAdminstradores.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/alumno/chat/index.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/servlet/staff/ListaInstituciones.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/servlet/alumno/ListaChat.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/staff/inst.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/alumno/index.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/alumno/cuaderno.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/recursos/scripts/websocket.js</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/alumno/chats.jsp</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/alumno/chat/index.jsp</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/src/java/servlet/alumno/ListaChat.java</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/recursos/scripts/websocket.js</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/recursos/paginas/sidelbar.jsp</file>
+            <file>file:/C:/Users/zunig/Desktop/memorand/web/alumno/chatt.jsp</file>
         </group>
     </open-files>
 </project-private>
