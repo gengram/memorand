@@ -21,7 +21,6 @@
                     <input type="submit" value="Iniciar sesión" class="w-100 mb-2 btn btn-lg rounded-3 custom-bsign">
                 </form>
 
-                <small class="text-body-secondary"> <a type="button" data-bs-target="#modalSignin" data-bs-toggle="modal">¿No tienes cuenta? Reg&iacute;strate</a></small>
                 <hr class="my-4">
                 <p class="mb-3 text-primary" style="font-size: 70%;">Condiciones de uso | Política de privacidad</p>
             </div>

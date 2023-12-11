@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../../recursos/estilos/bootstrap.css"  type="text/css">
         <link rel="stylesheet" href="../../recursos/estilos/styless.css" type="text/css">
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../recursos/imagenes/logotypes/me-logoP.png">
         <title>Chat</title>
     </head>
     <%
@@ -40,7 +41,7 @@
                 <div class="col-10 mt-5 ms-3" >
                     
                         <section class="d-flex h-100 overflow-hidden">
-                            <div class="bg-gray-100 col-xl-9 col-lg-8 d-none d-lg-block shadow">
+                            <div class="bg-gray-100 col-xl-9 col-lg-8 d-none d-lg-block shadow-lg">
                                 <div class="py-4 px-5 border-bottom">
                                     <div class="d-flex">
                                         <div class="d-grid flex-grow">

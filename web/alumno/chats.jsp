@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="../recursos/estilos/bootstrap.css"  type="text/css">
         <link rel="stylesheet" href="../recursos/estilos/styless.css" type="text/css">
         <title>Lista Chat</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <%
         //PROTECCION
