@@ -1,4 +1,4 @@
-var wsURI = "ws://" + document.location.host + document.location.pathname + "chat";
+var wsURI = "ws://" + document.location.host + ":8080" + document.location.pathname + "chat";
 
 var websocket = new WebSocket(wsURI);
 
