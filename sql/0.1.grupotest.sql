@@ -1,14 +1,10 @@
 use memorand;
 
-insert into usuarios values ('Q2sW4dE7fR6gT1y','alumno1@gmail.com','n0m3l0','alumno','Nicolás','Juárez','Barrios','si');
-insert into usuarios values ('fR7gT2hY5jU8bS6','alumno2@gmail.com','n0m3l0','alumno','Saul','Zuñiga','Aguilar','si');
-insert into usuarios values ('K3lM9qA2wS4eD7f','alumno3@gmail.com','n0m3l0','alumno','Christopher Ivan','Sandoval','Coxca','si');
-insert into usuarios values ('J8kL5oP1iZ3xV6c','alumno4@gmail.com','n0m3l0','alumno','Dylan','Martínez','Castillo','si');
+insert into usuarios values ('Q2sW4dE7fR6gT1y','alumno1@gmail.com','n0m3l0','alumno','Nicolás','Juarez','Barrios','si');
+insert into usuarios values ('fR7gT2hY5jU8bS6','alumno2@gmail.com','n0m3l0','alumno','Saul','Zuniga','Aguilar','si');
+insert into usuarios values ('K3lM9qA2wS4eD7f','alumno3@gmail.com','n0m3l0','alumno','Christopher','Sandoval','Coxca','si');
+insert into usuarios values ('J8kL5oP1iZ3xV6c','alumno4@gmail.com','n0m3l0','alumno','Dylan','Martinez','Castillo','si');
 insert into usuarios values ('9bX8cV6dF5gH7jU','alumno5@gmail.com','n0m3l0','alumno','Alumno','Paterno','Materno','si');
-
-insert into usuarios values ('hY4jU7gE5wS1dF6','profe1@gmail.com','n0m3l0','profesor','Germán','Gutiérrez','Galán','si');
-insert into usuarios values ('C8lK3oP7iZ9xV6m','profe2@gmail.com','n0m3l0','profesor','Abdiel','Reyes','Vera','si');
-insert into usuarios values ('sW4dE7fR6gT1yH2','profe3@gmail.com','n0m3l0','profesor','Juan Ángel','Calvillo','Pérez','si');
 
 insert into instituciones values ('kL5oP1iZ3xV6cN8','Escuela','Escolar','20','2000','30','50');
 
