@@ -2,11 +2,14 @@ package com.memorand.model;
 
 import com.memorand.beans.Institution;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class InstitutionsModel extends Conexion {
 
-    public boolean CreateInst(Institution inst) {
+    public boolean createInst(Institution inst) {
         
         boolean flag = false;
         
@@ -50,7 +53,57 @@ public class InstitutionsModel extends Conexion {
             }
         }
         
-        return true;
+        return flag;
+    }
+    
+    public ArrayList<Institution> getAllInst() {
+        
+        ArrayList<Institution> all_inst = new ArrayList<>();
+        
+        Statement st = null;
+        
+        try
+        {
+            String sql = "SELECT * FROM institutions ORDER BY inst_name";
+            
+            st = getConnection().createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next())
+            {
+                String inst_id = rs.getString(1);
+                String inst_name = rs.getString(2);
+                String inst_type = rs.getString(3);
+                String inst_profile = rs.getString(4);
+                String lim_ch = rs.getString(5);
+                String lim_wk = rs.getString(6);
+                String lim_gp = rs.getString(7);
+                String lim_ks = rs.getString(8);
+                
+                Institution new_inst = new Institution(inst_id, inst_name, inst_type, inst_profile, lim_ch, lim_wk, lim_gp, lim_ks);
+                
+                all_inst.add(new_inst);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_inst;
     }
 
 }

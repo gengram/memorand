@@ -1,6 +1,8 @@
 package com.memorand.beans;
 
-public class Institution {
+import java.io.Serializable;
+
+public class Institution implements Serializable {
     
     private String inst_id;
     private String inst_name;

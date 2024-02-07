@@ -9,12 +9,12 @@
     <%-- HEAD --%>
     <head>
         
-        <jsp:include page="resources/pages/imports.jspf"/>
+        <jsp:include page="XM-Resources/pages/imports.jspf"/>
         
-        <title>memorand</title>
+        <title>Memorand | Inicio</title>
         
-        <link rel="shortcut icon" href="resources/vector/memorand-bee.svg">
-        <link rel="stylesheet" href="resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="XM-Resources/styles/bootstrap.css">
+        <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
         
     </head>
     
@@ -22,27 +22,51 @@
     <body>
         
         <h1>Memorand</h1>
+        <h3>Landing page - General</h3>
         
-        <p>Crea una institucion</p>
+        <a href="escuelas.jsp">Memorand para escuelas</a>
+        <br>
+        <a href="empresas.jsp">Memorand para empresas</a>
+        <br>
+        <br>
         
-        <form action="instnew" method="post" enctype="multipart/form-data">
-            <input type="text" name="inst_name" id="inst_name" placeholder="Nombre institucion" required>
+        <p>Inicio sesión</p>
+        
+        <form action="login" method="post" enctype="multipart/form-data">
+            <input type="email" name="user_email" id="user_email" placeholder="Correo Electrónico" required>
             <br>
-            <input type="text" name="inst_type" id="inst_type" placeholder="Tipo institucion" required>
+            <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña" required>
             <br>
-            <input type="file" name="inst_profile" id="inst_profile" placeholder="Tipo institucion" required>
-            <br>
-            <input type="text" name="lim_ch" id="lim_ch" placeholder="Limite lideres" required>
-            <br>
-            <input type="text" name="lim_wk" id="lim_wk" placeholder="Limite integrantes" required>
-            <br>
-            <input type="text" name="lim_gp" id="lim_gp" placeholder="Limite grupos" required>
-            <br>
-            <input type="text" name="lim_ks" id="lim_ks" placeholder="Limite clases" required>
-            <br>
-            <input type="submit" value="Alta institucion">
+            <input type="submit" value="Iniciar sesión">
         </form>
         
+        <br>
+        
+        <%--
+        <p>CREAR CUENTA STAFF</p>
+        
+        <form action="usernew" method="post" enctype="multipart/form-data">
+            <input type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>
+            <br>
+            <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña usuario" required>
+            <br>
+            <input type="text" name="user_type" id="user_type" value="staff" required>
+            <br>
+            <input type="text" name="user_name" id="user_name" placeholder="Nombre usuario" required>
+            <br>
+            <input type="text" name="user_pat "id="user_pat" placeholder="Apellido paterno" required>
+            <br>
+            <input type="text" name="user_mat" id="user_mat" placeholder="Apellido materno" required>
+            <br>
+            <input type="text" name="user_status" id="user_status" value="si" required hidden>
+            <br>
+            <input type="file" name="inst_profile" id="inst_profile" required>
+            <br>
+            <input type="submit" value="Nuevo staff">
+        </form>
+        
+        
+        --%>
     </body>
     
 </html>
