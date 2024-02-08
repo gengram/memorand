@@ -4,6 +4,8 @@ import com.memorand.beans.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class UsersModel extends Conexion {
     
@@ -157,4 +159,119 @@ public class UsersModel extends Conexion {
         return user_info;
     }
     
+    public ArrayList<User> getAllAdminByInst(String inst_id) {
+    
+        ArrayList<User> all_admin = new ArrayList<>();
+        
+        PreparedStatement ps1 = null;
+        PreparedStatement ps2 = null;
+        
+        try
+        {
+            String sql1 = "SELECT user_id FROM inusers WHERE inst_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, inst_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String user_id = rs1.getString(1);
+                
+                String sql2 = "SELECT users.user_id, users.user_name, users.user_pat, users.user_mat, users.user_profile FROM users INNER JOIN inusers ON users.user_id = inusers.user_id WHERE users.user_id = ? ORDER BY users.user_pat";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, user_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String admin_id = rs2.getString(1);
+                    String admin_name = rs2.getString(2);
+                    String admin_pat = rs2.getString(3);
+                    String admin_mat = rs2.getString(4);
+                    String admin_profile = rs2.getString(5);
+                    
+                    User admin = new User(admin_id, admin_name, admin_pat, admin_mat, admin_profile);
+                    
+                    all_admin.add(admin);
+                }
+            }
+        
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_admin;
+    
+    }
+    
+    public ArrayList<User> getAllAdmin() {
+    
+        ArrayList<User> all_admin = new ArrayList<>();
+        
+        Statement st = null;
+        
+        try
+        {
+            String sql = "SELECT * FROM users WHERE user_type = \"admin\" ORDER BY user_pat ";
+            
+            st = getConnection().createStatement();
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next())
+            {
+                String admin_id = rs.getString(1);
+                String admin_email = rs.getString(2);
+                String admin_pass = rs.getString(3);
+                String admin_type = rs.getString(4);
+                String admin_name = rs.getString(5);
+                String admin_pat = rs.getString(6);
+                String admin_mat = rs.getString(7);
+                String admin_status = rs.getString(8);
+                String admin_profile = rs.getString(9);
+                
+                User new_admin = new User(admin_id, admin_email, admin_pass, admin_type, admin_name, admin_pat, admin_mat, admin_status, admin_profile);
+                
+                all_admin.add(new_admin);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_admin;
+    }
+        
 }

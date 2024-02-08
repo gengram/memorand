@@ -16,6 +16,14 @@ public class User implements Serializable {
 
     public User() {}
 
+    public User(String user_id, String user_name, String user_pat, String user_mat, String user_profile) {
+        this.user_id = user_id;
+        this.user_name = user_name;
+        this.user_pat = user_pat;
+        this.user_mat = user_mat;
+        this.user_profile = user_profile;
+    }
+    
     public User(String user_email, String user_pass) {
         this.user_email = user_email;
         this.user_pass = user_pass;

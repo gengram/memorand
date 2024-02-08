@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -36,9 +37,12 @@ public class InstitutionNew extends HttpServlet {
         
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
+        HttpSession session = request.getSession();
         
         ArrayList<String> inst_fields = new ArrayList<>();
+        
         String inst_img = "";
+        String user_type = (String) session.getAttribute("user_type");
         
         try
         {
@@ -71,9 +75,12 @@ public class InstitutionNew extends HttpServlet {
         Institution inst = new Institution(generador.newID(), inst_fields.get(0), inst_fields.get(1), inst_img, inst_fields.get(2), inst_fields.get(3), inst_fields.get(4), inst_fields.get(5));
         InstitutionsController instc = new InstitutionsController();
         
-        if (instc.modelCreateInst(inst))
+        if (user_type != null & "staff".equals(user_type))
         {
-            response.sendRedirect("staff/instituciones.jsp");
+            if (instc.modelCreateInst(inst))
+            {
+                response.sendRedirect("staff/instituciones.jsp");
+            }
         }
         
     }

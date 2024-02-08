@@ -32,12 +32,49 @@ public class InstitutionsController {
 "                    <td>"+ i.getLim_ks() +"</td>\n" +
 "                    <td>"
                     + "<a href='instituciones/editar.jsp?inst_id="+ i.getInst_id()+"'>Editar</a><br>"
-                    + "<a href='administradores.jsp?inst_id="+ i.getInst_id()+"'>Ver administradores</a>"
+                    + "<a href='administradores.jsp?view=inst&inst_id="+ i.getInst_id()+"'>Ver administradores</a>"
                   + "</td>\n" +
 "           </tr>";
         }
         
         return htmlcode;
         
+    }
+    
+    public String modelGetLimInst() {
+    
+        String htmlcode = "";
+        
+        InstitutionsModel instm = new InstitutionsModel();
+        
+        for (Institution i : instm.getAllInst())
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td> <img src='../"+ i.getInst_profile() +"' width='40'></img> </td>\n" +
+"                    <td>"+ i.getInst_name()+"</td>\n" +
+"                    <td>"
+                    + "<a href='administradores.jsp?view=inst&inst_id="+ i.getInst_id()+"'>Ver administradores</a>"
+                  + "</td>\n" +
+"           </tr>";
+        }
+        
+        return htmlcode;
+        
+    }
+    
+    public String modelGetOptionInst() {
+    
+        String htmlcode = "";
+        
+        InstitutionsModel instm = new InstitutionsModel();
+        
+        for (Institution i : instm.getAllInst())
+        {
+            htmlcode +=
+            "<option value='"+ i.getInst_id() +"'>"+ i.getInst_name() +"</option>";
+        }
+    
+        return htmlcode;
     }
 }
