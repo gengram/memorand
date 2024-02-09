@@ -3,7 +3,15 @@
 <%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% 
+<%  
+    String staff_type = (String) session.getAttribute("user_type");
+    
+    if (staff_type == null || !staff_type.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=100");
+        session.invalidate();
+    }
+    
     InstitutionsController instc = new InstitutionsController();
 %>
 

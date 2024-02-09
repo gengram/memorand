@@ -2,6 +2,23 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%
+    String staff_type = (String) session.getAttribute("user_type");
+    
+    String staff_name = null;
+    
+    if (session != null)
+    {
+        staff_name = (String) session.getAttribute("user_name");
+    }
+
+    if (staff_type == null || !staff_type.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=100");
+        session.invalidate();
+    }
+%>
+
 <!DOCTYPE html>
 
 <html>
@@ -24,7 +41,7 @@
         <h1>Memorand</h1>
         <h3>Home - Staff</h3>
         
-        <p>Hola <%=session.getAttribute("user_name")%></p>
+        <p>Hola <%= staff_name %></p>
         
         <a href="administradores.jsp">
             <button>Administradores</button>

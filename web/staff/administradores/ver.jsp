@@ -9,6 +9,14 @@
 <!DOCTYPE html>
 
 <%
+    String staff_type = (String) session.getAttribute("user_type");
+    
+    if (staff_type == null || !staff_type.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=100");
+        session.invalidate();
+    }
+    
     User user = new User();
     UsersController userc = new UsersController();
     
