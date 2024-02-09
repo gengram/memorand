@@ -11,19 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/servlets/Signout.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/servlets/institutions/InstitutionNew.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/servlets/users/UserNew.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/index.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/model/InstitutionsModel.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/empresas.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/model/UsersModel.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/servlets/Login.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/beans/User.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/src/java/com/memorand/controller/UsersController.java</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/escuelas.jsp</file>
-            <file>file:/C:/Users/nicojrz/Proyectos/memorand/web/staff/home.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
