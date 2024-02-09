@@ -1,10 +1,9 @@
 package com.memorand.servlets;
 
+import com.memorand.beans.Institution;
 import com.memorand.beans.User;
 import com.memorand.controller.UsersController;
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -68,7 +67,7 @@ public class Login extends HttpServlet {
         
         if (userc.modelLoginUser(user))
         {
-            User user_info = userc.modelGetUserInfo(user);
+            User user_info = userc.modelGetUserInfoByLogin(user);
             
             if ("si".equals(user_info.getUser_status()))
             {
@@ -122,6 +121,22 @@ public class Login extends HttpServlet {
         session.setAttribute("user_mat", user_info.getUser_mat());
         session.setAttribute("user_status", user_info.getUser_status());
         session.setAttribute("user_profile", user_info.getUser_profile());
+        
+    }
+    
+    public void SetInstInfo(HttpServletRequest request, HttpServletResponse response, Institution inst_info)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
+        session.setAttribute("inst_id", inst_info.getInst_id());
+        session.setAttribute("inst_name", inst_info.getInst_name());
+        session.setAttribute("inst_type", inst_info.getInst_type());
+        session.setAttribute("inst_profile", inst_info.getInst_profile());
+        session.setAttribute("lim_ch", inst_info.getLim_ch());
+        session.setAttribute("lim_wk", inst_info.getLim_wk());
+        session.setAttribute("lim_gp", inst_info.getLim_gp());
+        session.setAttribute("lim_ks", inst_info.getLim_ks());
         
     }
 

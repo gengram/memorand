@@ -119,7 +119,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%=userc.modelGetAllAdminByInst(inst_id)%>
+                            <%=userc.modelGetAllAdminByInst(inst_id, 1, 0)%>
                         </tbody>
                     </table>
                     

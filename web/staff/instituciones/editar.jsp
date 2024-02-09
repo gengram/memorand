@@ -1,8 +1,15 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+
+<% 
+    InstitutionsController instc = new InstitutionsController();
+    
+    String inst_id = request.getParameter("inst_id");
+%>
 
 <html>
     
@@ -42,7 +49,7 @@
             <input type="submit" value="Alta institucion">
         </form>
 
-        <a href="../instituciones.jsp">Regresar</a>
+        <a href="ver.jsp?inst_id=<%=inst_id%>">Regresar</a>
         <br>
         <a href="../../signout">Cerrar sesión</a>
         

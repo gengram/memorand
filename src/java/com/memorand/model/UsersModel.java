@@ -107,7 +107,7 @@ public class UsersModel extends Conexion {
     
     }
     
-    public User getUserInfo(User user) {
+    public User getUserInfoByLogin(User user) {
         
         User user_info = null;
         

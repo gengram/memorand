@@ -16,7 +16,7 @@
         
         <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
         
-        <title>Memorand | Nuevo administrador</title>
+        <title>Memorand | Editar administrador</title>
         
         <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
         <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
@@ -27,7 +27,7 @@
     <body>
         
         <h1>Memorand</h1>
-        <h3>Nuevo administrador</h3>
+        <h3>Editar administrador</h3>
         
         <form action="../../usernew" method="post" enctype="multipart/form-data">
             <input type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>
@@ -47,7 +47,7 @@
                 <%=instc.modelGetOptionInst()%>
              </select>
             <br>
-            <input type="submit" value="Nuevo administrador">
+            <input type="submit" value="Editar administrador">
         </form>
 
         <a href="../administradores.jsp">Regresar</a>

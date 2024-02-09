@@ -31,8 +31,7 @@ public class InstitutionsController {
 "                    <td>"+ i.getLim_gp() +"</td>\n" +
 "                    <td>"+ i.getLim_ks() +"</td>\n" +
 "                    <td>"
-                    + "<a href='instituciones/editar.jsp?inst_id="+ i.getInst_id()+"'>Editar</a><br>"
-                    + "<a href='administradores.jsp?view=inst&inst_id="+ i.getInst_id()+"'>Ver administradores</a>"
+                    + "<a href='instituciones/ver.jsp?inst_id="+ i.getInst_id()+"'>Ver</a><br>"
                   + "</td>\n" +
 "           </tr>";
         }
@@ -77,4 +76,12 @@ public class InstitutionsController {
     
         return htmlcode;
     }
+    
+    public Institution modelGetInstById(String i_id) {
+    
+        InstitutionsModel instm = new InstitutionsModel();
+        return instm.getInstInfoById(i_id);
+        
+    }
+    
 }

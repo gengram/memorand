@@ -19,29 +19,39 @@ public class UsersController {
     
     }
     
-    public User modelGetUserInfo(User user) {
+    public User modelGetUserInfoByLogin(User user) {
         
         UsersModel userm = new UsersModel();
-        return userm.getUserInfo(user);
+        return userm.getUserInfoByLogin(user);
     
     }
     
-    public String modelGetAllAdminByInst(String inst_id) {
+    public String modelGetAllAdminByInst(String inst_id, int level1, int level2) {
     
         String htmlcode = "";
+        String add1 = "";
+        String add2 = "";
         
         UsersModel userm = new UsersModel();
+        
+        for (int i = 0; i < level1; i++) {
+            add1 += "../";
+        }
+        
+        for (int i = 0; i < level2; i++) {
+            add2 += "../";
+        }
         
         for (User admin : userm.getAllAdminByInst(inst_id))
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td> <img src='../"+ admin.getUser_profile()+"' width='40'></img> </td>\n" +
+"                    <td> <img src='"+ add1 + admin.getUser_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"+ admin.getUser_pat() +"</td>\n" +
 "                    <td>"+ admin.getUser_mat() +"</td>\n" +
 "                    <td>"+ admin.getUser_name() +"</td>\n" +
 "                    <td>"
-                    + "<a href='administradores/editar.jsp?inst_id="+ admin.getUser_id() +"'>Editar</a><br>"
+                    + "<a href='"+ add2 +"administradores/ver.jsp?inst_id="+ admin.getUser_id() +"'>Ver</a><br>"
                   + "</td>\n" +
 "           </tr>";
         
@@ -86,7 +96,7 @@ public class UsersController {
 "                    <td>"+ admin_status +"</td>\n" +
 "                    <td> <img src='../"+ admin.getUser_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"
-                    + "<a href='administradores/editar.jsp?inst_id="+ admin.getUser_id() +"'>Editar</a><br>"
+                    + "<a href='administradores/ver.jsp?inst_id="+ admin.getUser_id() +"'>Ver</a><br>"
                   + "</td>\n" +
 "           </tr>";
             

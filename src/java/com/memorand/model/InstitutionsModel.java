@@ -105,5 +105,55 @@ public class InstitutionsModel extends Conexion {
         
         return all_inst;
     }
+    
+    public Institution getInstInfoById(String i_id) {
+    
+        Institution inst_info = null;
+        
+        PreparedStatement ps = null;
+        
+        try
+        {
+            String sql = "SELECT * FROM institutions WHERE inst_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, i_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                String inst_id = rs.getString(1);
+                String inst_name = rs.getString(2);
+                String inst_type = rs.getString(3);
+                String inst_profile = rs.getString(4);
+                String lim_ch = rs.getString(5);
+                String lim_wk = rs.getString(6);
+                String lim_gp = rs.getString(7);
+                String lim_ks = rs.getString(8);
+                
+                inst_info = new Institution(inst_id, inst_name, inst_type, inst_profile, lim_ch, lim_wk, lim_gp, lim_ks);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return inst_info;
+    }
 
 }
