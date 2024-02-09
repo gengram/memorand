@@ -84,4 +84,11 @@ public class InstitutionsController {
         
     }
     
+    public Institution modelGetInstByUser(String user_id) {
+    
+        InstitutionsModel instm = new InstitutionsModel();
+        return instm.getInstInfoByUser(user_id);
+        
+    }
+    
 }

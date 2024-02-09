@@ -155,5 +155,50 @@ public class InstitutionsModel extends Conexion {
         
         return inst_info;
     }
+    
+    public Institution getInstInfoByUser(String user_id) {
+    
+        Institution inst_info = null;
+        
+        PreparedStatement ps1 = null;
+        PreparedStatement ps2 = null;
+        
+        try
+        {
+            String sql1 = "SELECT inst_id FROM inusers WHERE user_id = ? LIMIT 1";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, user_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            if (rs1.next())
+            {
+                String i_id = rs1.getString(1);
+                
+                inst_info = getInstInfoById(i_id);
+            
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return inst_info;
+    }
 
 }

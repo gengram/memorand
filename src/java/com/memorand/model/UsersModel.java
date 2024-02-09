@@ -273,5 +273,55 @@ public class UsersModel extends Conexion {
         
         return all_admin;
     }
+    
+    public User getUserInfoById(String u_id) {
         
+        User user_info = null;
+        
+        PreparedStatement ps = null;
+        
+        try
+        {
+            String sql = "SELECT * FROM users WHERE user_id = ? LIMIT 1";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, u_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                String user_id = rs.getString(1);
+                String user_email = rs.getString(2);
+                String user_pass = rs.getString(3);
+                String user_type = rs.getString(4);
+                String user_name = rs.getString(5);
+                String user_pat = rs.getString(6);
+                String user_mat = rs.getString(7);
+                String user_status = rs.getString(8);
+                String user_profile = rs.getString(9);
+                
+                user_info = new User(user_id, user_email, user_pass, user_type, user_name, user_pat, user_mat, user_status, user_profile);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+    
+        return user_info;
+    }
 }

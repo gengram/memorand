@@ -5,6 +5,8 @@
 
 <% 
     InstitutionsController instc = new InstitutionsController();
+    
+    String user_id = request.getParameter("user_id");
 %>
 
 <!DOCTYPE html>
@@ -49,8 +51,8 @@
             <br>
             <input type="submit" value="Editar administrador">
         </form>
-
-        <a href="../administradores.jsp">Regresar</a>
+             
+        <a href="ver.jsp?user_id=<%= user_id %>">Regresar</a>
         <br>
         <a href="../../signout">Cerrar sesión</a>
         

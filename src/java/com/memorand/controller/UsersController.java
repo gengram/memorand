@@ -51,7 +51,7 @@ public class UsersController {
 "                    <td>"+ admin.getUser_mat() +"</td>\n" +
 "                    <td>"+ admin.getUser_name() +"</td>\n" +
 "                    <td>"
-                    + "<a href='"+ add2 +"administradores/ver.jsp?inst_id="+ admin.getUser_id() +"'>Ver</a><br>"
+                    + "<a href='"+ add2 +"administradores/ver.jsp?user_id="+ admin.getUser_id() +"'>Ver</a><br>"
                   + "</td>\n" +
 "           </tr>";
         
@@ -96,7 +96,7 @@ public class UsersController {
 "                    <td>"+ admin_status +"</td>\n" +
 "                    <td> <img src='../"+ admin.getUser_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"
-                    + "<a href='administradores/ver.jsp?inst_id="+ admin.getUser_id() +"'>Ver</a><br>"
+                    + "<a href='administradores/ver.jsp?user_id="+ admin.getUser_id() +"'>Ver</a><br>"
                   + "</td>\n" +
 "           </tr>";
             
@@ -105,4 +105,57 @@ public class UsersController {
         return htmlcode;
         
     }
+    
+    public User modelGetUserInfoById(String u_id) {
+    
+        UsersModel userm = new UsersModel();
+        return userm.getUserInfoById(u_id);
+    
+    }
+    
+    public String modelConvUserType(String u_type) {
+    
+        String user_type = null;
+        
+        switch (u_type)
+        {
+            case "staff":
+                user_type = "Staff";
+                break;
+            case "admin":
+                user_type = "Admin";
+                break;
+            case "ch":
+                user_type = "Lider";
+                break;
+            case "wk":
+                user_type = "Participante";
+                break;
+            default:
+                user_type = "ERROR";
+                break;
+        }
+        
+        return user_type;
+        
+    }
+    
+    public String modelConvUserStatus(String u_status) {
+    
+        String user_status = null;
+        
+        switch (u_status)
+        {
+            case "si":
+                user_status = "Activo";
+                break;
+            default:
+                user_status = "Inactivo";
+                break;
+        }
+        
+        return user_status;
+    
+    }
+    
 }
