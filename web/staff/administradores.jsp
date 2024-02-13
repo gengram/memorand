@@ -2,7 +2,7 @@
 
 <%@page import="com.memorand.controller.UsersController"%>
 <%@page import="com.memorand.controller.InstitutionsController"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
@@ -14,7 +14,8 @@
         response.sendRedirect("../index.jsp?error=100");
         session.invalidate();
     }
-    
+    else
+    {
     InstitutionsController instc = new InstitutionsController();
     UsersController userc = new UsersController();
     
@@ -146,6 +147,7 @@
         {
             response.sendRedirect("administradores.jsp?view=all");
         }
+    }
     %>
         
         <br>

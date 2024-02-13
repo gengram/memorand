@@ -4,6 +4,28 @@
 
 <!DOCTYPE html>
 
+<%
+
+    String user_type = (String) session.getAttribute("user_type");
+    String inst_type = (String) session.getAttribute("inst_type");
+
+    if (user_type != null)
+    {
+        switch (user_type)
+        {
+            case "ch":
+                user_type = "Lider";
+                break;
+            case "wk":
+                user_type = "Integrante";
+                break;
+            default:
+                user_type = "ERROR";
+        }
+    } 
+
+%>
+
 <html>
     
     <%-- HEAD --%>
@@ -18,27 +40,6 @@
         
     </head>
     
-    <%
-    
-        String user_type = (String) session.getAttribute("user_type");
-        String inst_type = (String) session.getAttribute("inst_type");
-        
-        if (user_type != null)
-        {
-            switch (user_type)
-            {
-                case "ch":
-                    user_type = "Lider";
-                    break;
-                case "wk":
-                    user_type = "Integrante";
-                    break;
-                default:
-                    user_type = "ERROR";
-            }
-        } 
-    
-    %>
     
     <%-- BODY --%>
     <body>

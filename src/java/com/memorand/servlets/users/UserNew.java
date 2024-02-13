@@ -90,7 +90,7 @@ public class UserNew extends HttpServlet {
                     
                     if(userc1.modelCreateUser(admin))
                     {
-                        InUsers inusers = new InUsers(g1.newID(), inst_id, user_id);
+                        InUsers inusers = new InUsers(inst_id, user_id);
                         InUsersController inusersc = new InUsersController();
                         
                         if (inusersc.modelCreateInUsers(inusers))

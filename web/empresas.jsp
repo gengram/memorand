@@ -11,7 +11,7 @@
         
         <jsp:include page="XM-Resources/pages/imports.jspf"/>
         
-        <title>MNemorand | Empresas</title>
+        <title>Memorand | Empresas</title>
         
         <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
         <link rel="stylesheet" href="XM-Resources/styles/bootstrap.css">

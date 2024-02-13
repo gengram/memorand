@@ -1,6 +1,6 @@
 <%-- Memorand by Gengram © 2023 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%  
     String staff_type = (String) session.getAttribute("user_type");
@@ -34,12 +34,16 @@
         <h1>Memorand</h1>
         <h3>Nueva institución</h3>
         
-        <form action="../../instnew" method="post" enctype="multipart/form-data">
+        <form action="../../instnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
             <input type="text" name="inst_name" id="inst_name" placeholder="Nombre institucion" required>
             <br>
-            <input type="text" name="inst_type" id="inst_type" placeholder="Tipo institucion" required>
+            <select name="inst_type" id="inst_type">
+                <option value="" disabled selected hidden>Tipo</option>
+                <option value="escuela">Escuela</option>
+                <option value="empresa">Empresa</option>
+             </select>
             <br>
-            <input type="file" name="inst_profile" id="inst_profile" placeholder="Tipo institucion" required>
+            <input type="file" name="inst_profile" id="inst_profile" required>
             <br>
             <input type="text" name="lim_ch" id="lim_ch" placeholder="Limite lideres" required>
             <br>

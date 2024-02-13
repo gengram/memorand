@@ -2,6 +2,7 @@ package com.memorand.servlets;
 
 import com.memorand.beans.Institution;
 import com.memorand.beans.User;
+import com.memorand.controller.InstitutionsController;
 import com.memorand.controller.UsersController;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,6 +63,9 @@ public class Login extends HttpServlet {
             System.err.println(e.getMessage());
         }
         
+        Institution inst = new Institution();
+        InstitutionsController instc = new InstitutionsController();
+        
         User user = new User(user_fields.get(0), user_fields.get(1));
         UsersController userc = new UsersController();
         
@@ -78,15 +82,21 @@ public class Login extends HttpServlet {
                         response.sendRedirect("staff/home.jsp");
                         break;
                     case "admin":
+                        inst = instc.modelGetInstByUser(user_info.getUser_id());
                         SetUserInfo(request, response, user_info);
+                        SetInstInfo(request, response, inst);
                         response.sendRedirect("admin/home.jsp");
                         break;
                     case "ch":
+                        inst = instc.modelGetInstByUser(user_info.getUser_id());
                         SetUserInfo(request, response, user_info);
+                        SetInstInfo(request, response, inst); 
                         response.sendRedirect("work/home.jsp");
                         break;
                     case "wk":
+                        inst = instc.modelGetInstByUser(user_info.getUser_id());
                         SetUserInfo(request, response, user_info);
+                        SetInstInfo(request, response, inst); 
                         response.sendRedirect("work/home.jsp");
                         break;
                     default:

@@ -14,13 +14,12 @@ public class InUsersModel extends Conexion {
         
         try
         {
-            String sql = "INSERT INTO inusers (inuser_id, inst_id, user_id) VALUES (?,?,?)";
+            String sql = "INSERT INTO inusers (inst_id, user_id) VALUES (?,?)";
 
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inusers.getInuser_id());
-            ps.setString(2, inusers.getInst_id());
-            ps.setString(3, inusers.getUser_id());
+            ps.setString(1, inusers.getInst_id());
+            ps.setString(2, inusers.getUser_id());
             
             if (ps.executeUpdate() == 1)
             {

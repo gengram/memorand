@@ -31,7 +31,6 @@ create table users (
 
 create table inusers (
 
-	inuser_id varchar(36) primary key not null,
     inst_id varchar(36),
     user_id varchar(36),
     foreign key (inst_id) references institutions (inst_id),
@@ -75,9 +74,10 @@ create table inclusts (
     
 );
 
-create table clustclass (
+create table collab (
 	
-    clustclass_id varchar(36) primary key not null,
+    collab_id varchar(36) primary key not null,
+    collab_status varchar(2),
     cluster_id varchar(36),
     class_id varchar(36),
     foreign key (cluster_id) references clusters (cluster_id),
@@ -87,22 +87,11 @@ create table clustclass (
 
 create table clustusers (
 	
-    clustuser_id varchar(36) primary key not null,
-    inuser_id varchar(36),
+    user_id varchar(36),
     cluster_id varchar(36),
-    foreign key (cluster_id) references clusters (cluster_id),
-    foreign key (inuser_id) references inusers (inuser_id)
+    foreign key (user_id) references users (user_id),
+    foreign key (cluster_id) references clusters (cluster_id)
 
-);
-
-create table collab (
-
-	collab_id varchar(36) primary key not null,
-    clustclass_id varchar(36),
-	clustuser_id varchar(36),
-    foreign key (clustclass_id) references clustclass (clustclass_id),
-    foreign key (clustuser_id) references clustusers (clustuser_id)
-    
 );
 
 create table individual (
@@ -227,4 +216,17 @@ create table ivrouts (
     foreign key (indiv_id) references individual (indiv_id),
 	foreign key (rout_id) references routines (rout_id)
     
+);
+
+create table submits (
+	
+    submit_id varchar(36) primary key not null,
+    submit_date varchar(10),
+    submit_hour varchar(10),
+    submit_status varchar(10),
+	assign_id varchar(36),
+    note_id varchar(36),
+    foreign key (assign_id) references assignments (assign_id),
+    foreign key (note_id) references notes (note_id)
+
 );

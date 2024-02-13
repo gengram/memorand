@@ -4,13 +4,7 @@
 
 <%
     String staff_type = (String) session.getAttribute("user_type");
-    
-    String staff_name = null;
-    
-    if (session != null)
-    {
-        staff_name = (String) session.getAttribute("user_name");
-    }
+    String staff_name = (String) session.getAttribute("user_name");
 
     if (staff_type == null || !staff_type.equals("staff"))
     {
@@ -48,9 +42,6 @@
         </a>
         <a href="instituciones.jsp">
             <button>Instituciones</button>
-        </a>
-        <a href="#">
-            <button>DEBUG PAGE</button>
         </a>
         
         <br>

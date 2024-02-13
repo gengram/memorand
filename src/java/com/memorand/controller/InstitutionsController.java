@@ -13,18 +13,31 @@ public class InstitutionsController {
     }
     
     public String modelGetAllInst() {
-    
+        
+        String inst_type = null;
         String htmlcode = "";
         
         InstitutionsModel instm = new InstitutionsModel();
         
         for (Institution i : instm.getAllInst())
         {
+            switch (i.getInst_type()) {
+                case "escuela":
+                    inst_type = "Escuela";
+                    break;
+                case "empresa":
+                    inst_type = "Empresa";
+                    break;
+                default:
+                    inst_type = "Error";
+                    break;
+            }
+            
             htmlcode +=
             "<tr>\n" +
 "                    <td>"+ i.getInst_id() +"</td>\n" +
 "                    <td>"+ i.getInst_name()+"</td>\n" +
-"                    <td>"+ i.getInst_type()+"</td>\n" +
+"                    <td>"+ inst_type+"</td>\n" +
 "                    <td> <img src='../"+ i.getInst_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"+ i.getLim_ch()+"</td>\n" +
 "                    <td>"+ i.getLim_wk() +"</td>\n" +

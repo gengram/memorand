@@ -1,7 +1,7 @@
 <%-- Memorand by Gengram © 2023 --%>
 
 <%@page import="com.memorand.controller.InstitutionsController"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%  
     String staff_type = (String) session.getAttribute("user_type");
@@ -37,7 +37,7 @@
         <h1>Memorand</h1>
         <h3>Nuevo administrador</h3>
         
-        <form action="../../usernew" method="post" enctype="multipart/form-data">
+        <form action="../../usernew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
             <input type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>
             <br>
             <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña usuario" required>
