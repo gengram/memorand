@@ -85,6 +85,15 @@ create table collab (
 
 );
 
+create table collabusers (
+	
+	user_id varchar(36),
+    collab_id varchar(36),
+    foreign key (user_id) references users (user_id),
+	foreign key (collab_id) references collab (collab_id)
+    
+);
+
 create table clustusers (
 	
     user_id varchar(36),

@@ -180,7 +180,8 @@ public class UsersModel extends Conexion {
             {
                 String user_id = rs1.getString(1);
                 
-                String sql2 = "SELECT users.user_id, users.user_name, users.user_pat, users.user_mat, users.user_profile FROM users INNER JOIN inusers ON users.user_id = inusers.user_id WHERE users.user_id = ? ORDER BY users.user_pat";
+//                String sql2 = "SELECT users.user_id, users.user_name, users.user_pat, users.user_mat, users.user_profile FROM users INNER JOIN inusers ON users.user_id = inusers.user_id WHERE users.user_id = ? ORDER BY users.user_pat";
+                String sql2 = "SELECT users.user_id, users.user_name, users.user_pat, users.user_mat, users.user_profile FROM users WHERE users.user_id = ? ORDER BY users.user_pat";
                 
                 ps2 = getConnection().prepareStatement(sql2);
                 
@@ -203,6 +204,7 @@ public class UsersModel extends Conexion {
             }
         
         }
+        
         catch (SQLException e)
         {
             System.err.println(e.getMessage());

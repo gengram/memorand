@@ -1,12 +1,12 @@
 package com.memorand.model;
 
-import com.memorand.beans.InUsers;
+import com.memorand.beans.InUser;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class InUsersModel extends Conexion {
     
-    public boolean createInUsers(InUsers inusers) {
+    public boolean createInUsers(InUser inusers) {
     
         boolean flag = false;
         

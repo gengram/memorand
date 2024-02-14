@@ -1,6 +1,6 @@
 package com.memorand.servlets.users;
 
-import com.memorand.beans.InUsers;
+import com.memorand.beans.InUser;
 import com.memorand.beans.User;
 import com.memorand.controller.InUsersController;
 import com.memorand.controller.UsersController;
@@ -90,7 +90,7 @@ public class UserNew extends HttpServlet {
                     
                     if(userc1.modelCreateUser(admin))
                     {
-                        InUsers inusers = new InUsers(inst_id, user_id);
+                        InUser inusers = new InUser(inst_id, user_id);
                         InUsersController inusersc = new InUsersController();
                         
                         if (inusersc.modelCreateInUsers(inusers))

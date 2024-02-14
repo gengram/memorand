@@ -2,14 +2,14 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class InUsers implements Serializable {
+public class InUser implements Serializable {
     
     private String inst_id;
     private String user_id;
 
-    public InUsers() {}
+    public InUser() {}
 
-    public InUsers(String inst_id, String user_id) {
+    public InUser(String inst_id, String user_id) {
         this.inst_id = inst_id;
         this.user_id = user_id;
     }
