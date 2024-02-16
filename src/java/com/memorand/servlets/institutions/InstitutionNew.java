@@ -54,7 +54,7 @@ public class InstitutionNew extends HttpServlet {
                 
                 if (!fi.isFormField())
                 {
-                    File file = new File("C:\\Users\\nicojrz\\Proyectos\\memorand\\web\\XM-Uploads\\institutions\\"+fi.getName());
+                    File file = new File("C:\\memorand\\web\\XM-Uploads\\institutions\\"+fi.getName());
                     fi.write(file);
                     inst_img = "XM-Uploads/institutions/"+fi.getName();
                 }
