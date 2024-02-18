@@ -15,6 +15,11 @@ public class User implements Serializable {
     private String user_profile;
 
     public User() {}
+    
+    public User(String user_email, String user_pass) {
+        this.user_email = user_email;
+        this.user_pass = user_pass;
+    }
 
     public User(String user_id, String user_name, String user_pat, String user_mat, String user_profile) {
         this.user_id = user_id;
@@ -22,11 +27,6 @@ public class User implements Serializable {
         this.user_pat = user_pat;
         this.user_mat = user_mat;
         this.user_profile = user_profile;
-    }
-    
-    public User(String user_email, String user_pass) {
-        this.user_email = user_email;
-        this.user_pass = user_pass;
     }
 
     public User(String user_id, String user_email, String user_pass, String user_type, String user_name, String user_pat, String user_mat, String user_status, String user_profile) {
