@@ -52,7 +52,6 @@ create table clusters (
 	
     cluster_id varchar(36) primary key not null,
     cluster_name varchar(32),
-    cluster_icon varchar(64),
     cluster_color varchar(6)
 
 );
