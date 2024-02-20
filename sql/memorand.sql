@@ -38,13 +38,13 @@ create table inusers (
 
 );
 
-create table classes (
+create table projects (
 	
-    class_id varchar(36) primary key not null,
-    class_name varchar(32),
-    class_icon varchar(256),
-    class_color varchar(6),
-    class_bkg varchar(256)
+    proj_id varchar(36) primary key not null,
+    proj_name varchar(32),
+    proj_icon varchar(256),
+    proj_color varchar(6),
+    proj_bkg varchar(256)
 	
 );
 
@@ -57,12 +57,12 @@ create table clusters (
 
 );
 
-create table inclasses (
+create table inprojects (
 
 	inst_id varchar(36),
-    class_id varchar(36),
+    proj_id varchar(36),
     foreign key (inst_id) references institutions (inst_id),
-    foreign key (class_id) references classes (class_id)
+    foreign key (proj_id) references projects (proj_id)
 
 );
 
@@ -80,9 +80,9 @@ create table collab (
     collab_id varchar(36) primary key not null,
     collab_status varchar(2),
     cluster_id varchar(36),
-    class_id varchar(36),
+    proj_id varchar(36),
     foreign key (cluster_id) references clusters (cluster_id),
-    foreign key (class_id) references classes (class_id)
+    foreign key (proj_id) references projects (proj_id)
 
 );
 

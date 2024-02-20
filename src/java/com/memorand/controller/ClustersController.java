@@ -23,7 +23,6 @@ public class ClustersController {
             add1 += "../";
         }
         
-        
         for (Cluster cluster : clustm.getAllClustersByInst(inst_id))
         {
             htmlcode +=

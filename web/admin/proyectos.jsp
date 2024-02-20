@@ -1,11 +1,13 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.ProjectsController"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     String user_type = (String) session.getAttribute("user_type");
     String staff_name = (String) session.getAttribute("user_name");
 
+    String inst_id = (String) session.getAttribute("inst_id");
     String inst_type = (String) session.getAttribute("inst_type");
     String inst_name = (String) session.getAttribute("inst_name");
 
@@ -14,6 +16,7 @@
     //    response.sendRedirect("../index.jsp?error=100");
     //    session.invalidate();
     //}
+    ProjectsController projc = new ProjectsController();
 %>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@
         <h1>Memorand para <%=inst_type%>s</h1>
         <h3>Gestor de Proyectos</h3>
         
-        <a href="#">
+        <a href="proyectos/nuevo.jsp">
             <button>Proyecto nuevo</button>
         </a>
         <a href="#">
@@ -63,6 +66,7 @@
                 </tr>
             </thead>
             <tbody>
+                <%= projc.modelGetAllProjectsByInst(inst_id, 0) %>
             </tbody>
         </table>
 

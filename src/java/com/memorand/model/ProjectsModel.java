@@ -1,14 +1,14 @@
 package com.memorand.model;
 
-import com.memorand.beans.Cluster;
+import com.memorand.beans.Project;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClustersModel extends Conexion {
+public class ProjectsModel extends Conexion {
     
-    public boolean createCluster(Cluster cluster) {
+    public boolean createProject(Project project) {
         
         boolean flag = false;
         
@@ -16,17 +16,18 @@ public class ClustersModel extends Conexion {
         
         try
         {
-            String sql = "INSERT INTO clusters (cluster_id, cluster_name, cluster_color) VALUES (?,?,?)";
+            String sql = "INSERT INTO projects (proj_id, proj_name, proj_icon, proj_color, proj_bkg) VALUES (?,?,?,?,?)";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, cluster.getCluster_id());
-            ps.setString(2, cluster.getCluster_name());
-            ps.setString(3, cluster.getCluster_color());
+            ps.setString(1, project.getProj_id());
+            ps.setString(2, project.getProj_name());
+            ps.setString(3, project.getProj_icon());
+            ps.setString(4, project.getProj_color());
+            ps.setString(5, project.getProj_bkg());
             
             if (ps.executeUpdate() == 1)
             { flag = true; }
-            
         }
         
         catch (SQLException e)
@@ -49,16 +50,16 @@ public class ClustersModel extends Conexion {
         
     }
     
-    public ArrayList<Cluster> getAllClustersByInst(String inst_id) {
+    public ArrayList<Project> getAllProjectsByInst(String inst_id) {
     
-        ArrayList<Cluster> all_cluster = new ArrayList<>();
+        ArrayList<Project> all_project = new ArrayList<>();
         
         PreparedStatement ps1 = null;
         PreparedStatement ps2 = null;
         
         try
         {
-            String sql1 = "SELECT cluster_id FROM inclusts WHERE inst_id = ?";
+            String sql1 = "SELECT proj_id FROM inprojects WHERE inst_id = ?";
             
             ps1 = getConnection().prepareStatement(sql1);
             
@@ -68,25 +69,27 @@ public class ClustersModel extends Conexion {
             
             while (rs1.next())
             {
-                String clust_id = rs1.getString(1);
+                String p_id = rs1.getString(1);
                 
-                String sql2 = "SELECT * FROM clusters WHERE cluster_id = ? ORDER BY cluster_name";
+                String sql2 = "SELECT * FROM projects WHERE proj_id = ? ORDER BY proj_name";
                 
                 ps2 = getConnection().prepareStatement(sql2);
                 
-                ps2.setString(1, clust_id);
+                ps2.setString(1, p_id);
                 
                 ResultSet rs2 = ps2.executeQuery();
                 
                 while (rs2.next())
                 {
-                    String cluster_id = rs2.getString(1);
-                    String cluster_name = rs2.getString(2);
-                    String cluster_color = rs2.getString(3);
+                    String proj_id = rs2.getString(1);
+                    String proj_name = rs2.getString(2);
+                    String proj_icon = rs2.getString(3);
+                    String proj_color = rs2.getString(4);
+                    String proj_bkg = rs2.getString(5);
                     
-                    Cluster cluster = new Cluster(cluster_id, cluster_name, cluster_color);
+                    Project project = new Project(proj_id, proj_name, proj_icon, proj_color, proj_bkg);
                     
-                    all_cluster.add(cluster);
+                    all_project.add(project);
                 }
             }
         }
@@ -107,35 +110,36 @@ public class ClustersModel extends Conexion {
             }
         }
         
-        return all_cluster;
+        return all_project;
     
     }
     
-    public Cluster getClusterInfoById(String c_id) {
+    public Project getProjectInfoById(String p_id) {
     
-        Cluster clust_info = null;
+        Project project_info = null;
         
         PreparedStatement ps = null;
         
         try
         {
-            String sql = "SELECT * FROM clusters WHERE cluster_id = ? LIMIT 1";
+            String sql = "SELECT * FROM projects WHERE proj_id = ? LIMIT 1";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, c_id);
+            ps.setString(1, p_id);
             
             ResultSet rs = ps.executeQuery();
             
             if (rs.next())
             {
-                String cluster_id = rs.getString(1);
-                String cluster_name = rs.getString(2);
-                String cluster_color = rs.getString(3);
-                
-                clust_info = new Cluster(cluster_id, cluster_name, cluster_color);
+                String proj_id = rs.getString(1);
+                String proj_name = rs.getString(2);
+                String proj_icon = rs.getString(3);
+                String proj_color = rs.getString(4);
+                String proj_bkg = rs.getString(5);
+
+                project_info = new Project(proj_id, proj_name, proj_icon, proj_color, proj_bkg);
             }
-            
         }
         
         catch (SQLException e)
@@ -154,7 +158,8 @@ public class ClustersModel extends Conexion {
             }
         }
         
-        return clust_info;
-    
+        return project_info;
+        
     }
+    
 }
