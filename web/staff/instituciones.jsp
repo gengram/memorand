@@ -41,9 +41,6 @@
         <a href="instituciones/nuevo.jsp">
             <button>Nueva institución</button>
         </a>
-        <a href="">
-            <button>Subir archivo</button>
-        </a>
         
         <h3>Lista</h3>
         

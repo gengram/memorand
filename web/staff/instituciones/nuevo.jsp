@@ -39,7 +39,6 @@
             <br>
             <select name="inst_type" id="inst_type">
                 <option value="" disabled selected hidden>Tipo</option>
-                <option value="escuela">Escuela</option>
                 <option value="empresa">Empresa</option>
              </select>
             <br>

@@ -16,6 +16,10 @@
         <servlet-name>Signout</servlet-name>
         <servlet-class>com.memorand.servlets.Signout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClusterNew</servlet-name>
+        <servlet-class>com.memorand.servlets.clusters.ClusterNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Signout</servlet-name>
         <url-pattern>/signout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClusterNew</servlet-name>
+        <url-pattern>/clustnew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

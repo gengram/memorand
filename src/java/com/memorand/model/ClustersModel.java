@@ -74,7 +74,7 @@ public class ClustersModel extends Conexion {
                 
                 String sql2 = "SELECT * FROM clusters WHERE cluster_id = ? ORDER BY cluster_name";
                 
-                ps2.getConnection().prepareStatement(sql2);
+                ps2 = getConnection().prepareStatement(sql2);
                 
                 ps2.setString(1, clust_id);
                 
@@ -113,4 +113,49 @@ public class ClustersModel extends Conexion {
     
     }
     
+    public Cluster getClusterInfoById(String c_id) {
+    
+        Cluster clust_info = null;
+        
+        PreparedStatement ps = null;
+        
+        try
+        {
+            String sql = "SELECT * FROM clusters WHERE cluster_id = ? LIMIT 1";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, c_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                String cluster_id = rs.getString(1);
+                String cluster_name = rs.getString(2);
+                String cluster_color = rs.getString(3);
+                
+                clust_info = new Cluster(cluster_id, cluster_name, cluster_color);
+            }
+            
+        }
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return clust_info;
+    
+    }
 }
