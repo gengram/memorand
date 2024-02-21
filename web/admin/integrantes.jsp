@@ -37,7 +37,7 @@
         <h1>Memorand para <%=inst_type%>s</h1>
         <h3>Gestor de Integrantes</h3>
         
-        <a href="#">
+        <a href="integrantes/nuevo.jsp">
             <button>Integrante nuevo</button>
         </a>
         <a href="#">

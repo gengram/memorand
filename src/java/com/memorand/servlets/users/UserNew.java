@@ -82,43 +82,88 @@ public class UserNew extends HttpServlet {
                     
                     Generador g1 = new Generador();
                     
-                    String user_id = g1.newID();
-                    String inst_id = user_fields.get(5);
+                    String user_id1 = g1.newID();
+                    String inst_id1 = user_fields.get(5);
                     
-                    User admin = new User(user_id, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
+                    User admin = new User(user_id1, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
                     UsersController userc1 = new UsersController();
                     
                     if(userc1.modelCreateUser(admin))
                     {
-                        InUser inusers = new InUser(inst_id, user_id);
+                        InUser inusers = new InUser(inst_id1, user_id1);
                         InUsersController inusersc = new InUsersController();
                         
                         if (inusersc.modelCreateInUsers(inusers))
-                        {
-                            response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id);
-                        }
+                        { response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id1); }
                         else
-                        {
-                            response.sendRedirect("staff/administradores.jsp?view=inst&error=200");
-                        }
+                        { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
                     }
                     else
-                    {
-                        response.sendRedirect("staff/administradores.jsp?view=inst&error=200");
-                    }
+                    { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
                     
                     break;
                     
                 case "admin":
                     
                     Generador g2 = new Generador();
-                    User user = new User(g2.newID(), user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                    UsersController userc2 = new UsersController();
-                    response.getWriter().println(userc2.modelCreateUser(user));
+                    
+                    String user_id2 = g2.newID();
+                    String inst_id2 = (String) session.getAttribute("inst_id");
+                    String new_type = request.getParameter("user_type");
+                    
+                    if (new_type != null)
+                    {
+                        switch (new_type)
+                        {
+                            case "ch":
+                                
+                                User lider = new User(user_id2, user_fields.get(0), user_fields.get(1), "ch", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
+                                UsersController userc2 = new UsersController();
+
+                                if (userc2.modelCreateUser(lider))
+                                {
+                                    InUser inlider = new InUser(inst_id2, user_id2);
+                                    InUsersController inliderc = new InUsersController();
+                                    
+                                    if (inliderc.modelCreateInUsers(inlider))
+                                    { response.sendRedirect("admin/lideres.jsp"); }
+                                    else
+                                    { response.sendRedirect("admin/lideres.jsp?error=100-1"); }
+                                }
+                                else
+                                { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+                                
+                                break;
+                                
+                            case "wk":
+                                
+                                User integrante = new User(user_id2, user_fields.get(0), user_fields.get(1), "wk", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
+                                UsersController userc3 = new UsersController();
+
+                                if (userc3.modelCreateUser(integrante))
+                                {
+                                    InUser ininteg = new InUser(inst_id2, user_id2);
+                                    InUsersController inintegc = new InUsersController();
+                                    
+                                    if (inintegc.modelCreateInUsers(ininteg))
+                                    { response.sendRedirect("admin/integrantes.jsp"); }
+                                    else
+                                    { response.sendRedirect("admin/integrantes.jsp?error=100-1"); }
+                                }
+                                else
+                                { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+                                
+                                break;
+                            default:
+                                response.sendRedirect("admin/home.jsp?error=100-3");
+                        }
+                    }
+                    else
+                    { response.sendRedirect("admin/home.jsp?error=100-4"); }
                     break;
                     
                 default:
-                    response.sendRedirect("index.jsp?error=100");
+                    response.sendRedirect("index.jsp?error=100-4");
                     break;
             }
         }
@@ -126,8 +171,6 @@ public class UserNew extends HttpServlet {
         {
             response.sendRedirect("index.jsp?error=101");
         }
-        
-
     }
 
     @Override

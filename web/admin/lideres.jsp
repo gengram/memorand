@@ -37,14 +37,14 @@
         <h1>Memorand para <%=inst_type%>s</h1>
         <h3>Gestor de Líderes</h3>
         
-        <a href="#">
+        <a href="lideres/nuevo.jsp">
             <button>Líder nuevo</button>
         </a>
         <a href="#">
             <button>Lista Completa</button>
         </a>
         <a href="#">
-            <button>Por Departamentos</button>
+            <button>Por Proyectos</button>
         </a>
         
         <br>

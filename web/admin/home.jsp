@@ -55,6 +55,19 @@
         
         <br>
         <br>
+        
+        <a href="">
+            <button>Gestionar integrantes de departamentos</button>
+        </a>
+        <a href="">
+            <button>Gestionar proyectos de departamentos</button>
+        </a>
+        <a href="">
+            <button>Gestionar líderes de proyectos</button>
+        </a>
+        
+        <br>
+        <br>
         <a href="../signout">Cerrar sesión</a>
         
     </body>
