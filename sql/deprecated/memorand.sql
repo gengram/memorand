@@ -3,16 +3,14 @@ create database memorand;
 use memorand;
 
 create table institutions (
-	
     inst_id varchar(36) primary key not null,
-    inst_name varchar(32),
+    inst_name varchar(256),
     inst_type varchar(16),
     inst_profile varchar(256),
 	lim_ch varchar(8),
     lim_wk varchar(8),
     lim_gp varchar(8),
     lim_ks varchar(8)
-
 );
 
 create table users (
@@ -26,7 +24,7 @@ create table users (
     user_mat varchar(16),
     user_status varchar(2),
     user_profile varchar(256)
-        
+    
 );
 
 create table inusers (
