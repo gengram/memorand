@@ -72,9 +72,9 @@ public class ProjectNew extends HttpServlet {
             
             if (inst_id != null)
             {
-                String proj_color = proj_fields.get(2).substring(1);
+                String proj_color = proj_fields.get(1).substring(1);
             
-                Project project = new Project(proj_id, proj_fields.get(0), proj_fields.get(1), proj_color, proj_fields.get(3));
+                Project project = new Project(proj_id, proj_fields.get(0), proj_color);
                 ProjectsController projc = new ProjectsController();
                 
                 if (projc.modelCreateProject(project))

@@ -46,8 +46,6 @@
         <h1>Memorand</h1>
         <h3>Landing page - General</h3>
         
-        <a href="escuelas.jsp">Memorand para escuelas</a>
-        <br>
         <a href="empresas.jsp">Memorand para empresas</a>
         <br>
         <br>

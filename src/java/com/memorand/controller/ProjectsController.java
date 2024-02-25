@@ -30,13 +30,11 @@ public class ProjectsController {
             "<tr>\n" +
 "                    <td>"+ project.getProj_id() +"</td>\n" +
 "                    <td>"+ project.getProj_name() +"</td>\n" +
-"                    <td>"+ project.getProj_icon() +"</td>\n" +
 "                    <td>" +
 "                       <svg width='200' height='100'>\n" +
 "                           <rect width='200' height='100' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
 "                       </svg>" +
 "                    </td>\n" +
-"                    <td>"+ project.getProj_bkg() +"</td>\n" +
 "                    <td>" +
 "                       <a href='"+ add1 +"proyectos/ver.jsp?proj_id="+ project.getProj_id() +"'>Ver</a><br>" +
 "                    </td>\n" +

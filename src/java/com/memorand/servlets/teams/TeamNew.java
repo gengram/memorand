@@ -1,9 +1,9 @@
-package com.memorand.servlets.clusters;
+package com.memorand.servlets.teams;
 
-import com.memorand.beans.Cluster;
-import com.memorand.beans.InClust;
-import com.memorand.controller.ClustersController;
-import com.memorand.controller.InClustsController;
+import com.memorand.beans.Team;
+import com.memorand.beans.InTeam;
+import com.memorand.controller.TeamsController;
+import com.memorand.controller.InTeamsController;
 import com.memorand.util.Generador;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class ClusterNew extends HttpServlet {
+public class TeamNew extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class ClusterNew extends HttpServlet {
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
         
-        ArrayList<String> clust_fields = new ArrayList<>();
+        ArrayList<String> team_fields = new ArrayList<>();
         
         String user_type = (String) session.getAttribute("user_type");
         
@@ -55,7 +55,7 @@ public class ClusterNew extends HttpServlet {
                 FileItem fi = (FileItem) items.get(i);
                 
                 if (fi.isFormField())
-                    clust_fields.add(fi.getString());
+                    team_fields.add(fi.getString());
             }
             
         }
@@ -69,22 +69,22 @@ public class ClusterNew extends HttpServlet {
             
             Generador g1 = new Generador();
             
-            String clust_id = g1.newID();
+            String team_id = g1.newID();
             String inst_id = (String) session.getAttribute("inst_id");
             
             if (inst_id != null)
             {
-                String clust_color = clust_fields.get(1).substring(1); 
+                String team_color = team_fields.get(1).substring(1); 
                 
-                Cluster cluster = new Cluster(clust_id, clust_fields.get(0), clust_color);
-                ClustersController clustc = new ClustersController();
+                Team team = new Team(team_id, team_fields.get(0), team_color);
+                TeamsController teamc = new TeamsController();
                 
-                if (clustc.modelCreateCluster(cluster))
+                if (teamc.modelCreateTeam(team))
                 {
-                    InClust inclust = new InClust(inst_id, clust_id);
-                    InClustsController inclustc = new InClustsController();
+                    InTeam inteam = new InTeam(inst_id, team_id);
+                    InTeamsController inteamc = new InTeamsController();
                     
-                    if(inclustc.modelCreateInClusts(inclust))
+                    if(inteamc.modelCreateInTeam(inteam))
                     {
                         response.sendRedirect("admin/departamentos.jsp");
                     }

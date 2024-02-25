@@ -24,10 +24,10 @@
         <h1>Memorand</h1>
         <h3>Departamento nuevo</h3>
         
-        <form action="../../clustnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="text" name="clust_name" id="clust_name" placeholder="Nombre departamento" required>
+        <form action="../../teamnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+            <input type="text" name="team_name" id="team_name" placeholder="Nombre departamento" required>
             <br>
-            <input type="color" name="clust_color" id="clust_color" required>
+            <input type="color" name="team_color" id="team_color" required>
             <br>
             <input type="submit" value="Alta departamento">
         </form>

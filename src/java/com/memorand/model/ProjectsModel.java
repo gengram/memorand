@@ -16,15 +16,13 @@ public class ProjectsModel extends Conexion {
         
         try
         {
-            String sql = "INSERT INTO projects (proj_id, proj_name, proj_icon, proj_color, proj_bkg) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO projects (proj_id, proj_name, proj_color) VALUES (?,?,?)";
             
             ps = getConnection().prepareStatement(sql);
             
             ps.setString(1, project.getProj_id());
             ps.setString(2, project.getProj_name());
-            ps.setString(3, project.getProj_icon());
-            ps.setString(4, project.getProj_color());
-            ps.setString(5, project.getProj_bkg());
+            ps.setString(3, project.getProj_color());
             
             if (ps.executeUpdate() == 1)
             { flag = true; }
@@ -83,11 +81,9 @@ public class ProjectsModel extends Conexion {
                 {
                     String proj_id = rs2.getString(1);
                     String proj_name = rs2.getString(2);
-                    String proj_icon = rs2.getString(3);
-                    String proj_color = rs2.getString(4);
-                    String proj_bkg = rs2.getString(5);
+                    String proj_color = rs2.getString(3);
                     
-                    Project project = new Project(proj_id, proj_name, proj_icon, proj_color, proj_bkg);
+                    Project project = new Project(proj_id, proj_name, proj_color);
                     
                     all_project.add(project);
                 }
@@ -134,11 +130,9 @@ public class ProjectsModel extends Conexion {
             {
                 String proj_id = rs.getString(1);
                 String proj_name = rs.getString(2);
-                String proj_icon = rs.getString(3);
-                String proj_color = rs.getString(4);
-                String proj_bkg = rs.getString(5);
+                String proj_color = rs.getString(3);
 
-                project_info = new Project(proj_id, proj_name, proj_icon, proj_color, proj_bkg);
+                project_info = new Project(proj_id, proj_name, proj_color);
             }
         }
         

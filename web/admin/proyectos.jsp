@@ -59,9 +59,7 @@
                 <tr>
                     <th>class_id</th>
                     <th>class_name</th>
-                    <th>class_icon</th>
                     <th>class_color</th>
-                    <th>class_bkg</th>
                     <th>Acciones</th>
                 </tr>
             </thead>

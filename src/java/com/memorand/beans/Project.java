@@ -6,26 +6,14 @@ public class Project implements Serializable {
     
     private String proj_id;
     private String proj_name;
-    private String proj_icon;
     private String proj_color;
-    private String proj_bkg;
 
     public Project() {}
 
-    public Project(String proj_id, String proj_name, String proj_icon, String proj_color, String proj_bkg) {
+    public Project(String proj_id, String proj_name, String proj_color) {
         this.proj_id = proj_id;
         this.proj_name = proj_name;
-        this.proj_icon = proj_icon;
         this.proj_color = proj_color;
-        this.proj_bkg = proj_bkg;
-    }
-
-    public String getProj_bkg() {
-        return proj_bkg;
-    }
-
-    public void setProj_bkg(String proj_bkg) {
-        this.proj_bkg = proj_bkg;
     }
 
     public String getProj_id() {
@@ -42,14 +30,6 @@ public class Project implements Serializable {
 
     public void setProj_name(String proj_name) {
         this.proj_name = proj_name;
-    }
-
-    public String getProj_icon() {
-        return proj_icon;
-    }
-
-    public void setProj_icon(String proj_icon) {
-        this.proj_icon = proj_icon;
     }
 
     public String getProj_color() {

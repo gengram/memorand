@@ -1,6 +1,6 @@
 <%-- Memorand by Gengram © 2023 --%>
 
-<%@page import="com.memorand.controller.ClustersController"%>
+<%@page import="com.memorand.controller.TeamsController"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
@@ -17,7 +17,7 @@
     //    session.invalidate();
     //}
     
-    ClustersController clustc = new ClustersController();
+    TeamsController teamc = new TeamsController();
 %>
 
 <!DOCTYPE html>
@@ -52,14 +52,14 @@
         <table border="2" style="text-align: center">
             <thead>
                 <tr>
-                    <th>cluster_id</th>
-                    <th>cluster_name</th>
-                    <th>cluster_color</th>
+                    <th>team_id</th>
+                    <th>team_name</th>
+                    <th>team_color</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <%=clustc.modelGetAllClustersByInst(inst_id, 0) %>
+                <%=teamc.modelGetAllTeamsByInst(inst_id, 0) %>
             </tbody>
         </table>
 

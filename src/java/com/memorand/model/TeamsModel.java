@@ -1,28 +1,28 @@
 package com.memorand.model;
 
-import com.memorand.beans.Cluster;
+import com.memorand.beans.Team;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ClustersModel extends Conexion {
+public class TeamsModel extends Conexion {
     
-    public boolean createCluster(Cluster cluster) {
+    public boolean createTeam(Team team) {
         
         boolean flag = false;
         
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         
         try
         {
-            String sql = "INSERT INTO clusters (cluster_id, cluster_name, cluster_color) VALUES (?,?,?)";
+            String sql = "INSERT INTO teams (team_id, team_name, team_color) VALUES (?,?,?)";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, cluster.getCluster_id());
-            ps.setString(2, cluster.getCluster_name());
-            ps.setString(3, cluster.getCluster_color());
+            ps.setString(1, team.getTeam_id());
+            ps.setString(2, team.getTeam_name());
+            ps.setString(3, team.getTeam_color());
             
             if (ps.executeUpdate() == 1)
             { flag = true; }
@@ -49,16 +49,16 @@ public class ClustersModel extends Conexion {
         
     }
     
-    public ArrayList<Cluster> getAllClustersByInst(String inst_id) {
+    public ArrayList<Team> getAllTeamsByInst(String inst_id) {
     
-        ArrayList<Cluster> all_cluster = new ArrayList<>();
+        ArrayList<Team> all_teams = new ArrayList<>();
         
-        PreparedStatement ps1 = null;
-        PreparedStatement ps2 = null;
+        PreparedStatement ps1;
+        PreparedStatement ps2;
         
         try
         {
-            String sql1 = "SELECT cluster_id FROM inclusts WHERE inst_id = ?";
+            String sql1 = "SELECT team_id FROM inteams WHERE inst_id = ?";
             
             ps1 = getConnection().prepareStatement(sql1);
             
@@ -68,25 +68,25 @@ public class ClustersModel extends Conexion {
             
             while (rs1.next())
             {
-                String clust_id = rs1.getString(1);
+                String t_id = rs1.getString(1);
                 
-                String sql2 = "SELECT * FROM clusters WHERE cluster_id = ? ORDER BY cluster_name";
+                String sql2 = "SELECT * FROM teams WHERE team_id = ? ORDER BY team_name";
                 
                 ps2 = getConnection().prepareStatement(sql2);
                 
-                ps2.setString(1, clust_id);
+                ps2.setString(1, t_id);
                 
                 ResultSet rs2 = ps2.executeQuery();
                 
                 while (rs2.next())
                 {
-                    String cluster_id = rs2.getString(1);
-                    String cluster_name = rs2.getString(2);
-                    String cluster_color = rs2.getString(3);
+                    String team_id = rs2.getString(1);
+                    String team_name = rs2.getString(2);
+                    String team_color = rs2.getString(3);
                     
-                    Cluster cluster = new Cluster(cluster_id, cluster_name, cluster_color);
+                    Team team = new Team(team_id, team_name, team_color);
                     
-                    all_cluster.add(cluster);
+                    all_teams.add(team);
                 }
             }
         }
@@ -107,35 +107,34 @@ public class ClustersModel extends Conexion {
             }
         }
         
-        return all_cluster;
+        return all_teams;
     
     }
     
-    public Cluster getClusterInfoById(String c_id) {
+    public Team getTeamInfoById(String t_id) {
     
-        Cluster clust_info = null;
+        Team team_info = null;
         
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         
         try
         {
-            String sql = "SELECT * FROM clusters WHERE cluster_id = ? LIMIT 1";
+            String sql = "SELECT * FROM teams WHERE team_id = ? LIMIT 1";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, c_id);
+            ps.setString(1, t_id);
             
             ResultSet rs = ps.executeQuery();
             
             if (rs.next())
             {
-                String cluster_id = rs.getString(1);
-                String cluster_name = rs.getString(2);
-                String cluster_color = rs.getString(3);
+                String team_id = rs.getString(1);
+                String team_name = rs.getString(2);
+                String team_color = rs.getString(3);
                 
-                clust_info = new Cluster(cluster_id, cluster_name, cluster_color);
+                team_info = new Team(team_id, team_name, team_color);
             }
-            
         }
         
         catch (SQLException e)
@@ -154,7 +153,7 @@ public class ClustersModel extends Conexion {
             }
         }
         
-        return clust_info;
+        return team_info;
     
     }
 }

@@ -17,8 +17,8 @@
         <servlet-class>com.memorand.servlets.Signout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ClusterNew</servlet-name>
-        <servlet-class>com.memorand.servlets.clusters.ClusterNew</servlet-class>
+        <servlet-name>TeamNew</servlet-name>
+        <servlet-class>com.memorand.servlets.teams.TeamNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProjectNew</servlet-name>
@@ -41,8 +41,8 @@
         <url-pattern>/signout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ClusterNew</servlet-name>
-        <url-pattern>/clustnew</url-pattern>
+        <servlet-name>TeamNew</servlet-name>
+        <url-pattern>/teamnew</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProjectNew</servlet-name>
