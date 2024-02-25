@@ -180,8 +180,7 @@ public class UsersModel extends Conexion {
             {
                 String user_id = rs1.getString(1);
                 
-//                String sql2 = "SELECT users.user_id, users.user_name, users.user_pat, users.user_mat, users.user_profile FROM users INNER JOIN inusers ON users.user_id = inusers.user_id WHERE users.user_id = ? ORDER BY users.user_pat";
-                String sql2 = "SELECT users.user_id, users.user_name, users.user_pat, users.user_mat, users.user_profile FROM users WHERE users.user_id = ? ORDER BY users.user_pat";
+                String sql2 = "SELECT user_id, user_name, user_pat, user_mat, user_profile FROM users WHERE user_id = ? AND user_type = \"admin\" ORDER BY users.user_pat";
                 
                 ps2 = getConnection().prepareStatement(sql2);
                 
@@ -274,6 +273,144 @@ public class UsersModel extends Conexion {
         }
         
         return all_admin;
+    }
+    
+    public ArrayList<User> getAllChByInst(String inst_id) {
+    
+        ArrayList<User> all_ch = new ArrayList<>();
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        
+        try
+        {
+            String sql1 = "SELECT user_id FROM inusers WHERE inst_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, inst_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String user_id = rs1.getString(1);
+                
+                String sql2 = "SELECT * FROM users WHERE user_id = ? AND user_type = \"ch\" ORDER BY user_pat";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, user_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String ch_id = rs2.getString(1);
+                    String ch_email = rs2.getString(2);
+                    String ch_pass = rs2.getString(3);
+                    String ch_type = rs2.getString(4);
+                    String ch_name = rs2.getString(5);
+                    String ch_pat = rs2.getString(6);
+                    String ch_mat = rs2.getString(7);
+                    String ch_status = rs2.getString(8);
+                    String ch_profile = rs2.getString(9);
+                    
+                    User admin = new User(ch_id, ch_email, ch_pass, ch_type, ch_name, ch_pat, ch_mat, ch_status, ch_profile);
+                    
+                    all_ch.add(admin);
+                }
+            }
+        
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_ch;
+    
+    }
+    
+    public ArrayList<User> getAllWkByInst(String inst_id) {
+    
+        ArrayList<User> all_wk = new ArrayList<>();
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        
+        try
+        {
+            String sql1 = "SELECT user_id FROM inusers WHERE inst_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, inst_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String user_id = rs1.getString(1);
+                
+                String sql2 = "SELECT * FROM users WHERE user_id = ? AND user_type = \"wk\" ORDER BY user_pat";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, user_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String wk_id = rs2.getString(1);
+                    String wk_email = rs2.getString(2);
+                    String wk_pass = rs2.getString(3);
+                    String wk_type = rs2.getString(4);
+                    String wk_name = rs2.getString(5);
+                    String wk_pat = rs2.getString(6);
+                    String wk_mat = rs2.getString(7);
+                    String wk_status = rs2.getString(8);
+                    String wk_profile = rs2.getString(9);
+                    
+                    User admin = new User(wk_id, wk_email, wk_pass, wk_type, wk_name, wk_pat, wk_mat, wk_status, wk_profile);
+                    
+                    all_wk.add(admin);
+                }
+            }
+        
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_wk;
+    
     }
     
     public User getUserInfoById(String u_id) {

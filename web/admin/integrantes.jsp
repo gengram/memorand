@@ -1,11 +1,13 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.UsersController"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     String user_type = (String) session.getAttribute("user_type");
     String staff_name = (String) session.getAttribute("user_name");
 
+    String inst_id = (String) session.getAttribute("inst_id");
     String inst_type = (String) session.getAttribute("inst_type");
     String inst_name = (String) session.getAttribute("inst_name");
 
@@ -14,6 +16,8 @@
     //    response.sendRedirect("../index.jsp?error=100");
     //    session.invalidate();
     //}
+    
+    UsersController userc = new UsersController();
 %>
 
 <!DOCTYPE html>
@@ -40,12 +44,6 @@
         <a href="integrantes/nuevo.jsp">
             <button>Integrante nuevo</button>
         </a>
-        <a href="#">
-            <button>Lista Completa</button>
-        </a>
-        <a href="#">
-            <button>Por Departamentos</button>
-        </a>
         
         <br>
         <br>
@@ -67,6 +65,7 @@
                 </tr>
             </thead>
             <tbody>
+                <%= userc.modelGetAllWkByInst(inst_id, 1, 0) %>
             </tbody>
         </table>
         

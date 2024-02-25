@@ -43,13 +43,7 @@
         <a href="proyectos/nuevo.jsp">
             <button>Proyecto nuevo</button>
         </a>
-        <a href="#">
-            <button>Lista Completa</button>
-        </a>
-        <a href="#">
-            <button>Por Departamentos</button>
-        </a>
-        
+
         <br>
         <br>
         <h3>Lista</h3>

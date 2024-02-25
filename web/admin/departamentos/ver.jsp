@@ -1,7 +1,7 @@
 <%-- Memorand by Gengram © 2023 --%>
 
-<%@page import="com.memorand.controller.ClustersController"%>
-<%@page import="com.memorand.beans.Cluster"%>
+<%@page import="com.memorand.controller.TeamsController"%>
+<%@page import="com.memorand.beans.Team"%>
 <%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page import="com.memorand.beans.Institution"%>
 <%@page import="com.memorand.beans.User"%>
@@ -19,19 +19,19 @@
     //    session.invalidate();
     //}
     
-    Cluster clust = new Cluster();
-    ClustersController clustc = new ClustersController();
+    Team team = new Team();
+    TeamsController teamc = new TeamsController();
     
-    String clust_id = request.getParameter("clust_id");
-    String clust_name = null;
-    String clust_color = null;
+    String team_id = request.getParameter("team_id");
+    String team_name = null;
+    String team_color = null;
     
-    if (clust_id != null)
+    if (team_id != null)
     {
-        clust = clustc.modelGetClusterInfoById(clust_id);
+        team = teamc.modelGetTeamInfoById(team_id);
         
-        clust_name = clust.getCluster_name();
-        clust_color = clust.getCluster_color();
+        team_name = team.getTeam_name();
+        team_color = team.getTeam_color();
     }
     else
     {
@@ -47,7 +47,7 @@
         
         <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
         
-        <title><%= clust_name %></title>
+        <title><%= team_name %></title>
         
         <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
         <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
@@ -56,7 +56,7 @@
     
     <body>
         <h1>Memorand</h1>
-        <h3><%= clust_name %></h3>
+        <h3><%= team_name %></h3>
         
         <a href="editar.jsp?user_id=">Editar</a>
         <br>
@@ -68,13 +68,13 @@
         <br>
         <h5>Color</h5>
         <svg width='200' height='100'>
-            <rect width='200' height='100' style='fill:#<%= clust_color %>; stroke:black; stroke-width:2'/>\n" +
+            <rect width='200' height='100' style='fill:#<%= team_color %>; stroke:black; stroke-width:2'/>\n" +
         </svg>
         
         <br>
         <br>
         <h5>Nombre</h5>
-        <p><%= clust_name %></p>
+        <p><%= team_name %></p>
         
         <h3>Acerca del departamento</h3>
         <br>

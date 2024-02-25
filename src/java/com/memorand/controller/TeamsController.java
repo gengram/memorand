@@ -35,7 +35,7 @@ public class TeamsController {
 "                       </svg>" +
 "                    </td>\n" +
 "                    <td>" +
-"                       <a href='"+ add1 +"departamentos/ver.jsp?clust_id="+ team.getTeam_id() +"'>Ver</a><br>" +
+"                       <a href='"+ add1 +"departamentos/ver.jsp?team_id="+ team.getTeam_id() +"'>Ver</a><br>" +
 "                    </td>\n" +
 "           </tr>";
         

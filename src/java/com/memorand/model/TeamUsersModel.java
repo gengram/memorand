@@ -1,25 +1,25 @@
 package com.memorand.model;
 
-import com.memorand.beans.InUser;
+import com.memorand.beans.TeamUser;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InUsersModel extends Conexion {
+public class TeamUsersModel extends Conexion {
     
-    public boolean createInUsers(InUser inusers) {
-    
+    public boolean createTeamUsers(TeamUser teamuser) {
+        
         boolean flag = false;
         
         PreparedStatement ps;
         
         try
         {
-            String sql = "INSERT INTO inusers (inst_id, user_id) VALUES (?,?)";
-
+            String sql = "INSERT INTO teamusers (team_id, user_id) VALUES (?,?)";
+            
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inusers.getInst_id());
-            ps.setString(2, inusers.getUser_id());
+            ps.setString(1, teamuser.getTeam_id());
+            ps.setString(2, teamuser.getUser_id());
             
             if (ps.executeUpdate() == 1)
             {

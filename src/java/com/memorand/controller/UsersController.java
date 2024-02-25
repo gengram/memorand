@@ -106,6 +106,86 @@ public class UsersController {
         
     }
     
+    public String modelGetAllChByInst(String inst_id, int level1, int level2) {
+    
+        String htmlcode = "";
+        String add1 = "";
+        String add2 = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (int i = 0; i < level1; i++) {
+            add1 += "../";
+        }
+        
+        for (int i = 0; i < level2; i++) {
+            add2 += "../";
+        }
+        
+        for (User ch : userm.getAllChByInst(inst_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ ch.getUser_id() +"</td>\n" +
+"                    <td>"+ ch.getUser_email() +"</td>\n" +
+"                    <td>"+ ch.getUser_pass() +"</td>\n" +
+"                    <td>"+ ch.getUser_type() +"</td>\n" +
+"                    <td>"+ ch.getUser_name() +"</td>\n" +
+"                    <td>"+ ch.getUser_pat() +"</td>\n" +
+"                    <td>"+ ch.getUser_mat() +"</td>\n" +
+"                    <td>"+ ch.getUser_status() +"</td>\n" +
+"                    <td> <img src='"+ add1 + ch.getUser_profile() +"' width='40'></img> </td>\n" +
+"                    <td>"
+                    + "<a href='"+ add2 +"lideres/ver.jsp?user_id="+ ch.getUser_id() +"'>Ver</a><br>"
+                  + "</td>\n" +
+"           </tr>";
+        
+        }
+        
+        return htmlcode;
+    
+    }
+    
+    public String modelGetAllWkByInst(String inst_id, int level1, int level2) {
+    
+        String htmlcode = "";
+        String add1 = "";
+        String add2 = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (int i = 0; i < level1; i++) {
+            add1 += "../";
+        }
+        
+        for (int i = 0; i < level2; i++) {
+            add2 += "../";
+        }
+        
+        for (User ch : userm.getAllWkByInst(inst_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ ch.getUser_id() +"</td>\n" +
+"                    <td>"+ ch.getUser_email() +"</td>\n" +
+"                    <td>"+ ch.getUser_pass() +"</td>\n" +
+"                    <td>"+ ch.getUser_type() +"</td>\n" +
+"                    <td>"+ ch.getUser_name() +"</td>\n" +
+"                    <td>"+ ch.getUser_pat() +"</td>\n" +
+"                    <td>"+ ch.getUser_mat() +"</td>\n" +
+"                    <td>"+ ch.getUser_status() +"</td>\n" +
+"                    <td> <img src='"+ add1 + ch.getUser_profile() +"' width='40'></img> </td>\n" +
+"                    <td>"
+                    + "<a href='"+ add2 +"integrantes/ver.jsp?user_id="+ ch.getUser_id() +"'>Ver</a><br>"
+                  + "</td>\n" +
+"           </tr>";
+        
+        }
+        
+        return htmlcode;
+    
+    }
+    
     public User modelGetUserInfoById(String u_id) {
     
         UsersModel userm = new UsersModel();

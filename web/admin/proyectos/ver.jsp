@@ -2,8 +2,6 @@
 
 <%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.beans.Project"%>
-<%@page import="com.memorand.controller.ClustersController"%>
-<%@page import="com.memorand.beans.Cluster"%>
 <%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page import="com.memorand.beans.Institution"%>
 <%@page import="com.memorand.beans.User"%>
@@ -26,18 +24,14 @@
     
     String proj_id = request.getParameter("proj_id");
     String proj_name = null;
-    String proj_icon = null;
     String proj_color = null;
-    String proj_bkg = null;
     
     if (proj_id != null) 
     {
         proj = projc.modelGetProjectInfoById(proj_id);
         
         proj_name = proj.getProj_name();
-        proj_icon = proj.getProj_icon();
         proj_color = proj.getProj_color();
-        proj_bkg = proj.getProj_bkg();
     }
     else 
     {
@@ -81,12 +75,6 @@
         <br>
         <h5>Nombre</h5>
         <p><%= proj_name %></p>
-        
-        <h5>Icono</h5>
-        <p><%= proj_icon %></p>
-        
-        <h5>Fondo</h5>
-        <p><%= proj_bkg %></p>
         
         
         <h3>Acerca del proyecto</h3>
