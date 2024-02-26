@@ -35,7 +35,6 @@
         <h1>Memorand</h1>
         <h3>Gestionar proyectos por departamento</h3>
         
-        
         <br>
         <h3>Agregar proyectos a departamento</h3>
         
