@@ -24,6 +24,18 @@
         <servlet-name>ProjectNew</servlet-name>
         <servlet-class>com.memorand.servlets.projects.ProjectNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamUserNew</servlet-name>
+        <servlet-class>com.memorand.servlets.teams.TeamUserNew</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamUserDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.teams.TeamUserDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CollabNew</servlet-name>
+        <servlet-class>com.memorand.servlets.collab.CollabNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>ProjectNew</servlet-name>
         <url-pattern>/projnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamUserNew</servlet-name>
+        <url-pattern>/tunew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamUserDelete</servlet-name>
+        <url-pattern>/tudelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CollabNew</servlet-name>
+        <url-pattern>/collabnew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

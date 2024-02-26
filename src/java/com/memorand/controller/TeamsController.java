@@ -45,6 +45,49 @@ public class TeamsController {
     
     }
     
+    public String modelGetAllTeamsByInstRed(String inst_id) {
+    
+        String htmlcode = "";
+        
+        TeamsModel teamm = new TeamsModel();
+        
+        for (Team team : teamm.getAllTeamsByInst(inst_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ team.getTeam_name() +"</td>\n" +
+"                    <td>" +
+"                       <svg width='50' height='50'>\n" +
+"                           <rect width='50' height='50' style='fill:#"+ team.getTeam_color() +";stroke:black;stroke-width:2'/>\n" +
+"                       </svg>" +
+"                    </td>\n" +
+"                    <td>" +
+"                       <a href='?team_id="+ team.getTeam_id() +"'>Ver</a><br>" +
+"                    </td>\n" +
+"           </tr>";
+        
+        }
+        
+        return htmlcode;
+    
+    }
+    
+    public String modelGetListTeamsByInst(String inst_id) {
+    
+        String htmlcode = "";
+        
+        TeamsModel teamm = new TeamsModel();
+        
+        for (Team team: teamm.getAllTeamsByInst(inst_id))
+        {
+            htmlcode +=
+            "<option value='"+ team.getTeam_id() + "' style='background-color:#"+ team.getTeam_color() +"' >"+ team.getTeam_name() + "</option>";
+        }
+        
+        return htmlcode;
+        
+    }
+    
     public Team modelGetTeamInfoById(String t_id) {
         
         TeamsModel teamm = new TeamsModel();

@@ -1,10 +1,7 @@
 package com.memorand.servlets.teams;
 
-import com.memorand.beans.Team;
-import com.memorand.beans.InTeam;
-import com.memorand.controller.TeamsController;
-import com.memorand.controller.InTeamsController;
-import com.memorand.util.Generador;
+import com.memorand.beans.TeamUser;
+import com.memorand.controller.TeamUsersController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +15,10 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class TeamNew extends HttpServlet {
+public class TeamUserNew extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException { 
-     
+            throws ServletException, IOException {
     }
 
     @Override
@@ -33,7 +29,7 @@ public class TeamNew extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);        
+        processRequest(request, response);
         
         response.setContentType("text/html;charset=UTF-8");
         
@@ -41,7 +37,7 @@ public class TeamNew extends HttpServlet {
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
         
-        ArrayList<String> team_fields = new ArrayList<>();
+        ArrayList<String> teamuser_fields = new ArrayList<>();
         
         String user_type = (String) session.getAttribute("user_type");
         
@@ -54,9 +50,8 @@ public class TeamNew extends HttpServlet {
                 FileItem fi = (FileItem) items.get(i);
                 
                 if (fi.isFormField())
-                    team_fields.add(fi.getString());
+                    teamuser_fields.add(fi.getString());
             }
-            
         }
         catch (Exception e)
         {
@@ -65,49 +60,25 @@ public class TeamNew extends HttpServlet {
         
         if (user_type != null && user_type.equals("admin"))
         {
+            String team_id = teamuser_fields.get(0);
+            String user_id = teamuser_fields.get(1);
             
-            Generador g1 = new Generador();
+            TeamUser teamuser = new TeamUser(team_id, user_id);
+            TeamUsersController teamuserc = new TeamUsersController();
             
-            String team_id = g1.newID();
-            String inst_id = (String) session.getAttribute("inst_id");
-            
-            if (inst_id != null)
+            if (teamuserc.modelCreateTeamUser(teamuser))
             {
-                String team_color = team_fields.get(1).substring(1); 
-                
-                Team team = new Team(team_id, team_fields.get(0), team_color);
-                TeamsController teamc = new TeamsController();
-                
-                if (teamc.modelCreateTeam(team))
-                {
-                    InTeam inteam = new InTeam(inst_id, team_id);
-                    InTeamsController inteamc = new InTeamsController();
-                    
-                    if(inteamc.modelCreateInTeam(inteam))
-                    {
-                        response.sendRedirect("admin/departamentos.jsp");
-                    }
-                    else
-                    {
-                        response.sendRedirect("index.jsp?error=200-1");
-                    }
-                }
-                else
-                {
-                    response.sendRedirect("index.jsp?error=200-2");
-                }
+                response.sendRedirect("admin/gestion/integrantes.jsp?team_id="+ team_id);
             }
             else
             {
-                    response.sendRedirect("index.jsp?error=200-3");
+                response.sendRedirect("admin/gestion/integrantes.jsp?error=200");
             }
-            
         }
         else
         {
             response.sendRedirect("index.jsp?error=101");
         }
-        
     }
 
     @Override

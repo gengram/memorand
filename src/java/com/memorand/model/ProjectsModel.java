@@ -110,6 +110,68 @@ public class ProjectsModel extends Conexion {
     
     }
     
+    public ArrayList<Project> getAllProjectsByTeam(String team_id) {
+    
+        ArrayList<Project> all_project = new ArrayList<>();
+        
+        PreparedStatement ps1 = null;
+        PreparedStatement ps2 = null;
+        
+        try
+        {
+            String sql1 = "SELECT proj_id FROM collabs WHERE team_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, team_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String p_id = rs1.getString(1);
+                
+                String sql2 = "SELECT * FROM projects WHERE proj_id = ? ORDER BY proj_name";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, p_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String proj_id = rs2.getString(1);
+                    String proj_name = rs2.getString(2);
+                    String proj_color = rs2.getString(3);
+                    
+                    Project project = new Project(proj_id, proj_name, proj_color);
+                    
+                    all_project.add(project);
+                }
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_project;
+        
+    }
+    
     public Project getProjectInfoById(String p_id) {
     
         Project project_info = null;

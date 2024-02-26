@@ -8,8 +8,7 @@ public class InTeamsController {
     public boolean modelCreateInTeam(InTeam inteam) {
         
         InTeamsModel inteamm = new InTeamsModel();
-        return inteamm.createInTeam
-        (inteam);
+        return inteamm.createInTeam(inteam);
         
     }
     

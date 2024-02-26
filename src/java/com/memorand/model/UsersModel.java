@@ -344,6 +344,75 @@ public class UsersModel extends Conexion {
     
     }
     
+    public ArrayList<User> getAllWkByTeam(String team_id) {
+    
+        ArrayList<User> all_ch = new ArrayList<>();
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        
+        try
+        {
+            String sql1 = "SELECT user_id FROM teamusers WHERE team_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, team_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String user_id = rs1.getString(1);
+                
+                String sql2 = "SELECT * FROM users WHERE user_id = ? AND user_type = \"wk\" ORDER BY user_pat";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, user_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String wk_id = rs2.getString(1);
+                    String wk_email = rs2.getString(2);
+                    String wk_pass = rs2.getString(3);
+                    String wk_type = rs2.getString(4);
+                    String wk_name = rs2.getString(5);
+                    String wk_pat = rs2.getString(6);
+                    String wk_mat = rs2.getString(7);
+                    String wk_status = rs2.getString(8);
+                    String wk_profile = rs2.getString(9);
+                    
+                    User wk = new User(wk_id, wk_email, wk_pass, wk_type, wk_name, wk_pat, wk_mat, wk_status, wk_profile);
+                    
+                    all_ch.add(wk);
+                }
+            }
+        
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_ch;
+    
+    }
+    
     public ArrayList<User> getAllWkByInst(String inst_id) {
     
         ArrayList<User> all_wk = new ArrayList<>();

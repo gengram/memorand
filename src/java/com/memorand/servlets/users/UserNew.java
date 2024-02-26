@@ -23,6 +23,8 @@ public class UserNew extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
 
     }
 
@@ -37,134 +39,142 @@ public class UserNew extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
-        response.setContentType("text/html;charset=UTF-8");
-        
-        FileItemFactory fif = new DiskFileItemFactory();
-        ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
         
-        ArrayList<String> user_fields = new ArrayList<>();
-        
-        String user_img = "";
-        String user_type = (String) session.getAttribute("user_type");
-        
-        try
+        if(session != null)
         {
-            List items = sfu.parseRequest(request);
-            
-            for (int i = 0; i < items.size(); i++)
+            response.setContentType("text/html;charset=UTF-8");
+
+            FileItemFactory fif = new DiskFileItemFactory();
+            ServletFileUpload sfu = new ServletFileUpload(fif);
+
+            ArrayList<String> user_fields = new ArrayList<>();
+
+            String user_img = "";
+            String user_type = (String) session.getAttribute("user_type");
+
+            try
             {
-                FileItem fi = (FileItem) items.get(i);
-                
-                if (!fi.isFormField())
+                List items = sfu.parseRequest(request);
+
+                for (int i = 0; i < items.size(); i++)
                 {
-                    File file = new File("C:\\memorand\\web\\XM-Uploads\\users\\profile\\"+fi.getName());
-                    fi.write(file);
-                    user_img = "XM-Uploads/users/profile/"+fi.getName();
-                }
-                else
-                {
-                    user_fields.add(fi.getString());
-                }
-            }
-            
-        }
-        catch (Exception e)
-        {
-            System.err.println(e.getMessage());
-        }
-        
-        if (user_type != null)
-        {
-            switch (user_type)
-            {
-                case "staff":
-                    
-                    Generador g1 = new Generador();
-                    
-                    String user_id1 = g1.newID();
-                    String inst_id1 = user_fields.get(5);
-                    
-                    User admin = new User(user_id1, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                    UsersController userc1 = new UsersController();
-                    
-                    if(userc1.modelCreateUser(admin))
+                    FileItem fi = (FileItem) items.get(i);
+
+                    if (!fi.isFormField())
                     {
-                        InUser inusers = new InUser(inst_id1, user_id1);
-                        InUsersController inusersc = new InUsersController();
-                        
-                        if (inusersc.modelCreateInUsers(inusers))
-                        { response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id1); }
+                        File file = new File("C:\\memorand\\web\\XM-Uploads\\users\\profile\\"+fi.getName());
+                        fi.write(file);
+                        user_img = "XM-Uploads/users/profile/"+fi.getName();
+                    }
+                    else
+                    {
+                        user_fields.add(fi.getString());
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                System.err.println(e.getMessage());
+            }
+
+            if (user_type != null)
+            {
+                switch (user_type)
+                {
+                    case "staff":
+
+                        Generador g1 = new Generador();
+
+                        String user_id1 = g1.newID();
+                        String inst_id1 = user_fields.get(5);
+
+                        User admin = new User(user_id1, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
+                        UsersController userc1 = new UsersController();
+
+                        if(userc1.modelCreateUser(admin))
+                        {
+                            InUser inusers = new InUser(inst_id1, user_id1);
+                            InUsersController inusersc = new InUsersController();
+
+                            if (inusersc.modelCreateInUsers(inusers))
+                            { response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id1); }
+                            else
+                            { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
+                        }
                         else
                         { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
-                    }
-                    else
-                    { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
-                    
-                    break;
-                    
-                case "admin":
-                    
-                    Generador g2 = new Generador();
-                    
-                    String user_id2 = g2.newID();
-                    String inst_id2 = (String) session.getAttribute("inst_id");
-                    String new_type = request.getParameter("user_type");
-                    
-                    if (new_type != null)
-                    {
-                        switch (new_type)
+
+                        break;
+
+                    case "admin":
+
+                        Generador g2 = new Generador();
+
+                        String user_id2 = g2.newID();
+                        String inst_id2 = (String) session.getAttribute("inst_id");
+                        String new_type = request.getParameter("user_type");
+
+                        if (new_type != null)
                         {
-                            case "ch":
-                                
-                                User lider = new User(user_id2, user_fields.get(0), user_fields.get(1), "ch", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                                UsersController userc2 = new UsersController();
+                            switch (new_type)
+                            {
+                                case "ch":
 
-                                if (userc2.modelCreateUser(lider))
-                                {
-                                    InUser inlider = new InUser(inst_id2, user_id2);
-                                    InUsersController inliderc = new InUsersController();
-                                    
-                                    if (inliderc.modelCreateInUsers(inlider))
-                                    { response.sendRedirect("admin/lideres.jsp"); }
-                                    else
-                                    { response.sendRedirect("admin/lideres.jsp?error=100-1"); }
-                                }
-                                else
-                                { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
-                                
-                                break;
-                                
-                            case "wk":
-                                
-                                User integrante = new User(user_id2, user_fields.get(0), user_fields.get(1), "wk", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                                UsersController userc3 = new UsersController();
+                                    User lider = new User(user_id2, user_fields.get(0), user_fields.get(1), "ch", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
+                                    UsersController userc2 = new UsersController();
 
-                                if (userc3.modelCreateUser(integrante))
-                                {
-                                    InUser ininteg = new InUser(inst_id2, user_id2);
-                                    InUsersController inintegc = new InUsersController();
-                                    
-                                    if (inintegc.modelCreateInUsers(ininteg))
-                                    { response.sendRedirect("admin/integrantes.jsp"); }
+                                    if (userc2.modelCreateUser(lider))
+                                    {
+                                        InUser inlider = new InUser(inst_id2, user_id2);
+                                        InUsersController inliderc = new InUsersController();
+
+                                        if (inliderc.modelCreateInUsers(inlider))
+                                        { response.sendRedirect("admin/lideres.jsp"); }
+                                        else
+                                        { response.sendRedirect("admin/lideres.jsp?error=100-1"); }
+                                    }
                                     else
-                                    { response.sendRedirect("admin/integrantes.jsp?error=100-1"); }
-                                }
-                                else
-                                { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
-                                
-                                break;
-                            default:
-                                response.sendRedirect("admin/home.jsp?error=100-3");
+                                    { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+
+                                    break;
+
+                                case "wk":
+
+                                    User integrante = new User(user_id2, user_fields.get(0), user_fields.get(1), "wk", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
+                                    UsersController userc3 = new UsersController();
+
+                                    if (userc3.modelCreateUser(integrante))
+                                    {
+                                        InUser ininteg = new InUser(inst_id2, user_id2);
+                                        InUsersController inintegc = new InUsersController();
+
+                                        if (inintegc.modelCreateInUsers(ininteg))
+                                        { response.sendRedirect("admin/integrantes.jsp"); }
+                                        else
+                                        { response.sendRedirect("admin/integrantes.jsp?error=100-1"); }
+                                    }
+                                    else
+                                    { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+
+                                    break;
+                                default:
+                                    response.sendRedirect("admin/home.jsp?error=100-3");
+                            }
                         }
-                    }
-                    else
-                    { response.sendRedirect("admin/home.jsp?error=100-4"); }
-                    break;
-                    
-                default:
-                    response.sendRedirect("index.jsp?error=100-4");
-                    break;
+                        else
+                        { response.sendRedirect("admin/home.jsp?error=100-4"); }
+                        break;
+
+                    default:
+                        response.sendRedirect("index.jsp?error=100-4");
+                        break;
+                }
+            }
+            else
+            {
+                response.sendRedirect("index.jsp?error=101");
             }
         }
         else

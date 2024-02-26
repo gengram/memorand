@@ -146,6 +146,29 @@ public class UsersController {
     
     }
     
+    public String modelGetAllWkByTeamRed (String team_id) {
+    
+        String htmlcode = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (User wk : userm.getAllWkByTeam(team_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ wk.getUser_name() +" "+ wk.getUser_pat() +"</td>\n" +
+"                    <td> <img src='../../"+ wk.getUser_profile() +"' width='40'></img> </td>\n" +
+"                    <td>"
+                    + "<a href='../../tudelete?user_id="+ wk.getUser_id() +"&team_id="+ team_id +"'>Borrar</a><br>"
+                  + "</td>\n" +
+"           </tr>";
+        
+        }
+        
+        return htmlcode;
+    
+    }
+    
     public String modelGetAllWkByInst(String inst_id, int level1, int level2) {
     
         String htmlcode = "";
@@ -184,6 +207,22 @@ public class UsersController {
         
         return htmlcode;
     
+    }
+    
+    public String modelGetListWkByInst(String inst_id) {
+        
+        String htmlcode = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (User wk: userm.getAllWkByInst(inst_id))
+        {
+            htmlcode +=
+            "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
+        }
+        
+        return htmlcode;
+        
     }
     
     public User modelGetUserInfoById(String u_id) {

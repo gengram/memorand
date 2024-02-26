@@ -56,13 +56,13 @@
         <br>
         <br>
         
-        <a href="">
+        <a href="gestion/integrantes.jsp">
             <button>Gestionar integrantes de departamentos</button>
         </a>
-        <a href="">
+        <a href="gestion/proyectos.jsp">
             <button>Gestionar proyectos de departamentos</button>
         </a>
-        <a href="">
+        <a href="gestion/lideres.jsp">
             <button>Gestionar líderes de proyectos</button>
         </a>
         

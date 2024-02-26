@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<%--
+<%
     String user_type = (String) session.getAttribute("user_type");
     
     if (user_type != null || "".equals(user_type))
@@ -22,8 +22,7 @@
                 break;
         }
     }
-
---%>
+%>
 
 
 <html>
