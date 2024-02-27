@@ -47,6 +47,4 @@ public class CollabUsersModel extends Conexion {
         return flag;
     
     }
-    
-            
 }
