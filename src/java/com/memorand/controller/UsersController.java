@@ -146,6 +146,29 @@ public class UsersController {
     
     }
     
+    public String modelGetAllChByCollabRed(String team_id, String proj_id) {
+    
+        String htmlcode = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (User ch : userm.getAllChByCollab(team_id, proj_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ ch.getUser_name() +"</td>\n" +
+"                    <td> <img src='../../" + ch.getUser_profile() +"' width='40'></img> </td>\n" +
+"                    <td>"
+                    + "<a href=''>Borrar</a><br>"
+                  + "</td>\n" +
+"           </tr>";
+        
+        }
+        
+        return htmlcode;
+    
+    }
+    
     public String modelGetAllWkByTeamRed (String team_id) {
     
         String htmlcode = "";
@@ -216,6 +239,22 @@ public class UsersController {
         UsersModel userm = new UsersModel();
         
         for (User wk: userm.getAllWkByInst(inst_id))
+        {
+            htmlcode +=
+            "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
+        }
+        
+        return htmlcode;
+        
+    }
+    
+    public String modelGetListChByInst(String inst_id) {
+        
+        String htmlcode = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (User wk: userm.getAllChByInst(inst_id))
         {
             htmlcode +=
             "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";

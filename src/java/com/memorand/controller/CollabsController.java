@@ -19,4 +19,11 @@ public class CollabsController {
         
     }
     
+    public Collab modelGetCollabInfoByTeamAndProject(String t_id, String p_id) {
+    
+        CollabsModel collabm = new CollabsModel();
+        return collabm.getCollabInfoByTeamAndProject(t_id, p_id);
+        
+    }
+    
 }

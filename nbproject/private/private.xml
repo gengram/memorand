@@ -12,13 +12,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/memorand/web/admin/lideres.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/users/UserNew.java</file>
-            <file>file:/C:/memorand/web/admin/integrantes.jsp</file>
-            <file>file:/C:/memorand/web/admin/proyectos.jsp</file>
-            <file>file:/C:/memorand/web/admin/home.jsp</file>
-            <file>file:/C:/memorand/web/admin/lideres/nuevo.jsp</file>
-            <file>file:/C:/memorand/web/admin/integrantes/nuevo.jsp</file>
+            <file>file:/C:/memorand/web/admin/gestion/lideres.jsp</file>
+            <file>file:/C:/memorand/web/admin/gestion/proyectos.jsp</file>
         </group>
     </open-files>
 </project-private>

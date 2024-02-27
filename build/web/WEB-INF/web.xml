@@ -36,6 +36,10 @@
         <servlet-name>CollabNew</servlet-name>
         <servlet-class>com.memorand.servlets.collab.CollabNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CollabUserNew</servlet-name>
+        <servlet-class>com.memorand.servlets.collab.CollabUserNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>CollabNew</servlet-name>
         <url-pattern>/collabnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CollabUserNew</servlet-name>
+        <url-pattern>/cunew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
