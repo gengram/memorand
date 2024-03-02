@@ -1,0 +1,40 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="modalLogin">
+
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+
+        <div class="modal-content rounded-4 shadow">
+
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2 text-primary ">Iniciar Sesi&oacute;n</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-5 pt-2">
+                <form action="login" method="post" enctype="multipart/form-data">
+                    <div class="form-floating">
+                        <input type="email" class="form-control-sm rounded-3" name="user_email" id="user_email" required placeholder="Correo electr&oacute;nico"><br>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control-sm rounded-3" name="user_pass" id="user_pass" required placeholder="Contrase&ntilde;a"><br>
+                    </div>
+                    <input type="submit" value="Iniciar sesión" class="w-100 mb-2 btn btn-lg rounded-3 custom-bsign">
+                </form>
+
+                <hr class="my-2">
+                <p class="mb-3 text-primary" style="font-size: 70%;">Condiciones de uso | Política de privacidad</p>
+            </div>
+
+        </div>
+
+    </div> 
+
+</div>
+
+<!-- <form action="login" method="post" enctype="multipart/form-data">
+    <input type="email" name="user_email" id="user_email" placeholder="Correo Electrónico" required>
+    <br>
+    <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña" required>
+    <br>
+    <input type="submit" value="Iniciar sesión">
+</form> 
+-->

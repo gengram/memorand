@@ -1,0 +1,170 @@
+.custom-blog {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #25ce7b; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #25ce7b; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.custom-blog:hover {
+    background-color: #25ce7b; /* Cambiar el color de fondo al pasar el ratón */
+    color: #fff; /* Cambiar el color del texto al pasar el ratón */
+}
+
+.custom-blog:active {
+    border: 2px solid #25ce7b; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #25ce7b; /* Color del texto */
+}
+
+.custom-bsign {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #25ce7b; /* Color del contorno */
+    background-color: #25ce7b; /* Fondo transparente */
+    color: #fff; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.custom-bsign:hover {
+    background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+    color: #27988A; /* Cambiar el color del texto al pasar el ratón */
+    border: 2px solid #27988A; /* Color del contorno */
+}
+.custom-b1{
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #27988A; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #27988A; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.custom-b1:hover {
+    background-color: #27988A; /* Cambiar el color de fondo al pasar el ratón */
+    color: #fff; /* Cambiar el color del texto al pasar el ratón */
+}
+
+.custom-b2 {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid transparent; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #27988A; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.custom-b2:hover {
+    background-color: #27988A; /* Cambiar el color de fondo al pasar el ratón */
+    color: #fff; /* Cambiar el color del texto al pasar el ratón */
+}
+
+
+.custom-b3 {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #7BC3BC; /* Color del contorno */
+    background-color: #7BC3BC; /* Fondo transparente */
+    color: #fff; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.custom-b3:hover {
+    background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+    color: #7BC3BC; /* Cambiar el color del texto al pasar el ratón */
+    border: 2px solid #7BC3BC; /* Color del contorno */
+}
+
+.custom-b3:active {
+    background-color: #fff; /* Cambia el color de fondo al presionar */
+}
+
+.custom-size-b1 {
+    width: 20%;
+    height: 60%;
+}
+
+.custom-icon1{
+    font-size: 50px;
+    color: #F5EA61;
+}
+
+.custom-icon2{
+    font-size: 30px;
+    color: #F5A800;
+}
+
+.custom-file-input-label {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #25ce7b; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #25ce7b; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Ocultar el input de archivo por defecto */
+.custom-file-input[type="file"] {
+    display: none;
+}
+.cropper-container .cropper-dashed {
+    display: none;
+}
+
+.vertical-divider {
+    border-left: 1px solid #ccc; /* Puedes ajustar el color y el grosor según tus necesidades */
+    height: 100px; /* Ajusta la altura según tus necesidades */
+    margin: 0 10px; /* Ajusta el margen según tus necesidades */
+}
+
+
+a {
+    color: #25ce7b;
+    text-decoration: none;
+}
+a:hover {
+    --bs-link-color-rgb: #25ce7b;
+}
+
+/* Vanish Card*/
+.hidden {
+    opacity: 0;
+    transition: opacity 1s ease; /* Transición suave de opacidad */
+}
+
+.shown {
+    opacity: 1;
+    transition: opacity 1s ease; /* Transición suave de opacidad */
+}
+
+.fixed {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}

@@ -27,7 +27,8 @@
     --bs-gray-700: #495057;
     --bs-gray-800: #343a40;
     --bs-gray-900: #212529;
-    --bs-primary: #00A98F; /*memorand*/
+    --bs-primary: #25ce7b; /*memorand*/
+    
     --bs-secondary: #8A84D6; /*gengram*/
     --bs-tertiary: #AFB2B3; /*gris claro*/
     --bs-quaternary: #87E1D1; /*memorand claro*/
@@ -38,7 +39,8 @@
     --bs-danger: #dc3545;
     --bs-light: #f8f9fa;
     --bs-dark: #212529;
-    --bs-primary-rgb: 0, 169, 143; /*memorand*/
+    --bs-primary-rgb: 37, 206, 123; /*memorand*/
+    
     --bs-secondary-rgb: 138, 132, 214; /*gengram*/
     --bs-tertiary-rgb: 175, 178, 179; /*gris claro*/
     --bs-quaternary-rgb: 135, 225, 209; /*memorand claro*/
@@ -98,10 +100,10 @@
     --bs-tertiary-bg-rgb: 248, 249, 250;
     --bs-heading-color: inherit;
     --bs-link-color: #00A98F; /*memorand*/
-    --bs-link-color-rgb: 0, 169, 143; /*memorand*/
+    --bs-link-color-rgb: 138, 132, 214; /*memorand*/
     --bs-link-decoration: underline;
     --bs-link-hover-color: #0a58ca;
-    --bs-link-hover-color-rgb: 10, 88, 202;
+    --bs-link-hover-color-rgb: 138, 132, 214;
     --bs-code-color: #d63384;
     --bs-highlight-color: #212529;
     --bs-highlight-bg: #fff3cd;
@@ -172,7 +174,7 @@
     --bs-heading-color: inherit;
     --bs-link-color: #6ea8fe;
     --bs-link-hover-color: #8bb9fe;
-    --bs-link-color-rgb: 110, 168, 254;
+    --bs-link-color-rgb: 138, 132, 214;
     --bs-link-hover-color-rgb: 139, 185, 254;
     --bs-code-color: #e685b5;
     --bs-highlight-color: #dee2e6;
@@ -353,11 +355,11 @@ sup {
 }
 
 a {
-    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
-    text-decoration: underline;
+    color: #25ce7b;
+    text-decoration: none;
 }
 a:hover {
-    --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+    --bs-link-color-rgb: #25ce7b;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -2132,7 +2134,7 @@ progress {
     -moz-appearance: none;
     appearance: none;
     border-radius: var(--bs-border-radius);
-    border-color: #27988A;
+    border-color: #25ce7b;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2149,7 +2151,7 @@ progress {
 .form-control:focus, .form-control-sm:focus, .btn-focus:focus{
     color: var(--bs-body-color);
     background-color: var(--bs-body-bg);
-    border-color: #87E1D1;
+    border-color: #25ce7b;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(24, 152, 139, 0.25);
 }
@@ -2232,7 +2234,7 @@ progress {
     background-color: var(--bs-body-bg);
     background-clip: padding-box;
     border: var(--bs-border-width) solid var(--bs-border-color);
-    border-color: #87E1D1;
+    border-color: #25ce7b;
     border-radius: var(--bs-border-radius-sm); /* Utilizando el radio de borde para el tamaño pequeño */
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -3357,7 +3359,7 @@ textarea.form-control-lg {
 
 .btn-sm, .btn-group-sm > .btn {
     --bs-btn-padding-y: 0.25rem;
-    --bs-btn-padding-x: 0.5rem;
+    --bs-btn-padding-x: 0.3rem;
     --bs-btn-font-size: 0.875rem;
     --bs-btn-border-radius: var(--bs-border-radius-sm);
 }
@@ -4380,12 +4382,12 @@ textarea.form-control-lg {
 
 .card {
     --bs-card-spacer-y: 1rem;
-    --bs-card-spacer-x: 1rem;
+    --bs-card-spacer-x: 0.6rem;
     --bs-card-title-spacer-y: 0.5rem;
     --bs-card-title-color: ;
     --bs-card-subtitle-color: ;
     --bs-card-border-width: var(--bs-border-width);
-    --bs-card-border-color: var(--bs-border-color-translucent);
+    --bs-card-border-color: var(--bs-color-primary);
     --bs-card-border-radius: var(--bs-border-radius);
     --bs-card-box-shadow: ;
     --bs-card-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
@@ -4394,7 +4396,7 @@ textarea.form-control-lg {
     --bs-card-cap-bg: rgba(var(--bs-body-color-rgb), 0.03);
     --bs-card-cap-color: ;
     --bs-card-height: ;
-    --bs-card-color: ;
+    --bs-card-color: #25ce7b;
     --bs-card-bg: var(--bs-body-bg);
     --bs-card-img-overlay-padding: 1rem;
     --bs-card-group-margin: 0.75rem;

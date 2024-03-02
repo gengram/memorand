@@ -35,32 +35,43 @@
         <title>Memorand | Inicio</title>
         
         <link rel="stylesheet" href="XM-Resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
         
     </head>
     
     <%-- BODY --%>
     <body>
-        
-        <h1>Memorand</h1>
-        <h3>Landing page - General</h3>
-        
-        <a href="empresas.jsp">Memorand para empresas</a>
-        <br>
-        <br>
-        
-        <p>Inicio sesión</p>
-        
-        <form action="login" method="post" enctype="multipart/form-data">
-            <input type="email" name="user_email" id="user_email" placeholder="Correo Electrónico" required>
-            <br>
-            <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña" required>
-            <br>
-            <input type="submit" value="Iniciar sesión">
-        </form>
-        
-        <br>
-      
+
+        <jsp:include page="XM-Resources/pages/elements/shortbar.jspf"/>
+        <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-5"></div>
+                <div class="col-2 text-center">
+                    <h1>Memorand</h1>
+                    <!--<h3>Landing page - General</h3>-->
+                    <button class="mt-3 ms-2 btn custom-blog btn-sm fs-6 border-opacity-25 rounded-4"><a href="work/home.jsp" style="text-decoration: none">Iniciar Memorand</a></button>
+                    <br>
+                    <!--<a href="escuelas.jsp">Memorand para escuelas</a>
+                    <br>
+                    <a href="empresas.jsp">Memorand para empresas</a> -->
+                    <br>
+                    <br>
+                </div>
+                <div class="col-5"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    
+
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
     </body>
     
 </html>
