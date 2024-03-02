@@ -97,6 +97,61 @@ public class ProjectsController {
         return htmlcode;
     }
     
+    public String modelGetAllProjectsByTeamRed1(String team_id) {
+    
+        String htmlcode = "";
+        
+        ProjectsModel projm = new ProjectsModel();
+        
+        for (Project project : projm.getAllProjectsByTeam(team_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ project.getProj_name() +"</td>\n" +
+"                    <td>" +
+"                       <svg width='50' height='50'>\n" +
+"                           <rect width='50' height='50' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
+"                       </svg>" +
+"                    </td>\n" +
+"                    <td>" +
+"                       <a href='?team_id="+ team_id +"&proj_id="+ project.getProj_id() +"'>Ver</a>" +
+"                    </td>\n" +
+"           </tr>";
+        }
+        
+        return htmlcode;
+    }
+    
+    public String modelGetAllProjectsByTeamRed2(String team_id) {
+    
+        String htmlcode = "";
+        
+        ProjectsModel projm = new ProjectsModel();
+        
+        for (Project project : projm.getAllProjectsByTeam(team_id))
+        {
+            CollabsModel collabm = new CollabsModel();
+            Collab collab = collabm.getCollabInfoByTeam(team_id);
+            
+            String collab_id = collab.getCollab_id();
+            
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ project.getProj_name() +"</td>\n" +
+"                    <td>" +
+"                       <svg width='50' height='50'>\n" +
+"                           <rect width='50' height='50' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
+"                       </svg>" +
+"                    </td>\n" +
+"                    <td>" +
+"                       <a href='proyecto.jsp?collab_id="+ collab_id +"'>Ver</a>" +
+"                    </td>\n" +
+"           </tr>";
+        }
+        
+        return htmlcode;
+    }
+    
     public Project modelGetProjectInfoById(String p_id) {
         
         ProjectsModel projm = new ProjectsModel();

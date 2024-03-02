@@ -1,4 +1,5 @@
 <%-- 
+<<<<<<< HEAD
     Memorand by Gengram © 2023
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -154,4 +155,21 @@
         }
 
     </script>
+=======
+    Document   : apunte
+    Created on : Feb 27, 2024, 11:35:29 AM
+    Author     : nicojrz
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+    </body>
+>>>>>>> 85cd1180ac30ddbd4e010735e96d6307155f8e98
 </html>

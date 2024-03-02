@@ -137,4 +137,51 @@ public class CollabsModel extends Conexion {
         return collab_info;
     
     }
+    
+    public Collab getCollabInfoByTeam(String t_id) {
+    
+        Collab collab_info = null;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT * FROM collabs WHERE team_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, t_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) 
+            {
+                String collab_id = rs.getString(1);
+                String collab_status = rs.getString(2);
+                String team_id = rs.getString(3);
+                String proj_id = rs.getString(4);
+                
+                collab_info = new Collab(collab_id, collab_status, team_id, proj_id);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return collab_info;
+    
+    }
 }

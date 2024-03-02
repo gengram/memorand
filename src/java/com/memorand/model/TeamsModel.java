@@ -111,6 +111,68 @@ public class TeamsModel extends Conexion {
     
     }
     
+    public ArrayList<Team> getAllTeamsByUser(String user_id) {
+    
+        ArrayList<Team> all_teams = new ArrayList<>();
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        
+        try
+        {
+            String sql1 = "SELECT team_id FROM teamusers WHERE user_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, user_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String t_id = rs1.getString(1);
+                
+                String sql2 = "SELECT * FROM teams WHERE team_id = ? ORDER BY team_name";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, t_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String team_id = rs2.getString(1);
+                    String team_name = rs2.getString(2);
+                    String team_color = rs2.getString(3);
+                    
+                    Team team = new Team(team_id, team_name, team_color);
+                    
+                    all_teams.add(team);
+                }
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_teams;
+    
+    }
+    
     public Team getTeamInfoById(String t_id) {
     
         Team team_info = null;

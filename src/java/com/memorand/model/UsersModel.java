@@ -344,6 +344,90 @@ public class UsersModel extends Conexion {
     
     }
     
+    public ArrayList<User> getAllChByCollab(String team_id, String proj_id) {
+    
+        ArrayList<User> all_ch = new ArrayList<>();
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        PreparedStatement ps3;
+        
+        try
+        {
+            String sql1 = "SELECT collab_id FROM collabs WHERE team_id = ? AND proj_id = ?";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, team_id);
+            ps1.setString(2, proj_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next())
+            {
+                String collab_id = rs1.getString(1);
+                
+                String sql2 = "SELECT user_id FROM collabusers WHERE collab_id = ?";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, collab_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                while (rs2.next())
+                {
+                    String user_id = rs2.getString(1);
+
+                    String sql3 = "SELECT * FROM users WHERE user_id = ? AND user_type = \"ch\" ORDER BY user_pat";
+
+                    ps3 = getConnection().prepareStatement(sql3);
+
+                    ps3.setString(1, user_id);
+
+                    ResultSet rs3 = ps3.executeQuery();
+
+                    while (rs3.next())
+                    {
+                        String ch_id = rs3.getString(1);
+                        String ch_email = rs3.getString(2);
+                        String ch_pass = rs3.getString(3);
+                        String ch_type = rs3.getString(4);
+                        String ch_name = rs3.getString(5);
+                        String ch_pat = rs3.getString(6);
+                        String ch_mat = rs3.getString(7);
+                        String ch_status = rs3.getString(8);
+                        String ch_profile = rs3.getString(9);
+
+                        User ch = new User(ch_id, ch_email, ch_pass, ch_type, ch_name, ch_pat, ch_mat, ch_status, ch_profile);
+
+                        all_ch.add(ch);
+                    }
+                }
+            }
+        
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_ch;
+    
+    }
+    
     public ArrayList<User> getAllWkByTeam(String team_id) {
     
         ArrayList<User> all_ch = new ArrayList<>();

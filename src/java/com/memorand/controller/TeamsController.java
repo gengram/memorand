@@ -72,6 +72,33 @@ public class TeamsController {
     
     }
     
+    public String modelGetAllTeamsByUserRed(String user_id) {
+    
+        String htmlcode = "";
+        
+        TeamsModel teamm = new TeamsModel();
+        
+        for (Team team : teamm.getAllTeamsByUser(user_id))
+        {
+            htmlcode +=
+            "<tr>\n" +
+"                    <td>"+ team.getTeam_name() +"</td>\n" +
+"                    <td>" +
+"                       <svg width='50' height='50'>\n" +
+"                           <rect width='50' height='50' style='fill:#"+ team.getTeam_color() +";stroke:black;stroke-width:2'/>\n" +
+"                       </svg>" +
+"                    </td>\n" +
+"                    <td>" +
+"                       <a href='departamento.jsp?team_id="+ team.getTeam_id() +"'>Ver</a><br>" +
+"                    </td>\n" +
+"           </tr>";
+        
+        }
+        
+        return htmlcode;
+    
+    }
+    
     public String modelGetListTeamsByInst(String inst_id) {
     
         String htmlcode = "";
