@@ -34,6 +34,7 @@
      <body>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
+        
 
         <div class="container">
             <div class="row">
@@ -50,7 +51,7 @@
                                     <div class="row g-0">
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h3 class="card-title mt-3">Administradores</h3>
+                                                <h3 class="card-title mt-4 ms-4">Administradores</h3>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -68,7 +69,7 @@
                                     <div class="row g-0">
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h3 class="card-title mt-3">Instituciones</h3>
+                                                <h3 class="card-title mt-4 ms-4">Instituciones</h3>
                                             </div>
                                         </div>
                                         <div class="col-md-4">

@@ -3,65 +3,106 @@
 <%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%  
+<%
     String staff_type = (String) session.getAttribute("user_type");
-    
-    if (staff_type == null || !staff_type.equals("staff"))
-    {
+
+    if (staff_type == null || !staff_type.equals("staff")) {
         response.sendRedirect("../index.jsp?error=100");
         session.invalidate();
     }
-    
+
     InstitutionsController instc = new InstitutionsController();
 %>
 
 <!DOCTYPE html>
 
 <html>
-    
+
     <%-- HEAD --%>
     <head>
-        
+
         <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
-        
+
         <title>Memorand | Nuevo administrador</title>
-        
+
         <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="../../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
-        
+
     </head>
 
     <%-- BODY --%>
     <body>
-        
-        <h1>Memorand</h1>
-        <h3>Nuevo administrador</h3>
-        
-        <form action="../../usernew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>
-            <br>
-            <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña usuario" required>
-            <br>
-            <input type="text" name="user_name" id="user_name" placeholder="Nombre usuario" required>
-            <br>
-            <input type="text" name="user_pat "id="user_pat" placeholder="Apellido paterno" required>
-            <br>
-            <input type="text" name="user_mat" id="user_mat" placeholder="Apellido materno" required>
-            <br>
-            <input type="file" name="inst_profile" id="inst_profile" required>
-            <br>
-            <select name="inst_name" id="inst_name">
-                <option value="" disabled selected hidden>Institución</option>
-                <%=instc.modelGetOptionInst()%>
-             </select>
-            <br>
-            <input type="submit" value="Nuevo administrador">
-        </form>
 
-        <a href="../administradores.jsp">Regresar</a>
-        <br>
-        <a href="../../signout">Cerrar sesión</a>
-        
+        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_1.jspf"/>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+
+                    <h3 class="mt-4" style="color: #404040">Nuevo administrador</h3>
+
+                    <form action="../../usernew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+
+                        <div class="row mt-4">
+                            <div class="col-4">
+                                <input class="form-control" type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>     
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" type="password" name="user_pass" id="user_pass" placeholder="Contraseña usuario" required>
+                            </div>
+                            <div class="col-3">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <input class="form-control" type="text" name="user_name" id="user_name" placeholder="Nombre usuario" required>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control" type="text" name="user_pat "id="user_pat" placeholder="Apellido paterno" required>
+                            </div>
+                            <div class="col-3">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-4"> 
+                                <input class="form-control" type="text" name="user_mat" id="user_mat" placeholder="Apellido materno" required>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                            <div class="col-4">
+                                <input class="form-control"type="file" name="inst_profile" id="inst_profile" required>
+                            </div>
+                            <div class="col-3">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <select class="form-select" name="inst_name" id="inst_name">
+                                    <option value="" disabled selected hidden>Institución</option>
+                                    <%=instc.modelGetOptionInst()%>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                            </div>
+                            <div class="col-4">
+                            </div>
+                        </div>
+
+                        <input class="btn custom-blog mt-4" type="submit" value="Nuevo administrador">
+                    </form>
+
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
+
     </body>
-    
+
 </html>

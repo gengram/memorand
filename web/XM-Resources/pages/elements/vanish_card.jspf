@@ -1,4 +1,4 @@
-<div class="card border-primary border-3 start-0 shown fixed rounded-4 text center" style="width: 3.5rem; border: 1px solid #25ce7b" id="hiddenButton" >
+<div class="card border-primary border-3 shown rounded-4 text center mt-5" style="width: 3.5rem; border: 1px solid #25ce7b" id="hiddenButton" >
     <div class="card-body">
         <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="width: 2rem;">
             <button type="button" class="btn btn-sm btn-primary">B</button>
@@ -21,4 +21,4 @@
             <button type="button" class="btn btn-sm btn-primary">B</button>
         </div>
     </div>
-</div> 
+</div>

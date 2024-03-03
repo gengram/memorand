@@ -164,7 +164,11 @@ a:hover {
 
 .fixed {
     position: fixed;
-    bottom: 20px;
+    bottom: 210px;
     right: 20px;
     z-index: 999;
+}
+
+.start-20 {
+    left: 2.8% !important;
 }

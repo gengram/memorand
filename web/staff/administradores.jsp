@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
+        <script src="../XM-Resources/scripts/vanishC.js"></script>
 
     </head>
 
@@ -44,7 +45,6 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10 mt-4">
-                    <h1>Memorand</h1>
                     <h3>Gestor de Administradores</h3>
                     <div class="row mt-3">
                         <div class="col-3">
@@ -121,7 +121,7 @@
 
                     <h3 class="mt-3">Lista completa</h3>
 
-                    <table class="mt-3 table" border="2" style="text-align: center">
+                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center; border: 1px solid #25ce7b;">
                         <thead>
                             <tr>
                                 <th>user_id</th>
@@ -155,7 +155,7 @@
                 <div class="col">
                     <h3>Lista Instituciones</h3>
 
-                    <table border="2" style="text-align: center">
+                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center; border: 1px solid #25ce7b;">
                         <thead>
                             <tr>
                                 <th>inst_profile</th>
@@ -172,7 +172,7 @@
                 <div class="col">
                     <h3>Lista Administradores</h3>
 
-                    <table border="2" style="text-align: center">
+                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center; border: 1px solid #25ce7b;">
                         <thead>
                             <tr>
                                 <th>admin_profile</th>

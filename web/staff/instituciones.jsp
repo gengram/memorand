@@ -50,7 +50,7 @@
 
                     <h3 class="mt-5 text-center">Lista</h3>
 
-                    <table class="table" border="2" style="text-align: center">
+                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center; border: 1px solid #25ce7b;">
                         <thead>
                             <tr>
                                 <th scope="col">inst_id</th>
