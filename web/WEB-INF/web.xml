@@ -40,6 +40,14 @@
         <servlet-name>CollabUserNew</servlet-name>
         <servlet-class>com.memorand.servlets.collab.CollabUserNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApiLogin</servlet-name>
+        <servlet-class>com.memorand.api.ApiLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApiUserInfo</servlet-name>
+        <servlet-class>com.memorand.api.ApiUserInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>CollabUserNew</servlet-name>
         <url-pattern>/cunew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiLogin</servlet-name>
+        <url-pattern>/api/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiUserInfo</servlet-name>
+        <url-pattern>/api/userinfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
