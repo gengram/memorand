@@ -2,10 +2,8 @@ package com.memorand.servlets.collab;
 
 import com.memorand.beans.Collab;
 import com.memorand.beans.CollabUser;
-import com.memorand.beans.TeamUser;
 import com.memorand.controller.CollabUsersController;
 import com.memorand.controller.CollabsController;
-import com.memorand.controller.TeamUsersController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,21 +76,11 @@ public class CollabUserNew extends HttpServlet {
             
             if (collabuserc.modelCreateCollabUser(collabuser))
             {
-                TeamUser teamuser = new TeamUser(t_id, ch_id);
-                TeamUsersController teamuserc = new TeamUsersController();
-                
-                if (teamuserc.modelCreateTeamUser(teamuser))
-                {
-                    response.sendRedirect("admin/gestion/lideres.jsp?team_id="+ t_id +"&proj_id="+ p_id);
-                }
-                else
-                {
-                    response.sendRedirect("admin/gestion/lideres.jsp?error=200-1");
-                }
+                response.sendRedirect("admin/gestion/lideres.jsp?team_id="+ t_id +"&proj_id="+ p_id);
             }
             else
             {
-                response.sendRedirect("admin/gestion/lideres.jsp?error=200-2");
+                response.sendRedirect("admin/gestion/lideres.jsp?error=200-1");
             }
         }
         else

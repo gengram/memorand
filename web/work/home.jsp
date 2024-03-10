@@ -16,24 +16,33 @@
     String user_id = (String) session.getAttribute("user_id");
     String user_name = (String) session.getAttribute("user_name");
     String user_type = (String) session.getAttribute("user_type");
-    String inst_type = (String) session.getAttribute("inst_type");
+    String user_pat = (String) session.getAttribute("user_pat");
     
     String team_id = request.getParameter("team_id");
-
+    
+    String sType = "null";
+    
     if (user_type != null)
     {
         switch (user_type)
         {
             case "ch":
-                user_type = "Lider";
+                sType = "Lider";
                 break;
             case "wk":
-                user_type = "Integrante";
+                sType = "Integrante";
+                break;
+            default:
+                response.sendRedirect("../index.jsp?error=100");
+                session.invalidate();
                 break;
         }
-    } 
-    
-    
+    }
+    else
+    {
+        response.sendRedirect("../index.jsp?error=100");
+        session.invalidate();
+    }
 %>
 
 <html>
@@ -60,11 +69,12 @@
         <div class="container">
             
             <br>
-            <h3>Inicio - <%=user_type%></h3>
+            <h3>Inicio - <%=sType%></h3>
 
-            <p><%=user_name%></p>
+            <p><%=user_name%> <%=user_pat%></p>
             
             <div class="row">
+                
                 <div class="col">
                     <h3>Departamentos</h3>
                     <table border="2" style="text-align: center">
@@ -76,17 +86,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%= teamc.modelGetAllTeamsByUserRed2(user_id) %>
+                        <% // DESPLEGAR TABLA SEGÚN TIPO DE USUARIO - WK = INTEGRANTE - CH = LÍDER
+                            if (user_type != null)
+                            {
+                        %>
+                                <%= teamc.modelGetAllTeamsByUserRed2(user_id) %>
+                        <%
+                            }
+                        %>
                         </tbody>
                     </table>
                 </div>
+                        
                 <div class="col">
-                <% 
+                <%  // DESPLEGAR TABLA SEGÚN DEPARTAMENTO SELECCIONADO
                     if (team_id == null || team_id.isEmpty())
                     {
                 %>
                     <h3>Proyectos</h3>
-                    <h3>Ningún proyecto seleccionado</h3>
+                    <p>Ningún proyecto seleccionado</p>
                 <% 
                     }
                     else
@@ -103,7 +121,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%= projc.modelGetAllProjectsByTeamRed2(team_id) %>
+                    <% // DESPLEGAR TABLA SEGÚN TIPO DE USUARIO - WK = INTEGRANTE - CH = LÍDER
+                        if (user_type != null)
+                        {
+                    %>
+                            <%= projc.modelGetAllProjectsByTeamRed2(team_id, user_id) %>
+                    <%
+                        }
+                    %>
                         </tbody>
                     </table>
                 <% 

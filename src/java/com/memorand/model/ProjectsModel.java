@@ -172,6 +172,58 @@ public class ProjectsModel extends Conexion {
         
     }
     
+    public ArrayList<Project> getAllProjectsByTeamAndCh(String team_id, String ch_id) {
+    
+        ArrayList<Project> all_proj = new ArrayList<>();
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT p.proj_id, p.proj_name, p.proj_color " +
+                         "FROM projects p " +
+                         "INNER JOIN collabs c ON p.proj_id = c.proj_id " +
+                         "INNER JOIN collabusers cu ON c.collab_id = cu.collab_id " +
+                         "WHERE cu.user_id = ? AND c.team_id = ?";
+
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, ch_id);
+            ps.setString(2, team_id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                String proj_id = rs.getString("proj_id");
+                String proj_name = rs.getString("proj_name");
+                String proj_color = rs.getString("proj_color");
+
+                Project proj = new Project(proj_id, proj_name, proj_color);
+                all_proj.add(proj);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_proj;
+        
+    }
+    
     public Project getProjectInfoById(String p_id) {
     
         Project project_info = null;

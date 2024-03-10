@@ -107,11 +107,13 @@ public class TeamsController {
         UsersController userc = new UsersController();
         User user = userc.modelGetUserInfoById(user_id);
         
-        if (user.getUser_type().equals("ch"))
+        String user_type = user.getUser_type();
+        
+        if (user_type.equals("ch"))
         {
             TeamsModel teamm = new TeamsModel();
 
-            for (Team team : teamm.getAllTeamsByUser(user_id))
+            for (Team team : teamm.getAllTeamsByCh(user_id))
             {
                 htmlcode +=
                 "<tr>\n" +

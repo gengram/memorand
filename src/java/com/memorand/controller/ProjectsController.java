@@ -2,6 +2,7 @@ package com.memorand.controller;
 
 import com.memorand.beans.Collab;
 import com.memorand.beans.Project;
+import com.memorand.beans.User;
 import com.memorand.model.CollabsModel;
 import com.memorand.model.ProjectsModel;
 
@@ -122,32 +123,66 @@ public class ProjectsController {
         return htmlcode;
     }
     
-    public String modelGetAllProjectsByTeamRed2(String team_id) {
+    public String modelGetAllProjectsByTeamRed2(String team_id, String user_id) {
     
         String htmlcode = "";
         
-        ProjectsModel projm = new ProjectsModel();
+        UsersController userc = new UsersController();
+        User user = userc.modelGetUserInfoById(user_id);
         
-        for (Project project : projm.getAllProjectsByTeam(team_id))
+        String user_type = user.getUser_type();
+        
+        if (user_type.equals("ch"))
         {
-            CollabsModel collabm = new CollabsModel();
-            Collab collab = collabm.getCollabInfoByTeam(team_id);
-            
-            String collab_id = collab.getCollab_id();
-            
-            htmlcode +=
-            "<tr>\n" +
-"                    <td>"+ project.getProj_name() +"</td>\n" +
-"                    <td>" +
-"                       <svg width='50' height='50'>\n" +
-"                           <rect width='50' height='50' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
-"                       </svg>" +
-"                    </td>\n" +
-"                    <td>" +
-"                       <a href='proyecto.jsp?collab_id="+ collab_id +"'>Ver</a>" +
-"                    </td>\n" +
-"           </tr>";
+            ProjectsModel projm = new ProjectsModel();
+
+            for (Project project : projm.getAllProjectsByTeamAndCh(team_id, user_id))
+            {
+                CollabsModel collabm = new CollabsModel();
+                Collab collab = collabm.getCollabInfoByTeam(team_id);
+
+                String collab_id = collab.getCollab_id();
+
+                htmlcode +=
+                "<tr>\n" +
+    "                    <td>"+ project.getProj_name() +"</td>\n" +
+    "                    <td>" +
+    "                       <svg width='50' height='50'>\n" +
+    "                           <rect width='50' height='50' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
+    "                       </svg>" +
+    "                    </td>\n" +
+    "                    <td>" +
+    "                       <a href='proyecto.jsp?collab_id="+ collab_id +"'>Ver</a>" +
+    "                    </td>\n" +
+    "           </tr>";
+            }
         }
+        else
+        {
+            ProjectsModel projm = new ProjectsModel();
+
+            for (Project project : projm.getAllProjectsByTeam(team_id))
+            {
+                CollabsModel collabm = new CollabsModel();
+                Collab collab = collabm.getCollabInfoByTeam(team_id);
+
+                String collab_id = collab.getCollab_id();
+
+                htmlcode +=
+                "<tr>\n" +
+    "                    <td>"+ project.getProj_name() +"</td>\n" +
+    "                    <td>" +
+    "                       <svg width='50' height='50'>\n" +
+    "                           <rect width='50' height='50' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
+    "                       </svg>" +
+    "                    </td>\n" +
+    "                    <td>" +
+    "                       <a href='proyecto.jsp?collab_id="+ collab_id +"'>Ver</a>" +
+    "                    </td>\n" +
+    "           </tr>";
+            }
+        }
+        
         
         return htmlcode;
     }

@@ -173,6 +173,56 @@ public class TeamsModel extends Conexion {
     
     }
     
+    public ArrayList<Team> getAllTeamsByCh(String ch_id) {
+        
+        ArrayList<Team> all_teams = new ArrayList<>();
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT t.team_id, t.team_name, t.team_color " +
+                         "FROM teams t " +
+                         "INNER JOIN collabs c ON t.team_id = c.team_id " +
+                         "INNER JOIN collabusers cu ON c.collab_id = cu.collab_id " +
+                         "WHERE cu.user_id = ?";
+
+            ps = getConnection().prepareStatement(sql);
+        
+            ps.setString(1, ch_id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                String team_id = rs.getString(1);
+                String team_name = rs.getString(2);
+                String team_color = rs.getString(3);
+
+                Team team = new Team(team_id, team_name, team_color);
+                all_teams.add(team);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_teams;
+    }
+    
     public Team getTeamInfoById(String t_id) {
     
         Team team_info = null;
