@@ -1,15 +1,24 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.beans.Team"%>
+<%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.controller.TeamsController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
 <%
+    ProjectsController projc = new ProjectsController();
+    
+    TeamsController teamc = new TeamsController();
+    Team team = new Team();
+    
     String user_id = (String) session.getAttribute("user_id");
-
+    String user_name = (String) session.getAttribute("user_name");
     String user_type = (String) session.getAttribute("user_type");
     String inst_type = (String) session.getAttribute("inst_type");
+    
+    String team_id = request.getParameter("team_id");
 
     if (user_type != null)
     {
@@ -21,12 +30,9 @@
             case "wk":
                 user_type = "Integrante";
                 break;
-            default:
-                user_type = "ERROR";
         }
     } 
     
-    TeamsController teamc = new TeamsController();
     
 %>
 
@@ -48,87 +54,73 @@
     
     <%-- BODY --%>
     <body>
-<<<<<<< HEAD
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
-
+        
         <div class="container">
-            <div class="row mt-5">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <h3>Inicio  - <%=user_type%>></h3><p><%=session.getAttribute("user_name")%></p>
-                    <div class="row mt-5">
-                        <div class="col-5">
-                            <!--Card-->
-                            <a href="apunte.jsp" style="text-decoration: none; ">
-                                <div class="card border-primary border-3 mb-3 shadow-sm" style="width: auto; border: 1px solid #25ce7b">
-                                    <div class="row g-0">
-                                        <div  class="col-md-1"></div>
-                                        <div class="col-md-6 my-2">
-                                            <div class="card-body">
-                                                <h3 class="card-title mt-3">Apunte</h3>
-                                            </div>
-                                        </div>
-                                        <div  class="col-md-1"></div>
-                                        <div class="col-md-4 my-4">
-                                            <i class="bi bi-pencil-square my-4" style="color: #25ce7b; font-size: 3em;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-1"></div>
-                        <div class="col-5">
-                            <!--Card-->
-                            <a href="pizarron.jsp" style="text-decoration: none;">
-                                <div class="card border-primary border-3 mb-3 shadow-sm" style="width: auto; border: 1px solid #25ce7b">
-                                    <div class="row">
-                                        <div  class="col-md-1"></div>
-                                        <div class="col-md-6 my-2">
-                                            <div class="card-body">
-                                                <h3 class="card-title mt-3">Pizarr&oacute;n</h3>
-                                            </div>
-                                        </div>
-                                        <div  class="col-md-1"></div>
-                                        <div class="col-md-4 my-4">
-                                            <i class="bi bi-easel mt-5" style="color: #25ce7b; font-size: 3em;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-1"></div>
-                    </div>
-                </div>
-                <div class="col-1"></div>
-            </div>
-        </div>
+            
+            <br>
+            <h3>Inicio - <%=user_type%></h3>
 
-=======
+            <p><%=user_name%></p>
+            
+            <div class="row">
+                <div class="col">
+                    <h3>Departamentos</h3>
+                    <table border="2" style="text-align: center">
+                        <thead>
+                            <tr>
+                                <th>team_name</th>
+                                <th>team_color</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%= teamc.modelGetAllTeamsByUserRed2(user_id) %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                <% 
+                    if (team_id == null || team_id.isEmpty())
+                    {
+                %>
+                    <h3>Proyectos</h3>
+                    <h3>Ningún proyecto seleccionado</h3>
+                <% 
+                    }
+                    else
+                    {
+                        team = teamc.modelGetTeamInfoById(team_id);
+                %>
+                    <h3>Proyectos de <%= team.getTeam_name() %></h3>
+                    <table border="2" style="text-align: center">
+                        <thead>
+                            <tr>
+                                <th>proj_name</th>
+                                <th>proj_color</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%= projc.modelGetAllProjectsByTeamRed2(team_id) %>
+                        </tbody>
+                    </table>
+                <% 
+                    }
+                %>
+                </div>
+            </div>
+                
+            <br> 
+            <a href="home.jsp">Deseleccionar proyecto</a>
+            <br>
+
+            <a href="../signout">Cerrar sesión</a>
+            <br>
+            
+        </div>
         
-        <h1>Memorand</h1>
-        <h3>Inicio - <%=user_type%></h3>
-        
-        <p><%=session.getAttribute("user_name")%></p>
-        
-        <h3>Departamentos</h3>
-        <table border="2" style="text-align: center">
-            <thead>
-                <tr>
-                    <th>team_name</th>
-                    <th>team_color</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%= teamc.modelGetAllTeamsByUserRed(user_id) %>
-            </tbody>
-        </table>
-        
-        <a href="../signout">Cerrar sesión</a>
-        <br>
-        
->>>>>>> 85cd1180ac30ddbd4e010735e96d6307155f8e98
     </body>
     
 </html>

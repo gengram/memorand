@@ -14,6 +14,25 @@ public class ApiUserInfo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String user_id = request.getParameter("user_id");
+        
+        if (user_id == null || user_id.isEmpty())
+        {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+        
         response.setContentType("application/json");
         
         String user_id = request.getParameter("user_id");
@@ -33,18 +52,6 @@ public class ApiUserInfo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println(user_info);
         }
-        
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     @Override

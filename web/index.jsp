@@ -50,15 +50,7 @@
             <div class="row mt-4">
                 <div class="col-5"></div>
                 <div class="col-2 text-center">
-                    <h1>Memorand</h1>
-                    <!--<h3>Landing page - General</h3>-->
-                    <button class="mt-3 ms-2 btn custom-blog btn-sm fs-6 border-opacity-25 rounded-4"><a href="work/home.jsp" style="text-decoration: none">Iniciar Memorand</a></button>
-                    <br>
-                    <!--<a href="escuelas.jsp">Memorand para escuelas</a>
-                    <br>
-                    <a href="empresas.jsp">Memorand para empresas</a> -->
-                    <br>
-                    <br>
+
                 </div>
                 <div class="col-5"></div>
             </div>

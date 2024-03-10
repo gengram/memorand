@@ -132,7 +132,7 @@ public class TeamsModel extends Conexion {
             {
                 String t_id = rs1.getString(1);
                 
-                String sql2 = "SELECT * FROM teams WHERE team_id = ? ORDER BY team_name";
+                String sql2 = "SELECT * FROM teams WHERE team_id = ?";
                 
                 ps2 = getConnection().prepareStatement(sql2);
                 

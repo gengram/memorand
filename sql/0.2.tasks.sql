@@ -4,7 +4,7 @@ create table ideas
 (
 	idea_id varchar(36) primary key not null,
 	idea_text varchar(256),
-	idea_date varchar(16),
+	idea_date timestamp,
 	idea_color varchar(6)
 );
 
@@ -13,8 +13,8 @@ create table canvas
 	canva_id varchar(36) primary key not null,
 	canva_name varchar(64),
 	canva_draw longtext,
-	canva_cdate varchar(16),
-	canva_mdate varchar(16),
+	canva_cdate timestamp,
+	canva_mdate timestamp,
 	canva_status varchar(2)
 );
 
@@ -23,8 +23,8 @@ create table notes
 	note_id varchar(36) primary key not null,
 	note_name varchar(64),
 	note_text text,
-	note_cdate varchar(16),
-	note_mdate varchar(16),
+	note_cdate timestamp,
+	note_mdate timestamp,
 	note_status varchar(2)
 );
 

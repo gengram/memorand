@@ -5,8 +5,8 @@ create table tasks
 	task_id varchar(36) primary key not null,
 	task_name varchar(128),
 	task_info text,
-	task_sdate varchar(16),
-	task_edate varchar(16),
+	task_sdate timestamp,
+	task_edate timestamp,
 	task_status varchar(16),
 	task_prior varchar(16),
 	task_diff varchar(16)
@@ -18,7 +18,8 @@ create table posts
 	post_text text,
 	post_r1 int,
 	post_r2 int,
-	post_r3 int
+	post_r3 int,
+	post_date timestamp
 );
 
 create table comments
@@ -27,7 +28,8 @@ create table comments
 	comment_text varchar(512),
 	comment_r1 int,
 	comment_r2 int,
-	comment_r3 int
+	comment_r3 int,
+	comment_date timestamp
 );
 
 create table tags
