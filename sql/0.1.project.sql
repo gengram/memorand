@@ -15,7 +15,7 @@ create table tasks
 create table posts
 (
 	post_id varchar(36) primary key not null,
-	post_text text,
+	post_text varchar(1024),
 	post_r1 int,
 	post_r2 int,
 	post_r3 int,

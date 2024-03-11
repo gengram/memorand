@@ -73,6 +73,12 @@
 
             <p><%=user_name%> <%=user_pat%></p>
             
+            <a href="configuracion.jsp">
+                <button>Configuración</button>
+            </a>
+            <br>
+            
+            <br>
             <div class="row">
                 
                 <div class="col">

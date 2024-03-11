@@ -13,7 +13,7 @@ public class UsersModel extends Conexion {
         
         boolean flag = false;
         
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         
         try
         {
