@@ -181,7 +181,7 @@ public class TeamsModel extends Conexion {
         
         try
         {
-            String sql = "SELECT t.team_id, t.team_name, t.team_color " +
+            String sql = "SELECT DISTINCT t.team_id, t.team_name, t.team_color " +
                          "FROM teams t " +
                          "INNER JOIN collabs c ON t.team_id = c.team_id " +
                          "INNER JOIN collabusers cu ON c.collab_id = cu.collab_id " +

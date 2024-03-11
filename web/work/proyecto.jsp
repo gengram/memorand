@@ -84,10 +84,10 @@
             %>
                 <div class="col">
                     <br>
-                    <a href="">
+                    <a href="tareas/nuevo.jsp?collab_id=<%= collab_id %>">
                         <button>Nueva tarea</button>
                     </a>
-                    <a href="">
+                    <a href="etiquetas/nuevo.jsp?collab_id=<%= collab_id %>">
                         <button>Nueva etiqueta</button>
                     </a>
                 </div>
@@ -129,6 +129,22 @@
                 <%
                     }
                 %>
+                    <br>
+                    <br>
+                    <a href="?collab_id=<%=collab_id%>&view=tags">
+                        <button>Etiquetas</button>
+                    </a>
+                <%
+                    if ("tags".equals(view))
+                    {
+                %>
+                    <select name="tag_name" id="tag_name">
+                        <option value="" disabled selected hidden>Etiqueta</option>
+                        <option value="EJEMPLO"> EJEMPLO </option>
+                    </select>
+                <%
+                    }
+                %>
                 </div>
 
             </div>
@@ -149,7 +165,7 @@
                     <h3>Publicaciones</h3>
                 </div>
                 <div class="col">
-                    <a href="">
+                    <a href="publicaciones/nuevo.jsp?collab_id=<%= collab_id %>">
                         <button>Nueva publicación</button>
                     </a>
                 </div>
