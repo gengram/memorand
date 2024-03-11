@@ -178,4 +178,11 @@ public class TeamsController {
         return teamm.getTeamInfoById(t_id);
         
     }
+    
+    public Team modelGetTeamInfoByCollab(String collab_id) {
+        
+        TeamsModel teamm = new TeamsModel();
+        return teamm.getTeamInfoByCollab(collab_id);
+        
+    }
 }

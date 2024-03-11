@@ -21,10 +21,10 @@
     
     String stringView = "";
     
-    
     if (user_type == null || user_type.isEmpty())
     {
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("../index.jsp?error=100");
+        session.invalidate();
     }
 
     if (team_id == null || team_id.isEmpty())

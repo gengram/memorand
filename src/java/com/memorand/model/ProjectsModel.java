@@ -270,4 +270,53 @@ public class ProjectsModel extends Conexion {
         
     }
     
+    public Project getProjectInfoByCollab(String collab_id) {
+    
+        Project proj_info = null;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT p.proj_id, p.proj_name, p.proj_color " + 
+                         "FROM collabs c " +
+                         "INNER JOIN projects p ON c.proj_id = p.proj_id " +
+                         "WHERE c.collab_id = ? " +
+                         "LIMIT 1";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, collab_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                String proj_id = rs.getString(1);
+                String proj_name = rs.getString(2);
+                String proj_color = rs.getString(3);
+                
+                proj_info = new Project(proj_id, proj_name, proj_color);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return proj_info;
+    }
+    
 }

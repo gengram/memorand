@@ -129,7 +129,7 @@ public class ProjectsController {
         
         UsersController userc = new UsersController();
         User user = userc.modelGetUserInfoById(user_id);
-        
+
         String user_type = user.getUser_type();
         
         if (user_type.equals("ch"))
@@ -138,8 +138,10 @@ public class ProjectsController {
 
             for (Project project : projm.getAllProjectsByTeamAndCh(team_id, user_id))
             {
+                String proj_id = project.getProj_id();
+                
                 CollabsModel collabm = new CollabsModel();
-                Collab collab = collabm.getCollabInfoByTeam(team_id);
+                Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
 
                 String collab_id = collab.getCollab_id();
 
@@ -163,8 +165,10 @@ public class ProjectsController {
 
             for (Project project : projm.getAllProjectsByTeam(team_id))
             {
+                String proj_id = project.getProj_id();
+                
                 CollabsModel collabm = new CollabsModel();
-                Collab collab = collabm.getCollabInfoByTeam(team_id);
+                Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
 
                 String collab_id = collab.getCollab_id();
 
@@ -191,6 +195,13 @@ public class ProjectsController {
         
         ProjectsModel projm = new ProjectsModel();
         return projm.getProjectInfoById(p_id);
+    
+    }
+    
+    public Project modelGetProjectInfoByCollab(String collab_id) {
+        
+        ProjectsModel projm = new ProjectsModel();
+        return projm.getProjectInfoByCollab(collab_id);
     
     }
 }

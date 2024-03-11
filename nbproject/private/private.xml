@@ -3,9 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/memorand/web/WEB-INF/web.xml</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiUserInfo.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiLogin.java</file>
+            <file>file:/C:/memorand/web/work/proyecto.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/teams/TeamUserNew.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/ProjectsController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/CollabsModel.java</file>
+            <file>file:/C:/memorand/web/work/post.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/ProjectsModel.java</file>
+            <file>file:/C:/memorand/web/work/home.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/users/UserNew.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/TeamsController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/TeamsModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/collab/CollabUserNew.java</file>
+            <file>file:/C:/memorand/web/work/departamento.jsp</file>
+            <file>file:/C:/memorand/web/staff/home.jsp</file>
         </group>
     </open-files>
 </project-private>

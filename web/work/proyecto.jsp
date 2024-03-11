@@ -1,5 +1,6 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.beans.Team"%>
 <%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.controller.TeamsController"%>
@@ -8,37 +9,43 @@
 <!DOCTYPE html>
 
 <%
-    String team_id = request.getParameter("team_id");
-    String user_id = (String) session.getAttribute("user_id");
-
+    TeamsController teamc = new TeamsController();
+    Team team = new Team();
+    
+    String team_id = "null";
+    String team_name = "null";
+    
+    ProjectsController projc = new ProjectsController();
+    Project proj = new Project();
+    
+    String proj_name = "null";
+    
     String user_type = (String) session.getAttribute("user_type");
-    String inst_type = (String) session.getAttribute("inst_type");
     
     String collab_id = request.getParameter("collab_id");
+    String view = request.getParameter("view");
+
+    if (user_type == null || user_type.isEmpty())
+    {
+        response.sendRedirect("../index.jsp?error=100");
+        session.invalidate();
+    }
     
     if (collab_id == null || collab_id.equals(""))
     {
         response.sendRedirect("home.jsp");
     }
-
-    if (user_type != null)
+    else
     {
-        switch (user_type)
-        {
-            case "ch":
-                user_type = "Lider";
-                break;
-            case "wk":
-                user_type = "Integrante";
-                break;
-        }
-    } 
-    
-    ProjectsController projc = new ProjectsController();
-    
-    TeamsController teamc = new TeamsController();
-    Team team = new Team();
-    
+        team = teamc.modelGetTeamInfoByCollab(collab_id);
+        
+        team_id = team.getTeam_id();
+        team_name = team.getTeam_name();
+        
+        proj = projc.modelGetProjectInfoByCollab(collab_id);
+        
+        proj_name = proj.getProj_name();
+    }
 %>
 
 <html>
@@ -48,7 +55,7 @@
         
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         
-        <title> NOMBRE DEL PROYECTO </title>
+        <title><%= proj_name %></title>
         
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -68,7 +75,7 @@
                 
                 <div class="col">
                     <br>
-                    <h3>Nombre del equipo > Nombre del proyecto</h3>
+                    <h3><%= team_name %> > <%= proj_name %></h3>
                 </div>
                 
                 <div class="col">
@@ -90,6 +97,7 @@
                     <h3>Tareas</h3>
                     <h5>Ordenar por:</h5>
                 </div>
+                
                 <div class="col">
                     <br>
                     <a href="?collab_id=<%=collab_id%>&view=call">
@@ -104,6 +112,16 @@
                     <a href="?collab_id=<%=collab_id%>&view=date">
                         <button>Fecha</button>
                     </a>
+                <%
+                    if (view != null)
+                    {
+                %>
+                    <a href="?collab_id=<%=collab_id%>">
+                        <button>RES</button>
+                    </a>
+                <%
+                    }
+                %>
                 </div>
 
             </div>
@@ -140,7 +158,7 @@
             </div>
                 
             <br>
-            <a href="home.jsp">Regresar</a>
+            <a href="home.jsp?team_id=<%= team_id %>">Regresar</a>
             <br>
             
             <a href="../signout">Cerrar sesión</a>
