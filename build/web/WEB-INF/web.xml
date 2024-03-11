@@ -48,6 +48,10 @@
         <servlet-name>ApiUserInfo</servlet-name>
         <servlet-class>com.memorand.api.ApiUserInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostNew</servlet-name>
+        <servlet-class>com.memorand.servlets.posts.PostNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ApiUserInfo</servlet-name>
         <url-pattern>/api/userinfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostNew</servlet-name>
+        <url-pattern>/postnew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

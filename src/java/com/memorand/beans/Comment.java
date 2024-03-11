@@ -7,14 +7,14 @@ public class Comment implements Serializable {
     
     private String comment_id;
     private String comment_text;
-    private String comment_r1;
-    private String comment_r2;
-    private String comment_r3;
+    private int comment_r1;
+    private int comment_r2;
+    private int comment_r3;
     private Timestamp comment_date;
 
     public Comment() {}
 
-    public Comment(String comment_id, String comment_text, String comment_r1, String comment_r2, String comment_r3, Timestamp comment_date) {
+    public Comment(String comment_id, String comment_text, int comment_r1, int comment_r2, int comment_r3, Timestamp comment_date) {
         this.comment_id = comment_id;
         this.comment_text = comment_text;
         this.comment_r1 = comment_r1;
@@ -47,27 +47,27 @@ public class Comment implements Serializable {
         this.comment_text = comment_text;
     }
 
-    public String getComment_r1() {
+    public int getComment_r1() {
         return comment_r1;
     }
 
-    public void setComment_r1(String comment_r1) {
+    public void setComment_r1(int comment_r1) {
         this.comment_r1 = comment_r1;
     }
 
-    public String getComment_r2() {
+    public int getComment_r2() {
         return comment_r2;
     }
 
-    public void setComment_r2(String comment_r2) {
+    public void setComment_r2(int comment_r2) {
         this.comment_r2 = comment_r2;
     }
 
-    public String getComment_r3() {
+    public int getComment_r3() {
         return comment_r3;
     }
 
-    public void setComment_r3(String comment_r3) {
+    public void setComment_r3(int comment_r3) {
         this.comment_r3 = comment_r3;
     }
 

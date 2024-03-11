@@ -35,8 +35,6 @@ public class TeamNew extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);        
         
-        response.setContentType("text/html;charset=UTF-8");
-        
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
