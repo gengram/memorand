@@ -78,6 +78,10 @@
                     <h3><%= team_name %> > <%= proj_name %></h3>
                 </div>
                 
+            <%
+                if (user_type.equals("ch")) 
+                {
+            %>
                 <div class="col">
                     <br>
                     <a href="">
@@ -87,6 +91,9 @@
                         <button>Nueva etiqueta</button>
                     </a>
                 </div>
+            <%
+                }
+            %>
                 
             </div>
             
