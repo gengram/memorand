@@ -61,7 +61,7 @@ public class UsersModel extends Conexion {
     
         boolean flag = false;
         
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         
         try
         {
@@ -105,6 +105,49 @@ public class UsersModel extends Conexion {
         
         return flag;
     
+    }
+    
+    public boolean validateUserEmail(String u_email) {
+        
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT user_email FROM users WHERE user_email = ? LIMIT 1";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, u_email);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                flag = true;
+            }
+        
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+        
     }
     
     public User getUserInfoByLogin(User user) {

@@ -19,6 +19,13 @@ public class UsersController {
     
     }
     
+    public boolean modelValidateUserEmail(String u_email) {
+    
+        UsersModel userm = new UsersModel();
+        return userm.validateUserEmail(u_email);
+        
+    }
+    
     public User modelGetUserInfoByLogin(User user) {
         
         UsersModel userm = new UsersModel();

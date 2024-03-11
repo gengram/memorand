@@ -23,27 +23,24 @@ public class UserNew extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        
         processRequest(request, response);
         
         HttpSession session = request.getSession();
         
         if(session != null)
         {
-            response.setContentType("text/html;charset=UTF-8");
 
             FileItemFactory fif = new DiskFileItemFactory();
             ServletFileUpload sfu = new ServletFileUpload(fif);
@@ -78,13 +75,13 @@ public class UserNew extends HttpServlet {
             {
                 System.err.println(e.getMessage());
             }
-
+            
             if (user_type != null)
             {
                 switch (user_type)
                 {
                     case "staff":
-
+                        
                         Generador g1 = new Generador();
 
                         String user_id1 = g1.newID();
@@ -92,19 +89,24 @@ public class UserNew extends HttpServlet {
 
                         User admin = new User(user_id1, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
                         UsersController userc1 = new UsersController();
-
-                        if(userc1.modelCreateUser(admin))
+                        
+                        if(!userc1.modelValidateUserEmail(user_fields.get(0)))
                         {
-                            InUser inusers = new InUser(inst_id1, user_id1);
-                            InUsersController inusersc = new InUsersController();
+                            if(userc1.modelCreateUser(admin))
+                            {
+                                InUser inusers = new InUser(inst_id1, user_id1);
+                                InUsersController inusersc = new InUsersController();
 
-                            if (inusersc.modelCreateInUsers(inusers))
-                            { response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id1); }
+                                if (inusersc.modelCreateInUsers(inusers))
+                                { response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id1); }
+                                else
+                                { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
+                            }
                             else
                             { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
                         }
                         else
-                        { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
+                        { response.sendRedirect("staff/administradores.jsp?view=inst&error=300"); }
 
                         break;
 
@@ -124,19 +126,25 @@ public class UserNew extends HttpServlet {
 
                                     User lider = new User(user_id2, user_fields.get(0), user_fields.get(1), "ch", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
                                     UsersController userc2 = new UsersController();
-
-                                    if (userc2.modelCreateUser(lider))
+                                    
+                                    if(!userc2.modelValidateUserEmail(user_fields.get(0)))
                                     {
-                                        InUser inlider = new InUser(inst_id2, user_id2);
-                                        InUsersController inliderc = new InUsersController();
+                                        if (userc2.modelCreateUser(lider))
+                                        {
+                                            InUser inlider = new InUser(inst_id2, user_id2);
+                                            InUsersController inliderc = new InUsersController();
 
-                                        if (inliderc.modelCreateInUsers(inlider))
-                                        { response.sendRedirect("admin/lideres.jsp"); }
+                                            if (inliderc.modelCreateInUsers(inlider))
+                                            { response.sendRedirect("admin/lideres.jsp"); }
+                                            else
+                                            { response.sendRedirect("admin/lideres.jsp?error=100-1"); }
+                                        }
                                         else
-                                        { response.sendRedirect("admin/lideres.jsp?error=100-1"); }
+                                        { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
                                     }
                                     else
-                                    { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+                                    { response.sendRedirect("admin/lideres.jsp?error=300"); }
+
 
                                     break;
 
@@ -145,18 +153,23 @@ public class UserNew extends HttpServlet {
                                     User integrante = new User(user_id2, user_fields.get(0), user_fields.get(1), "wk", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
                                     UsersController userc3 = new UsersController();
 
-                                    if (userc3.modelCreateUser(integrante))
+                                    if(!userc3.modelValidateUserEmail(user_fields.get(0))) 
                                     {
-                                        InUser ininteg = new InUser(inst_id2, user_id2);
-                                        InUsersController inintegc = new InUsersController();
+                                        if (userc3.modelCreateUser(integrante))
+                                        {
+                                            InUser ininteg = new InUser(inst_id2, user_id2);
+                                            InUsersController inintegc = new InUsersController();
 
-                                        if (inintegc.modelCreateInUsers(ininteg))
-                                        { response.sendRedirect("admin/integrantes.jsp"); }
+                                            if (inintegc.modelCreateInUsers(ininteg))
+                                            { response.sendRedirect("admin/integrantes.jsp"); }
+                                            else
+                                            { response.sendRedirect("admin/integrantes.jsp?error=100-1"); }
+                                        }
                                         else
-                                        { response.sendRedirect("admin/integrantes.jsp?error=100-1"); }
+                                        { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
                                     }
                                     else
-                                    { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+                                    { response.sendRedirect("admin/lideres.jsp?error=300"); }
 
                                     break;
                                 default:
@@ -176,6 +189,7 @@ public class UserNew extends HttpServlet {
             {
                 response.sendRedirect("index.jsp?error=101");
             }
+            
         }
         else
         {
