@@ -62,7 +62,7 @@
                                             <th scope="col" style="color: #000"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="table-group-divider">
                                         <%=teamc.modelGetAllTeamsByInst(inst_id, 0)%>
                                     </tbody>
                                 </table>
