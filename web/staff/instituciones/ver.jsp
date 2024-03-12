@@ -31,7 +31,7 @@
         inst = instc.modelGetInstById(inst_id);
 
         inst_name = inst.getInst_name();
-        inst_type = inst.getInst_name();
+        inst_type = inst.getInst_type();
         inst_profile = inst.getInst_profile();
         lim_ch = inst.getLim_ch();
         lim_wk = inst.getLim_wk();
@@ -101,13 +101,13 @@
                         </div>
                         <div class="col-4">
                             <h5 class="mt-4">Límite grupos</h5>
-                            <p><%=inst_name%></p>
+                            <p><%=lim_gp%></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4">
                             <h5 class="mt-4">Límite clases</h5>
-                            <p><%=inst_name%></p>
+                            <p><%=lim_ks%></p>
                         </div>
                         <div class="col-4">
                         </div>

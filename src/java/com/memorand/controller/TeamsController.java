@@ -28,7 +28,7 @@ public class TeamsController {
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td>"+ team.getTeam_id() +"</td>\n" +
+"                    <td>"+team.getTeam_color()+"'>"+ team.getTeam_id() +"</td>\n" +
 "                    <td>"+ team.getTeam_name() +"</td>\n" +
 "                    <td>" +
 "                       <svg width='200' height='100'>\n" +

@@ -1,5 +1,6 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.beans.Team"%>
 <%@page import="com.memorand.controller.ProjectsController"%>
@@ -19,6 +20,8 @@
     Project proj = new Project();
     
     String proj_name = "null";
+    
+    PostsController postc = new PostsController();
     
     String user_type = (String) session.getAttribute("user_type");
     
@@ -151,10 +154,28 @@
                         
             <br>
             <div class="row">
-                
+            
+    <%
+        if (collab_id != null)
+        {
+            if (false)
+            {
+    %>
+                <div class="col">
+                    <p>HAY TAREAS</p>
+                </div>
+    <%
+            }
+            else
+            {
+    %>
                 <div class="col">
                     <p>No hay ninguna tarea para mostrar</p>
                 </div>
+    <%
+            }
+        }
+    %>
                 
             </div>
                         
@@ -174,9 +195,25 @@
             <br>
             <div class="row">
                 
+    <%
+        if (collab_id != null)
+        {
+            if (postc.modelIsAnyPostByCollab(collab_id))
+            {
+    %>
+                <%= postc.modelGetAllPostsByCollab(collab_id) %>
+    <%
+            }
+            else
+            {
+    %>
                 <div class="col">
                     <p>No hay ninguna publicación para mostrar</p>
                 </div>
+    <%
+            }
+        }
+    %>
                 
             </div>
                 

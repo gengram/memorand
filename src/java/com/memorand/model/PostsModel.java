@@ -76,7 +76,7 @@ public class PostsModel extends Conexion {
             {
                 String p_id = rs1.getString(1);
                 
-                String sql2 = "SELECT * FROM posts WHERE post_id = ?";
+                String sql2 = "SELECT * FROM posts WHERE post_id = ? ORDER BY post_date";
                 
                 ps2 = getConnection().prepareStatement(sql2);
                 
@@ -118,6 +118,48 @@ public class PostsModel extends Conexion {
         
         return all_post;
 
+    }
+    
+    public boolean isAnyPostByCollab(String collab_id) {
+    
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql1 = "SELECT post_id FROM coposts WHERE collab_id = ?";
+            
+            ps = getConnection().prepareStatement(sql1);
+            
+            ps.setString(1, collab_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    
     }
     
 }
