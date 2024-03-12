@@ -1,13 +1,18 @@
-<nav class="navbar shadow-sm sticky-top navbar-expand-lg bg-body-tertiary" style="padding:1%;">
+<nav class="navbar shadow-sm sticky-top navbar-expand-lg bg-body-tertiary" style="padding: 1%;">
     <div class="container-fluid">
-        <!-- Logo Memorand-->
+        <!-- Logo Memorand -->
         <a class="navbar-brand" href="index.jsp">
-            <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="200" style="margin-left:40%">
+            <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="200" style="margin-left: 40%">
         </a>
 
+        <!-- Botón para mostrar el menú en dispositivos móviles -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
         <!-- Modal de inicio de sesión -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 70%;">
-            <button class="btn custom-blog btn-sm me-2 fs-6 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">Iniciar sesión</button>
+        <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent">
+            <button class="btn custom-blog btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">Iniciar sesión</button>
         </div>
     </div>
 </nav>

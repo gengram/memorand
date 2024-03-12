@@ -35,16 +35,14 @@ public class InstitutionsController {
             
             htmlcode +=
             "<tr>\n" +
-"                    <td>"+ i.getInst_id() +"</td>\n" +
-"                    <td>"+ i.getInst_name()+"</td>\n" +
+"                    <td>"+ "<img class=\"rounded-3 me-2\" src='../"+ i.getInst_profile() +"' width='40'></img>" + i.getInst_name()+"</td>\n" +
 "                    <td>"+ inst_type+"</td>\n" +
-"                    <td> <img src='../"+ i.getInst_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"+ i.getLim_ch()+"</td>\n" +
 "                    <td>"+ i.getLim_wk() +"</td>\n" +
 "                    <td>"+ i.getLim_gp() +"</td>\n" +
 "                    <td>"+ i.getLim_ks() +"</td>\n" +
 "                    <td>"
-                    + "<a href='instituciones/ver.jsp?inst_id="+ i.getInst_id()+"'>Ver</a><br>"
+                    + "<a href='instituciones/ver.jsp?inst_id="+ i.getInst_id()+"'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a><br>"
                   + "</td>\n" +
 "           </tr>";
         }
@@ -63,10 +61,10 @@ public class InstitutionsController {
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td> <img src='../"+ i.getInst_profile() +"' width='40'></img> </td>\n" +
+"                    <td> <img class=\"rounded-3\" src='../"+ i.getInst_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"+ i.getInst_name()+"</td>\n" +
 "                    <td>"
-                    + "<a href='administradores.jsp?view=inst&inst_id="+ i.getInst_id()+"'>Ver administradores</a>"
+                    + "<a href='administradores.jsp?view=inst&inst_id="+ i.getInst_id()+"'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a>"
                   + "</td>\n" +
 "           </tr>";
         }

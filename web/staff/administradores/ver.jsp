@@ -82,35 +82,24 @@
 
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_1.jspf"/>
+        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_adm.jspf"/>
 
         <div class="container">
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
 
-                    <h3 class="mt-3" style="color: #404040"><%= user_pat%> <%= user_mat%> <%= user_name%></h3>
+                    <h3 class="mt-3" style="color: #404040">
+                        <img class="rounded-3 me-2" src="../../<%=user_profile%>" width="60" alt="inst_profile"/>
+                        <%= user_pat%> <%= user_mat%> <%= user_name%>
+                    </h3>
 
-                    <div class="mt-4 ms-3"><a href="editar.jsp?user_id=<%= user_id%>">
-                            <button class="button custom-bsign rounded-4"><h6><i class="bi bi-pen mt-4"></i> Editar</h6></button>
+                    <div class="mt-4"><a href="editar.jsp?user_id=<%= user_id%>">
+                            <button class="button custom-bsign rounded-3"><h6 class="mt-1"><i class="bi bi-pen mt-4"></i> Editar</h6></button>
                         </a>
                     </div>
 
-                    <div class="row mt-4">
-                        <div class="col-4">
-                            <h5>Foto</h5>
-                            <img src="../../<%=user_profile%>" width="100" alt="inst_profile"/>
-                        </div>
-                        <div class="col-4">
-                            <h5>Email</h5>
-                            <p><%=user_email%></p>
-                        </div>
-                        <div class="col-4">
-                            <h5>Tipo</h5>
-                            <p><%=user_type%></p>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-4">  
                             <h5>Nombre</h5>
                             <p><%=user_name%></p>
@@ -130,30 +119,39 @@
                             <p><%=user_status%></p>
                         </div>
                         <div class="col-4">
+                            <h5>Email</h5>
+                            <p><%=user_email%></p>
                         </div>
                         <div class="col-4">
+                            <h5>Tipo</h5>
+                            <p><%=user_type%></p>
                         </div>
                     </div>
 
-                    <h3 class="mt-4" style="color: #404040">Acerca de la institución</h3>
-                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center">
-                        <thead>
-                            <tr>
-                                <th>inst_profile</th>
-                                <th>inst_name</th>
-                                <th>inst_type</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> <img src="../../<%= inst_profile%>" alt="inst_profile" width='40'/> </td>
-                                <td><%= inst_name%></td>
-                                <td><%= inst_type%></td>
-                                <td><a href="../instituciones/ver.jsp?inst_id=<%= inst_id%>">Ver</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h3 class="mt-4" style="color: #CEC7C7;">Acerca de la institución</h3>
+                    <div class="card mt-3 shadow rounded-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped-columns" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="color: #000">Nombre</th>
+                                            <th scope="col" style="color: #000">Tipo</th>
+                                            <th scope="col" style="color: #000"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <tr>
+                                            <td><img class="rounded-3" src="../../<%= inst_profile%>" alt="inst_profile" width='40'/> <%= inst_name%></td>
+                                            <td><%= inst_type%></td>
+                                            <td><a href="../instituciones/ver.jsp?inst_id=<%= inst_id%>"> <i class="bi bi-eye-fill" style="font-size: 1.5em;"></i> </a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-1"></div>
             </div>

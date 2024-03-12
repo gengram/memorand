@@ -62,25 +62,23 @@
 
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_2.jspf"/>
-
+        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_inst.jspf"/>
+        
         <div class="container">
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
 
-                    <h3 class="mt-3" style="color: #404040">Gestor de Instituciones - <%=inst_name%></h3>
+                    <h3 class="mt-3" style="color: #404040">
+                        <img class="rounded-3 me-2" src="../../<%=inst_profile%>" width="60" alt="inst_profile"/>
+                        Gestor de Instituciones - <%=inst_name%></h3>
 
-                    <div class="mt-4 ms-3"><a href="editar.jsp?inst_id=<%=inst_id%>">
-                            <button class="button custom-bsign rounded-4"><h6><i class="bi bi-pen mt-4"></i> Editar</h6></button>
+                    <div class="mt-4"><a href="editar.jsp?inst_id=<%=inst_id%>">
+                            <button class="button custom-bsign rounded-3"><h6 class="mt-1"><i class="bi bi-pen mt-4"></i> Editar</h6></button>
                         </a>
                     </div>
 
                     <div class="row">
-                        <div class="col-4">
-                            <h5 class="mt-4">Foto</h5>
-                            <img src="../../<%=inst_profile%>" width="100" alt="inst_profile"/>
-                        </div>
                         <div class="col-4">
                             <h5 class="mt-4">Nombre</h5>
                             <p><%=inst_name%></p>
@@ -89,12 +87,13 @@
                             <h5 class="mt-4">Tipo</h5>
                             <p><%=inst_type%></p>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-4">
                             <h5 class="mt-4">Límite Líderes</h5>
                             <p><%=lim_ch%></p>
                         </div>
+                    </div>
+                    <div class="row">
+
                         <div class="col-4">
                             <h5 class="mt-4">Límite Participantes</h5>
                             <p><%=lim_wk%></p>
@@ -103,33 +102,33 @@
                             <h5 class="mt-4">Límite grupos</h5>
                             <p><%=lim_gp%></p>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-4">
                             <h5 class="mt-4">Límite clases</h5>
                             <p><%=lim_ks%></p>
                         </div>
-                        <div class="col-4">
-                        </div>
-                        <div class="col-4">
-                        </div>
                     </div>
 
-                    <h3 class="mt-4" style="color: #404040">Lista Administradores</h3>
-                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center">
-                        <thead>
-                            <tr>
-                                <th>admin_profile</th>
-                                <th>admin_pat</th>
-                                <th>admin_mat</th>
-                                <th>admin_name</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%=userc.modelGetAllAdminByInst(inst_id, 2, 1)%>
-                        </tbody>
-                    </table>
+                    <h3 class="mt-4" style="color: #CEC7C7;">Lista Administradores</h3>
+                    <div class="card mt-3 shadow rounded-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped-columns" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="color: #000">admin_profile</th>
+                                            <th scope="col" style="color: #000">admin_pat</th>
+                                            <th scope="col" style="color: #000">admin_mat</th>
+                                            <th scope="col" style="color: #000">admin_name</th>
+                                            <th v>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <%=userc.modelGetAllAdminByInst(inst_id, 2, 1)%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="col-1"></div>

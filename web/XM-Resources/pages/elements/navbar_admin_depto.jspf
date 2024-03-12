@@ -12,9 +12,11 @@
             }
         </script>
         <!-- Botón para regresar -->
-        <button  onclick="goBack()"class="navbar-brand border-0 me-2" type="button" style="color: #25ce7b; background-color: transparent;">
-            <i class="bi bi-arrow-left-circle-fill" style="font-size: 28px;"></i>
-        </button>
+        <a href="../departamentos.jsp">
+            <button class="navbar-brand border-0 me-2" type="button" style="color: #25ce7b; background-color: transparent;">
+                <i class="bi bi-arrow-left-circle-fill" style="font-size: 28px;"></i>
+            </button>
+        </a>
 
         <!-- Botón para la barra lateral -->
         <button class="navbar-toggler border-0 rounded-circle me-2" type="button" style="color: #25ce7b;" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
@@ -23,7 +25,7 @@
 
         <!-- Logo de la empresa -->
         <a class="navbar-brand" href="/memorand/staff/home.jsp">
-            <img src="../XM-Resources/vector/memorand-bee.svg" alt="memorand" width="40" style="margin-left: 300%">
+            <img src="../../XM-Resources/vector/memorand-bee.svg" alt="memorand" width="40" style="margin-left: 300%">
         </a>
 
         <!-- Botón para el perfil -->
@@ -39,7 +41,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center shadow" href="../signout">
+                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center shadow" href="../../signout">
                                 <i class="bi bi-box-arrow-left" style="color: #25ce7b;"></i>
                                 Salir
                             </a>
