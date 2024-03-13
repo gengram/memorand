@@ -52,6 +52,22 @@
         <servlet-name>PostNew</servlet-name>
         <servlet-class>com.memorand.servlets.posts.PostNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadFile</servlet-name>
+        <servlet-class>com.gengram.csv.UploadFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadFile</servlet-name>
+        <servlet-class>com.gengram.csv.DownloadFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReadCSV</servlet-name>
+        <servlet-class>com.gengram.csv.ReadCSV</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReadFile</servlet-name>
+        <servlet-class>com.gengram.csv.ReadFile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -103,6 +119,22 @@
     <servlet-mapping>
         <servlet-name>PostNew</servlet-name>
         <url-pattern>/postnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadFile</servlet-name>
+        <url-pattern>/uploadfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadFile</servlet-name>
+        <url-pattern>/downloadfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReadCSV</servlet-name>
+        <url-pattern>/readcsv</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReadFile</servlet-name>
+        <url-pattern>/readfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

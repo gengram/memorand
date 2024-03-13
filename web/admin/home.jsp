@@ -68,6 +68,27 @@
         
         <br>
         <br>
+        <table>
+            <td>
+                <h4>Cargar archivo CSV</h4>
+                <form action="/memorand/readfile" method="post" enctype="multipart/form-data">
+                    Seleccione un archivo CSV:
+                    <input type="file" name="file" accept=".csv">
+                    <input type="submit" value="Listar">
+                </form>
+            </td>
+            <%-- <td>
+                <form action="/memorand/uploadfile" method="post" enctype="multipart/form-data">
+                    Seleccione un archivo CSV para cargar:
+                    <input type="file" name="file" accept=".csv">
+                    <input type="submit" value="Cargar">
+                </form>
+                <% String fileName = request.getParameter("fileName"); %>
+            </td>
+            <td>
+                <a href="/memorand/downloadfile?fileName=<%= fileName %>"><h4>Descargar CSV</h4></a>
+            </td>comment --%>
+        </table>
         <a href="../signout">Cerrar sesión</a>
         
     </body>

@@ -35,7 +35,7 @@
     <body>
         
         <h1>Memorand</h1>
-        <h3>Nuevo integrante</h3>
+        <h3>Nuevo integrante adasdawda</h3>
         
         <form action="../../usernew?user_type=wk" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
             <input type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>

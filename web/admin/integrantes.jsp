@@ -44,7 +44,7 @@
         <a href="integrantes/nuevo.jsp">
             <button>Integrante nuevo</button>
         </a>
-        
+            
         <br>
         <br>
         <h3>Lista</h3>
