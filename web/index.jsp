@@ -6,11 +6,9 @@
 
 <%
     String user_type = (String) session.getAttribute("user_type");
-    
-    if (user_type != null || "".equals(user_type))
-    {
-        switch (user_type)
-        {
+
+    if (user_type != null || "".equals(user_type)) {
+        switch (user_type) {
             case "staff":
                 response.sendRedirect("staff/home.jsp");
                 break;
@@ -26,20 +24,20 @@
 
 
 <html>
-    
+
     <%-- HEAD --%>
     <head>
-        
+
         <jsp:include page="XM-Resources/pages/imports.jspf"/>
-        
+
         <title>Memorand | Inicio</title>
-        
+
         <link rel="stylesheet" href="XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
-        
+
     </head>
-    
+
     <%-- BODY --%>
     <body>
 
@@ -47,23 +45,23 @@
         <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
 
         <div class="container">
-            <div class="row mt-4">
-                <div class="col-5"></div>
-                <div class="col-2 text-center">
-
+            <div class="row mt-3">
+                <div class="col-lg-7 col-md-12 text-center" style="background-color: transparent">
+                    <img class="img-fluid" src="XM-Resources/vector/8614928.jpg" alt="Imagen" style="max-width: 450px;">
                 </div>
-                <div class="col-5"></div>
-            </div>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    
-
+                <div class="col-lg-5 col-md-12" style="color: #6c757d; background-color: transparent">
+                    <h3 class="mt-2 mb-4">Organízate en equipo sin complicaciones</h3>
+                    <h5>Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h5>
+                    <br>
+                    <h5>Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h5>
+                    <br>
+                    <h5 class="mb-5"> La aplicación también cuenta con funcionalidades de apuntes dinámicos, un lienzo de dibujo, ideas rápidas y compartimiento instantáneo.</h5>
                 </div>
-                <div class="col-1"></div>
             </div>
+           
         </div>
 
+
     </body>
-    
+
 </html>

@@ -28,15 +28,12 @@ public class TeamsController {
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td>"+team.getTeam_color()+"'>"+ team.getTeam_id() +"</td>\n" +
 "                    <td>"+ team.getTeam_name() +"</td>\n" +
 "                    <td>" +
-"                       <svg width='200' height='100'>\n" +
-"                           <rect width='200' height='100' style='fill:#"+ team.getTeam_color() +";stroke:black;stroke-width:2'/>\n" +
-"                       </svg>" +
+"                       <i style=\"color: #"+ team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill\"></i> " +
 "                    </td>\n" +
 "                    <td>" +
-"                       <a href='"+ add1 +"departamentos/ver.jsp?team_id="+ team.getTeam_id() +"'>Ver</a><br>" +
+"                       <a href='"+ add1 +"departamentos/ver.jsp?team_id="+ team.getTeam_id() +"'>  <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a><br>" +
 "                    </td>\n" +
 "           </tr>";
         

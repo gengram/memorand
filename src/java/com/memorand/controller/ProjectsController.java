@@ -31,15 +31,9 @@ public class ProjectsController {
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td>"+ project.getProj_id() +"</td>\n" +
-"                    <td>"+ project.getProj_name() +"</td>\n" +
+"                    <td>" + "<i style=\"color: #"+ project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i> "+ project.getProj_name() +"</td>\n" +
 "                    <td>" +
-"                       <svg width='200' height='100'>\n" +
-"                           <rect width='200' height='100' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
-"                       </svg>" +
-"                    </td>\n" +
-"                    <td>" +
-"                       <a href='"+ add1 +"proyectos/ver.jsp?proj_id="+ project.getProj_id() +"'>Ver</a><br>" +
+"                       <a href='"+ add1 +"proyectos/ver.jsp?proj_id="+ project.getProj_id() +"'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a><br>" +
 "                    </td>\n" +
 "           </tr>";
         }

@@ -6,6 +6,7 @@
                 display: none;
             }
         </style>
+        <!-- Botón para regresar -->
         <script>
             function goBack() {
                 window.history.back();
@@ -16,14 +17,9 @@
             <i class="bi bi-arrow-left-circle-fill" style="font-size: 28px;"></i>
         </button>
 
-        <!-- Botón para la barra lateral -->
-        <button class="navbar-toggler border-0 rounded-circle me-2" type="button" style="color: #25ce7b;" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
-            <i class="bi bi-list" style="font-size: 28px;"></i>
-        </button>
-
         <!-- Logo de la empresa -->
         <a class="navbar-brand" href="/memorand/staff/home.jsp">
-            <img src="../XM-Resources/vector/memorand-bee.svg" alt="memorand" width="40" style="margin-left: 300%">
+            <img src="../../XM-Resources/vector/memorand-bee.svg" alt="memorand" width="40" style="margin-left: 300%">
         </a>
 
         <!-- Botón para el perfil -->
@@ -34,12 +30,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" style="" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-gear-fill" style="color: #25ce7b; font-size: 22px;"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center shadow" href="../signout">
+                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center shadow" href="../../signout">
                                 <i class="bi bi-box-arrow-left" style="color: #25ce7b;"></i>
                                 Salir
                             </a>
@@ -48,6 +44,6 @@
                 </li>
             </ul>
         </div>
-
+        
     </div>
 </nav>

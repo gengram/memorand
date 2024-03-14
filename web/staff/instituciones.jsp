@@ -48,27 +48,31 @@
                         </a>
                     </div>
 
-                    <h3 class="mt-5 text-center">Lista</h3>
-
-                    <table class="mt-3 table table-bordered border-2" border="2" style="text-align: center; border: 1px solid #25ce7b;">
-                        <thead>
-                            <tr>
-                                <th scope="col">inst_id</th>
-                                <th scope="col">inst_name</th>
-                                <th scope="col">inst_type</th>
-                                <th scope="col">inst_profile</th>
-                                <th scope="col">lim_ch</th>
-                                <th scope="col">lim_wk</th>
-                                <th scope="col">lim_gp</th>
-                                <th scope="col">lim_ks</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            <%=instc.modelGetAllInst()%>
-                        </tbody>
-                    </table>
-
+                    <h3 class="mt-5 text-center" style="color: #CEC7C7">Lista</h3>
+                    
+                    <div class="card mt-3 shadow rounded-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped-columns" style="text-align: center;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="color: #000">Nombre</th>
+                                            <th scope="col" style="color: #000">Tipo</th>
+                                            <th scope="col" style="color: #000">Lideres</th>
+                                            <th scope="col" style="color: #000">Integrantes</th>
+                                            <th scope="col" style="color: #000">Grupos</th>
+                                            <th scope="col" style="color: #000">Clases</th>
+                                            <th scope="col" style="color: #000"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <%=instc.modelGetAllInst()%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                                    
                 </div>
                 <div class="col-1"></div>
             </div>

@@ -53,12 +53,12 @@ public class UsersController {
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td> <img src='"+ add1 + admin.getUser_profile() +"' width='40'></img> </td>\n" +
+"                    <td> <img class=\"rounded-3\" src='"+ add1 + admin.getUser_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"+ admin.getUser_pat() +"</td>\n" +
 "                    <td>"+ admin.getUser_mat() +"</td>\n" +
 "                    <td>"+ admin.getUser_name() +"</td>\n" +
 "                    <td>"
-                    + "<a href='"+ add2 +"administradores/ver.jsp?user_id="+ admin.getUser_id() +"'>Ver</a><br>"
+                    + "<a href='"+ add2 +"administradores/ver.jsp?user_id="+ admin.getUser_id() +"'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i>  </a><br>"
                   + "</td>\n" +
 "           </tr>";
         
@@ -93,17 +93,13 @@ public class UsersController {
             
             htmlcode +=
             "<tr>\n" +
-"                    <td>"+ admin.getUser_id() +"</td>\n" +
-"                    <td>"+ admin.getUser_email() +"</td>\n" +
-"                    <td>"+ admin.getUser_pass() +"</td>\n" +
-"                    <td>"+ admin.getUser_type() +"</td>\n" +
-"                    <td>"+ admin.getUser_name() +"</td>\n" +
+ 
+"                    <td>"+  "<img class=\"rounded-3 me-2\" src='../"+ admin.getUser_profile() +"' width='40'></img>" + admin.getUser_name() + "</td>\n" +
 "                    <td>"+ admin.getUser_pat() +"</td>\n" +
 "                    <td>"+ admin.getUser_mat() +"</td>\n" +
 "                    <td>"+ admin_status +"</td>\n" +
-"                    <td> <img src='../"+ admin.getUser_profile() +"' width='40'></img> </td>\n" +
 "                    <td>"
-                    + "<a href='administradores/ver.jsp?user_id="+ admin.getUser_id() +"'>Ver</a><br>"
+                    + "<a href='administradores/ver.jsp?user_id="+ admin.getUser_id() +"'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a><br>"
                   + "</td>\n" +
 "           </tr>";
             

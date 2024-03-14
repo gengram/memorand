@@ -35,7 +35,7 @@
     <%-- BODY --%>
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_1.jspf"/>
+        <jsp:include page="../../XM-Resources/pages/elements/navbar_staff_adm.jspf"/>
 
 
         <div class="container">
@@ -43,37 +43,50 @@
                 <div class="col-1"></div>
                 <div class="col-10">
 
-                    <h3 class="mt-3" style="color: #404040">Editar administrador</h3>
+                    <h3 class="mt-3 text-center" style="color: #404040">Editar administrador</h3>
 
-                    <form action="../../usernew" method="post" enctype="multipart/form-data">
-                        <input type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>
-                        <br>
-                        <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña usuario" required>
-                        <br>
-                        <input type="text" name="user_name" id="user_name" placeholder="Nombre usuario" required>
-                        <br>
-                        <input type="text" name="user_pat "id="user_pat" placeholder="Apellido paterno" required>
-                        <br>
-                        <input type="text" name="user_mat" id="user_mat" placeholder="Apellido materno" required>
-                        <br>
-                        <input type="file" name="inst_profile" id="inst_profile" required>
-                        <br>
-                        <select name="inst_name" id="inst_name">
-                            <option value="" disabled selected hidden>Institución</option>
-                            <%=instc.modelGetOptionInst()%>
-                        </select>
-                        <br>
-                        <input type="submit" value="Editar administrador">
-                    </form>
-                        
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <div class="row mt-3 ms-2 me-2">
+                                        <form action="../../usernew" method="post" enctype="multipart/form-data">
+
+                                            <input class="form-control" type="email" name="user_email" id="user_email" placeholder="Correo usuario" required>
+
+                                            <input class="form-control mt-3" type="password" name="user_pass" id="user_pass" placeholder="Contraseña usuario" required>
+
+                                            <input class="form-control mt-3"type="text" name="user_name" id="user_name" placeholder="Nombre usuario" required>
+
+                                            <input class="form-control mt-3" type="text" name="user_pat "id="user_pat" placeholder="Apellido paterno" required>
+
+                                            <input class="form-control mt-3" type="text" name="user_mat" id="user_mat" placeholder="Apellido materno" required>
+
+                                            <input class="form-control mt-3" type="file" name="inst_profile" id="inst_profile" required>
+
+                                            <select class="form-select mt-3" name="inst_name" id="inst_name">
+                                                <option value="" disabled selected hidden>Institución</option>
+                                                <%=instc.modelGetOptionInst()%>
+                                            </select>
+
+                                            <div class="text-center">
+                                                <input class="btn custom-bsign mt-3 mb-3" type="submit" value="Editar administrador">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>   
+
+                    </div>
+                    <div class="col-1"></div>
                 </div>
-                <div class="col-1"></div>
             </div>
-        </div>
 
-        <a href="ver.jsp?user_id=<%= user_id%>">Regresar</a>
-        <br>
-        <a href="../../signout">Cerrar sesión</a>
+            <a href="ver.jsp?user_id=<%= user_id%>">Regresar</a>
+            
 
     </body>
 
