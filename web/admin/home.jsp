@@ -35,62 +35,6 @@
 
     <%-- BODY --%>
     <body>
-        
-        <h1>Memorand para <%=inst_type%>s</h1>
-        <h3>Home - Staff <%=inst_name%></h3>
-        
-        <p>Hola <%=session.getAttribute("user_name")%> <%=session.getAttribute("user_pat")%></p>
-        
-        <a href="departamentos.jsp">
-            <button>Departamentos</button>
-        </a>
-        <a href="proyectos.jsp">
-            <button>Proyectos</button>
-        </a>
-        <a href="lideres.jsp">
-            <button>Líderes</button>
-        </a>
-        <a href="integrantes.jsp">
-            <button>Integrantes</button>
-        </a>
-        
-        <br>
-        <br>
-        
-        <a href="gestion/integrantes.jsp">
-            <button>Gestionar integrantes de departamentos</button>
-        </a>
-        <a href="gestion/proyectos.jsp">
-            <button>Gestionar proyectos de departamentos</button>
-        </a>
-        <a href="gestion/lideres.jsp">
-            <button>Gestionar líderes de proyectos</button>
-        </a>
-        
-        <br>
-        <br>
-        <table>
-            <td>
-                <h4>Cargar archivo CSV</h4>
-                <form action="/memorand/readfile" method="post" enctype="multipart/form-data">
-                    Seleccione un archivo CSV:
-                    <input type="file" name="file" accept=".csv">
-                    <input type="submit" value="Listar">
-                </form>
-            </td>
-            <%-- <td>
-                <form action="/memorand/uploadfile" method="post" enctype="multipart/form-data">
-                    Seleccione un archivo CSV para cargar:
-                    <input type="file" name="file" accept=".csv">
-                    <input type="submit" value="Cargar">
-                </form>
-                <% String fileName = request.getParameter("fileName"); %>
-            </td>
-            <td>
-                <a href="/memorand/downloadfile?fileName=<%= fileName %>"><h4>Descargar CSV</h4></a>
-            </td>comment --%>
-        </table>
-        <a href="../signout">Cerrar sesión</a>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
@@ -98,7 +42,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10 mt-3">
-                    <h3>Home - Staff <%=inst_name%></h3>
+                    <h3>Home - Admin <%=inst_name%></h3>
 
                     <p>Hola <%=session.getAttribute("user_name")%> <%=session.getAttribute("user_pat")%></p>
 
@@ -177,6 +121,28 @@
                         <div class="col-4"></div>
                         <div class="col-4"></div>
                     </div>
+                    
+                    <table>
+                        <td>
+                            <h4>Cargar archivo CSV</h4>
+                            <form action="/memorand/readfile" method="post" enctype="multipart/form-data">
+                                Seleccione un archivo CSV:
+                                <input type="file" name="file" accept=".csv">
+                                <input type="submit" value="Listar">
+                            </form>
+                        </td>
+                        <%-- <td>
+                            <form action="/memorand/uploadfile" method="post" enctype="multipart/form-data">
+                                Seleccione un archivo CSV para cargar:
+                                <input type="file" name="file" accept=".csv">
+                                <input type="submit" value="Cargar">
+                            </form>
+                            <% String fileName = request.getParameter("fileName"); %>
+                        </td>
+                        <td>
+                            <a href="/memorand/downloadfile?fileName=<%= fileName %>"><h4>Descargar CSV</h4></a>
+                        </td>comment --%>
+                    </table>
 
                 </div>
                 <div class="col-1"></div>
