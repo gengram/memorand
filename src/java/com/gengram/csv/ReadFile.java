@@ -9,9 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
 @MultipartConfig
 public class ReadFile extends HttpServlet {
-private static final long serialVersionUID = 1L;
+    
+    private static final long serialVersionUID = 1L;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,34 +45,43 @@ private static final long serialVersionUID = 1L;
         Part filePart = request.getPart("file");
         InputStream fileContent = filePart.getInputStream();
         
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(fileContent))) {
-            String line;
-            List<String[]> rows = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(fileContent)))
+        {
             boolean firstLine = true;
-            while ((line = br.readLine()) != null) {
-                if (!firstLine) {
+            boolean flag = true;
+            
+            String line;
+            
+            String inst_id = (String) session.getAttribute("inst_id");
+            
+            ArrayList<String[]> rows = new ArrayList<>();
+            
+            while ((line = br.readLine()) != null)
+            {
+                if (!firstLine)
+                {
                     String[] data = line.split(",");
                     rows.add(data);
-                } else {
+                }
+                else
+                {
                     firstLine = false;
                 }
             }
             
-            String inst_id = (String)session.getAttribute("inst_id");
-            
-            boolean flag = true;
-            
-            for (int i = 0; i < rows.size(); i++) {
-                String[] row = rows.get(i);
+            for (int i = 0; i < rows.size(); i++)
+            {
+                UsersController userc = new UsersController();
                 
                 Generador g = new Generador();
+                
+                String[] row = rows.get(i);
                 
                 String user_id = g.newID();
                 String user_email = row[0].replace("\"", "");
                 
-                UsersController userc = new UsersController();
-                if (!userc.modelValidateUserEmail(user_email)) {
-                    
+                if (!userc.modelValidateUserEmail(user_email))
+                {
                     String user_pass = row[1].replace("\"", "");
                     String user_type = row[2].replace("\"", "");
                     String user_name = row[3].replace("\"", "");
@@ -81,30 +90,39 @@ private static final long serialVersionUID = 1L;
                     
                     User user = new User(user_id, user_email, user_pass, user_type, user_name, user_pat, user_mat, "si", "XM-Uploads/users/profile/user_icon.png");
                     
-                    if (userc.modelCreateUser(user)) {
+                    if (userc.modelCreateUser(user))
+                    {
                         InUser inuser = new InUser(inst_id, user_id);
                         InUsersController inusersc = new InUsersController();
-                        if (inusersc.modelCreateInUsers(inuser)) {
+                        
+                        if (inusersc.modelCreateInUsers(inuser))
+                        {
                             flag = true;
-                        } else{
+                        } else
+                        {
                             flag = false;
                         }
-                    } else{
+                    }
+                    else
+                    {
                         flag = false;
                     }
-                } 
+                }
             }
-            if (flag) {
+            
+            if (flag)
+            {
                 request.setAttribute("rows", rows);
                 request.getRequestDispatcher("admin/integrantes/listado.jsp").forward(request, response);
             } 
-            
-            
-        } catch (Exception e) {
-            response.getWriter().println("Error al leer el archivo CSV: " + e.getMessage());
         }
+        
+        catch (Exception e)
+        {
+            response.sendRedirect("admin/integrantes/home.jsp?error=300");
+        }
+        
     }
-    
 
     @Override
     public String getServletInfo() {
