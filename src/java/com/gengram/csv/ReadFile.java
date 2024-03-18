@@ -37,6 +37,7 @@ public class ReadFile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
         response.setContentType("text/html;charset=UTF-8");
         
@@ -95,13 +96,7 @@ public class ReadFile extends HttpServlet {
                         InUser inuser = new InUser(inst_id, user_id);
                         InUsersController inusersc = new InUsersController();
                         
-                        if (inusersc.modelCreateInUsers(inuser))
-                        {
-                            flag = true;
-                        } else
-                        {
-                            flag = false;
-                        }
+                        flag = inusersc.modelCreateInUsers(inuser);
                     }
                     else
                     {
@@ -113,7 +108,7 @@ public class ReadFile extends HttpServlet {
             if (flag)
             {
                 request.setAttribute("rows", rows);
-                request.getRequestDispatcher("admin/integrantes/listado.jsp").forward(request, response);
+                request.getRequestDispatcher("admin/listado.jsp").forward(request, response);
             } 
         }
         
