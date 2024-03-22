@@ -12,7 +12,7 @@ public class Conexion {
     private String port = "3306";
     private String db = "memorand";
     
-    private String classname = "com.mysql.jdbc.Driver";
+    private String classname = "com.mysql.cj.jdbc.Driver";
     
     private String url = "jdbc:mysql://" + hostname + ":" + port + "/" + db + "?characterEncoding=UTF-8";
     
