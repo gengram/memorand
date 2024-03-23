@@ -42,7 +42,7 @@ public class PostsController {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String post_date = sdf.format(post.getPost_date());
             
-            if (i % 3 == 0)
+            if (i % 4 == 0)
             {
                 htmlcode +=
                 "<div class='row'>";

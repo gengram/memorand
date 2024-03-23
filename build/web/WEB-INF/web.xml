@@ -68,6 +68,10 @@
         <servlet-name>ReadFile</servlet-name>
         <servlet-class>com.gengram.csv.ReadFile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TagNew</servlet-name>
+        <servlet-class>com.memorand.servlets.nuevo.TagNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>ReadFile</servlet-name>
         <url-pattern>/readfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TagNew</servlet-name>
+        <url-pattern>/tagnew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

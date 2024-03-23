@@ -44,7 +44,7 @@
     <body>
         
         <h1>Memorand</h1>
-        <h3>Nueva tarea</h3>
+        <h3>Nueva etiqueta</h3>
         
         <form action="../../tagnew?collab_id=<%= collab_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
             <input type="text" name="tag_name" id="tag_name" placeholder="Nombre etiqueta" required>
