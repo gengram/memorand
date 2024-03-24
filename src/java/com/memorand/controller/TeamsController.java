@@ -97,8 +97,8 @@ public class TeamsController {
     
     }
     
-    public String modelGetAllTeamsByUserRed2(String user_id) {
-    
+    public String modelGetAllTeamsByUserRed2(String user_id)
+    {
         String htmlcode = "";
         
         UsersController userc = new UsersController();
@@ -148,25 +148,22 @@ public class TeamsController {
             }
         }
         
-        
         return htmlcode;
-    
     }
     
-    public String modelGetListTeamsByInst(String inst_id) {
-    
+    public String modelGetListTeamsByInst(String inst_id)
+    {
         String htmlcode = "";
         
         TeamsModel teamm = new TeamsModel();
         
-        for (Team team: teamm.getAllTeamsByInst(inst_id))
+        for (Team team : teamm.getAllTeamsByInst(inst_id))
         {
             htmlcode +=
             "<option value='"+ team.getTeam_id() + "' style='background-color:#"+ team.getTeam_color() +"' >"+ team.getTeam_name() + "</option>";
         }
         
         return htmlcode;
-        
     }
     
     public Team modelGetTeamInfoById(String t_id) {

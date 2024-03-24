@@ -1,5 +1,6 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.TagsController"%>
 <%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.beans.Team"%>
@@ -10,6 +11,8 @@
 <!DOCTYPE html>
 
 <%
+    TagsController tagc = new TagsController();
+    
     TeamsController teamc = new TeamsController();
     Team team = new Team();
     
@@ -143,7 +146,7 @@
                 %>
                     <select name="tag_name" id="tag_name">
                         <option value="" disabled selected hidden>Etiqueta</option>
-                        <option value="EJEMPLO"> EJEMPLO </option>
+                        <%= tagc.modelGetListTagsByCollab(collab_id) %>
                     </select>
                 <%
                     }

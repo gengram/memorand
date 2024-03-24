@@ -6,17 +6,16 @@ import com.memorand.model.PostsModel;
 import com.memorand.model.UsersModel;
 import java.text.SimpleDateFormat;
 
-public class PostsController {
-    
-    public boolean modelCreatePost(Post post) {
-        
+public class PostsController
+{
+    public boolean modelCreatePost(Post post)
+    {
         PostsModel postm = new PostsModel();
         return postm.createPost(post);
-        
     }
     
-    public String modelGetAllPostsByCollab(String collab_id) {
-    
+    public String modelGetAllPostsByCollab(String collab_id)
+    {
         String htmlcode = "";
         
         PostsModel postm = new PostsModel();
@@ -63,13 +62,12 @@ public class PostsController {
         }
         
         return htmlcode;
-    
     }
     
-    public boolean modelIsAnyPostByCollab(String collab_id) {
-    
+    public boolean modelIsAnyPostByCollab(String collab_id)
+    {
         PostsModel postm = new PostsModel();
         return postm.isAnyPostByCollab(collab_id);
-    
     }
+    
 }
