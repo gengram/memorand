@@ -8,8 +8,6 @@
 <%@page import="com.memorand.controller.TeamsController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-
 <%
     TagsController tagc = new TagsController();
     
@@ -53,6 +51,8 @@
         proj_name = proj.getProj_name();
     }
 %>
+
+<!DOCTYPE html>
 
 <html>
     
