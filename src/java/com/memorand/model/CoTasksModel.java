@@ -1,12 +1,12 @@
 package com.memorand.model;
 
-import com.memorand.beans.CoTag;
+import com.memorand.beans.CoTask;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CoTagsModel extends Conexion
+public class CoTasksModel extends Conexion
 {
-    public boolean createCoTag(CoTag cotag)
+    public boolean createCoTask(CoTask cotask)
     {
         boolean flag = false;
         
@@ -14,12 +14,12 @@ public class CoTagsModel extends Conexion
         
         try
         {
-            String sql = "INSERT INTO cotags (collab_id, tag_id) VALUES (?,?)";
+            String sql = "INSERT INTO cotasks (collab_id, task_id) VALUES (?,?)";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, cotag.getCollab_id());
-            ps.setString(2, cotag.getTag_id());
+            ps.setString(1, cotask.getCollab_id());
+            ps.setString(2, cotask.getTask_id());
             
             if (ps.executeUpdate() == 1)
             {

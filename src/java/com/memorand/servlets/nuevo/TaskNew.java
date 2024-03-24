@@ -1,14 +1,14 @@
 package com.memorand.servlets.nuevo;
 
-import com.memorand.beans.CoPost;
-import com.memorand.beans.Post;
-import com.memorand.beans.UserPost;
-import com.memorand.controller.CoPostsController;
-import com.memorand.controller.PostsController;
-import com.memorand.controller.UserPostsController;
+import com.memorand.beans.CoTask;
+import com.memorand.beans.Task;
+import com.memorand.controller.CoTasksController;
+import com.memorand.controller.TasksController;
 import com.memorand.util.Generador;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,11 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class PostNew extends HttpServlet {
-
+public class TaskNew extends HttpServlet
+{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {}
 
@@ -42,9 +43,8 @@ public class PostNew extends HttpServlet {
             FileItemFactory fif = new DiskFileItemFactory();
             ServletFileUpload sfu = new ServletFileUpload(fif);
             
-            ArrayList<String> post_fields = new ArrayList<>();
+            ArrayList<String> task_fields = new ArrayList<>();
             
-            String user_id = (String) session.getAttribute("user_id");
             String user_type = (String) session.getAttribute("user_type");
             
             try
@@ -56,56 +56,52 @@ public class PostNew extends HttpServlet {
                     FileItem fi = (FileItem) items.get(i);
 
                     if (fi.isFormField())
-                        post_fields.add(fi.getString());
+                        task_fields.add(fi.getString());
                 }
             }
         
-            catch (Exception e)
+            catch (FileUploadException e)
             {
                 System.err.println(e.getMessage());
             }
             
             if (user_type != null)
             {
-                if (user_type.equals("wk") || user_type.equals("ch"))
+                if (user_type.equals("ch"))
                 {
                     Generador g = new Generador();
                 
-                    String post_id = g.newID();
+                    String task_id = g.newID();
                     String collab_id = request.getParameter("collab_id");
                     
-                    Timestamp ts = new Timestamp(System.currentTimeMillis());
+                    String s_edate = task_fields.get(2);
                     
-                    Post post = new Post(post_id, post_fields.get(0),0,0,0,ts);
-                    PostsController postc = new PostsController();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+                    LocalDateTime localDateTime = LocalDateTime.parse(task_fields.get(2), formatter);
+                    Timestamp task_edate = Timestamp.valueOf(localDateTime);
                     
-                    if (postc.modelCreatePost(post))
+                    Timestamp task_sdate = new Timestamp(System.currentTimeMillis());
+                    
+                    Task task = new Task(task_id, task_fields.get(0), task_fields.get(1), task_sdate, task_edate, "Incompleta", task_fields.get(3), task_fields.get(4));
+                    TasksController taskc = new TasksController();
+                    
+                    if (taskc.modelCreateTask(task))
                     {
-                        CoPost copost = new CoPost(collab_id, post_id);
-                        CoPostsController copostc = new CoPostsController();
+                        CoTask cotask = new CoTask(collab_id, task_id);
+                        CoTasksController cotaskc = new CoTasksController();
                         
-                        if (copostc.modelCreateCoPost(copost))
+                        if (cotaskc.modelCreateCoTask(cotask))
                         {
-                            UserPost userpost = new UserPost(user_id, post_id);
-                            UserPostsController userpostc = new UserPostsController();
-                            
-                            if (userpostc.modelCreateUserPost(userpost))
-                            {
-                                response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id);
-                            }
-                            else
-                            {
-                                response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-1");
-                            }
+                            response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id);
                         }
                         else
                         {
-                            response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-2");
+                            response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-1");
                         }
                     }
                     else
                     {
-                        response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-3");
+                        response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-2");
                     }
                 }
                 else
@@ -124,12 +120,11 @@ public class PostNew extends HttpServlet {
         {
             response.sendRedirect("index.jsp?error=101");
         }
-        
     }
 
     @Override
-    public String getServletInfo() {
+    public String getServletInfo()
+    {
         return "Short description";
     }
-
 }

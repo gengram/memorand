@@ -72,6 +72,10 @@
         <servlet-name>TagNew</servlet-name>
         <servlet-class>com.memorand.servlets.nuevo.TagNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TaskNew</servlet-name>
+        <servlet-class>com.memorand.servlets.nuevo.TaskNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>TagNew</servlet-name>
         <url-pattern>/tagnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskNew</servlet-name>
+        <url-pattern>/tasknew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

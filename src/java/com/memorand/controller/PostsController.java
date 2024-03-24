@@ -54,7 +54,7 @@ public class PostsController
             }
 
             htmlcode += "<div class='col'>"
-                    + "<p>" + user_name + " - Hace " + timeAgo + "</p>"
+                    + "<p>" + user_name + " - Hace " + timeAgo + " <a href='publicacion.jsp?post_id="+ post.getPost_id() +"'>Ver comentarios</a> </p>"
                     + "<p>" + post.getPost_text() + "</p>"
                     + "<p> Bien: " + post.getPost_r1() + " Corazón: " + post.getPost_r3() + " Sorpresa: " + post.getPost_r3() + "</p>"
                     + "</div>";
@@ -73,5 +73,4 @@ public class PostsController
         PostsModel postm = new PostsModel();
         return postm.isAnyPostByCollab(collab_id);
     }
-    
 }

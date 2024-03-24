@@ -1,5 +1,6 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.TasksController"%>
 <%@page import="com.memorand.controller.TagsController"%>
 <%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
@@ -22,6 +23,7 @@
     
     String proj_name = "null";
     
+    TasksController taskc = new TasksController();
     PostsController postc = new PostsController();
     
     String user_type = (String) session.getAttribute("user_type");
@@ -112,12 +114,21 @@
                 </div>
                 
                 <div class="col">
-                <%--
-                    <br>
+                <%
+                    if (view != null)
+                    {
+                %>
+                    
+                    <a href="?collab_id=<%=collab_id%>">
+                        <button>Reiniciar</button>
+                    </a>
+                <%
+                    }
+                %>
                     <a href="?collab_id=<%=collab_id%>&view=call">
                         <button>Calendario</button>
                     </a>
-                    <a href="?collab_id=<%=collab_id%>&view=prty">
+                    <a href="?collab_id=<%=collab_id%>&view=prio">
                         <button>Prioridad</button>
                     </a>
                     <a href="?collab_id=<%=collab_id%>&view=stat">
@@ -126,19 +137,6 @@
                     <a href="?collab_id=<%=collab_id%>&view=date">
                         <button>Fecha</button>
                     </a>
-                --%>
-                <%
-                    if (view != null)
-                    {
-                %>
-                    <a href="?collab_id=<%=collab_id%>">
-                        <button>Quitar filtro</button>
-                    </a>
-                <%
-                    }
-                %>
-                    <br>
-                    <br>
                     <a href="?collab_id=<%=collab_id%>&view=tags">
                         <button>Etiquetas</button>
                     </a>
@@ -146,14 +144,18 @@
                     if ("tags".equals(view))
                     {
                 %>
-                    <select name="tag_name" id="tag_name">
-                        <option value="" disabled selected hidden>Etiqueta</option>
-                        <%= tagc.modelGetListTagsByCollab(collab_id) %>
-                    </select>
+                    <form action="" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <select name="tag_name" id="tag_name">
+                            <option value="" disabled selected hidden>Etiqueta</option>
+                            <%= tagc.modelGetListTagsByCollab(collab_id) %>
+                        </select>
+                        <input type="submit" value="Ordenar">
+                    </form>
                 <%
                     }
                 %>
                 </div>
+                    
             </div>
                         
             <br>
@@ -162,12 +164,10 @@
     <%
         if (collab_id != null)
         {
-            if (false)
+            if (taskc.modelIsAnyTaskByCollab(collab_id))
             {
     %>
-                <div class="col">
-                    <p>HAY TAREAS</p>
-                </div>
+                <%= taskc.modelGetAllTasksByCollab(collab_id,"task_edate") %>
     <%
             }
             else

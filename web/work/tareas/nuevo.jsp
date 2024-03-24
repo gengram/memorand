@@ -55,15 +55,15 @@
             <br>
             <select name="task_prior" id="task_prior" required>
                 <option value="" disabled selected hidden>Prioridad</option>
-                <option value="baja">Baja</option>
-                <option value="media">Media</option>
-                <option value="alta">Alta</option>
+                <option value="Baja">Baja</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
             </select>
             <select name="task_diff" id="task_diff" required>
                 <option value="" disabled selected hidden>Dificultad</option>
-                <option value="baja">Sencilla</option>
-                <option value="media">Intermedia</option>
-                <option value="alta">Compleja</option>
+                <option value="Sencilla">Sencilla</option>
+                <option value="Intermedia">Intermedia</option>
+                <option value="Compleja">Compleja</option>
             </select>
             <br>
             <input type="submit" value="Nueva tarea">

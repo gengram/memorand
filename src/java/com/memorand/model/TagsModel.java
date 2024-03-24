@@ -54,41 +54,31 @@ public class TagsModel extends Conexion
     {
         ArrayList<Tag> all_tag = new ArrayList<>();
         
-        PreparedStatement ps1;
-        PreparedStatement ps2;
+        PreparedStatement ps;
         
         try
         {
-            String sql1 = "SELECT tag_id FROM cotags WHERE collab_id = ?";
+            String sql = "SELECT t.tag_id, t.tag_name, t.tag_color " +
+                         "FROM tags t " +
+                         "INNER JOIN cotags c ON t.tag_id = c.tag_id " +
+                         "WHERE c.collab_id = ? " +
+                         "ORDER BY t.tag_name";
             
-            ps1 = getConnection().prepareStatement(sql1);
+            ps = getConnection().prepareStatement(sql);
             
-            ps1.setString(1, collab_id);
+            ps.setString(1, collab_id);
             
-            ResultSet rs1 = ps1.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
-            while (rs1.next())
+            while (rs.next())
             {
-                String t_id = rs1.getString(1);
-                
-                String sql2 = "SELECT * FROM tags WHERE tag_id = ? ORDER BY tag_name";
-                
-                ps2 = getConnection().prepareStatement(sql2);
-                
-                ps2.setString(1, t_id);
-                
-                ResultSet rs2 = ps2.executeQuery();
-                
-                while (rs2.next())
-                {
-                    String tag_id = rs2.getString(1);
-                    String tag_name = rs2.getString(2);
-                    String tag_color = rs2.getString(3);
+                String tag_id = rs.getString(1);
+                String tag_name = rs.getString(2);
+                String tag_color = rs.getString(3);
                     
-                    Tag tag = new Tag(tag_id, tag_name, tag_color);
+                Tag tag = new Tag(tag_id, tag_name, tag_color);
                     
-                    all_tag.add(tag);
-                }
+                all_tag.add(tag);
             }
         }
         
@@ -107,7 +97,6 @@ public class TagsModel extends Conexion
                 { System.err.println(ex.getMessage()); }
             }
         }
-        
         
         return all_tag;
     }
