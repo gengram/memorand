@@ -1,4 +1,4 @@
-package com.memorand.servlets.posts;
+package com.memorand.servlets.nuevo;
 
 import com.memorand.beans.CoPost;
 import com.memorand.beans.Post;

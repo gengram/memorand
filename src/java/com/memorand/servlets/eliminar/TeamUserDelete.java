@@ -1,4 +1,4 @@
-package com.memorand.servlets.teams;
+package com.memorand.servlets.eliminar;
 
 import com.memorand.controller.TeamUsersController;
 import java.io.IOException;

@@ -1,9 +1,9 @@
-package com.memorand.servlets.institutions;
+package com.memorand.servlets.nuevo;
 
-import com.memorand.beans.Institution;
-import com.memorand.controller.InstitutionsController;
-import com.memorand.util.Generador;
-import java.io.File;
+import com.memorand.beans.Collab;
+import com.memorand.beans.CollabUser;
+import com.memorand.controller.CollabUsersController;
+import com.memorand.controller.CollabsController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +17,15 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class InstitutionNew extends HttpServlet {
-    
+public class CollabUserNew extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     @Override
@@ -35,13 +33,14 @@ public class InstitutionNew extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
+        response.setContentType("text/html;charset=UTF-8");
+        
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
         
-        ArrayList<String> inst_fields = new ArrayList<>();
+        ArrayList<String> form_fields = new ArrayList<>();
         
-        String inst_img = "";
         String user_type = (String) session.getAttribute("user_type");
         
         try
@@ -52,37 +51,42 @@ public class InstitutionNew extends HttpServlet {
             {
                 FileItem fi = (FileItem) items.get(i);
                 
-                if (!fi.isFormField())
-                {
-                    File file = new File("C:\\memorand\\web\\XM-Uploads\\institutions\\"+fi.getName());
-                    fi.write(file);
-                    inst_img = "XM-Uploads/institutions/"+fi.getName();
-                }
-                else
-                {
-                    inst_fields.add(fi.getString());
-                }
+                if (fi.isFormField())
+                    form_fields.add(fi.getString());
             }
-            
         }
         catch (Exception e)
         {
             System.err.println(e.getMessage());
         }
         
-        Generador generador = new Generador();
-        
-        Institution inst = new Institution(generador.newID(), inst_fields.get(0), inst_fields.get(1), inst_img, inst_fields.get(2), inst_fields.get(3), inst_fields.get(4), inst_fields.get(5));
-        InstitutionsController instc = new InstitutionsController();
-        
-        if (user_type != null & "staff".equals(user_type))
+        if (user_type != null && user_type.equals("admin"))
         {
-            if (instc.modelCreateInst(inst))
+            String t_id = form_fields.get(0);
+            String p_id = form_fields.get(1);
+            String ch_id = form_fields.get(2);
+            
+            CollabsController collabc = new CollabsController();
+            Collab collab = collabc.modelGetCollabInfoByTeamAndProject(t_id, p_id);
+            
+            String c_id = collab.getCollab_id();
+            
+            CollabUser collabuser = new CollabUser(c_id, ch_id);
+            CollabUsersController collabuserc = new CollabUsersController();
+            
+            if (collabuserc.modelCreateCollabUser(collabuser))
             {
-                response.sendRedirect("staff/instituciones.jsp");
+                response.sendRedirect("admin/gestion/lideres.jsp?team_id="+ t_id +"&proj_id="+ p_id);
+            }
+            else
+            {
+                response.sendRedirect("admin/gestion/lideres.jsp?error=200-1");
             }
         }
-        
+        else
+        {
+            response.sendRedirect("index.jsp?error=101");
+        }
     }
 
     @Override

@@ -1,10 +1,11 @@
-package com.memorand.servlets.collab;
+package com.memorand.servlets.nuevo;
 
-import com.memorand.beans.Collab;
-import com.memorand.controller.CollabsController;
+import com.memorand.beans.InProject;
+import com.memorand.beans.Project;
+import com.memorand.controller.InProjectsController;
+import com.memorand.controller.ProjectsController;
 import com.memorand.util.Generador;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -17,18 +18,19 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class CollabNew extends HttpServlet {
+public class ProjectNew extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -39,7 +41,7 @@ public class CollabNew extends HttpServlet {
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
         
-        ArrayList<String> collab_fields = new ArrayList<>();
+        ArrayList<String> proj_fields = new ArrayList<>();
         
         String user_type = (String) session.getAttribute("user_type");
         
@@ -52,9 +54,10 @@ public class CollabNew extends HttpServlet {
                 FileItem fi = (FileItem) items.get(i);
                 
                 if (fi.isFormField())
-                    collab_fields.add(fi.getString());
+                    proj_fields.add(fi.getString());
             }
         }
+        
         catch (Exception e)
         {
             System.err.println(e.getMessage());
@@ -62,28 +65,44 @@ public class CollabNew extends HttpServlet {
         
         if (user_type != null && user_type.equals("admin"))
         {
-            Generador g = new Generador();
+            Generador g1 = new Generador();
             
-            String collab_id = g.newID();
-            String team_id = collab_fields.get(0);
-            String proj_id = collab_fields.get(1);
-        
-            Collab collab = new Collab(collab_id, "si", team_id, proj_id);
-            CollabsController collabc = new CollabsController();
+            String proj_id = g1.newID();
+            String inst_id = (String) session.getAttribute("inst_id");
             
-            if (collabc.modelCreateCollab(collab))
+            if (inst_id != null)
             {
-                response.sendRedirect("admin/gestion/proyectos.jsp?team_id="+ team_id);
+                String proj_color = proj_fields.get(1).substring(1);
+            
+                Project project = new Project(proj_id, proj_fields.get(0), proj_color);
+                ProjectsController projc = new ProjectsController();
+                
+                if (projc.modelCreateProject(project))
+                {
+                    InProject inproj = new InProject(inst_id, proj_id);
+                    InProjectsController inprojc = new InProjectsController();
+                    
+                    if (inprojc.modelCreateInProject(inproj))
+                    { response.sendRedirect("admin/proyectos.jsp"); }
+                    else
+                    { response.sendRedirect("admin/home.jsp?error=200-1");}
+                
+                }
+                else
+                {
+                    response.sendRedirect("admin/home.jsp?error=200-2");
+                }
             }
             else
             {
-                response.sendRedirect("admin/gestion/proyectos.jsp?error=200");
+                response.sendRedirect("admin/home.jsp?error=200-3");
             }
         }
         else
         {
             response.sendRedirect("index.jsp?error=101");
         }
+        
     }
 
     @Override

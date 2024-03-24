@@ -1,9 +1,7 @@
-package com.memorand.servlets.collab;
+package com.memorand.servlets.nuevo;
 
-import com.memorand.beans.Collab;
-import com.memorand.beans.CollabUser;
-import com.memorand.controller.CollabUsersController;
-import com.memorand.controller.CollabsController;
+import com.memorand.beans.TeamUser;
+import com.memorand.controller.TeamUsersController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class CollabUserNew extends HttpServlet {
+public class TeamUserNew extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +37,7 @@ public class CollabUserNew extends HttpServlet {
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
         
-        ArrayList<String> form_fields = new ArrayList<>();
+        ArrayList<String> teamuser_fields = new ArrayList<>();
         
         String user_type = (String) session.getAttribute("user_type");
         
@@ -52,7 +50,7 @@ public class CollabUserNew extends HttpServlet {
                 FileItem fi = (FileItem) items.get(i);
                 
                 if (fi.isFormField())
-                    form_fields.add(fi.getString());
+                    teamuser_fields.add(fi.getString());
             }
         }
         catch (Exception e)
@@ -62,25 +60,19 @@ public class CollabUserNew extends HttpServlet {
         
         if (user_type != null && user_type.equals("admin"))
         {
-            String t_id = form_fields.get(0);
-            String p_id = form_fields.get(1);
-            String ch_id = form_fields.get(2);
+            String team_id = teamuser_fields.get(0);
+            String user_id = teamuser_fields.get(1);
             
-            CollabsController collabc = new CollabsController();
-            Collab collab = collabc.modelGetCollabInfoByTeamAndProject(t_id, p_id);
+            TeamUser teamuser = new TeamUser(team_id, user_id);
+            TeamUsersController teamuserc = new TeamUsersController();
             
-            String c_id = collab.getCollab_id();
-            
-            CollabUser collabuser = new CollabUser(c_id, ch_id);
-            CollabUsersController collabuserc = new CollabUsersController();
-            
-            if (collabuserc.modelCreateCollabUser(collabuser))
+            if (teamuserc.modelCreateTeamUser(teamuser))
             {
-                response.sendRedirect("admin/gestion/lideres.jsp?team_id="+ t_id +"&proj_id="+ p_id);
+                response.sendRedirect("admin/gestion/integrantes.jsp?team_id="+ team_id);
             }
             else
             {
-                response.sendRedirect("admin/gestion/lideres.jsp?error=200-1");
+                response.sendRedirect("admin/gestion/integrantes.jsp?error=200");
             }
         }
         else

@@ -112,6 +112,7 @@
                 </div>
                 
                 <div class="col">
+                <%--
                     <br>
                     <a href="?collab_id=<%=collab_id%>&view=call">
                         <button>Calendario</button>
@@ -125,12 +126,13 @@
                     <a href="?collab_id=<%=collab_id%>&view=date">
                         <button>Fecha</button>
                     </a>
+                --%>
                 <%
                     if (view != null)
                     {
                 %>
                     <a href="?collab_id=<%=collab_id%>">
-                        <button>RES</button>
+                        <button>Quitar filtro</button>
                     </a>
                 <%
                     }
@@ -152,7 +154,6 @@
                     }
                 %>
                 </div>
-
             </div>
                         
             <br>

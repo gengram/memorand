@@ -2,11 +2,11 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>InstitutionNew</servlet-name>
-        <servlet-class>com.memorand.servlets.institutions.InstitutionNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.InstitutionNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserNew</servlet-name>
-        <servlet-class>com.memorand.servlets.users.UserNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.UserNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -18,27 +18,27 @@
     </servlet>
     <servlet>
         <servlet-name>TeamNew</servlet-name>
-        <servlet-class>com.memorand.servlets.teams.TeamNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.TeamNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProjectNew</servlet-name>
-        <servlet-class>com.memorand.servlets.projects.ProjectNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.ProjectNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeamUserNew</servlet-name>
-        <servlet-class>com.memorand.servlets.teams.TeamUserNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.TeamUserNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeamUserDelete</servlet-name>
-        <servlet-class>com.memorand.servlets.teams.TeamUserDelete</servlet-class>
+        <servlet-class>com.memorand.servlets.eliminar.TeamUserDelete</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CollabNew</servlet-name>
-        <servlet-class>com.memorand.servlets.collab.CollabNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.CollabNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CollabUserNew</servlet-name>
-        <servlet-class>com.memorand.servlets.collab.CollabUserNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.CollabUserNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ApiLogin</servlet-name>
@@ -50,7 +50,7 @@
     </servlet>
     <servlet>
         <servlet-name>PostNew</servlet-name>
-        <servlet-class>com.memorand.servlets.posts.PostNew</servlet-class>
+        <servlet-class>com.memorand.servlets.nuevo.PostNew</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UploadFile</servlet-name>

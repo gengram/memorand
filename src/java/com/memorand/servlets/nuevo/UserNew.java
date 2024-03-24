@@ -1,4 +1,4 @@
-package com.memorand.servlets.users;
+package com.memorand.servlets.nuevo;
 
 import com.memorand.beans.InUser;
 import com.memorand.beans.User;
