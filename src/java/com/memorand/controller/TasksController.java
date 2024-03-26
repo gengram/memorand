@@ -13,6 +13,12 @@ public class TasksController
         return taskm.createTask(task);
     }
     
+    public Task modelGetTaskInfoById(String t_id)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.getTaskInfoById(t_id);
+    }
+    
     public String modelGetAllTasksByCollab(String collab_id, String arg)
     {
         String htmlcode = "";

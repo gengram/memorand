@@ -55,6 +55,56 @@ public class TasksModel extends Conexion
         return flag;
     }
     
+    public Task getTaskInfoById(String t_id)
+    {
+        Task task = null;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT * FROM tasks WHERE task_id = ? LIMIT 1";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, t_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                String task_id = rs.getString(1);
+                String task_name = rs.getString(2);
+                String task_info = rs.getString(3);
+                Timestamp task_sdate = rs.getTimestamp(4);
+                Timestamp task_edate = rs.getTimestamp(5);
+                String task_status = rs.getString(6);
+                String task_prior = rs.getString(7);
+                String task_diff = rs.getString(8);
+                
+                task = new Task(task_id, task_name, task_info, task_sdate, task_edate, task_status, task_prior, task_diff);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return task;
+    }
+    
     public ArrayList<Task> getAllTasksByCollab(String collab_id, String arg)
     {
         ArrayList<Task> all_task = new ArrayList<>();

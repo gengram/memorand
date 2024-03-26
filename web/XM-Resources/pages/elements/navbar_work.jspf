@@ -13,7 +13,7 @@
         </button>
 
         <!-- Empresa -->
-        <a class="navbar-brand" href="/memorand/staff/home.jsp">
+        <a class="navbar-brand" href="/memorand/work/home.jsp">
             <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="200" style="margin-left:40%">
         </a>
 
