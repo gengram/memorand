@@ -144,12 +144,12 @@
                     if ("tags".equals(view))
                     {
                 %>
-                    <form action="" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-                        <select name="tag_name" id="tag_name">
+                    <form action="../ordertags?view=<%=view%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <select name="tag_name" id="tag_name" required>
                             <option value="" disabled selected hidden>Etiqueta</option>
                             <%= tagc.modelGetListTagsByCollab(collab_id) %>
                         </select>
-                        <input type="submit" value="Ordenar">
+                        <input type="submit" value="Filtrar">
                     </form>
                 <%
                     }
