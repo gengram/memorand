@@ -8,6 +8,7 @@ create table institutions
 	inst_name varchar(128),
 	inst_type varchar(16),
 	inst_profile varchar(256),
+	inst_status varchar(2),
 	lim_ch varchar(8),
 	lim_wk varchar(8),
 	lim_gp varchar(8),

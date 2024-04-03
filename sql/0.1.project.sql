@@ -22,16 +22,6 @@ create table posts
 	post_date timestamp
 );
 
-create table comments
-(
-	comment_id varchar(36) primary key not null,
-	comment_text varchar(512),
-	comment_r1 int,
-	comment_r2 int,
-	comment_r3 int,
-	comment_date timestamp
-);
-
 create table tags
 (
 	tag_id varchar(36) primary key not null,
@@ -61,14 +51,6 @@ create table coposts
     post_id varchar(36),
     foreign key (collab_id) references collabs (collab_id),
     foreign key (post_id) references posts (post_id)
-);
-
-create table postcoms
-(
-	post_id varchar(36),
-    comment_id varchar(36),
-    foreign key (post_id) references posts (post_id),
-    foreign key (comment_id) references comments (comment_id)
 );
 
 create table tasktags

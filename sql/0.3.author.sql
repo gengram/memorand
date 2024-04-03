@@ -32,10 +32,3 @@ create table userposts
     foreign key (post_id) references posts (post_id)
 );
 
-create table usercoms
-(
-    user_id varchar(36),
-    comment_id varchar(36),
-    foreign key (user_id) references users (user_id),
-	foreign key (comment_id) references comments (comment_id)
-);

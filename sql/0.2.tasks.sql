@@ -38,9 +38,9 @@ create table taskideas
 
 create table taskcanvas
 (
-    task_id varchar(36),
-    canva_id varchar(36),
-    foreign key (task_id) references tasks (task_id),
+	task_id varchar(36),
+	canva_id varchar(36),
+	foreign key (task_id) references tasks (task_id),
 	foreign key (canva_id) references canvas (canva_id)
 );
 

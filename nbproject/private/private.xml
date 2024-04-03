@@ -3,20 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/CoTasksController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/TagsController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/PostNew.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
+            <file>file:/C:/memorand/web/work/tareas/nuevo.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/CoTagsModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/CoTasksModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/util/Duracion.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/TasksModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/TaskNew.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/model/TagsModel.java</file>
             <file>file:/C:/memorand/web/work/proyecto.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/TagsController.java</file>
-            <file>file:/C:/memorand/web/work/tareas/nuevo.jsp</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/PostsController.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/CoTagsModel.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/CoTasksController.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/model/PostsModel.java</file>
             <file>file:/C:/memorand/web/work/configuracion.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/TaskNew.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/TasksModel.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/CoTasksModel.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/PostNew.java</file>
         </group>
     </open-files>
 </project-private>
