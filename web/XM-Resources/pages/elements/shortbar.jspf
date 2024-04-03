@@ -12,6 +12,9 @@
 
         <!-- Modal de inicio de sesión -->
         <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent">
+            <a href="ventas.jsp">
+                <button class="btn custom-blog btn-sm me-5 fs-5 border-opacity-25 rounded-4">Ventas</button>
+            </a>
             <button class="btn custom-blog btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">Iniciar sesión</button>
         </div>
     </div>

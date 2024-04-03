@@ -17,7 +17,7 @@ public class InstitutionsModel extends Conexion {
         
         try
         {
-            String sql = "INSERT INTO institutions (inst_id, inst_name, inst_type, inst_profile, lim_ch, lim_wk, lim_gp, lim_ks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO institutions (inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             ps = getConnection().prepareStatement(sql);
             
@@ -25,10 +25,11 @@ public class InstitutionsModel extends Conexion {
             ps.setString(2, inst.getInst_name());
             ps.setString(3, inst.getInst_type());
             ps.setString(4, inst.getInst_profile());
-            ps.setString(5, inst.getLim_ch());
-            ps.setString(6, inst.getLim_wk());
-            ps.setString(7, inst.getLim_gp());
-            ps.setString(8, inst.getLim_ks());
+            ps.setString(5, inst.getInst_status());
+            ps.setString(6, inst.getLim_ch());
+            ps.setString(7, inst.getLim_wk());
+            ps.setString(8, inst.getLim_gp());
+            ps.setString(9, inst.getLim_ks());
             
             if (ps.executeUpdate() == 1)
             {
@@ -60,7 +61,7 @@ public class InstitutionsModel extends Conexion {
         
         ArrayList<Institution> all_inst = new ArrayList<>();
         
-        Statement st = null;
+        Statement st;
         
         try
         {
@@ -76,12 +77,13 @@ public class InstitutionsModel extends Conexion {
                 String inst_name = rs.getString(2);
                 String inst_type = rs.getString(3);
                 String inst_profile = rs.getString(4);
-                String lim_ch = rs.getString(5);
-                String lim_wk = rs.getString(6);
-                String lim_gp = rs.getString(7);
-                String lim_ks = rs.getString(8);
+                String inst_status = rs.getString(5);
+                String lim_ch = rs.getString(6);
+                String lim_wk = rs.getString(7);
+                String lim_gp = rs.getString(8);
+                String lim_ks = rs.getString(9);
                 
-                Institution new_inst = new Institution(inst_id, inst_name, inst_type, inst_profile, lim_ch, lim_wk, lim_gp, lim_ks);
+                Institution new_inst = new Institution(inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks);
                 
                 all_inst.add(new_inst);
             }
@@ -110,7 +112,7 @@ public class InstitutionsModel extends Conexion {
     
         Institution inst_info = null;
         
-        PreparedStatement ps = null;
+        PreparedStatement ps;
         
         try
         {
@@ -128,12 +130,13 @@ public class InstitutionsModel extends Conexion {
                 String inst_name = rs.getString(2);
                 String inst_type = rs.getString(3);
                 String inst_profile = rs.getString(4);
-                String lim_ch = rs.getString(5);
-                String lim_wk = rs.getString(6);
-                String lim_gp = rs.getString(7);
-                String lim_ks = rs.getString(8);
+                String inst_status = rs.getString(5);
+                String lim_ch = rs.getString(6);
+                String lim_wk = rs.getString(7);
+                String lim_gp = rs.getString(8);
+                String lim_ks = rs.getString(9);
                 
-                inst_info = new Institution(inst_id, inst_name, inst_type, inst_profile, lim_ch, lim_wk, lim_gp, lim_ks);
+                inst_info = new Institution(inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks);
             }
         }
         
@@ -160,8 +163,7 @@ public class InstitutionsModel extends Conexion {
     
         Institution inst_info = null;
         
-        PreparedStatement ps1 = null;
-        PreparedStatement ps2 = null;
+        PreparedStatement ps1;
         
         try
         {
@@ -178,7 +180,6 @@ public class InstitutionsModel extends Conexion {
                 String i_id = rs1.getString(1);
                 
                 inst_info = getInstInfoById(i_id);
-            
             }
         }
         

@@ -70,9 +70,20 @@ public class InstitutionNew extends HttpServlet {
             System.err.println(e.getMessage());
         }
         
-        Generador generador = new Generador();
+        Generador g = new Generador();
         
-        Institution inst = new Institution(generador.newID(), inst_fields.get(0), inst_fields.get(1), inst_img, inst_fields.get(2), inst_fields.get(3), inst_fields.get(4), inst_fields.get(5));
+        String inst_id = g.newID();
+        String inst_name = inst_fields.get(0).trim();
+        String inst_type = inst_fields.get(1).trim();
+        String inst_profile = inst_img;
+        String inst_status = "si";
+        String lim_ch = inst_fields.get(2).trim();
+        String lim_wk = inst_fields.get(3).trim();
+        String lim_gp = inst_fields.get(4).trim();
+        String lim_ks = inst_fields.get(5).trim();
+        
+        Institution inst = new Institution(inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks);
+        //Institution inst = new Institution(inst_id, inst_fields.get(0), inst_fields.get(1), inst_img, inst_fields.get(2), inst_fields.get(3), inst_fields.get(4), inst_fields.get(5));
         InstitutionsController instc = new InstitutionsController();
         
         if (user_type != null & "staff".equals(user_type))

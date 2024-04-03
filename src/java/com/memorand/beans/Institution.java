@@ -8,6 +8,7 @@ public class Institution implements Serializable {
     private String inst_name;
     private String inst_type;
     private String inst_profile;
+    private String inst_status;
     private String lim_ch;
     private String lim_wk;
     private String lim_gp;
@@ -15,11 +16,12 @@ public class Institution implements Serializable {
 
     public Institution() {}
 
-    public Institution(String inst_id, String inst_name, String inst_type, String inst_profile, String lim_ch, String lim_wk, String lim_gp, String lim_ks) {
+    public Institution(String inst_id, String inst_name, String inst_type, String inst_profile, String inst_status, String lim_ch, String lim_wk, String lim_gp, String lim_ks) {
         this.inst_id = inst_id;
         this.inst_name = inst_name;
         this.inst_type = inst_type;
         this.inst_profile = inst_profile;
+        this.inst_status = inst_status;
         this.lim_ch = lim_ch;
         this.lim_wk = lim_wk;
         this.lim_gp = lim_gp;
@@ -56,6 +58,14 @@ public class Institution implements Serializable {
 
     public void setInst_profile(String inst_profile) {
         this.inst_profile = inst_profile;
+    }
+    
+    public String getInst_status() {
+        return inst_status;
+    }
+    
+    public void setInst_status(String inst_status) {
+        this.inst_status = inst_status;
     }
 
     public String getLim_ch() {

@@ -1,14 +1,15 @@
-<%-- Memorand by Gengram © 2023 --%>
+<!-- Memorand by Gengram © 2023 -->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-
 <%
+    // REDIRECCIONAR SI YA INICIÓ SESIÓN
     String user_type = (String) session.getAttribute("user_type");
 
-    if (user_type != null || "".equals(user_type)) {
-        switch (user_type) {
+    if (user_type != null || "".equals(user_type))
+    {
+        switch (user_type)
+        {
             case "staff":
                 response.sendRedirect("staff/home.jsp");
                 break;
@@ -22,6 +23,7 @@
     }
 %>
 
+<!DOCTYPE html>
 
 <html>
 
@@ -45,6 +47,7 @@
         <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
 
         <div class="container">
+            
             <div class="row mt-3">
                 <div class="col-lg-7 col-md-12 text-center" style="background-color: transparent">
                     <img class="img-fluid" src="XM-Resources/vector/8614928.jpg" alt="Imagen" style="max-width: 450px;">
@@ -60,7 +63,6 @@
             </div>
            
         </div>
-
 
     </body>
 
