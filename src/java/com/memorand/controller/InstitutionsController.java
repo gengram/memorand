@@ -2,6 +2,7 @@ package com.memorand.controller;
 
 import com.memorand.beans.Institution;
 import com.memorand.model.InstitutionsModel;
+import java.util.ArrayList;
 
 public class InstitutionsController {
 
@@ -46,27 +47,33 @@ public class InstitutionsController {
                 + "                <tbody>";
         
         InstitutionsModel instm = new InstitutionsModel();
+        ArrayList<Institution> insts = instm.getAllInstByStatus(i_status);
         
-        for (Institution i : instm.getAllInstByStatus(i_status))
+        if (insts.isEmpty()) 
+            htmlcode = "<p>No hay administradores disponibles.</p>";
+        else
         {
-            InstitutionsModel inst_counter = new InstitutionsModel();
-            
-            htmlcode
-                    += "<tr>\n"
-                    + "     <td>" + i.getInst_status() +"</td>"
-                    + "     <td> <img src='../" + i.getInst_profile() + "' width='40'></img>" + i.getInst_name() + " " + i.getInst_type() + "</td>\n"
-                    + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "ch") + "/" + i.getLim_ch() + "</td>\n"
-                    + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "wk") + "/" + i.getLim_wk() + "</td>\n"
-                    + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "teams") + "/" + i.getLim_gp() + "</td>\n"
-                    + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "projects") + "/" + i.getLim_ks() + "</td>\n"
-                    + "     <td>"
-                    + "         <a href='institucion.jsp?id=" + i.getInst_id() + "'>Ver</a>"
-                    + "     </td>\n"
-                    + "</tr>\n";
+            for (Institution i : insts)
+            {
+                InstitutionsModel inst_counter = new InstitutionsModel();
+
+                htmlcode
+                        += "<tr>\n"
+                        + "     <td>" + i.getInst_status() +"</td>"
+                        + "     <td> <img src='../" + i.getInst_profile() + "' width='40'></img>" + i.getInst_name() + " " + i.getInst_type() + "</td>\n"
+                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "ch") + "/" + i.getLim_ch() + "</td>\n"
+                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "wk") + "/" + i.getLim_wk() + "</td>\n"
+                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "teams") + "/" + i.getLim_gp() + "</td>\n"
+                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "projects") + "/" + i.getLim_ks() + "</td>\n"
+                        + "     <td>"
+                        + "         <a href='institucion.jsp?id=" + i.getInst_id() + "'>Ver</a>"
+                        + "     </td>\n"
+                        + "</tr>\n";
+            }
+
+            htmlcode += "</tbody>\n" +
+    "            </table>";
         }
-        
-        htmlcode += "</tbody>\n" +
-"            </table>";
         
         return htmlcode;
     }

@@ -1,6 +1,6 @@
 package com.memorand.servlets.obtener;
 
-import com.memorand.controller.InstitutionsController;
+import com.memorand.controller.UsersController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class InstitutionsGet extends HttpServlet
+public class UsersGet extends HttpServlet
 {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         String reqby = request.getParameter("reqby");
+        String inst = request.getParameter("inst");
         String status = request.getParameter("status");
         
         response.setContentType("text/html");
@@ -28,11 +29,11 @@ public class InstitutionsGet extends HttpServlet
         {
             switch (reqby)
             {
-                case "status":
+                case "admin":
                     
                     PrintWriter out = response.getWriter();
-                    InstitutionsController instc = new InstitutionsController();
-                    String htmlContent = instc.modelGetAllInstByStatus(status);
+                    UsersController userc = new UsersController();
+                    String htmlContent = userc.modelGetAdmins(inst, status);
                     out.println(htmlContent);
                     break;
                     
@@ -47,5 +48,4 @@ public class InstitutionsGet extends HttpServlet
             session.invalidate();
         }
     }
-
 }

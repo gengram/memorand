@@ -202,6 +202,7 @@ public class UsersModel extends Conexion {
         return user_info;
     }
     
+    // DEPRECIADO
     public ArrayList<User> getAllAdminByInst(String inst_id) {
     
         ArrayList<User> all_admin = new ArrayList<>();
@@ -267,8 +268,63 @@ public class UsersModel extends Conexion {
     
     }
     
-    public ArrayList<User> getAllAdmin() {
+    public ArrayList<User> getAdmins(String inst_id, String a_status)
+    {
+        ArrayList<User> all_admin = new ArrayList<>();
+        
+        PreparedStatement ps;
+        ResultSet rs;
+
+        try
+        {
+            String sql = "SELECT u.user_id, u.user_email, u.user_name, u.user_pat, u.user_mat, u.user_status, u.user_profile "
+                    + "FROM inusers i "
+                    + "INNER JOIN users u ON i.user_id = u.user_id "
+                    + "WHERE i.inst_id = ? AND u.user_type = 'admin' AND u.user_status = ? "
+                    + "ORDER BY u.user_pat";
+
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, inst_id);
+            ps.setString(2, a_status);
+
+            rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                String admin_id = rs.getString(1);
+                String admin_email = rs.getString(2);
+                String admin_name = rs.getString(3);
+                String admin_pat = rs.getString(4);
+                String admin_mat = rs.getString(5);
+                String admin_status = rs.getString(6);
+                String admin_profile = rs.getString(7);
+
+                User admin = new User(admin_id, admin_email, "", "", admin_name, admin_pat, admin_mat, admin_status, admin_profile);
+                all_admin.add(admin);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_admin;
+    }
     
+    public ArrayList<User> getAllAdmin()
+    {
         ArrayList<User> all_admin = new ArrayList<>();
         
         Statement st = null;

@@ -1,3 +1,4 @@
+<%@page import="com.memorand.controller.UsersController"%>
 <%@page import="com.memorand.service.ServicesUtil"%>
 <%@page import="com.memorand.beans.Institution"%>
 <!-- Memorand by Gengram © 2023 -->
@@ -45,6 +46,10 @@
         action_status = s.transformActionStatus(inst_status);
     }
     else { response.sendRedirect("home.jsp"); }
+    
+    // ADMINISTRADORES
+    
+    UsersController usersc = new UsersController();
     
 %>
 
@@ -95,8 +100,10 @@
         
         <!-- AQUI VA LA TABLA DE ADMINISTRADORES, VER COM.MEMORAND.SERVLETS.OBTENER / User-->
         <div id="content">
+            <%= usersc.modelGetAdmins(inst_id, "si") %>
         </div>
         
+        <script src="scripts/institucion.js"></script>
         
     </body>
 

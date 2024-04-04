@@ -2,6 +2,7 @@ package com.memorand.controller;
 
 import com.memorand.beans.User;
 import com.memorand.model.UsersModel;
+import java.util.ArrayList;
 
 public class UsersController {
 
@@ -33,6 +34,13 @@ public class UsersController {
     
     }
     
+    public User modelGetUserInfoById(String u_id)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.getUserInfoById(u_id);
+    }
+    
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllAdminByInst(String inst_id, int level1, int level2) {
     
         String htmlcode = "";
@@ -68,6 +76,7 @@ public class UsersController {
     
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllAdmin() {
     
         String htmlcode = "";
@@ -109,6 +118,7 @@ public class UsersController {
         
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllChByInst(String inst_id, int level1, int level2) {
     
         String htmlcode = "";
@@ -149,6 +159,7 @@ public class UsersController {
     
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllChByCollabRed(String team_id, String proj_id) {
     
         String htmlcode = "";
@@ -172,6 +183,7 @@ public class UsersController {
     
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllWkByTeamRed (String team_id) {
     
         String htmlcode = "";
@@ -195,6 +207,7 @@ public class UsersController {
     
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllWkByInst(String inst_id, int level1, int level2) {
     
         String htmlcode = "";
@@ -235,6 +248,7 @@ public class UsersController {
     
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetListWkByInst(String inst_id) {
         
         String htmlcode = "";
@@ -251,6 +265,7 @@ public class UsersController {
         
     }
     
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetListChByInst(String inst_id) {
         
         String htmlcode = "";
@@ -267,16 +282,49 @@ public class UsersController {
         
     }
     
-    public User modelGetUserInfoById(String u_id) {
-    
+    public String modelGetAdmins(String inst_id, String admin_status)
+    {
+        String htmlcode = "<table border=\"1\">\n"
+                + "                <thead>\n"
+                + "                    <tr>\n"
+                + "                        <th></th>\n"
+                + "                        <th></th>\n"
+                + "                        <th>Nombre</th>\n"
+                + "                        <th></th>\n"
+                + "                        <th></th>\n"
+                + "                    </tr>\n"
+                + "                </thead>\n"
+                + "                <tbody>";
+        
         UsersModel userm = new UsersModel();
-        return userm.getUserInfoById(u_id);
-    
+        ArrayList<User> admins = userm.getAdmins(inst_id, admin_status);
+        
+        if (admins.isEmpty()) 
+            htmlcode = "<p>No hay administradores disponibles.</p>";
+        else
+        {
+            for (User admin : admins)
+            {
+                htmlcode
+                        += "<tr>\n"
+                        + "     <td>" + admin.getUser_status() + "</td>\n"
+                        + "     <td> <img src='../" + admin.getUser_profile() + "' width='40'></img> </td>\n"
+                        + "     <td>" + admin.getUser_name() +" "+ admin.getUser_pat() +" "+ admin.getUser_mat() +"</td>\n"
+                        + "     <td>" + admin.getUser_email() +"</td>\n"
+                        + "     <td> <a href='admin.jsp?id=" + admin.getUser_id() + "'>Ver</a> </td>\n"
+                        + "</tr>\n";
+            }
+
+            htmlcode += "</tbody>\n"
+                    + "</table>";
+        }
+        
+        return htmlcode;
     }
     
     public String modelConvUserType(String u_type) {
     
-        String user_type = null;
+        String user_type;
         
         switch (u_type)
         {
@@ -303,7 +351,7 @@ public class UsersController {
     
     public String modelConvUserStatus(String u_status) {
     
-        String user_status = null;
+        String user_status;
         
         switch (u_status)
         {

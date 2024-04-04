@@ -84,6 +84,10 @@
         <servlet-name>InstitutionGet</servlet-name>
         <servlet-class>com.memorand.servlets.obtener.InstitutionsGet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsersGet</servlet-name>
+        <servlet-class>com.memorand.servlets.obtener.UsersGet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -168,9 +172,13 @@
         <servlet-name>InstitutionGet</servlet-name>
         <url-pattern>/instget</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsersGet</servlet-name>
+        <url-pattern>/userget</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            60
         </session-timeout>
     </session-config>
 </web-app>
