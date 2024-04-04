@@ -34,7 +34,8 @@
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
 
-
+        <a href='../staff-new/home.jsp'>IR AL NUEVO STAFF</a>
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-1"></div>

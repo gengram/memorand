@@ -76,6 +76,14 @@
         <servlet-name>TaskNew</servlet-name>
         <servlet-class>com.memorand.servlets.nuevo.TaskNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetData</servlet-name>
+        <servlet-class>com.memorand.servlets.ResetData</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InstitutionGet</servlet-name>
+        <servlet-class>com.memorand.servlets.obtener.InstitutionsGet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>TaskNew</servlet-name>
         <url-pattern>/tasknew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetData</servlet-name>
+        <url-pattern>/resetdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InstitutionGet</servlet-name>
+        <url-pattern>/instget</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

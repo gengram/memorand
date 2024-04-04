@@ -27,7 +27,7 @@
 
 <html>
 
-    <%-- HEAD --%>
+    <!-- HEAD -->
     <head>
 
         <jsp:include page="XM-Resources/pages/imports.jspf"/>
@@ -40,7 +40,7 @@
 
     </head>
 
-    <%-- BODY --%>
+    <!-- BODY -->
     <body>
 
         <jsp:include page="XM-Resources/pages/elements/shortbar.jspf"/>

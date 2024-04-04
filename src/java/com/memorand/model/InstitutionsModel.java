@@ -108,6 +108,104 @@ public class InstitutionsModel extends Conexion {
         return all_inst;
     }
     
+    public ArrayList<Institution> getAllInstByStatus(String i_status) {
+        
+        ArrayList<Institution> all_inst = new ArrayList<>();
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT * FROM institutions WHERE inst_status = ? ORDER BY inst_name";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, i_status);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next())
+            {
+                String inst_id = rs.getString(1);
+                String inst_name = rs.getString(2);
+                String inst_type = rs.getString(3);
+                String inst_profile = rs.getString(4);
+                String inst_status = rs.getString(5);
+                String lim_ch = rs.getString(6);
+                String lim_wk = rs.getString(7);
+                String lim_gp = rs.getString(8);
+                String lim_ks = rs.getString(9);
+                
+                Institution new_inst = new Institution(inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks);
+                all_inst.add(new_inst);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return all_inst;
+    }
+    
+    public int getResourceCountById(String inst_id, String res_name)
+    {
+        int count = 0;
+        PreparedStatement ps;
+
+        try
+        {
+            String sql;
+            
+            switch (res_name)
+            {
+                case "ch":
+                case "wk":
+                    sql = "SELECT COUNT(*) AS count FROM inusers iu INNER JOIN users u ON iu.user_id = u.user_id WHERE iu.inst_id = ? AND u.user_type = ?";
+                    break;
+                case "teams":
+                    sql = "SELECT COUNT(*) AS count FROM inteams WHERE inst_id = ?";
+                    break;
+                case "projects":
+                    sql = "SELECT COUNT(*) AS count FROM inprojects WHERE inst_id = ?";
+                    break;
+                default:
+                    return count;
+            }
+
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, inst_id);
+
+            if (res_name.equals("ch") || res_name.equals("wk"))
+                ps.setString(2, res_name);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                count = rs.getInt("count");
+            
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        return count;
+    }
+    
     public Institution getInstInfoById(String i_id) {
     
         Institution inst_info = null;
