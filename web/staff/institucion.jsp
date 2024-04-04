@@ -1,9 +1,10 @@
+<!-- Memorand by Gengram © 2023 -->
+
 <%@page import="com.memorand.controller.UsersController"%>
 <%@page import="com.memorand.service.ServicesUtil"%>
 <%@page import="com.memorand.beans.Institution"%>
-<!-- Memorand by Gengram © 2023 -->
-
 <%@page import="com.memorand.controller.InstitutionsController"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
@@ -25,27 +26,34 @@
         
         Institution inst = instc.modelGetInstById(inst_id);
         
-        inst_name = inst.getInst_name();
-        inst_type = inst.getInst_type();
-        inst_profile = inst.getInst_profile();
-        inst_status = inst.getInst_status();
-        lim_ch = inst.getLim_ch();
-        lim_wk = inst.getLim_wk();
-        lim_gp = inst.getLim_gp();
-        lim_ks = inst.getLim_ks();
+        if (inst != null)
+        {
+            inst_name = inst.getInst_name();
+            inst_type = inst.getInst_type();
+            inst_profile = inst.getInst_profile();
+            inst_status = inst.getInst_status();
+            lim_ch = inst.getLim_ch();
+            lim_wk = inst.getLim_wk();
+            lim_gp = inst.getLim_gp();
+            lim_ks = inst.getLim_ks();
+
+            InstitutionsController instcounter = new InstitutionsController();
+
+            count_ch = instcounter.modelGetResourceCountById(inst_id, "ch");
+            count_wk = instcounter.modelGetResourceCountById(inst_id, "wk");
+            count_gp = instcounter.modelGetResourceCountById(inst_id, "teams");
+            count_ks = instcounter.modelGetResourceCountById(inst_id, "projects");
+            
+            ServicesUtil s = new ServicesUtil();
+
+            action_status = s.transformActionStatus(inst_status);
+        }
+        else
+        { response.sendRedirect("home.jsp"); }
         
-        InstitutionsController instcounter = new InstitutionsController();
-        
-        count_ch = instcounter.modelGetResourceCountById(inst_id, "ch");
-        count_wk = instcounter.modelGetResourceCountById(inst_id, "wk");
-        count_gp = instcounter.modelGetResourceCountById(inst_id, "teams");
-        count_ks = instcounter.modelGetResourceCountById(inst_id, "projects");
-        
-        ServicesUtil s = new ServicesUtil();
-        
-        action_status = s.transformActionStatus(inst_status);
     }
-    else { response.sendRedirect("home.jsp"); }
+    else
+    { response.sendRedirect("home.jsp"); }
     
     // ADMINISTRADORES
     

@@ -37,13 +37,11 @@ public class InstitutionsGet extends HttpServlet
                     break;
                     
                 default:
-                    response.sendRedirect("index.jsp?error=InvalidRequest");
                     session.invalidate();
             }
         }
         else
         {
-            response.sendRedirect("index.jsp?error=InvalidUserType");
             session.invalidate();
         }
     }

@@ -19,21 +19,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class InstitutionNew extends HttpServlet {
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException
+    {
         
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
@@ -83,22 +72,16 @@ public class InstitutionNew extends HttpServlet {
         String lim_ks = inst_fields.get(5).trim();
         
         Institution inst = new Institution(inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks);
-        //Institution inst = new Institution(inst_id, inst_fields.get(0), inst_fields.get(1), inst_img, inst_fields.get(2), inst_fields.get(3), inst_fields.get(4), inst_fields.get(5));
         InstitutionsController instc = new InstitutionsController();
         
         if (user_type != null & "staff".equals(user_type))
         {
             if (instc.modelCreateInst(inst))
             {
-                response.sendRedirect("staff/instituciones.jsp");
+                response.sendRedirect("staff/home.jsp");
             }
         }
         
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

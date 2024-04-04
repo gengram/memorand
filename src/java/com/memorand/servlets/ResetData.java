@@ -9,7 +9,8 @@ import javax.servlet.http.HttpSession;
 
 public class ResetData extends HttpServlet
 {
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         HttpSession session = request.getSession();
@@ -22,9 +23,8 @@ public class ResetData extends HttpServlet
         }
         else
         {
-            response.sendRedirect("index.jsp?error=100");
+            response.sendRedirect("index.jsp?error=InvalidUserType");
             session.invalidate();
         }
-        
     }
 }

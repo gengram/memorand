@@ -8,11 +8,11 @@ function confirmAction(endpoint)
         
         if (endpoint === "sales")
         {
-            urlDelServlet = "/memorand/staff-new/home.jsp";
+            urlDelServlet = "/memorand/staff/home.jsp";
         }
         else if (endpoint === "system")
         {
-            urlDelServlet = "/memorand/staff-new/home.jsp";
+            urlDelServlet = "/memorand/staff/home.jsp";
         }
         else if (endpoint === "reset")
         {

@@ -19,22 +19,11 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class UserNew extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
+public class UserNew extends HttpServlet
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
         HttpSession session = request.getSession();
         
         if(session != null)
@@ -83,7 +72,7 @@ public class UserNew extends HttpServlet {
                         Generador g1 = new Generador();
 
                         String user_id1 = g1.newID();
-                        String inst_id1 = user_fields.get(5);
+                        String inst_id1 = request.getParameter("id");
 
                         User admin = new User(user_id1, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
                         UsersController userc1 = new UsersController();
@@ -96,15 +85,15 @@ public class UserNew extends HttpServlet {
                                 InUsersController inusersc = new InUsersController();
 
                                 if (inusersc.modelCreateInUsers(inusers))
-                                { response.sendRedirect("staff/administradores.jsp?view=inst&inst_id="+inst_id1); }
+                                { response.sendRedirect("staff/institucion.jsp?id="+inst_id1); }
                                 else
-                                { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
+                                { response.sendRedirect("staff/home.jsp"); }
                             }
                             else
-                            { response.sendRedirect("staff/administradores.jsp?view=inst&error=200"); }
+                            { response.sendRedirect("staff/home.jsp"); }
                         }
                         else
-                        { response.sendRedirect("staff/administradores.jsp?view=inst&error=300"); }
+                        { response.sendRedirect("staff/home.jsp"); }
 
                         break;
 
@@ -194,10 +183,4 @@ public class UserNew extends HttpServlet {
             response.sendRedirect("index.jsp?error=101");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
 }
