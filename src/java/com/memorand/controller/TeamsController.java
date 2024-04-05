@@ -3,6 +3,7 @@ package com.memorand.controller;
 import com.memorand.beans.Team;
 import com.memorand.beans.User;
 import com.memorand.model.TeamsModel;
+import java.util.ArrayList;
 
 public class TeamsController {
     
@@ -13,6 +14,19 @@ public class TeamsController {
         
     }
     
+    public Team modelGetTeamInfoById(String t_id)
+    {
+        TeamsModel teamm = new TeamsModel();
+        return teamm.getTeamInfoById(t_id);
+    }
+    
+    public Team modelGetTeamInfoByCollab(String collab_id)
+    {
+        TeamsModel teamm = new TeamsModel();
+        return teamm.getTeamInfoByCollab(collab_id);
+    }
+    
+    // DEPRECIADO
     public String modelGetAllTeamsByInst(String inst_id, int level1) {
     
         String htmlcode = "";
@@ -43,6 +57,7 @@ public class TeamsController {
     
     }
     
+    // DEPRECIADO
     public String modelGetAllTeamsByInstRed(String inst_id) {
     
         String htmlcode = "";
@@ -70,6 +85,7 @@ public class TeamsController {
     
     }
     
+    // DEPRECIADO
     public String modelGetAllTeamsByUserRed(String user_id) {
     
         String htmlcode = "";
@@ -97,6 +113,7 @@ public class TeamsController {
     
     }
     
+    // DEPRECIADO
     public String modelGetAllTeamsByUserRed2(String user_id)
     {
         String htmlcode = "";
@@ -151,6 +168,7 @@ public class TeamsController {
         return htmlcode;
     }
     
+    // DEPRECIADO
     public String modelGetListTeamsByInst(String inst_id)
     {
         String htmlcode = "";
@@ -166,17 +184,66 @@ public class TeamsController {
         return htmlcode;
     }
     
-    public Team modelGetTeamInfoById(String t_id) {
+    public String modelGetTeams(String user_id)
+    {
+        String htmlcode = "";
+        String hrefcode = "";
         
         TeamsModel teamm = new TeamsModel();
-        return teamm.getTeamInfoById(t_id);
+        ArrayList<Team> teams = new ArrayList<>();
         
+        UsersController userc = new UsersController();
+        User user = userc.modelGetUserInfoById(user_id);
+        
+        String user_type = user.getUser_type();
+        
+        if(user_type != null)
+        {
+            switch (user_type)
+            {
+                case "ch":
+                    teams = teamm.getAllTeamsByCh(user_id);
+                    break;
+                case "wk":
+                    teams = teamm.getAllTeamsByUser(user_id);
+                    break;
+                default:
+                    return htmlcode;
+            }
+        }
+        
+        if (teams.isEmpty())
+        {
+            htmlcode = "<p>No hay equipos por mostrar.</p>";
+            return htmlcode;
+        }
+        else
+        {
+            for (Team t : teams)
+            {
+                ProjectsController projc = new ProjectsController();
+                
+                if(user_type != null)
+                {
+                    switch (user_type)
+                    {
+                        case "ch":
+                            hrefcode = "<a href='rendimiento.jsp?id="+ t.getTeam_id() +"'>&rarr;</a>";
+                            break;
+                        case "wk":
+                        default:
+                            hrefcode = "";
+                            break;
+                    }
+                }
+                
+                htmlcode += "<h3>"+ t.getTeam_name() +" "+ hrefcode +"</h3>";
+                htmlcode += projc.modelGetProjects(t.getTeam_id(), user_id);
+
+            }
+        }
+        
+        return htmlcode;
     }
     
-    public Team modelGetTeamInfoByCollab(String collab_id) {
-        
-        TeamsModel teamm = new TeamsModel();
-        return teamm.getTeamInfoByCollab(collab_id);
-        
-    }
 }

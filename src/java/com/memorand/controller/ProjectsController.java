@@ -5,18 +5,31 @@ import com.memorand.beans.Project;
 import com.memorand.beans.User;
 import com.memorand.model.CollabsModel;
 import com.memorand.model.ProjectsModel;
+import java.util.ArrayList;
 
-public class ProjectsController {
-    
-    public boolean modelCreateProject(Project project) {
-        
+public class ProjectsController
+{
+    public boolean modelCreateProject(Project project)
+    {
         ProjectsModel projm = new ProjectsModel();
         return projm.createProject(project);
-    
     }
     
-    public String modelGetAllProjectsByInst(String inst_id, int level1) {
-        
+    public Project modelGetProjectInfoById(String p_id)
+    {
+        ProjectsModel projm = new ProjectsModel();
+        return projm.getProjectInfoById(p_id);
+    }
+    
+    public Project modelGetProjectInfoByCollab(String collab_id)
+    {
+        ProjectsModel projm = new ProjectsModel();
+        return projm.getProjectInfoByCollab(collab_id);
+    }
+    
+    // DEPRECIADO
+    public String modelGetAllProjectsByInst(String inst_id, int level1)
+    {
         String htmlcode = "";
         String add1 = "";
 
@@ -42,8 +55,9 @@ public class ProjectsController {
     
     }
     
-    public String modelGetListProjectsByInst(String inst_id) {
-    
+    // DEPRECIADO
+    public String modelGetListProjectsByInst(String inst_id)
+    {
         String htmlcode = "";
         
         ProjectsModel projm = new ProjectsModel();
@@ -57,8 +71,9 @@ public class ProjectsController {
         return htmlcode;
     }
     
-    public String modelGetAllProjectsByTeamRed(String team_id) {
-    
+    // DEPRECIADO
+    public String modelGetAllProjectsByTeamRed(String team_id)
+    {
         String htmlcode = "";
         
         ProjectsModel projm = new ProjectsModel();
@@ -92,8 +107,9 @@ public class ProjectsController {
         return htmlcode;
     }
     
-    public String modelGetAllProjectsByTeamRed1(String team_id) {
-    
+    // DEPRECIADO
+    public String modelGetAllProjectsByTeamRed1(String team_id)
+    {
         String htmlcode = "";
         
         ProjectsModel projm = new ProjectsModel();
@@ -117,8 +133,9 @@ public class ProjectsController {
         return htmlcode;
     }
     
-    public String modelGetAllProjectsByTeamRed2(String team_id, String user_id) {
-    
+    // DEPRECIADO
+    public String modelGetAllProjectsByTeamRed2(String team_id, String user_id)
+    {
         String htmlcode = "";
         
         UsersController userc = new UsersController();
@@ -139,18 +156,18 @@ public class ProjectsController {
 
                 String collab_id = collab.getCollab_id();
 
-                htmlcode +=
-                "<tr>\n" +
-    "                    <td>"+ project.getProj_name() +"</td>\n" +
-    "                    <td>" +
-    "                       <svg width='50' height='50'>\n" +
-    "                           <rect width='50' height='50' style='fill:#"+ project.getProj_color() +";stroke:black;stroke-width:2'/>\n" +
-    "                       </svg>" +
-    "                    </td>\n" +
-    "                    <td>" +
-    "                       <a href='proyecto.jsp?collab_id="+ collab_id +"'>Ver</a>" +
-    "                    </td>\n" +
-    "           </tr>";
+                htmlcode
+                        += "<tr>\n"
+                        + "     <td>" + project.getProj_name() + "</td>\n"
+                        + "     <td>"
+                        + "         <svg width='50' height='50'>\n"
+                        + "             <rect width='50' height='50' style='fill:#" + project.getProj_color() + ";stroke:black;stroke-width:2'/>\n"
+                        + "         </svg>"
+                        + "     </td>\n"
+                        + "     <td>"
+                        + "         <a href='proyecto.jsp?collab_id=" + collab_id + "'>Ver</a>"
+                        + "     </td>\n"
+                        + "</tr>";
             }
         }
         else
@@ -181,21 +198,59 @@ public class ProjectsController {
             }
         }
         
-        
         return htmlcode;
     }
     
-    public Project modelGetProjectInfoById(String p_id) {
+    public String modelGetProjects(String team_id, String user_id)
+    {
+        String htmlcode = "<ul>";
         
         ProjectsModel projm = new ProjectsModel();
-        return projm.getProjectInfoById(p_id);
-    
-    }
-    
-    public Project modelGetProjectInfoByCollab(String collab_id) {
+        ArrayList<Project> projects = new ArrayList<>();
         
-        ProjectsModel projm = new ProjectsModel();
-        return projm.getProjectInfoByCollab(collab_id);
-    
+        UsersController userc = new UsersController();
+        User user = userc.modelGetUserInfoById(user_id);
+        
+        String user_type = user.getUser_type();
+        
+        if (user_type != null)
+        {
+            switch (user_type)
+            {
+                case "ch":
+                    projects = projm.getAllProjectsByTeamAndCh(team_id, user_id);
+                    break;
+                case "wk":
+                    projects = projm.getAllProjectsByTeam(team_id);
+                    break;
+                default:
+                    htmlcode = "";
+                    return htmlcode;
+            }
+        }
+        
+        if (projects.isEmpty())
+        {
+            htmlcode = "<p>No hay proyectos por mostrar.</p>";
+            return htmlcode;
+        }
+        else
+        {
+            for (Project p : projects)
+            {
+                String proj_id = p.getProj_id();
+
+                CollabsModel collabm = new CollabsModel();
+                Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
+
+                String collab_id = collab.getCollab_id();
+                
+                htmlcode += "<li>"+ p.getProj_name() +" <a href='proyecto.jsp?id="+ collab_id +"'>&rarr;</a></li>";
+            }
+        }
+        
+        htmlcode += "</ul>";
+        
+        return htmlcode;
     }
 }

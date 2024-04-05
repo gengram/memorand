@@ -93,8 +93,11 @@ public class InstitutionsController {
         InstitutionsModel instm = new InstitutionsModel();
         ArrayList<Institution> insts = instm.getAllInstByStatus(i_status);
         
-        if (insts.isEmpty()) 
+        if (insts.isEmpty())
+        {
             htmlcode = "<p>No hay instituciones disponibles.</p>";
+            return htmlcode;
+        }
         else
         {
             for (Institution i : insts)
@@ -115,8 +118,8 @@ public class InstitutionsController {
                         + "</tr>\n";
             }
 
-            htmlcode += "</tbody>\n" +
-    "            </table>";
+            htmlcode += "</tbody>\n"
+                 + "</table>";
         }
         
         return htmlcode;

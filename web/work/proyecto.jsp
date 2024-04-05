@@ -28,7 +28,7 @@
     
     String user_type = (String) session.getAttribute("user_type");
     
-    String collab_id = request.getParameter("collab_id");
+    String collab_id = request.getParameter("id");
     String view = request.getParameter("view");
 
     if (user_type == null || user_type.isEmpty())
