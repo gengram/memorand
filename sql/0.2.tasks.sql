@@ -24,8 +24,7 @@ create table notes
 	note_name varchar(64),
 	note_text text,
 	note_cdate timestamp,
-	note_mdate timestamp,
-	note_status varchar(2)
+	note_mdate timestamp
 );
 
 create table taskideas
