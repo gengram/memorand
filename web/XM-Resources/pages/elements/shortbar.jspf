@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <!-- Logo Memorand -->
         <a class="navbar-brand" href="index.jsp">
-            <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="280" style="margin-left: 80%">
+            <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230" style="margin-left: 80%">
         </a>
 
         <!-- Botón para mostrar el menú en dispositivos móviles -->
@@ -13,9 +13,13 @@
         <!-- Modal de inicio de sesión -->
         <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent">
             <a href="ventas.jsp">
-                <button class="btn custom-blog btn-sm me-5 fs-5 border-opacity-25 rounded-4">Ventas</button>
+                <button class="btn custom-b4 btn-sm me-5 fs-5 border-opacity-25 rounded-4">
+                    <h6 class="ms-3 me-3 mt-1" style="font-size: 22px;">Contactar ventas</h6>
+                </button>
             </a>
-            <button class="btn custom-bsign btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">   Iniciar sesión   </button>
+            <button class="btn custom-bsign btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                <h6 class="ms-3 me-3 mt-1" style="font-size: 22px;">Iniciar sesión</h6>
+            </button>
         </div>
     </div>
 </nav>
