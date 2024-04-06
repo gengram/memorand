@@ -6,10 +6,8 @@
     // REDIRECCIONAR SI YA INICIÓ SESIÓN
     String user_type = (String) session.getAttribute("user_type");
 
-    if (user_type != null || "".equals(user_type))
-    {
-        switch (user_type)
-        {
+    if (user_type != null || "".equals(user_type)) {
+        switch (user_type) {
             case "staff":
                 response.sendRedirect("staff/home.jsp");
                 break;
@@ -37,8 +35,26 @@
         <link rel="stylesheet" href="XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
 
     </head>
+    <style>
+        /* Estilos CSS */
+        .titulo {
+            display: inline-block; /* Hace que los elementos estén en línea */
+            vertical-align: top; /* Alinea verticalmente */
+            margin-right: 10px; /* Espacio entre los elementos */
+            font-family: 'Pacifico', cursive;
+            color: #25ce7b;
+        }
+
+        .subtitulo {
+            display: inline-block; /* Hace que los elementos estén en línea */
+            vertical-align: top; /* Alinea verticalmente */
+            margin-top: 2px; /* Margen superior */
+            margin-bottom: 4px; /* Margen inferior */
+        }
+    </style>
 
     <!-- BODY -->
     <body>
@@ -47,23 +63,49 @@
         <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
 
         <div class="container">
-            
-            <div class="row mt-3">
-                <div class="col-lg-7 col-md-12 text-center" style="background-color: transparent">
-                    <img class="img-fluid" src="XM-Resources/vector/8614928.jpg" alt="Imagen" style="max-width: 450px;">
+            <div class="row mt-5">
+                <div class="col-1"></div>
+                <div class="col-10 text-center" >
+                    <h1 class="titulo" style="font-family: 'Pacifico', cursive; color: #25ce7b; font-size: 65px;"> Organízate</h1> 
+                    <h1 class="mt-3 subtitulo" style="font-size: 50px;">en equipo sin complicaciones</h1>
                 </div>
-                <div class="col-lg-5 col-md-12" style="color: #6c757d; background-color: transparent">
-                    <h3 class="mt-2 mb-4">Organízate en equipo sin complicaciones</h3>
-                    <h5>Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h5>
-                    <br>
-                    <h5>Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h5>
-                    <br>
-                    <h5 class="mb-5"> La aplicación también cuenta con funcionalidades de apuntes dinámicos, un lienzo de dibujo, ideas rápidas y compartimiento instantáneo.</h5>
-                </div>
+                <div class="col-1"></div>
             </div>
-           
+
+            <div class="row mt-3">
+                <div class="col-1"></div>
+                <div class="col-6">
+                    <img class="img-fluid" src="XM-Resources/imagen/8614928.jpg" alt="Imagen" style="max-width: 450px;">
+                </div>
+                <div class="col-4" >
+                    <br><br><br><br>
+                    <h4 class="mt-5 ms-2" style="color: #2A2927; font-family: 'Inter', sans-serif;">Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h4>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-1"></div>
+                <div class="col-4">
+                    <br><br><br><br>
+                    <h4 class="mt-5 ms-2" style="color: #2A2927; font-family: 'Inter', sans-serif;">Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h4>
+                </div>
+                <div class="col-6 text-sm-end">
+                    <img class="img-fluid" src="XM-Resources/imagen/Collab-amico.png" alt="Imagen" style="max-width: 450px;">
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-1"></div>
+                <div class="col-6">
+                    <img class="img-fluid" src="XM-Resources/imagen/Time management-amico.png" alt="Imagen" style="max-width: 450px;">
+                </div>
+                <div class="col-4 text">
+                    <br><br><br><br>
+                    <h4 class="mt-5 ms-2" style="color: #2A2927; font-family: 'Inter', sans-serif;">La aplicación también cuenta con funcionalidades de apuntes dinámicos, un lienzo de dibujo, ideas rápidas y compartimiento instantáneo.</h4>
+                </div>
+                <div class="col-1"></div>
+            </div>
         </div>
 
     </body>
-
 </html>
