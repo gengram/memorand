@@ -62,13 +62,14 @@
 
         <jsp:include page="XM-Resources/pages/elements/shortbar.jspf"/>
         <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
+        
 
         <div class="container">
             <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-10 text-center" >
                     <h1 class="titulo" style="font-family: 'Pacifico', cursive; color: #25ce7b; font-size: 55px;"> Organízate</h1> 
-                    <h1 class="mt-3 subtitulo" style="font-size: 40px;">en equipo sin complicaciones</h1>
+                    <h1 class="mt-3 ms-2 subtitulo" style="font-size: 40px;">en equipo sin complicaciones</h1>
                 </div>
                 <div class="col-1"></div>
             </div>

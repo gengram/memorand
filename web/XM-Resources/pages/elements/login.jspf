@@ -1,3 +1,4 @@
+<jsp:include page="XM-Resources/pages/elements/restore.jspf"/>
 <div class="modal fade" tabindex="-1" role="dialog" id="modalLogin">
 
     <div class="modal-dialog modal-dialog-centered text-center" role="document">
@@ -21,7 +22,8 @@
                 </form>
 
                 <hr class="my-2">
-                <p class="mb-3 text-primary" style="font-size: 70%;">Condiciones de uso | Política de privacidad</p>
+                <p class="mb-1 text-primary" style="font-size: 70%;">Condiciones de uso | Política de privacidad</p>
+                <p class="mb-1 text-primary btn" style="font-size: 70%;" data-bs-toggle="modal" data-bs-target="#modalRestore">Olvid&eacute; mi contraseña</p>
             </div>
 
         </div>
@@ -29,12 +31,3 @@
     </div> 
 
 </div>
-
-<!-- <form action="login" method="post" enctype="multipart/form-data">
-    <input type="email" name="user_email" id="user_email" placeholder="Correo Electrónico" required>
-    <br>
-    <input type="password" name="user_pass" id="user_pass" placeholder="Contraseña" required>
-    <br>
-    <input type="submit" value="Iniciar sesión">
-</form> 
--->

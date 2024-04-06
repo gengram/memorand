@@ -48,10 +48,14 @@
             <div class="row mt-5 mb-5">
                 <div class="col-1"></div>
                 <div class="col-6">
-                    <h1>Habla con nuestro </h1>
-                    <h1>equipo de ventas</h1>
-                    <p style="font-size: 30px;">Contrata <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="180"></p>
-                    <p></p>
+                    <h1 style=" margin-bottom: 1px;">Habla con nuestro </h1>
+                    <h1 class="mb-4">equipo de ventas</h1>
+                    <p style="font-size: 30px; margin-bottom: 0.4px;">Contrata <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="180"></p>
+                    <p style="font-size: 30px;">para tu empresa o negocio.</p>
+                    <br>
+                    <p style="font-size: 30px; margin-bottom: 0.4px;">Llena este formulario y nos</p>
+                    <p style="font-size: 30px; margin-bottom: 0.4px;">pondremos en contacto</p>
+                    <p style="font-size: 30px; margin-bottom: 0.4px;">contigo en poco tiempo.</p>
                 </div>
                 <div class="col-4">
                     <form>
@@ -63,7 +67,7 @@
                             <label for="exampleInputPassword1" class="form-label">Apellidos</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Doe">
+                                    <input  type="password" class="form-control" id="exampleInputPassword1" placeholder="Doe">
                                 </div>
                                 <div class="col-6">
                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Foo">
