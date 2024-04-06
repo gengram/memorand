@@ -3,6 +3,7 @@ package com.memorand.controller;
 import com.memorand.beans.Task;
 import com.memorand.model.TasksModel;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class TasksController
@@ -19,6 +20,13 @@ public class TasksController
         return taskm.getTaskInfoById(t_id);
     }
     
+    public boolean modelIsAnyTaskByCollab(String collab_id)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.isAnyTaskByCollab(collab_id);
+    }
+    
+    //DEPRECIADO
     public String modelGetAllTasksByCollab(String collab_id, String arg)
     {
         String htmlcode = "";
@@ -56,9 +64,52 @@ public class TasksController
         return htmlcode;
     }
     
-    public boolean modelIsAnyTaskByCollab(String collab_id)
+    public String modelGetTasksTable(String collab_id, String task_order)
     {
+        String htmlcode = "<table border=\"1\">\n"
+                + "             <thead>\n"
+                + "                 <tr>\n"
+                + "                     <th>Etiqueta</th>\n"
+                + "                     <th>Nombre</th>\n"
+                + "                     <th>Fecha l&iacute;mite</th>\n"
+                + "                     <th>Estatus</th>\n"
+                + "                     <th>Prioridad</th>\n"
+                + "                     <th></th>\n"
+                + "                 </tr>\n"
+                + "             </thead>\n"
+                + "             <tbody>";
+        
         TasksModel taskm = new TasksModel();
-        return taskm.isAnyTaskByCollab(collab_id);
+        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
+        
+        if (tasks.isEmpty())
+        {
+            htmlcode = "<p>No hay tareas por mostrar.</p>";
+            return htmlcode;
+        }
+        else
+        {
+            for (Task t : tasks)
+            {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
+                
+                String task_edate = sdf.format(t.getTask_edate());
+                
+                htmlcode += "<tr>\n" +
+"                               <td></td>\n" +
+"                               <td>"+ t.getTask_name() +"</td>\n" +
+"                               <td>"+ task_edate +"</td>\n" +
+"                               <td>"+ t.getTask_status() +"</td>\n" +
+"                               <td>"+ t.getTask_prior() +"</td>\n" +
+"                               <td><a href='tarea.jsp?id="+ t.getTask_id() +"'>Ver</a></td>\n" +
+"                           </tr>";
+            } 
+            
+            htmlcode += "</tbody>\n" +
+"                </table>";
+        }
+        
+        return htmlcode;
     }
+    
 }

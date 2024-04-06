@@ -7,11 +7,10 @@ import java.util.ArrayList;
 
 public class TeamsController {
     
-    public boolean modelCreateTeam(Team team) {
-        
+    public boolean modelCreateTeam(Team team)
+    {
         TeamsModel teamm = new TeamsModel();
         return teamm.createTeam(team);
-        
     }
     
     public Team modelGetTeamInfoById(String t_id)

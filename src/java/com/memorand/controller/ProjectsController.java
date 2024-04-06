@@ -245,7 +245,7 @@ public class ProjectsController
 
                 String collab_id = collab.getCollab_id();
                 
-                htmlcode += "<li>"+ p.getProj_name() +" <a href='proyecto.jsp?id="+ collab_id +"'>&rarr;</a></li>";
+                htmlcode += "<li>"+ p.getProj_name() +" <a href='collab.jsp?id="+ collab_id +"'>&rarr;</a></li>";
             }
         }
         
