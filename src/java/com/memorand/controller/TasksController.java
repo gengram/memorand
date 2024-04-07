@@ -73,7 +73,17 @@ public class TasksController
                 + "\n"
                 + "                    <div id=\"content_tasks\">";
         
-        htmlcode += "<table border=\"1\">\n"
+        TasksModel taskm = new TasksModel();
+        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
+        
+        if (tasks.isEmpty())
+        {
+            htmlcode += "<p>No hay tareas por mostrar.</p>";
+            return htmlcode;
+        }
+        else
+        {
+            htmlcode += "<table border=\"1\">\n"
                 + "             <thead>\n"
                 + "                 <tr>\n"
                 + "                     <th>Etiqueta</th>\n"
@@ -85,17 +95,7 @@ public class TasksController
                 + "                 </tr>\n"
                 + "             </thead>\n"
                 + "             <tbody>";
-        
-        TasksModel taskm = new TasksModel();
-        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
-        
-        if (tasks.isEmpty())
-        {
-            htmlcode = "<p>No hay tareas por mostrar.</p>";
-            return htmlcode;
-        }
-        else
-        {
+            
             for (Task t : tasks)
             {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));

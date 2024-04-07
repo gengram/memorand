@@ -71,7 +71,7 @@ public class PostsController
     
     public String modelGetPosts(String collab_id)
     {
-        String htmlcode = "<form action=\"../postnew?collab_id=" + collab_id + "\" method=\"post\" enctype=\"multipart/form-data\" accept-charset=\"UTF-8\">\n"
+        String htmlcode = "<form action=\"../postnew?id=" + collab_id + "\" method=\"post\" enctype=\"multipart/form-data\" accept-charset=\"UTF-8\">\n"
                 + "                        <textarea name=\"task_info\" id=\"task_info\" cols=\"120\" rows=\"10\" placeholder=\"Publica un anuncio, pregunta o duda.\" maxlength=\"1024\" style=\"resize: none\" required></textarea>\n"
                 + "                        <br>\n"
                 + "                        <input type=\"submit\" value=\"Nueva publicaci&oacute;n\">\n"
@@ -82,7 +82,7 @@ public class PostsController
         
         if (posts.isEmpty())
         {
-            htmlcode = "<p>No hay publicaciones por mostrar.</p>";
+            htmlcode += "<p>No hay publicaciones por mostrar.</p>";
             return htmlcode;
         }
         else

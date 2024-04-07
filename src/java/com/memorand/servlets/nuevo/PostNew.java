@@ -72,7 +72,7 @@ public class PostNew extends HttpServlet {
                     Generador g = new Generador();
                 
                     String post_id = g.newID();
-                    String collab_id = request.getParameter("collab_id");
+                    String collab_id = request.getParameter("id");
                     
                     Timestamp ts = new Timestamp(System.currentTimeMillis());
                     
