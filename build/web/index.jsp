@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-lg-4" >
                     <br><br><br><br>
-                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927; font-family: 'Inter', sans-serif;">Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h4>
+                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927;">Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h4>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -89,7 +89,7 @@
                 <div class="col-lg-1"></div>
                 <div class="col-lg-4">
                     <br><br><br><br>
-                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927; font-family: 'Inter', sans-serif;">Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h4>
+                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927;">Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h4>
                 </div>
                 <div class="col-lg-6 text-sm-end">
                     <img class="img-fluid" src="XM-Resources/imagen/Collab-amico.png" alt="Imagen" style="max-width: 450px;">
@@ -103,12 +103,15 @@
                 </div>
                 <div class="col-lg-4 text">
                     <br><br><br><br>
-                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927; font-family: 'Inter', sans-serif;">La aplicación también cuenta con funcionalidades de apuntes dinámicos, un lienzo de dibujo, ideas rápidas y compartimiento instantáneo.</h4>
+                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927;">La aplicación también cuenta con funcionalidades de apuntes dinámicos, un lienzo de dibujo, ideas rápidas y compartimiento instantáneo.</h4>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
+            
+        <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
+        
         </div>
 
-        <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
     </body>
+    
 </html>

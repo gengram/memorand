@@ -7,6 +7,7 @@ import com.memorand.model.UsersModel;
 import com.memorand.util.Duracion;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 
 public class PostsController
 {
@@ -54,7 +55,7 @@ public class PostsController
             }
 
             htmlcode += "<div class='col'>"
-                    + "<p>" + user_name + " - Hace " + timeAgo + " <a href='publicacion.jsp?post_id="+ post.getPost_id() +"'>Ver comentarios</a> </p>"
+                    + "<p>" + user_name + " - Hace " + timeAgo
                     + "<p>" + post.getPost_text() + "</p>"
                     + "<p> Bien: " + post.getPost_r1() + " Corazón: " + post.getPost_r3() + " Sorpresa: " + post.getPost_r3() + "</p>"
                     + "</div>";
@@ -65,6 +66,57 @@ public class PostsController
             }
         }
 
+        return htmlcode;
+    }
+    
+    public String modelGetPosts(String collab_id)
+    {
+        String htmlcode = "<form action=\"../postnew?id=" + collab_id + "\" method=\"post\" enctype=\"multipart/form-data\" accept-charset=\"UTF-8\">\n"
+                + "                        <textarea name=\"task_info\" id=\"task_info\" cols=\"120\" rows=\"10\" placeholder=\"Publica un anuncio, pregunta o duda.\" maxlength=\"1024\" style=\"resize: none\" required></textarea>\n"
+                + "                        <br>\n"
+                + "                        <input type=\"submit\" value=\"Nueva publicaci&oacute;n\">\n"
+                + "                    </form>";
+        
+        PostsModel postm = new PostsModel();
+        ArrayList<Post> posts = postm.getAllPostsByCollab(collab_id);
+        
+        if (posts.isEmpty())
+        {
+            htmlcode += "<p>No hay publicaciones por mostrar.</p>";
+            return htmlcode;
+        }
+        else
+        {
+            for (Post p : posts)
+            {
+                String post_id = p.getPost_id();
+
+                UsersModel userm = new UsersModel();
+                User user = userm.getUserInfoByPost(post_id);
+
+                String user_name = "null";
+
+                if (user != null)
+                {
+                    user_name = user.getUser_name() + " " + user.getUser_pat();
+                }
+
+                Instant postInstant = p.getPost_date().toInstant();
+                Instant now = Instant.now();
+
+                Duration duration = Duration.between(postInstant, now);
+                Duracion d = new Duracion();
+
+                String timeAgo = d.formatDuration(duration);
+                
+                htmlcode += "<div>"
+                    + "<p>" + user_name + " - Hace " + timeAgo
+                    + "<p>" + p.getPost_text() + "</p>"
+                    + "<p> Bien: " + p.getPost_r1() + " Corazón: " + p.getPost_r3() + " Sorpresa: " + p.getPost_r3() + "</p>"
+                    + "</div>";
+            }
+        }
+        
         return htmlcode;
     }
     

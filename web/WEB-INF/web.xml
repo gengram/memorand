@@ -88,6 +88,14 @@
         <servlet-name>UsersGet</servlet-name>
         <servlet-class>com.memorand.servlets.obtener.UsersGet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TasksGet</servlet-name>
+        <servlet-class>com.memorand.servlets.obtener.TasksGet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostsGet</servlet-name>
+        <servlet-class>com.memorand.servlets.obtener.PostsGet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>UsersGet</servlet-name>
         <url-pattern>/userget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TasksGet</servlet-name>
+        <url-pattern>/taskget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostsGet</servlet-name>
+        <url-pattern>/postget</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

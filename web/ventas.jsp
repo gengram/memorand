@@ -97,7 +97,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
                             <textarea class="form-control" style="width: 100%; height: 200px;" id="exampleFormControlTextarea1" rows="3" placeholder="Este es tu espacio donde puedes hacer preguntas, tus expectativas o cualquier cosa que necesites de nosotros."></textarea>
                         </div>
                         <div class="d-grid gap-2 text-center">

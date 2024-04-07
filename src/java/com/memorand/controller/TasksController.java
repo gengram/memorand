@@ -66,7 +66,24 @@ public class TasksController
     
     public String modelGetTasksTable(String collab_id, String task_order)
     {
-        String htmlcode = "<table border=\"1\">\n"
+        String htmlcode = "<a href='tasknew.jsp?id=" + collab_id + "'>Nueva tarea</a>\n"
+                + "                    <a href='tagnew.jsp?id=" + collab_id + "'>Nueva etiqueta</a>\n"
+                + "\n"
+                + "                    <p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_tabla\">Tabla</button></p>\n"
+                + "\n"
+                + "                    <div id=\"content_tasks\">";
+        
+        TasksModel taskm = new TasksModel();
+        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
+        
+        if (tasks.isEmpty())
+        {
+            htmlcode += "<p>No hay tareas por mostrar.</p>";
+            return htmlcode;
+        }
+        else
+        {
+            htmlcode += "<table border=\"1\">\n"
                 + "             <thead>\n"
                 + "                 <tr>\n"
                 + "                     <th>Etiqueta</th>\n"
@@ -78,17 +95,7 @@ public class TasksController
                 + "                 </tr>\n"
                 + "             </thead>\n"
                 + "             <tbody>";
-        
-        TasksModel taskm = new TasksModel();
-        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
-        
-        if (tasks.isEmpty())
-        {
-            htmlcode = "<p>No hay tareas por mostrar.</p>";
-            return htmlcode;
-        }
-        else
-        {
+            
             for (Task t : tasks)
             {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
@@ -108,6 +115,9 @@ public class TasksController
             htmlcode += "</tbody>\n" +
 "                </table>";
         }
+        
+        htmlcode += "</div>\n"
+                + "<script src=\"scripts/tasks.js\"></script>";
         
         return htmlcode;
     }

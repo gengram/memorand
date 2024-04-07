@@ -83,7 +83,7 @@
     <!-- BODY -->
     <body>
         
-        <h1><a href='institucion.jsp?id=<%= inst_id %>'>&larr;</a>Ver una administrador</h1>
+        <h1><a href='institucion.jsp?id=<%= inst_id %>'>&larr;</a>Ver un administrador</h1>
         <!-- PONER ESTOS EN LA NAVBAR-->
         <a href='ventas.jsp'>Ventas</a>
         <a href='configuracion.jsp'>Configuracion</a>

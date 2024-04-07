@@ -72,7 +72,7 @@ public class TagNew extends HttpServlet
                     Generador g = new Generador();
                     
                     String tag_id = g.newID();
-                    String collab_id = request.getParameter("collab_id");
+                    String collab_id = request.getParameter("id");
                     
                     String tag_color = tag_fields.get(1).substring(1);
                     
@@ -86,16 +86,16 @@ public class TagNew extends HttpServlet
                         
                         if (cotagc.modelCreateCoTag(cotag))
                         {
-                            response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id);
+                            response.sendRedirect("work/collab.jsp?id="+collab_id);
                         }
                         else
                         {
-                            response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-1");
+                            response.sendRedirect("work/collab.jsp?_id="+collab_id+"&error=200-1");
                         }
                     }
                     else
                     {
-                        response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-2");
+                        response.sendRedirect("work/collab.jsp?id="+collab_id+"&error=200-2");
                     }
                 }
                 else
