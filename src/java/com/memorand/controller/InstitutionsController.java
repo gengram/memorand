@@ -76,19 +76,19 @@ public class InstitutionsController {
     
     public String modelGetAllInstByStatus(String i_status)
     {
-        String htmlcode = "<table border=\"1\">\n"
+        String htmlcode = "<table class=\"table\""
                 + "                <thead>\n"
                 + "                    <tr>\n"
-                + "                        <th></th>\n"
-                + "                        <th>Nombre</th>\n"
-                + "                        <th>L&iacute;deres</th>\n"
-                + "                        <th>Integrantes</th>\n"
-                + "                        <th>Grupos</th>\n"
-                + "                        <th>Proyectos</th>\n"
-                + "                        <th></th>\n"
+                + "                        <th scope=\"col\" ></th>\n"
+                + "                        <th scope=\"col\" >Nombre</th>\n"
+                + "                        <th scope=\"col\" >L&iacute;deres</th>\n"
+                + "                        <th scope=\"col\" >Integrantes</th>\n"
+                + "                        <th scope=\"col\" >Grupos</th>\n"
+                + "                        <th scope=\"col\" >Proyectos</th>\n"
+                + "                        <th scope=\"col\" ></th>\n"
                 + "                    </tr>\n"
                 + "                </thead>\n"
-                + "                <tbody>";
+                + "                <tbody id=\"table-body\" >";
         
         InstitutionsModel instm = new InstitutionsModel();
         ArrayList<Institution> insts = instm.getAllInstByStatus(i_status);
@@ -103,17 +103,22 @@ public class InstitutionsController {
             for (Institution i : insts)
             {
                 InstitutionsModel inst_counter = new InstitutionsModel();
+                String circleFillgreen = "";
 
+                if(i.getInst_status().equals("si")){
+                     circleFillgreen = "<i class=\"bi bi-circle-fill\"  style=\"color: #25ce7b\"></i>";
+                }
+            
                 htmlcode
                         += "<tr>\n"
-                        + "     <td>" + i.getInst_status() +"</td>"
-                        + "     <td> <img src='../" + i.getInst_profile() + "' width='40'></img>" + i.getInst_name() + " " + i.getInst_type() + "</td>\n"
-                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "ch") + "/" + i.getLim_ch() + "</td>\n"
-                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "wk") + "/" + i.getLim_wk() + "</td>\n"
-                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "teams") + "/" + i.getLim_gp() + "</td>\n"
-                        + "     <td>" + inst_counter.getResourceCountById(i.getInst_id(), "projects") + "/" + i.getLim_ks() + "</td>\n"
-                        + "     <td>"
-                        + "         <a href='institucion.jsp?id=" + i.getInst_id() + "'>Ver</a>"
+                        + "     <td class=\"align-middle\" >" + circleFillgreen +"</td>"
+                        + "     <td class=\"align-middle\" > <img class=\"me-2\" src='../" + i.getInst_profile() + "' width='40'></img>" + i.getInst_name() + " " + i.getInst_type() + "</td>\n"
+                        + "     <td class=\"align-middle\" >" + inst_counter.getResourceCountById(i.getInst_id(), "ch") + "/" + i.getLim_ch() + "</td>\n"
+                        + "     <td class=\"align-middle\">" + inst_counter.getResourceCountById(i.getInst_id(), "wk") + "/" + i.getLim_wk() + "</td>\n"
+                        + "     <td class=\"align-middle\">" + inst_counter.getResourceCountById(i.getInst_id(), "teams") + "/" + i.getLim_gp() + "</td>\n"
+                        + "     <td class=\"align-middle\" " + inst_counter.getResourceCountById(i.getInst_id(), "projects") + "/" + i.getLim_ks() + "</td>\n"
+                        + "     <td class=\"align-middle\">"
+                        + "         <a href='institucion.jsp?id=" + i.getInst_id() + "'><i style=\"color: #7473C0; font-size: 25px;\" class=\"bi bi-chevron-right\"></i></a>"
                         + "     </td>\n"
                         + "</tr>\n";
             }
