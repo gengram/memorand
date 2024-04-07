@@ -512,17 +512,6 @@ public class UsersModel extends Conexion {
             System.err.println(e.getMessage());
         }
         
-        finally
-        {
-            if (getConnection() != null)
-            {
-                try
-                { getConnection().close(); }
-                catch (SQLException ex)
-                { System.err.println(ex.getMessage()); }
-            }
-        }
-        
         return all_ch;
     
     }
@@ -580,18 +569,7 @@ public class UsersModel extends Conexion {
         {
             System.err.println(e.getMessage());
         }
-        
-        finally
-        {
-            if (getConnection() != null)
-            {
-                try
-                { getConnection().close(); }
-                catch (SQLException ex)
-                { System.err.println(ex.getMessage()); }
-            }
-        }
-        
+
         return all_ch;
     
     }

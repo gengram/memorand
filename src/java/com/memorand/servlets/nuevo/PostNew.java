@@ -91,21 +91,21 @@ public class PostNew extends HttpServlet {
                             
                             if (userpostc.modelCreateUserPost(userpost))
                             {
-                                response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id);
+                                response.sendRedirect("work/collab.jsp?id="+collab_id+"&view=posts");
                             }
                             else
                             {
-                                response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-1");
+                                response.sendRedirect("work/collab.jsp?id="+collab_id+"&error=200-1");
                             }
                         }
                         else
                         {
-                            response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-2");
+                            response.sendRedirect("work/collab.jsp?id="+collab_id+"&error=200-2");
                         }
                     }
                     else
                     {
-                        response.sendRedirect("work/proyecto.jsp?collab_id="+collab_id+"&error=200-3");
+                        response.sendRedirect("work/collab.jsp?id="+collab_id+"&error=200-3");
                     }
                 }
                 else

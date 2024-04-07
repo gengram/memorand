@@ -1,6 +1,8 @@
 package com.memorand.controller;
 
+import com.memorand.beans.Collab;
 import com.memorand.beans.User;
+import com.memorand.model.CollabsModel;
 import com.memorand.model.UsersModel;
 import java.util.ArrayList;
 
@@ -299,8 +301,11 @@ public class UsersController {
         UsersModel userm = new UsersModel();
         ArrayList<User> admins = userm.getAdmins(inst_id, admin_status);
         
-        if (admins.isEmpty()) 
+        if (admins.isEmpty())
+        {
             htmlcode = "<p>No hay administradores disponibles.</p>";
+            return htmlcode;
+        }
         else
         {
             for (User admin : admins)
@@ -319,6 +324,85 @@ public class UsersController {
                     + "</table>";
         }
         
+        return htmlcode;
+    }
+    
+    public String modelGetPeople(String collab_id)
+    {
+        String htmlcode = "";
+        
+        CollabsModel collabm = new CollabsModel();
+        Collab collab = collabm.getCollabInfoById(collab_id);
+        
+        if (collab != null)
+        {
+            String team_id = collab.getTeam_id();
+            String proj_id = collab.getProj_id();
+            
+            UsersModel userm = new UsersModel();
+
+            ArrayList<User> chs = userm.getAllChByCollab(team_id, proj_id);
+            ArrayList<User> wks = userm.getAllWkByTeam(team_id);
+
+            if (chs.isEmpty())
+                htmlcode += "<p>No hay l&iacute;deres disponibles.</p>";
+            else
+            {
+                htmlcode += "<h3>L&iacute;deres</h3>";
+
+                htmlcode += "<table border=\"1\">\n"
+                        + "     <thead>\n"
+                        + "         <tr>\n"
+                        + "             <th>Estatus</th>\n"
+                        + "             <th>Nombre</th>\n"
+                        + "             <th>Correo</th>\n"
+                        + "         </tr>\n"
+                        + "     </thead>\n"
+                        + "  <tbody>";
+
+                for (User ch : chs)
+                {
+                    htmlcode += "<tr>\n"
+                            + "     <td>"+ ch.getUser_status() +"</td>\n"
+                            + "     <td>"+ ch.getUser_name() +"</td>\n"
+                            + "     <td>"+ ch.getUser_email() +"</td>\n"
+                            + "  </tr>";
+                }
+
+                htmlcode += "</tbody>\n"
+                        + "</table>";
+            }
+
+            if (wks.isEmpty())
+                htmlcode += "<p>No hay integrantes disponibles.</p>";
+            else
+            {
+                htmlcode += "<h3>Integrantes</h3>";
+
+                htmlcode += "<table border=\"1\">\n"
+                        + "     <thead>\n"
+                        + "         <tr>\n"
+                        + "             <th>Estatus</th>\n"
+                        + "             <th>Nombre</th>\n"
+                        + "             <th>Correo</th>\n"
+                        + "         </tr>\n"
+                        + "     </thead>\n"
+                        + "  <tbody>";
+
+                for (User wk : wks)
+                {
+                    htmlcode += "<tr>\n"
+                            + "     <td>"+ wk.getUser_status() +"</td>\n"
+                            + "     <td>"+ wk.getUser_name() +"</td>\n"
+                            + "     <td>"+ wk.getUser_email() +"</td>\n"
+                            + "  </tr>";
+                }
+
+                htmlcode += "</tbody>\n"
+                        + "</table>";
+            }
+        }
+            
         return htmlcode;
     }
     

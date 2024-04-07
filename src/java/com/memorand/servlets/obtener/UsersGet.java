@@ -18,6 +18,7 @@ public class UsersGet extends HttpServlet
         String reqby = request.getParameter("reqby");
         String inst = request.getParameter("inst");
         String status = request.getParameter("status");
+        String collab = request.getParameter("collab");
         
         response.setContentType("text/html");
         
@@ -25,25 +26,47 @@ public class UsersGet extends HttpServlet
         
         String user_type = (String) session.getAttribute("user_type");
         
-        if (user_type != null && "staff".equals(user_type) && reqby != null && status != null)
+        PrintWriter out = response.getWriter();
+        UsersController userc = new UsersController();
+        String htmlContent;
+        
+        if (user_type != null && reqby != null)
         {
-            switch (reqby)
+            switch (user_type)
             {
-                case "admin":
-                    
-                    PrintWriter out = response.getWriter();
-                    UsersController userc = new UsersController();
-                    String htmlContent = userc.modelGetAdmins(inst, status);
-                    out.println(htmlContent);
+                case "staff":
+                    switch (reqby)
+                    {
+                        case "admin":
+                            htmlContent = userc.modelGetAdmins(inst, status);
+                            out.println(htmlContent);
+                            break;
+                        default:
+                            session.invalidate();
+                            response.sendError(400);
+                            break;
+                    }
                     break;
-                    
                 default:
-                    session.invalidate();
+                    switch (reqby)
+                    {
+                        case "collab":
+                            htmlContent = userc.modelGetPeople(collab);
+                            out.println(htmlContent);
+                            break;
+                        default:
+                            session.invalidate();
+                            response.sendError(400);
+                            break;
+                    }
+                    break;
             }
         }
         else
         {
             session.invalidate();
+            response.sendError(400);
         }
+        
     }
 }

@@ -1,3 +1,5 @@
+<%@page import="com.memorand.controller.UsersController"%>
+<%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.beans.Team"%>
@@ -43,87 +45,86 @@
         } 
         
         TasksController taskc = new TasksController();
+        PostsController postc = new PostsController();
+        UsersController userc = new UsersController();
 %>
 
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 
-    <html>
+        <html>
 
-        <!-- HEAD -->
-        <head>
+            <!-- HEAD -->
+            <head>
 
-            <jsp:include page="../XM-Resources/pages/imports.jspf"/>
+                <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
-            <title>Memorand | <%= proj_name %></title>
+                <title>Memorand | <%= proj_name %></title>
 
-        </head>
+            </head>
 
-        <!-- BODY -->
-        <body>
+            <!-- BODY -->
+            <body>
 
-            <h1><a href='home.jsp'>&larr;</a> Collab</h1>
-            <!-- PONER ESTOS EN LA NAVBAR-->
-            <a href='perfil.jsp'>Mi perfil</a>
-            <a href='configuracion.jsp'>Configuracion</a>
-            <a href='../signout'>Cerrar sesi&oacute;n</a>
+                <h1><a href='home.jsp'>&larr;</a> Collab</h1>
+                <!-- PONER ESTOS EN LA NAVBAR-->
+                <a href='perfil.jsp'>Mi perfil</a>
+                <a href='configuracion.jsp'>Configuracion</a>
+                <a href='../signout'>Cerrar sesi&oacute;n</a>
 
-            <hr>
+                <hr>
 
-            <h2><%= team_name %> > <%= proj_name %></h2>
+                <h2><%= team_name %> > <%= proj_name %></h2>
 
-            <p><button id="get_tasks">Tareas</button> <button id="get_posts">Publicaciones</button> <button id="get_people">Personal</button></p>
+                <p><button id="get_tasks">Tareas</button> <button id="get_posts">Publicaciones</button> <button id="get_people">Personal</button></p>
+                
+                <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS Y SERVLETS.OBTENER PARA MODIFICAR HTML -->
+                <div id="content">
+                    
+<%
+            String view = request.getParameter("view");
+            TasksController taskc1 = new TasksController();
+            
+            if (view != null)
+            {
+                switch (view)
+                {
+                    case "tasks":
+%>
+                        <%= taskc1.modelGetTasksTable(collab_id, "task_edate") %>
+<%
+                        break;
+                    case "posts":
+                        PostsController postc1 = new PostsController();
+%>
+                        <%= postc1.modelGetPosts(collab_id) %>
+<%
+                        break;
+                    case "people":
+                        UsersController userc1 = new UsersController();
+%>
+                        <%= userc1.modelGetPeople(collab_id) %>
+<%
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+            }
+            else 
+            {
+%>
+                <%= taskc1.modelGetTasksTable(collab_id, "task_edate") %>
+<%
+            }
+%>
 
-            <!-- PARTE DE TAREAS -->
-            <div id="content">
-                <a href='tasknew.jsp?id=<%= collab_id %>'>Nueva tarea</a>
-                <a href='tagnew.jsp?id=<%= collab_id %>'>Nueva etiqueta</a>
-
-                <p>Vista <button id="task_panel">Panel</button> <button id="task_tabla">Tabla</button></p>
-
-                <div id="content_tasks">
-
-                    <!-- ESCRIBE AQUI TU FUNCION DE PANEL -->
-
-                    <%= taskc.modelGetTasksTable(collab_id, "task_edate") %>
-
-
-                </div>
-            </div>
-
-            <hr>   
-
-            <!-- PARTE DE PUBLICACIONES -->
-            <div id="content">
-                <form action="../../postnew?collab_id=<%= collab_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-                    <textarea name="task_info" id="task_info" cols="120" rows="10" placeholder="Publica un anuncio, pregunta o duda." maxlength="1024" style="resize: none" required></textarea>
-                    <br>
-                    <input type="submit" value="Nueva publicaci&oacute;n">
-                </form>
-
-
-                <div id="content_tasks">
-
-                    <!-- FUNCION DE PUBLICACIONES -->
-
-                </div>
-            </div>
-
-            <hr>        
-
-            <!-- PARTE DE PERSONAL -->
-            <div id="content">
-
-                <div id="content_tasks">
-
-                    <!-- FUNCION DE PERSONAS -->
-
+                    
                 </div>
 
-            </div>
+                <script src="scripts/collab.js"></script>
 
-        </body>
+            </body>
 
-    </html>
+        </html>
 
 <%
     }

@@ -66,7 +66,14 @@ public class TasksController
     
     public String modelGetTasksTable(String collab_id, String task_order)
     {
-        String htmlcode = "<table border=\"1\">\n"
+        String htmlcode = "<a href='tasknew.jsp?id=" + collab_id + "'>Nueva tarea</a>\n"
+                + "                    <a href='tagnew.jsp?id=" + collab_id + "'>Nueva etiqueta</a>\n"
+                + "\n"
+                + "                    <p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_tabla\">Tabla</button></p>\n"
+                + "\n"
+                + "                    <div id=\"content_tasks\">";
+        
+        htmlcode += "<table border=\"1\">\n"
                 + "             <thead>\n"
                 + "                 <tr>\n"
                 + "                     <th>Etiqueta</th>\n"
@@ -108,6 +115,9 @@ public class TasksController
             htmlcode += "</tbody>\n" +
 "                </table>";
         }
+        
+        htmlcode += "</div>\n"
+                + "<script src=\"scripts/tasks.js\"></script>";
         
         return htmlcode;
     }

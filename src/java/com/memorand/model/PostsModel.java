@@ -59,44 +59,33 @@ public class PostsModel extends Conexion {
     
         ArrayList<Post> all_post = new ArrayList<>();
         
-        PreparedStatement ps1;
-        PreparedStatement ps2;
+        PreparedStatement ps;
     
         try
         {
-            String sql1 = "SELECT post_id FROM coposts WHERE collab_id = ?";
-            
-            ps1 = getConnection().prepareStatement(sql1);
-            
-            ps1.setString(1, collab_id);
-            
-            ResultSet rs1 = ps1.executeQuery();
-            
-            while (rs1.next())
+            String sql = "SELECT p.post_id, p.post_text, p.post_r1, p.post_r2, p.post_r3, p.post_date "
+                    + "FROM posts p "
+                    + "INNER JOIN coposts c ON p.post_id = c.post_id "
+                    + "WHERE c.collab_id = ? "
+                    + "ORDER BY p.post_date DESC";
+
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, collab_id);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
             {
-                String p_id = rs1.getString(1);
-                
-                String sql2 = "SELECT * FROM posts WHERE post_id = ? ORDER BY post_date";
-                
-                ps2 = getConnection().prepareStatement(sql2);
-                
-                ps2.setString(1, p_id);
-                
-                ResultSet rs2 = ps2.executeQuery();
-                
-                while (rs2.next())
-                {
-                    String post_id = rs2.getString(1);
-                    String post_text = rs2.getString(2);
-                    int post_r1 = rs2.getInt(3);
-                    int post_r2 = rs2.getInt(4);
-                    int post_r3 = rs2.getInt(5);
-                    Timestamp post_date = rs2.getTimestamp(6);
-                    
-                    Post post = new Post(post_id, post_text, post_r1, post_r2, post_r3, post_date);
-                    
-                    all_post.add(post);
-                }
+                String post_id = rs.getString("post_id");
+                String post_text = rs.getString("post_text");
+                int post_r1 = rs.getInt("post_r1");
+                int post_r2 = rs.getInt("post_r2");
+                int post_r3 = rs.getInt("post_r3");
+                Timestamp post_date = rs.getTimestamp("post_date");
+
+                Post post = new Post(post_id, post_text, post_r1, post_r2, post_r3, post_date);
+
+                all_post.add(post);
             }
         }
         
