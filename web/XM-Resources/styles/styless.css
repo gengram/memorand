@@ -41,6 +41,41 @@
     border: 2px solid #27988A; /* Color del contorno */
 }
 
+/* Estilo para los botones de radio personalizados */
+.custom-bstaff {
+    padding: 0rem 20px;
+    border: 2px solid #7473C0; /* Color del contorno */
+    background-color: #7473C0; /* Fondo transparente */
+    color: #fff; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Estilo para los botones de radio personalizados cuando están marcados */
+.custom-bstaff:checked + label {
+    border-color: #28a745 !important; /* Color del borde cuando está marcado (verde) */
+    background-color: #28a745 !important; /* Color de fondo cuando está marcado (verde) */
+    color: #fff !important; /* Color del texto cuando está marcado (blanco) */
+}
+
+/* Estilo para los botones de radio personalizados al pasar el ratón */
+.custom-bstaff:hover {
+    background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+    color: #7473C0; /* Cambiar el color del texto al pasar el ratón */
+    border: 2px solid #7473C0; /* Color del contorno */
+}
+
+/* Estilo para los botones de radio personalizados cuando están enfocados */
+.custom-bstaff:focus {
+    background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+    color: #7473C0; /* Cambiar el color del texto al pasar el ratón */
+    border: 2px solid #7473C0; /* Color del contorno */
+}
+
+
 .custom-b4{
     display: inline-block;
     padding: 8px 16px;
