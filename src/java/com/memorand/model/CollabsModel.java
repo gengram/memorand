@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 public class CollabsModel extends Conexion {
     
-    public boolean createCollab(Collab collab) {
+    public boolean createCollab(Collab collab)
+    {
     
         boolean flag = false;
         
@@ -50,7 +51,8 @@ public class CollabsModel extends Conexion {
     
     }
     
-    public boolean deleteCollab(String c_id) {
+    public boolean deleteCollab(String c_id)
+    {
     
         boolean flag = false;
         
@@ -90,7 +92,8 @@ public class CollabsModel extends Conexion {
     
     }
     
-    public Collab getCollabInfoByTeamAndProject(String t_id, String p_id) {
+    public Collab getCollabInfoByTeamAndProject(String t_id, String p_id)
+    {
     
         Collab collab_info = null;
         
@@ -138,8 +141,8 @@ public class CollabsModel extends Conexion {
     
     }
     
-    public Collab getCollabInfoByTeam(String t_id) {
-    
+    public Collab getCollabInfoByTeam(String t_id)
+    {
         Collab collab_info = null;
         
         PreparedStatement ps;
@@ -209,6 +212,65 @@ public class CollabsModel extends Conexion {
                 String proj_id = rs.getString(4);
                 
                 collab_info = new Collab(collab_id, collab_status, team_id, proj_id);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return collab_info;
+    }
+    
+    public Collab getCollabInfoByTask(String task_id)
+    {
+        Collab collab_info = null;
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        
+        try
+        {
+            String sql1 = "SELECT collab_id FROM cotasks WHERE task_id = ? LIMIT 1";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, task_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            if (rs1.next()) 
+            {
+                String sql2 = "SELECT * FROM collabs WHERE collab_id = ?";
+                String c_id = rs1.getString(1);
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, c_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                if (rs2.next())
+                {
+                    String collab_id = rs2.getString(1);
+                    String collab_status = rs2.getString(2);
+                    String team_id = rs2.getString(3);
+                    String proj_id = rs2.getString(4);
+                
+                    collab_info = new Collab(collab_id, collab_status, team_id, proj_id);
+                }
             }
         }
         
