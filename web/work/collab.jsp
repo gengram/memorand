@@ -88,6 +88,7 @@
 <%
             String view = request.getParameter("view");
             TasksController taskc1 = new TasksController();
+            TasksController taskc2= new TasksController();
             
             if (view != null)
             {
@@ -117,7 +118,7 @@
             else 
             {
 %>
-                <%= taskc1.modelGetTasksTable(collab_id, "task_edate") %>
+                <%= taskc1.modelGetTasksPanel(collab_id, "task_edate") %>
 <%
             }
 %>
