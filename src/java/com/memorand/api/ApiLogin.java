@@ -1,8 +1,11 @@
 package com.memorand.api;
 
+import com.google.gson.Gson;
 import com.memorand.beans.User;
 import com.memorand.controller.UsersController;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +22,18 @@ public class ApiLogin extends HttpServlet {
         
         try (PrintWriter out = response.getWriter())
         {
-            String user_email = request.getParameter("user_email");
-            String user_pass = request.getParameter("user_pass");
+            StringBuilder requestBody = new StringBuilder();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                requestBody.append(line);
+            }
+            reader.close();
+
+            Gson gson = new Gson();
             
             UsersController userc = new UsersController();
-            User user = new User(user_email, user_pass);
+            User user = gson.fromJson(requestBody.toString(), User.class);
             
             if (userc.modelLoginUser(user))
             {
@@ -36,6 +46,4 @@ public class ApiLogin extends HttpServlet {
             
         }
     }
-    
-    
 }
