@@ -107,6 +107,8 @@ public class InstitutionsController {
 
                 if(i.getInst_status().equals("si")){
                      circleFillgreen = "<i class=\"bi bi-circle-fill\"  style=\"color: #25ce7b\"></i>";
+                }else{
+                    circleFillgreen = "<i class=\"bi bi-circle-fill\"  style=\"color: red\"></i>";
                 }
             
                 htmlcode

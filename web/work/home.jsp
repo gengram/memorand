@@ -1,12 +1,13 @@
 <!-- Memorand by Gengram © 2023 -->
 
 <%@page import="com.memorand.controller.TeamsController"%>
+<%@page import="com.memorand.controller.InstitutionsController"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
     String user_id = (String) session.getAttribute("user_id");
-    
+
     TeamsController teamc = new TeamsController();
 %>
 
@@ -16,31 +17,63 @@
 
     <!-- HEAD -->
     <head>
-        
+
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
         <title>Memorand | Home</title>
-        
+
     </head>
+    <style>
+        /* Estilos CSS */
+        .titulo {
+            display: inline-block; /* Hace que los elementos estén en línea */
+            vertical-align: top; /* Alinea verticalmente */
+            margin-right: 10px; /* Espacio entre los elementos */
+            color: #25ce7b;
+            text-align: left;
+        }
+
+        .subtitulo {
+            display: inline-block; /* Hace que los elementos estén en línea */
+            vertical-align: middle; /* Alinea verticalmente */
+            margin-top: 2px; /* Margen superior */
+            margin-bottom: 4px; /* Margen inferior */
+            text-align: right;
+
+        }
+    </style>
 
     <!-- BODY -->
     <body>
-        
-        <h1>Memorand</h1>
-        <!-- PONER ESTOS EN LA NAVBAR-->
-        <a href='perfil.jsp'>Mi perfil</a>
-        <a href='configuracion.jsp'>Configuracion</a>
-        <a href='../signout'>Cerrar sesi&oacute;n</a>
-        
-        <hr>
-        
-        <h2>Mis equipos</h2>
+
+        <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h1>Mis equipos</h1>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+
+                    
+                    <%= teamc.modelGetTeams(user_id)%>
+                    <hr>
+                    
+
+                </div>
+            </div>
+        </div
 
         <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
         <div id="content">
-            <%= teamc.modelGetTeams(user_id) %>
+
         </div>
-        
+
     </body>
 
 </html>
