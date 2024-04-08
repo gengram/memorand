@@ -17,6 +17,7 @@ public class TasksGet extends HttpServlet {
     {
         String reqby = request.getParameter("reqby");
         String collab = request.getParameter("collab");
+        String view = request.getParameter("view");
         
         response.setContentType("text/html");
         
@@ -33,7 +34,24 @@ public class TasksGet extends HttpServlet {
             switch (reqby)
             {
                 case "collab":
-                    htmlContent = taskc.modelGetTasksTable(collab, "task_edate");
+                    
+                    if (view != null)
+                    {
+                        switch (view) {
+                            case "panel":
+                                htmlContent = taskc.modelGetTasksPanel(collab, "task_edate");
+                                break;
+                            case "table":
+                                htmlContent = taskc.modelGetTasksTable(collab, "task_edate");
+                                break;
+                            default:
+                                throw new AssertionError();
+                        }
+                    }
+                    else
+                    {
+                        htmlContent = taskc.modelGetTasksPanel(collab, "task_edate");
+                    }
                     out.println(htmlContent);
                     break;
                     

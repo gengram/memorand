@@ -66,12 +66,10 @@ public class TasksController
     
     public String modelGetTasksTable(String collab_id, String task_order)
     {
-        String htmlcode = "<a href='tasknew.jsp?id=" + collab_id + "'>Nueva tarea</a>\n"
-                + "                    <a href='tagnew.jsp?id=" + collab_id + "'>Nueva etiqueta</a>\n"
-                + "\n"
-                + "                    <p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_tabla\">Tabla</button></p>\n"
-                + "\n"
-                + "                    <div id=\"content_tasks\">";
+        String htmlcode = "<a href='tasknew.jsp?id="+collab_id+"'>Nueva tarea</a>\n" +
+"                        <a href='tagnew.jsp?id="+collab_id+"'>Nueva etiqueta</a>\n" +
+"                        <p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_table\">Tabla</button></p>";
+        htmlcode += "<div id=\"tasks_zone\">";
         
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
@@ -116,19 +114,16 @@ public class TasksController
 "                </table>";
         }
         
-        htmlcode += "</div>\n"
-                + "<script src=\"scripts/tasks.js\"></script>";
+        htmlcode += "</div>\n";
         
         return htmlcode;
     }
     public String modelGetTasksPanel(String collab_id, String task_order)
     {
-        String htmlcode = "<a href='tasknew.jsp?id=" + collab_id + "'>Nueva tarea</a>\n"
-                + "                    <a href='tagnew.jsp?id=" + collab_id + "'>Nueva etiqueta</a>\n"
-                + "\n"
-                + "                    <p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_tabla\">Tabla</button></p>\n"
-                + "\n"
-                + "                    <div id=\"content_tasks\">";
+        String htmlcode = "<a href='tasknew.jsp?id="+collab_id+"'>Nueva tarea</a>\n" +
+"                        <a href='tagnew.jsp?id="+collab_id+"'>Nueva etiqueta</a>\n" +
+"                        <p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_table\">Tabla</button></p>";
+        htmlcode += "<div id=\"tasks_zone\">";
         
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
@@ -140,42 +135,29 @@ public class TasksController
         }
         else
         {
-            /*htmlcode += "<div class=\"task-card\">\n"
-                + "             <div class=\"task-label\">Etiqueta</div>\n"
-                + "                 <h2 class=\"task-name\">Nombre de la tarea</h2>\n"
-                + "                     <div class=\"task-details\">\n"
-                + "                     <div class=\"task-date\">Fecha Límite: <span>30 de marzo</span></div>\n"
-                + "                     <div class=\"task-status task-status-late\">Estatus: <span>Atrasada</span></div>\n"
-                + "                     <div class=\"task-priority task-priority-high\">Prioridad: <span>Alta</span></div>\n"
-                + "                     </div>\n"
-                + "                     <a href=\"#\" class=\"task-link\">Ver más</a>\n"
-                + "                 </div>\n"
-                + "             </div>\n";
-            */
             for (Task t : tasks)
             {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
                 
                 String task_edate = sdf.format(t.getTask_edate());
                 
-              
-                 htmlcode += "<div class='task-card'>" +
-"                 <div class='task-label'></div>" +
-"                 <div class='task-content'>" +
-"                     <h2 class='task-name'>" + t.getTask_name() + "</h2>" +
-"                     <div class='task-details'>" +
-"                         <div class='task-date'>Fecha Límite: <span>" + task_edate + "</span></div>" +
-"                         <div class='task-status " +  "'>Estatus: <span>" + t.getTask_status() + "</span></div>" +
-"                         <div class='task-priority " + "'>Prioridad: <span>" + t.getTask_prior() + "</span></div>" +
-"                     </div>" +
-"                     <a href='tarea.jsp?id=" + t.getTask_id() + "' class='task-link'>Ver más</a>" +
-"                 </div>" +
-"             </div>";
-}
-htmlcode += "<script src='scripts/tasks.js'></script>";
-
-return htmlcode;
+                htmlcode += "<div class='task-card'>"
+                        + "                 <div class='task-label'></div>"
+                        + "                 <div class='task-content'>"
+                        + "                     <h3 class='task-name'>" + t.getTask_name() + "</h3>"
+                        + "                     <div class='task-details'>"
+                        + "                         <div class='task-date'>Fecha Límite: <span>" + task_edate + "</span></div>"
+                        + "                         <div class='task-status " + "'>Estatus: <span>" + t.getTask_status() + "</span></div>"
+                        + "                         <div class='task-priority " + "'>Prioridad: <span>" + t.getTask_prior() + "</span></div>"
+                        + "                     </div>"
+                        + "                     <a href='tarea.jsp?id=" + t.getTask_id() + "' class='task-link'>Ver más</a>"
+                        + "                 </div>"
+                        + "             </div>";
+            }
+            htmlcode += "</div>";
         }
+        
+        return htmlcode;
     }
     
 }

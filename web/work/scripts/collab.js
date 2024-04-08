@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const urlParams = new URLSearchParams(window.location.search);
         const view = urlParams.get('view');
         collab = urlParams.get('id');
-        if (!collab) {
+        if (!collab)
+        {
             collab = ""; // Asegúrate de que collab sea una cadena vacía si no se proporciona en la URL
         }
 

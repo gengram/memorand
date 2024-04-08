@@ -96,7 +96,9 @@
                 {
                     case "tasks":
 %>
-                        <%= taskc1.modelGetTasksTable(collab_id, "task_edate") %>
+                        <div id="tasks">
+                            <%= taskc1.modelGetTasksPanel(collab_id, "task_edate") %>
+                        </div>
 <%
                         break;
                     case "posts":
@@ -118,15 +120,14 @@
             else 
             {
 %>
-                <%= taskc1.modelGetTasksPanel(collab_id, "task_edate") %>
+                        <div id="tasks">
+                            <%= taskc1.modelGetTasksPanel(collab_id, "task_edate") %>
+                        </div>
 <%
             }
 %>
 
-                    
                 </div>
-
-                <script src="scripts/collab.js"></script>
 
             </body>
 
