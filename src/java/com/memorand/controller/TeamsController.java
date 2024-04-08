@@ -183,8 +183,10 @@ public class TeamsController {
 
         String user_type = user.getUser_type();
 
-        if (user_type != null) {
-            switch (user_type) {
+        if (user_type != null)
+        {
+            switch (user_type)
+            {
                 case "ch":
                     teams = teamm.getAllTeamsByCh(user_id);
                     break;
@@ -196,11 +198,15 @@ public class TeamsController {
             }
         }
 
-        if (teams.isEmpty()) {
+        if (teams.isEmpty())
+        {
             htmlcode = "<p>No hay equipos por mostrar.</p>";
             return htmlcode;
-        } else {
-            for (Team t : teams) {
+        }
+        else
+        {
+            for (Team t : teams)
+            {
                 ProjectsController projc = new ProjectsController();
 
                 if (user_type != null) {
@@ -217,11 +223,11 @@ public class TeamsController {
 
                 htmlcode += "<div class=\"card border border-2\" style=\"max-height: 50px;\">\n"
                         + "<div class=\"row g-0\">\n"
-                        + "<div class=\"col-md-1\" style=\"background-color: #B9D7A2; max-height: 46px; max-width: 30px\"></div>\n"
+                        + "<div class=\"col-md-1\" style=\"background-color: #"+ t.getTeam_color() +"; max-height: 46px; max-width: 30px\"></div>\n"
                         + "<div class=\"col-md-11 ms-4\" >\n"
                         + "<div class=\"card-header d-flex justify-content-between align-items-center\">\n"
                         + "<div>\n"
-                        + "<p class=\"titulo mb-0\" style=\"color: #2A2927; font-size: 20px;\">Equipo - " + t.getTeam_name() + " </p>\n"
+                        + "<p class=\"titulo mb-0\" style=\"color: #2A2927; font-size: 20px;\">" + t.getTeam_name() + " </p>\n"
                         + hrefcode
                         + "</div>\n"
                         + "</div>\n"
@@ -229,12 +235,8 @@ public class TeamsController {
                         + "</div>\n"
                         + "</div>\n";
 
-                /*ProjectsModel projm = new ProjectsModel();
-                for (Project project : projm.getAllProjectsByInst(inst_id)) {
-                    
-                }*/
-                    htmlcode += "<hr class=\"mt-4 \">" /*+ "<i style=\"color: #" + project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" */+ projc.modelGetProjects(t.getTeam_id(), user_id);
-
+                htmlcode += "<hr class=\"mt-4 \">";
+                htmlcode += projc.modelGetProjects(t.getTeam_id(), user_id);
             }
         }
 

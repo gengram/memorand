@@ -203,7 +203,7 @@ public class ProjectsController
     
     public String modelGetProjects(String team_id, String user_id)
     {
-        String htmlcode = "<ul>";
+        String htmlcode = "";
         
         ProjectsModel projm = new ProjectsModel();
         ArrayList<Project> projects = new ArrayList<>();
@@ -244,12 +244,14 @@ public class ProjectsController
                 Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
 
                 String collab_id = collab.getCollab_id();
-                
-                htmlcode += "<li>"+ p.getProj_name() +" <a href='collab.jsp?id="+ collab_id +"'>&rarr;</a></li>";
+                                
+                //htmlcode += "<div class=\"col-md-1\" style=\"background-color: #"+ p.getProj_color() +"\"; max-height: 46px; max-width: 30px\">Hola</div>";
+                htmlcode += "<svg width=\"40\" height=\"40\">\n" +
+                            "  <rect width=\"40\" height=\"40\" rx=\"5\" ry=\"5\" fill=\"#"+ p.getProj_color() +"\" />\n" +
+                            "</svg>";
+                htmlcode += "<h5>"+ p.getProj_name() +" <a href='collab.jsp?id="+ collab_id +"'>&rarr;</a></h5>";
             }
         }
-        
-        htmlcode += "</ul>";
         
         return htmlcode;
     }
