@@ -245,7 +245,6 @@ public class ProjectsController
 
                 String collab_id = collab.getCollab_id();
                                 
-                //htmlcode += "<div class=\"col-md-1\" style=\"background-color: #"+ p.getProj_color() +"\"; max-height: 46px; max-width: 30px\">Hola</div>";
                 htmlcode += "<svg width=\"40\" height=\"40\">\n" +
                             "  <rect width=\"40\" height=\"40\" rx=\"5\" ry=\"5\" fill=\"#"+ p.getProj_color() +"\" />\n" +
                             "</svg>";
