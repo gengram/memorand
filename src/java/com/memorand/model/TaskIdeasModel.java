@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class TaskIdeasModel extends Conexion
 {
-    public boolean createTaskIdeas(TaskIdea taskidea)
+    public boolean createTaskIdea(TaskIdea taskidea)
     {
         boolean flag = false;
         

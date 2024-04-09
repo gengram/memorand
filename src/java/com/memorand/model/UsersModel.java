@@ -759,4 +759,70 @@ public class UsersModel extends Conexion {
         return user_info;
     
     }
+    
+    public User getUserInfoByIdea(String idea_id) {
+    
+        User user_info = null;
+        
+        PreparedStatement ps1;
+        PreparedStatement ps2;
+        
+        try
+        {
+            String sql1 = "SELECT user_id FROM userideas WHERE idea_id = ? LIMIT 1";
+            
+            ps1 = getConnection().prepareStatement(sql1);
+            
+            ps1.setString(1, idea_id);
+            
+            ResultSet rs1 = ps1.executeQuery();
+            
+            if (rs1.next())
+            {
+                String u_id = rs1.getString(1);
+                
+                String sql2 = "SELECT * FROM users WHERE user_id = ?";
+                
+                ps2 = getConnection().prepareStatement(sql2);
+                
+                ps2.setString(1, u_id);
+                
+                ResultSet rs2 = ps2.executeQuery();
+                
+                if (rs2.next())
+                {
+                    String user_id = rs2.getString(1);
+                    String user_email = rs2.getString(2);
+                    String user_pass = rs2.getString(3);
+                    String user_type = rs2.getString(4);
+                    String user_name = rs2.getString(5);
+                    String user_pat = rs2.getString(6);
+                    String user_mat = rs2.getString(7);
+                    String user_status = rs2.getString(8);
+                    String user_profile = rs2.getString(9);
+
+                    user_info = new User(user_id, user_email, user_pass, user_type, user_name, user_pat, user_mat, user_status, user_profile);
+                }
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+    
+        return user_info;
+    
+    }
 }

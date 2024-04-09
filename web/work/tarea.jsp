@@ -1,3 +1,4 @@
+<%@page import="com.memorand.controller.IdeasController"%>
 <%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.beans.Collab"%>
@@ -67,7 +68,8 @@
                 default:
                     break;
             }
-        
+            
+            IdeasController ideac = new IdeasController();
 %>
 
 <!DOCTYPE html>
@@ -116,13 +118,7 @@
         
         <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
         <div id="content">
-            
-            <h3>Nueva idea</h3>
-            <h1><a href='../ideanew?id='>+</a></h1>
-            
-            <h3>Lluvia de ideas de <%= task_name %></h3>
-            <p>Agrega aqu&iacute; las partes m&aacute;s importantes de tu tarea.</p>
-            
+            <%= ideac.modelGetIdeasByTask(task_id) %>
         </div>
         
     </body>

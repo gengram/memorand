@@ -13,7 +13,7 @@
         </script>
 
         <!-- Logo de la empresa -->
-        <a class="navbar-brand" href="/memorand/staff/home.jsp">
+        <a class="navbar-brand" href="/memorand/admin/home.jsp">
             <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230" style="margin-left: 80%">
         </a>
 

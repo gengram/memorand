@@ -96,6 +96,10 @@
         <servlet-name>PostsGet</servlet-name>
         <servlet-class>com.memorand.servlets.obtener.PostsGet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IdeaNew</servlet-name>
+        <servlet-class>com.memorand.servlets.nuevo.IdeaNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>PostsGet</servlet-name>
         <url-pattern>/postget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IdeaNew</servlet-name>
+        <url-pattern>/ideanew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

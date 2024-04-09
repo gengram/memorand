@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UserIdeasModel extends Conexion
 {
-    public boolean createUserIdeas(UserIdea useridea)
+    public boolean createUserIdea(UserIdea useridea)
     {
         boolean flag = false;
         
