@@ -3,28 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/memorand/web/XM-Resources/styles/styless.css</file>
             <file>file:/C:/memorand/web/XM-Resources/pages/elements/shortbar.jspf</file>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/TeamsController.java</file>
-            <file>file:/C:/memorand/web/work/home.jsp</file>
             <file>file:/C:/memorand/web/XM-Resources/pages/elements/navbar_staff.jspf</file>
-            <file>file:/C:/memorand/web/staff/home.jsp</file>
-            <file>file:/C:/memorand/web/XM-Resources/pages/elements/navbar_admin.jspf</file>
-            <file>file:/C:/memorand/web/XM-Resources/styles/bootstrap.css</file>
-=======
             <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/UserPostsModel.java</file>
+            <file>file:/C:/memorand/web/XM-Resources/styles/styless.css</file>
+            <file>file:/C:/memorand/web/work/home.jsp</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/UsersController.java</file>
-            <file>file:/C:/memorand/web/work/scripts/collab.js</file>
-            <file>file:/C:/memorand/web/work/scripts/tasks.js</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/obtener/TasksGet.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/UsersModel.java</file>
+            <file>file:/C:/memorand/web/XM-Resources/styles/bootstrap.css</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/PostsController.java</file>
             <file>file:/C:/memorand/web/work/collab.jsp</file>
-            <file>file:/C:/memorand/web/staff/scripts/institucion.js</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/CoTagsModel.java</file>
-            <file>file:/C:/memorand/web/staff/scripts/home.js</file>
->>>>>>> 216fbd8b96e1642931bccf00119099cab495eb26
+            <file>file:/C:/memorand/web/XM-Resources/pages/elements/navbar_admin.jspf</file>
+            <file>file:/C:/memorand/web/staff/home.jsp</file>
         </group>
     </open-files>
 </project-private>
