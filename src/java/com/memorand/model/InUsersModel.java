@@ -4,8 +4,8 @@ import com.memorand.beans.InUser;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InUsersModel extends Conexion {
-    
+public class InUsersModel extends Conexion
+{
     public boolean createInUsers(InUser inusers) {
     
         boolean flag = false;
