@@ -1,11 +1,11 @@
 package com.memorand.servlets.nuevo;
 
-import com.memorand.beans.Idea;
-import com.memorand.beans.TaskIdea;
-import com.memorand.beans.UserIdea;
-import com.memorand.controller.IdeasController;
-import com.memorand.controller.TaskIdeasController;
-import com.memorand.controller.UserIdeasController;
+import com.memorand.beans.Note;
+import com.memorand.beans.TaskNote;
+import com.memorand.beans.UserNote;
+import com.memorand.controller.NotesController;
+import com.memorand.controller.TaskNotesController;
+import com.memorand.controller.UserNotesController;
 import com.memorand.util.Generador;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -22,20 +22,20 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class IdeaNew extends HttpServlet
+public class NoteNew extends HttpServlet
 {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         HttpSession session = request.getSession();
-        
         if (session != null)
         {
             FileItemFactory fif = new DiskFileItemFactory();
             ServletFileUpload sfu = new ServletFileUpload(fif);
             
-            ArrayList<String> idea_fields = new ArrayList<>();
+            ArrayList<String> note_fields = new ArrayList<>();
             
             String user_type = (String) session.getAttribute("user_type");
             String user_id = (String) session.getAttribute("user_id");
@@ -49,7 +49,7 @@ public class IdeaNew extends HttpServlet
                     FileItem fi = (FileItem) items.get(i);
 
                     if (fi.isFormField())
-                        idea_fields.add(fi.getString());
+                        note_fields.add(fi.getString());
                 }
             }
         
@@ -64,30 +64,31 @@ public class IdeaNew extends HttpServlet
                 {
                     Generador g = new Generador();
                     
-                    String idea_id = g.newID();
+                    String note_id = g.newID();
                     String task_id = request.getParameter("id");
                     
-                    String idea_color = idea_fields.get(0).substring(1);
-                    String idea_text = idea_fields.get(1).trim();
+                    String note_name = note_fields.get(0).trim();
                     
-                    Timestamp idea_date = new Timestamp(System.currentTimeMillis());
+                    Timestamp note_cdate = new Timestamp(System.currentTimeMillis());
+                    Timestamp note_mdate = new Timestamp(System.currentTimeMillis());
                     
-                    Idea idea = new Idea(idea_id, idea_text, idea_date, idea_color);
-                    IdeasController ideac = new IdeasController();
+                    Note note = new Note(note_id, note_name, "", note_cdate, note_mdate, "Privado");
+                    NotesController notec = new NotesController();
                     
-                    if (ideac.modelCreateIdea(idea))
+                    if (notec.modelCreateNote(note))
                     {
-                        TaskIdea taskidea = new TaskIdea(task_id, idea_id);
-                        TaskIdeasController taskideac = new TaskIdeasController();
+                        TaskNote tasknote = new TaskNote(task_id, note_id);
+                        TaskNotesController tasknotec = new TaskNotesController();
                         
-                        if (taskideac.modelCreateTaskIdea(taskidea))
+                        if (tasknotec.modelCreateTaskNote(tasknote))
                         {
-                            UserIdea useridea = new UserIdea(user_id, idea_id);
-                            UserIdeasController userideac = new UserIdeasController();
+                            UserNote usernote = new UserNote(user_id, note_id);
+                            UserNotesController usernotec = new UserNotesController();
                             
-                            if (userideac.modelCreateUserIdea(useridea))
+                            if (usernotec.modelCreateUserNote(usernote))
                             {
-                                response.sendRedirect("work/tarea.jsp?id="+task_id+"&view=ideas");
+                                //response.sendRedirect("work/nota.jsp?id="+note_id);
+                                response.sendRedirect("work/tarea.jsp?id="+task_id);
                             }
                             else
                             { response.sendRedirect("work/tarea.jsp?id="+task_id+"&error=200-1"); }

@@ -14,7 +14,7 @@ public class UserCanvasModel extends Conexion
         
         try
         {
-            String sql = "INSERT INTO usercanvas (user_id, idea_id) VALUES (?,?)";
+            String sql = "INSERT INTO usercanvas (user_id, canva_id) VALUES (?,?)";
             
             ps = getConnection().prepareStatement(sql);
             
