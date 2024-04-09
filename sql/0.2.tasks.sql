@@ -15,7 +15,7 @@ create table canvas
 	canva_draw longtext,
 	canva_cdate timestamp,
 	canva_mdate timestamp,
-	canva_status varchar(2)
+	canva_status varchar(16)
 );
 
 create table notes
@@ -24,7 +24,8 @@ create table notes
 	note_name varchar(64),
 	note_text text,
 	note_cdate timestamp,
-	note_mdate timestamp
+	note_mdate timestamp,
+	note_status varchar(16)
 );
 
 create table taskideas
