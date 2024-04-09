@@ -15,7 +15,7 @@
                 <ul class="dropdown-menu my-4 shadow">
                     <li>
                         <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="perfil.jsp">
-                            <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
+                            <i class="bi bi-person-square" style="color: #25ce7b"></i>
                             Mi perfil
                         </a>
                     </li>

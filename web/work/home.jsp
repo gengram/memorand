@@ -84,18 +84,12 @@
             </div>
             <div class="row mt-5">
                 <div class="col-12">
+                    <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
                     <div id="content">
                         <%= teamc.modelGetTeams(user_id)%>
                     </div>
-                    
-
                 </div>
             </div>
         </div
-
-        <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
-
-
     </body>
-
 </html>
