@@ -100,6 +100,10 @@
             border: 2px solid #<%=proj_color%>; /* Color del contorno */
             color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
         }
+
+        .custom-p {
+            margin-bottom: 0.1rem; /* Ajusta el margen inferior según sea necesario */
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -117,6 +121,17 @@
                     // Agregar clase 'active' al botón actual
                     this.classList.add('active');
                 });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('task_panel').addEventListener('click', function () {
+                document.getElementById('vbtn-radioPanel').checked = true;
+            });
+
+            document.getElementById('task_table').addEventListener('click', function () {
+                document.getElementById('vbtn-radioTabla').checked = true;
             });
         });
     </script>
@@ -197,85 +212,69 @@
                     </div>
                 </div>
                 <div class="col-6" >
-                    <div class="row ">
-                        <div class="col-6 text-end">
+                    <div class="row ms-5">
+                        <div class="col-6 text-end ">
                             <label for="inputPassword6" class="col-form-label" >Filtrar por etiqueta:</label>
                         </div>
-                        <div class="col-6 mt-1 text-center">
+                        <div class="col-6 mt-1 text-end">
                             <div class="btn-group" role="group" aria-label="Vertical radio toggle button group">
-                                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio1" autocomplete="off" checked>
-                                <label class="btn btn-outline-gray border" for="vbtn-radio1" style="padding: 0.375rem 0.75rem; font-size: 1rem;">Fecha Lim.</label>
+                                <input type="radio" class="btn-check" name="vbtn-radioEtiquet" id="vbtn-radioFecha" autocomplete="off" checked>
+                                <label class="btn btn-outline-gray border" for="vbtn-radioFecha" style="padding: 0.375rem 0.75rem; font-size: 0.8rem;">Fecha Lim.</label>
 
-                                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio2" autocomplete="off">
-                                <label class="btn btn-outline-gray border" for="vbtn-radio2" style="padding: 0.375rem 0.75rem; font-size: 1rem;">Estatus</label>
+                                <input type="radio" class="btn-check" name="vbtn-radioEtiquet" id="vbtn-radioEsta" autocomplete="off">
+                                <label class="btn btn-outline-gray border" for="vbtn-radioEsta" style="padding: 0.375rem 0.75rem; font-size: 0.8rem;">Estatus</label>
 
-                                <input type="radio" class="btn-check" name="vbtn-radio" id="vbtn-radio3" autocomplete="off">
-                                <label class="btn btn-outline-gray border" for="vbtn-radio3" style="padding: 0.375rem 0.75rem; font-size: 1rem;">Prioridad</label>
+                                <input type="radio" class="btn-check" name="vbtn-radioEtiquet" id="vbtn-radioPriori" autocomplete="off">
+                                <label class="btn btn-outline-gray border" for="vbtn-radioPriori" style="padding: 0.375rem 0.75rem; font-size: 0.8rem;">Prioridad</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-6" >
-                    <a href="?">
-                        <button class="btn btn-lg rounded-pill custom-bcollab">
-                            <p class="mb-1 mt-1 me-2 ms-2" style="font-size: 18px;"><i class="bi bi-plus-lg me-2" style="font-size: 20px;"></i>Nueva tarea</p> 
-                        </button>
-                    </a>
-                    <a href="?">
-                        <button class="btn btn-lg rounded-pill custom-bcollab ms-4">
-                            <p class="mb-1 mt-1 me-2 ms-2" style="font-size: 18px;"><i class="bi bi-plus-lg me-2" style="font-size: 20px;"></i> Nueva etiqueta</p> 
-                        </button>
-                    </a>
+            
+
+            <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
+            <div id="content">
+
+                <%
+                    String view = request.getParameter("view");
+                    TasksController taskc1 = new TasksController();
+                    TasksController taskc2 = new TasksController();
+
+                    if (view != null) {
+                        switch (view) {
+                            case "tasks":
+                %>
+                <div id="tasks">
+                    <%= taskc1.modelGetTasksPanel(collab_id, "task_edate")%>
                 </div>
-                <div class="col-6">
-
-                </div>
-            </div>
-        </div>
-
-        <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
-        <div id="content">
-
-            <%
-                String view = request.getParameter("view");
-                TasksController taskc1 = new TasksController();
-                TasksController taskc2 = new TasksController();
-
-                if (view != null) {
-                    switch (view) {
-                        case "tasks":
-            %>
-            <div id="tasks">
-                <%= taskc1.modelGetTasksPanel(collab_id, "task_edate")%>
-            </div>
-            <%
-                    break;
-                case "posts":
-                    PostsController postc1 = new PostsController();
-            %>
-            <%= postc1.modelGetPosts(collab_id)%>
-            <%
-                    break;
-                case "people":
-                    UsersController userc1 = new UsersController();
-            %>
-            <%= userc1.modelGetPeople(collab_id)%>
-            <%
+                <%
                         break;
-                    default:
-                        throw new AssertionError();
-                }
-            } else {
-            %>
-            <div id="tasks">
-                <%= taskc1.modelGetTasksPanel(collab_id, "task_edate")%>
-            </div>
-            <%
-                }
-            %>
+                    case "posts":
+                        PostsController postc1 = new PostsController();
+                %>
+                <%= postc1.modelGetPosts(collab_id)%>
+                <%
+                        break;
+                    case "people":
+                        UsersController userc1 = new UsersController();
+                %>
+                <%= userc1.modelGetPeople(collab_id)%>
+                <%
+                            break;
+                        default:
+                            throw new AssertionError();
+                    }
+                } else {
+                %>
+                <div id="tasks">
+                    <%= taskc1.modelGetTasksPanel(collab_id, "task_edate")%>
+                </div>
+                <%
+                    }
+                %>
 
+            </div>
         </div>
         <script src="scripts/collab.js"></script>
     </body>
