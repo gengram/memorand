@@ -21,19 +21,19 @@
                     </li>
                     <li>
                         <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="configuracion.jsp">
-                            <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
+                            <i class="bi bi-gear-fill" style="color: #25ce7b"></i>
                             Configuraci&oacute;n
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
                             <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
-                            Cerrar sesi&oacute;n
+                            <b style="color: #25ce7b">Cerrar sesi&oacute;n</b>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-        
+
     </div>
 </nav>

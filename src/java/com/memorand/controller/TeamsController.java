@@ -212,7 +212,7 @@ public class TeamsController {
                 if (user_type != null) {
                     switch (user_type) {
                         case "ch":
-                            hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'><p class=\"subtitulo mb-0\" style=\"color: #2A2927; font-size: 18px; margin-left: 50rem !important;\">Ver rendimiento <i class=\"bi bi-chevron-right\"></i></p></a>";
+                            hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'><b class=\"subtitulo\" style=\"color: #AFB2B3; font-size: 18px;\">Ver rendimiento <i class=\"bi bi-chevron-right\"></i></b></a>";
                             break;
                         case "wk":
                         default:
@@ -220,21 +220,19 @@ public class TeamsController {
                             break;
                     }
                 }
-
                 htmlcode += "<div class=\"card border border-2\" style=\"max-height: 50px;\">\n"
                         + "<div class=\"row g-0\">\n"
                         + "<div class=\"col-md-1\" style=\"background-color: #"+ t.getTeam_color() +"; max-height: 46px; max-width: 30px\"></div>\n"
-                        + "<div class=\"col-md-11 ms-4\" >\n"
-                        + "<div class=\"card-header d-flex justify-content-between align-items-center\">\n"
-                        + "<div>\n"
-                        + "<p class=\"titulo mb-0\" style=\"color: #2A2927; font-size: 20px;\">" + t.getTeam_name() + " </p>\n"
+                        + "<div class=\"col-md-11 ms-4\">"   
+                        + "<div class=\"card-header\" style=\"background-color: transparent;\">\n"    
+                        + "<p class=\"titulo\" style=\"color: #2A2927; font-size: 20px;\">"
+                        + "<b style=\"color: #2A2927\" class=\"ms-4 mb-0\">"+ t.getTeam_name() +"</b>\n"
                         + hrefcode
-                        + "</div>\n"
-                        + "</div>\n"
-                        + "</div>\n"
-                        + "</div>\n"
-                        + "</div>\n";
-
+                        + "</p>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>"
+                        + "</div>";
                 htmlcode += "<hr class=\"mt-4 \">";
                 htmlcode += projc.modelGetProjects(t.getTeam_id(), user_id);
             }

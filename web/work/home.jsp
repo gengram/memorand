@@ -44,6 +44,32 @@
 
         }
     </style>
+    <style>
+        .titulo {
+            display: flex;
+            align-items: center; /* Alineación vertical */
+
+        }
+
+        .titulo i {
+            font-size: 32px;
+            margin-right: 1rem;
+        }
+
+        .titulo b {
+            margin-right: 1rem;
+        }
+
+        .titulo a {
+            margin-left: auto; /* Empuja el elemento a la derecha */
+        }
+
+        .titulo a i {
+            font-size: 18px;
+            color: #2A2927;
+            height: 32px; /* Altura fija */
+        }
+    </style>
 
     <!-- BODY -->
     <body>
@@ -58,10 +84,9 @@
             </div>
             <div class="row mt-5">
                 <div class="col-12">
-
-                    
-                    <%= teamc.modelGetTeams(user_id)%>
-                    <hr>
+                    <div id="content">
+                        <%= teamc.modelGetTeams(user_id)%>
+                    </div>
                     
 
                 </div>
@@ -69,9 +94,7 @@
         </div
 
         <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
-        <div id="content">
 
-        </div>
 
     </body>
 

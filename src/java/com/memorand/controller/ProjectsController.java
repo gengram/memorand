@@ -245,10 +245,14 @@ public class ProjectsController
 
                 String collab_id = collab.getCollab_id();
                                 
-                htmlcode += "<svg class=\"titulo\" width=\"40\" height=\"40\">\n" +
-                            "  <rect width=\"40\" height=\"40\" rx=\"5\" ry=\"5\" fill=\"#"+ p.getProj_color() +"\" />\n" +
-                            "</svg>";
-                htmlcode += "<h5 class=\"subtitulo\" style=\"margin-left: 1rem !important;\" >"+ p.getProj_name() +" <a href='collab.jsp?id="+ collab_id +"'><i style=\"color: #2A2927; font-size: 18px; margin-left: 59rem !important;\" class=\"bi bi-chevron-right\"></i></a></h5>";
+                htmlcode += "<p class=\"titulo\">\n"
+                        + "<i style=\"color: #"+ p.getProj_color() +";\" class=\"bi bi-square-fill\"></i>\n"
+                        + "<b style=\"color: #2A2927\" class=\"ms-4 mb-0\">" + p.getProj_name() + "</b>"
+                        + "<a href=\"collab.jsp?id="+ collab_id +"\">"
+                        + "<i class=\"bi bi-chevron-right\"></i>"
+                        + "</a>"
+                        + "</p>";
+                htmlcode += "<hr>";
             }
         }
         
