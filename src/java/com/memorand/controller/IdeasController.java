@@ -25,7 +25,7 @@ public class IdeasController
     
     public String modelGetIdeasByTask(String task_id)
     {
-        String htmlcode = "<h3>Nueva idea</h3>\n"
+        String htmlcode = "<h3>Agregar nueva idea</h3>\n"
                 + "            <h1><a href='ideanew.jsp?id=" + task_id + "'>+</a></h1>\n"
                 + "            \n"
                 + "            <h3>Lluvia de ideas</h3>\n"

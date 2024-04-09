@@ -1,3 +1,5 @@
+<%@page import="com.memorand.controller.CanvasController"%>
+<%@page import="com.memorand.controller.NotesController"%>
 <%@page import="com.memorand.controller.IdeasController"%>
 <%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.controller.ProjectsController"%>
@@ -70,6 +72,8 @@
             }
             
             IdeasController ideac = new IdeasController();
+            NotesController notec = new NotesController();
+            CanvasController canvac = new CanvasController();
 %>
 
 <!DOCTYPE html>
@@ -119,6 +123,10 @@
         <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
         <div id="content">
             <%= ideac.modelGetIdeasByTask(task_id) %>
+            <hr>
+            <%= notec.modelGetNotesByTask(task_id) %>
+            <hr>
+            <%= canvac.modelGetCanvasByTask(task_id) %>
         </div>
         
     </body>

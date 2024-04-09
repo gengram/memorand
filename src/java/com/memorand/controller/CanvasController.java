@@ -19,7 +19,11 @@ public class CanvasController
     
     public String modelGetCanvasByTask(String task_id)
     {
-        String htmlcode = "";
+        String htmlcode = "<h3>Crear lienzo de dibujo</h3>\n"
+                + "            <h1><a href='canvanew.jsp?id=" + task_id + "'>+</a></h1>\n"
+                + "            \n"
+                + "            <h3>Lienzos del equipo</h3>";
+        
         return htmlcode;
     }
 }

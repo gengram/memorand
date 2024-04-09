@@ -3,7 +3,7 @@ package com.memorand.controller;
 import com.memorand.beans.Note;
 import com.memorand.model.NotesModel;
 
-public class NotesIdeas
+public class NotesController
 {
     public boolean modelCreateNote(Note note)
     {
@@ -19,7 +19,10 @@ public class NotesIdeas
     
     public String modelGetNotesByTask(String task_id)
     {
-        String htmlcode = "";
+        String htmlcode = "<h3>Crear nota r&aacute;pida</h3>\n"
+                + "            <h1><a href='notenew.jsp?id=" + task_id + "'>+</a></h1>\n"
+                + "            \n"
+                + "            <h3>Notas del equipo</h3>";
         
         return htmlcode;
     }
