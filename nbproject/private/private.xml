@@ -4,13 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/UserPostsModel.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/UsersController.java</file>
-            <file>file:/C:/memorand/web/WEB-INF/web.xml</file>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/PostsController.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiUserInfo.java</file>
+            <file>file:/C:/memorand/web/work/scripts/collab.js</file>
+            <file>file:/C:/memorand/web/work/scripts/tasks.js</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/obtener/TasksGet.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/model/UsersModel.java</file>
             <file>file:/C:/memorand/web/work/collab.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiLogin.java</file>
+            <file>file:/C:/memorand/web/staff/scripts/institucion.js</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/CoTagsModel.java</file>
+            <file>file:/C:/memorand/web/staff/scripts/home.js</file>
         </group>
     </open-files>
 </project-private>
