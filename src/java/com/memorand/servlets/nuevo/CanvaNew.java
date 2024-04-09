@@ -1,13 +1,14 @@
 package com.memorand.servlets.nuevo;
 
-import com.memorand.beans.Idea;
-import com.memorand.beans.TaskIdea;
-import com.memorand.beans.UserIdea;
-import com.memorand.controller.IdeasController;
-import com.memorand.controller.TaskIdeasController;
-import com.memorand.controller.UserIdeasController;
+import com.memorand.beans.Canva;
+import com.memorand.beans.TaskCanva;
+import com.memorand.beans.UserCanva;
+import com.memorand.controller.CanvasController;
+import com.memorand.controller.TaskCanvasController;
+import com.memorand.controller.UserCanvasController;
 import com.memorand.util.Generador;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class IdeaNew extends HttpServlet
+public class CanvaNew extends HttpServlet
 {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +36,7 @@ public class IdeaNew extends HttpServlet
             FileItemFactory fif = new DiskFileItemFactory();
             ServletFileUpload sfu = new ServletFileUpload(fif);
             
-            ArrayList<String> idea_fields = new ArrayList<>();
+            ArrayList<String> canva_fields = new ArrayList<>();
             
             String user_type = (String) session.getAttribute("user_type");
             String user_id = (String) session.getAttribute("user_id");
@@ -49,10 +50,10 @@ public class IdeaNew extends HttpServlet
                     FileItem fi = (FileItem) items.get(i);
 
                     if (fi.isFormField())
-                        idea_fields.add(fi.getString());
+                        canva_fields.add(fi.getString());
                 }
             }
-        
+            
             catch (FileUploadException e)
             {
                 System.err.println(e.getMessage());
@@ -64,30 +65,31 @@ public class IdeaNew extends HttpServlet
                 {
                     Generador g = new Generador();
                     
-                    String idea_id = g.newID();
+                    String canva_id = g.newID();
                     String task_id = request.getParameter("id");
                     
-                    String idea_color = idea_fields.get(0).substring(1);
-                    String idea_text = idea_fields.get(1).trim();
+                    String canva_name = canva_fields.get(0).trim();
                     
-                    Timestamp idea_date = new Timestamp(System.currentTimeMillis());
+                    Timestamp canva_cdate = new Timestamp(System.currentTimeMillis());
+                    Timestamp canva_mdate = new Timestamp(System.currentTimeMillis());
                     
-                    Idea idea = new Idea(idea_id, idea_text, idea_date, idea_color);
-                    IdeasController ideac = new IdeasController();
+                    Canva canva = new Canva(canva_id, canva_name, "", canva_cdate, canva_mdate, "Privado");
+                    CanvasController canvac = new CanvasController();
                     
-                    if (ideac.modelCreateIdea(idea))
+                    if (canvac.modelCreateCanva(canva))
                     {
-                        TaskIdea taskidea = new TaskIdea(task_id, idea_id);
-                        TaskIdeasController taskideac = new TaskIdeasController();
+                        TaskCanva taskcanva = new TaskCanva(task_id, canva_id);
+                        TaskCanvasController taskcanvac = new TaskCanvasController();
                         
-                        if (taskideac.modelCreateTaskIdea(taskidea))
+                        if (taskcanvac.modelCreateTaskCanva(taskcanva))
                         {
-                            UserIdea useridea = new UserIdea(user_id, idea_id);
-                            UserIdeasController userideac = new UserIdeasController();
+                            UserCanva usercanva = new UserCanva(user_id, canva_id);
+                            UserCanvasController usercanvac = new UserCanvasController();
                             
-                            if (userideac.modelCreateUserIdea(useridea))
+                            if (usercanvac.modelCreateUserCanva(usercanva))
                             {
-                                response.sendRedirect("work/tarea.jsp?id="+task_id+"&view=ideas");
+                                //response.sendRedirect("work/lienzo.jsp?id="+canva_id);
+                                response.sendRedirect("work/tarea.jsp?id="+task_id);
                             }
                             else
                             { response.sendRedirect("work/tarea.jsp?id="+task_id+"&error=200-1"); }
@@ -115,5 +117,5 @@ public class IdeaNew extends HttpServlet
             response.sendRedirect("index.jsp?error=101");
         }
     }
-
+    
 }

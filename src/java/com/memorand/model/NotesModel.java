@@ -111,7 +111,7 @@ public class NotesModel extends Conexion
         {
             String sql = "SELECT n.note_id, n.note_name, n.note_text, n.note_cdate, n.note_mdate, n.note_status "
                     + "FROM notes n "
-                    + "INNER JOIN taskcanvas t ON n.note_id = t.note_id "
+                    + "INNER JOIN tasknotes t ON n.note_id = t.note_id "
                     + "WHERE t.task_id = ? "
                     + "ORDER BY n.note_mdate";
             

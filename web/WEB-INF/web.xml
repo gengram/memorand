@@ -100,6 +100,14 @@
         <servlet-name>IdeaNew</servlet-name>
         <servlet-class>com.memorand.servlets.nuevo.IdeaNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NoteNew</servlet-name>
+        <servlet-class>com.memorand.servlets.nuevo.NoteNew</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CanvaNew</servlet-name>
+        <servlet-class>com.memorand.servlets.nuevo.CanvaNew</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -199,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>IdeaNew</servlet-name>
         <url-pattern>/ideanew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoteNew</servlet-name>
+        <url-pattern>/notenew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CanvaNew</servlet-name>
+        <url-pattern>/canvanew</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
