@@ -120,6 +120,28 @@ public class UsersController {
         
     }
     
+    public String modelGetImgUser(String inst_id, int level1) {
+    
+        String htmlcode = "";
+        String add1 = "";
+        
+        UsersModel userm = new UsersModel();
+        
+        for (int i = 0; i < level1; i++) {
+            add1 += "../";
+        }
+      
+        for (User ch : userm.getAllChByInst(inst_id))
+        {
+            htmlcode += "<a class=\"navbar-brand\" href=\"/memorand/work/perfil.jsp\">"
+                    + "<img src='\"+ add1 + ch.getUser_profile() +\"' width=\"230\" style=\"margin-left: 10%\">"
+                    + "</a>";
+        }
+        
+        return htmlcode;
+    
+    }
+    
     // DEPRECIADO BORRAR CUANDO SEA SEGURO
     public String modelGetAllChByInst(String inst_id, int level1, int level2) {
     

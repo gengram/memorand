@@ -108,17 +108,54 @@ public class TasksController {
     }
 
     public String modelGetTasksPanel(String collab_id, String task_order) {
-        String htmlcode = "<div class=\"row mt-4\" >" + "<div class=\"col-6 text-start\">"
+        String htmlcode = "<div class=\"row\">"
+                + "<div class=\"col-6\" >"
+                + "<div class=\"row\">"
+                + "<div class=\"col-4 text-start\">"
+                + "<label for=\"inputPassword6\" class=\"col-form-label\">Filtrar por etiqueta:</label>"
+                + "</div>"
+                + "<div class=\"col-8 mt-1\">"
+                + "<select class=\"form-select border-gray\" aria-label=\"Default select\">"
+                + "<option selected>Selecciona uno</option>"
+                + "<option value=\"1\">One</option>"
+                + "<option value=\"2\">Two</option>"
+                + "<option value=\"3\">Three</option>"
+                + "</select>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "<div class=\"col-6\" >"
+                + "<div class=\"row ms-5\">"
+                + "<div class=\"col-6 text-end \">"
+                + "<label for=\"inputPassword6\" class=\"col-form-label\" >Ordenar por: </label>"
+                + "</div>"
+                + "<div class=\"col-6 mt-1 text-end\">"
+                + "<div class=\"btn-group\" role=\"group\" aria-label=\"Vertical radio toggle button group\">"
+                + "<input type=\"radio\" class=\"btn-check\" name=\"vbtn-radioEtiquet\" id=\"vbtn-radioFecha\" autocomplete=\"off\" checked>"
+                + "<label class=\"btn btn-outline-gray border\" for=\"vbtn-radioFecha\" style=\"padding: 0.375rem 0.75rem; font-size: 0.8rem;\">Fecha Lim.</label>"
+                + "<input type=\"radio\" class=\"btn-check\" name=\"vbtn-radioEtiquet\" id=\"vbtn-radioEsta\" autocomplete=\"off\">"
+                + "<label class=\"btn btn-outline-gray border\" for=\"vbtn-radioEsta\" style=\"padding: 0.375rem 0.75rem; font-size: 0.8rem;\">Estatus</label>"
+                + "<input type=\"radio\" class=\"btn-check\" name=\"vbtn-radioEtiquet\" id=\"vbtn-radioPriori\" autocomplete=\"off\">"
+                + "<label class=\"btn btn-outline-gray border\" for=\"vbtn-radioPriori\" style=\"padding: 0.375rem 0.75rem; font-size: 0.8rem;\">Prioridad</label>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                /*Filtros ↑*/
+                + "<div class=\"row mt-4\" >"
+                + "<div class=\"col-6 text-start\">"
                 + "<a href='tasknew.jsp?id=" + collab_id + "'>"
-                + "<button class=\"btn btn-lg rounded-pill custom-bcollab\">\n"
+                + "<button class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
                 + "                            <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
                 + "                        </button>" + "</a>\n"
-                + "                        <a href='tagnew.jsp?id=" + collab_id + "'><button class=\"btn btn-lg rounded-pill custom-bcollab ms-4\">\n"
+                + "                        <a href='tagnew.jsp?id=" + collab_id + "'>"
+                + "<button class=\"btn btn-lg rounded-pill custom-bcollab ms-4 mb-2\">\n"
                 + "                            <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i> Nueva etiqueta</p> \n"
                 + "                        </button></a>\n"
                 + "</div>"
                 + "<div class=\"col-6 text-end\">"
-                + "                        <div class=\"btn-group\" role=\"group\" aria-label=\"Vertical radio toggle button group\">\n"
+                + "                        <div class=\"btn-group mb-2\" role=\"group\" aria-label=\"Vertical radio toggle button group\">\n"
                 + "                        <input type=\"radio\" class=\"btn-check\" name=\"btnradio-Vista\" id=\"vbtn-radioPanel\" autocomplete=\"off\" checked>\n"
                 + "                        <label class=\"btn btn-outline-gray border\" for=\"vbtn-radioPanel\" id=\"task_panel\" style=\"padding: 0.375rem 0.75rem; font-size: 1rem;\"><i class=\"bi bi-grid-fill\"></i></label>\n"
                 + "\n"
@@ -127,7 +164,7 @@ public class TasksController {
                 + "                    </div>"
                 + "                    </div>"
                 + "                    </div>";
-        htmlcode += "<div id=\"tasks_zone\">";
+        htmlcode += "<div class=\"row-cols-3\" id=\"tasks_zone\">";
 
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
@@ -141,8 +178,7 @@ public class TasksController {
 
                 String task_edate = sdf.format(t.getTask_edate());
 
-                htmlcode += "<div class='task-card'>"
-                        + "<div class=\"col-5 mt-2\">\n"
+                htmlcode += "<div class=\"col-4 mt-2 \" style=\"background-color: blueviolet\">"
                         + "                    <div class=\"card mb-3 border border-2\">\n"
                         + "                        <div class=\"card-body\">\n"
                         + "                            <div class=\"row\">\n"
@@ -166,11 +202,9 @@ public class TasksController {
                         + "                            </div>\n"
                         + "                        </div>\n"
                         + "                    </div>\n"
-                        + "                </div>"
                         + "             </div>";
 
             }
-            htmlcode += "</div>";
         }
 
         return htmlcode;

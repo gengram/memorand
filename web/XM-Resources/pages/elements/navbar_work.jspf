@@ -3,8 +3,10 @@
 
         <!-- Empresa -->
         <a class="navbar-brand" href="/memorand/work/home.jsp">
-            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230" style="margin-left:122%">
+            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230" style="margin-left:110%">
         </a>
+        
+        
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 69%;">
             <!-- Perfil -->
@@ -34,6 +36,5 @@
                 </ul>
             </div>
         </div>
-
     </div>
 </nav>

@@ -71,10 +71,15 @@ public class PostsController
     
     public String modelGetPosts(String collab_id)
     {
-        String htmlcode = "<form action=\"../postnew?id=" + collab_id + "\" method=\"post\" enctype=\"multipart/form-data\" accept-charset=\"UTF-8\">\n"
-                + "                        <textarea name=\"task_info\" id=\"task_info\" cols=\"120\" rows=\"10\" placeholder=\"Publica un anuncio, pregunta o duda.\" maxlength=\"1024\" style=\"resize: none\" required></textarea>\n"
-                + "                        <br>\n"
-                + "                        <input type=\"submit\" value=\"Nueva publicaci&oacute;n\">\n"
+        String htmlcode = "<h2 class=\"mb-4\">Nueva publicaci&oacute;n</h2>"
+                + "<form action=\"../postnew?id=" + collab_id + "\" method=\"post\" enctype=\"multipart/form-data\" accept-charset=\"UTF-8\">\n"
+                + "                        <div class=\"col-12\">\n" 
+                + "<textarea class=\"form-control bxshad\" style=\"width: 100%; height: 150px; border-color: #AFB2B3;\" rows=\"4\" name=\"task_info\" id=\"task_info\" placeholder=\"Publica un anuncio, pregunta o duda.\" maxlength=\"1024\" style=\"resize: none\" required></textarea>\n" 
+                + "</div>"     
+                + "                        <div class=\"col-12 text-end\">\n" 
+                + "                        <button class=\"btn mt-3 btn-lg rounded-pill custom-bcollab\" type=\"submit\"><p class=\"mb-1 mt-1 me-5 ms-5\" style=\"font-size: 17px;\">Publicar</p></button>\n"
+                + "<hr>"
+                + "</div>"     
                 + "                    </form>";
         
         PostsModel postm = new PostsModel();

@@ -106,24 +106,41 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Seleccionar todos los botones
-            const buttons = document.querySelectorAll('.navC');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleccionar todos los botones
+        const buttons = document.querySelectorAll('.navC');
 
-            // Agregar event listeners a cada botón
-            buttons.forEach(button => {
-                button.addEventListener('click', function () {
-                    // Remover clase 'active' de todos los botones
-                    buttons.forEach(navC => {
-                        navC.classList.remove('active');
-                    });
+        // Función para activar un botón y recordar su estado
+        function activateButton(button) {
+            // Remover clase 'active' de todos los botones
+            buttons.forEach(navC => {
+                navC.classList.remove('active');
+            });
 
-                    // Agregar clase 'active' al botón actual
-                    this.classList.add('active');
-                });
+            // Agregar clase 'active' al botón actual
+            button.classList.add('active');
+
+            // Guardar el ID del botón activo en el almacenamiento local
+            localStorage.setItem('activeButton', button.id);
+        }
+
+        // Agregar event listeners a cada botón
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                activateButton(this);
             });
         });
-    </script>
+
+        // Verificar si hay un botón activo almacenado localmente al cargar la página
+        const activeButtonId = localStorage.getItem('activeButton');
+        if (activeButtonId) {
+            const activeButton = document.getElementById(activeButtonId);
+            if (activeButton) {
+                activateButton(activeButton);
+            }
+        }
+    });
+</script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('task_panel').addEventListener('click', function () {
@@ -195,6 +212,7 @@
                 </div>
                 <hr>
             </div>
+            <!-- Filtrar por etiqueta y estatus
             <div class="row">
                 <div class="col-6" >
                     <div class="row">
@@ -203,7 +221,7 @@
                         </div>
                         <div class="col-8 mt-1">
                             <select class="form-select border-gray" aria-label="Default select">
-                                <option selected style="font-size: 2rem">Selecciona uno</option>
+                                <option selected>Selecciona uno</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -230,9 +248,21 @@
                         </div>
                     </div>
                 </div>
+            </div> 
+            -->
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="card border">
+                        <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
             </div>
-            
-
             <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
             <div id="content">
 
