@@ -108,6 +108,10 @@
         <servlet-name>CanvaNew</servlet-name>
         <servlet-class>com.memorand.servlets.nuevo.CanvaNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InstitutionStatus</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.InstitutionStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>CanvaNew</servlet-name>
         <url-pattern>/canvanew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InstitutionStatus</servlet-name>
+        <url-pattern>/inststat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

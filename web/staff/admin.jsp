@@ -108,7 +108,7 @@
         
         <!-- AQUI VA LA TABLA DE LA INSTITUCIÓN, VER COM.MEMORAND.SERVLETS.OBTENER / InstitutionsGet-->
         <div id="content">
-            <%= instc.modelInstTableById(inst_id) %>
+            <%= instc.modelGetInstTable(inst_id) %>
         </div>
         
         <br>

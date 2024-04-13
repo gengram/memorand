@@ -6,26 +6,26 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-ServicesModel servicem = new ServicesModel();
-ServicesUtil serviceu = new ServicesUtil();
+    ServicesModel servicem = new ServicesModel();
+    ServicesUtil serviceu = new ServicesUtil();
 
-String system_status = servicem.getServiceStatus("9cd15faf-0fa5-482c-a7dd-d07790797528", false);
-String sales_status = servicem.getServiceStatus("c10c1331-6801-4402-b62d-b860d443885b", true);
+    String system_status = servicem.getServiceStatus("9cd15faf-0fa5-482c-a7dd-d07790797528", false);
+    String sales_status = servicem.getServiceStatus("c10c1331-6801-4402-b62d-b860d443885b", true);
 
-String system_statusC = "null";
-String sales_statusC = "null";
+    String system_statusC = "null";
+    String sales_statusC = "null";
 
-String system_statusA = "null";
-String sales_statusA = "null";
+    String system_statusA = "null";
+    String sales_statusA = "null";
 
-if (sales_status != null && system_status != null)
-{
-    system_statusC = serviceu.transformServiceStatus(system_status);
-    sales_statusC = serviceu.transformServiceStatus(sales_status);
-    
-    system_statusA = serviceu.transformActionStatus(system_status);
-    sales_statusA = serviceu.transformActionStatus(sales_status);
-}
+    if (sales_status != null && system_status != null)
+    {
+        system_statusC = serviceu.transformServiceStatus(system_status);
+        sales_statusC = serviceu.transformServiceStatus(sales_status);
+
+        system_statusA = serviceu.transformActionStatus(system_status);
+        sales_statusA = serviceu.transformActionStatus(sales_status);
+    }
 %>
 
 <!DOCTYPE html>

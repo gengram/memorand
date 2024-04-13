@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="col-12" id="content">
                     <!-- AQUI VA LA TABLA DE INSTITUCIONES, VER COM.MEMORAND.SERVLETS.OBTENER / InstitutionGet-->
-                    <%= instc.modelGetAllInstByStatus("si")%>
+                    <%= instc.modelGetInsts("si")%>
                 </div>
             </div>
                 

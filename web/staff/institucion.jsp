@@ -24,7 +24,7 @@
     {
         InstitutionsController instc = new InstitutionsController();
         
-        Institution inst = instc.modelGetInstById(inst_id);
+        Institution inst = instc.modelGetInst(inst_id);
         
         if (inst != null)
         {
@@ -39,10 +39,10 @@
 
             InstitutionsController instcounter = new InstitutionsController();
 
-            count_ch = instcounter.modelGetResourceCountById(inst_id, "ch");
-            count_wk = instcounter.modelGetResourceCountById(inst_id, "wk");
-            count_gp = instcounter.modelGetResourceCountById(inst_id, "teams");
-            count_ks = instcounter.modelGetResourceCountById(inst_id, "projects");
+            count_ch = instcounter.modelGetResourceCount(inst_id, "ch");
+            count_wk = instcounter.modelGetResourceCount(inst_id, "wk");
+            count_gp = instcounter.modelGetResourceCount(inst_id, "teams");
+            count_ks = instcounter.modelGetResourceCount(inst_id, "projects");
             
             ServicesUtil s = new ServicesUtil();
 
@@ -58,7 +58,6 @@
     // ADMINISTRADORES
     
     UsersController usersc = new UsersController();
-    
 %>
 
 <!DOCTYPE html>
@@ -89,7 +88,7 @@
         <h2><%= inst_name %></h2>
         
         <a href='instedit.jsp?id=<%= inst_id %>'>Editar</a>
-        <a href='instedit?req=status&id=<%= inst_id %>'><%= action_status %></a>
+        <a href='inststat?id=<%= inst_id %>'><%= action_status %></a>
         
         <p>Tipo: <%= inst_type %></p>
         <p>Lideres: <%= count_ch %>/<%= lim_ch %></p>
