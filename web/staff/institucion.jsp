@@ -88,7 +88,7 @@
         <h2><%= inst_name %></h2>
         
         <a href='instedit.jsp?id=<%= inst_id %>'>Editar</a>
-        <a href='inststat?id=<%= inst_id %>'><%= action_status %></a>
+        <a href='../inststat?id=<%= inst_id %>&status=<%= inst_status %>'><%= action_status %></a>
         
         <p>Tipo: <%= inst_type %></p>
         <p>Lideres: <%= count_ch %>/<%= lim_ch %></p>

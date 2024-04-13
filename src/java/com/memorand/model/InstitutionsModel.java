@@ -251,4 +251,44 @@ public class InstitutionsModel extends Conexion {
         return inst;
     }
 
+    public boolean updateInstStatus(String inst_i, String inst_s)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE institutions SET inst_status = ? WHERE inst_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, inst_s);
+            ps.setString(2, inst_i);
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    }
 }

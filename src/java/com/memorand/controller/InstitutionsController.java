@@ -28,10 +28,16 @@ public class InstitutionsController
         return instm.createInst(inst);
     }
     
-    public Institution modelGetInst(String i_id)
+    public boolean modelUpdateInstStatus(String inst_id, String inst_status)
     {
         InstitutionsModel instm = new InstitutionsModel();
-        return instm.getInstById(i_id);
+        return instm.updateInstStatus(inst_id, inst_status);
+    }
+    
+    public Institution modelGetInst(String inst_id)
+    {
+        InstitutionsModel instm = new InstitutionsModel();
+        return instm.getInstById(inst_id);
     }
     
     public Institution modelGetInstByUser(String user_id)
@@ -46,13 +52,13 @@ public class InstitutionsController
         return String.valueOf(instm.getResourceCount(inst_id, res_name));
     }
     
-    public String modelGetInstTable(String i_id)
+    public String modelGetInstTable(String inst_id)
     {
         String htmlcode = htmlInstTable;
         
         InstitutionsModel instm = new InstitutionsModel();
 
-        Institution i = instm.getInstById(i_id);
+        Institution i = instm.getInstById(inst_id);
         
         if (i != null)
         {
@@ -78,12 +84,12 @@ public class InstitutionsController
         return htmlcode;
     }
     
-    public String modelGetInsts(String inst_s)
+    public String modelGetInsts(String inst_status)
     {
         String htmlcode = htmlInstTable;
         
         InstitutionsModel instm = new InstitutionsModel();
-        ArrayList<Institution> insts = instm.getInsts(inst_s);
+        ArrayList<Institution> insts = instm.getInsts(inst_status);
         
         if (insts.isEmpty())
         {
