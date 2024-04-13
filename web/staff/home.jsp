@@ -32,7 +32,7 @@
             
             <div class="row mt-5">
                 <div class="col-6 d-flex align-items-center">
-                    <h1>Panel de control</h1>
+                    <h2>Panel de control</h2>
                 </div>
                 <div class="col-6 d-flex justify-content-end align-items-center">
                     <a href='instnew.jsp'>
@@ -47,7 +47,7 @@
             
             <div class="row mt-5">
                 <div class="col-10">
-                    <h2>Instituciones</h2>
+                    <h3>Instituciones</h3>
                 </div>
                 <div class="col-2">
                     <div class="row mt-3">
@@ -76,7 +76,9 @@
                     <%= instc.modelGetAllInstByStatus("si")%>
                 </div>
             </div>
+                
         </div>
+                
         <script>
             // Obtener todas las filas dentro del tbody
             var rows = document.querySelectorAll('#table-body tr');
@@ -91,6 +93,7 @@
                 });
             });
         </script>
+        
         <script src="scripts/home.js"></script>
     </body>
 </html>

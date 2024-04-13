@@ -43,7 +43,8 @@
 
             <select name="inst_type" id="inst_type">
                 <option value="" disabled selected hidden>Tipo</option>
-                <option value="empresa">Empresa</option>
+                <option value="Empresa">Empresa</option>
+                <option value="Escuela" disabled>Escuela</option>
             </select>
 
             <br> <br>
