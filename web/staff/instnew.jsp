@@ -35,7 +35,7 @@
         <hr>
         
         <form action="../instnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="file" name="inst_profile" id="inst_profile" required>
+            <input type="file" name="inst_profile" id="inst_profile">
             
             <br> <br>
             
