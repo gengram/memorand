@@ -47,9 +47,16 @@ public class UserNew extends HttpServlet
 
                     if (!fi.isFormField())
                     {
-                        File file = new File("C:\\memorand\\web\\XM-Uploads\\users\\profile\\"+fi.getName());
-                        fi.write(file);
-                        user_img = "XM-Uploads/users/profile/"+fi.getName();
+                        if (!fi.getName().isEmpty())
+                        {
+                            File file = new File("C:\\memorand\\web\\XM-Uploads\\users\\profile\\"+fi.getName());
+                            fi.write(file);
+                            user_img = "XM-Uploads/users/profile/"+fi.getName();
+                        }
+                        else
+                        {
+                            user_img = "XM-Uploads/users/profile/default-user.png";
+                        }
                     }
                     else
                     {

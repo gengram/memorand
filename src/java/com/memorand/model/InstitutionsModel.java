@@ -300,16 +300,17 @@ public class InstitutionsModel extends Conexion {
         
         try
         {
-            String sql = "UPDATE institutions SET inst_name = ?, lim_ch = ?, lim_wk = ?, lim_gp = ?, lim_ks = ? WHERE inst_id = ?";
+            String sql = "UPDATE institutions SET inst_name = ?, inst_profile = ?, lim_ch = ?, lim_wk = ?, lim_gp = ?, lim_ks = ? WHERE inst_id = ?";
             
             ps = getConnection().prepareStatement(sql);
             
             ps.setString(1, inst.getInst_name());
-            ps.setString(2, inst.getLim_ch());
-            ps.setString(3, inst.getLim_wk());
-            ps.setString(4, inst.getLim_gp());
-            ps.setString(5, inst.getLim_ks());
-            ps.setString(6, inst.getInst_id());
+            ps.setString(2, inst.getInst_profile());
+            ps.setString(3, inst.getLim_ch());
+            ps.setString(4, inst.getLim_wk());
+            ps.setString(5, inst.getLim_gp());
+            ps.setString(6, inst.getLim_ks());
+            ps.setString(7, inst.getInst_id());
             
             if (ps.executeUpdate() == 1)
             {

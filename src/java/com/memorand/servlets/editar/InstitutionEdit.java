@@ -65,7 +65,6 @@ public class InstitutionEdit extends HttpServlet
                             inst_fields.add(fi.getString());
                         }
                     }
-
                 }
                 catch (Exception e)
                 {
