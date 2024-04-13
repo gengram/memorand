@@ -105,19 +105,6 @@ public class InstitutionsController {
                 InstitutionsModel inst_counter = new InstitutionsModel();
                 
                 String circleFillgreen;
-                String inst_type;
-                                
-                switch (i.getInst_type()) {
-                    case "escuela":
-                        inst_type = "Escuela";
-                        break;
-                    case "empresa":
-                        inst_type = "Empresa";
-                        break;
-                    default:
-                        inst_type = "Error";
-                        break;
-                }
             
                 if(i.getInst_status().equals("si"))
                 {
@@ -131,7 +118,7 @@ public class InstitutionsController {
                 htmlcode
                         += "<tr>\n"
                         + "     <td class='align-middle'>"+ circleFillgreen +"</td>"
-                        + "     <td class='align-middle'> <img class='me-2' src='../"+ i.getInst_profile() +"' width='48'></img> "+ i.getInst_name() +" - "+ inst_type +"</td>\n"
+                        + "     <td class='align-middle'> <img class='me-2' src='../"+ i.getInst_profile() +"' width='48'></img> "+ i.getInst_name() +" - "+ i.getInst_type() +"</td>\n"
                         + "     <td class='align-middle'>" + inst_counter.getResourceCountById(i.getInst_id(), "ch") + "/" + i.getLim_ch() + "</td>\n"
                         + "     <td class='align-middle'>" + inst_counter.getResourceCountById(i.getInst_id(), "wk") + "/" + i.getLim_wk() + "</td>\n"
                         + "     <td class='align-middle'>" + inst_counter.getResourceCountById(i.getInst_id(), "teams") + "/" + i.getLim_gp() + "</td>\n"
