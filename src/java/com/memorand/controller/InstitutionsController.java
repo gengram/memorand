@@ -34,6 +34,12 @@ public class InstitutionsController
         return instm.updateInstStatus(inst_id, inst_status);
     }
     
+    public boolean modelUpdateInst(Institution inst)
+    {
+        InstitutionsModel instm = new InstitutionsModel();
+        return instm.updateInst(inst);
+    }
+    
     public Institution modelGetInst(String inst_id)
     {
         InstitutionsModel instm = new InstitutionsModel();

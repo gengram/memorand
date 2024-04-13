@@ -104,7 +104,7 @@
         
         <hr>
         
-        <h2>Institucion a la que pertenece</h2>
+        <h2>Instituci&oacute;n a la que pertenece</h2>
         
         <!-- AQUI VA LA TABLA DE LA INSTITUCIÓN, VER COM.MEMORAND.SERVLETS.OBTENER / InstitutionsGet-->
         <div id="content">

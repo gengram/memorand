@@ -112,6 +112,10 @@
         <servlet-name>InstitutionStatus</servlet-name>
         <servlet-class>com.memorand.servlets.editar.InstitutionStatus</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InstitutionEdit</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.InstitutionEdit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>InstitutionStatus</servlet-name>
         <url-pattern>/inststat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InstitutionEdit</servlet-name>
+        <url-pattern>/instedit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -80,32 +80,24 @@
         
         <hr>
         
-        <form action="../instnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="file" name="inst_profile" id="inst_profile" required>
+        <form action="../instedit?id=<%= inst_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+            <input type="file" name="inst_profile" id="inst_profile">
             
             <br> <br>
             
-            <input type="text" name="inst_name" id="inst_name" placeholder="Nombre institucion" required>
+            <input type="text" name="inst_name" id="inst_name" value="<%= inst_name %>" required>
 
-            <select name="inst_type" id="inst_type">
-                <option value="" disabled selected hidden>Tipo</option>
-                <option value="Empresa">Empresa</option>
-                <option value="Escuela" disabled>Escuela</option>
-            </select>
+            <input type="text" name="lim_ch" id="lim_ch" value="<%= lim_ch %>" required>
 
-            <br> <br>
-            
-            <input type="text" name="lim_ch" id="lim_ch" placeholder="Limite lideres" required>
+            <input type="text" name="lim_wk" id="lim_wk" value="<%= lim_wk %>" required>
 
-            <input type="text" name="lim_wk" id="lim_wk" placeholder="Limite integrantes" required>
+            <input type="text" name="lim_gp" id="lim_gp" value="<%= lim_gp %>" required>
 
-            <input type="text" name="lim_gp" id="lim_gp" placeholder="Limite grupos" required>
-
-            <input type="text" name="lim_ks" id="lim_ks" placeholder="Limite clases" required>        
+            <input type="text" name="lim_ks" id="lim_ks" value="<%= lim_ks %>" required>        
 
             <br> <br>
             
-            <input type="submit" value="Alta institucion">
+            <input type="submit" value="Editar institucion">
         </form>
         
     </body>
