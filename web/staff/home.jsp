@@ -80,9 +80,6 @@
         </div>
                 
         <script>
-            // Obtener todas las filas dentro del tbody
-            var rows = document.querySelectorAll('#table-body tr');
-
             document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('active_inst').addEventListener('click', function () {
                     document.getElementById('check').checked = true;
