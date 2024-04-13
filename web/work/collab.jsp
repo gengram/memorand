@@ -75,10 +75,10 @@
             margin-top: 2px; /* Margen superior */
             margin-bottom: 4px; /* Margen inferior */
         }
-        .btn.active {
+        .btnnav.active {
             border-bottom: 4px solid #<%=proj_color%>; /* Aplica el borde inferior cuando el botón está activo */
         }
-        .btn {
+        .btnnav{
             border: none; /* Quita todos los bordes de los botones inactivos */
         }
 
@@ -95,6 +95,28 @@
             background-color: #<%=proj_color%>; /* Fondo transparente */
         }
 
+        .btnReactions.activeP{
+            display: inline-block;
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #fff; /* Color del texto */
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #<%=proj_color%>; /* Fondo transparente */
+        }
+
+        .btnReactions{
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #E3E4E5; /* Fondo transparente */
+        }
+
         .custom-bcollab:hover {
             background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
             border: 2px solid #<%=proj_color%>; /* Color del contorno */
@@ -105,53 +127,10 @@
             margin-bottom: 0.1rem; /* Ajusta el margen inferior según sea necesario */
         }
     </style>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Seleccionar todos los botones
-        const buttons = document.querySelectorAll('.navC');
 
-        // Función para activar un botón y recordar su estado
-        function activateButton(button) {
-            // Remover clase 'active' de todos los botones
-            buttons.forEach(navC => {
-                navC.classList.remove('active');
-            });
 
-            // Agregar clase 'active' al botón actual
-            button.classList.add('active');
 
-            // Guardar el ID del botón activo en el almacenamiento local
-            localStorage.setItem('activeButton', button.id);
-        }
 
-        // Agregar event listeners a cada botón
-        buttons.forEach(button => {
-            button.addEventListener('click', function () {
-                activateButton(this);
-            });
-        });
-
-        // Verificar si hay un botón activo almacenado localmente al cargar la página
-        const activeButtonId = localStorage.getItem('activeButton');
-        if (activeButtonId) {
-            const activeButton = document.getElementById(activeButtonId);
-            if (activeButton) {
-                activateButton(activeButton);
-            }
-        }
-    });
-</script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('task_panel').addEventListener('click', function () {
-                document.getElementById('vbtn-radioPanel').checked = true;
-            });
-
-            document.getElementById('task_table').addEventListener('click', function () {
-                document.getElementById('vbtn-radioTabla').checked = true;
-            });
-        });
-    </script>
     <!-- BODY -->
     <body>
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
@@ -202,66 +181,15 @@
             </div>
             <div class="row">
                 <div class="col-4 text-end">
-                    <button class="btn navC rounded-1 active" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
+                    <button class="btn navC rounded-1 btnnav active" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
                 </div>
                 <div class="col-4 text-center">
-                    <button class="btn navC rounded-1" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Publicaciones</p></button>
+                    <button class="btn navC rounded-1 btnnav" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Publicaciones</p></button>
                 </div>
                 <div class="col-4 text-start">
-                    <button  class="btn navC rounded-1" id="get_people"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Personal</p></button>
+                    <button  class="btn navC rounded-1 btnnav" id="get_people"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Personal</p></button>
                 </div>
                 <hr>
-            </div>
-            <!-- Filtrar por etiqueta y estatus
-            <div class="row">
-                <div class="col-6" >
-                    <div class="row">
-                        <div class="col-4 text-start">
-                            <label for="inputPassword6" class="col-form-label">Filtrar por etiqueta:</label>
-                        </div>
-                        <div class="col-8 mt-1">
-                            <select class="form-select border-gray" aria-label="Default select">
-                                <option selected>Selecciona uno</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" >
-                    <div class="row ms-5">
-                        <div class="col-6 text-end ">
-                            <label for="inputPassword6" class="col-form-label" >Filtrar por etiqueta:</label>
-                        </div>
-                        <div class="col-6 mt-1 text-end">
-                            <div class="btn-group" role="group" aria-label="Vertical radio toggle button group">
-                                <input type="radio" class="btn-check" name="vbtn-radioEtiquet" id="vbtn-radioFecha" autocomplete="off" checked>
-                                <label class="btn btn-outline-gray border" for="vbtn-radioFecha" style="padding: 0.375rem 0.75rem; font-size: 0.8rem;">Fecha Lim.</label>
-
-                                <input type="radio" class="btn-check" name="vbtn-radioEtiquet" id="vbtn-radioEsta" autocomplete="off">
-                                <label class="btn btn-outline-gray border" for="vbtn-radioEsta" style="padding: 0.375rem 0.75rem; font-size: 0.8rem;">Estatus</label>
-
-                                <input type="radio" class="btn-check" name="vbtn-radioEtiquet" id="vbtn-radioPriori" autocomplete="off">
-                                <label class="btn btn-outline-gray border" for="vbtn-radioPriori" style="padding: 0.375rem 0.75rem; font-size: 0.8rem;">Prioridad</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            -->
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <div class="card border">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-1"></div>
             </div>
             <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
             <div id="content">
@@ -307,6 +235,7 @@
             </div>
         </div>
         <script src="scripts/collab.js"></script>
+        <script src="scripts/interface.js"></script>
     </body>
 
 </html>

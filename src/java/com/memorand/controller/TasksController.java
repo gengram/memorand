@@ -164,7 +164,7 @@ public class TasksController {
                 + "                    </div>"
                 + "                    </div>"
                 + "                    </div>";
-        htmlcode += "<div class=\"row-cols-3\" id=\"tasks_zone\">";
+        htmlcode += "<div class=\"mb-5\" id=\"tasks_zone\">";
 
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
@@ -173,37 +173,44 @@ public class TasksController {
             htmlcode += "<p>No hay tareas por mostrar.</p>";
             return htmlcode;
         } else {
-            for (Task t : tasks) {
+            for (int i = 0; i < tasks.size(); i++) {
+                Task t = tasks.get(i);
                 SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
-
                 String task_edate = sdf.format(t.getTask_edate());
 
-                htmlcode += "<div class=\"col-4 mt-2 \" style=\"background-color: blueviolet\">"
-                        + "                    <div class=\"card mb-3 border border-2\">\n"
-                        + "                        <div class=\"card-body\">\n"
-                        + "                            <div class=\"row\">\n"
-                        + "                                <div class=\"col-6 card-title\">\n"
-                        + "                                    <p class=\"custom-p ms-2\" style=\"font-size: 22px\"><b style=\"color: #2A2927;\">" + t.getTask_name() + "</b></p>\n"
-                        + "                                </div>\n"
-                        + "                                <div class=\"col-6 text-center\">\n"
-                        + "                                    <p class=\"custom-p\"><texto style=\"color: #AFB2B3;\">" + t.getTask_sdate() + "</texto></p>\n"
-                        + "                                </div>\n"
-                        + "                            </div>\n"
-                        + "                            <br>\n"
-                        + "                            <p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Fecha L&iacute;mite: </texto><texto style=\"color: #2A2927;\">" + t.getTask_edate() + "</texto></p>\n"
-                        + "                            <p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color: #F3894D;\">" + t.getTask_status() + "</texto></p>\n"
-                        + "                            <div class=\"row\">\n"
-                        + "                                <div class=\"col-6 \">\n"
-                        + "                                    <p class=\"custom-p\"><texto style=\"color: #AFB2B3;margin-left:  0.5rem\">Prioridad: </texto><b style=\"color: #2A2927;\">" + t.getTask_prior() + "</b></p>\n"
-                        + "                                </div>\n"
-                        + "                                <div class=\"col-6 text-end\">\n"
-                        + "                                    <a href='tarea.jsp?id=" + t.getTask_id() + "' class='task-link'><p style=\"color: #000; font-size: 15px; margin-right: 0.4rem\"><i  class=\"bi bi-chevron-right\"></i></p></a>\n"
-                        + "                                </div>\n"
-                        + "                            </div>\n"
-                        + "                        </div>\n"
-                        + "                    </div>\n"
-                        + "             </div>";
+                if (i == 0 || i % 2 == 0) {
+                    htmlcode += "<div class=\"row\">";
+                }
 
+                htmlcode += "<div class=\"col-6 mt-2\">"; // Usa col-6 para ocupar la mitad del row
+                htmlcode += "<div class=\"card mb-3 border border-2\">\n"
+                        + "<div class=\"card-body\">\n"
+                        + "<div class=\"row\">\n"
+                        + "<div class=\"col-6 card-title\">\n"
+                        + "<p class=\"custom-p ms-2\" style=\"font-size: 22px\"><b style=\"color: #2A2927;\">" + t.getTask_name() + "</b></p>\n"
+                        + "</div>\n"
+                        + "<div class=\"col-6 text-end\">\n"
+                        + "<p class=\"custom-p me-2\"><texto style=\"color: #AFB2B3;\">" + t.getTask_sdate() + "</texto></p>\n"
+                        + "</div>\n"
+                        + "</div>\n"
+                        + "<button class=\"btn btn-light rounded-pill\" style=\"background-color: #F0F2FF\"><i class=\"bi bi-circle-fill me-3\" style=\"color: darkturquoise\"></i> Etiqueta</button>\n"
+                        + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Fecha L&iacute;mite: </texto><texto style=\"color: #2A2927;\">" + t.getTask_edate() + "</texto></p>\n"
+                        + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color: #F3894D;\">" + t.getTask_status() + "</texto></p>\n"
+                        + "<div class=\"row\">\n"
+                        + "<div class=\"col-6 \">\n"
+                        + "<p class=\"custom-p\"><texto style=\"color: #AFB2B3;margin-left:  0.5rem\">Prioridad: </texto><b style=\"color: #2A2927;\">" + t.getTask_prior() + "</b></p>\n"
+                        + "</div>\n"
+                        + "<div class=\"col-6 text-end\">\n"
+                        + "<a href='tarea.jsp?id=" + t.getTask_id() + "' class='task-link'><p style=\"color: #000; font-size: 15px; margin-right: 0.4rem\"><i  class=\"bi bi-chevron-right\"></i></p></a>\n"
+                        + "</div>\n"
+                        + "</div>\n"
+                        + "</div>\n"
+                        + "</div>\n"
+                        + "</div>";
+
+                if (i == tasks.size() - 1 || i % 2 == 1) {
+                    htmlcode += "</div>"; // Cierra el row
+                }
             }
         }
 

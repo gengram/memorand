@@ -372,12 +372,12 @@ public class UsersController {
             {
                 htmlcode += "<h3>L&iacute;deres</h3>";
 
-                htmlcode += "<table border=\"1\">\n"
+                htmlcode += "<table class=\"table text-center mt-\">\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
-                        + "             <th>Estatus</th>\n"
-                        + "             <th>Nombre</th>\n"
-                        + "             <th>Correo</th>\n"
+                        + "             <th scope=\"col\" >Estatus</th>\n"
+                        + "             <th scope=\"col\" >Nombre</th>\n"
+                        + "             <th scope=\"col\" >Correo</th>\n"
                         + "         </tr>\n"
                         + "     </thead>\n"
                         + "  <tbody>";
@@ -385,9 +385,9 @@ public class UsersController {
                 for (User ch : chs)
                 {
                     htmlcode += "<tr>\n"
-                            + "     <td>"+ ch.getUser_status() +"</td>\n"
-                            + "     <td>"+ ch.getUser_name() +"</td>\n"
-                            + "     <td>"+ ch.getUser_email() +"</td>\n"
+                            + "     <td class=\"align-middle\">"+ ch.getUser_status() +"</td>\n"
+                            + "     <td class=\"align-middle\">"+ ch.getUser_name() +"</td>\n"
+                            + "     <td class=\"align-middle\">"+ ch.getUser_email() +"</td>\n"
                             + "  </tr>";
                 }
 
@@ -401,12 +401,12 @@ public class UsersController {
             {
                 htmlcode += "<h3>Integrantes</h3>";
 
-                htmlcode += "<table border=\"1\">\n"
+                htmlcode += "<table class=\"table text-center mt-3\" >\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
-                        + "             <th>Estatus</th>\n"
-                        + "             <th>Nombre</th>\n"
-                        + "             <th>Correo</th>\n"
+                        + "             <th scope=\"col\">Estatus</th>\n"
+                        + "             <th scope=\"col\">Nombre</th>\n"
+                        + "             <th scope=\"col\">Correo</th>\n"
                         + "         </tr>\n"
                         + "     </thead>\n"
                         + "  <tbody>";
@@ -414,9 +414,9 @@ public class UsersController {
                 for (User wk : wks)
                 {
                     htmlcode += "<tr>\n"
-                            + "     <td>"+ wk.getUser_status() +"</td>\n"
-                            + "     <td>"+ wk.getUser_name() +"</td>\n"
-                            + "     <td>"+ wk.getUser_email() +"</td>\n"
+                            + "     <td class=\"align-middle\" >"+ wk.getUser_status() +"</td>\n"
+                            + "     <td class=\"align-middle\" >"+ wk.getUser_name() +"</td>\n"
+                            + "     <td class=\"align-middle\" >"+ wk.getUser_email() +"</td>\n"
                             + "  </tr>";
                 }
 
