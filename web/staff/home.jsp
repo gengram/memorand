@@ -29,27 +29,29 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
 
         <div class="container">
+            
             <div class="row mt-5">
-                <div class="col-6">
-                    <h1 style="font-size: 44px">Panel de control</h1>
+                <div class="col-6 d-flex align-items-center">
+                    <h1>Panel de control</h1>
                 </div>
-                <div class="col-6">
-                    <div class="d-grid gap-2 text-center ms-5">
-                        <a href='instnew.jsp' class="ms-5">
-                            <button class="btn btn-sm rounded-pill custom-bstaff ms-5 mt-5">
-                                <p class="mt-1 me-2 ms-2" style="font-size: 21px;"><i class="bi bi-plus-lg me-2" style="font-size: 26px;"></i> Nueva instituci&oacute;n</p> 
-                            </button>
-                        </a>
-                    </div>
+                <div class="col-6 d-flex justify-content-end align-items-center">
+                    <a href='instnew.jsp'>
+                        <button class="btn btn-sm rounded-pill custom-bstaff d-flex justify-content-center">
+                            <p class="mt-1 me-2 ms-2 mb-2"><i class="bi bi-plus-lg me-2"></i> Nueva instituci&oacute;n</p> 
+                        </button>
+                    </a>
                 </div>
             </div>
+
+            <hr>
+            
             <div class="row mt-5">
-                <div class="col-4">
+                <div class="col-10">
                     <h2>Instituciones</h2>
                 </div>
-                <div class="col-8">
+                <div class="col-2">
                     <div class="row mt-3">
-                        <div class="col-auto ms-5">
+                        <div class="col-auto">
                             <p>Estatus: </p>
                         </div>
                         <div class="col">
@@ -62,30 +64,16 @@
                                 <label class="btn custom-bstaff" for="x" id="inactive_inst"><i class="bi bi-x"></i></label>
                             </div>
                         </div>
-
-                        <div class="col-auto">
-                            <p>Limite: </p>
-                        </div>
-                        <div class="col">
-                            <div class="d-grid gap-2 text-center">
-                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                    <input type="radio" class="btn-check" name="o" id="debajo" autocomplete="off" checked>
-                                    <label class="btn custom-bstaff" for="debajo" >Por debajo</label>
-
-                                    <input type="radio" class="btn-check" name="o" id="cercano" autocomplete="off">
-                                    <label class="btn custom-bstaff" for="cercano">Cercano</label>
-                                </div> 
-                            </div>
-                        </div>
                     </div>
-
                 </div>
             </div>
+            
+            <br>
+            
             <div class="row">
                 <div class="col-12" id="content">
                     <!-- AQUI VA LA TABLA DE INSTITUCIONES, VER COM.MEMORAND.SERVLETS.OBTENER / InstitutionGet-->
                     <%= instc.modelGetAllInstByStatus("si")%>
-
                 </div>
             </div>
         </div>
@@ -93,16 +81,6 @@
             // Obtener todas las filas dentro del tbody
             var rows = document.querySelectorAll('#table-body tr');
 
-// Agregar un evento de clic a cada fila
-            rows.forEach(function (row) {
-                row.addEventListener('click', function () {
-                    // Acción a realizar cuando se hace clic en una fila
-                    alert('Fila clickeada: ' + row.textContent);
-                });
-            });
-
-        </script>
-        <script>
             document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('active_inst').addEventListener('click', function () {
                     document.getElementById('check').checked = true;
