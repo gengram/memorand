@@ -14,7 +14,7 @@ public class Conexion {
     
     private String classname = "com.mysql.cj.jdbc.Driver";
     
-    private String url = "jdbc:mysql://" + hostname + ":" + port + "/" + db + "?characterEncoding=UTF-8";
+    private String url = "jdbc:mysql://" + hostname + ":" + port + "/" + db + "?useUnicode=true&characterEncoding=UTF-8";
     
     private Connection connection;
     

@@ -13,7 +13,7 @@
     
     // PROTECCIÓN
     
-    // VARIABLES DE LA INSTITUCIÓN
+    // VARIABLES DEL USUARIO
     
     String user_email = "", user_pass = "", user_type = "";
     String user_name = "", user_pat = "null", user_mat = "null";
@@ -83,7 +83,7 @@
             
             <br> <br>
 
-            <input type="submit" value="Agregar administrador">
+            <input type="submit" value="Editar administrador">
         </form>
         
     </body>
