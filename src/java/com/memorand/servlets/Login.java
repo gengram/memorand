@@ -19,26 +19,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class Login extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        processRequest(request, response);
-        
-        response.setContentType("text/html;charset=UTF-8");
-        
+            throws ServletException, IOException
+    {
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
         
@@ -63,9 +47,6 @@ public class Login extends HttpServlet {
             System.err.println(e.getMessage());
         }
         
-        Institution inst = new Institution();
-        InstitutionsController instc = new InstitutionsController();
-        
         User user = new User(user_fields.get(0), user_fields.get(1));
         UsersController userc = new UsersController();
         
@@ -75,51 +56,57 @@ public class Login extends HttpServlet {
             
             if ("si".equals(user_info.getUser_status()))
             {
-                switch (user_info.getUser_type())
+                if (user_info.getUser_type().equals("staff"))
                 {
-                    case "staff":
-                        SetUserInfo(request, response, user_info);
-                        response.sendRedirect("staff/home.jsp");
-                        break;
-                    case "admin":
-                        inst = instc.modelGetInstByUser(user_info.getUser_id());
-                        SetUserInfo(request, response, user_info);
-                        SetInstInfo(request, response, inst);
-                        response.sendRedirect("admin/home.jsp");
-                        break;
-                    case "ch":
-                        inst = instc.modelGetInstByUser(user_info.getUser_id());
-                        SetUserInfo(request, response, user_info);
-                        SetInstInfo(request, response, inst); 
-                        response.sendRedirect("work/home.jsp");
-                        break;
-                    case "wk":
-                        inst = instc.modelGetInstByUser(user_info.getUser_id());
-                        SetUserInfo(request, response, user_info);
-                        SetInstInfo(request, response, inst); 
-                        response.sendRedirect("work/home.jsp");
-                        break;
-                    default:
-                        throw new AssertionError();
+                    SetUserInfo(request, response, user_info);
+                    response.sendRedirect("staff/home.jsp");
+                }
+                else
+                {
+                    InstitutionsController instc = new InstitutionsController();
+                    Institution inst = instc.modelGetInstByUser(user_info.getUser_id());
+                    
+                    if (inst.getInst_status().equals("si"))
+                    {
+                        switch (user_info.getUser_type())
+                        {
+                            case "admin":
+                                SetUserInfo(request, response, user_info);
+                                SetInstInfo(request, response, inst); 
+                                response.sendRedirect("admin/home.jsp");
+                                break;
+                            case "ch":
+                            case "wk":
+                                SetUserInfo(request, response, user_info);
+                                SetInstInfo(request, response, inst); 
+                                response.sendRedirect("work/home.jsp");
+                                break;
+                            default:
+                                response.sendRedirect("index.jsp?error=InvalidUserType");
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        response.sendRedirect("index.jsp?error=InnactiveInstitution");
+                    }
                 }
             }
-            
+            else
+            {
+                response.sendRedirect("index.jsp?error=InactiveAccount");
+            }
         }
         else
         {
-            response.sendRedirect("index.jsp?error=300-invalidlogin");
+            response.sendRedirect("index.jsp?error=InvalidLogin");
         }
         
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
     
     public void SetUserInfo(HttpServletRequest request, HttpServletResponse response, User user_info)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
         
         session.setAttribute("user_id", user_info.getUser_id());
@@ -131,12 +118,11 @@ public class Login extends HttpServlet {
         session.setAttribute("user_mat", user_info.getUser_mat());
         session.setAttribute("user_status", user_info.getUser_status());
         session.setAttribute("user_profile", user_info.getUser_profile());
-        
     }
     
     public void SetInstInfo(HttpServletRequest request, HttpServletResponse response, Institution inst_info)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
         
         session.setAttribute("inst_id", inst_info.getInst_id());
@@ -147,7 +133,6 @@ public class Login extends HttpServlet {
         session.setAttribute("lim_wk", inst_info.getLim_wk());
         session.setAttribute("lim_gp", inst_info.getLim_gp());
         session.setAttribute("lim_ks", inst_info.getLim_ks());
-        
     }
 
 }

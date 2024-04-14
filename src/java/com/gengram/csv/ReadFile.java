@@ -19,28 +19,14 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 @MultipartConfig
-public class ReadFile extends HttpServlet {
-    
+public class ReadFile extends HttpServlet
+{
     private static final long serialVersionUID = 1L;
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        processRequest(request, response);
-        response.setContentType("text/html;charset=UTF-8");
-        
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
 
         Part filePart = request.getPart("file");
@@ -89,7 +75,7 @@ public class ReadFile extends HttpServlet {
                     String user_pat = row[4].replace("\"", "");
                     String user_mat = row[5].replace("\"", "");
                     
-                    User user = new User(user_id, user_email, user_pass, user_type, user_name, user_pat, user_mat, "si", "XM-Uploads/users/profile/user_icon.png");
+                    User user = new User(user_id, user_email, user_pass, user_type, user_name, user_pat, user_mat, "si", "XM-Uploads/users/profile/default-user.png");
                     
                     if (userc.modelCreateUser(user))
                     {
@@ -117,11 +103,6 @@ public class ReadFile extends HttpServlet {
             response.sendRedirect("admin/integrantes/home.jsp?error=300");
         }
         
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

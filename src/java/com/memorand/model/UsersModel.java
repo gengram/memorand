@@ -825,4 +825,86 @@ public class UsersModel extends Conexion {
         return user_info;
     
     }
+    
+    public boolean updateUserStatus(String user_id, String user_status)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE users SET user_status = ? WHERE user_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, user_status);
+            ps.setString(2, user_id);
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    }
+    
+    public boolean updateUser(User user)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE users SET user_name = ?, user_pat = ?, user_mat = ? WHERE user_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, user.getUser_name());
+            ps.setString(2, user.getUser_pat());
+            ps.setString(3, user.getUser_mat());
+            ps.setString(4, user.getUser_id());
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    }
 }

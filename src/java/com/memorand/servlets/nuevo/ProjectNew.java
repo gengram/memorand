@@ -15,26 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class ProjectNew extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
+public class ProjectNew extends HttpServlet
+{
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        
+            throws ServletException, IOException
+    {
         response.setContentType("text/html;charset=UTF-8");
         
         FileItemFactory fif = new DiskFileItemFactory();
@@ -58,7 +48,7 @@ public class ProjectNew extends HttpServlet {
             }
         }
         
-        catch (Exception e)
+        catch (FileUploadException e)
         {
             System.err.println(e.getMessage());
         }
@@ -103,11 +93,6 @@ public class ProjectNew extends HttpServlet {
             response.sendRedirect("index.jsp?error=101");
         }
         
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

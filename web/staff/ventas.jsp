@@ -11,7 +11,7 @@
         
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
-        <title>Memorand Staff | Configuracion</title>
+        <title>Memorand Staff | Ventas</title>
         
     </head>
 

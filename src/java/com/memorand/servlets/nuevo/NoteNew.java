@@ -24,7 +24,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class NoteNew extends HttpServlet
 {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -116,5 +115,5 @@ public class NoteNew extends HttpServlet
             response.sendRedirect("index.jsp?error=101");
         }
     }
-
+    
 }

@@ -13,7 +13,7 @@
     {
         InstitutionsController instc = new InstitutionsController();
         
-        Institution inst = instc.modelGetInstById(inst_id);
+        Institution inst = instc.modelGetInst(inst_id);
         
         if (inst == null)
         { response.sendRedirect("home.jsp"); }
@@ -33,14 +33,14 @@
         
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
-        <title>Memorand Staff | Nueva instituci&oacute;n</title>
+        <title>Memorand Staff | Agregar administrador</title>
         
     </head>
 
     <!-- BODY -->
     <body>
         
-        <h1><a href='institucion.jsp?id=<%= inst_id %>'>&larr;</a>Nueva instituci&oacute;n</h1>
+        <h1><a href='institucion.jsp?id=<%= inst_id %>'>&larr;</a>Agregar administrador</h1>
         <!-- PONER ESTOS EN LA NAVBAR-->
         <a href='ventas.jsp'>Ventas</a>
         <a href='configuracion.jsp'>Configuracion</a>
@@ -49,7 +49,7 @@
         <hr>
         
         <form action="../usernew?id=<%= inst_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="file" name="inst_profile" id="inst_profile" required>
+            <input type="file" name="inst_profile" id="inst_profile">
             
             <br> <br>
             
