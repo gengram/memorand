@@ -25,12 +25,18 @@
 
     </head>
     <style>
-        .btn-sm{
-    --bs-btn-padding-y: 0.25rem;
-    --bs-btn-padding-x: 0.3rem;
-    --bs-btn-font-size: 0.875rem;
-    --bs-btn-border-radius: var(--bs-border-radius-sm);
-}
+        .btn-color {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding-bottom: 0.05rem;
+            padding-top: 0.05rem;
+            padding-left: 0.35rem;
+            padding-right: 0.35rem;
+        }
+        .btn-color:hover{
+            border-color: #E3E4E5;
+            background-color: #E3E4E5;
+        }
     </style>
     <!-- BODY -->
     <body>
@@ -48,10 +54,13 @@
             <br>
             <label for="tag_color">Color de etiqueta:</label>
             <br>
-            <button class="btn btn-light" type="button" onclick="selectColor('#ff0000')"><i style="color: #ff0000;" class="bi bi-square-fill"></i></button>
-            <button class="btn btn-light btn-sm" type="button" onclick="selectColor('#00ff00')"><i style="color: #00ff00; font-size: 30px;" class="bi bi-square-fill"></i></button>
-            <button class="btn btn-light" type="button" onclick="selectColor('#0000ff')"><i style="color: #0000ff;" class="bi bi-square-fill"></i></button>
-            <button class="btn btn-light" type="button" onclick="selectColor('#ffff00')"><i style="color: #ffff00;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#25CE7B')"><i style="color: #25CE7B; font-size: 30px;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#2ADAE5')"><i style="color: #2ADAE5; font-size: 30px;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#7473C0')"><i style="color: #7473C0; font-size: 30px;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#F37DBD')"><i style="color: #F37DBD; font-size: 30px;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#F3894D')"><i style="color: #F3894D; font-size: 30px;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#FDB600')"><i style="color: #FDB600; font-size: 30px;" class="bi bi-square-fill"></i></button>
+            <button class="btn btn-color" type="button" onclick="selectColor('#F25063')"><i style="color: #F25063; font-size: 30px;" class="bi bi-square-fill"></i></button>
             <input type="hidden" name="tag_color" id="selected_color" required>
             <br><br>
             <input type="submit" value="Nueva etiqueta">

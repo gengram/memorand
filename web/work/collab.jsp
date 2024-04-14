@@ -1,5 +1,4 @@
 <!-- Memorand by Gengram © 2023 -->
-
 <%@page import="com.memorand.controller.UsersController"%>
 <%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
@@ -45,12 +44,9 @@
 %>
 
 <!DOCTYPE html>
-
 <html>
-
     <!-- HEAD -->
     <head>
-
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -127,24 +123,23 @@
             margin-bottom: 0.1rem; /* Ajusta el margen inferior según sea necesario */
         }
 
+        .modal-custom {
+            max-width: 510px;
+        }
+
+        .btn-color {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding-bottom: 0.05rem;
+            padding-top: 0.05rem;
+            padding-left: 0.35rem;
+            padding-right: 0.35rem;
+        }
+        .btn-color:hover{
+            border-color: #E3E4E5;
+            background-color: #E3E4E5;
+        }
     </style>
-    <script>
-        document.getElementById('openModalBtn').addEventListener('click', function () {
-            // Obtener el valor de collab_id desde donde sea que lo tengas disponible en tu página
-            var collab_id = obtenerCollabId(); // Debes definir tu propia función para obtener el valor de collab_id
-
-            // Crear la URL con el fragmento deseado
-            var url = 'tasknew?id=' + collab_id;
-
-            // Agregar el fragmento de URL a la ubicación actual de la página
-            window.location.href = url;
-
-            // Aquí deberías tener el código para abrir el modal
-            // Puedes abrir el modal usando tu propio método o biblioteca modal
-            abrirModal();
-        });
-
-    </script>
     <!-- BODY -->
     <body>
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
@@ -162,7 +157,7 @@
                 <div class="col-4 mt-2">
                     <div class="card border border-2" style="max-height: 50px;">
                         <div class="row g-0">
-                            <div class="col-md-2" style="background-color: #<%=team_color%>; max-height: 46px; max-width: 40px"></div>
+                            <div class="col-md-2 rounded-start" style="background-color: #<%=team_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
                                     <p class="titulo" style="color: #2A2927; font-size: 20px;">
@@ -181,7 +176,7 @@
                 <div class="col-4 mt-2">
                     <div class="card border border-2" style="max-height: 50px;">
                         <div class="row g-0">
-                            <div class="col-md-2" style="background-color: #<%=proj_color%>; max-height: 46px; max-width: 40px"></div>
+                            <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
                                     <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
@@ -276,6 +271,62 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <!-- Modal Nueva Etiqueta -->                            
+            <div class="modal fade" tabindex="-1" role="dialog" id="modalTagNew">
+                <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header p-5 pb-4 border-bottom-0">
+                            <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva etiqueta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-5 pt-2">
+                            <form action="../tagnew?id=<%= collab_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                                <div class="row">
+                                    <div class="col-6" >
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Color</label>
+                                            <input type="text" name="tag_name" id="tag_name" placeholder="Nombre etiqueta" class="form-control-sm rounded-3" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-3"></div>
+                                </div>
+                                <div class="row mb-0">
+                                    <div class="col-12">
+                                        <div class="mb-0">
+                                            <label for="tag_color" class="form-label">Color de etiqueta:</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#25CE7B')"><i style="color: #25CE7B; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#2ADAE5')"><i style="color: #2ADAE5; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#7473C0')"><i style="color: #7473C0; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#F37DBD')"><i style="color: #F37DBD; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#F3894D')"><i style="color: #F3894D; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#FDB600')"><i style="color: #FDB600; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <button class="btn btn-color" type="button" onclick="selectColor('#F25063')"><i style="color: #F25063; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                        <input type="hidden" name="tag_color" id="selected_color" required>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-12">
+                                        <div class="mb-0">
+                                            <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva etiqueta</p></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <script>
+                                function selectColor(color) {
+                                    document.getElementById("selected_color").value = color;
+                                }
+                            </script>
                         </div>
                     </div>
                 </div> 
