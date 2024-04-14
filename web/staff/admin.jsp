@@ -95,7 +95,7 @@
         <h2><%= admin_name %> <%= admin_pat %> <%= admin_mat %></h2>
         
         <a href='adminedit.jsp?id=<%= admin_id %>'>Editar</a>
-        <a href='adminedit?req=status&id=<%= admin_id %>'><%= action_status %></a>
+        <a href='../userstat?id=<%= admin_id %>&status=<%= admin_status %>'><%= action_status %></a>
         
         <p>Correo: <%= admin_email %></p>
         <p>Estatus: <%= admin_statusC %></p>

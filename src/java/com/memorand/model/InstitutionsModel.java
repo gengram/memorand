@@ -251,7 +251,7 @@ public class InstitutionsModel extends Conexion {
         return inst;
     }
 
-    public boolean updateInstStatus(String inst_i, String inst_s)
+    public boolean updateInstStatus(String inst_id, String inst_status)
     {
         boolean flag = false;
         
@@ -263,8 +263,8 @@ public class InstitutionsModel extends Conexion {
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inst_s);
-            ps.setString(2, inst_i);
+            ps.setString(1, inst_status);
+            ps.setString(2, inst_id);
             
             if (ps.executeUpdate() == 1)
             {

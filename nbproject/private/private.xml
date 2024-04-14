@@ -3,18 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/memorand/web/staff/institucion.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/InstitutionsController.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/InstitutionsModel.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/editar/InstitutionEdit.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/servlets/editar/InstitutionStatus.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/UsersModel.java</file>
-            <file>file:/C:/memorand/web/staff/instedit.jsp</file>
-            <file>file:/C:/memorand/web/staff/home.jsp</file>
-            <file>file:/C:/memorand/web/staff/adminnew.jsp</file>
-            <file>file:/C:/memorand/web/staff/admin.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/InstitutionNew.java</file>
-            <file>file:/C:/memorand/web/staff/instnew.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/editar/UserStatus.java</file>
         </group>
     </open-files>
 </project-private>

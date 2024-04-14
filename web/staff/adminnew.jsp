@@ -33,14 +33,14 @@
         
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
-        <title>Memorand Staff | Nueva instituci&oacute;n</title>
+        <title>Memorand Staff | Agregar administrador</title>
         
     </head>
 
     <!-- BODY -->
     <body>
         
-        <h1><a href='institucion.jsp?id=<%= inst_id %>'>&larr;</a>Nueva instituci&oacute;n</h1>
+        <h1><a href='institucion.jsp?id=<%= inst_id %>'>&larr;</a>Agregar administrador</h1>
         <!-- PONER ESTOS EN LA NAVBAR-->
         <a href='ventas.jsp'>Ventas</a>
         <a href='configuracion.jsp'>Configuracion</a>

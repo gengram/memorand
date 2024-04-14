@@ -6,34 +6,30 @@ import com.memorand.model.CollabsModel;
 import com.memorand.model.UsersModel;
 import java.util.ArrayList;
 
-public class UsersController {
-
-    public boolean modelCreateUser(User user) {
-        
+public class UsersController
+{
+    public boolean modelCreateUser(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.createUser(user);
-        
     }
     
-    public boolean modelLoginUser(User user) {
-        
+    public boolean modelLoginUser(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.loginUser(user);
-    
     }
     
-    public boolean modelValidateUserEmail(String u_email) {
-    
+    public boolean modelValidateUserEmail(String u_email)
+    {
         UsersModel userm = new UsersModel();
         return userm.validateUserEmail(u_email);
-        
     }
     
-    public User modelGetUserInfoByLogin(User user) {
-        
+    public User modelGetUserInfoByLogin(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.getUserInfoByLogin(user);
-    
     }
     
     public User modelGetUserInfoById(String u_id)
@@ -120,8 +116,9 @@ public class UsersController {
         
     }
     
-    public String modelGetImgUser(String inst_id, int level1) {
-    
+    // DEPRECIADO BORRAR CUANDO SEA SEGURO
+    public String modelGetImgUser(String inst_id, int level1)
+    {
         String htmlcode = "";
         String add1 = "";
         
@@ -452,7 +449,7 @@ public class UsersController {
                 user_type = "Lider";
                 break;
             case "wk":
-                user_type = "Participante";
+                user_type = "Integrante";
                 break;
             default:
                 user_type = "ERROR";
@@ -481,4 +478,15 @@ public class UsersController {
     
     }
     
+    public boolean modelUpdateUser(User user)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.updateUser(user);
+    }
+    
+    public boolean modelUpdateUserStatus(String user_id, String user_status)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.updateUserStatus(user_id, user_status);
+    }
 }

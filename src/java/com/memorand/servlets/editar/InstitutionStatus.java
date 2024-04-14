@@ -46,11 +46,11 @@ public class InstitutionStatus extends HttpServlet
                     response.sendRedirect("staff/institucion.jsp?id="+inst_id);
                 }
                 else
-                { response.sendRedirect("home.jsp?error=Model"); }
+                { response.sendRedirect("staff/home.jsp?error=Model"); }
                 
             }
             else
-            { response.sendRedirect("home.jsp?error=InvalidInst"); }
+            { response.sendRedirect("home.jsp?error=InvalidParams"); }
         }
         else
         {
