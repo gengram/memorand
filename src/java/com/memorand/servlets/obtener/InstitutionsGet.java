@@ -45,5 +45,5 @@ public class InstitutionsGet extends HttpServlet
             session.invalidate();
         }
     }
-
+    
 }

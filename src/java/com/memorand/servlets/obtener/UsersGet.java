@@ -67,6 +67,6 @@ public class UsersGet extends HttpServlet
             session.invalidate();
             response.sendError(400);
         }
-        
     }
+    
 }

@@ -13,7 +13,7 @@
     {
         InstitutionsController instc = new InstitutionsController();
         
-        Institution inst = instc.modelGetInstById(inst_id);
+        Institution inst = instc.modelGetInst(inst_id);
         
         if (inst == null)
         { response.sendRedirect("home.jsp"); }
@@ -49,7 +49,7 @@
         <hr>
         
         <form action="../usernew?id=<%= inst_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-            <input type="file" name="inst_profile" id="inst_profile" required>
+            <input type="file" name="inst_profile" id="inst_profile">
             
             <br> <br>
             

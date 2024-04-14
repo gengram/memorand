@@ -12,27 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class TeamUserNew extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
+public class TeamUserNew extends HttpServlet 
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        
-        response.setContentType("text/html;charset=UTF-8");
-        
+            throws ServletException, IOException
+    {
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
         HttpSession session = request.getSession();
@@ -53,7 +42,7 @@ public class TeamUserNew extends HttpServlet {
                     teamuser_fields.add(fi.getString());
             }
         }
-        catch (Exception e)
+        catch (FileUploadException e)
         {
             System.err.println(e.getMessage());
         }
@@ -80,10 +69,5 @@ public class TeamUserNew extends HttpServlet {
             response.sendRedirect("index.jsp?error=101");
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-
+    
 }

@@ -18,23 +18,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class PostNew extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {}
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {}
-
+public class PostNew extends HttpServlet
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        
+            throws ServletException, IOException
+    {
         HttpSession session = request.getSession();
         
         if (session != null)
@@ -60,7 +53,7 @@ public class PostNew extends HttpServlet {
                 }
             }
         
-            catch (Exception e)
+            catch (FileUploadException e)
             {
                 System.err.println(e.getMessage());
             }
@@ -125,11 +118,6 @@ public class PostNew extends HttpServlet {
             response.sendRedirect("index.jsp?error=101");
         }
         
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

@@ -66,8 +66,6 @@ public class TaskNew extends HttpServlet
                     String task_id = g.newID();
                     String collab_id = request.getParameter("id");
                     
-                    String s_edate = task_fields.get(2);
-                    
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
                     LocalDateTime localDateTime = LocalDateTime.parse(task_fields.get(2), formatter);
                     Timestamp task_edate = Timestamp.valueOf(localDateTime);
