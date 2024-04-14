@@ -108,8 +108,9 @@ public class TasksController {
     }
 
     public String modelGetTasksPanel(String collab_id, String task_order) {
-        String htmlcode = "<div class=\"row\">"
-                + "<div class=\"col-6\" >"
+        String htmlcode = "<div class=\"row mt-2\">"
+                + "<div class=\"col-1\" ></div>"
+                + "<div class=\"col-5\" >"
                 + "<div class=\"row\">"
                 + "<div class=\"col-4 text-start\">"
                 + "<label for=\"inputPassword6\" class=\"col-form-label\">Filtrar por etiqueta:</label>"
@@ -124,15 +125,15 @@ public class TasksController {
                 + "</div>"
                 + "</div>"
                 + "</div>"
-                + "<div class=\"col-6\" >"
+                + "<div class=\"col-5\" >"
                 + "<div class=\"row ms-5\">"
-                + "<div class=\"col-6 text-end \">"
+                + "<div class=\"col-6 text-center \">"
                 + "<label for=\"inputPassword6\" class=\"col-form-label\" >Ordenar por: </label>"
                 + "</div>"
-                + "<div class=\"col-6 mt-1 text-end\">"
+                + "<div class=\"col-6 mt-1 text-start\">"
                 + "<div class=\"btn-group\" role=\"group\" aria-label=\"Vertical radio toggle button group\">"
                 + "<input type=\"radio\" class=\"btn-check\" name=\"vbtn-radioEtiquet\" id=\"vbtn-radioFecha\" autocomplete=\"off\" checked>"
-                + "<label class=\"btn btn-outline-gray border\" for=\"vbtn-radioFecha\" style=\"padding: 0.375rem 0.75rem; font-size: 0.8rem;\">Fecha Lim.</label>"
+                + "<label class=\"btn btn-outline-gray border\" for=\"vbtn-radioFecha\" style=\"padding: 0.375rem 0.75rem; font-size: 0.8rem; white-space: nowrap;\">Fecha Lim.</label>"
                 + "<input type=\"radio\" class=\"btn-check\" name=\"vbtn-radioEtiquet\" id=\"vbtn-radioEsta\" autocomplete=\"off\">"
                 + "<label class=\"btn btn-outline-gray border\" for=\"vbtn-radioEsta\" style=\"padding: 0.375rem 0.75rem; font-size: 0.8rem;\">Estatus</label>"
                 + "<input type=\"radio\" class=\"btn-check\" name=\"vbtn-radioEtiquet\" id=\"vbtn-radioPriori\" autocomplete=\"off\">"
@@ -141,10 +142,12 @@ public class TasksController {
                 + "</div>"
                 + "</div>"
                 + "</div>"
+                + "<div class=\"col-1\" ></div>"
                 + "</div>"
                 /*Filtros ↑*/
                 + "<div class=\"row mt-4\" >"
-                + "<div class=\"col-6 text-start\">"
+                + "<div class=\"col-1\" ></div>"
+                + "<div class=\"col-5 text-start\">"
                 + "<a href='tasknew.jsp?id=" + collab_id + "'>"
                 + "<button class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
                 + "                            <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
@@ -154,7 +157,7 @@ public class TasksController {
                 + "                            <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i> Nueva etiqueta</p> \n"
                 + "                        </button></a>\n"
                 + "</div>"
-                + "<div class=\"col-6 text-end\">"
+                + "<div class=\"col-5 text-end\">"
                 + "                        <div class=\"btn-group mb-2\" role=\"group\" aria-label=\"Vertical radio toggle button group\">\n"
                 + "                        <input type=\"radio\" class=\"btn-check\" name=\"btnradio-Vista\" id=\"vbtn-radioPanel\" autocomplete=\"off\" checked>\n"
                 + "                        <label class=\"btn btn-outline-gray border\" for=\"vbtn-radioPanel\" id=\"task_panel\" style=\"padding: 0.375rem 0.75rem; font-size: 1rem;\"><i class=\"bi bi-grid-fill\"></i></label>\n"
@@ -163,8 +166,9 @@ public class TasksController {
                 + "                        <label class=\"btn btn-outline-gray border\" for=\"vbtn-radioTabla\" id=\"task_table\" style=\"padding: 0.375rem 0.75rem; font-size: 1rem;\"><i class=\"bi bi-list\" style=\"color: #2A2927\"></i></label>\n"
                 + "                    </div>"
                 + "                    </div>"
+                + "<div class=\"col-1\" ></div>"
                 + "                    </div>";
-        htmlcode += "<div class=\"mb-5\" id=\"tasks_zone\">";
+        htmlcode += "<div class=\"row mt-2 mb-5\" id=\"tasks_zone\">";
 
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
@@ -178,11 +182,15 @@ public class TasksController {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
                 String task_edate = sdf.format(t.getTask_edate());
 
-                if (i == 0 || i % 2 == 0) {
-                    htmlcode += "<div class=\"row\">";
+                // Insertar col-1 vacío antes de la primera tarjeta y después de la segunda
+                if (i % 2 == 0) {
+                    htmlcode += "<div class=\"col-1\"></div>";
                 }
 
-                htmlcode += "<div class=\"col-6 mt-2\">"; // Usa col-6 para ocupar la mitad del row
+                // Insertar col-5 para la tarjeta
+                htmlcode += "<div class=\"col-5\">";
+
+                // Generar HTML para la tarjeta
                 htmlcode += "<div class=\"card mb-3 border border-2\">\n"
                         + "<div class=\"card-body\">\n"
                         + "<div class=\"row\">\n"
@@ -205,14 +213,19 @@ public class TasksController {
                         + "</div>\n"
                         + "</div>\n"
                         + "</div>\n"
-                        + "</div>\n"
-                        + "</div>";
+                        + "</div>"; // Cerrar tarjeta
 
-                if (i == tasks.size() - 1 || i % 2 == 1) {
-                    htmlcode += "</div>"; // Cierra el row
+                // Cerrar col-5 después de la tarjeta
+                htmlcode += "</div>";
+
+                // Insertar col-1 vacío después de la segunda tarjeta
+                if (i % 2 == 1) {
+                    htmlcode += "<div class=\"col-1\"></div>";
                 }
             }
         }
+
+        htmlcode += "</div>"; // Cerrar row
 
         return htmlcode;
     }

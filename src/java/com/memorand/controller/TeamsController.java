@@ -212,7 +212,7 @@ public class TeamsController {
                 if (user_type != null) {
                     switch (user_type) {
                         case "ch":
-                            hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'><b class=\"subtitulo\" style=\"color: #AFB2B3; font-size: 18px;\">Ver rendimiento <i class=\"bi bi-chevron-right\"></i></b></a>";
+                            hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'><b class=\"subtitulo text-end\" style=\"color: #AFB2B3; font-size: 18px;\">Ver rendimiento <i class=\"bi bi-chevron-right\"></i></b></a>";
                             break;
                         case "wk":
                         default:
@@ -225,7 +225,7 @@ public class TeamsController {
                         + "<div class=\"col-md-1\" style=\"background-color: #"+ t.getTeam_color() +"; max-height: 46px; max-width: 30px\"></div>\n"
                         + "<div class=\"col-md-11 ms-4\">"   
                         + "<div class=\"card-header\" style=\"background-color: transparent;\">\n"    
-                        + "<p class=\"titulo\" style=\"color: #2A2927; font-size: 20px;\">"
+                        + "<p class=\"titulo text-end\" style=\"color: #2A2927; font-size: 20px;\">"
                         + "<b style=\"color: #2A2927\" class=\"ms-4 mb-0\">"+ t.getTeam_name() +"</b>\n"
                         + hrefcode
                         + "</p>"

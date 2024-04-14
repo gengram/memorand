@@ -2,20 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/C:/memorand/web/XM-Resources/pages/elements/shortbar.jspf</file>
-            <file>file:/C:/memorand/web/XM-Resources/pages/elements/navbar_staff.jspf</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
-            <file>file:/C:/memorand/web/XM-Resources/styles/styless.css</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/UsersController.java</file>
             <file>file:/C:/memorand/web/XM-Resources/styles/bootstrap.css</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/PostsController.java</file>
-            <file>file:/C:/memorand/web/XM-Resources/pages/elements/navbar_admin.jspf</file>
             <file>file:/C:/memorand/web/work/collab.jsp</file>
+            <file>file:/C:/memorand/web/staff/home.jsp</file>
+            <file>file:/C:/memorand/web/work/scripts/interface.js</file>
         </group>
-=======
-        <group/>
->>>>>>> fa6ef10c023dbae62ee71a54f4ddef21642f1b3c
     </open-files>
 </project-private>

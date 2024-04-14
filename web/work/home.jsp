@@ -78,17 +78,21 @@
 
         <div class="container">
             <div class="row mt-5">
-                <div class="col-12">
+                <div class="col-1"></div>
+                <div class="col-10">
                     <h1>Mis equipos</h1>
                 </div>
+                <div class="col-1"></div>
             </div>
             <div class="row mt-5">
-                <div class="col-12">
+                <div class="col-1"></div>
+                <div class="col-10">
                     <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
                     <div id="content">
                         <%= teamc.modelGetTeams(user_id)%>
                     </div>
                 </div>
+                <div class="col-1"></div>
             </div>
         </div
     </body>

@@ -137,12 +137,15 @@
 
         <div class="container">
             <div class="row mt-4">
-                <div class="col-12 d-flex justify-content-end ">
+                <div class="col-1"></div>
+                <div class="col-10 d-flex justify-content-end ">
                     <p style="color: #25ce7b; font-size: 18px;"><a href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar al inicio</a></p>
                 </div>
+                <div class="col-1"></div>
             </div>
             <div class="row">
-                <div class="col-5 mt-2">
+                <div class="col-1"></div>
+                <div class="col-4 mt-2">
                     <div class="card border border-2" style="max-height: 50px;">
                         <div class="row g-0">
                             <div class="col-md-2" style="background-color: #<%=team_color%>; max-height: 46px; max-width: 40px"></div>
@@ -161,13 +164,13 @@
                 <div class="col-2 d-flex justify-content-center align-items-center text-center">
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
                 </div>
-                <div class="col-5 mt-2">
+                <div class="col-4 mt-2">
                     <div class="card border border-2" style="max-height: 50px;">
                         <div class="row g-0">
                             <div class="col-md-2" style="background-color: #<%=proj_color%>; max-height: 46px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo" style="color: #2A2927; font-size: 20px;">
+                                    <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
                                         <a href="?">
                                             <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
                                         </a>
@@ -177,19 +180,27 @@
                         </div>
                     </div>                                        
                 </div>
-                <hr class="mt-4">
+                <div class="col-1"></div>
             </div>
             <div class="row">
-                <div class="col-4 text-end">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <hr class="mt-4">
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-3 text-end border-bottom">
                     <button class="btn navC rounded-1 btnnav active" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
                 </div>
-                <div class="col-4 text-center">
+                <div class="col-4 text-center border-bottom">
                     <button class="btn navC rounded-1 btnnav" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Publicaciones</p></button>
                 </div>
-                <div class="col-4 text-start">
+                <div class="col-3 text-start border-bottom">
                     <button  class="btn navC rounded-1 btnnav" id="get_people"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Personal</p></button>
                 </div>
-                <hr>
+                <div class="col-1"></div>
             </div>
             <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
             <div id="content">

@@ -370,9 +370,11 @@ public class UsersController {
                 htmlcode += "<p>No hay l&iacute;deres disponibles.</p>";
             else
             {
-                htmlcode += "<h3>L&iacute;deres</h3>";
-
-                htmlcode += "<table class=\"table text-center mt-\">\n"
+                htmlcode += "<div class=\"row mt-3\">"
+                        + "<div class=\"col-1\"></div>"
+                        + "<div class=\"col-10\">"
+                        + "<h3>L&iacute;deres</h3>"
+                        + "<table class=\"table text-center mt-\">\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
                         + "             <th scope=\"col\" >Estatus</th>\n"
@@ -392,16 +394,20 @@ public class UsersController {
                 }
 
                 htmlcode += "</tbody>\n"
-                        + "</table>";
+                        + "</table>"
+                        + "</div>"
+                        + "<div class=\"col-1\"></div>";
             }
 
             if (wks.isEmpty())
                 htmlcode += "<p>No hay integrantes disponibles.</p>";
             else
             {
-                htmlcode += "<h3>Integrantes</h3>";
-
-                htmlcode += "<table class=\"table text-center mt-3\" >\n"
+                htmlcode += "<div class=\"row mt-2\">"
+                        + "<div class=\"col-1\"></div>"
+                        + "<div class=\"col-10\">"
+                        + "<h3>Integrantes</h3>"
+                        +"<table class=\"table text-center mt-3\" >\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
                         + "             <th scope=\"col\">Estatus</th>\n"
@@ -421,7 +427,9 @@ public class UsersController {
                 }
 
                 htmlcode += "</tbody>\n"
-                        + "</table>";
+                        + "</table>"
+                        + "</div>"
+                        + "<div class=\"col-1\"></div>";
             }
         }
             

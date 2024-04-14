@@ -64,7 +64,10 @@ public class PostsController {
     }
 
     public String modelGetPosts(String collab_id) {
-        String htmlcode = "<h2 class=\"mb-4\">Nueva publicaci&oacute;n</h2>"
+        String htmlcode = "<div class=\"row mt-3\">"
+                + "<div class=\"col-1\"></div>\n"
+                + "<div class=\"col-10\">"
+                + "<h2 class=\"mb-4\">Nueva publicaci&oacute;n</h2>"
                 + "<form action=\"../postnew?id=" + collab_id + "\" method=\"post\" enctype=\"multipart/form-data\" accept-charset=\"UTF-8\">\n"
                 + "                        <div class=\"col-12\">\n"
                 + "<textarea class=\"form-control bxshad\" style=\"width: 100%; height: 150px; border-color: #AFB2B3;\" rows=\"4\" name=\"task_info\" id=\"task_info\" placeholder=\"Publica un anuncio, pregunta o duda.\" maxlength=\"1024\" style=\"resize: none\" required></textarea>\n"
@@ -73,7 +76,10 @@ public class PostsController {
                 + "                        <button class=\"btn mt-3 btn-lg rounded-pill custom-bcollab\" type=\"submit\"><p class=\"mb-1 mt-1 me-5 ms-5\" style=\"font-size: 17px;\">Publicar</p></button>\n"
                 + "<hr>"
                 + "</div>"
-                + "                    </form>";
+                + "</form>"
+                + "</div>\n"
+                + "<div class=\"col-1\"></div>\n"
+                + "</div>";
 
         PostsModel postm = new PostsModel();
         ArrayList<Post> posts = postm.getAllPostsByCollab(collab_id);
@@ -83,8 +89,8 @@ public class PostsController {
             return htmlcode;
         } else {
             int cardSetCounter = 1; // Contador de conjuntos de cards
-             htmlcode += "<div class=\"mb-4\">";  // Div exterior para envolver todas las cards
-            
+            htmlcode += "<div class=\"mb-4\">";  // Div exterior para envolver todas las cards
+
             for (Post p : posts) {
                 String post_id = p.getPost_id();
 
@@ -139,10 +145,10 @@ public class PostsController {
                         + "                </div>\n"
                         + "                <div class=\"col-1\"></div>\n"
                         + "            </div> ";
-                
+
                 cardSetCounter++; // Incrementa el contador de conjuntos de cards
             }
-            
+
             htmlcode += "</div>"; // Cierra el div exterior de las cards
         }
 
