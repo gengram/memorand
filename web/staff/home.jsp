@@ -33,7 +33,6 @@
             <div class="row mt-5">
                 <div class="col-6 d-flex align-items-center">
                     <h2>Panel de control</h2>
-                    <a href="ventas.jsp" style="color: #7473C0">Ir a ventas</a>
                 </div>
                 <div class="col-6 d-flex justify-content-end align-items-center">
                     <a href='instnew.jsp'>

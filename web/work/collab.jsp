@@ -126,11 +126,25 @@
         .custom-p {
             margin-bottom: 0.1rem; /* Ajusta el margen inferior según sea necesario */
         }
+
     </style>
+    <script>
+        document.getElementById('openModalBtn').addEventListener('click', function () {
+            // Obtener el valor de collab_id desde donde sea que lo tengas disponible en tu página
+            var collab_id = obtenerCollabId(); // Debes definir tu propia función para obtener el valor de collab_id
 
+            // Crear la URL con el fragmento deseado
+            var url = 'tasknew?id=' + collab_id;
 
+            // Agregar el fragmento de URL a la ubicación actual de la página
+            window.location.href = url;
 
+            // Aquí deberías tener el código para abrir el modal
+            // Puedes abrir el modal usando tu propio método o biblioteca modal
+            abrirModal();
+        });
 
+    </script>
     <!-- BODY -->
     <body>
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
@@ -202,6 +216,71 @@
                 </div>
                 <div class="col-1"></div>
             </div>
+            <!-- Modal Nueva tarea -->                            
+            <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskNew">
+                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                    <div class="modal-content rounded-4 shadow">
+                        <div class="modal-header p-5 pb-4 border-bottom-0">
+                            <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva tarea</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body p-5 pt-2">
+                            <form action="../tasknew?id=<%= collab_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                                <div class="row">
+                                    <div class="col-6" >
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                            <input type="text" name="task_name" id="task_name" class="form-control-sm rounded-3" placeholder="Deberes" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3">
+                                            <label class="form-label ms-4">Prioridad</label>
+                                            <select name="task_prior" id="task_prior" class="form-select ms-4" style="border-color: #E3E4E5;" required>
+                                                <option value="" disabled selected hidden>Selecciona uno</option>
+                                                <option value="Baja">Baja</option>
+                                                <option value="Media">Media</option>
+                                                <option value="Alta">Alta</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="mb-3">
+                                            <label class="form-label">Dificultad</label>
+                                            <select  name="task_diff" id="task_diff" class="form-select me-4" style="border-color: #E3E4E5;" required>
+                                                <option value="" disabled selected hidden>Selecciona uno</option>
+                                                <option value="Sencilla">Sencilla</option>
+                                                <option value="Intermedia">Intermedia</option>
+                                                <option value="Compleja">Compleja</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-11">
+                                        <label for="disabledSelect" class="form-label">Descripci&oacute;n</label>
+                                        <textarea class="form-control" name="task_info" id="task_info" rows="7" placeholder="Describe tu tarea" style="resize: none; border-color: #E3E4E5;" required></textarea>
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-3">
+                                        <div class="mb-3">
+                                            <label for="disabledSelect" class="form-label">Fecha l&iacute;mite</label>
+                                            <input class="form-control-sm" type="datetime-local" name="task_edate" id="task_edate" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6"></div>
+                                    <div class="col-3 mt-4 text-center">
+                                        <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva tarea</p></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
             <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
             <div id="content">
 
