@@ -67,12 +67,12 @@ public class TaskNew extends HttpServlet
                     String collab_id = request.getParameter("id");
                     
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-                    LocalDateTime localDateTime = LocalDateTime.parse(task_fields.get(2), formatter);
+                    LocalDateTime localDateTime = LocalDateTime.parse(task_fields.get(4), formatter);
                     Timestamp task_edate = Timestamp.valueOf(localDateTime);
                     
                     Timestamp task_sdate = new Timestamp(System.currentTimeMillis());
                     
-                    Task task = new Task(task_id, task_fields.get(0), task_fields.get(1), task_sdate, task_edate, "Incompleta", task_fields.get(3), task_fields.get(4));
+                    Task task = new Task(task_id, task_fields.get(0), task_fields.get(3), task_sdate, task_edate, "Incompleta", task_fields.get(1), task_fields.get(2));
                     TasksController taskc = new TasksController();
                     
                     if (taskc.modelCreateTask(task))
