@@ -55,11 +55,10 @@
         <hr>
         
         <!-- PONER ESTOS COMO EL LOOK AND FEEL-->
-        <p><a href=''>Descargar formato de administradores</a></p>
+        <p><a href='../XM-Uploads/users/profile/default-user.png'>Descargar formato de administradores</a></p>
         <p><a href=''>Descargar formato de personal</a></p>
         <p><a href='#' onclick="confirmAction('sales');"><%= sales_statusA %> formulario de ventas</a> Status actual: <%= sales_statusC %></p>
         <p><a href='#' onclick="confirmAction('system');"><%= system_statusA %> memorand</a> Status actual: <%= system_statusC %></p>
-        <p><a href='#' onclick="confirmAction('reset');">Reestablecer datos</a></p>
         
     </body>
 
