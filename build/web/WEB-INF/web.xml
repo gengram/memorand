@@ -124,6 +124,10 @@
         <servlet-name>UserEdit</servlet-name>
         <servlet-class>com.memorand.servlets.editar.UserEdit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApiUserInfoGet</servlet-name>
+        <servlet-class>com.memorand.api.obtener.ApiUserInfoGet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -247,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>UserEdit</servlet-name>
         <url-pattern>/useredit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiUserInfoGet</servlet-name>
+        <url-pattern>/api/userinfoget</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,29 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ApiUserInfo extends HttpServlet {
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String user_id = request.getParameter("user_id");
-        
-        if (user_id == null || user_id.isEmpty())
-        {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
+public class ApiUserInfo extends HttpServlet
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        
+            throws ServletException, IOException
+    {
         response.setContentType("application/json");
         
         String user_id = request.getParameter("user_id");
@@ -52,11 +35,6 @@ public class ApiUserInfo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println(user_info);
         }
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

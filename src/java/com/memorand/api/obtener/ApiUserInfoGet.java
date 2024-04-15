@@ -1,4 +1,4 @@
-package com.memorand.api;
+package com.memorand.api.obtener;
 
 import com.google.gson.Gson;
 import com.memorand.beans.User;
@@ -12,35 +12,48 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ApiLogin extends HttpServlet {
-
+public class ApiUserInfoGet extends HttpServlet
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        response.setContentType("text/plain;charset=UTF-8");
+        response.setContentType("application/json");
         
+        // LEER JSON
         StringBuilder requestBody = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String line;
-        while ((line = reader.readLine()) != null) {
+        
+        while ((line = reader.readLine()) != null)
+        {
             requestBody.append(line);
         }
+        
         reader.close();
-
+        
+        //RESPUESTA EN JSON
         Gson gson = new Gson();
-
+        
         UsersController userc = new UsersController();
-        User user = gson.fromJson(requestBody.toString(), User.class);
-
-        if (userc.modelLoginUser(user))
+        User userinput = gson.fromJson(requestBody.toString(), User.class);
+        
+        String user_id = userinput.getUser_id();
+        
+        User user = userc.modelGetUserInfoById(user_id);
+        
+        if (user != null)
         {
-            response.setStatus(200);
+            String user_info = gson.toJson(user);
+        
+            try (PrintWriter out = response.getWriter())
+            {
+                out.println(user_info);
+            }
         }
         else
         {
             response.setStatus(400);
         }
-            
     }
 }
