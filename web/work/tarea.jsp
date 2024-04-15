@@ -94,7 +94,14 @@
         <title>Memorand | <%= task_name%></title>
 
     </head>
-
+    <style>
+        .btnnav.active {
+            border-bottom: 4px solid #<%=proj_color%>; /* Aplica el borde inferior cuando el botón está activo */
+        }
+        .btnnav{
+            border: none; /* Quita todos los bordes de los botones inactivos */
+        }
+    </style>
     <!-- BODY -->
     <body>
 
@@ -104,7 +111,7 @@
             <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-10 d-flex justify-content-end ">
-                    <p style="color: #25ce7b; font-size: 18px;"><a href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar al inicio</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='collab.jsp?id=<%= collab_id%>'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -157,19 +164,17 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-3 text-end border-bottom">
-                    <button class="btn navC rounded-1 btnnav active" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Ideas</p></button>
+                    <button class="btn navC rounded-1 btnnav active" id="get_ideas"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Ideas</p></button>
                 </div>
                 <div class="col-4 text-center border-bottom">
-                    <button class="btn navC rounded-1 btnnav" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Notas</p></button>
+                    <button class="btn navC rounded-1 btnnav" id="get_notes"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Notas</p></button>
                 </div>
                 <div class="col-3 text-start border-bottom">
-                    <button  class="btn navC rounded-1 btnnav" id="get_people"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Lienzos</p></button>
+                    <button  class="btn navC rounded-1 btnnav" id="get_canvas"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Lienzos</p></button>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
-
-
 
         <h3>Informaci&oacute;n de la tarea</h3>
         <p><%= task_info%></p>
@@ -181,23 +186,72 @@
         <a href=''>Editar informaci&oacute;n</a>
         <a href=''>Marcar como <%= s_status%></a>
 
-        <hr>
-
-        <p><button id="get_ideas">Ideas</button> <button id="get_notes">Notas</button> <button id="get_canvas">Lienzos</button></p>
-
-        <hr>
+        <style>
+            /* Estilos opcionales */
+            .hidden {
+                display: none;
+            }
+        </style>
 
         <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
         <div id="content">
-            <%= ideac.modelGetIdeasByTask(task_id)%>
-            <hr>
-            <%= notec.modelGetNotesByTask(task_id)%>
-            <hr>
-            <%= canvac.modelGetCanvasByTask(task_id)%>
+            <!-- Contenido -->
+            <div id="ideas_content" class="content">
+                <%= ideac.modelGetIdeasByTask(task_id)%>
+            </div>
+            <div id="notes_content" class="content hidden">
+                <%= notec.modelGetNotesByTask(task_id)%>
+            </div>
+            <div id="canvas_content" class="content hidden">
+                <%= canvac.modelGetCanvasByTask(task_id)%>
+            </div>
         </div>
 
-    </body>
+        <script>
+            // Función para mostrar el contenido correspondiente
+            function showContent(contentId) {
+                // Ocultar todos los contenidos excepto el deseado
+                var contents = document.querySelectorAll('.content');
+                contents.forEach(function (content) {
+                    if (content.id === contentId) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+                // Guardar el ID del contenido activo en el almacenamiento local
+                localStorage.setItem('activeContentId', contentId);
+            }
 
+            // Mostrar el contenido guardado en el almacenamiento local al cargar la página
+            window.addEventListener('load', function () {
+                var activeContentId = localStorage.getItem('activeContentId');
+                if (activeContentId) {
+                    showContent(activeContentId);
+                }
+            });
+
+            // Manejar clic en los botones
+            document.getElementById('get_ideas').addEventListener('click', function () {
+                showContent('ideas_content');
+            });
+
+            document.getElementById('get_notes').addEventListener('click', function () {
+                showContent('notes_content');
+            });
+
+            document.getElementById('get_canvas').addEventListener('click', function () {
+                showContent('canvas_content');
+            });
+
+            // Manejar clic en el enlace de regreso
+            document.getElementById('backLink').addEventListener('click', function () {
+                // Eliminar el almacenamiento local
+                localStorage.removeItem('activeContentId');
+            });
+        </script>
+    </body>
+    <script src="scripts/interfaceTarea.js"></script>
 </html>
 
 <%
