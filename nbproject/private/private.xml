@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/com/memorand/model/UsersModel.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>828</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/NotesController.java</file>
@@ -15,5 +25,8 @@
             <file>file:/C:/memorand/src/java/com/memorand/controller/TaskIdeasController.java</file>
             <file>file:/C:/memorand/web/work/scripts/interface.js</file>
         </group>
+=======
+        <group/>
+>>>>>>> 14642926c92be28a659da223ab1b988931e0b262
     </open-files>
 </project-private>

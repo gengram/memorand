@@ -874,14 +874,15 @@ public class UsersModel extends Conexion {
         
         try
         {
-            String sql = "UPDATE users SET user_name = ?, user_pat = ?, user_mat = ? WHERE user_id = ?";
+            String sql = "UPDATE users SET user_name = ?, user_pat = ?, user_mat = ?, user_profile = ? WHERE user_id = ?";
             
             ps = getConnection().prepareStatement(sql);
             
             ps.setString(1, user.getUser_name());
             ps.setString(2, user.getUser_pat());
             ps.setString(3, user.getUser_mat());
-            ps.setString(4, user.getUser_id());
+            ps.setString(4, user.getUser_profile());
+            ps.setString(5, user.getUser_id());
             
             if (ps.executeUpdate() == 1)
             {
