@@ -148,7 +148,7 @@
             <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-10 d-flex justify-content-end ">
-                    <p style="color: #25ce7b; font-size: 18px;"><a href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar al inicio</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backL" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar al inicio</a></p>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -201,7 +201,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-3 text-end border-bottom">
-                    <button class="btn navC rounded-1 btnnav active" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
+                    <button class="btn navC rounded-1 btnnav active pred" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
                 </div>
                 <div class="col-4 text-center border-bottom">
                     <button class="btn navC rounded-1 btnnav" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Publicaciones</p></button>

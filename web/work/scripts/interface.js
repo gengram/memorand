@@ -1,29 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Seleccionar todos los botones
     const buttons = document.querySelectorAll('.navC');
 
-    // Función para activar un botón y recordar su estado
     function activateButton(button) {
-        // Remover clase 'active' de todos los botones
         buttons.forEach(navC => {
             navC.classList.remove('active');
+            navC.classList.remove('active-border');
         });
 
-        // Agregar clase 'active' al botón actual
         button.classList.add('active');
+        button.classList.add('active-border');
 
-        // Guardar el ID del botón activo en el almacenamiento local
         localStorage.setItem('activeButton', button.id);
     }
 
-    // Agregar event listeners a cada botón
     buttons.forEach(button => {
         button.addEventListener('click', function () {
             activateButton(this);
         });
     });
 
-    // Verificar si hay un botón activo almacenado localmente al cargar la página
     const activeButtonId = localStorage.getItem('activeButton');
     if (activeButtonId) {
         const activeButton = document.getElementById(activeButtonId);
@@ -31,7 +26,31 @@ document.addEventListener('DOMContentLoaded', function () {
             activateButton(activeButton);
         }
     }
+
+    // Agregar event listener al enlace para regresar al inicio
+    const backButton = document.getElementById('backL');
+    console.log(backButton);
+    backButton.addEventListener('click', function () {
+        // Elimina la clase 'active' de todos los botones
+        console.log('Click en enlace de regreso');
+        buttons.forEach(navC => {
+            navC.classList.remove('active');
+            navC.classList.remove('active-border');
+        });
+
+        // Obtén el botón predeterminado por su ID
+        const defaultButton = document.getElementById('get_tasks');
+        
+        // Agrega la clase 'active' y 'active-border' al botón predeterminado
+        defaultButton.classList.add('active');
+        defaultButton.classList.add('active-border');
+
+        // Guarda el ID del botón activo en el almacenamiento local
+        localStorage.setItem('activeButton', defaultButton.id);
+    });
 });
+console.log(document.getElementById('backL'));
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // Seleccionar todos los conjuntos de cards
