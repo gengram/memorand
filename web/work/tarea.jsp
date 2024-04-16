@@ -17,6 +17,7 @@
 
 <%
     String task_id = request.getParameter("id");
+    String team_id = request.getParameter("id");
 
     if (task_id == null || task_id.isEmpty()) {
         response.sendRedirect("home.jsp");
@@ -64,10 +65,10 @@
             switch (task_status) {
                 case "Incompleta":
                 case "Atrasada":
-                    s_status = "completada";
+                    s_status = "Completada";
                     break;
                 case "Completada":
-                    s_status = "incompleta";
+                    s_status = "Incompleta";
                     break;
                 default:
                     break;
@@ -100,6 +101,45 @@
         }
         .btnnav{
             border: none; /* Quita todos los bordes de los botones inactivos */
+        }
+
+        .custom-btarea{
+            display: inline-block;
+            padding: 1px 10px;
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #fff; /* Color del texto */
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #<%=proj_color%>; /* Fondo transparente */
+        }
+        .custom-btarea:hover {
+            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
+        }
+
+        .modal-custom {
+            max-width: 510px;
+        }
+
+        .btn-color {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding-bottom: 0.05rem;
+            padding-top: 0.05rem;
+            padding-left: 0.35rem;
+            padding-right: 0.35rem;
+        }
+        .btn-color:hover{
+            border-color: #E3E4E5;
+            background-color: #E3E4E5;
+        }
+        /* Estilos opcionales */
+        .hidden {
+            display: none;
         }
     </style>
     <!-- BODY -->
@@ -174,24 +214,106 @@
                 </div>
                 <div class="col-1"></div>
             </div>
+
+
+            <div class="row mt-3">
+                <div class="col-1"></div>
+                <div class="col-6">
+                    <h3>Informaci&oacute;n de la tarea</h3>
+                    <p id="taskInfo" style="font-size: 24px; color: #2A2927">Hola</p><text id="leerMasBtn" style="display: none; color: #AFB2B3" onclick="mostrarMas()">Leer más</text>
+                    <p id="leerMenosBtn" style="display: none; color: #AFB2B3" onclick="mostrarMenos()">Leer menos</p>
+
+                    <p class="mt-1"><b class="me-2">Fecha de creaci&oacute;n:</b><text class="me-5"><%= s_sdate%></text><b class="me-2 ms-1">Fecha l&iacute;mite:</b><%= s_edate%></p>
+                    <div class="row" >
+                        <div class="col-12">
+                            <p >
+                                <b class="me-2">Estatus:</b><text class="me-5" style="color: #<%=task_color%>;"><%= task_status%></text>
+                                <b class="me-2">Prioridad:</b><text class="me-5"><%= task_prior%></text>
+                                <b class="me-2">Dificultad:</b><text class="me-5"><%= task_diff%></text>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <button class="btn btn-light rounded-pill ms-5" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
+                        </div>
+                    </div>
+                    <h4 class="ms-5 mt-2">Nueva idea</h4>
+                    <div class="mt-3 ms-5">
+                        <div class="card border" style="width: 18rem; background-color: #F8F9FA; border-color: #AFB2B3;">
+                            <div class="card-body text-center">
+                                <p class="mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#modalIdeaNew"><i class="bi bi-plus-lg" style="color: #2A2927; font-size: 60px"></i></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-1"></div>
+            </div>
         </div>
 
-        <h3>Informaci&oacute;n de la tarea</h3>
-        <p><%= task_info%></p>
-        <p><b>Fecha de creaci&oacute;n:</b> <%= s_sdate%> - <b>Fecha l&iacute;mite:</b> <%= s_edate%></p>
-        <p><b>Estatus:</b> <%= task_status%> - <b>Prioridad:</b> <%= task_prior%> - <b>Dificultad:</b> <%= task_diff%></p>
+        <!-- Modal Nueva Etiqueta -->                            
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalIdeaNew">
+            <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva idea</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-2">
+                        <form action="../ideanew?id=<%= team_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                            <div class="row mb-0">
+                                <div class="col-12">
+                                    <div class="mb-0">
+                                        <label for="tag_color" class="form-label">Color de etiqueta:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#B9D7A2')"><i style="color: #B9D7A2; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#96D5D9')"><i style="color: #96D5D9; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#A9AFE4')"><i style="color: #A9AFE4; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#E2C1E4')"><i style="color: #E2C1E4; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#F1B390')"><i style="color: #F1B390; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#F8DE9B')"><i style="color: #F8DE9B; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color" type="button" onclick="selectColor('#EFA1A1')"><i style="color: #EFA1A1; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <input type="hidden" name="idea_color" id="idea_color" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12" >
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Idea</label>
+                                        <input type="text" name="idea_text" id="idea_text" placeholder="Texto de la idea" class="form-control-sm rounded-3" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="mb-0">
+                                        <button type="submit" class="btn btn-lg rounded-pill custom-btarea mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Agregar idea</p></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+
 
         <br>
 
         <a href=''>Editar informaci&oacute;n</a>
         <a href=''>Marcar como <%= s_status%></a>
-
-        <style>
-            /* Estilos opcionales */
-            .hidden {
-                display: none;
-            }
-        </style>
 
         <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
         <div id="content">
@@ -207,49 +329,7 @@
             </div>
         </div>
 
-        <script>
-            // Función para mostrar el contenido correspondiente
-            function showContent(contentId) {
-                // Ocultar todos los contenidos excepto el deseado
-                var contents = document.querySelectorAll('.content');
-                contents.forEach(function (content) {
-                    if (content.id === contentId) {
-                        content.classList.remove('hidden');
-                    } else {
-                        content.classList.add('hidden');
-                    }
-                });
-                // Guardar el ID del contenido activo en el almacenamiento local
-                localStorage.setItem('activeContentId', contentId);
-            }
 
-            // Mostrar el contenido guardado en el almacenamiento local al cargar la página
-            window.addEventListener('load', function () {
-                var activeContentId = localStorage.getItem('activeContentId');
-                if (activeContentId) {
-                    showContent(activeContentId);
-                }
-            });
-
-            // Manejar clic en los botones
-            document.getElementById('get_ideas').addEventListener('click', function () {
-                showContent('ideas_content');
-            });
-
-            document.getElementById('get_notes').addEventListener('click', function () {
-                showContent('notes_content');
-            });
-
-            document.getElementById('get_canvas').addEventListener('click', function () {
-                showContent('canvas_content');
-            });
-
-            // Manejar clic en el enlace de regreso
-            document.getElementById('backLink').addEventListener('click', function () {
-                // Eliminar el almacenamiento local
-                localStorage.removeItem('activeContentId');
-            });
-        </script>
     </body>
     <script src="scripts/interfaceTarea.js"></script>
 </html>

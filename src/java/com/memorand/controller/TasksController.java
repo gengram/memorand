@@ -199,7 +199,6 @@ public class TasksController {
                         + "<p class=\"custom-p me-2\"><texto style=\"color: #AFB2B3;\">" + t.getTask_sdate() + "</texto></p>\n"
                         + "</div>\n"
                         + "</div>\n"
-                        + "<button class=\"btn btn-light rounded-pill\" style=\"background-color: #F0F2FF\"><i class=\"bi bi-circle-fill me-3\" style=\"color: darkturquoise\"></i> Etiqueta</button>\n"
                         + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Fecha L&iacute;mite: </texto><texto style=\"color: #2A2927;\">" + t.getTask_edate() + "</texto></p>\n"
                         + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color: #F3894D;\">" + t.getTask_status() + "</texto></p>\n"
                         + "<div class=\"row\">\n"
