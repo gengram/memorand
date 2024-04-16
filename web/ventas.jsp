@@ -113,6 +113,9 @@
                 </div>
                 <div class="col-1"></div>
             </div>
+            
+            <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
+            
         </div>
 </body>
 

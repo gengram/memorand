@@ -18,7 +18,7 @@
                 </button>
             </a>
             <button class="btn custom-bsign btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                <h6 class="ms-3 me-3 mt-1" style="font-size: 22px;">Iniciar sesión</h6>
+                <h6 class="ms-3 me-3 mt-1" style="font-size: 22px;">Iniciar sesi&oacute;n</h6>
             </button>
         </div>
     </div>

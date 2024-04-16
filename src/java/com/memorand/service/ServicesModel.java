@@ -49,7 +49,7 @@ public class ServicesModel extends Conexion
         return system_status;
     }
     
-    public boolean changeServiceStatus(String service_id, String service_status)
+    public boolean updateServiceStatus(String service_id, String service_status)
     {
         boolean flag = false;
         
@@ -64,7 +64,7 @@ public class ServicesModel extends Conexion
             ps.setString(1, service_status);
             ps.setString(2, service_id);
             
-            if (ps.executeUpdate(sql) == 1) 
+            if (ps.executeUpdate() == 1) 
                 flag = true;
         }
         

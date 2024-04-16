@@ -132,6 +132,10 @@
         <servlet-name>AppRequestNew</servlet-name>
         <servlet-class>com.memorand.servlets.nuevo.AppRequestNew</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServiceStatus</servlet-name>
+        <servlet-class>com.memorand.service.ServiceStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>AppRequestNew</servlet-name>
         <url-pattern>/reqnew</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServiceStatus</servlet-name>
+        <url-pattern>/servicestat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

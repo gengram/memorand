@@ -37,7 +37,7 @@ public class InstitutionStatus extends HttpServlet
                         new_status = "si";
                         break;
                     default:
-                        response.sendRedirect("home.jsp?error=InvalidInstStatus");
+                        response.sendRedirect("staff/home.jsp?error=InvalidInstStatus");
                         break;
                 }
                 
