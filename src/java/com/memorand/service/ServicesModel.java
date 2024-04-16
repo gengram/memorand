@@ -4,11 +4,10 @@ import com.memorand.model.Conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class ServicesModel extends Conexion
 {
-    public String getServiceStatus(String s_id, boolean close_connection) 
+    public String getServiceStatus(String service_id, boolean close_connection) 
     {
         String system_status = "no";
         
@@ -20,7 +19,7 @@ public class ServicesModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, s_id);
+            ps.setString(1, service_id);
             
             ResultSet rs = ps.executeQuery();
             
@@ -50,7 +49,7 @@ public class ServicesModel extends Conexion
         return system_status;
     }
     
-    public boolean changeServiceStatus(String s)
+    public boolean changeServiceStatus(String service_id, String service_status)
     {
         boolean flag = false;
         
@@ -58,11 +57,12 @@ public class ServicesModel extends Conexion
         
         try
         {
-            String sql = "UPDATE services SET service_status = ? WHERE service_id = '9cd15faf-0fa5-482c-a7dd-d07790797528'";
+            String sql = "UPDATE services SET service_status = ? WHERE service_id = ?";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, s);
+            ps.setString(1, service_status);
+            ps.setString(2, service_id);
             
             if (ps.executeUpdate(sql) == 1) 
                 flag = true;

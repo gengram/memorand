@@ -277,7 +277,8 @@ create table requests
 	req_phone varchar(16),
 	req_job varchar(32),
 	req_num varchar(8),
-	req_msg text
+	req_msg text,
+	req_status varchar(2)
 );
 
 create table suggestions

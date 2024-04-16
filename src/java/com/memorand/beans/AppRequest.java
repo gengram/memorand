@@ -15,10 +15,11 @@ public class AppRequest
     private String req_job;
     private String req_num;
     private String req_msg;
+    private String req_status;
 
     public AppRequest() {}
 
-    public AppRequest(String req_id, Timestamp req_date, String req_name, String req_pat, String req_mat, String req_inst, String req_email, String req_phone, String req_job, String req_num, String req_msg) 
+    public AppRequest(String req_id, Timestamp req_date, String req_name, String req_pat, String req_mat, String req_inst, String req_email, String req_phone, String req_job, String req_num, String req_msg, String req_status)
     {
         this.req_id = req_id;
         this.req_date = req_date;
@@ -31,14 +32,7 @@ public class AppRequest
         this.req_job = req_job;
         this.req_num = req_num;
         this.req_msg = req_msg;
-    }
-
-    public String getReq_msg() {
-        return req_msg;
-    }
-
-    public void setReq_msg(String req_msg) {
-        this.req_msg = req_msg;
+        this.req_status = req_status;
     }
 
     public String getReq_id() {
@@ -119,5 +113,21 @@ public class AppRequest
 
     public void setReq_num(String req_num) {
         this.req_num = req_num;
+    }
+
+    public String getReq_msg() {
+        return req_msg;
+    }
+
+    public void setReq_msg(String req_msg) {
+        this.req_msg = req_msg;
+    }
+
+    public String getReq_status() {
+        return req_status;
+    }
+
+    public void setReq_status(String req_status) {
+        this.req_status = req_status;
     }
 }
