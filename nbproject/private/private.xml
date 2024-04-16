@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/memorand/src/java/com/memorand/model/Conexion.java</file>
-            <file>file:/C:/memorand/web/staff/adminedit.jsp</file>
-            <file>file:/C:/memorand/web/work/rendimiento.jsp</file>
-            <file>file:/C:/memorand/web/staff/configuracion.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/eliminar/TeamUserDelete.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/servlets/editar/UserEdit.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/UsersModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/AppSuggestion.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Team.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/InstitutionsModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/CoTask.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/InTeam.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/NoteNew.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Post.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/TaskIdea.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/UserIdea.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/InProject.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Note.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Collab.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Tag.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/UserNote.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/TaskCanva.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Project.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/User.java</file>
+            <file>file:/C:/memorand/web/ventas.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/TaskNote.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Canva.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/UserCanva.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/CoPost.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/AppRequestNew.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Task.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Idea.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/CollabUser.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/AppRequestsModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/AppRequestsController.java</file>
+            <file>file:/C:/memorand/web/staff/instnew.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/CoTag.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/TasksController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/TeamUser.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/UserPost.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/Institution.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/InstitutionsController.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/AppRequest.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/TaskTag.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/service/ServicesModel.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/beans/InUser.java</file>
         </group>
     </open-files>
 </project-private>
