@@ -50,7 +50,7 @@ public class AppRequestNew extends HttpServlet
         String req_id = g.newID();
         Timestamp req_date = new Timestamp(System.currentTimeMillis());
         
-        AppRequest req = new AppRequest(req_id, req_date, req_fields.get(0), req_fields.get(1), req_fields.get(2), req_fields.get(3), req_fields.get(4), req_fields.get(5), req_fields.get(6), req_fields.get(7), req_fields.get(8), "si");
+        AppRequest req = new AppRequest(req_id, req_date, req_fields.get(0), req_fields.get(1), req_fields.get(2), req_fields.get(3), req_fields.get(4), req_fields.get(5), req_fields.get(6), req_fields.get(7), req_fields.get(8), "no");
         AppRequestsController reqc = new AppRequestsController();
         
         if (reqc.modelCreateRequest(req))
