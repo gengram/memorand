@@ -1,6 +1,8 @@
 package com.memorand.beans;
 
-public class TaskNote
+import java.io.Serializable;
+
+public class TaskNote implements Serializable
 {
     private String task_id;
     private String note_id;
@@ -30,5 +32,4 @@ public class TaskNote
     {
         this.task_id = task_id;
     }
-
 }

@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class Tag implements Serializable {
-    
+public class Tag implements Serializable
+{
     private String tag_id;
     private String tag_name;
     private String tag_color;
@@ -39,5 +39,4 @@ public class Tag implements Serializable {
     public void setTag_name(String tag_name) {
         this.tag_name = tag_name;
     }
-    
 }

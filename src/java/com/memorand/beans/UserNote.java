@@ -1,6 +1,8 @@
 package com.memorand.beans;
 
-public class UserNote
+import java.io.Serializable;
+
+public class UserNote implements Serializable
 {
     private String user_id;
     private String user_note;
@@ -30,5 +32,4 @@ public class UserNote
     {
         this.user_id = user_id;
     }
-    
 }

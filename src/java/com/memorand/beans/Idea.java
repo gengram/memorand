@@ -1,8 +1,9 @@
 package com.memorand.beans;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Idea
+public class Idea implements Serializable
 {
     private String idea_id;
     private String idea_text;
@@ -56,5 +57,4 @@ public class Idea
     {
         this.idea_date = idea_date;
     }
-    
 }

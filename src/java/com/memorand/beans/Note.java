@@ -1,8 +1,9 @@
 package com.memorand.beans;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Note
+public class Note implements Serializable
 {
     private String note_id;
     private String note_name;
@@ -80,5 +81,4 @@ public class Note
     {
         this.note_status = note_status;
     }
-    
 }

@@ -1,6 +1,8 @@
 package com.memorand.beans;
 
-public class UserCanva
+import java.io.Serializable;
+
+public class UserCanva implements Serializable
 {
     private String user_id;
     private String canva_id;
@@ -30,5 +32,4 @@ public class UserCanva
     {
         this.user_id = user_id;
     }
-    
 }

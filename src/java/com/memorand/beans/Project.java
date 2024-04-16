@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class Project implements Serializable {
-    
+public class Project implements Serializable
+{
     private String proj_id;
     private String proj_name;
     private String proj_color;
@@ -39,5 +39,4 @@ public class Project implements Serializable {
     public void setProj_color(String proj_color) {
         this.proj_color = proj_color;
     }
-    
 }

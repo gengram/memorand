@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class TeamUser implements Serializable {
-    
+public class TeamUser implements Serializable
+{
     private String team_id;
     private String user_id;
 
@@ -29,5 +29,4 @@ public class TeamUser implements Serializable {
     public void setTeam_id(String team_id) {
         this.team_id = team_id;
     }
-    
 }

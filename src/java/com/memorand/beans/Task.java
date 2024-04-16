@@ -3,8 +3,8 @@ package com.memorand.beans;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Task implements Serializable {
-    
+public class Task implements Serializable
+{
     private String task_id;
     private String task_name;
     private String task_info;
@@ -90,5 +90,4 @@ public class Task implements Serializable {
     public void setTask_prior(String task_prior) {
         this.task_prior = task_prior;
     }
-    
 }

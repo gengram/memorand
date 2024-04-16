@@ -3,8 +3,8 @@ package com.memorand.beans;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Post implements Serializable {
-    
+public class Post implements Serializable
+{
     private String post_id;
     private String post_text;
     private int post_r1;
@@ -70,5 +70,4 @@ public class Post implements Serializable {
     public void setPost_date(Timestamp post_date) {
         this.post_date = post_date;
     }
-    
 }

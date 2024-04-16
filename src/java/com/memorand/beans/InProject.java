@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class InProject implements Serializable { 
-    
+public class InProject implements Serializable
+{ 
     private String inst_id;
     private String proj_id;
 
@@ -29,5 +29,4 @@ public class InProject implements Serializable {
     public void setInst_id(String inst_id) {
         this.inst_id = inst_id;
     }
-
 }
