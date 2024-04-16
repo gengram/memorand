@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-public class AppRequestModel extends Conexion
+public class AppRequestsModel extends Conexion
 {
     public boolean createRequest(AppRequest req)
     {

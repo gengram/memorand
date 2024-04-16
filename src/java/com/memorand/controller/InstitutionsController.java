@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class InstitutionsController
 {
-    private final String htmlInstTable = "<table class='table'"
+    private final String htmlInstTable = "<table class='table'>"
                 + "                <thead>\n"
                 + "                    <tr>\n"
                 + "                        <th scope='col'></th>\n"
@@ -121,7 +121,7 @@ public class InstitutionsController
             
                 htmlcode
                         += "<tr>\n"
-                        + "     <td class='align-middle'>"+ circleFillgreen +"</td>"
+                        + "     <td class='align-middle'>"+ circleFillgreen +"</td>\n"
                         + "     <td class='align-middle'> <img class='me-2' src='../"+ i.getInst_profile() +"' width='48'></img> "+ i.getInst_name() +" - "+ i.getInst_type() +"</td>\n"
                         + "     <td class='align-middle'>" + inst_counter.getResourceCount(i.getInst_id(), "ch") + "/" + i.getLim_ch() + "</td>\n"
                         + "     <td class='align-middle'>" + inst_counter.getResourceCount(i.getInst_id(), "wk") + "/" + i.getLim_wk() + "</td>\n"
