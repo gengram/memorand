@@ -38,7 +38,6 @@ public class Login extends HttpServlet {
                 
                 if (fi.isFormField())
                     user_fields.add(fi.getString());
-                
             }
             
         }

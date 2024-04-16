@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class AppRequestsController
 {
-    private final String htmlReqTable = "<table class='table'>"
+    private final String htmlReqTable = "<table class='table'>\n"
                 + "                <thead>\n"
                 + "                    <tr>\n"
                 + "                        <th scope='col'></th>\n"
@@ -42,6 +42,8 @@ public class AppRequestsController
         }
         else
         {
+            htmlcode = htmlReqTable;
+            
             for (AppRequest r : reqs)
             {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));

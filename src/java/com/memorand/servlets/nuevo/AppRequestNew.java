@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -25,23 +24,23 @@ public class AppRequestNew extends HttpServlet
     {
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
-
+        
         ArrayList<String> req_fields = new ArrayList<>();
-
+        
         try
         {
             List items = sfu.parseRequest(request);
-
+            
             for (int i = 0; i < items.size(); i++)
             {
                 FileItem fi = (FileItem) items.get(i);
-
+                
                 if (fi.isFormField())
                     req_fields.add(fi.getString());
             }
+            
         }
-
-        catch (FileUploadException e)
+        catch (Exception e)
         {
             System.err.println(e.getMessage());
         }

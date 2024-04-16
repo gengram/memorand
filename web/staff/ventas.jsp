@@ -1,6 +1,11 @@
+<%@page import="com.memorand.controller.AppRequestsController"%>
 <!-- Memorand by Gengram © 2023 -->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    AppRequestsController reqc = new AppRequestsController();
+%>
 
 <!DOCTYPE html>
 
@@ -28,6 +33,8 @@
         
         <h2>Solicitudes</h2>
         <p>Estatus: <button onclick="getReqByStatus('si')">Activas</button> <button onclick="getReqByStatus('si')">Inactivas</button></p>
+        
+        <%= reqc.modelGetRequests("si") %>
         
     </body>
 

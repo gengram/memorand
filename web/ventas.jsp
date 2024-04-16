@@ -61,38 +61,38 @@
                     <form action="reqnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
-                            <input type="text" class="form-control" placeholder="John" required>
+                            <input id="req_name" name="req_name" type="text" class="form-control" placeholder="John" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Apellidos</label>
                             <div class="row">
                                 <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Doe" required>
+                                    <input id="req_pat" name="req_pat" type="text" class="form-control" placeholder="Doe" required>
                                 </div>
                                 <div class="col-6">
-                                    <input type="text" class="form-control" placeholder="Foo" required>
+                                    <input id="req_mat" name="req_mat" type="text" class="form-control" placeholder="Foo" required>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nombre de tu instituci&oacute;n</label>
-                            <input type="text" class="form-control" required>
+                            <input id="req_inst" name="req_inst" type="text" class="form-control" placeholder="Empresa genial" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Correo electr&oacute;nico de la instituci&oacute;n</label>
-                            <input type="email" class="form-control" required>
+                            <input id="req_email" name="req_email" type="email" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Tel&eacute;fono</label>
-                            <input type="text" class="form-control" required>
+                            <input id="req_phone" name="req_phone" type="text" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Puesto de trabajo</label>
-                            <input type="text" class="form-control" required>
+                            <input id="req_job" name="req_job" type="text" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="disabledSelect" class="form-label">N&uacute;mero de usuarios esperados</label>
-                            <select id="disabledSelect" class="form-select" required>
+                            <label for="req_num" class="form-label">N&uacute;mero de usuarios esperados</label>
+                            <select id="req_num" name="req_num" class="form-select" required>
                                 <option value="" disabled selected hidden>Selecciona una opci&oacute;n</option>
                                 <option value="-100">Menos de 100 personas</option>
                                 <option value="-1000">Menos de 1,000 personas</option>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mensaje</label>
-                            <textarea required class="form-control" style="width: 100%; height: 200px;" id="exampleFormControlTextarea1" rows="3" placeholder="Este es tu espacio donde puedes hacer preguntas, tus expectativas o cualquier cosa que necesites de nosotros."></textarea>
+                            <textarea id="req_msg" name="req_msg" class="form-control" required style="width: 100%; height: 200px;" id="exampleFormControlTextarea1" rows="3" placeholder="Este es tu espacio donde puedes hacer preguntas, tus expectativas o cualquier cosa que necesites de nosotros."></textarea>
                         </div>
                         <div class="d-grid gap-2 text-center">
                             <button type="submit" class="btn custom-bsign">Contactar ventas</button>
@@ -114,7 +114,6 @@
                 <div class="col-1"></div>
             </div>
         </div>
-
 </body>
 
 </html>
