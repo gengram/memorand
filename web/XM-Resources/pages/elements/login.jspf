@@ -33,12 +33,12 @@
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modalRestore">
 
-    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
 
         <div class="modal-content rounded-4 shadow">
 
             <div class="modal-header p-5 pb-4 border-bottom-0">
-                <p class="fw-bold mb-0 fs-2" style="color: #2A2927">Reestablecer contrase&ntilde;a</p>
+                <p class="mb-0 fs-2" style="color: #4A4F54">Reestablecer contrase&ntilde;a</p>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
