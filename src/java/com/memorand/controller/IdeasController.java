@@ -32,15 +32,13 @@ public class IdeasController
         
         if (ideas.isEmpty())
         {
-            htmlcode += "<p>Agrega aqu&iacute; las partes m&aacute;s importantes de tu tarea.</p>" + "<p>No hay ideas por mostrar</p>";
+            htmlcode +=  "<p>No hay ideas por mostrar</p>";
             return htmlcode;
         }
         else
         {
-            int contador = 0;
             for (Idea i : ideas)
             {
-                contador++;
                 String idea_id = i.getIdea_id();
                 
                 UsersModel userm = new UsersModel();
@@ -60,6 +58,10 @@ public class IdeasController
                 Duracion d = new Duracion();
                 
                 String timeAgo = d.formatDuration(duration);
+                
+                htmlcode += "<div>"
+                        
+                        + "</div>";
                 
                 htmlcode += "<div style='background-color:#"+ i.getIdea_color() +"'>"
                     + "<p>" + user_name + " - Hace " + timeAgo

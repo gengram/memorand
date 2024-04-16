@@ -166,7 +166,7 @@ public class TasksController {
                 + "                    </div>"
                 + "<div class=\"col-1\" ></div>"
                 + "                    </div>";
-        htmlcode += "<div class=\"row mt-2 mb-5\" id=\"tasks_zone\">";
+        htmlcode += "<div class=\"row mt-2 mb-5\">";
 
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);

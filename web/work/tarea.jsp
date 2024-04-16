@@ -137,10 +137,6 @@
             border-color: #E3E4E5;
             background-color: #E3E4E5;
         }
-        /* Estilos opcionales */
-        .hidden {
-            display: none;
-        }
     </style>
     <!-- BODY -->
     <body>
@@ -220,7 +216,7 @@
                 <div class="col-1"></div>
                 <div class="col-6">
                     <h3>Informaci&oacute;n de la tarea</h3>
-                    <p id="taskInfo" style="font-size: 24px; color: #2A2927">Hola</p><text id="leerMasBtn" style="display: none; color: #AFB2B3" onclick="mostrarMas()">Leer más</text>
+                    <p style=" color: #2A2927"><%=task_info%></p><text id="leerMasBtn" style="display: none; color: #AFB2B3" onclick="mostrarMas()">Leer más</text>
                     <p id="leerMenosBtn" style="display: none; color: #AFB2B3" onclick="mostrarMenos()">Leer menos</p>
 
                     <p class="mt-1"><b class="me-2">Fecha de creaci&oacute;n:</b><text class="me-5"><%= s_sdate%></text><b class="me-2 ms-1">Fecha l&iacute;mite:</b><%= s_edate%></p>
@@ -254,6 +250,66 @@
 
                 </div>
                 <div class="col-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-3">
+                    <div class="card mb-3 border" style="max-width: 18rem; background-color: #B9D7A2;">
+                        <div class="card-body">
+                            <div class="row mt-0">
+                                <div class="col-10">
+                                    <button class="btn btn-light text-start mb-3" style="padding-bottom: 0rem; padding-top: 0rem;">
+                                        <text style="font-size: 12px">Nombre del usuario</text>
+                                        <p style="font-size: 11px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;">hace 8 min</p>
+                                    </button>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <i class="bi bi-three-dots-vertical"  style="color: #2A2927;"></i>
+                                </div>
+                            </div>
+                            <b class="card-text" style="color: #2A2927;">Some quick example text to build on the card title and make up the bulk of the card's content.</b>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-3">
+                    <div class="card mb-3 border" style="max-width: 18rem; background-color: #B9D7A2;">
+                        <div class="card-body">
+                            <div class="row mt-0">
+                                <div class="col-10">
+                                    <button class="btn btn-light text-start mb-3" style="padding-bottom: 0rem; padding-top: 0rem;">
+                                        <text style="font-size: 12px">Nombre del usuario</text>
+                                        <p style="font-size: 11px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;">hace 8 min</p>
+                                    </button>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <i class="bi bi-three-dots-vertical"  style="color: #2A2927;"></i>
+                                </div>
+                            </div>
+                            <b class="card-text" style="color: #2A2927;">Some quick example text to build on the card title and make up the bulk of the card's content.</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                        <div class="card mb-3 border" style="max-width: 18rem; background-color: #B9D7A2;">
+                        <div class="card-body">
+                            <div class="row mt-0">
+                                <div class="col-10">
+                                    <button class="btn btn-light text-start mb-3" style="padding-bottom: 0rem; padding-top: 0rem;">
+                                        <text style="font-size: 12px">Nombre del usuario</text>
+                                        <p style="font-size: 11px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;">hace 8 min</p>
+                                    </button>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <i class="bi bi-three-dots-vertical"  style="color: #2A2927;"></i>
+                                </div>
+                            </div>
+                            <b class="card-text" style="color: #2A2927;">Some quick example text to build on the card title and make up the bulk of the card's content.</b>
+                        </div>
+                    </div>
+            
+                </div>
+                <div class="col-2"></div>
             </div>
         </div>
 
@@ -302,6 +358,11 @@
                                 </div>
                             </div>
                         </form>
+                        <script>
+                            function selectColor(color) {
+                                document.getElementById("selected_color").value = color;
+                            }
+                        </script>
 
                     </div>
                 </div>
@@ -318,7 +379,7 @@
         <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
         <div id="content">
             <!-- Contenido -->
-            <div id="ideas_content" class="content">
+            <div id="ideas_content" class="content row">
                 <%= ideac.modelGetIdeasByTask(task_id)%>
             </div>
             <div id="notes_content" class="content hidden">
