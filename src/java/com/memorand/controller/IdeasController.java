@@ -25,24 +25,22 @@ public class IdeasController
     
     public String modelGetIdeasByTask(String task_id)
     {
-        String htmlcode = "<h3>Agregar nueva idea</h3>\n"
-                + "            <h1><a href='ideanew.jsp?id=" + task_id + "'>+</a></h1>\n"
-                + "            \n"
-                + "            <h3>Lluvia de ideas</h3>\n"
-                + "            <p>Agrega aqu&iacute; las partes m&aacute;s importantes de tu tarea.</p>";
+        String htmlcode = "<h3>Lluvia de ideas</h3>\n";
         
         IdeasModel ideam = new IdeasModel();
         ArrayList<Idea> ideas = ideam.getIdeasByTask(task_id);
         
         if (ideas.isEmpty())
         {
-            htmlcode += "<p>No hay ideas por mostrar</p>";
+            htmlcode += "<p>Agrega aqu&iacute; las partes m&aacute;s importantes de tu tarea.</p>" + "<p>No hay ideas por mostrar</p>";
             return htmlcode;
         }
         else
         {
+            int contador = 0;
             for (Idea i : ideas)
             {
+                contador++;
                 String idea_id = i.getIdea_id();
                 
                 UsersModel userm = new UsersModel();

@@ -139,6 +139,9 @@
             border-color: #E3E4E5;
             background-color: #E3E4E5;
         }
+        .dropdown-toggle::after {
+            display: none;
+        }
     </style>
     <!-- BODY -->
     <body>
@@ -287,13 +290,12 @@
                         <div class="modal-body p-5 pt-2">
                             <form action="../tagnew?id=<%= collab_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                                 <div class="row">
-                                    <div class="col-6" >
+                                    <div class="col-12" >
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Color</label>
+                                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
                                             <input type="text" name="tag_name" id="tag_name" placeholder="Nombre etiqueta" class="form-control-sm rounded-3" required>
                                         </div>
                                     </div>
-                                    <div class="col-3"></div>
                                 </div>
                                 <div class="row mb-0">
                                     <div class="col-12">
