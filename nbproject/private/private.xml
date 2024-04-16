@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
@@ -12,6 +13,17 @@
             <file>file:/C:/memorand/web/work/collab.jsp</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/IdeasController.java</file>
             <file>file:/C:/memorand/web/work/scripts/interface.js</file>
+=======
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/memorand/src/java/com/memorand/model/Conexion.java</file>
+            <file>file:/C:/memorand/web/staff/adminedit.jsp</file>
+            <file>file:/C:/memorand/web/work/rendimiento.jsp</file>
+            <file>file:/C:/memorand/web/staff/configuracion.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/eliminar/TeamUserDelete.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/editar/UserEdit.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/model/UsersModel.java</file>
+>>>>>>> 6fcf53169821d5c72329f4ef17de49c4d0e4db56
         </group>
     </open-files>
 </project-private>

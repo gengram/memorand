@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class Collab implements Serializable {
-
+public class Collab implements Serializable
+{
     private String collab_id;
     private String collab_status;
     private String team_id;
@@ -49,5 +49,4 @@ public class Collab implements Serializable {
     public void setTeam_id(String team_id) {
         this.team_id = team_id;
     }
-
 }

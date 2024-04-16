@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class CoTask implements Serializable {
-    
+public class CoTask implements Serializable
+{
     private String collab_id;
     private String task_id;
 
@@ -29,5 +29,4 @@ public class CoTask implements Serializable {
     public void setCollab_id(String collab_id) {
         this.collab_id = collab_id;
     }
-    
 }

@@ -1,6 +1,8 @@
 package com.memorand.beans;
 
-public class TaskCanva
+import java.io.Serializable;
+
+public class TaskCanva implements Serializable
 {
     private String task_id;
     private String canva_id;
@@ -30,5 +32,4 @@ public class TaskCanva
     {
         this.task_id = task_id;
     }
-    
 }

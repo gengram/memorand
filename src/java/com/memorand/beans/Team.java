@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class Team implements Serializable {
-    
+public class Team implements Serializable
+{
     private String team_id;
     private String team_name;
     private String team_color;
@@ -39,5 +39,4 @@ public class Team implements Serializable {
     public void setTeam_color(String team_color) {
         this.team_color = team_color;
     }
-    
 }

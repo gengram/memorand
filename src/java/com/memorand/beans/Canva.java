@@ -1,8 +1,9 @@
 package com.memorand.beans;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Canva
+public class Canva implements Serializable
 {
     private String canva_id;
     private String canva_name;
@@ -79,5 +80,4 @@ public class Canva
     {
         this.canva_status = canva_status;
     }
-    
 }

@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class InUser implements Serializable {
-    
+public class InUser implements Serializable
+{
     private String inst_id;
     private String user_id;
 
@@ -29,5 +29,4 @@ public class InUser implements Serializable {
     public void setInst_id(String inst_id) {
         this.inst_id = inst_id;
     }
-    
 }

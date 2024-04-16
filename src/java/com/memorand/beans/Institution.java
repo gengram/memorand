@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class Institution implements Serializable {
-    
+public class Institution implements Serializable
+{
     private String inst_id;
     private String inst_name;
     private String inst_type;
@@ -99,5 +99,4 @@ public class Institution implements Serializable {
     public void setLim_ks(String lim_ks) {
         this.lim_ks = lim_ks;
     }
-    
 }

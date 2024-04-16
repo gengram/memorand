@@ -2,8 +2,8 @@ package com.memorand.beans;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
-    
+public class User implements Serializable
+{
     private String user_id;
     private String user_email;
     private String user_pass;
@@ -112,5 +112,4 @@ public class User implements Serializable {
     public void setUser_profile(String user_profile) {
         this.user_profile = user_profile;
     }
-    
 }
