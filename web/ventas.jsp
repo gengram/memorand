@@ -1,3 +1,5 @@
+<%@page import="com.memorand.service.ServicesUtil"%>
+<%@page import="com.memorand.service.ServicesModel"%>
 <!-- Memorand by Gengram © 2023 -->
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,6 +21,11 @@
                 break;
         }
     }
+    
+    // CONEXION BASE DE DATOS
+    ServicesModel servicem = new ServicesModel();
+
+    String sales_status = servicem.getServiceStatus("c10c1331-6801-4402-b62d-b860d443885b", false);
 %>
 
 <!DOCTYPE html>
@@ -57,6 +64,12 @@
                     <p style="font-size: 30px; margin-bottom: 0.4px;">pondremos en contacto</p>
                     <p style="font-size: 30px; margin-bottom: 0.4px;">contigo en poco tiempo.</p>
                 </div>
+                
+<%
+    if (sales_status != null && "si".equals(sales_status))
+    {
+%>
+
                 <div class="col-4">
                     <form action="reqnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                         <div class="mb-3">
@@ -111,11 +124,20 @@
                         </div>
                     </form>
                 </div>
+<%
+    }
+    else
+    {
+%>
+                <div class="col-4">
+                    <h4><i>No estamos recibiendo solicitudes en este momento, int&eacute;ntalo m&aacute;s tarde.</i></h4>
+                </div>
+<%
+    }
+%>
                 <div class="col-1"></div>
             </div>
-            
-            <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
-            
+           
         </div>
 </body>
 
