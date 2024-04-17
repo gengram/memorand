@@ -137,6 +137,19 @@
             border-color: #E3E4E5;
             background-color: #E3E4E5;
         }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Ocultar los contenidos de notas y lienzo inicialmente */
+        .hidden {
+            display: none;
+        }
+
     </style>
     <!-- BODY -->
     <body>
@@ -192,93 +205,108 @@
             </div>
             <div class="row">
                 <div class="col-1"></div>
-                <div class="col-10">
-                    <hr class="mt-4">
-                </div>
+                <div class="col-10"><hr class="mt-4"></div>
                 <div class="col-1"></div>
             </div>
             <div class="row">
                 <div class="col-1"></div>
-                <div class="col-3 text-end border-bottom">
-                    <button class="btn navC rounded-1 btnnav active" id="get_ideas"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Ideas</p></button>
-                </div>
-                <div class="col-4 text-center border-bottom">
-                    <button class="btn navC rounded-1 btnnav" id="get_notes"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Notas</p></button>
-                </div>
-                <div class="col-3 text-start border-bottom">
-                    <button  class="btn navC rounded-1 btnnav" id="get_canvas"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Lienzos</p></button>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-3 text-center border-bottom">
+                            <button class="btn navC rounded-1 btnnav" id="view_info" data-bs-toggle="modal" data-bs-target="#modalInfo"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Informaci&oacute;n</p></button>
+                        </div>
+                        <div class="col-3 text-center border-bottom">
+                            <button class="btn navC rounded-1 btnnav active" id="get_ideas"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Ideas</p></button>
+                        </div>
+                        <div class="col-3 text-center border-bottom">
+                            <button class="btn navC rounded-1 btnnav" id="get_notes"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Notas</p></button>
+                        </div>
+                        <div class="col-3 text-center border-bottom">
+                            <button  class="btn navC rounded-1 btnnav" id="get_canvas"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Lienzos</p></button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-1"></div>
             </div>
 
 
-            <div class="row mt-4">
-                <div class="col-1"></div>
-                <div class="col-6">
-                    <h3>Informaci&oacute;n de la tarea</h3>
-                    <p style=" color: #2A2927"><%=task_info%></p><text id="leerMasBtn" style="display: none; color: #AFB2B3" onclick="mostrarMas()">Leer más</text>
-                    <p id="leerMenosBtn" style="display: none; color: #AFB2B3" onclick="mostrarMenos()">Leer menos</p>
-
-                    <p class="mt-1"><b class="me-2">Fecha de creaci&oacute;n:</b><text class="me-5"><%= s_sdate%></text><b class="me-2 ms-1">Fecha l&iacute;mite:</b><%= s_edate%></p>
-                    <div class="row" >
-                        <div class="col-12">
-                            <p >
-                                <b class="me-2">Estatus:</b><text class="me-5" style="color: #<%=task_color%>;"><%= task_status%></text>
-                                <b class="me-2">Prioridad:</b><text class="me-5"><%= task_prior%></text>
-                                <b class="me-2">Dificultad:</b><text class="me-5"><%= task_diff%></text>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <button class="btn btn-light rounded-pill ms-5" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
-                        </div>
-                        <div class="col-6">
-                            <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
-                        </div>
-                    </div>
-                    <h4 class="ms-5 mt-2">Nueva idea</h4>
-                    <div class="mt-3 ms-5">
-                        <div class="card border" style="width: 18rem; background-color: #F8F9FA; border-color: #AFB2B3;">
-                            <div class="card-body text-center">
-                                <p class="mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#modalIdeaNew"><i class="bi bi-plus-lg" style="color: #2A2927; font-size: 60px"></i></p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-1"></div>
-            </div>
         </div>
 
         <div class="container">
             <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
-            <div id="content">
-                <!-- Contenido -->
+            <div id="content" style="position: relative;">
+                <!-- IDEAS -->
                 <div id="ideas_content" class="content">
-                    <div class="row mt-3 mb-3" >
+                    <div class="row mt-2">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <h4 class=" mt-2">Nueva idea</h4>
+                            <div class="mt-3">
+                                <div class="card border" style="width: 16rem; background-color: #F8F9FA; border-color: #AFB2B3;">
+                                    <div class="card-body text-center">
+                                        <p class="mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#modalIdeaNew"><i class="bi bi-plus-lg" style="color: #2A2927; font-size: 60px"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-3 text-end">
+                            <text class="me-5">Ideas agregadas por ti: 2</text>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><hr class="mt-4"></div>
+                        <div class="col-1"></div>
+                    </div>
+
+                    <div class="row mt-1 mb-3" >
                         <div class="col-1"></div>
                         <div class="col-10">
                             <h3>Lluvia de ideas</h3>
                         </div>
                         <div class="col-1"></div>
                     </div>
-                    <div class="row">
+                    <div class="row ms-5">
                         <%= ideac.modelGetIdeasByTask(task_id)%>
                     </div>
                 </div>
+                <!-- NOTAS -->    
                 <div id="notes_content" class="content hidden">
+                    <div class="row mt-2">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <h4 class=" mt-2">Crear nota</h4>
+                            <div class="mt-3">
+                                <div class="card border" style="width: 16rem; background-color: #F8F9FA; border-color: #AFB2B3;">
+                                    <div class="card-body text-center">
+                                        <p class="mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#modalNameNota"><i class="bi bi-plus-lg" style="color: #2A2927; font-size: 60px"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-3 text-end">
+                            <text class="me-5">Notas agregadas por ti: 2</text>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><hr class="mt-4"></div>
+                        <div class="col-1"></div>
+                    </div>
+
                     <%= notec.modelGetNotesByTask(task_id)%>
                 </div>
+
                 <div id="canvas_content" class="content hidden">
                     <%= canvac.modelGetCanvasByTask(task_id)%>
                 </div>
             </div>
         </div>
 
-        <!-- Modal Nueva Etiqueta -->                            
+        <!-- Modal Nueva Idea -->                            
         <div class="modal fade" tabindex="-1" role="dialog" id="modalIdeaNew">
             <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
                 <div class="modal-content rounded-4 shadow">
@@ -291,7 +319,7 @@
                             <div class="row mb-0">
                                 <div class="col-12">
                                     <div class="mb-0">
-                                        <label for="tag_color" class="form-label">Color de etiqueta:</label>
+                                        <label for="tag_color" class="form-label">Color:</label>
                                     </div>
                                 </div>
                             </div>
@@ -303,7 +331,7 @@
                                     <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#E2C1E4')"><i style="color: #E2C1E4; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F1B390')"><i style="color: #F1B390; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F8DE9B')"><i style="color: #F8DE9B; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color" type="button" onclick="selectColor('#EFA1A1')"><i style="color: #EFA1A1; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color" type="button" onclick="selectColorIdea('#EFA1A1')"><i style="color: #EFA1A1; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <input type="hidden" name="idea_color" id="idea_color" required>
                                 </div>
                             </div>
@@ -327,18 +355,89 @@
                             function selectColorIdea(color) {
                                 document.getElementById("idea_color").value = color;
                             }
-
                         </script>
-
                     </div>
                 </div>
             </div> 
         </div>
 
+        <!-- Modal Crear Nota -->                            
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalNameNota">
+            <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva idea</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-2">
+                        <form action="../notenew?id=<%= team_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                            <div class="row">
+                                <div class="col-12" >
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                        <input type="text" name="idea_text" id="idea_text" placeholder="Nombre de la nota" class="form-control-sm rounded-3" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="mb-0">
+                                        <button type="submit" class="btn btn-lg rounded-pill custom-btarea mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Crear nota</p></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
 
+        <!-- Modal Info -->                            
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalInfo">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h3 class="fw-bold mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea</h3>
+                        <button type="button" class="btn-close btn_info" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-2">
+                        <p style=" color: #2A2927"><%=task_info%></p>
 
+                        <p class="mt-1"><b class="me-2">Fecha de creaci&oacute;n:</b><text class="me-5"><%= s_sdate%></text><b class="me-2 ms-1">Fecha l&iacute;mite:</b><%= s_edate%></p>
+                        <div class="row" >
+                            <div class="col-12">
+                                <p >
+                                    <b class="me-2">Estatus:</b><text class="me-5" style="color: #<%=task_color%>;"><%= task_status%></text>
+                                    <b class="me-2">Prioridad:</b><text class="me-5"><%= task_prior%></text>
+                                    <b class="me-2">Dificultad:</b><text class="me-5"><%= task_diff%></text>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col-9 text-end">
+                                <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
+                            </div>
+                            <div class="col-3 text-end">
+                                <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
 
     </body>
+    <script>
+        window.addEventListener('resize', function () {
+            // Obtener la posición vertical de ideas_content
+            var ideasPosition = document.getElementById('ideas_content').getBoundingClientRect().top;
+
+            // Aplicar la misma posición a los contenedores de notas y lienzo
+            document.getElementById('notes_content').style.top = ideasPosition + 'px';
+            document.getElementById('canvas_content').style.top = ideasPosition + 'px';
+        });
+
+    </script>
     <script src="scripts/interfaceTarea.js"></script>
 </html>
 
