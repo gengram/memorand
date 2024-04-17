@@ -212,7 +212,7 @@
             </div>
 
 
-            <div class="row mt-3">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-6">
                     <h3>Informaci&oacute;n de la tarea</h3>
@@ -251,65 +251,30 @@
                 </div>
                 <div class="col-1"></div>
             </div>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-3">
-                    <div class="card mb-3 border" style="max-width: 18rem; background-color: #B9D7A2;">
-                        <div class="card-body">
-                            <div class="row mt-0">
-                                <div class="col-10">
-                                    <button class="btn btn-light text-start mb-3" style="padding-bottom: 0rem; padding-top: 0rem;">
-                                        <text style="font-size: 12px">Nombre del usuario</text>
-                                        <p style="font-size: 11px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;">hace 8 min</p>
-                                    </button>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <i class="bi bi-three-dots-vertical"  style="color: #2A2927;"></i>
-                                </div>
-                            </div>
-                            <b class="card-text" style="color: #2A2927;">Some quick example text to build on the card title and make up the bulk of the card's content.</b>
-                        </div>
-                    </div>
+        </div>
 
-                </div>
-                <div class="col-3">
-                    <div class="card mb-3 border" style="max-width: 18rem; background-color: #B9D7A2;">
-                        <div class="card-body">
-                            <div class="row mt-0">
-                                <div class="col-10">
-                                    <button class="btn btn-light text-start mb-3" style="padding-bottom: 0rem; padding-top: 0rem;">
-                                        <text style="font-size: 12px">Nombre del usuario</text>
-                                        <p style="font-size: 11px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;">hace 8 min</p>
-                                    </button>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <i class="bi bi-three-dots-vertical"  style="color: #2A2927;"></i>
-                                </div>
-                            </div>
-                            <b class="card-text" style="color: #2A2927;">Some quick example text to build on the card title and make up the bulk of the card's content.</b>
+        <div class="container">
+            <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
+            <div id="content">
+                <!-- Contenido -->
+                <div id="ideas_content" class="content">
+                    <div class="row mt-3 mb-3" >
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <h3>Lluvia de ideas</h3>
                         </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row">
+                        <%= ideac.modelGetIdeasByTask(task_id)%>
                     </div>
                 </div>
-                <div class="col-3">
-                        <div class="card mb-3 border" style="max-width: 18rem; background-color: #B9D7A2;">
-                        <div class="card-body">
-                            <div class="row mt-0">
-                                <div class="col-10">
-                                    <button class="btn btn-light text-start mb-3" style="padding-bottom: 0rem; padding-top: 0rem;">
-                                        <text style="font-size: 12px">Nombre del usuario</text>
-                                        <p style="font-size: 11px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;">hace 8 min</p>
-                                    </button>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <i class="bi bi-three-dots-vertical"  style="color: #2A2927;"></i>
-                                </div>
-                            </div>
-                            <b class="card-text" style="color: #2A2927;">Some quick example text to build on the card title and make up the bulk of the card's content.</b>
-                        </div>
-                    </div>
-            
+                <div id="notes_content" class="content hidden">
+                    <%= notec.modelGetNotesByTask(task_id)%>
                 </div>
-                <div class="col-2"></div>
+                <div id="canvas_content" class="content hidden">
+                    <%= canvac.modelGetCanvasByTask(task_id)%>
+                </div>
             </div>
         </div>
 
@@ -332,12 +297,12 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12">
-                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#B9D7A2')"><i style="color: #B9D7A2; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#96D5D9')"><i style="color: #96D5D9; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#A9AFE4')"><i style="color: #A9AFE4; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#E2C1E4')"><i style="color: #E2C1E4; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#F1B390')"><i style="color: #F1B390; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color me-2" type="button" onclick="selectColor('#F8DE9B')"><i style="color: #F8DE9B; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#B9D7A2')"><i style="color: #B9D7A2; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#96D5D9')"><i style="color: #96D5D9; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#A9AFE4')"><i style="color: #A9AFE4; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#E2C1E4')"><i style="color: #E2C1E4; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F1B390')"><i style="color: #F1B390; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F8DE9B')"><i style="color: #F8DE9B; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <button class="btn btn-color" type="button" onclick="selectColor('#EFA1A1')"><i style="color: #EFA1A1; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <input type="hidden" name="idea_color" id="idea_color" required>
                                 </div>
@@ -359,9 +324,10 @@
                             </div>
                         </form>
                         <script>
-                            function selectColor(color) {
-                                document.getElementById("selected_color").value = color;
+                            function selectColorIdea(color) {
+                                document.getElementById("idea_color").value = color;
                             }
+
                         </script>
 
                     </div>
@@ -370,25 +336,6 @@
         </div>
 
 
-
-        <br>
-
-        <a href=''>Editar informaci&oacute;n</a>
-        <a href=''>Marcar como <%= s_status%></a>
-
-        <!-- PARTE PRINCIPAL - POR DEFECTO IDEAS, VER CONTROLLERS PARA MODIFICAR HTML -->
-        <div id="content">
-            <!-- Contenido -->
-            <div id="ideas_content" class="content row">
-                <%= ideac.modelGetIdeasByTask(task_id)%>
-            </div>
-            <div id="notes_content" class="content hidden">
-                <%= notec.modelGetNotesByTask(task_id)%>
-            </div>
-            <div id="canvas_content" class="content hidden">
-                <%= canvac.modelGetCanvasByTask(task_id)%>
-            </div>
-        </div>
 
 
     </body>

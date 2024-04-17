@@ -24,14 +24,6 @@
     <!-- BODY -->
     <body>
         
-        <h1><a href='tarea.jsp?id=<%= team_id %>'>&larr;</a> Nueva idea</h1>
-        <!-- PONER ESTOS EN LA NAVBAR-->
-        <a href='perfil.jsp'>Mi perfil</a>
-        <a href='configuracion.jsp'>Configuracion</a>
-        <a href='../signout'>Cerrar sesi&oacute;n</a>
-        
-        <hr>
-        
         <form action="../ideanew?id=<%= team_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
             <input type="color" name="idea_color" id="idea_color" required>
             <br>
