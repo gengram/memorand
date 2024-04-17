@@ -34,7 +34,7 @@
         <h2>Solicitudes</h2>
         <p>Estatus: <button onclick="getReqByStatus('si')">Activas</button> <button onclick="getReqByStatus('si')">Inactivas</button></p>
         
-        <%= reqc.modelGetRequests("si") %>
+        <%= reqc.modelGetRequests("no") %>
         
     </body>
 
