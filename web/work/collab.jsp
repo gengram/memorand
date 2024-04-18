@@ -148,12 +148,7 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-4">
-                <div class="col-1"></div>
-                <div class="col-10 d-flex justify-content-end ">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backL" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar al inicio</a></p>
-                </div>
-                <div class="col-1"></div>
+            <div class="row mt-4 mb-4">
             </div>
             <div class="row">
                 <div class="col-1"></div>
@@ -164,7 +159,7 @@
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
                                     <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                        <a href="?">
+                                        <a href="home.jsp">
                                             <b style="color: #2A2927" class="ms-4 mb-0"><%= team_name%></b>
                                         </a>
                                     </p>
@@ -183,9 +178,7 @@
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
                                     <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
-                                        <a href="?">
-                                            <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
-                                        </a>
+                                        <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
                                     </p>
                                 </div>
                             </div>

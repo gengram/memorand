@@ -17,7 +17,6 @@
 
 <%
     String task_id = request.getParameter("id");
-    String team_id = request.getParameter("id");
 
     if (task_id == null || task_id.isEmpty()) {
         response.sendRedirect("home.jsp");
@@ -157,12 +156,7 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-4">
-                <div class="col-1"></div>
-                <div class="col-10 d-flex justify-content-end ">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='collab.jsp?id=<%= collab_id%>'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
-                </div>
-                <div class="col-1"></div>
+            <div class="row mt-4 mb-4">
             </div>
             <div class="row">
                 <div class="col-1"></div>
@@ -173,7 +167,7 @@
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
                                     <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                        <a href="?">
+                                        <a href="collab.jsp?id=<%= collab_id %>">
                                             <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
                                         </a>
                                     </p>
@@ -192,9 +186,7 @@
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
                                     <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
-                                        <a href="?">
-                                            <b style="color: #2A2927" class="ms-4 mb-0"><%=task_name%></b>
-                                        </a>
+                                        <b style="color: #2A2927" class="ms-4 mb-0"><%=task_name%></b>
                                     </p>
                                 </div>
                             </div>
@@ -315,7 +307,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-5 pt-2">
-                        <form action="../ideanew?id=<%= team_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <form action="../ideanew?id=<%= task_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                             <div class="row mb-0">
                                 <div class="col-12">
                                     <div class="mb-0">
@@ -370,7 +362,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-5 pt-2">
-                        <form action="../notenew?id=<%= team_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <form action="../notenew?id=<%= task_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                             <div class="row">
                                 <div class="col-12" >
                                     <div class="mb-3">
