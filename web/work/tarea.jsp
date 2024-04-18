@@ -156,25 +156,25 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-4 mb-4">
-            </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-1"></div>
                 <div class="col-4 mt-2">
-                    <div class="card border border-2" style="max-height: 50px;">
-                        <div class="row g-0">
-                            <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px"></div>
-                            <div class="col-md-10 ">
-                                <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                        <a href="collab.jsp?id=<%= collab_id %>">
+                    <a href="collab.jsp?id=<%= collab_id%>" id="backLink">
+                        <div class="card border border-2" style="max-height: 50px;">
+                            <div class="row g-0">
+                                <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px">
+                                    <i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 30px"></i>
+                                </div>
+                                <div class="col-md-10 ">
+                                    <div class="card-header" style="background-color: transparent;">
+                                        <p class="titulo" style="color: #2A2927; font-size: 20px;">
                                             <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
-                                        </a>
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-2 d-flex justify-content-center align-items-center text-center">
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
@@ -291,8 +291,31 @@
 
                     <%= notec.modelGetNotesByTask(task_id)%>
                 </div>
-
+                <!-- LIENZOS -->    
                 <div id="canvas_content" class="content hidden">
+                    <div class="row mt-2">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <h4 class=" mt-2">Crear lienzo de dibujo</h4>
+                            <div class="mt-3">
+                                <div class="card border" style="width: 16rem; background-color: #F8F9FA; border-color: #AFB2B3;">
+                                    <div class="card-body text-center">
+                                        <p class="mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#modalLienzo"><i class="bi bi-plus-lg" style="color: #2A2927; font-size: 60px"></i></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-3 text-end">
+                            <text class="me-5">Lienzos creados por ti: 2</text>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10"><hr class="mt-4"></div>
+                        <div class="col-1"></div>
+                    </div>
+
                     <%= canvac.modelGetCanvasByTask(task_id)%>
                 </div>
             </div>
@@ -375,6 +398,37 @@
                                 <div class="col-12">
                                     <div class="mb-0">
                                         <button type="submit" class="btn btn-lg rounded-pill custom-btarea mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Crear nota</p></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+        <!-- Modal Crear Lienzo -->                            
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalLienzo">
+            <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Crear lienzo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-2">
+                        <form action="../canvanew?id=<%= task_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                            <div class="row">
+                                <div class="col-12" >
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                        <input type="text" name="idea_text" id="idea_text" placeholder="Nombre del lienzo" class="form-control-sm rounded-3" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    <div class="mb-0">
+                                        <button type="submit" class="btn btn-lg rounded-pill custom-btarea mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Crear lienzo</p></button>
                                     </div>
                                 </div>
                             </div>

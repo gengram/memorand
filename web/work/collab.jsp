@@ -148,25 +148,27 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-4 mb-4">
-            </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-1"></div>
                 <div class="col-4 mt-2">
-                    <div class="card border border-2" style="max-height: 50px;">
-                        <div class="row g-0">
-                            <div class="col-md-2 rounded-start" style="background-color: #<%=team_color%>; max-height: 47px; max-width: 40px"></div>
-                            <div class="col-md-10 ">
-                                <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                        <a href="home.jsp">
+                    <a href="home.jsp" id="backL">
+                        <div class="card border border-2" style="max-height: 50px;">
+                            <div class="row g-0">
+                                <div class="col-md-2 rounded-start" style="background-color: #<%=team_color%>; max-height: 47px; max-width: 40px">
+                                    <i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 30px"></i>
+                                </div>
+                                <div class="col-md-10 ">
+                                    <div class="card-header" style="background-color: transparent;">
+                                        <p class="titulo" style="color: #2A2927; font-size: 20px;">
+
                                             <b style="color: #2A2927" class="ms-4 mb-0"><%= team_name%></b>
-                                        </a>
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+
                 </div>
                 <div class="col-2 d-flex justify-content-center align-items-center text-center">
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
