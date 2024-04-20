@@ -17,126 +17,255 @@
         <!-- Fuente -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <!-- Scripts -->
-        <script src="../XM-Resources/scripts/voice-text.js"></script>
-        <script src="../XM-Resources/scripts/voice_1text.js"></script>
-        <script src="../XM-Resources/scripts/imageTtext.js"></script>
-        <script src="../XM-Resources/scripts/style_edit.js"></script>
-        <script src="../XM-Resources/scripts/jspdf.min.js"></script>
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
     </head>
+    <style>
+        .btn-h{
+            color: #000;
+            border-color: #E3E4E5;
+            background-color: #E3E4E5;
+        }
+        .btn-h:focus {
+            border-color: #BDECD5;
+            background-color: #BDECD5;
+            color: #000;
+        }
+        .btn-h:active {
+            border-color: #BDECD5;
+            background-color: #BDECD5;
+            color: #000;
+        }
+        .btn-h:hover {
+            color: #BDECD5;
+            background-color: #E3E4E5;
+            border-color: #BDECD5;
+        }
+
+        .custom-btnA{
+            color: #fff;
+            border-color: #25ce7b;
+            background-color: #25ce7b;
+        }
+        .custom-btnA:hover {
+            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+            border: 2px solid #25CE7B; /* Color del contorno */
+            color: #E3E4E5; /* Cambiar el color del texto al pasar el ratón */
+        }
+
+        .btn-color {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding-bottom: 0.05rem;
+            padding-top: 0.05rem;
+            padding-left: 0.35rem;
+            padding-right: 0.35rem;
+        }
+        .btn-color:hover{
+            border-color: #E3E4E5;
+            background-color: #E3E4E5;
+        }
+
+        /* Estilo para el botón personalizado #25CE7B */
+        .btn-color-25CE7B {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-25CE7B:hover,
+        .btn-color-25CE7B:focus {
+            border-color: #BDECD5;
+            background-color: #BDECD5;
+        }
+
+        /* Estilo para el botón personalizado #2ADAE5 */
+        .btn-color-2ADAE5 {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-2ADAE5:hover,
+        .btn-color-2ADAE5:focus {
+            border-color: #A2DFF0;
+            background-color: #A2DFF0;
+        }
+
+        /* Estilo para el botón personalizado #7473C0 */
+        .btn-color-7473C0 {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-7473C0:hover,
+        .btn-color-7473C0:focus {
+            border-color: #C7C6D2;
+            background-color: #C7C6D2;
+        }
+
+        /* Estilo para el botón personalizado #F37DBD */
+        .btn-color-F37DBD {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-F37DBD:hover,
+        .btn-color-F37DBD:focus {
+            border-color: #F7C9E9;
+            background-color: #F7C9E9;
+        }
+
+        /* Estilo para el botón personalizado #F3894D */
+        .btn-color-F3894D {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-F3894D:hover,
+        .btn-color-F3894D:focus {
+            border-color: #F7C9C9;
+            background-color: #F7C9C9;
+        }
+
+        /* Estilo para el botón personalizado #FDB600 */
+        .btn-color-FDB600 {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-FDB600:hover,
+        .btn-color-FDB600:focus {
+            border-color: #FFEB99;
+            background-color: #FFEB99;
+        }
+
+        /* Estilo para el botón personalizado #F25063 */
+        .btn-color-F25063 {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
+
+        .btn-color-F25063:hover,
+        .btn-color-F25063:focus {
+            border-color: #FAC7C7;
+            background-color: #FAC7C7;
+        }
+
+
+    </style>
+
     <body>
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container text-center" >
-            <div class="row" style="background-color: #A9AFE4">
+            <div class="row">
                 <div class="col-12 mt-2">
                     <div class="card border shadow">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-4">
                                     <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
                                         <button type="button" class="btn" style="background-color: #EFA1A1;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
-                                        <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-4 me-4" style="color: #000">Progra</b></button>
+                                        <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000">Programacionorientadas</b></button>
                                     </div>
                                 </div>
-                                <div class="col-9 text-end">
+                                <div class="col-5 border-start">
+                                    <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
+                                    <label for="imagenInput" class="custom-file-input-label custom-btnA" id="customFileLabel"><i class="bi bi-upload"></i></label>
+                                    <button class="btn custom-btnA mt-1" onclick="extraerTextoDeImagen()" style="padding: 0.5px 20px;">
+                                        <span class="spinner-grow spinner-grow-sm" id="loader" style="display:none;"></span>
+                                        <p class="mt-1 me-2 ms-2 mb-2">Extraer</p> 
+                                    </button>
+                                    <button class="btn btn-h mt-1" type="button" id="btnStartcon"><i class="bi bi-mic-fill"></i></button>
+                                    <button class="btn btn-h mt-1" type="button" id="btnStopcont"><i class="bi bi-mic-mute-fill"></i></button>
+                                    <!--<input class="form-control text-editor border-2" type="text"role="textbox" contenteditable="true" id="titulo">-->
+                                </div>
+                                <div class="col-3 text-end">
                                     <i class="bi bi-three-dots-vertical me-4" style="font-size: 30px; color: #000"></i>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-12">
                                     <hr style="color: #6c757d">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-3" style="background-color: #EFA1A1">H</div>
-                                <div class="col-6" style="background-color: #E2C1E4">O</div>
-                                <div class="col-3" style="background-color: #96D5D9"L></div>
+                                <div class="col-3 border-end" style="background-color: transparent;">
+                                    <button class="btn btn-h" onclick="bold()"><i class="bi bi-type-bold"></i></button>
+                                    <button class="btn btn-h" onclick="italic()"><i class="bi bi-type-italic"></i></button>
+                                    <button class="btn btn-h" onclick="underline()"><i class="bi bi-type-underline"></i></button>
+                                </div>
+                                <div class="col-6 border-end" style="background-color: transparent">
+                                    <button class="btn btn-color-25CE7B me-2" type="button" onclick="selectColorApunte('#25CE7B')"><i style="color: #25CE7B; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-2ADAE5 me-2" type="button" onclick="selectColorApunte('#2ADAE5')"><i style="color: #2ADAE5; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-7473C0 me-2" type="button" onclick="selectColorApunte('#7473C0')"><i style="color: #7473C0; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-F37DBD me-2" type="button" onclick="selectColorApunte('#F37DBD')"><i style="color: #F37DBD; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-F3894D me-2" type="button" onclick="selectColorApunte('#F3894D')"><i style="color: #F3894D; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-FDB600 me-2" type="button" onclick="selectColorApunte('#FDB600')"><i style="color: #FDB600; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-F25063" type="button" onclick="selectColorApunte('#F25063')"><i style="color: #F25063; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <input type="hidden" id="exampleColorInput">
+                                </div>
+                                <script>
+                                    function selectColorApunte(color) {
+                                        console.log("Color seleccionado:", color);
+                                        document.getElementById("exampleColorInput").value = color;
+                                        // Aplica el color al texto en el área de edición
+                                        applyColor(color);
+                                    }
+                                </script>
+                                <div class="col-3">
+                                    <button class="btn btn-h" onclick="insertList()"><i class="bi bi-list-ul"></i></button>
+                                    <button class="btn btn-h" onclick="insertOrderedList()"><i class="bi bi-list-ol"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="row" >
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <div class="row mt-3">
-                        <div class="col-1 mt-4">
-
-                            <button class="custom-blog" onclick="bold()"><i class="bi bi-type-bold"></i></button>
-                            <button class="custom-blog  mt-3" onclick="italic()"><i class="bi bi-type-italic"></i></button>
-                            <button class="custom-blog  mt-3" onclick="underline()"><i class="bi bi-type-underline"></i></button>
-                            <input type="color" class="form-control-sm form-control-color border-2 ms-2 mt-3" id="exampleColorInput" style=" border-color: #00A98F" value="#00A98F">
-                            <button  class="custom-blog  mt-3" onclick="insertList()"><i class="bi bi-list-ul"></i></button>
-
-                        </div>
-                        <div class="col-11 mt-1">
-                            <div class="row g-0 border rounded overflow-hidden flex-md-row shadow h-md-250 position-relative">
-                                <div class="col mt-2 mb-2 p-4 d-flex flex-column position-static text-start">
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">T&iacute;tulo</label>
-
-                                        <div class="input-group mb-3">
-                                            <button class="btn btn-focus custom-blog border-2" type="button" id="btnStart"><i class="bi bi-mic"></i></button>
-                                            <button class="btn btn-focus custom-blog border-2" type="button" id="btnStop"><i class="bi bi-mic-mute"></i></button>
-                                            <input class="form-control text-editor border-2" type="text"role="textbox" contenteditable="true" id="titulo">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="" class="form-label mt-2">Contenido</label>
-                                            <div class="row">
-                                                <div class="col-1">
-                                                    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                                                        <button class="btn btn-focus custom-blog border-2" type="button" id="btnStartcon"><i class="bi bi-mic"></i></button>
-                                                        <button class="btn btn-focus custom-blog border-2 mt-1" type="button" id="btnStopcont"><i class="bi bi-mic-mute"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-11">
-                                                    <div class="form-control text-editor contenido border-2" type="text"role="textbox" contenteditable="true" id="contE" ></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mt-2">
-                                <div class="card-body ">
-                                    <div class="row">
-                                        <div class="col-6 text-start">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
-                                                <label for="imagenInput" class="custom-file-input-label" id="customFileLabel">Elegir archivo</label>
-                                                <button class="btn custom-blog  ms-2" onclick="extraerTextoDeImagen()">
-                                                    <span class="spinner-grow spinner-grow-sm" id="loader" style="display:none;"></span>
-                                                    Extraer Texto</button>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 text-end">
-                                            <button class="btn custom-bsign" onclick="generatePDF()">
-                                                Descargar <i class="bi bi-filetype-pdf custom-icon6"></i>
-                                            </button>
-                                            <button class="btn custom-bsign"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
-                                                <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5v-13Z"/>
-                                                <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5V16Zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V0ZM9 1h2v4H9V1Z"/>
-                                                </svg>  Guardar
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="form-control text-editor contenido border-2" type="text"role="textbox" contenteditable="true" id="contE" ></div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <div class="row" >
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <button class="btn custom-bsign" onclick="generatePDF()">
+                        Descargar <i class="bi bi-filetype-pdf custom-icon6"></i>
+                    </button>
+                    <button class="btn custom-bsign"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
+                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5v-13Z"/>
+                        <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5V16Zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V0ZM9 1h2v4H9V1Z"/>
+                        </svg>  Guardar
+                    </button>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
 
     </body>
+
+    <script src="../XM-Resources/scripts/voice-text.js"></script>
+    <script src="../XM-Resources/scripts/voice_1text.js"></script>
+    <script src="../XM-Resources/scripts/imageTtext.js"></script>
+    <script src="../XM-Resources/scripts/styles_apunte.js"></script>
+    
+
+    <script src="../XM-Resources/scripts/jspdf.min.js"></script>
     <script>
         function generatePDF() {
-            let titulo = document.getElementById('titulo').value;
+            let titulo = "titule";
             let contenido = document.getElementById('contE').textContent;
 
             const pdf = new jsPDF('p', 'pt', 'letter');

@@ -90,6 +90,11 @@
             border-radius: 4px;
             background-color: #<%=proj_color%>; /* Fondo transparente */
         }
+        .custom-bcollab:hover {
+            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
+        }
 
         .btnReactions.activeP{
             display: inline-block;
@@ -113,11 +118,6 @@
             background-color: #E3E4E5; /* Fondo transparente */
         }
 
-        .custom-bcollab:hover {
-            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
-            border: 2px solid #<%=proj_color%>; /* Color del contorno */
-            color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
-        }
 
         .custom-p {
             margin-bottom: 0.1rem; /* Ajusta el margen inferior según sea necesario */
@@ -269,61 +269,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-
-            <!-- Modal Nueva Etiqueta -->                            
-            <div class="modal fade" tabindex="-1" role="dialog" id="modalTagNew">
-                <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
-                    <div class="modal-content rounded-4 shadow">
-                        <div class="modal-header p-5 pb-4 border-bottom-0">
-                            <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva etiqueta</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body p-5 pt-2">
-                            <form action="../tagnew?id=<%= collab_id%>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-                                <div class="row">
-                                    <div class="col-12" >
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                                            <input type="text" name="tag_name" id="tag_name" placeholder="Nombre etiqueta" class="form-control-sm rounded-3" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-0">
-                                    <div class="col-12">
-                                        <div class="mb-0">
-                                            <label for="tag_color" class="form-label">Color de etiqueta:</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-12">
-                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#25CE7B')"><i style="color: #25CE7B; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#2ADAE5')"><i style="color: #2ADAE5; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#7473C0')"><i style="color: #7473C0; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#F37DBD')"><i style="color: #F37DBD; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#F3894D')"><i style="color: #F3894D; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <button class="btn btn-color me-2" type="button" onclick="selectColor('#FDB600')"><i style="color: #FDB600; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <button class="btn btn-color" type="button" onclick="selectColor('#F25063')"><i style="color: #F25063; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                        <input type="hidden" name="tag_color" id="selected_color" required>
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-12">
-                                        <div class="mb-0">
-                                            <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva etiqueta</p></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <script>
-                                function selectColor(color) {
-                                    document.getElementById("selected_color").value = color;
-                                }
-                            </script>
                         </div>
                     </div>
                 </div> 
