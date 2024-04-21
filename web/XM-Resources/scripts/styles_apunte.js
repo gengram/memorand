@@ -30,21 +30,26 @@ function applyColor(color) {
         var newNode = document.createElement('span');
         newNode.style.color = color;
         range.surroundContents(newNode);
+
+        // Restaurar la selección de texto
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 }
+
 
 // Función para obtener todos los nodos de texto dentro de un rango
 function getTextNodesInRange(range) {
     var textNodes = [];
     var treeWalker = document.createTreeWalker(
-        range.commonAncestorContainer,
-        NodeFilter.SHOW_TEXT,
-        function(node) {
-            if (range.intersectsNode(node)) {
-                return NodeFilter.FILTER_ACCEPT;
+            range.commonAncestorContainer,
+            NodeFilter.SHOW_TEXT,
+            function (node) {
+                if (range.intersectsNode(node)) {
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+                return NodeFilter.FILTER_REJECT;
             }
-            return NodeFilter.FILTER_REJECT;
-        }
     );
 
     while (treeWalker.nextNode()) {

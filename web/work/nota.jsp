@@ -20,6 +20,12 @@
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+
     </head>
     <style>
         .btn-h{
@@ -179,16 +185,16 @@
                                 <div class="col-5 border-start">
                                     <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
                                     <label for="imagenInput" class="custom-file-input-label custom-btnA" id="customFileLabel"><i class="bi bi-upload"></i></label>
-                                    <button class="btn custom-btnA mt-1" onclick="extraerTextoDeImagen()" style="padding: 0.5px 20px;">
+                                    <button class="btn custom-btnA" onclick="extraerTextoDeImagen()" style="padding: 0.5px 20px;">
                                         <span class="spinner-grow spinner-grow-sm" id="loader" style="display:none;"></span>
                                         <p class="mt-1 me-2 ms-2 mb-2">Extraer</p> 
                                     </button>
-                                    <button class="btn btn-h mt-1" type="button" id="btnStartcon"><i class="bi bi-mic-fill"></i></button>
-                                    <button class="btn btn-h mt-1" type="button" id="btnStopcont"><i class="bi bi-mic-mute-fill"></i></button>
+                                    <button class="btn btn-h" type="button" id="btnStartcon"><i class="bi bi-mic-fill"></i></button>
+                                    <button class="btn btn-h" type="button" id="btnStopcont"><i class="bi bi-mic-mute-fill"></i></button>
                                     <!--<input class="form-control text-editor border-2" type="text"role="textbox" contenteditable="true" id="titulo">-->
                                 </div>
                                 <div class="col-3 text-end">
-                                    <i class="bi bi-three-dots-vertical me-4" style="font-size: 30px; color: #000"></i>
+                                    <i class="bi bi-three-dots-vertical me-4" style="font-size: 22px; color: #000"></i>
                                 </div>
                             </div>
 
@@ -232,15 +238,13 @@
             </div>
 
             <div class="row" >
-                <div class="col-1"></div>
-                <div class="col-10">
-                    <div class="form-control text-editor contenido border-2" type="text"role="textbox" contenteditable="true" id="contE" ></div>
+                <div class="col-12">
+                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" height: 350px;"></div>
                 </div>
-                <div class="col-1"></div>
             </div>
-            <div class="row" >
-                <div class="col-1"></div>
-                <div class="col-10">
+            <div class="row mt-3">
+                <div class="col-2"></div>
+                <div class="col-10 text-end">
                     <button class="btn custom-bsign" onclick="generatePDF()">
                         Descargar <i class="bi bi-filetype-pdf custom-icon6"></i>
                     </button>
@@ -250,51 +254,37 @@
                         </svg>  Guardar
                     </button>
                 </div>
-                <div class="col-1"></div>
             </div>
         </div>
 
     </body>
 
+    <script>
+        function generatePDF() {
+            // Obtener el contenido del área de texto
+            let contenido = document.getElementById('contE').innerHTML;
+
+            // Opciones para la conversión a PDF
+            let options = {
+                margin: 1,
+                filename: 'contenido.pdf',
+                image: {type: 'jpeg', quality: 0.98},
+                html2canvas: {scale: 2},
+                jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
+            };
+
+            // Convertir el contenido HTML a PDF
+            html2pdf().from(contenido).set(options).save();
+        }
+    </script>
+
+
     <script src="../XM-Resources/scripts/voice-text.js"></script>
     <script src="../XM-Resources/scripts/voice_1text.js"></script>
     <script src="../XM-Resources/scripts/imageTtext.js"></script>
     <script src="../XM-Resources/scripts/styles_apunte.js"></script>
-    
 
-    <script src="../XM-Resources/scripts/jspdf.min.js"></script>
-    <script>
-        function generatePDF() {
-            let titulo = "titule";
-            let contenido = document.getElementById('contE').textContent;
 
-            const pdf = new jsPDF('p', 'pt', 'letter');
-            pdf.setFontSize(12);
 
-            // Verifica si el título está vacío
-            if (titulo.trim() !== '') {
-                pdf.text(20, 40, titulo); // Ajustar las coordenadas según sea necesario
-            }
 
-            const lineHeight = 20; // Ajusta esto según el tamaño de fuente y el espaciado deseado
-            const margin = 20; // Márgenes laterales
-            const maxLineLength = 550; // Máximo ancho de línea
-            const maxHeight = 800; // Máximo alto antes de cambiar de página
-
-            let lines = pdf.splitTextToSize(contenido, maxLineLength); // Divide el texto en líneas
-            let y = 80; // Inicio del texto en la primera página
-
-            for (let i = 0; i < lines.length; i++) {
-                if (y > maxHeight) {
-                    pdf.addPage();
-                    y = 40; // Inicio del texto en nuevas páginas
-                }
-                pdf.text(margin, y, lines[i]);
-                y += lineHeight;
-            }
-
-            pdf.save(titulo + ".pdf");
-        }
-
-    </script>
 </html>
