@@ -63,7 +63,7 @@ public class CanvasController {
                         + "                        <td style='padding: 20px;' class='align-middle'>" + c.getCanva_name() + "</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + canva_cdate + "</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + canva_mdate + "</td>\n"
-                        + "                        <td style='padding: 20px;' class='align-middle'><a href='nota.jsp?id=" + canva_id + "'><i style='color: #2A2927; font-size: 18px;' class='bi bi-chevron-right'></i></a></td>\n"
+                        + "                        <td style='padding: 20px;' class='align-middle'><a href='lienzo.jsp?id=" + canva_id + "'><i style='color: #2A2927; font-size: 18px;' class='bi bi-chevron-right'></i></a></td>\n"
                         + "                    </tr>";
             }
 

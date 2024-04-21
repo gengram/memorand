@@ -58,4 +58,3 @@ function getTextNodesInRange(range) {
 
     return textNodes;
 }
-

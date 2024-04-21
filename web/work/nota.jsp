@@ -18,13 +18,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
         <!-- Scripts -->
 
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
 
     </head>
     <style>
