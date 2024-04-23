@@ -108,27 +108,17 @@ public class TasksController {
     }
 
     public String modelGetTasksPanel(String collab_id, String task_order) {
-        
-        String htmlcode =
-                  "<div class=\"row mt-2\">"
+
+        String htmlcode
+                = "<div class=\"row mt-3\">"
                 + " <div class=\"col-1\" ></div>"
                 + "     <div class=\"col-5\" >"
-                + "         <div class=\"row\">"
-                + "             <div class=\"col-4 text-start\">"
-                + "                 <label for=\"inputPassword6\" class=\"col-form-label\">Filtrar por etiqueta:</label>"
-                + "             </div>"
-                + "             <div class=\"col-8 mt-1\">"
-                + "                 <select class=\"form-select border-gray\" aria-label=\"Default select\">"
-                + "                     <option selected>Selecciona uno</option>"
-                + "                     <option value=\"1\">One</option>"
-                + "                     <option value=\"2\">Two</option>"
-                + "                     <option value=\"3\">Three</option>"
-                + "                 </select>"
-                + "             </div>"
-                + "         </div>"
+                + "         <button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
+                + "                     <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
+                + "                 </button>"
                 + "     </div>"
                 + "     <div class=\"col-5\" >"
-                + "         <div class=\"row ms-5\">"
+                + "         <div class=\"row \">"
                 + "             <div class=\"col-6 text-center \">"
                 + "                 <label for=\"inputPassword6\" class=\"col-form-label\" >Ordenar por: </label>"
                 + "             </div>"
@@ -146,33 +136,21 @@ public class TasksController {
                 + "     </div>"
                 + "     <div class=\"col-1\" ></div>"
                 + "     </div>"
-                /*Filtros ↑*/
-                + "     <div class=\"row mt-4\" >"
-                + "         <div class=\"col-1\" ></div>"
-                + "             <div class=\"col-5 text-start\">"
-                + "                 <button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
-                + "                     <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
-                + "                 </button>"
-                + "             </div>"
-                + "             <div class=\"col-5 text-end\">"
-                + "                 <div class=\"btn-group mb-2\" role=\"group\" aria-label=\"Vertical radio toggle button group\">\n"
-                + "                     <input type=\"radio\" class=\"btn-check\" name=\"btnradio-Vista\" id=\"vbtn-radioPanel\" autocomplete=\"off\" checked>\n"
-                + "                     <label class=\"btn btn-outline-gray border\" for=\"vbtn-radioPanel\" id=\"task_panel\" style=\"padding: 0.375rem 0.75rem; font-size: 1rem;\"><i class=\"bi bi-grid-fill\"></i></label>\n"
-                + "                     <input type=\"radio\" class=\"btn-check\" name=\"btnradio-Vista\" id=\"vbtn-radioTabla\" autocomplete=\"off\">\n"
-                + "                     <label class=\"btn btn-outline-gray border\" for=\"vbtn-radioTabla\" id=\"task_table\" style=\"padding: 0.375rem 0.75rem; font-size: 1rem;\"><i class=\"bi bi-list\" style=\"color: #2A2927\"></i></label>\n"
-                + "                 </div>"
-                + "             </div>"
-                + "             <div class=\"col-1\" >"
-                + "             </div>"
                 + "         </div>";
-        
-         htmlcode += "<div class=\"row mt-2 mb-5\">";
+
+        htmlcode += "<div class=\"row mt-2 mb-5\">";
 
         TasksModel taskm = new TasksModel();
         ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
 
         if (tasks.isEmpty()) {
-            htmlcode += "<p>No hay tareas por mostrar.</p>";
+            htmlcode += "<div class='row'>"
+                    + "<div class='col-1'></div>"
+                    + "<div class='col-10'>"
+                    + "<p>No hay tareas por mostrar.</p>"
+                    + "</div>"
+                    + "<div class='col-1'></div>"
+                    + "</div>";
             return htmlcode;
         } else {
             for (int i = 0; i < tasks.size(); i++) {
