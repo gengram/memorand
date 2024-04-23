@@ -82,4 +82,29 @@ public class AppRequestsController
         AppRequestsModel reqm = new AppRequestsModel();
         return reqm.updateRequestStatus(req_id, req_status);
     }
+    
+    public AppRequest modelGetRequest(String req_id)
+    {
+        AppRequestsModel reqm = new AppRequestsModel();
+        return reqm.getRequest(req_id);
+    }
+    
+    public ArrayList<String> convertStatus(String req_status)
+    {
+        ArrayList<String> result = new ArrayList<>();
+        
+        switch (req_status)
+        {
+            case "si":
+                result.add("Atendida");
+                result.add("Marcar como no atendida");
+                return result;
+            case "no":
+            default:
+                result.add("No atendida");
+                result.add("Marcar como atendida");
+                return result;
+        }
+    }
+    
 }

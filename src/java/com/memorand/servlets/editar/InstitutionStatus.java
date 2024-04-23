@@ -57,6 +57,5 @@ public class InstitutionStatus extends HttpServlet
             session.invalidate();
             response.sendRedirect("index.jsp?error=InvalidUser");
         }
-        
     }
 }

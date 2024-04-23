@@ -25,7 +25,7 @@
         
         <h1><a href='home.jsp'>&larr;</a> Panel de ventas</h1>
         <!-- PONER ESTOS EN LA NAVBAR-->
-        <a href='ventas.jsp'>Ventas</a>
+        <a href='home.jsp'>Panel de control</a>
         <a href='configuracion.jsp'>Configuracion</a>
         <a href='../signout'>Cerrar sesi&oacute;n</a>
         
@@ -35,6 +35,10 @@
         <p>Estatus: <button onclick="getReqByStatus('si')">Activas</button> <button onclick="getReqByStatus('si')">Inactivas</button></p>
         
         <%= reqc.modelGetRequests("no") %>
+        
+        <hr>
+        
+        <%= reqc.modelGetRequests("si") %>
         
     </body>
 
