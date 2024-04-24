@@ -279,8 +279,6 @@
                 </div>
             </div>
                    
-            <button type="button" class="btn btn-primary mt-3" onclick="saveChanges()">Guardar Cambios</button>
-
             <div class="row mt-3">
                 <div class="col-2"></div>
                 <div class="col-10 text-end">

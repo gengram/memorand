@@ -98,9 +98,11 @@ public class PostsController {
                 User user = userm.getUserInfoByPost(post_id);
 
                 String user_name = "null";
+                String user_profile = "null";
 
                 if (user != null) {
                     user_name = user.getUser_name() + " " + user.getUser_pat();
+                    user_profile = user.getUser_profile();
                 }
 
                 Instant postInstant = p.getPost_date().toInstant();
@@ -118,7 +120,7 @@ public class PostsController {
                         + "                        <div class=\"card-body\">\n"
                         + "                            <div class=\"row mt-0\">\n"
                         + "                                <div class=\"col-1 card-title\" style=\" padding-top: 0px;\">\n"
-                        + "                                    <i style=\"font-size: 40px\" class=\"bi bi-square-fill ms-4\"></i>\n"
+                        + "                                    <img src='../"+ user_profile +"' width=50>\n"
                         + "                                </div>\n"
                         + "                                <div class=\"col-5 card-title mt-1\" style=\"\">\n"
                         + "                                    <p class=\"custom-p ms-2\" style=\"font-size: 17px\"><texto style=\"color: #2A2927;\">" + user_name + "</texto></p>\n"
