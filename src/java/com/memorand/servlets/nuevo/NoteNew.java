@@ -86,8 +86,7 @@ public class NoteNew extends HttpServlet
                             
                             if (usernotec.modelCreateUserNote(usernote))
                             {
-                                //response.sendRedirect("work/nota.jsp?id="+note_id);
-                                response.sendRedirect("work/tarea.jsp?id="+task_id);
+                                response.sendRedirect("work/nota.jsp?id="+note_id);
                             }
                             else
                             { response.sendRedirect("work/tarea.jsp?id="+task_id+"&error=200-1"); }

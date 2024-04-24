@@ -12,6 +12,12 @@ public class NotesController {
         NotesModel notem = new NotesModel();
         return notem.createNote(note);
     }
+    
+    public boolean modelUpdateNoteText(String note_id, String note_text) 
+    {
+        NotesModel notem = new NotesModel();
+        return notem.updateNoteText(note_id, note_text);
+    }
 
     public Note modelGetNoteById(String n_id) {
         NotesModel notem = new NotesModel();

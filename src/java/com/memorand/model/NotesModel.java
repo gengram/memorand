@@ -154,4 +154,33 @@ public class NotesModel extends Conexion
         
         return notes;
     }
+    
+    public boolean updateNoteText(String note_id, String note_text)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try 
+        {
+            String sql = "UPDATE notes SET note_text = ? WHERE note_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, note_text);
+            ps.setString(2, note_id);
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        return flag;
+    }
 }

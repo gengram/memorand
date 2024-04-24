@@ -140,6 +140,10 @@
         <servlet-name>AppRequestStatus</servlet-name>
         <servlet-class>com.memorand.servlets.editar.AppRequestStatus</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NoteText</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.NoteText</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>AppRequestStatus</servlet-name>
         <url-pattern>/reqstat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoteText</servlet-name>
+        <url-pattern>/notetext</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

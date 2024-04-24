@@ -22,6 +22,12 @@ public class TasksController {
         TasksModel taskm = new TasksModel();
         return taskm.isAnyTaskByCollab(collab_id);
     }
+    
+    public Task modelgetTaskByTool(String tool_table, String tool_name, String tool_id)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.getTaskByTool(tool_table, tool_name, tool_id);
+    }
 
     //DEPRECIADO
     public String modelGetAllTasksByCollab(String collab_id, String arg) {
