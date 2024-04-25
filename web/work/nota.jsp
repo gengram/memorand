@@ -237,7 +237,7 @@
 
             <div class="row" >
                 <div class="col-12">
-                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" height: 350px;"></div>
+                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 350px;"></div>
                 </div>
             </div>
             <div class="row mt-3">

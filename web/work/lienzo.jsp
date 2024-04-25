@@ -7,58 +7,80 @@
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
         <title>Memorand</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+        <!-- Edit-Image -->
+        <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.css">
+
         <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
             canvas {
+                display: block;
                 border: 2px solid #E3E4E5;
                 cursor: move;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box; /* Para incluir el borde en el tamaño total */
             }
+
+            .modal-body {
+                overflow: hidden;
+            }
+
+            .modal-lg {
+                max-width: 80%;
+            }
+
+            cropper-container {
+                width: 100%;
+                height: 80vh;
+            }
+
         </style>
     </head>
     <body>
-        <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mt-2">
-                    <canvas id="canvas"></canvas>
-                    <label for="shape-color">Color del contorno:</label>
-                    <input type="color" id="shape-color" value="#000000">
-                    <label for="shape-fill">Rellenar figura:</label>
-                    <input type="checkbox" id="shape-fill" checked>
-                    <label for="text-color">Color del texto:</label>
-                    <input type="color" id="text-color" value="#000000">
-                    <label for="color">Color del lápiz:</label>
-                    <input type="color" id="color" value="#000000">
-                    <label for="grosor">Grosor del lápiz:</label>
-                    <input type="number" id="grosor" value="5">
-                    <br>
-                    <button id="circle">Círculo</button>
-                    <button id="square">Cuadrado</button>
-                    <button id="diamond">Rombo</button>
-                    <button id="rectangle">Rectángulo</button>
-                    <button id="add-text">Agregar Texto</button>
-                    <button id="add-image">Agregar Imagen</button>
-                    <button id="free-drawing">Dibujo Libre</button>
-                    <button id="delete-selected">Eliminar Seleccionados</button>
-                    <button id="delete-all">Borrar Todo</button>
-                    <button id="download-image">Descargar Imagen</button>
-                    <button id="download-svg">Descargar SVG</button>
-                    <br>
-                    <button id="arrow">Agregar Flecha</button>
-                    <button id="line">Agregar Línea Recta</button>
-                    <br>
-                    <input type="file" id="upload-svg" accept=".svg" multiple>
+
+        <canvas id="canvas"></canvas>
+        <!--BOTONES-->
+
+
+        <!-- Modal para recortar imagen -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 imgModal">
+                                <!-- Aquí se insertará la imagen para recortar -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="saveCrop">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <script>
             var canvas = new fabric.Canvas('canvas', {
-                width: 1300,
-                height: 600,
                 backgroundColor: '#fff',
                 preserveObjectStacking: true
             });
+            var drawingMode = false;
             var panningEnabled = false;
+
+            function toggleDrawingMode() {
+                drawingMode = !drawingMode;
+                canvas.isDrawingMode = drawingMode;
+            }
 
             function togglePanning() {
                 panningEnabled = !panningEnabled;
@@ -169,6 +191,93 @@
                 canvas.clear();
             });
 
+            // Mostrar modal para recortar imagen antes de descargarla
+            /*document.getElementById('download-image').addEventListener('click', function () {
+             // Obtener la imagen como base64
+             var imageUrl = canvas.toDataURL({
+             format: 'png',
+             quality: 1
+             });
+             
+             // Mostrar modal
+             var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+             imageModal.show();
+             
+             // Crear un elemento de imagen dentro del modal
+             var modalBody = document.querySelector('.imgModal');
+             modalBody.innerHTML = '';
+             var img = document.createElement('img');
+             img.onload = function () {
+             // Redimensionar la imagen si su altura es mayor a 550px
+             var maxHeight = 550;
+             if (img.height > maxHeight) {
+             var ratio = maxHeight / img.height;
+             img.width *= ratio;
+             img.height = maxHeight;
+             }
+             };
+             img.src = imageUrl;
+             img.id = 'imageToCrop';
+             modalBody.appendChild(img);
+             
+             // Establecer un máximo en la altura y ancho del cropper-container
+             var cropperMaxWidth = img.width;
+             var cropperMaxHeight = img.height;
+             
+             if (cropperMaxWidth > modalDialog.clientWidth) {
+             cropperMaxWidth = modalDialog.clientWidth;
+             }
+             
+             if (cropperMaxHeight > maxHeight) {
+             cropperMaxHeight = maxHeight;
+             }
+             
+             // Establecer un máximo en la altura y ancho del cropper-container
+             var cropperMaxWidth = Math.min(modalDialog.clientWidth, img.width);
+             var cropperMaxHeight = Math.min(maxHeight, img.height);
+             
+             // Inicializar Cropper.js después de cargar la imagen
+             img.onload = function () {
+             var cropper = new Cropper(img, {
+             aspectRatio: NaN, // Permitir cualquier relación de aspecto
+             viewMode: 1, // Modo de vista: 0, 1, 2, 3
+             dragMode: 'move', // Modo de arrastre: 'crop', 'move'
+             autoCropArea: 1, // Área de recorte automático al cargar la imagen
+             cropBoxResizable: true,
+             cropBoxMovable: true,
+             minCropBoxWidth: 50, // Establecer un valor mínimo
+             minCropBoxHeight: 50, // Establecer un valor mínimo
+             maxCropBoxWidth: cropperMaxWidth,
+             maxCropBoxHeight: cropperMaxHeight,
+             
+             crop: function (event) {
+             // La función se llama cuando el usuario realiza un recorte
+             console.log(event.detail.x);
+             console.log(event.detail.y);
+             console.log(event.detail.width);
+             console.log(event.detail.height);
+             }
+             });
+             
+             // Guardar recorte y cerrar modal
+             document.getElementById('saveCrop').addEventListener('click', function () {
+             // Obtener la imagen recortada como un nuevo Data URL
+             var croppedDataUrl = cropper.getCroppedCanvas().toDataURL();
+             
+             // Descargar la imagen recortada
+             var link = document.createElement('a');
+             link.href = croppedDataUrl;
+             link.download = 'canvas.png';
+             document.body.appendChild(link);
+             link.click();
+             document.body.removeChild(link);
+             
+             // Ocultar modal
+             imageModal.hide();
+             });
+             
+             };
+             });*/
             function downloadImage() {
                 var objects = canvas.getObjects();
                 var minX = canvas.width,
@@ -203,6 +312,7 @@
                 document.body.removeChild(link);
             }
 
+
             function downloadSVG() {
                 var objects = canvas.getObjects();
                 objects.forEach(function (obj, index) {
@@ -233,12 +343,27 @@
                     reader.onload = function (event) {
                         var svgString = event.target.result;
                         fabric.loadSVGFromString(svgString, function (objects, options) {
-                            var obj = fabric.util.groupSVGElements(objects, options);
-                            canvas.add(obj).renderAll();
+                            var group = new fabric.Group(objects, {
+                                left: canvas.width / 2,
+                                top: canvas.height / 2
+                            });
+                            canvas.add(group).renderAll();
                         });
                     };
                     reader.readAsText(file);
                 }
+            });
+
+
+            canvas.freeDrawingBrush.color = '#000000';
+            canvas.freeDrawingBrush.width = 4;
+
+            document.getElementById('color').addEventListener('change', function () {
+                canvas.freeDrawingBrush.color = this.value;
+            });
+
+            document.getElementById('grosor').addEventListener('change', function () {
+                canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
             });
 
             canvas.on('mouse:move', function (opt) {
@@ -313,6 +438,30 @@
                     alert("La línea está fuera del lienzo. Por favor, inténtalo de nuevo dentro del lienzo.");
                 }
             }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.keyCode === 46 || e.keyCode === 8) { // Código de tecla para borrar
+                    var activeObject = canvas.getActiveObject();
+                    if (activeObject) {
+                        canvas.remove(activeObject);
+                    }
+                }
+            });
+
+            // Ajustar tamaño del canvas dinámicamente
+            function resizeCanvas() {
+                canvas.setDimensions({
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                }, {renderOnAddRemove: false});
+            }
+
+            // Llamar a la función de redimensionamiento al cargar la página y cuando se cambie el tamaño de la ventana
+            window.addEventListener('resize', resizeCanvas);
+            window.addEventListener('load', function () {
+                resizeCanvas();
+                // Agregar aquí cualquier inicialización adicional que necesites
+            });
         </script>
     </body>
 </html>
