@@ -1,5 +1,35 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="com.memorand.beans.Task"%>
+<%@page import="com.memorand.controller.TasksController"%>
+<%@page import="com.memorand.beans.Note"%>
+<%@page import="com.memorand.controller.NotesController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+    String note_id = request.getParameter("id");
+
+    if (note_id != null) {
+        String task_id = "";
+        String note_name = "", note_text = "", note_status = "";
+        Timestamp note_cdate, note_mdate;
+
+        NotesController notec = new NotesController();
+        Note note = notec.modelGetNoteById(note_id);
+
+        if (note != null) {
+            TasksController taskc = new TasksController();
+            Task task = taskc.modelgetTaskByTool("notes", "note_id", note_id);
+
+            task_id = task.getTask_id();
+
+            note_name = note.getNote_name();
+            note_text = note.getNote_text();
+            note_status = note.getNote_status();
+
+            note_cdate = note.getNote_cdate();
+            note_mdate = note.getNote_mdate();
+%>
 
 <html>
     <head>
@@ -169,16 +199,21 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container text-center" >
+
+            <br>
+
             <div class="row">
                 <div class="col-12 mt-2">
-                    <div class="card border shadow">
+                    <div class="card border">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-4">
-                                    <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
-                                        <button type="button" class="btn" style="background-color: #EFA1A1;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
-                                        <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000">Programacionorientadas</b></button>
-                                    </div>
+                                    <a href="tarea.jsp?id=<%= task_id%>">
+                                        <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
+                                            <button type="button" class="btn" style="background-color: #AFB2B3;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
+                                            <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000"><%= note_name%></b></button>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="col-5 border-start">
                                     <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
@@ -223,6 +258,7 @@
                                         document.getElementById("exampleColorInput").value = color;
                                         // Aplica el color al texto en el área de edición
                                         applyColor(color);
+                                        saveChanges();
                                     }
                                 </script>
                                 <div class="col-3">
@@ -237,9 +273,16 @@
 
             <div class="row" >
                 <div class="col-12">
+<<<<<<< HEAD
                     <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 350px;"></div>
+=======
+                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 1000px;">
+                        <%= note_text%>
+                    </div>
+>>>>>>> 0c5cb9b6e6aff3f6dc23b552d30725e600c82b1b
                 </div>
             </div>
+                   
             <div class="row mt-3">
                 <div class="col-2"></div>
                 <div class="col-10 text-end">
@@ -258,9 +301,39 @@
     </body>
 
     <script>
+        function saveChanges() {
+            let contenido = document.getElementById('contE').innerHTML.trim();
+
+            let urlParams = new URLSearchParams(window.location.search);
+            let note_id = urlParams.get('id');
+            
+            let data = {
+                "note_id": note_id,
+                "note_text": contenido
+            };
+
+            let xhr = new XMLHttpRequest();
+            let url = "/memorand/notetext";
+
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+
+            xhr.send(JSON.stringify(data));
+        }
+
+        document.getElementById('contE').addEventListener('input', function () {
+            saveChanges();
+        });
+
         function generatePDF() {
             // Obtener el contenido del área de texto
-            let contenido = document.getElementById('contE').innerHTML;
+            let contenido = document.getElementById('contE').innerHTML.trim();
 
             // Opciones para la conversión a PDF
             let options = {
@@ -286,3 +359,14 @@
 
 
 </html>
+
+<%
+        } else {
+            response.sendRedirect("home.jsp");
+        }
+    } else {
+        response.sendRedirect("home.jsp");
+    }
+
+%>
+

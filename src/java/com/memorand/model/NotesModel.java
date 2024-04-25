@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class NotesModel extends Conexion
 {
@@ -113,7 +114,7 @@ public class NotesModel extends Conexion
                     + "FROM notes n "
                     + "INNER JOIN tasknotes t ON n.note_id = t.note_id "
                     + "WHERE t.task_id = ? "
-                    + "ORDER BY n.note_mdate";
+                    + "ORDER BY n.note_mdate DESC";
             
             ps = getConnection().prepareStatement(sql);
             
@@ -153,5 +154,43 @@ public class NotesModel extends Conexion
         }
         
         return notes;
+    }
+    
+    public boolean updateNoteText(String note_id, String note_text)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try 
+        {
+            String sql = "UPDATE notes SET note_text = ?, note_mdate = ? WHERE note_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+        
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(currentTimestamp);
+            cal.add(Calendar.HOUR_OF_DAY, -1);
+            
+            Timestamp newTimestamp = new Timestamp(cal.getTimeInMillis());
+            
+            ps.setString(1, note_text);
+            ps.setTimestamp(2, newTimestamp);
+            ps.setString(3, note_id);
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        return flag;
     }
 }
