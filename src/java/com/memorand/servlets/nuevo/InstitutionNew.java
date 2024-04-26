@@ -3,6 +3,7 @@ package com.memorand.servlets.nuevo;
 import com.memorand.beans.Institution;
 import com.memorand.controller.InstitutionsController;
 import com.memorand.util.Generador;
+import com.memorand.util.Modificador;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,11 +31,13 @@ public class InstitutionNew extends HttpServlet
         
         if (user_type != null & "staff".equals(user_type))
         {
+            Modificador m = new Modificador();
             FileItemFactory fif = new DiskFileItemFactory();
             ServletFileUpload sfu = new ServletFileUpload(fif);
             
             ArrayList<String> inst_fields = new ArrayList<>();
 
+            String img_directory = m.getInstsDirectory(request);
             String inst_img = "";
             
             try
@@ -49,7 +52,7 @@ public class InstitutionNew extends HttpServlet
                     {
                         if (!fi.getName().isEmpty())
                         {
-                            File file = new File("C:\\memorand\\web\\XM-Uploads\\institutions\\"+fi.getName());
+                            File file = new File(img_directory+fi.getName());
                             fi.write(file);
                             inst_img = "XM-Uploads/institutions/"+fi.getName();
                         }

@@ -97,8 +97,8 @@ create table tasks
 	task_id varchar(36) primary key not null,
 	task_name varchar(128),
 	task_info text,
-	task_sdate timestamp,
-	task_edate timestamp,
+	task_sdate timestamp default current_timestamp,
+	task_edate timestamp default current_timestamp,
 	task_status varchar(16),
 	task_prior varchar(16),
 	task_diff varchar(16)
@@ -111,7 +111,7 @@ create table posts
 	post_r1 int,
 	post_r2 int,
 	post_r3 int,
-	post_date timestamp
+	post_date timestamp default current_timestamp
 );
 
 create table tags
@@ -157,7 +157,7 @@ create table ideas
 (
 	idea_id varchar(36) primary key not null,
 	idea_text varchar(256),
-	idea_date timestamp,
+	idea_date timestamp default current_timestamp,
 	idea_color varchar(6)
 );
 
@@ -166,8 +166,8 @@ create table canvas
 	canva_id varchar(36) primary key not null,
 	canva_name varchar(64),
 	canva_draw longtext,
-	canva_cdate timestamp,
-	canva_mdate timestamp,
+	canva_cdate timestamp default current_timestamp,
+	canva_mdate timestamp default current_timestamp,
 	canva_status varchar(16)
 );
 
@@ -176,8 +176,8 @@ create table notes
 	note_id varchar(36) primary key not null,
 	note_name varchar(64),
 	note_text text,
-	note_cdate timestamp,
-	note_mdate timestamp,
+	note_cdate timestamp default current_timestamp,
+	note_mdate timestamp default current_timestamp,
 	note_status varchar(16)
 );
 
@@ -268,7 +268,7 @@ create table services
 create table requests 
 (
 	req_id varchar(36) primary key not null,
-	req_date timestamp,
+	req_date timestamp default current_timestamp,
 	req_name varchar(32),
 	req_pat varchar(16),
 	req_mat varchar(16),
@@ -284,7 +284,7 @@ create table requests
 create table suggestions
 (
 	sug_id varchar(36) primary key not null,
-	sug_date timestamp,
+	sug_date timestamp default current_timestamp,
 	sug_msg text,
 	sug_email varchar(64)
 );

@@ -5,6 +5,7 @@ import com.memorand.beans.User;
 import com.memorand.controller.InUsersController;
 import com.memorand.controller.UsersController;
 import com.memorand.util.Generador;
+import com.memorand.util.Modificador;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,12 +29,13 @@ public class UserNew extends HttpServlet
         
         if(session != null)
         {
-
+            Modificador m = new Modificador();
             FileItemFactory fif = new DiskFileItemFactory();
             ServletFileUpload sfu = new ServletFileUpload(fif);
 
             ArrayList<String> user_fields = new ArrayList<>();
 
+            String img_directory = m.getUsersDirectory(request);
             String user_img = "";
             String user_type = (String) session.getAttribute("user_type");
 
@@ -49,7 +51,7 @@ public class UserNew extends HttpServlet
                     {
                         if (!fi.getName().isEmpty())
                         {
-                            File file = new File("C:\\memorand\\web\\XM-Uploads\\users\\profile\\"+fi.getName());
+                            File file = new File(img_directory+fi.getName());
                             fi.write(file);
                             user_img = "XM-Uploads/users/profile/"+fi.getName();
                         }

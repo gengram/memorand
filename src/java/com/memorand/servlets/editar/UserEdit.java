@@ -2,6 +2,7 @@ package com.memorand.servlets.editar;
 
 import com.memorand.beans.User;
 import com.memorand.controller.UsersController;
+import com.memorand.util.Modificador;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,11 +36,13 @@ public class UserEdit extends HttpServlet
         {
             if (user_type.equals("staff") || user_type.equals("admin"))
             {
+                Modificador m = new Modificador();
                 FileItemFactory fif = new DiskFileItemFactory();
                 ServletFileUpload sfu = new ServletFileUpload(fif);
 
                 ArrayList<String> user_fields = new ArrayList<>();
 
+                String img_directory = m.getInstsDirectory(request);
                 String user_img = "";
                 
                 try
@@ -54,7 +57,7 @@ public class UserEdit extends HttpServlet
                         {
                             if (!fi.getName().isEmpty())
                             {
-                                File file = new File("C:\\memorand\\web\\XM-Uploads\\users\\profile\\"+fi.getName());
+                                File file = new File(img_directory+fi.getName());
                                 fi.write(file);
                                 user_img = "XM-Uploads/users/profile/"+fi.getName();
                             }
