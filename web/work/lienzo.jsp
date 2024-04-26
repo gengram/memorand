@@ -94,6 +94,26 @@
                 background-color: #BDECD5;
                 border-color: #25ce7b;
             }
+            .btn-check + .btn:hover {
+                color: #25ce7b;
+                background-color: #BDECD5;
+                border-color: #25ce7b;
+            }
+            .btn-check:focus-visible + .btn {
+                border-color: #BDECD5;
+                background-color: #BDECD5;
+                color: #000;
+            }
+            .btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+                border-color: #BDECD5;
+                background-color: #BDECD5;
+                color: #000;
+            }
+            .form-check-input:checked {
+                background-color: #25ce7b;
+                border-color: #E3E4E5;
+            }
+
         </style>
     </head>
     <body>
@@ -110,31 +130,31 @@
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
                             <li><a id="toggleGrid" class="dropdown-item" href="#"><i class="bi bi-grid-3x3 me-2" style="color: #25ce7b"></i>Cuadrícula</a></li>
-                            <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>Imagen</a></li>
-                            <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
+                            <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
+                            <li><a id="download-svg" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
+                            <li><input type="file" id="upload-svg" accept="image/svg+xml" multiple/></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="btn-group capa1" style=" margin-left: 10rem " role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                        <input type="radio" class="btn-check btn-c" name="btnradio" id="btnradio1" autocomplete="off">
                         <label class="btn btn-h" for="btnradio1">
                             <i class="bi bi-boxes icon-tools"></i></label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-h" for="btnradio2">
+                        <input type="radio" class="btn-check btn-c" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label id="add-text" class="btn btn-h" for="btnradio2">
                             <i class="bi bi-textarea-t icon-tools"></i>
                         </label>
 
-                        <button type="button" class="btn btn-h"><i class="bi bi-slash-lg icon-tools"></i></button>
+                        <button id="line" type="button" class="btn btn-h"><i class="bi bi-slash-lg icon-tools"></i></button>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked>
-                        <label class="btn btn-h" for="btnradio4"><i class="bi bi-brush-fill icon-tools"></i></label>
+                        <button id="free-drawing" type="button" class="btn btn-h"><i class="bi bi-brush-fill icon-tools"></i></button>
 
-                        <button type="button" class="btn btn-h"><i class="bi bi-arrow-up-right icon-tools"></i></button>
-                        <button type="button" class="btn btn-h"><i class="bi bi-card-image icon-tools"></i></button>
-                        <button type="button" class="btn btn-h"><i class="bi bi-trash3 icon-tools"></i></button>
-                        <button type="button" class="btn btn-h"><i class="bi bi-eraser-fill icon-tools"></i></button>
+                        <button id="arrow" type="button" class="btn btn-h"><i class="bi bi-arrow-up-right icon-tools"></i></button>
+                        <button id="add-image" type="button" class="btn btn-h"><i class="bi bi-images icon-tools"></i></button>
+                        <button id="delete-all" type="button" class="btn btn-h"><i class="bi bi-trash3 icon-tools"></i></button>
+                        <button id="delete-selected" type="button" class="btn btn-h"><i class="bi bi-eraser-fill icon-tools"></i></button>
                     </div>
                 </div>
                 <div class="col-2"></div>
@@ -165,18 +185,18 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6 text-center">
-                            <button type="button" class="btn btn-h ms-2"><i class="bi bi-square icon-card"></i></button>
+                            <button id="square" type="button" class="btn btn-h ms-2"><i class="bi bi-square icon-card"></i></button>
                         </div>
                         <div class="col-6 text-center">
-                            <button type="button" class="btn btn-h me-3"><i class="bi bi-diamond icon-card"></i></button>
+                            <button id="diamond" type="button" class="btn btn-h me-3"><i class="bi bi-diamond icon-card"></i></button>
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6 text-center">
-                            <button type="button" class="btn btn-h ms-2"><i class="bi bi-circle icon-card"></i></button>
+                            <button id="circle" type="button" class="btn btn-h ms-2"><i class="bi bi-circle icon-card"></i></button>
                         </div>
                         <div class="col-6 text-center">
-                            <button type="button" class="btn btn-h me-3"><i class="bi bi-arrow-up-right icon-card"></i></button>
+                            <button id="rectangle" type="button" class="btn btn-h me-3"><i class="bi bi-tablet-landscape icon-card"></i></button>
                         </div>
                     </div>
                 </div>
@@ -191,14 +211,6 @@
                             <input class="ms-2 mt-2 form-control form-control-color" type="color" id="text-color" value="#000000">
                         </div>
                         <div class="col-11"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-6 text-center">
-                            <button type="button" class="btn btn-h ms-2"><i class="bi bi-type-bold icon-card"></i></button>
-                        </div>
-                        <div class="col-6 text-center">
-                            <button type="button" class="btn btn-h me-3"><i class="bi bi-type-italic icon-card"></i></button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -245,45 +257,6 @@
                 });
             });
         </script>
-
-        <!--BOTONES-->
-        <!--<div class=" mt-5">
-            <div class="capa2 mt-5">
-                <label for="shape-color">Color del contorno:</label>
-                <input type="color" id="shape-color" value="#000000">
-        
-                <label for="shape-fill">Rellenar figura:</label>
-                <input type="checkbox" id="shape-fill" checked>
-        
-                <label for="text-color">Color del texto:</label>
-                <input type="color" id="text-color" value="#000000">
-        
-                <label for="color">Color del lápiz:</label>
-                <input type="color" id="color" value="#000000">
-        
-                <label for="grosor">Grosor del lápiz:</label>
-                <input type="range" id="grosor" min="1" max="30" value="4">
-
-                <br>
-                <button id="circle">Círculo</button>
-                <button id="square">Cuadrado</button>
-                <button id="diamond">Rombo</button>
-                <button id="rectangle">Rectángulo</button>
-                <button id="add-text">Agregar Texto</button>
-                <button id="add-image">Agregar Imagen</button>
-        
-                <button id="free-drawing">Dibujo Libre</button>
-                <button id="delete-selected">Eliminar Seleccionados</button>
-                <button id="delete-all">Borrar Todo</button>
-                <button>Descargar Imagen</button>
-                <button id="download-svg">Descargar SVG</button>
-                <br>
-                <button id="arrow">Agregar Flecha</button>
-                <button id="line">Agregar Línea Recta</button>
-                <br>
-                <input type="file" id="upload-svg" accept=".svg" multiple>
-            </div>
-        </div>-->
 
         <script>
             var canvas = new fabric.Canvas('canvas', {
@@ -367,8 +340,8 @@
                     fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
                     stroke: document.getElementById('shape-color').value,
                     strokeWidth: 2,
-                    left: canvas.width / 2,
-                    top: canvas.height / 2
+                    left: canvas.width / 4,
+                    top: canvas.height / 4
                 });
                 canvas.add(circle);
             });
@@ -380,8 +353,8 @@
                     fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
                     stroke: document.getElementById('shape-color').value,
                     strokeWidth: 2,
-                    left: canvas.width / 2 - 50,
-                    top: canvas.height / 2 - 50
+                    left: canvas.width / 4 - 50,
+                    top: canvas.height / 4 - 50
                 });
                 canvas.add(square);
             });
@@ -396,8 +369,8 @@
                     fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
                     stroke: document.getElementById('shape-color').value,
                     strokeWidth: 2,
-                    left: canvas.width / 2 - 50,
-                    top: canvas.height / 2 - 50
+                    left: canvas.width / 4 - 50,
+                    top: canvas.height / 4 - 50
                 });
                 canvas.add(diamond);
             });
@@ -409,8 +382,8 @@
                     fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
                     stroke: document.getElementById('shape-color').value,
                     strokeWidth: 2,
-                    left: canvas.width / 2 - 75,
-                    top: canvas.height / 2 - 37.5
+                    left: canvas.width / 4 - 75,
+                    top: canvas.height / 4 - 37.5
                 });
                 canvas.add(rectangle);
             });
@@ -419,8 +392,8 @@
                 var text = new fabric.Textbox('Texto aquí', {
                     fontSize: 20,
                     fill: document.getElementById('text-color').value,
-                    left: canvas.width / 2,
-                    top: canvas.height / 2
+                    left: canvas.width / 4,
+                    top: canvas.height / 4
                 });
                 canvas.add(text);
             });
@@ -437,8 +410,8 @@
                         var img = new Image();
                         img.onload = function () {
                             var fabricImg = new fabric.Image(img, {
-                                left: canvas.width / 2 - img.width / 2,
-                                top: canvas.height / 2 - img.height / 2,
+                                left: canvas.width / 4 - img.width / 4,
+                                top: canvas.height / 4 - img.height / 4,
                                 selectable: true
                             });
                             canvas.add(fabricImg);
@@ -449,8 +422,9 @@
                 });
             });
 
+            // Función para activar o desactivar el modo de dibujo libre
             document.getElementById('free-drawing').addEventListener('click', function () {
-                toggleDrawingMode();
+                canvas.isDrawingMode = !canvas.isDrawingMode;
             });
 
             document.getElementById('delete-selected').addEventListener('click', function () {
@@ -461,144 +435,47 @@
             });
 
             document.getElementById('delete-all').addEventListener('click', function () {
-                canvas.clear();
+                canvas.getObjects().forEach(function (obj) {
+                    if (!(obj instanceof fabric.Line)) {
+                        canvas.remove(obj);
+                    }
+                });
             });
 
-            // Mostrar modal para recortar imagen antes de descargarla
-            /*document.getElementById('download-image').addEventListener('click', function () {
-             // Obtener la imagen como base64
-             var imageUrl = canvas.toDataURL({
-             format: 'png',
-             quality: 1
-             });
-             
-             // Mostrar modal
-             var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
-             imageModal.show();
-             
-             // Crear un elemento de imagen dentro del modal
-             var modalBody = document.querySelector('.imgModal');
-             modalBody.innerHTML = '';
-             var img = document.createElement('img');
-             img.onload = function () {
-             // Redimensionar la imagen si su altura es mayor a 550px
-             var maxHeight = 550;
-             if (img.height > maxHeight) {
-             var ratio = maxHeight / img.height;
-             img.width *= ratio;
-             img.height = maxHeight;
-             }
-             };
-             img.src = imageUrl;
-             img.id = 'imageToCrop';
-             modalBody.appendChild(img);
-             
-             // Establecer un máximo en la altura y ancho del cropper-container
-             var cropperMaxWidth = img.width;
-             var cropperMaxHeight = img.height;
-             
-             if (cropperMaxWidth > modalDialog.clientWidth) {
-             cropperMaxWidth = modalDialog.clientWidth;
-             }
-             
-             if (cropperMaxHeight > maxHeight) {
-             cropperMaxHeight = maxHeight;
-             }
-             
-             // Establecer un máximo en la altura y ancho del cropper-container
-             var cropperMaxWidth = Math.min(modalDialog.clientWidth, img.width);
-             var cropperMaxHeight = Math.min(maxHeight, img.height);
-             
-             // Inicializar Cropper.js después de cargar la imagen
-             img.onload = function () {
-             var cropper = new Cropper(img, {
-             aspectRatio: NaN, // Permitir cualquier relación de aspecto
-             viewMode: 1, // Modo de vista: 0, 1, 2, 3
-             dragMode: 'move', // Modo de arrastre: 'crop', 'move'
-             autoCropArea: 1, // Área de recorte automático al cargar la imagen
-             cropBoxResizable: true,
-             cropBoxMovable: true,
-             minCropBoxWidth: 50, // Establecer un valor mínimo
-             minCropBoxHeight: 50, // Establecer un valor mínimo
-             maxCropBoxWidth: cropperMaxWidth,
-             maxCropBoxHeight: cropperMaxHeight,
-             
-             crop: function (event) {
-             // La función se llama cuando el usuario realiza un recorte
-             console.log(event.detail.x);
-             console.log(event.detail.y);
-             console.log(event.detail.width);
-             console.log(event.detail.height);
-             }
-             });
-             
-             // Guardar recorte y cerrar modal
-             document.getElementById('saveCrop').addEventListener('click', function () {
-             // Obtener la imagen recortada como un nuevo Data URL
-             var croppedDataUrl = cropper.getCroppedCanvas().toDataURL();
-             
-             // Descargar la imagen recortada
-             var link = document.createElement('a');
-             link.href = croppedDataUrl;
-             link.download = 'canvas.png';
-             document.body.appendChild(link);
-             link.click();
-             document.body.removeChild(link);
-             
-             // Ocultar modal
-             imageModal.hide();
-             });
-             
-             };
-             });*/
-            function downloadImage() {
-                var objects = canvas.getObjects();
-                var minX = canvas.width,
-                        minY = canvas.height,
-                        maxX = 0,
-                        maxY = 0;
+            document.addEventListener('keydown', function (e) {
+                if (e.keyCode === 46 || e.keyCode === 8) { // Código de tecla para borrar
+                    var activeObject = canvas.getActiveObject();
+                    if (activeObject) {
+                        canvas.remove(activeObject);
+                    }
+                }
+            });
 
-                objects.forEach(function (obj) {
-                    var objWidth = obj.getScaledWidth() * obj.scaleX,
-                            objHeight = obj.getScaledHeight() * obj.scaleY,
-                            objLeft = obj.left - objWidth / 2,
-                            objTop = obj.top - objHeight / 2;
 
-                    minX = Math.min(minX, objLeft);
-                    minY = Math.min(minY, objTop);
-                    maxX = Math.max(maxX, objLeft + objWidth);
-                    maxY = Math.max(maxY, objTop + objHeight);
-                });
-
+            // Función para descargar la imagen del lienzo
+            document.getElementById('download-image').addEventListener('click', function () {
                 var link = document.createElement('a');
                 link.href = canvas.toDataURL({
                     format: 'png',
-                    quality: 1,
-                    left: minX,
-                    top: minY,
-                    width: 1350,
-                    height: 650
+                    quality: 1
                 });
-                link.download = 'canvas.png';
+                link.download = 'lienzo.png';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-            }
+            });
 
-
-            function downloadSVG() {
-                var objects = canvas.getObjects();
-                objects.forEach(function (obj, index) {
-                    var svg = obj.toSVG();
-                    var blob = new Blob([svg], {type: 'image/svg+xml'});
-                    var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    link.download = 'element_' + index + '.svg';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                });
-            }
+            // Función para descargar el SVG del lienzo
+            document.getElementById('download-svg').addEventListener('click', function () {
+                var svg = canvas.toSVG();
+                var blob = new Blob([svg], {type: 'image/svg+xml'});
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'lienzo.svg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
 
             document.getElementById('download-image').addEventListener('click', function () {
                 downloadImage();
@@ -608,22 +485,19 @@
                 downloadSVG();
             });
 
+            // Función para descargar múltiples SVG
             document.getElementById('upload-svg').addEventListener('change', function (e) {
                 var files = e.target.files;
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     var reader = new FileReader();
                     reader.onload = function (event) {
-                        var svgString = event.target.result;
-                        fabric.loadSVGFromString(svgString, function (objects, options) {
-                            var group = new fabric.Group(objects, {
-                                left: canvas.width / 2,
-                                top: canvas.height / 2
-                            });
-                            canvas.add(group).renderAll();
+                        fabric.loadSVGFromURL(event.target.result, function (objects, options) {
+                            var svgObjects = fabric.util.groupSVGElements(objects, options);
+                            canvas.add(svgObjects);
                         });
                     };
-                    reader.readAsText(file);
+                    reader.readAsDataURL(file);
                 }
             });
 
@@ -631,10 +505,12 @@
             canvas.freeDrawingBrush.color = '#000000';
             canvas.freeDrawingBrush.width = 4;
 
+            // Función para cambiar el color del lápiz
             document.getElementById('color').addEventListener('change', function () {
                 canvas.freeDrawingBrush.color = this.value;
             });
 
+            // Función para cambiar el grosor del lápiz
             document.getElementById('grosor').addEventListener('change', function () {
                 canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
             });
@@ -712,15 +588,8 @@
                 }
             }
 
-            document.addEventListener('keydown', function (e) {
-                if (e.keyCode === 46 || e.keyCode === 8) { // Código de tecla para borrar
-                    var activeObject = canvas.getActiveObject();
-                    if (activeObject) {
-                        canvas.remove(activeObject);
-                    }
-                }
-            });
 
         </script>
+
     </body>
 </html>
