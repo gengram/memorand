@@ -8,8 +8,6 @@
         <title>Memorand</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
         <!-- Edit-Image -->
-        <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.css">
 
         <style>
             body, html {
@@ -20,13 +18,19 @@
                 overflow: hidden;
             }
 
+            #canvas-container {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+
             canvas {
                 display: block;
                 border: 2px solid #E3E4E5;
                 cursor: move;
                 width: 100%;
                 height: 100%;
-                box-sizing: border-box; /* Para incluir el borde en el tamaño total */
+                box-sizing: border-box;
             }
 
             .modal-body {
@@ -41,41 +45,310 @@
                 width: 100%;
                 height: 80vh;
             }
+            .contenedor {
+                position: relative;
+                width: 400px;
+                height: 300px;
+            }
 
+            .capa2 {
+                top: 10px;
+                z-index: 2;
+                position: absolute;
+                text-align: center;
+            }
+            .capa1 {
+                top: 15px;
+                align-content: center;
+                position: absolute;
+            }
+            .capa3 {
+                top: 80px;
+                align-content: center;
+                position: absolute;
+            }
+
+            .icon-tools {
+                font-size: 24px;
+            }
+            .icon-card {
+                font-size: 20px;
+            }
+            .btn-h{
+                border-color: #25ce7b;
+                background-color: transparent;
+                color: #25ce7b;
+            }
+            .btn-h:focus {
+                border-color: #BDECD5;
+                background-color: #BDECD5;
+                color: #000;
+            }
+            .btn-h:active {
+                color: #000;
+                border-color: #E3E4E5;
+                background-color: #E3E4E5;
+            }
+            .btn-h:hover {
+                color: #25ce7b;
+                background-color: #BDECD5;
+                border-color: #25ce7b;
+            }
         </style>
     </head>
     <body>
 
-        <canvas id="canvas"></canvas>
-        <!--BOTONES-->
+        <div id="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <div class="btn-group dropend capa2 start-0 ms-4">
+                        <button type="button" class="btn btn-light rounded-2" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-list" style="font-size: 25px"></i>
+                        </button>
+                        <ul class="dropdown-menu shadow ms-2 mt-0">
+                            <li><a id="toggleGrid" class="dropdown-item" href="#"><i class="bi bi-grid-3x3 me-2" style="color: #25ce7b"></i>Cuadrícula</a></li>
+                            <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>Imagen</a></li>
+                            <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="btn-group capa1" style=" margin-left: 10rem " role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                        <label class="btn btn-h" for="btnradio1">
+                            <i class="bi bi-boxes icon-tools"></i></label>
 
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-h" for="btnradio2">
+                            <i class="bi bi-textarea-t icon-tools"></i>
+                        </label>
 
-        <!-- Modal para recortar imagen -->
-        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12 imgModal">
-                                <!-- Aquí se insertará la imagen para recortar -->
+                        <button type="button" class="btn btn-h"><i class="bi bi-slash-lg icon-tools"></i></button>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked>
+                        <label class="btn btn-h" for="btnradio4"><i class="bi bi-brush-fill icon-tools"></i></label>
+
+                        <button type="button" class="btn btn-h"><i class="bi bi-arrow-up-right icon-tools"></i></button>
+                        <button type="button" class="btn btn-h"><i class="bi bi-card-image icon-tools"></i></button>
+                        <button type="button" class="btn btn-h"><i class="bi bi-trash3 icon-tools"></i></button>
+                        <button type="button" class="btn btn-h"><i class="bi bi-eraser-fill icon-tools"></i></button>
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+
+        <div class="card-container capa3 ms-4">
+            <div class="card shadow" id="card1" style="display: none;">
+                <div class="card-body ms-3 me-3 mt-2 mb-2">
+                    <div class="row">
+                        <label for="shape-color">Color del contorno:</label>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-1">
+                            <input class="ms-2 mt-2 form-control form-control-color" type="color" id="shape-color" value="#000000">
+                        </div>
+                        <div class="col-11"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="shape-fill" checked>
+                                <label class="form-check-label" for="shape-fill">
+                                    <text style="color: #000">Rellenar figura</text>
+                                </label>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="saveCrop">Guardar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <div class="row mt-2">
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-h ms-2"><i class="bi bi-square icon-card"></i></button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-h me-3"><i class="bi bi-diamond icon-card"></i></button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-h ms-2"><i class="bi bi-circle icon-card"></i></button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-h me-3"><i class="bi bi-arrow-up-right icon-card"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow" id="card2" style="display: none;">
+                <div class="card-body ms-3 me-3 mt-2 mb-2">
+                    <div class="row">
+                        <label for="text-color">Color del texto:</label>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-1">
+                            <input class="ms-2 mt-2 form-control form-control-color" type="color" id="text-color" value="#000000">
+                        </div>
+                        <div class="col-11"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-h ms-2"><i class="bi bi-type-bold icon-card"></i></button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-h me-3"><i class="bi bi-type-italic icon-card"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow" id="card4">
+                <div class="card-body ms-3 me-3 mt-2 mb-2">
+                    <div class="row">
+                        <label for="color">Color del l&aacute;piz</label>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-1">
+                            <input class="ms-2 mt-2 form-control form-control-color" type="color" id="color" value="#000000">
+                        </div>
+                        <div class="col-11"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label for="grosor">Grosor del lápiz:</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6 text-center">
+                            <input type="range" id="grosor" min="1" max="30" value="4">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <script>
+            const cards = document.querySelectorAll('.card');
+            const radioButtons = document.querySelectorAll('.btn-check');
+
+            radioButtons.forEach((button, index) => {
+                button.addEventListener('change', () => {
+                    if (button.checked) {
+                        cards.forEach((card, i) => {
+                            if (i === index) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+
+        <!--BOTONES-->
+        <!--<div class=" mt-5">
+            <div class="capa2 mt-5">
+                <label for="shape-color">Color del contorno:</label>
+                <input type="color" id="shape-color" value="#000000">
+        
+                <label for="shape-fill">Rellenar figura:</label>
+                <input type="checkbox" id="shape-fill" checked>
+        
+                <label for="text-color">Color del texto:</label>
+                <input type="color" id="text-color" value="#000000">
+        
+                <label for="color">Color del lápiz:</label>
+                <input type="color" id="color" value="#000000">
+        
+                <label for="grosor">Grosor del lápiz:</label>
+                <input type="range" id="grosor" min="1" max="30" value="4">
+
+                <br>
+                <button id="circle">Círculo</button>
+                <button id="square">Cuadrado</button>
+                <button id="diamond">Rombo</button>
+                <button id="rectangle">Rectángulo</button>
+                <button id="add-text">Agregar Texto</button>
+                <button id="add-image">Agregar Imagen</button>
+        
+                <button id="free-drawing">Dibujo Libre</button>
+                <button id="delete-selected">Eliminar Seleccionados</button>
+                <button id="delete-all">Borrar Todo</button>
+                <button>Descargar Imagen</button>
+                <button id="download-svg">Descargar SVG</button>
+                <br>
+                <button id="arrow">Agregar Flecha</button>
+                <button id="line">Agregar Línea Recta</button>
+                <br>
+                <input type="file" id="upload-svg" accept=".svg" multiple>
+            </div>
+        </div>-->
+
+        <script>
             var canvas = new fabric.Canvas('canvas', {
+                width: 2500,
+                height: 2000,
                 backgroundColor: '#fff',
                 preserveObjectStacking: true
             });
+
             var drawingMode = false;
             var panningEnabled = false;
+
+            var gridLines = []; // Almacenar las líneas de la cuadrícula
+
+            function createGrid(gridSpacing) {
+                // Eliminar la cuadrícula existente si la hay
+                gridLines.forEach(function (line) {
+                    canvas.remove(line);
+                });
+                gridLines.length = 0; // Vaciar el array
+
+                // Crear la cuadrícula horizontal
+                for (var i = gridSpacing; i < canvas.height; i += gridSpacing) {
+                    var line = new fabric.Line([0, i, canvas.width, i], {
+                        stroke: '#ccc',
+                        selectable: false,
+                        evented: false
+                    });
+                    gridLines.push(line);
+                    canvas.add(line);
+                }
+
+                // Crear la cuadrícula vertical
+                for (var j = gridSpacing; j < canvas.width; j += gridSpacing) {
+                    var line = new fabric.Line([j, 0, j, canvas.height], {
+                        stroke: '#ccc',
+                        selectable: false,
+                        evented: false
+                    });
+                    gridLines.push(line);
+                    canvas.add(line);
+                }
+            }
+
+            // Llama a la función para crear la cuadrícula al cargar la página
+            window.onload = function () {
+                createGrid(50); // Ajusta el espaciado de la cuadrícula según tus necesidades
+            };
+
+            // Función para activar o desactivar la cuadrícula
+            function toggleGrid() {
+                if (gridLines.length === 0) { // Si no hay líneas en la cuadrícula, crearla
+                    createGrid(50);
+                } else { // Si ya hay líneas en la cuadrícula, eliminarlas
+                    gridLines.forEach(function (line) {
+                        canvas.remove(line);
+                    });
+                    gridLines.length = 0; // Vaciar el array
+                }
+            }
+
+            // Agrega un evento clic al enlace de la cuadrícula
+            document.getElementById('toggleGrid').addEventListener('click', function () {
+                toggleGrid(); // Llama a la función para activar o desactivar la cuadrícula
+            });
 
             function toggleDrawingMode() {
                 drawingMode = !drawingMode;
@@ -448,20 +721,6 @@
                 }
             });
 
-            // Ajustar tamaño del canvas dinámicamente
-            function resizeCanvas() {
-                canvas.setDimensions({
-                    width: window.innerWidth,
-                    height: window.innerHeight
-                }, {renderOnAddRemove: false});
-            }
-
-            // Llamar a la función de redimensionamiento al cargar la página y cuando se cambie el tamaño de la ventana
-            window.addEventListener('resize', resizeCanvas);
-            window.addEventListener('load', function () {
-                resizeCanvas();
-                // Agregar aquí cualquier inicialización adicional que necesites
-            });
         </script>
     </body>
 </html>

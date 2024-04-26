@@ -17,6 +17,12 @@
 }
 
 .custom-blog:active {
+    border: #25ce7b; /* Color del contorno */
+    background-color: transparent; /* Fondo transparente */
+    color: #25ce7b; /* Color del texto */
+}
+
+.custom-blog:focus {
     border: 2px solid #25ce7b; /* Color del contorno */
     background-color: transparent; /* Fondo transparente */
     color: #25ce7b; /* Color del texto */

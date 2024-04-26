@@ -139,7 +139,7 @@
             border-color: #E3E4E5;
             background-color: #E3E4E5;
         }
-        .dropdown-toggle::after {
+        .dropdown-toggle:after {
             display: none;
         }
     </style>
