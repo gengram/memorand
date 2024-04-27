@@ -141,10 +141,12 @@
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
-                            <li><a id="toggleGrid" class="dropdown-item" href="#"><i class="bi bi-grid-3x3 me-2" style="color: #25ce7b"></i>Cuadrícula</a></li>
                             <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
                             <li><a id="download-svg" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
-                            <li><input type="file" id="upload-svg" accept="image/svg+xml" multiple/></li>
+                            <li>
+                                <input type="file" class="custom-file-input"  id="upload-svg" accept="image/svg+xml" multiple/>
+                                <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Insertar</text></label>
+                            </li>
                             <!-- Grosor de la linea<li><input type="range" id="line-width" min="1" max="10" value="2"></li> -->
                         </ul>
                     </div>
@@ -187,7 +189,7 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6 text-center">
-                            <input type="range" id="grosor" min="1" max="30" value="4">
+                            <input type="range" id="grosor" min="1" max="60" value="4">
                         </div>
                     </div>
                 </div>
@@ -250,6 +252,30 @@
                     });
                 });
             });
+
+            function openFileInput() {
+                const input = document.getElementById('upload-svg');
+                input.click();
+
+                // Desvincular el botón personalizado temporalmente
+                document.getElementById('customFileLabel').removeAttribute('onclick');
+
+                // Volver a vincular el botón después de un breve retraso
+                setTimeout(() => {
+                    document.getElementById('customFileLabel').setAttribute('onclick', 'openFileInput()');
+                }, 100);
+            }
+
+            function updateFileName() {
+                const input = document.getElementById('upload-svg');
+                const fileNameDisplay = document.getElementById('customFileLabel');
+                const fileName = input.value.split('\\').pop(); // Obtener el nombre del archivo seleccionado
+
+                fileNameDisplay.textContent = fileName ? fileName : 'Ningún archivo ha sido elegido';
+
+                // Restablecer el valor del input de archivo
+            }
+
         </script>
 
         <script>
@@ -263,60 +289,60 @@
             var drawingMode = false;
             var panningEnabled = false;
 
-            var gridColor = '#ccc'; // Color inicial de la cuadrícula
-            var gridLines = []; // Almacenar las líneas de la cuadrícula
-
-            function createGrid(gridSpacing) {
-                // Eliminar la cuadrícula existente si la hay
-                gridLines.forEach(function (line) {
-                    canvas.remove(line); // Elimina todas las líneas de la cuadrícula
-                });
-
-                // Generar las líneas verticales
-                for (var x = 0; x < canvas.width; x += gridSpacing) {
-                    var line = new fabric.Line([x, 0, x, canvas.height], {
-                        stroke: gridColor,
-                        selectable: false
-                    });
-                    gridLines.push(line); // Agrega la línea al arreglo gridLines
-                    canvas.add(line); // Agrega la línea al lienzo
-                }
-
-                // Generar las líneas horizontales
-                for (var y = 0; y < canvas.height; y += gridSpacing) {
-                    var line = new fabric.Line([0, y, canvas.width, y], {
-                        stroke: gridColor,
-                        selectable: false
-                    });
-                    gridLines.push(line); // Agrega la línea al arreglo gridLines
-                    canvas.add(line); // Agrega la línea al lienzo
-                }
-            }
-
-
-
-            // Llama a la función para crear la cuadrícula al cargar la página
-            window.onload = function () {
-                createGrid(50); // Ajusta el espaciado de la cuadrícula según tus necesidades
-            };
-
-            function toggleGrid() {
-                gridColor = gridColor === '#ccc' ? '#fff' : '#ccc'; // Cambia entre blanco y #ccc
-
-                // Actualiza el color de todas las líneas de la cuadrícula
-                gridLines.forEach(function (line) {
-                    line.set('stroke', gridColor);
-                });
-
-                canvas.renderAll(); // Renderiza el lienzo para aplicar los cambios
-            }
-
-
-            // Agrega un evento clic al enlace de la cuadrícula
-            document.getElementById('toggleGrid').addEventListener('click', function () {
-                toggleGrid(); // Llama a la función para cambiar el color de la cuadrícula
-            });
-
+            /*var gridColor = '#ccc'; // Color inicial de la cuadrícula
+             var gridLines = []; // Almacenar las líneas de la cuadrícula
+             
+             function createGrid(gridSpacing) {
+             // Eliminar la cuadrícula existente si la hay
+             gridLines.forEach(function (line) {
+             canvas.remove(line); // Elimina todas las líneas de la cuadrícula
+             });
+             
+             // Generar las líneas verticales
+             for (var x = 0; x < canvas.width; x += gridSpacing) {
+             var line = new fabric.Line([x, 0, x, canvas.height], {
+             stroke: gridColor,
+             selectable: false
+             });
+             gridLines.push(line); // Agrega la línea al arreglo gridLines
+             canvas.add(line); // Agrega la línea al lienzo
+             }
+             
+             // Generar las líneas horizontales
+             for (var y = 0; y < canvas.height; y += gridSpacing) {
+             var line = new fabric.Line([0, y, canvas.width, y], {
+             stroke: gridColor,
+             selectable: false
+             });
+             gridLines.push(line); // Agrega la línea al arreglo gridLines
+             canvas.add(line); // Agrega la línea al lienzo
+             }
+             }
+             
+             
+             
+             // Llama a la función para crear la cuadrícula al cargar la página
+             window.onload = function () {
+             createGrid(50); // Ajusta el espaciado de la cuadrícula según tus necesidades
+             };
+             
+             function toggleGrid() {
+             gridColor = gridColor === '#ccc' ? '#fff' : '#ccc'; // Cambia entre blanco y #ccc
+             
+             // Actualiza el color de todas las líneas de la cuadrícula
+             gridLines.forEach(function (line) {
+             line.set('stroke', gridColor);
+             });
+             
+             canvas.renderAll(); // Renderiza el lienzo para aplicar los cambios
+             }
+             
+             
+             // Agrega un evento clic al enlace de la cuadrícula
+             document.getElementById('toggleGrid').addEventListener('click', function () {
+             toggleGrid(); // Llama a la función para cambiar el color de la cuadrícula
+             });
+             */
             function toggleDrawingMode() {
                 drawingMode = !drawingMode;
                 canvas.isDrawingMode = drawingMode;
@@ -435,11 +461,14 @@
             });
 
             document.getElementById('delete-selected').addEventListener('click', function () {
-                var activeObject = canvas.getActiveObject();
-                if (activeObject) {
-                    canvas.remove(activeObject);
+                var activeObjects = canvas.getActiveObjects();
+                if (activeObjects.length > 0) {
+                    activeObjects.forEach(function (object) {
+                        canvas.remove(object);
+                    });
                 }
             });
+
 
             document.getElementById('delete-all').addEventListener('click', function () {
                 canvas.getObjects().forEach(function (obj) {
@@ -474,7 +503,7 @@
 
             document.getElementById('download-svg').addEventListener('click', function () {
                 // Itera sobre todos los objetos en el lienzo
-                toggleGrid();
+                //toggleGrid();
                 const svgContent = canvas.toSVG();
 
                 // Crea un objeto Blob con el contenido SVG
@@ -495,7 +524,7 @@
                 // Elimina el enlace del DOM
                 document.body.removeChild(a);
 
-                toggleGrid();
+                //toggleGrid();
             });
 
 
@@ -505,12 +534,17 @@
 
             document.getElementById('upload-svg').addEventListener('change', function (e) {
                 var files = e.target.files;
+                var offsetX = canvas.width / 4; // Definir la posición X por defecto
+                var offsetY = canvas.height / 7; // Definir la posición Y por defecto
+
+               
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     var reader = new FileReader();
                     reader.onload = function (event) {
                         fabric.loadSVGFromURL(event.target.result, function (objects, options) {
                             var svgObjects = fabric.util.groupSVGElements(objects, options);
+                            svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
                             canvas.add(svgObjects);
                         });
                     };
@@ -600,6 +634,47 @@
                 }
             });
 
+            canvas.on('mouse:wheel', function (opt) {
+                var delta = opt.e.deltaY;
+                var zoom = canvas.getZoom();
+                zoom *= 0.999 ** delta;
+                if (zoom > 20)
+                    zoom = 20;
+                if (zoom < 0.01)
+                    zoom = 0.01;
+                canvas.zoomToPoint({x: opt.e.offsetX, y: opt.e.offsetY}, zoom);
+                opt.e.preventDefault();
+                opt.e.stopPropagation();
+            });
+
+
+            canvas.on('mouse:down', function (opt) {
+                var evt = opt.e;
+                if (evt.altKey === true) {
+                    this.isDragging = true;
+                    this.selection = false;
+                    this.lastPosX = evt.clientX;
+                    this.lastPosY = evt.clientY;
+                }
+            });
+            canvas.on('mouse:move', function (opt) {
+                if (this.isDragging) {
+                    var e = opt.e;
+                    var vpt = this.viewportTransform;
+                    vpt[4] += e.clientX - this.lastPosX;
+                    vpt[5] += e.clientY - this.lastPosY;
+                    this.requestRenderAll();
+                    this.lastPosX = e.clientX;
+                    this.lastPosY = e.clientY;
+                }
+            });
+            canvas.on('mouse:up', function (opt) {
+                // on mouse up we want to recalculate new interaction
+                // for all objects, so we call setViewportTransform
+                this.setViewportTransform(this.viewportTransform);
+                this.isDragging = false;
+                this.selection = true;
+            });
 
         </script>
 
