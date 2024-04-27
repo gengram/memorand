@@ -37,7 +37,14 @@ public class NotesController {
         ArrayList<Note> notes = notem.getNotesByTask(task_id);
 
         if (notes.isEmpty()) {
-            htmlcode += "<p>No hay notas por mostrar</p>";
+            htmlcode +=  "<div class='row mt-3'>"
+                    + "<div class='col-1'></div>"
+                    + "<div class='col-10'>"
+                    + "<p class=''>No hay notas por mostrar.</p>"
+                    + "</div>"
+                    + "<div class='col-1'></div>"
+                    + "</div>"
+                    ;
             return htmlcode;
         } else {
             htmlcode += "<diV class='row'>"

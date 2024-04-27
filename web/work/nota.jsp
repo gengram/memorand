@@ -38,7 +38,7 @@
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
-        <title>Memorand | </title>
+        <title>Memorand | <%= note_name%></title>
         <!-- Edit-Image -->
         <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.css">
@@ -273,13 +273,9 @@
 
             <div class="row" >
                 <div class="col-12">
-<<<<<<< HEAD
-                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 350px;"></div>
-=======
-                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 1000px;">
+                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 350px;">
                         <%= note_text%>
                     </div>
->>>>>>> 0c5cb9b6e6aff3f6dc23b552d30725e600c82b1b
                 </div>
             </div>
                    

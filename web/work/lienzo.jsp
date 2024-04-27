@@ -2,6 +2,7 @@
 <html>
     <head>
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
@@ -51,20 +52,31 @@
                 height: 300px;
             }
 
+
+            .capa1 {
+                top: 15px;
+                z-index: 2;
+                align-content: center;
+                position: absolute;
+            }
             .capa2 {
                 top: 10px;
-                z-index: 2;
+                z-index: 6;
                 position: absolute;
                 text-align: center;
             }
-            .capa1 {
-                top: 15px;
+            .capa3 {
+                top: 170px;
+                left: 35px;
+                z-index: 4;
                 align-content: center;
                 position: absolute;
             }
-            .capa3 {
+            .capa4 {
                 top: 80px;
+                left: 35px;
                 align-content: center;
+                z-index: 5;
                 position: absolute;
             }
 
@@ -125,7 +137,7 @@
             <div class="row">
                 <div class="col-2">
                     <div class="btn-group dropend capa2 start-0 ms-4">
-                        <button type="button" class="btn btn-light rounded-2" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-light rounded-2 des" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
@@ -133,46 +145,55 @@
                             <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
                             <li><a id="download-svg" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
                             <li><input type="file" id="upload-svg" accept="image/svg+xml" multiple/></li>
+                            <!-- Grosor de la linea<li><input type="range" id="line-width" min="1" max="10" value="2"></li> -->
                         </ul>
                     </div>
                 </div>
                 <div class="col-8">
-                    <div class="btn-group capa1" style=" margin-left: 10rem " role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check btn-c" name="btnradio" id="btnradio1" autocomplete="off">
-                        <label class="btn btn-h" for="btnradio1">
-                            <i class="bi bi-boxes icon-tools"></i></label>
+                    <div class="btn-group capa1 shadow-lg" style=" margin-left: 10rem " role="group" aria-label="Basic radio toggle button group">
+                        <button id="figuras" type="button" class="btn btn-h des"><i class="bi bi-boxes icon-tools"></i></button>
 
-                        <input type="radio" class="btn-check btn-c" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label id="add-text" class="btn btn-h" for="btnradio2">
-                            <i class="bi bi-textarea-t icon-tools"></i>
-                        </label>
-
-                        <button id="line" type="button" class="btn btn-h"><i class="bi bi-slash-lg icon-tools"></i></button>
+                        <button id="add-text" type="button" class="btn btn-h des"><i class="bi bi-textarea-t icon-tools"></i></button>
+                        <button id="line" type="button" class="btn btn-h des"><i class="bi bi-slash-lg icon-tools"></i></button>
 
                         <button id="free-drawing" type="button" class="btn btn-h"><i class="bi bi-brush-fill icon-tools"></i></button>
 
-                        <button id="arrow" type="button" class="btn btn-h"><i class="bi bi-arrow-up-right icon-tools"></i></button>
-                        <button id="add-image" type="button" class="btn btn-h"><i class="bi bi-images icon-tools"></i></button>
-                        <button id="delete-all" type="button" class="btn btn-h"><i class="bi bi-trash3 icon-tools"></i></button>
-                        <button id="delete-selected" type="button" class="btn btn-h"><i class="bi bi-eraser-fill icon-tools"></i></button>
+                        <button id="add-image" type="button" class="btn btn-h des"><i class="bi bi-images icon-tools"></i></button>
+                        <button id="delete-all" type="button" class="btn btn-h des"><i class="bi bi-trash3 icon-tools"></i></button>
+                        <button id="delete-selected" type="button" class="btn btn-h des"><i class="bi bi-eraser-fill icon-tools"></i></button>
                     </div>
                 </div>
                 <div class="col-2"></div>
             </div>
         </div>
 
-        <div class="card-container capa3 ms-4">
+        <div class="card shadow capa4" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <input class="ms-3 me-3 form-control form-control-color" type="color" id="color" value="#000000">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container capa3">
             <div class="card shadow" id="card1" style="display: none;">
-                <div class="card-body ms-3 me-3 mt-2 mb-2">
-                    <div class="row">
-                        <label for="shape-color">Color del contorno:</label>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-1">
-                            <input class="ms-2 mt-2 form-control form-control-color" type="color" id="shape-color" value="#000000">
+                <div class="card-body ms-3 me-3 mb-2">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label for="grosor">Grosor del lápiz:</label>
                         </div>
-                        <div class="col-11"></div>
                     </div>
+                    <div class="row mt-2">
+                        <div class="col-6 text-center">
+                            <input type="range" id="grosor" min="1" max="30" value="4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow mt-2" id="card2" style="display: none;">
+                <div class="card-body ms-3 me-3 mt-2 mb-2">
                     <div class="row">
                         <div class="col-12">
                             <div class="form-check">
@@ -201,67 +222,40 @@
                     </div>
                 </div>
             </div>
-            <div class="card shadow" id="card2" style="display: none;">
-                <div class="card-body ms-3 me-3 mt-2 mb-2">
-                    <div class="row">
-                        <label for="text-color">Color del texto:</label>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-1">
-                            <input class="ms-2 mt-2 form-control form-control-color" type="color" id="text-color" value="#000000">
-                        </div>
-                        <div class="col-11"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="card shadow" id="card4">
-                <div class="card-body ms-3 me-3 mt-2 mb-2">
-                    <div class="row">
-                        <label for="color">Color del l&aacute;piz</label>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-1">
-                            <input class="ms-2 mt-2 form-control form-control-color" type="color" id="color" value="#000000">
-                        </div>
-                        <div class="col-11"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-12">
-                            <label for="grosor">Grosor del lápiz:</label>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-6 text-center">
-                            <input type="range" id="grosor" min="1" max="30" value="4">
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
-
         <script>
-            const cards = document.querySelectorAll('.card');
-            const radioButtons = document.querySelectorAll('.btn-check');
+            document.addEventListener('DOMContentLoaded', function () {
+                // Event listener para el botón "figuras"
+                document.getElementById('figuras').addEventListener('click', function () {
+                    document.getElementById('card2').style.display = 'block'; // Mostrar la tarjeta 2
+                    document.getElementById('card1').style.display = 'none'; // Ocultar la tarjeta 1
+                });
 
-            radioButtons.forEach((button, index) => {
-                button.addEventListener('change', () => {
-                    if (button.checked) {
-                        cards.forEach((card, i) => {
-                            if (i === index) {
-                                card.style.display = 'block';
-                            } else {
-                                card.style.display = 'none';
-                            }
+                // Event listener para el botón "free-drawing"
+                document.getElementById('free-drawing').addEventListener('click', function () {
+                    document.getElementById('card1').style.display = 'block'; // Mostrar la tarjeta 1
+                    document.getElementById('card2').style.display = 'none'; // Ocultar la tarjeta 2
+                });
+
+                // Event listener para los otros botones
+                var otrosBotones = ['add-text', 'line', 'add-image', 'delete-all', 'delete-selected'];
+                otrosBotones.forEach(function (id) {
+                    document.getElementById(id).addEventListener('click', function () {
+                        var cardContainer = document.querySelector('.card-container');
+                        var cards = cardContainer.querySelectorAll('.card');
+                        cards.forEach(function (card) {
+                            card.style.display = 'none'; // Ocultar todas las tarjetas dentro del contenedor
                         });
-                    }
+                    });
                 });
             });
         </script>
 
         <script>
             var canvas = new fabric.Canvas('canvas', {
-                width: 2500,
-                height: 2000,
+                width: 3500,
+                height: 3000,
                 backgroundColor: '#fff',
                 preserveObjectStacking: true
             });
@@ -269,58 +263,58 @@
             var drawingMode = false;
             var panningEnabled = false;
 
+            var gridColor = '#ccc'; // Color inicial de la cuadrícula
             var gridLines = []; // Almacenar las líneas de la cuadrícula
 
             function createGrid(gridSpacing) {
                 // Eliminar la cuadrícula existente si la hay
                 gridLines.forEach(function (line) {
-                    canvas.remove(line);
+                    canvas.remove(line); // Elimina todas las líneas de la cuadrícula
                 });
-                gridLines.length = 0; // Vaciar el array
 
-                // Crear la cuadrícula horizontal
-                for (var i = gridSpacing; i < canvas.height; i += gridSpacing) {
-                    var line = new fabric.Line([0, i, canvas.width, i], {
-                        stroke: '#ccc',
-                        selectable: false,
-                        evented: false
+                // Generar las líneas verticales
+                for (var x = 0; x < canvas.width; x += gridSpacing) {
+                    var line = new fabric.Line([x, 0, x, canvas.height], {
+                        stroke: gridColor,
+                        selectable: false
                     });
-                    gridLines.push(line);
-                    canvas.add(line);
+                    gridLines.push(line); // Agrega la línea al arreglo gridLines
+                    canvas.add(line); // Agrega la línea al lienzo
                 }
 
-                // Crear la cuadrícula vertical
-                for (var j = gridSpacing; j < canvas.width; j += gridSpacing) {
-                    var line = new fabric.Line([j, 0, j, canvas.height], {
-                        stroke: '#ccc',
-                        selectable: false,
-                        evented: false
+                // Generar las líneas horizontales
+                for (var y = 0; y < canvas.height; y += gridSpacing) {
+                    var line = new fabric.Line([0, y, canvas.width, y], {
+                        stroke: gridColor,
+                        selectable: false
                     });
-                    gridLines.push(line);
-                    canvas.add(line);
+                    gridLines.push(line); // Agrega la línea al arreglo gridLines
+                    canvas.add(line); // Agrega la línea al lienzo
                 }
             }
+
+
 
             // Llama a la función para crear la cuadrícula al cargar la página
             window.onload = function () {
                 createGrid(50); // Ajusta el espaciado de la cuadrícula según tus necesidades
             };
 
-            // Función para activar o desactivar la cuadrícula
             function toggleGrid() {
-                if (gridLines.length === 0) { // Si no hay líneas en la cuadrícula, crearla
-                    createGrid(50);
-                } else { // Si ya hay líneas en la cuadrícula, eliminarlas
-                    gridLines.forEach(function (line) {
-                        canvas.remove(line);
-                    });
-                    gridLines.length = 0; // Vaciar el array
-                }
+                gridColor = gridColor === '#ccc' ? '#fff' : '#ccc'; // Cambia entre blanco y #ccc
+
+                // Actualiza el color de todas las líneas de la cuadrícula
+                gridLines.forEach(function (line) {
+                    line.set('stroke', gridColor);
+                });
+
+                canvas.renderAll(); // Renderiza el lienzo para aplicar los cambios
             }
+
 
             // Agrega un evento clic al enlace de la cuadrícula
             document.getElementById('toggleGrid').addEventListener('click', function () {
-                toggleGrid(); // Llama a la función para activar o desactivar la cuadrícula
+                toggleGrid(); // Llama a la función para cambiar el color de la cuadrícula
             });
 
             function toggleDrawingMode() {
@@ -337,11 +331,11 @@
             document.getElementById('circle').addEventListener('click', function () {
                 var circle = new fabric.Circle({
                     radius: 50,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
-                    stroke: document.getElementById('shape-color').value,
+                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                    stroke: document.getElementById('color').value,
                     strokeWidth: 2,
                     left: canvas.width / 4,
-                    top: canvas.height / 4
+                    top: canvas.height / 7
                 });
                 canvas.add(circle);
             });
@@ -350,11 +344,11 @@
                 var square = new fabric.Rect({
                     width: 100,
                     height: 100,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
-                    stroke: document.getElementById('shape-color').value,
+                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                    stroke: document.getElementById('color').value,
                     strokeWidth: 2,
                     left: canvas.width / 4 - 50,
-                    top: canvas.height / 4 - 50
+                    top: canvas.height / 7 - 50
                 });
                 canvas.add(square);
             });
@@ -366,11 +360,11 @@
                     {x: 100, y: 50},
                     {x: 50, y: 100}
                 ], {
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
-                    stroke: document.getElementById('shape-color').value,
+                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                    stroke: document.getElementById('color').value,
                     strokeWidth: 2,
                     left: canvas.width / 4 - 50,
-                    top: canvas.height / 4 - 50
+                    top: canvas.height / 7 - 50
                 });
                 canvas.add(diamond);
             });
@@ -379,21 +373,34 @@
                 var rectangle = new fabric.Rect({
                     width: 150,
                     height: 75,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
-                    stroke: document.getElementById('shape-color').value,
+                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                    stroke: document.getElementById('color').value,
                     strokeWidth: 2,
                     left: canvas.width / 4 - 75,
-                    top: canvas.height / 4 - 37.5
+                    top: canvas.height / 7 - 37.5
                 });
                 canvas.add(rectangle);
             });
 
+            document.getElementById('line').addEventListener('click', function () {
+                //var lineWidth = parseInt(document.getElementById('line-width').value); // Obtener el grosor de la línea del control deslizante
+                var line = new fabric.Line([50, 50, 200, 200], {
+                    stroke: document.getElementById('color').value,
+                    strokeWidth: 3, // Establecer el grosor de la línea
+                    left: canvas.width / 4,
+                    top: canvas.height / 7
+                });
+                keepLineInsideCanvas(line);
+                canvas.add(line);
+            });
+
+
             document.getElementById('add-text').addEventListener('click', function () {
                 var text = new fabric.Textbox('Texto aquí', {
                     fontSize: 20,
-                    fill: document.getElementById('text-color').value,
+                    fill: document.getElementById('color').value,
                     left: canvas.width / 4,
-                    top: canvas.height / 4
+                    top: canvas.height / 7
                 });
                 canvas.add(text);
             });
@@ -411,7 +418,7 @@
                         img.onload = function () {
                             var fabricImg = new fabric.Image(img, {
                                 left: canvas.width / 4 - img.width / 4,
-                                top: canvas.height / 4 - img.height / 4,
+                                top: canvas.height / 7 - img.height / 7,
                                 selectable: true
                             });
                             canvas.add(fabricImg);
@@ -465,27 +472,37 @@
                 document.body.removeChild(link);
             });
 
-            // Función para descargar el SVG del lienzo
             document.getElementById('download-svg').addEventListener('click', function () {
-                var svg = canvas.toSVG();
-                var blob = new Blob([svg], {type: 'image/svg+xml'});
-                var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = 'lienzo.svg';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                // Itera sobre todos los objetos en el lienzo
+                toggleGrid();
+                const svgContent = canvas.toSVG();
+
+                // Crea un objeto Blob con el contenido SVG
+                const blob = new Blob([svgContent], {type: 'image/svg+xml'});
+
+                // Crea un objeto URL para el Blob
+                const url = window.URL.createObjectURL(blob);
+
+                // Crea un enlace para descargar el archivo
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'canvas.svg'; // Nombre del archivo
+                document.body.appendChild(a);
+
+                // Simula el clic en el enlace para iniciar la descarga
+                a.click();
+
+                // Elimina el enlace del DOM
+                document.body.removeChild(a);
+
+                toggleGrid();
             });
+
 
             document.getElementById('download-image').addEventListener('click', function () {
                 downloadImage();
             });
 
-            document.getElementById('download-svg').addEventListener('click', function () {
-                downloadSVG();
-            });
-
-            // Función para descargar múltiples SVG
             document.getElementById('upload-svg').addEventListener('change', function (e) {
                 var files = e.target.files;
                 for (var i = 0; i < files.length; i++) {
@@ -502,6 +519,7 @@
             });
 
 
+
             canvas.freeDrawingBrush.color = '#000000';
             canvas.freeDrawingBrush.width = 4;
 
@@ -514,6 +532,18 @@
             document.getElementById('grosor').addEventListener('change', function () {
                 canvas.freeDrawingBrush.width = parseInt(this.value, 10) || 1;
             });
+
+            function disableDrawingMode() {
+                drawingMode = false;
+                canvas.isDrawingMode = drawingMode;
+            }
+
+            document.querySelectorAll('.des').forEach((button) => {
+                button.addEventListener('click', () => {
+                    disableDrawingMode();
+                });
+            });
+
 
             canvas.on('mouse:move', function (opt) {
                 if (panningEnabled && opt && opt.e && opt.e.buttons === 1) {
@@ -549,35 +579,6 @@
                 this.selection = true;
             });
 
-            document.getElementById('arrow').addEventListener('click', function () {
-                var arrow = new fabric.Path('M 0 0 L 20 10 L 0 20 L 5 10 L 0 0 z', {
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('shape-color').value : '',
-                    stroke: document.getElementById('shape-color').value,
-                    strokeWidth: 2,
-                    left: canvas.width / 2,
-                    top: canvas.height / 2
-                });
-                keepArrowInsideCanvas(arrow);
-                canvas.add(arrow);
-            });
-
-            document.getElementById('line').addEventListener('click', function () {
-                var line = new fabric.Line([50, 50, 200, 200], {
-                    stroke: document.getElementById('shape-color').value,
-                    strokeWidth: 2
-                });
-                keepLineInsideCanvas(line);
-                canvas.add(line);
-            });
-
-            function keepArrowInsideCanvas(arrow) {
-                arrow.setCoords();
-                var boundingRect = arrow.getBoundingRect();
-                if (boundingRect.top < 0 || boundingRect.left < 0 || boundingRect.top + boundingRect.height > canvas.height || boundingRect.left + boundingRect.width > canvas.width) {
-                    arrow.remove();
-                    alert("La flecha está fuera del lienzo. Por favor, inténtalo de nuevo dentro del lienzo.");
-                }
-            }
 
             function keepLineInsideCanvas(line) {
                 line.setCoords();
@@ -587,6 +588,17 @@
                     alert("La línea está fuera del lienzo. Por favor, inténtalo de nuevo dentro del lienzo.");
                 }
             }
+
+            document.getElementById('color').addEventListener('change', function () {
+                var selectedColor = this.value;
+                canvas.freeDrawingBrush.color = selectedColor; // Aplica el color al lápiz de dibujo libre
+
+                // Aplica el color seleccionado a la línea recta
+                if (canvas.getActiveObject() instanceof fabric.Line) {
+                    canvas.getActiveObject().set('stroke', selectedColor);
+                    canvas.renderAll();
+                }
+            });
 
 
         </script>

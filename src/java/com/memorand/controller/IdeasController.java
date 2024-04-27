@@ -28,7 +28,11 @@ public class IdeasController {
         ArrayList<Idea> ideas = ideam.getIdeasByTask(task_id);
 
         if (ideas.isEmpty()) {
-            htmlcode += "<p>No hay ideas por mostrar</p>";
+            htmlcode += "<div class='col-11'>"
+                    + "<p class='ms-5'>No hay ideas por mostrar.</p>"
+                    + "</div>"
+                    + "<div class='col-1'></div>"
+                    ;
             return htmlcode;
         } else {
             int j = 0;

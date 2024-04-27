@@ -260,7 +260,7 @@
                         </div>
                         <div class="col-1"></div>
                     </div>
-                    <div class="row ms-5">
+                    <div class="row ms-4">
                         <%= ideac.modelGetIdeasByTask(task_id)%>
                     </div>
                 </div>
