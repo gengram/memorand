@@ -8,7 +8,7 @@
 </head>
 <body>
     
-    <div id="main" style="width: 600px; height: 400px;"></div>
+    <div id="main" style="width: 1200px; height: 400px;"></div>
     
     <script>
         var chartDom = document.getElementById('main');

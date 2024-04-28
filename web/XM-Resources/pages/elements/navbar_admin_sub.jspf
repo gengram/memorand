@@ -14,7 +14,7 @@
 
         <!-- Logo de la empresa -->
         <a class="navbar-brand" href="/memorand/admin/home.jsp">
-            <img src="../XM-Resources/vector/memorand-admin.svg" alt="memorand" width="230" style="margin-left: 90%">
+            <img src="../../XM-Resources/vector/memorand-admin.svg" alt="memorand" width="230" style="margin-left: 90%">
         </a>
 
         <!-- Botón para el perfil -->
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../../signout">
                             <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
                             <b style="color: #25ce7b">Cerrar sesi&oacute;n</b>
                         </a>

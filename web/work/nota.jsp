@@ -218,6 +218,7 @@
                                 <div class="col-5 border-start">
                                     <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
                                     <label for="imagenInput" class="custom-file-input-label custom-btnA" id="customFileLabel"><i class="bi bi-upload"></i></label>
+                                    
                                     <button class="btn custom-btnA" onclick="extraerTextoDeImagen()" style="padding: 0.5px 20px;">
                                         <span class="spinner-grow spinner-grow-sm" id="loader" style="display:none;"></span>
                                         <p class="mt-1 me-2 ms-2 mb-2">Extraer</p> 
