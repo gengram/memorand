@@ -191,7 +191,19 @@
             border-color: #FAC7C7;
             background-color: #FAC7C7;
         }
+        
+        /* Estilo para el botón personalizado #000 */
+        .btn-color-000 {
+            border-color: #E3E4E5;
+            background-color: transparent;
+            padding: 0.05rem 0.35rem;
+        }
 
+        .btn-color-000:hover,
+        .btn-color-000:focus {
+            border-color: #000;
+            background-color: #000;
+        }
 
     </style>
 
@@ -218,7 +230,7 @@
                                 <div class="col-5 border-start">
                                     <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
                                     <label for="imagenInput" class="custom-file-input-label custom-btnA" id="customFileLabel"><i class="bi bi-upload"></i></label>
-                                    
+
                                     <button class="btn custom-btnA" onclick="extraerTextoDeImagen()" style="padding: 0.5px 20px;">
                                         <span class="spinner-grow spinner-grow-sm" id="loader" style="display:none;"></span>
                                         <p class="mt-1 me-2 ms-2 mb-2">Extraer</p> 
@@ -250,7 +262,8 @@
                                     <button class="btn btn-color-F37DBD me-2" type="button" onclick="selectColorApunte('#F37DBD')"><i style="color: #F37DBD; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <button class="btn btn-color-F3894D me-2" type="button" onclick="selectColorApunte('#F3894D')"><i style="color: #F3894D; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <button class="btn btn-color-FDB600 me-2" type="button" onclick="selectColorApunte('#FDB600')"><i style="color: #FDB600; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                    <button class="btn btn-color-F25063" type="button" onclick="selectColorApunte('#F25063')"><i style="color: #F25063; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-F25063 me-2" type="button" onclick="selectColorApunte('#F25063')"><i style="color: #F25063; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                    <button class="btn btn-color-000" type="button" onclick="selectColorApunte('#000')"><i style="color: #000; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                     <input type="hidden" id="exampleColorInput">
                                 </div>
                                 <script>
@@ -279,7 +292,7 @@
                     </div>
                 </div>
             </div>
-                   
+
             <div class="row mt-3">
                 <div class="col-2"></div>
                 <div class="col-10 text-end">
@@ -303,7 +316,7 @@
 
             let urlParams = new URLSearchParams(window.location.search);
             let note_id = urlParams.get('id');
-            
+
             let data = {
                 "note_id": note_id,
                 "note_text": contenido

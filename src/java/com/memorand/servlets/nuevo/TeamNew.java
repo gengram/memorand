@@ -61,9 +61,9 @@ public class TeamNew extends HttpServlet
             
             if (inst_id != null)
             {
-                String team_color = team_fields.get(1).substring(1); 
+                String team_color = team_fields.get(0).substring(1); 
                 
-                Team team = new Team(team_id, team_fields.get(0), team_color);
+                Team team = new Team(team_id, team_fields.get(1), team_color);
                 TeamsController teamc = new TeamsController();
                 
                 if (teamc.modelCreateTeam(team))
@@ -73,7 +73,7 @@ public class TeamNew extends HttpServlet
                     
                     if(inteamc.modelCreateInTeam(inteam))
                     {
-                        response.sendRedirect("admin/departamentos.jsp");
+                        response.sendRedirect("admin/home.jsp");
                     }
                     else
                     {

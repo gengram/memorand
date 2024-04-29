@@ -1,0 +1,238 @@
+<!-- Modal crear proyecto -->
+<style>
+    /* Estilo para el botón personalizado #25CE7B */
+    .btn-color-25CE7B {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-25CE7B:hover,
+    .btn-color-25CE7B:focus {
+        border-color: #BDECD5;
+        background-color: #BDECD5;
+    }
+
+    /* Estilo para el botón personalizado #2ADAE5 */
+    .btn-color-2ADAE5 {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-2ADAE5:hover,
+    .btn-color-2ADAE5:focus {
+        border-color: #A2DFF0;
+        background-color: #A2DFF0;
+    }
+
+    /* Estilo para el botón personalizado #7473C0 */
+    .btn-color-7473C0 {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-7473C0:hover,
+    .btn-color-7473C0:focus {
+        border-color: #C7C6D2;
+        background-color: #C7C6D2;
+    }
+
+    /* Estilo para el botón personalizado #F37DBD */
+    .btn-color-F37DBD {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-F37DBD:hover,
+    .btn-color-F37DBD:focus {
+        border-color: #F7C9E9;
+        background-color: #F7C9E9;
+    }
+
+    /* Estilo para el botón personalizado #F3894D */
+    .btn-color-F3894D {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-F3894D:hover,
+    .btn-color-F3894D:focus {
+        border-color: #F7C9C9;
+        background-color: #F7C9C9;
+    }
+
+    /* Estilo para el botón personalizado #FDB600 */
+    .btn-color-FDB600 {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-FDB600:hover,
+    .btn-color-FDB600:focus {
+        border-color: #FFEB99;
+        background-color: #FFEB99;
+    }
+
+    /* Estilo para el botón personalizado #F25063 */
+    .btn-color-F25063 {
+        border-color: #E3E4E5;
+        background-color: transparent;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+
+    .btn-color-F25063:hover,
+    .btn-color-F25063:focus {
+        border-color: #FAC7C7;
+        background-color: #FAC7C7;
+    }
+</style>
+<div class="modal fade" tabindex="-1" role="dialog" id="modalProyectoNew">
+    <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nuevo proyecto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 pt-2">
+                <form action="../projnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                    <div class="row mb-0">
+                        <div class="col-12">
+                            <div class="mb-0">
+                                <label for="tag_color" class="form-label">Color:</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button class="btn btn-color-25CE7B me-1" type="button" onclick="selectColorProyecto('#25CE7B')"><i style="color: #25CE7B;
+                                                                                                                                font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-2ADAE5 me-1" type="button" onclick="selectColorProyecto('#2ADAE5')"><i style="color: #2ADAE5;
+                                                                                                                                font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-7473C0 me-1" type="button" onclick="selectColorProyecto('#7473C0')"><i style="color: #7473C0;
+                                                                                                                                font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-F37DBD me-1" type="button" onclick="selectColorProyecto('#F37DBD')"><i style="color: #F37DBD;
+                                                                                                                                font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-F3894D me-1" type="button" onclick="selectColorProyecto('#F3894D')"><i style="color: #F3894D;
+                                                                                                                                font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-FDB600 me-1" type="button" onclick="selectColorProyecto('#FDB600')"><i style="color: #FDB600;
+                                                                                                                                font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-F25063" type="button" onclick="selectColorProyecto('#F25063')"><i style="color: #F25063;
+                                                                                                                           font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <input type="hidden" name="proj_color" id="proj_color" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" >
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                <input type="text"  name="proj_name" id="proj_name" placeholder="Nombre proyecto" class="form-control-sm rounded-3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <div class="mb-0">
+                                <button type="submit" class="btn btn-lg rounded-pill custom-admin mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Agregar proyecto</p></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    function selectColorProyecto(color) {
+                        document.getElementById("proj_color").value = color;
+                    }
+                </script>
+            </div>
+        </div>
+    </div> 
+</div>
+<!-- Modal Equipo nuevo -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEquipoNew">
+    <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nuevo equipo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5 pt-2">
+                <form action="../teamnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                    <div class="row mb-0">
+                        <div class="col-12">
+                            <div class="mb-0">
+                                <label for="tag_color" class="form-label">Color:</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button class="btn btn-color-25CE7B me-1" type="button" onclick="selectColorEquipo('#B9D7A2')"><i style="color: #B9D7A2;
+                                                                                                                              font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-2ADAE5 me-1" type="button" onclick="selectColorEquipo('#96D5D9')"><i style="color: #96D5D9;
+                                                                                                                              font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-7473C0 me-1" type="button" onclick="selectColorEquipo('#A9AFE4')"><i style="color: #A9AFE4;
+                                                                                                                              font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-F37DBD me-1" type="button" onclick="selectColorEquipo('#E2C1E4')"><i style="color: #E2C1E4;
+                                                                                                                              font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-F3894D me-1" type="button" onclick="selectColorEquipo('#F1B390')"><i style="color: #F1B390;
+                                                                                                                              font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-FDB600 me-1" type="button" onclick="selectColorEquipo('#F8DE9B')"><i style="color: #F8DE9B;
+                                                                                                                              font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <button class="btn btn-color-F25063" type="button" onclick="selectColorEquipo('#EFA1A1')"><i style="color: #EFA1A1;
+                                                                                                                         font-size: 30px;" class="bi bi-square-fill"></i></button>
+                            <input type="hidden"  name="team_color" id="team_color" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" >
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                <input type="text" name="team_name" id="team_name" placeholder="Nombre equipo" class="form-control-sm rounded-3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <div class="mb-0">
+                                <button type="submit" class="btn btn-lg rounded-pill custom-admin mb-0 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Agregar equipo</p></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script>
+                    function selectColorEquipo(color) {
+                        document.getElementById("team_color").value = color;
+                    }
+                </script>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+

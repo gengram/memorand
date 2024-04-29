@@ -62,9 +62,9 @@ public class ProjectNew extends HttpServlet
             
             if (inst_id != null)
             {
-                String proj_color = proj_fields.get(1).substring(1);
+                String proj_color = proj_fields.get(0).substring(1);
             
-                Project project = new Project(proj_id, proj_fields.get(0), proj_color);
+                Project project = new Project(proj_id, proj_fields.get(1), proj_color);
                 ProjectsController projc = new ProjectsController();
                 
                 if (projc.modelCreateProject(project))
@@ -73,7 +73,7 @@ public class ProjectNew extends HttpServlet
                     InProjectsController inprojc = new InProjectsController();
                     
                     if (inprojc.modelCreateInProject(inproj))
-                    { response.sendRedirect("admin/proyectos.jsp"); }
+                    { response.sendRedirect("admin/home.jsp"); }
                     else
                     { response.sendRedirect("admin/home.jsp?error=200-1");}
                 

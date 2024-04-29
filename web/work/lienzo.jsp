@@ -141,12 +141,13 @@
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
-                            <li><a id="download-image" class="dropdown-item" href="#"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
-                            <li><a id="download-svg" class="dropdown-item" href="#"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
+                            <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
+                            <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
                             <li>
                                 <input type="file" class="custom-file-input"  id="upload-svg" accept="image/svg+xml" multiple/>
                                 <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Insertar</text></label>
                             </li>
+                            <li><a id="DB-svg" class="dropdown-item"><i class="bi bi-save-fill me-2" style="color: #25ce7b"></i>Guardar</a></li>
                             <!-- Grosor de la linea<li><input type="range" id="line-width" min="1" max="10" value="2"></li> -->
                         </ul>
                     </div>
@@ -289,64 +290,54 @@
             var drawingMode = false;
             var panningEnabled = false;
 
-            /*var gridColor = '#ccc'; // Color inicial de la cuadrícula
-             var gridLines = []; // Almacenar las líneas de la cuadrícula
-             
-             function createGrid(gridSpacing) {
-             // Eliminar la cuadrícula existente si la hay
-             gridLines.forEach(function (line) {
-             canvas.remove(line); // Elimina todas las líneas de la cuadrícula
-             });
-             
-             // Generar las líneas verticales
-             for (var x = 0; x < canvas.width; x += gridSpacing) {
-             var line = new fabric.Line([x, 0, x, canvas.height], {
-             stroke: gridColor,
-             selectable: false
-             });
-             gridLines.push(line); // Agrega la línea al arreglo gridLines
-             canvas.add(line); // Agrega la línea al lienzo
-             }
-             
-             // Generar las líneas horizontales
-             for (var y = 0; y < canvas.height; y += gridSpacing) {
-             var line = new fabric.Line([0, y, canvas.width, y], {
-             stroke: gridColor,
-             selectable: false
-             });
-             gridLines.push(line); // Agrega la línea al arreglo gridLines
-             canvas.add(line); // Agrega la línea al lienzo
-             }
-             }
-             
-             
-             
-             // Llama a la función para crear la cuadrícula al cargar la página
-             window.onload = function () {
-             createGrid(50); // Ajusta el espaciado de la cuadrícula según tus necesidades
-             };
-             
-             function toggleGrid() {
-             gridColor = gridColor === '#ccc' ? '#fff' : '#ccc'; // Cambia entre blanco y #ccc
-             
-             // Actualiza el color de todas las líneas de la cuadrícula
-             gridLines.forEach(function (line) {
-             line.set('stroke', gridColor);
-             });
-             
-             canvas.renderAll(); // Renderiza el lienzo para aplicar los cambios
-             }
-             
-             
-             // Agrega un evento clic al enlace de la cuadrícula
-             document.getElementById('toggleGrid').addEventListener('click', function () {
-             toggleGrid(); // Llama a la función para cambiar el color de la cuadrícula
-             });
-             */
+            // Variable para almacenar los objetos del lienzo
+            var canvasObjects = [];
+            // Booleano para controlar si se deben almacenar los objetos en formato SVG
+            var saveSVG = true;
+
+            // Array list para almacenar los objetos en formato SVG
+            var svgObjects = [];
+            var pencilPathsSVG = [];
+
+            // Función para agregar un objeto al lienzo y almacenarlo en canvasObjects
+            function addObjectToCanvas(object) {
+                // Agrega el objeto al lienzo
+                canvas.add(object);
+                // Almacena el objeto y sus propiedades en canvasObjects
+                canvasObjects.push({
+                    type: object.type, // Tipo de objeto (por ejemplo, 'circle', 'rect', etc.)
+                    properties: object.toObject(['left', 'top', 'width', 'height', 'fill', 'stroke', 'strokeWidth']) // Propiedades del objeto
+                });
+
+                // Si saveSVG es true, convierte el objeto a SVG y lo almacena en svgObjects
+                if (saveSVG) {
+                    console.log('saveSVG es true. Convirtiendo objeto a SVG');
+                    var clonedObject = fabric.util.object.clone(object);
+                    var svgObject = clonedObject.toSVG();
+                    svgObjects.push(svgObject);
+
+                    // Verificar si el objeto es un trazo del lápiz y convertirlo a SVG si es necesario
+                    if (object instanceof fabric.Path && object.isEditing) {
+                        var pencilPathSVG = object.toSVG();
+                        pencilPathsSVG.push(pencilPathSVG);
+                    }
+                } else {
+                    console.log('saveSVG es false. No se convierte el objeto a SVG');
+                }
+            }
+
             function toggleDrawingMode() {
                 drawingMode = !drawingMode;
                 canvas.isDrawingMode = drawingMode;
             }
+
+            // Escucha el evento 'path:created' para capturar los trazos del lápiz creados
+            canvas.on('path:created', function (event) {
+                var path = event.path;
+                console.log('Nuevo trazo de lápiz creado:', path);
+
+                // Aquí puedes realizar cualquier acción adicional con el trazo creado, si es necesario
+            });
 
             function togglePanning() {
                 panningEnabled = !panningEnabled;
@@ -355,6 +346,7 @@
             }
 
             document.getElementById('circle').addEventListener('click', function () {
+                console.log('Antes de agregar el círculo al lienzo');
                 var circle = new fabric.Circle({
                     radius: 50,
                     fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
@@ -363,7 +355,8 @@
                     left: canvas.width / 4,
                     top: canvas.height / 7
                 });
-                canvas.add(circle);
+                addObjectToCanvas(circle); // Agrega el circulo al lienzo y lo almacena en canvasObjects
+                console.log('Despues de agregar el círculo al lienzo');
             });
 
             document.getElementById('square').addEventListener('click', function () {
@@ -376,7 +369,7 @@
                     left: canvas.width / 4 - 50,
                     top: canvas.height / 7 - 50
                 });
-                canvas.add(square);
+                addObjectToCanvas(square); // Agrega el cuadrado al lienzo y lo almacena en canvasObjects
             });
 
             document.getElementById('diamond').addEventListener('click', function () {
@@ -392,7 +385,7 @@
                     left: canvas.width / 4 - 50,
                     top: canvas.height / 7 - 50
                 });
-                canvas.add(diamond);
+                addObjectToCanvas(diamond); // Agrega el diamante al lienzo y lo almacena en canvasObjects
             });
 
             document.getElementById('rectangle').addEventListener('click', function () {
@@ -405,7 +398,7 @@
                     left: canvas.width / 4 - 75,
                     top: canvas.height / 7 - 37.5
                 });
-                canvas.add(rectangle);
+                addObjectToCanvas(rectangle); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
             });
 
             document.getElementById('line').addEventListener('click', function () {
@@ -417,7 +410,7 @@
                     top: canvas.height / 7
                 });
                 keepLineInsideCanvas(line);
-                canvas.add(line);
+                addObjectToCanvas(line); // Agrega una linea al lienzo y la almacena en canvasObjects
             });
 
 
@@ -429,6 +422,7 @@
                     top: canvas.height / 7
                 });
                 canvas.add(text);
+                addObjectToCanvas(text); // Agrega el texto al lienzo y lo almacena en canvasObjects
             });
 
             document.getElementById('add-image').addEventListener('click', function () {
@@ -447,7 +441,7 @@
                                 top: canvas.height / 7 - img.height / 7,
                                 selectable: true
                             });
-                            canvas.add(fabricImg);
+                            addObjectToCanvas(fabricImg);
                         };
                         img.src = event.target.result;
                     };
@@ -537,7 +531,7 @@
                 var offsetX = canvas.width / 4; // Definir la posición X por defecto
                 var offsetY = canvas.height / 7; // Definir la posición Y por defecto
 
-               
+
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     var reader = new FileReader();
@@ -545,7 +539,7 @@
                         fabric.loadSVGFromURL(event.target.result, function (objects, options) {
                             var svgObjects = fabric.util.groupSVGElements(objects, options);
                             svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
-                            canvas.add(svgObjects);
+                            addObjectToCanvas(svgObjects)
                         });
                     };
                     reader.readAsDataURL(file);
@@ -568,9 +562,30 @@
             });
 
             function disableDrawingMode() {
+                console.log('Iniciando disableDrawingMode()...');
                 drawingMode = false;
                 canvas.isDrawingMode = drawingMode;
+
+                // Obtener todos los objetos del lienzo
+                var objects = canvas.getObjects();
+
+                // Filtrar los trazos del lápiz que están en modo de edición
+                var pencilPaths = objects.filter(function (object) {
+                    return object instanceof fabric.Path && object.isEditing && object.paintFirstVertex;
+                });
+
+                // Mostrar en la consola los trazos filtrados
+                console.log('Trazos del lápiz filtrados:');
+                console.log(pencilPaths);
+
+                // Recorrer los trazos del lápiz y agregar sus datos SVG al array pencilPathsSVG
+                pencilPaths.forEach(function (path) {
+                    var pencilPathSVG = path.toSVG();
+                    pencilPathsSVG.push(pencilPathSVG);
+                });
+                console.log('Completado disableDrawingMode()');
             }
+
 
             document.querySelectorAll('.des').forEach((button) => {
                 button.addEventListener('click', () => {
@@ -676,6 +691,51 @@
                 this.selection = true;
             });
 
+            // Función para actualizar las propiedades de un objeto en canvasObjects cuando se modifica en el lienzo
+            function updateObjectPropertiesInCanvasObjects(object) {
+                var index = canvasObjects.findIndex(function (item) {
+                    return item.id === object.id;
+                });
+                if (index !== -1) {
+                    canvasObjects[index].properties = object.toObject(['left', 'top', 'width', 'height', 'fill', 'stroke', 'strokeWidth']);
+                }
+            }
+
+            // Event listener para detectar cambios en los objetos del lienzo
+            canvas.on('object:modified', function (e) {
+                var modifiedObject = e.target;
+                updateObjectPropertiesInCanvasObjects(modifiedObject); // Actualiza las propiedades del objeto modificado en canvasObjects
+            });
+
+
+
+            document.getElementById('DB-svg').addEventListener('click', function () {
+                saveSVG = true; // Establece saveSVG como true para comenzar a almacenar objetos en formato SVG
+
+                // Verifica si svgObjects contiene elementos antes de iterar sobre ellos
+                if (svgObjects.length === 0) {
+                    console.log('svgObjects está vacío. No hay elementos para procesar.');
+                } else {
+                    console.log('svgObjects contiene ' + svgObjects.length + ' elementos.');
+
+                    // Itera sobre todos los objetos en svgObjects y haz lo que necesites con ellos
+                    svgObjects.forEach(function (svgObject, index) {
+                        // Aquí puedes guardar svgObject en la base de datos o hacer cualquier otra cosa que necesites
+                        console.log('Objeto SVG #' + (index + 1) + ':', svgObject);
+                    });
+                }
+
+                if (pencilPathsSVG.length === 0) {
+                    console.log('pencilPathObjects está vacío. No hay elementos para procesar.');
+                } else {
+
+                    // Itera sobre todos los trazos creados con el lápiz y haz lo que necesites con ellos
+                    pencilPathsSVG.forEach(function (pencilPaths, index) {
+                        // Aquí puedes guardar pathSVG en la base de datos o hacer cualquier otra cosa que necesites
+                        console.log('Trazo de lápiz SVG #' + (index + 1) + ':', pencilPaths);
+                    });
+                }
+            });
         </script>
 
     </body>

@@ -44,9 +44,9 @@ public class ProjectsController
         {
             htmlcode +=
             "<tr>\n" +
-"                    <td>" + "<i style=\"color: #"+ project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i> "+ project.getProj_name() +"</td>\n" +
-"                    <td>" +
-"                       <a href='"+ add1 +"proyectos/ver.jsp?proj_id="+ project.getProj_id() +"'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a><br>" +
+"                    <td style='padding: 20px;' class='align-middle text-start'><text class=\"ms-5\">" + "<i style=\"color: #"+ project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2 mt-5\"></i> "+ project.getProj_name() +"</text></td>\n" +
+"                    <td style='padding: 20px;' class='align-middle'>" +
+"                       <a href='"+ add1 +"proyectos/ver.jsp?proj_id="+ project.getProj_id() +"'> <i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i> </a><br>" +
 "                    </td>\n" +
 "           </tr>";
         }

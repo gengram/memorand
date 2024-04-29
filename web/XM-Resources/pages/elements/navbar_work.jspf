@@ -28,7 +28,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
+                        <a onclick="borrarAlmacenamientoLocal()" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
                             <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
                             <b style="color: #25ce7b">Cerrar sesi&oacute;n</b>
                         </a>
@@ -38,3 +38,9 @@
         </div>
     </div>
 </nav>
+<script>
+    function borrarAlmacenamientoLocal() {
+        localStorage.clear();
+        // Puedes agregar alguna lógica adicional aquí, como mostrar un mensaje de confirmación
+    }
+</script>

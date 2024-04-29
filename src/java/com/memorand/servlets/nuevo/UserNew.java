@@ -131,15 +131,15 @@ public class UserNew extends HttpServlet
                                             InUsersController inliderc = new InUsersController();
 
                                             if (inliderc.modelCreateInUsers(inlider))
-                                            { response.sendRedirect("admin/lideres.jsp"); }
+                                            { response.sendRedirect("admin/home.jsp"); }
                                             else
-                                            { response.sendRedirect("admin/lideres.jsp?error=100-1"); }
+                                            { response.sendRedirect("admin/home.jsp?error=100-1"); }
                                         }
                                         else
-                                        { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+                                        { response.sendRedirect("admin/home.jsp?error=100-2"); }
                                     }
                                     else
-                                    { response.sendRedirect("admin/lideres.jsp?error=300"); }
+                                    { response.sendRedirect("admin/home.jsp?error=300"); }
 
 
                                     break;
@@ -157,15 +157,15 @@ public class UserNew extends HttpServlet
                                             InUsersController inintegc = new InUsersController();
 
                                             if (inintegc.modelCreateInUsers(ininteg))
-                                            { response.sendRedirect("admin/integrantes.jsp"); }
+                                            { response.sendRedirect("admin/home.jsp"); }
                                             else
-                                            { response.sendRedirect("admin/integrantes.jsp?error=100-1"); }
+                                            { response.sendRedirect("admin/home.jsp?error=100-1"); }
                                         }
                                         else
-                                        { response.sendRedirect("admin/lideres.jsp?error=100-2"); }
+                                        { response.sendRedirect("admin/home.jsp?error=100-2"); }
                                     }
                                     else
-                                    { response.sendRedirect("admin/lideres.jsp?error=300"); }
+                                    { response.sendRedirect("admin/home.jsp?error=300"); }
 
                                     break;
                                 default:
