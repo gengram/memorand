@@ -529,14 +529,6 @@
                 }
             }
         });
-
-        function redireccionar(selectElement) {
-            var selectedOption = selectElement.options[selectElement.selectedIndex];
-            var url = selectedOption.value;
-            if (url) {
-                window.location.href = ?team_id=" + team.getTeam_id() + ";
-            }
-        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
