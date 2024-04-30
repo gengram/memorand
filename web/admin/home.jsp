@@ -334,7 +334,10 @@
                                 <div class="col-3">
                                     <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalAsignarProj"><i class="bi bi-plus-lg me-2"></i>Asignar proyecto</button>
                                 </div>
-                                <div class="col-6 text-end mt-1" >
+                                <div class="col-3">
+                                    <a href="gestion/lideres.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3"><i class="bi bi-plus-lg me-2"></i>Asignar lider</button></a>
+                                </div>
+                                <div class="col-3 text-end mt-1" >
                                     <span>Filtrar por equipo:</span>
                                 </div>
                                 <div class="col-3 text-start" >
@@ -355,7 +358,7 @@
                                     <%= projc.modelGetAllProjectsByInst(inst_id, 0)%>
                                 </tbody>
                             </table>
-                            <h3>Proyectos</h3>
+                            <!--<h3>Proyectos</h3>
                             <table border="2" style="text-align: center">
                                 <thead>
                                     <tr>
@@ -368,7 +371,7 @@
                                 <tbody>
                                     <%= projc.modelGetAllProjectsByTeamRed(team_id)%>
                                 </tbody>
-                            </table>
+                            </table>-->
                         </div>
                     </div>
                     <div class="col-1"></div>

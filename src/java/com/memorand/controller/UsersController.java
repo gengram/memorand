@@ -178,10 +178,9 @@ public class UsersController {
         for (User ch : userm.getAllChByCollab(team_id, proj_id)) {
             htmlcode
                     += "<tr>\n"
-                    + "                    <td>" + ch.getUser_name() + "</td>\n"
-                    + "                    <td> <img src='../../" + ch.getUser_profile() + "' width='40'></img> </td>\n"
+                    + "                    <td><img class='rounded-2 me-2' src='../../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
                     + "                    <td>"
-                    + "<a href=''>Borrar</a><br>"
+                    + "<a href='' style='color: red'><i class=\"bi bi-trash3-fill\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
 
@@ -201,9 +200,8 @@ public class UsersController {
         for (User wk : userm.getAllWkByTeam(team_id)) {
             htmlcode
                     += "<tr>\n"
-                    + "                    <td>" + wk.getUser_name() + " " + wk.getUser_pat() + "</td>\n"
-                    + "                    <td> <img src='../../" + wk.getUser_profile() + "' width='40'></img> </td>\n"
-                    + "                    <td>"
+                    + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><img class='me-2 rounded-2' src='../../" + wk.getUser_profile() + "' width='40'></img>" + wk.getUser_name() + " " + wk.getUser_pat() + "</text></td>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle'>"
                     + "<a href='../../tudelete?user_id=" + wk.getUser_id() + "&team_id=" + team_id + "'>Borrar</a><br>"
                     + "</td>\n"
                     + "           </tr>";

@@ -57,11 +57,11 @@ public class TeamUserNew extends HttpServlet
             
             if (teamuserc.modelCreateTeamUser(teamuser))
             {
-                response.sendRedirect("admin/gestion/integrantes.jsp?team_id="+ team_id);
+                response.sendRedirect("admin/departamentos/ver.jsp?team_id="+ team_id);
             }
             else
             {
-                response.sendRedirect("admin/gestion/integrantes.jsp?error=200");
+                response.sendRedirect("admin/departamentos/ver.jsp?error=200");
             }
         }
         else

@@ -6,9 +6,9 @@
 
 <%
     String inst_id = (String) session.getAttribute("inst_id");
-    
+
     String team_id = request.getParameter("team_id");
-    
+
     TeamsController teamc = new TeamsController();
     ProjectsController projc = new ProjectsController();
 %>
@@ -19,24 +19,23 @@
 
     <%-- HEAD --%>
     <head>
-        
+
         <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
-        
+
         <title>Memorand | Gestionar proyectos</title>
-        
+
         <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
         <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
-        
+
     </head>
     
+
     <%-- BODY --%>
     <body>
-        
-        <h1>Memorand</h1>
-        <h3>Gestionar proyectos por departamento</h3>
-        
-        <br>
-        <h3>Agregar proyectos a departamento</h3>
+
+        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+
+        <!--<h3>Agregar proyectos a departamento</h3>
         
         <form action="../../collabnew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
             <div class="container">
@@ -45,67 +44,72 @@
                         <h3>Departamentos</h3>
                         <select name="team_name" id="team_name" required>
                             <option value="" disabled selected hidden>Departamento</option>
-                            <%= teamc.modelGetListTeamsByInst(inst_id) %>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <h3>Proyectos</h3>
-                        <select name="proj_name" id="proj_name" required>
-                            <option value="" disabled selected hidden>Proyecto</option>
-                            <%= projc.modelGetListProjectsByInst(inst_id) %>
-                        </select>
-                    </div>
-                </div>
-                
-                <br>
-                <input type="submit" value="Agregar proyecto">
-            </div>
-        </form>
+        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+    </select>
+</div>
+<div class="col">
+    <h3>Proyectos</h3>
+    <select name="proj_name" id="proj_name" required>
+        <option value="" disabled selected hidden>Proyecto</option>
+        <%= projc.modelGetListProjectsByInst(inst_id)%>
+    </select>
+</div>
+</div>
 
-                        
-        <br>
-        <h3>Ver proyectos por departamento</h3>
-        
+<br>
+<input type="submit" value="Agregar proyecto">
+</div>
+</form> -->
+
         <div class="container">
+            <div class="row mt-4">
+                <div class="col-1"></div>
+                <div class="col-9">
+                    <h2>Ver proyectos por equipo</h2>
+                </div>
+                <div class="col-2 mt-3">
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                </div>
+            </div>
             <div class="row">
-                <div class="col">
-                    <h3>Departamentos</h3>
-                    <table border="2" style="text-align: center">
-                        <thead>
-                            <tr>
-                                <th>team_name</th>
-                                <th>team_color</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%= teamc.modelGetAllTeamsByInstRed(inst_id) %>
-                        </tbody>
-                    </table>
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <div class="row mt-5">
+                        <div class="col">
+                            <h3>Equipos</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%= teamc.modelGetAllTeamsByInstRed2(inst_id)%>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col">
+                            <h3>Proyectos</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%= projc.modelGetAllProjectsByTeamRed(team_id)%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="col">
-                    <h3>Proyectos</h3>
-                    <table border="2" style="text-align: center">
-                        <thead>
-                            <tr>
-                                <th>proj_name</th>
-                                <th>proj_color</th>
-                                <th>collab_status</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%= projc.modelGetAllProjectsByTeamRed(team_id) %>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="col-1"></div>
             </div>
         </div>
-        
-        <a href="../home.jsp">Regresar</a>
-        <br>
-        <a href="../../signout">Cerrar sesión</a>
-        
+
     </body>
-    
+
 </html>

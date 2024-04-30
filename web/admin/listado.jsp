@@ -7,54 +7,55 @@
         <title>Memorand | Listado</title>
 
         <link rel="stylesheet" href="XM-Resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
     </head>
     <body>
-        <h1>Recuento de Usuarios</h1>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Id</th><!-- 2 -->
-                    <th>Email</th><!-- 3 -->
-                    <th>Contraseña</th><!-- 4 -->
-                    <th>Rol de Usuario</th><!-- 5 -->
-                    <th>Nombre</th><!-- 6 -->
-                    <th>Apellido Paterno</th><!-- 7 -->
-                    <th>Apellido Materno</th><!-- 8 -->
-                    <th>Estatus</th><!-- 9 -->
-                    <th>Imagen</th><!-- 10 -->
-                </tr>
-            </thead>
-            <tbody>
-                <% for (String[] row : (List<String[]>) request.getAttribute("rows")) { %>
-                <tr>
-                    <td><% Generador g2 = new Generador();
-                        String user_id2 = g2.newID();
-                        %>
-                        <%= user_id2%></td><!-- user_id -->
-                    <td><%= row[0].replace("\"", "")%></td> <!-- user_email -->
-                    <td><%= row[1].replace("\"", "")%></td> <!-- user_pass -->
-                    <td><% String userType = row[2].replace("\"", "");
-                        String userTypeLabel = "Desconocido"; // Por defecto
+        
+        <jsp:include page="XM-Resources/pages/elements/navbar_admin.jspf"/>
+        <div class="row mt-3">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h2>Personal agregado</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Estatus</th><!-- 9 -->
+                            <th scope="col">Nombre</th><!-- 6 -->
+                            <th scope="col">Tipo</th><!-- 3 -->
+                            <th scope="col"></th><!-- 3 -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (String[] row : (List<String[]>) request.getAttribute("rows")) { %>
+                        <tr>
+                            <!-- <td><% Generador g2 = new Generador();
+                                String user_id2 = g2.newID();
+                                %>
+                                <%= user_id2%></td> user_id -->
+                            <td style='padding: 20px;' class='align-middle'><i class='bi bi-circle-fill' style='color: #25ce7b'></i></td><!-- user_status -->
+                            <td style='padding: 20px;' class='align-middle'><img style="width: 40px" src="XM-Uploads/users/profile/user_icon.png"> <%= row[3].replace("\"", "") +  row[4].replace("\"", "") +  row[5].replace("\"", "")%></td> <!-- user_name -->
+                            
+                            <td style='padding: 20px;' class='align-middle'><%= row[0].replace("\"", "")%></td> <!-- user_email -->
+                            <td style='padding: 20px;' class='align-middle'><% String userType = row[2].replace("\"", "");
+                                String userTypeLabel = "Desconocido"; // Por defecto
 
-                        switch (userType) {
-                            case "ch":
-                                userTypeLabel = "Líder";
-                                break;
-                            case "wk":
-                                userTypeLabel = "Trabajador";
-                                break;
-                        }%>
-                        <%=userTypeLabel%></td>
-                    <td><%= row[3].replace("\"", "")%></td> <!-- user_name -->
-                    <td><%= row[4].replace("\"", "")%></td> <!-- user_pat -->
-                    <td><%= row[5].replace("\"", "")%></td> <!-- user_mat -->
-                    <td>si</td><!-- user_status -->
-                    <td><img style="width: 40px" src="XM-Uploads/users/profile/user_icon.png"></td><!-- user_profile -->
-                </tr>
-                <% }%>
-            </tbody>
-        </table>
+                                switch (userType) {
+                                    case "ch":
+                                        userTypeLabel = "Líder";
+                                        break;
+                                    case "wk":
+                                        userTypeLabel = "Trabajador";
+                                        break;
+                                }%>
+                                <%=userTypeLabel%></td>
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-1"></div>
+        </div>
 
     </body>
 </html>

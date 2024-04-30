@@ -59,9 +59,55 @@ public class TeamsController {
         TeamsModel teamm = new TeamsModel();
 
         for (Team team : teamm.getAllTeamsByInst(inst_id)) {
-            
+
             htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
-           
+
+        }
+
+        return htmlcode;
+
+    }
+    
+     public String modelGetAllTeamsByInstRed2(String inst_id) {
+
+        String htmlcode = "";
+
+        TeamsModel teamm = new TeamsModel();
+
+        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+            htmlcode
+                    += "<tr>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle '>"
+                    + "                       <a href='?team_id=" + team.getTeam_id() + "'> <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
+                    + "                    </td>\n"
+                    + "           </tr>";
+
+        }
+
+        return htmlcode;
+
+    }
+     
+     public String modelGetAllTeamsByProjRed(String proj_id) {
+
+        String htmlcode = "";
+
+        TeamsModel teamm = new TeamsModel();
+
+        for (Team team : teamm.getAllTeamsByInst(proj_id)) {
+            htmlcode
+                    += "<tr>\n"
+                    + "                    <td>" + team.getTeam_name() + "</td>\n"
+                    + "                    <td>"
+                    + "                       <svg width='50' height='50'>\n"
+                    + "                           <rect width='50' height='50' style='fill:#" + team.getTeam_color() + ";stroke:black;stroke-width:2'/>\n"
+                    + "                       </svg>"
+                    + "                    </td>\n"
+                    + "                    <td>"
+                    + "                       <a href='?team_id=" + team.getTeam_id() + "'>Ver</a><br>"
+                    + "                    </td>\n"
+                    + "           </tr>";
 
         }
 
@@ -127,7 +173,7 @@ public class TeamsController {
             TeamsModel teamm = new TeamsModel();
 
             for (Team team : teamm.getAllTeamsByUser(user_id)) {
-                
+
                 htmlcode
                         += "<tr>\n"
                         + "                    <td>" + team.getTeam_name() + "</td>\n"
@@ -159,6 +205,25 @@ public class TeamsController {
 
         return htmlcode;
     }
+    
+    public String modelGetListTeamsByInst2(String inst_id, String selectedTeamName) {
+        StringBuilder htmlcode = new StringBuilder();
+
+        TeamsModel teamm = new TeamsModel();
+
+        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+            htmlcode.append("<option value='").append(team.getTeam_id()).append("' style='background-color:#").append(team.getTeam_color()).append("' ");
+
+            // Marcar como seleccionada la opción correspondiente al equipo actual
+            if (team.getTeam_name().equals(selectedTeamName)) {
+                htmlcode.append("selected");
+            }
+
+            htmlcode.append(">").append(team.getTeam_name()).append("</option>");
+        }
+
+        return htmlcode.toString();
+    }
 
     public String modelGetTeams(String user_id) {
         String htmlcode = "";
@@ -172,10 +237,8 @@ public class TeamsController {
 
         String user_type = user.getUser_type();
 
-        if (user_type != null)
-        {
-            switch (user_type)
-            {
+        if (user_type != null) {
+            switch (user_type) {
                 case "ch":
                     teams = teamm.getAllTeamsByCh(user_id);
                     break;
@@ -187,15 +250,11 @@ public class TeamsController {
             }
         }
 
-        if (teams.isEmpty())
-        {
+        if (teams.isEmpty()) {
             htmlcode = "<p>No hay equipos por mostrar.</p>";
             return htmlcode;
-        }
-        else
-        {
-            for (Team t : teams)
-            {
+        } else {
+            for (Team t : teams) {
                 ProjectsController projc = new ProjectsController();
 
                 if (user_type != null) {
@@ -211,11 +270,11 @@ public class TeamsController {
                 }
                 htmlcode += "<div class=\"card border border-2\" style=\"max-height: 50px;\">\n"
                         + "<div class=\"row g-0\">\n"
-                        + "<div class=\"col-md-1\" style=\"background-color: #"+ t.getTeam_color() +"; max-height: 46px; max-width: 30px\"></div>\n"
-                        + "<div class=\"col-md-11 ms-4\">"   
-                        + "<div class=\"card-header\" style=\"background-color: transparent;\">\n"    
+                        + "<div class=\"col-md-1\" style=\"background-color: #" + t.getTeam_color() + "; max-height: 46px; max-width: 30px\"></div>\n"
+                        + "<div class=\"col-md-11 ms-4\">"
+                        + "<div class=\"card-header\" style=\"background-color: transparent;\">\n"
                         + "<p class=\"titulo text-end\" style=\"color: #2A2927; font-size: 20px;\">"
-                        + "<b style=\"color: #2A2927\" class=\"ms-4 mb-0\">"+ t.getTeam_name() +"</b>\n"
+                        + "<b style=\"color: #2A2927\" class=\"ms-4 mb-0\">" + t.getTeam_name() + "</b>\n"
                         + hrefcode
                         + "</p>"
                         + "</div>"
