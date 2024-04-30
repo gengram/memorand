@@ -317,14 +317,40 @@
                     svgObjects.push(svgObject);
 
                     // Verificar si el objeto es un trazo del lápiz y convertirlo a SVG si es necesario
-                    if (object instanceof fabric.Path && object.isEditing) {
-                        var pencilPathSVG = object.toSVG();
-                        pencilPathsSVG.push(pencilPathSVG);
-                    }
+
+
                 } else {
                     console.log('saveSVG es false. No se convierte el objeto a SVG');
                 }
             }
+
+            document.getElementById('DB-svg').addEventListener('click', function () {
+                saveSVG = true; // Establece saveSVG como true para comenzar a almacenar objetos en formato SVG
+
+                // Verifica si svgObjects contiene elementos antes de iterar sobre ellos
+                if (svgObjects.length === 0) {
+                    console.log('svgObjects está vacío. No hay elementos para procesar.');
+                } else {
+                    console.log('svgObjects contiene ' + svgObjects.length + ' elementos.');
+
+                    // Itera sobre todos los objetos en svgObjects y haz lo que necesites con ellos
+                    svgObjects.forEach(function (svgObject, index) {
+                        // Aquí puedes guardar svgObject en la base de datos o hacer cualquier otra cosa que necesites
+                        console.log(svgObject);
+                    });
+                }
+
+                if (pencilPathsSVG.length === 0) {
+                    console.log('pencilPathObjects está vacío. No hay elementos para procesar.');
+                } else {
+
+                    // Itera sobre todos los trazos creados con el lápiz y haz lo que necesites con ellos
+                    pencilPathsSVG.forEach(function (pencilPaths, index) {
+                        // Aquí puedes guardar pathSVG en la base de datos o hacer cualquier otra cosa que necesites
+                        console.log('Trazo de lápiz SVG #' + (index + 1) + ':', pencilPaths);
+                    });
+                }
+            });
 
             function toggleDrawingMode() {
                 drawingMode = !drawingMode;
@@ -335,6 +361,8 @@
             canvas.on('path:created', function (event) {
                 var path = event.path;
                 console.log('Nuevo trazo de lápiz creado:', path);
+                var pencilPathSVG = path.toSVG();
+                pencilPathsSVG.push(pencilPathSVG);
 
                 // Aquí puedes realizar cualquier acción adicional con el trazo creado, si es necesario
             });
@@ -346,7 +374,6 @@
             }
 
             document.getElementById('circle').addEventListener('click', function () {
-                console.log('Antes de agregar el círculo al lienzo');
                 var circle = new fabric.Circle({
                     radius: 50,
                     fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
@@ -356,7 +383,12 @@
                     top: canvas.height / 7
                 });
                 addObjectToCanvas(circle); // Agrega el circulo al lienzo y lo almacena en canvasObjects
-                console.log('Despues de agregar el círculo al lienzo');
+
+                document.getElementById('color').addEventListener('change', function () {
+                    circle.set('fill', this.value);
+                    circle.set('stroke', this.value);
+                    canvas.renderAll();
+                });
             });
 
             document.getElementById('square').addEventListener('click', function () {
@@ -370,6 +402,12 @@
                     top: canvas.height / 7 - 50
                 });
                 addObjectToCanvas(square); // Agrega el cuadrado al lienzo y lo almacena en canvasObjects
+
+                document.getElementById('color').addEventListener('change', function () {
+                    square.set('fill', this.value);
+                    square.set('stroke', this.value);
+                    square.renderAll();
+                });
             });
 
             document.getElementById('diamond').addEventListener('click', function () {
@@ -386,6 +424,12 @@
                     top: canvas.height / 7 - 50
                 });
                 addObjectToCanvas(diamond); // Agrega el diamante al lienzo y lo almacena en canvasObjects
+
+                document.getElementById('color').addEventListener('change', function () {
+                    diamond.set('fill', this.value);
+                    diamond.set('stroke', this.value);
+                    diamond.renderAll();
+                });
             });
 
             document.getElementById('rectangle').addEventListener('click', function () {
@@ -399,6 +443,12 @@
                     top: canvas.height / 7 - 37.5
                 });
                 addObjectToCanvas(rectangle); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
+
+                document.getElementById('color').addEventListener('change', function () {
+                    rectangle.set('fill', this.value);
+                    rectangle.set('stroke', this.value);
+                    rectangle.renderAll();
+                });
             });
 
             document.getElementById('line').addEventListener('click', function () {
@@ -411,6 +461,7 @@
                 });
                 keepLineInsideCanvas(line);
                 addObjectToCanvas(line); // Agrega una linea al lienzo y la almacena en canvasObjects
+
             });
 
 
@@ -421,8 +472,13 @@
                     left: canvas.width / 4,
                     top: canvas.height / 7
                 });
-                canvas.add(text);
                 addObjectToCanvas(text); // Agrega el texto al lienzo y lo almacena en canvasObjects
+
+                document.getElementById('color').addEventListener('change', function () {
+                    text.set('fill', this.value);
+                    text.renderAll();
+                });
+
             });
 
             document.getElementById('add-image').addEventListener('click', function () {
@@ -473,6 +529,12 @@
             });
 
             document.addEventListener('keydown', function (e) {
+                var activeObject = canvas.getActiveObject();
+                if (activeObject && activeObject.type === 'textbox' && activeObject.isEditing) {
+                    // Si el objeto activo es un textbox y está en modo de edición, no realizar ninguna acción
+                    return;
+                }
+
                 if (e.keyCode === 46 || e.keyCode === 8) { // Código de tecla para borrar
                     var activeObject = canvas.getActiveObject();
                     if (activeObject) {
@@ -531,7 +593,6 @@
                 var offsetX = canvas.width / 4; // Definir la posición X por defecto
                 var offsetY = canvas.height / 7; // Definir la posición Y por defecto
 
-
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     var reader = new FileReader();
@@ -539,12 +600,36 @@
                         fabric.loadSVGFromURL(event.target.result, function (objects, options) {
                             var svgObjects = fabric.util.groupSVGElements(objects, options);
                             svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
-                            addObjectToCanvas(svgObjects)
+                            addObjectToCanvas(svgObjects);
+
+                            // Escucha los cambios en la paleta de colores y actualiza el color del SVG
+                            document.getElementById('color').addEventListener('change', function () {
+                                svgObjects.set('fill', this.value);
+                                canvas.renderAll();
+                            });
                         });
                     };
                     reader.readAsDataURL(file);
                 }
             });
+
+
+// Función para cambiar el color de los SVG en el lienzo
+            function changeSVGColor(color) {
+                var objects = canvas.getObjects(); // Obtener todos los objetos en el lienzo
+                objects.forEach(function (object) {
+                    if (object.type === 'group' && object.getObjects()[0] instanceof fabric.PathGroup) {
+                        // Verificar si es un grupo de SVG (fabric.PathGroup)
+                        var svgObject = object.getObjects()[0]; // Obtener el objeto SVG dentro del grupo
+                        svgObject.set('fill', color); // Establecer el nuevo color
+                    }
+                });
+                canvas.renderAll(); // Renderizar el lienzo para aplicar los cambios
+            }
+
+// Llamar a la función changeSVGColor con el nuevo color deseado
+            var newColor = '#FF0000'; // Por ejemplo, rojo
+            changeSVGColor(newColor);
 
 
 
@@ -707,35 +792,6 @@
                 updateObjectPropertiesInCanvasObjects(modifiedObject); // Actualiza las propiedades del objeto modificado en canvasObjects
             });
 
-
-
-            document.getElementById('DB-svg').addEventListener('click', function () {
-                saveSVG = true; // Establece saveSVG como true para comenzar a almacenar objetos en formato SVG
-
-                // Verifica si svgObjects contiene elementos antes de iterar sobre ellos
-                if (svgObjects.length === 0) {
-                    console.log('svgObjects está vacío. No hay elementos para procesar.');
-                } else {
-                    console.log('svgObjects contiene ' + svgObjects.length + ' elementos.');
-
-                    // Itera sobre todos los objetos en svgObjects y haz lo que necesites con ellos
-                    svgObjects.forEach(function (svgObject, index) {
-                        // Aquí puedes guardar svgObject en la base de datos o hacer cualquier otra cosa que necesites
-                        console.log('Objeto SVG #' + (index + 1) + ':', svgObject);
-                    });
-                }
-
-                if (pencilPathsSVG.length === 0) {
-                    console.log('pencilPathObjects está vacío. No hay elementos para procesar.');
-                } else {
-
-                    // Itera sobre todos los trazos creados con el lápiz y haz lo que necesites con ellos
-                    pencilPathsSVG.forEach(function (pencilPaths, index) {
-                        // Aquí puedes guardar pathSVG en la base de datos o hacer cualquier otra cosa que necesites
-                        console.log('Trazo de lápiz SVG #' + (index + 1) + ':', pencilPaths);
-                    });
-                }
-            });
         </script>
 
     </body>

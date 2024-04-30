@@ -100,7 +100,7 @@ public class ReadFile extends HttpServlet
         
         catch (Exception e)
         {
-            response.sendRedirect("admin/integrantes/home.jsp?error=300");
+            response.sendRedirect("admin/home.jsp");
         }
         
     }
