@@ -354,7 +354,7 @@
                                 <div class="col-12" >
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Idea</label>
-                                        <input type="text" name="idea_text" id="idea_text" placeholder="Texto de la idea" class="form-control-sm rounded-3" required>
+                                        <input type="text" name="idea_text" id="idea_text" placeholder="Texto de la idea" class="form-control-sm rounded-3" required maxlength="75">
                                     </div>
                                 </div>
                             </div>

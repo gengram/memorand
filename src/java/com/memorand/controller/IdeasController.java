@@ -74,7 +74,7 @@ public class IdeasController {
                         + "<i class=\"bi bi-three-dots-vertical\"  style=\"color: #2A2927;\"></i>\n"
                         + "</div>\n"
                         + "</div>\n"
-                        + "<b class=\"card-text\" style=\"color: #2A2927;\">" + i.getIdea_text() + "</b>\n"
+                        + "<b class=\"card-text\" style=\"font-size: 24px; color: #2A2927;\">" + i.getIdea_text() + "</b>\n"
                         + "</div>\n"
                         + "</div>";
 
