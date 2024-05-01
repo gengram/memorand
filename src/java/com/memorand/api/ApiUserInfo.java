@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ApiUserInfo extends HttpServlet
 {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         response.setContentType("application/json");
@@ -32,7 +32,8 @@ public class ApiUserInfo extends HttpServlet
         
         String user_info = gson.toJson(user);
         
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter())
+        {
             out.println(user_info);
         }
     }

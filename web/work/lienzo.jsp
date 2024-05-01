@@ -227,6 +227,7 @@
             </div>
 
         </div>
+        
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Event listener para el botón "figuras"
