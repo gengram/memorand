@@ -149,7 +149,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-5 pt-2">
-                        <form action="../../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <form action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
                             <div class="row">
                                 <div class="col-12 text-start ms-5">
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3; display: none;" name="team_name" id="team_name" required>

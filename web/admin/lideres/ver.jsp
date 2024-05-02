@@ -1,5 +1,9 @@
 <%-- Memorand by Gengram © 2023 --%>
 
+<%@page import="com.memorand.controller.TeamUsersController"%>
+<%@page import="com.memorand.beans.TeamUser"%>
+<%@page import="com.memorand.controller.ProjectsController"%>
+<%@page import="com.memorand.controller.TeamsController"%>
 <%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page import="com.memorand.beans.Institution"%>
 <%@page import="com.memorand.beans.User"%>
@@ -15,14 +19,18 @@
         response.sendRedirect("../index.jsp?error=100");
         session.invalidate();
     }
-
+    
     User user = new User();
     UsersController userc = new UsersController();
 
     Institution inst = new Institution();
     InstitutionsController instc = new InstitutionsController();
 
+    ProjectsController projc = new ProjectsController();
+    TeamsController teamc = new TeamsController();
     String user_id = request.getParameter("user_id");
+    String team_id = request.getParameter("team_id");
+    String proj_id = request.getParameter("proj_id");
 
     String user_email = null;
     String user_pass = null;
@@ -59,6 +67,7 @@
         inst_name = inst.getInst_name();
         inst_type = inst.getInst_type();
         inst_profile = inst.getInst_profile();
+        
     } else {
         response.sendRedirect("../administradores.jsp");
     }
@@ -120,6 +129,10 @@
             color: #25ce7b; /* Cambiar el color del texto al pasar el ratón */
         }
 
+        .modal-custom {
+            max-width: 510px;
+        }
+
     </style>
 
     <body>
@@ -164,27 +177,85 @@
                     <div class="row">
                         <div class="col-2"><h2>Proyectos</h2></div>
                         <div class="col-6 text-center">
-                            <div class="row text-end mt-2">
-                                <div class="col-4">
+                            <div class="row text-end mt-2 ms-4">
+                                <div class="col-5">
                                     <span>Filtrar por equipo:</span>
                                 </div>
-                                <div class="col-8 ">
-                                    <select class="form-select form-control ms-5" aria-label="Default select example">
+                                <div class="col-7 ">
+                                    <script>
+                                        console.log("<%=user_id%>");
+                                    </script>
+                                    <select class="form-select form-control ms-5" aria-label="Default select example" style="border-color: #AFB2B3;">
                                         <option selected>Selecciona uno</option>
-                                        <option value="1">Equipo 1</option>
-                                        <option value="2">Equipo 2</option>
-                                        <option value="3">Equipo 3</option>
+                                        <%=teamc.modelGetAllTeamsByUserRed3(user_id)%>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <button class="btn custom-admin rounded-pill mt-1"><i class="bi bi-plus-lg me-2"></i>Asignar proyecto</button>
+                        <div class="col-4 text-end">
+                            <button class="btn custom-admin rounded-pill mt-1" data-bs-toggle="modal" data-bs-target="#modalAsignarProj"><i class="bi bi-plus-lg me-2"></i>Asignar proyecto</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-1"></div>
             </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <table class="table mt-3" style="text-align: center;">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-start"><text class="ms-5">Nombre</text></th>
+                                <th scope="col" ></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Tablita proyectos de cada lider -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
+        <!-- Modal Asignar proyecto-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalAsignarProj">
+
+            <div class="modal-dialog modal-dialog-centered text-center modal-custom" role="document">
+
+                <div class="modal-content rounded-4 shadow">
+
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h2 class="mb-0 fs-2">Asignar proyecto</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-5 pt-2">
+                        <form action="../collabnew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+                            <div class="row">
+                                <div class="col-12 text-start ms-5">
+                                    <label for="exampleInputEmail1" class="form-label">Equipo</label>
+                                    <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="team_name" id="team_name" required>
+                                        <option selected>Selecciona uno</option>
+                                        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-start ms-5 mt-3 mb-2">
+                                    <label for="" class="form-label">Proyecto</label>
+                                    <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="proj_name" id="proj_name" required>
+                                        <option selected>Selecciona uno</option>
+                                        <%= projc.modelGetListProjectsByInst(inst_id)%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="text-start mt-3 ms-5">
+                                <button type="submit" class="fw-bold mb-2 btn btn-lg rounded-pill custom-admin"><text class="ms-3 me-3 mt-2 mb-2">Asignar</text></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
         </div>
 
     </body>

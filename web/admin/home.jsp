@@ -191,18 +191,18 @@
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row ">
-                                <div class="col-4 text-start">
-                                    <a href="lideres/nuevo.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3 mt-2"><i class="bi bi-plus-lg me-2"></i>Agregar personal</button></a>
+                                <div class="col-3 mt-2 text-start">
+                                    <a href="lideres/nuevo.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3 "><i class="bi bi-plus-lg me-2"></i>Agregar personal</button></a>
                                 </div>
 
-                                <div class="col-8 mt-2"  >
+                                <div class="col-9 mt-2"  >
                                     <form action="/memorand/readfile" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-3">
-                                                <label for="upload-csv" class="custom-file-input-label custom-admin rounded-pill mt-1" style="padding-bottom: 5px; padding-top: 5px"><i class="bi bi-upload ms-1 me-1"></i>Instant&aacute;neo</label>
+                                                <label for="upload-csv" class="custom-file-input-label custom-admin rounded-pill" style="padding-bottom: 5px; padding-top: 5px"><i class="bi bi-upload ms-1 me-1"></i>Instant&aacute;neo</label>
                                             </div>
                                             <div class="col-6 text-start">
-                                                <input type="file" name="file" accept=".csv" id="upload-csv" class="form-control mt-1">
+                                                <input type="file" name="file" accept=".csv" id="upload-csv" class="form-control">
                                             </div>
                                             <div class="col-3">
                                                 <button type="submit" class="btn custom-admin rounded-pill mt-1"><i class="bi bi-capslock-fill me-2"></i>Agregar</button>
@@ -257,7 +257,7 @@
                                             <th scope='col'></th>
                                         </tr>
                                     </thead>
-                                    <tbody  id='table-bodyInte'>
+                                    <tbody  id="table-bodyInte">
                                         <%= userc.modelGetAllWkByInst(inst_id, 1, 0)%>
                                     </tbody>
                                 </table>
@@ -341,7 +341,7 @@
                                     <span>Filtrar por equipo:</span>
                                 </div>
                                 <div class="col-3 text-start" >
-                                    <select onchange="redireccionar(this)" class="form-select form-control" style="border-color: #AFB2B3" aria-label="Default select example">
+                                    <select class="form-select form-control" style="border-color: #AFB2B3" aria-label="Default select example">
                                         <option selected>Selecciona uno</option>
                                         <%= teamc.modelGetAllTeamsByInstRed(inst_id)%>
                                     </select>

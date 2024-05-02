@@ -83,11 +83,11 @@
 
                     </div>
                     <div class="col-5 mt-3">
-                        <label for="exampleInputEmail1" class="form-label">Perfil del administrador</label>
+                        <label for="exampleInputEmail1" class="form-label">Perfil del personal</label>
                         <input class="form-control" type="file" name="inst_profile" id="inst_profile" required>
                     </div>
                     <div class="col-3 mt-3">
-                       <label for="exampleInputEmail1" class="form-label">Tipo de personal</label>
+                        <label for="exampleInputEmail1" class="form-label">Tipo de personal</label>
                         <select id="tipo_personal" class="form-select form-control-lg" aria-label="Default select example" style="border-color: #AFB2B3">
                             <option selected>Selecciona uno</option>
                             <option value="1">L&iacute;der</option>
@@ -134,21 +134,21 @@
                 </div>
             </form>
         </div>
-        
+
     </body>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const selectTipoPersonal = document.getElementById("tipo_personal");
-        const form = document.querySelector("form");
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectTipoPersonal = document.getElementById("tipo_personal");
+            const form = document.querySelector("form");
 
-        selectTipoPersonal.addEventListener("change", function() {
-            if (selectTipoPersonal.value === "1") {
-                form.action = "../../usernew?user_type=ch";
-            } else if (selectTipoPersonal.value === "2") {
-                form.action = "../../usernew?user_type=wk";
-            }
+            selectTipoPersonal.addEventListener("change", function () {
+                if (selectTipoPersonal.value === "1") {
+                    form.action = "../../usernew?user_type=ch";
+                } else if (selectTipoPersonal.value === "2") {
+                    form.action = "../../usernew?user_type=wk";
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 </html>

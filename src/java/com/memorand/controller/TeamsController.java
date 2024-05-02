@@ -125,17 +125,26 @@ public class TeamsController {
         for (Team team : teamm.getAllTeamsByUser(user_id)) {
             htmlcode
                     += "<tr>\n"
-                    + "                    <td>" + team.getTeam_name() + "</td>\n"
-                    + "                    <td>"
-                    + "                       <svg width='50' height='50'>\n"
-                    + "                           <rect width='50' height='50' style='fill:#" + team.getTeam_color() + ";stroke:black;stroke-width:2'/>\n"
-                    + "                       </svg>"
-                    + "                    </td>\n"
-                    + "                    <td>"
-                    + "                       <a href='?team_id=" + team.getTeam_id() + "'>Ver</a><br>"
+                    + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</text></td>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle'>"
+                    + "                       <a href='../departamentos/ver.jsp?team_id=" + team.getTeam_id() + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
                     + "                    </td>\n"
                     + "           </tr>";
 
+        }
+
+        return htmlcode;
+
+    }
+    
+    public String modelGetAllTeamsByUserRed3(String user_id) {
+
+        String htmlcode = "";
+
+        TeamsModel teamm = new TeamsModel();
+
+        for (Team team : teamm.getAllTeamsByUser(user_id)) {
+            htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
         }
 
         return htmlcode;

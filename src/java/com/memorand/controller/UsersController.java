@@ -243,7 +243,7 @@ public class UsersController {
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='" + add1 + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='" + add2 + "lideres/ver.jsp?user_id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
+                    + "<a href='" + add2 + "integrantes/ver.jsp?user_id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
 
@@ -286,14 +286,13 @@ public class UsersController {
     }
 
     public String modelGetAdmins(String inst_id, String admin_status) {
-        String htmlcode = "<table border=\"1\">\n"
+        String htmlcode = "<table class='table mt-3'>\n"
                 + "                <thead>\n"
                 + "                    <tr>\n"
-                + "                        <th></th>\n"
-                + "                        <th></th>\n"
-                + "                        <th>Nombre</th>\n"
-                + "                        <th></th>\n"
-                + "                        <th></th>\n"
+                + "                        <th scope='col'></th>\n"
+                + "                        <th scope='col'><text class='ms-5'>Nombre</text></th>\n"
+                + "                        <th scope='col'></th>\n"
+                + "                        <th scope='col'></th>\n"
                 + "                    </tr>\n"
                 + "                </thead>\n"
                 + "                <tbody>";
@@ -302,17 +301,22 @@ public class UsersController {
         ArrayList<User> admins = userm.getAdmins(inst_id, admin_status);
 
         if (admins.isEmpty()) {
-            htmlcode = "<p>No hay administradores disponibles.</p>";
+            htmlcode = "<p class='mt-5'>No hay administradores disponibles.</p>";
             return htmlcode;
         } else {
             for (User admin : admins) {
+                String circleFillgreen;
+                if (admin.getUser_status().equals("si")) {
+                    circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
+                } else {
+                    circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
+                }
                 htmlcode
                         += "<tr>\n"
-                        + "     <td>" + admin.getUser_status() + "</td>\n"
-                        + "     <td> <img src='../" + admin.getUser_profile() + "' width='40'></img> </td>\n"
-                        + "     <td>" + admin.getUser_name() + " " + admin.getUser_pat() + " " + admin.getUser_mat() + "</td>\n"
-                        + "     <td>" + admin.getUser_email() + "</td>\n"
-                        + "     <td> <a href='admin.jsp?id=" + admin.getUser_id() + "'>Ver</a> </td>\n"
+                        + "     <td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>\n"
+                        + "     <td style='padding: 20px;' class='align-middle'> <img class='me-3' src='../" + admin.getUser_profile() + "' width='40'></img>"  + admin.getUser_name() + " " + admin.getUser_pat() + " " + admin.getUser_mat() + "</td>\n"
+                        + "     <td style='padding: 20px;' class='align-middle'>" + admin.getUser_email() + "</td>\n"
+                        + "     <td style='padding: 20px;' class='align-middle'> <a href='admin.jsp?id=" + admin.getUser_id() + "'><i style='color: #7473C0; font-size: 25px' class=\"bi bi-chevron-right\"></i></a> </td>\n"
                         + "</tr>\n";
             }
 

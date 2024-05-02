@@ -30,19 +30,19 @@
                 </button>
                 <ul class="dropdown-menu my-4 shadow">
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="?">
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="perfil.jsp">
                             <i class="bi bi-person-square" style="color: #25ce7b"></i>
                             Mi perfil
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="?">
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="institucion.jsp">
                             <i class="bi bi-buildings" style="color: #25ce7b"></i>
                             Mi instituci&oacute;n
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="?">
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="configuracion.jsp">
                             <i class="bi bi-gear-fill" style="color: #25ce7b"></i>
                             Configuraci&oacute;n
                         </a>
