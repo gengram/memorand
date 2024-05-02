@@ -342,27 +342,31 @@ public class UsersController {
             ArrayList<User> chs = userm.getAllChByCollab(team_id, proj_id);
             ArrayList<User> wks = userm.getAllWkByTeam(team_id);
 
-            if (chs.isEmpty()) {
+            if (chs.isEmpty())
+            {
                 htmlcode += "<p>No hay l&iacute;deres disponibles.</p>";
-            } else {
+            }
+            else
+            {
                 htmlcode += "<div class=\"row mt-3\">"
                         + "<div class=\"col-1\"></div>"
                         + "<div class=\"col-10\">"
-                        + "<h3>L&iacute;deres</h3>"
+                        + "<h2>L&iacute;deres</h2>"
                         + "<table class=\"table text-center mt-\">\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
-                        + "             <th scope=\"col\" >Estatus</th>\n"
+                        + "             <th scope=\"col\" ></th>\n"
                         + "             <th scope=\"col\" >Nombre</th>\n"
                         + "             <th scope=\"col\" >Correo</th>\n"
                         + "         </tr>\n"
                         + "     </thead>\n"
                         + "  <tbody>";
 
-                for (User ch : chs) {
+                for (User ch : chs)
+                {
                     htmlcode += "<tr>\n"
-                            + "     <td class=\"align-middle\">" + ch.getUser_status() + "</td>\n"
-                            + "     <td class=\"align-middle\">" + ch.getUser_name() + "</td>\n"
+                            + "     <td class=\"align-middle\" ><img src='../"+ ch.getUser_profile() +"' width='40'/> </td>\n"
+                            + "     <td class=\"align-middle\" >" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
                             + "     <td class=\"align-middle\">" + ch.getUser_email() + "</td>\n"
                             + "  </tr>";
                 }
@@ -373,27 +377,31 @@ public class UsersController {
                         + "<div class=\"col-1\"></div>";
             }
 
-            if (wks.isEmpty()) {
+            if (wks.isEmpty())
+            {
                 htmlcode += "<p>No hay integrantes disponibles.</p>";
-            } else {
+            }
+            else
+            {
                 htmlcode += "<div class=\"row mt-2\">"
                         + "<div class=\"col-1\"></div>"
                         + "<div class=\"col-10\">"
-                        + "<h3>Integrantes</h3>"
+                        + "<h2>Integrantes</h2>"
                         + "<table class=\"table text-center mt-3\" >\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
-                        + "             <th scope=\"col\">Estatus</th>\n"
+                        + "             <th scope=\"col\"></th>\n"
                         + "             <th scope=\"col\">Nombre</th>\n"
                         + "             <th scope=\"col\">Correo</th>\n"
                         + "         </tr>\n"
                         + "     </thead>\n"
                         + "  <tbody>";
 
-                for (User wk : wks) {
+                for (User wk : wks) 
+                {
                     htmlcode += "<tr>\n"
-                            + "     <td class=\"align-middle\" >" + wk.getUser_status() + "</td>\n"
-                            + "     <td class=\"align-middle\" >" + wk.getUser_name() + "</td>\n"
+                            + "     <td class=\"align-middle\" ><img src='../"+ wk.getUser_profile() +"' width='40'/> </td>\n"
+                            + "     <td class=\"align-middle\" >" + wk.getUser_name() + " " + wk.getUser_pat() + " " + wk.getUser_mat() + "</td>\n"
                             + "     <td class=\"align-middle\" >" + wk.getUser_email() + "</td>\n"
                             + "  </tr>";
                 }

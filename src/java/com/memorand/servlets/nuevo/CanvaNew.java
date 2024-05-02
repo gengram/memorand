@@ -88,8 +88,7 @@ public class CanvaNew extends HttpServlet
                             
                             if (usercanvac.modelCreateUserCanva(usercanva))
                             {
-                                //response.sendRedirect("work/lienzo.jsp?id="+canva_id);
-                                response.sendRedirect("work/tarea.jsp?id="+task_id);
+                                response.sendRedirect("work/lienzo.jsp?id="+canva_id);
                             }
                             else
                             { response.sendRedirect("work/tarea.jsp?id="+task_id+"&error=200-1"); }

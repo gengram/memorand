@@ -33,6 +33,7 @@
 
 <html>
     <head>
+        
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -55,6 +56,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
     </head>
+    
     <style>
         .btn-h{
             color: #000;

@@ -67,7 +67,17 @@ public class IdeaNew extends HttpServlet
                     String idea_id = g.newID();
                     String task_id = request.getParameter("id");
                     
-                    String idea_color = idea_fields.get(0).substring(1);
+                    
+                    String idea_color;
+                    if(!idea_fields.get(0).isEmpty())
+                    {
+                        idea_color = idea_fields.get(0).substring(1);
+                    }
+                    else
+                    {
+                        idea_color = "F8DE9B";
+                    }
+                    
                     String idea_text = idea_fields.get(1).trim();
                     
                     Timestamp idea_date = new Timestamp(System.currentTimeMillis());
