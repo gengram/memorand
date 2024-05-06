@@ -17,8 +17,7 @@
 
     String system_statusA = "null", sales_statusA = "null", tester_statusA = "null";
 
-    if (sales_status != null && system_status != null && tester_status != null)
-    {
+    if (sales_status != null && system_status != null && tester_status != null) {
         system_statusC = serviceu.transformServiceStatus(system_status);
         sales_statusC = serviceu.transformServiceStatus(sales_status);
         tester_statusC = serviceu.transformServiceStatus(tester_status);
@@ -35,33 +34,104 @@
 
     <!-- HEAD -->
     <head>
-        
+
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-staff_1.svg">
 
         <title>Memorand Staff | Configuracion</title>
-        
+
         <script src="scripts/configuracion.js"></script>
-        
+
     </head>
 
     <!-- BODY -->
     <body>
-        
-        <h1><a href='home.jsp'>&larr;</a> Configuraci&oacute;n</h1>
-        <!-- PONER ESTOS EN LA NAVBAR-->
-        <a href='ventas.jsp'>Ventas</a>
-        <a href='configuracion.jsp'>Configuracion</a>
-        <a href='../signout'>Cerrar sesi&oacute;n</a>
-        
-        <hr>
-        
-        <!-- PONER ESTOS COMO EL LOOK AND FEEL-->
-        <p><a href=''>Descargar formato de administradores</a></p>
-        <p><a href=''>Descargar formato de personal</a></p>
-        <p><a href='#' onclick="confirmAction('sales','<%= sales_status %>');"><%= sales_statusA %> formulario de ventas</a> Status actual: <%= sales_statusC %></p>
-        <p><a href='#' onclick="confirmAction('tester','<%= tester_status %>');"><%= tester_statusA %> formulario de testers</a> Status actual: <%= tester_statusC %></p>
-        <p><a href='#' onclick="confirmAction('system','<%= system_status %>');"><%= system_statusA %> memorand</a> Status actual: <%= system_statusC %></p>
-        
+
+        <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-1"></div>
+                <div class="col-9">
+                    <h1>Configuraci&oacute;n</h1>
+                </div>
+                <div class="col-2 mt-3">
+                    <p style="color: #7473C0; font-size: 18px;"><a id="backLink" href='home.jsp' style="color: #7473C0;"><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col-12">
+                                            <a href=''><p class="mt-2" style="color: #4A4F54;">Descargar formato de administradores</p></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col-12">
+                                            <a hrredef=''><p class="mt-2" style="color: #4A4F54;">Descargar formato de personal</p></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="row mt-3 mb-2">
+                                        <div class="col-6">
+                                            <a href='#' onclick="confirmAction('sales', '<%= sales_status%>');"><p style="color: red"><%= sales_statusA%> formulario de ventas</p></a>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p><%= sales_statusC%></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="row mt-3 mb-2">
+                                        <div class="col-6">
+                                            <a href='#' onclick="confirmAction('tester', '<%= tester_status%>');"><p style="color: red"><%= tester_statusA%> formulario de testers</p></a> 
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p><%= tester_statusC%></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-middle">
+                                    <div class="row mt-3 mb-2">
+                                        <div class="col-6">
+                                            <a href='#' onclick="confirmAction('system', '<%= system_status%>');"><p style="color: red"><%= system_statusA%> memorand</p></a>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <p><%= system_statusC%></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+
     </body>
 
 </html>

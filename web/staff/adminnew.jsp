@@ -66,7 +66,7 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
 
         <div class="container">
-            <div class="row mt-4">
+            <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-9">
                     <h1>Agregar administrador</h1>
@@ -124,10 +124,10 @@
                     <div class="col-1"></div>
                 </div>
 
-                <div class="row mt-3">
+                <div class="row mt-4">
                     <div class="col-1"></div>
                     <div class="col-10 text-start">
-                        <button type="submit" class="btn custom-admin rounded-pill"><i class="bi bi-plus me-2" style="font-size: 20px"></i>Agregar administrador</button>
+                        <button type="submit" class="btn custom-admin rounded-pill mt-2"><i class="bi bi-plus me-2" style="font-size: 20px"></i>Agregar administrador</button>
                     </div>
                     <div class="col-1"></div>
                 </div>

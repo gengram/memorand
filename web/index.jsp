@@ -6,8 +6,7 @@
     // REDIRECCIONAR SI YA INICIÓ SESIÓN
     String user_type = (String) session.getAttribute("user_type");
 
-    if (user_type != null || "".equals(user_type))
-    {
+    if (user_type != null || "".equals(user_type)) {
         switch (user_type) {
             case "staff":
                 response.sendRedirect("staff/home.jsp");
@@ -37,6 +36,8 @@
         <link rel="stylesheet" href="XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="XM-Resources/vector/memorand-bee.svg">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 
     </head>
     <style>
@@ -62,13 +63,12 @@
 
         <jsp:include page="XM-Resources/pages/elements/shortbar.jspf"/>
         <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
-        
 
         <div class="container">
             <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-10 text-center" >
-                    <h1 class="titulo" style="font-family: 'Pacifico', cursive; color: #25ce7b; font-size: 55px;"> Organízate</h1> 
+                    <h1 class="titulo animate__animated animate__bounce" style="font-family: 'Pacifico', cursive; color: #25ce7b; font-size: 55px;"> Organízate</h1> 
                     <h1 class="mt-3 ms-2 subtitulo" style="font-size: 40px;">en equipo sin complicaciones</h1>
                 </div>
                 <div class="col-1"></div>
@@ -107,11 +107,10 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-            
-        <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
-        
+            <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
+
         </div>
 
     </body>
-    
+
 </html>
