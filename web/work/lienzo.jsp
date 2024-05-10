@@ -227,7 +227,7 @@
             </div>
 
         </div>
-        
+
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 // Event listener para el botón "figuras"
@@ -374,6 +374,26 @@
                 canvas.defaultCursor = panningEnabled ? 'default' : 'move';
             }
 
+            // Event listener para cambiar el color de los objetos seleccionados
+            document.getElementById('color').addEventListener('change', function () {
+                var selectedObjects = canvas.getActiveObjects();
+                if (selectedObjects.length > 0) {
+                    selectedObjects.forEach(function (object) {
+                        // Verificar si el objeto es un círculo, un cuadrado o un rectángulo
+                        if (object instanceof fabric.Circle || object instanceof fabric.Rect || object instanceof fabric.Polygon) {
+                            object.set('fill', this.value); // Cambiar el relleno
+                            object.set('stroke', this.value); // Cambiar el contorno
+                        }
+                        // Verificar si el objeto es un texto
+                        else if (object instanceof fabric.Textbox) {
+                            object.set('fill', this.value); // Cambiar el color del texto
+                        }
+                    }, this);
+                    canvas.renderAll();
+                }
+            });
+
+
             document.getElementById('circle').addEventListener('click', function () {
                 var circle = new fabric.Circle({
                     radius: 50,
@@ -385,11 +405,7 @@
                 });
                 addObjectToCanvas(circle); // Agrega el circulo al lienzo y lo almacena en canvasObjects
 
-                document.getElementById('color').addEventListener('change', function () {
-                    circle.set('fill', this.value);
-                    circle.set('stroke', this.value);
-                    canvas.renderAll();
-                });
+
             });
 
             document.getElementById('square').addEventListener('click', function () {
@@ -404,11 +420,7 @@
                 });
                 addObjectToCanvas(square); // Agrega el cuadrado al lienzo y lo almacena en canvasObjects
 
-                document.getElementById('color').addEventListener('change', function () {
-                    square.set('fill', this.value);
-                    square.set('stroke', this.value);
-                    square.renderAll();
-                });
+
             });
 
             document.getElementById('diamond').addEventListener('click', function () {
@@ -425,12 +437,6 @@
                     top: canvas.height / 7 - 50
                 });
                 addObjectToCanvas(diamond); // Agrega el diamante al lienzo y lo almacena en canvasObjects
-
-                document.getElementById('color').addEventListener('change', function () {
-                    diamond.set('fill', this.value);
-                    diamond.set('stroke', this.value);
-                    diamond.renderAll();
-                });
             });
 
             document.getElementById('rectangle').addEventListener('click', function () {
@@ -445,11 +451,7 @@
                 });
                 addObjectToCanvas(rectangle); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
 
-                document.getElementById('color').addEventListener('change', function () {
-                    rectangle.set('fill', this.value);
-                    rectangle.set('stroke', this.value);
-                    rectangle.renderAll();
-                });
+
             });
 
             document.getElementById('line').addEventListener('click', function () {
@@ -474,11 +476,6 @@
                     top: canvas.height / 7
                 });
                 addObjectToCanvas(text); // Agrega el texto al lienzo y lo almacena en canvasObjects
-
-                document.getElementById('color').addEventListener('change', function () {
-                    text.set('fill', this.value);
-                    text.renderAll();
-                });
 
             });
 
@@ -603,35 +600,26 @@
                             svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
                             addObjectToCanvas(svgObjects);
 
-                            // Escucha los cambios en la paleta de colores y actualiza el color del SVG
-                            document.getElementById('color').addEventListener('change', function () {
-                                svgObjects.set('fill', this.value);
-                                canvas.renderAll();
-                            });
+                            // Almacenar una referencia al objeto SVG cargado
+                            svgObjects.originalFill = svgObjects.getObjects()[0].fill;
+
+                            console.log('SVG cargado correctamente:', svgObjects);
                         });
                     };
                     reader.readAsDataURL(file);
                 }
             });
 
-
-// Función para cambiar el color de los SVG en el lienzo
-            function changeSVGColor(color) {
-                var objects = canvas.getObjects(); // Obtener todos los objetos en el lienzo
-                objects.forEach(function (object) {
-                    if (object.type === 'group' && object.getObjects()[0] instanceof fabric.PathGroup) {
-                        // Verificar si es un grupo de SVG (fabric.PathGroup)
-                        var svgObject = object.getObjects()[0]; // Obtener el objeto SVG dentro del grupo
-                        svgObject.set('fill', color); // Establecer el nuevo color
+// Evento change para cambiar el color del objeto SVG cargado
+            document.getElementById('color').addEventListener('change', function () {
+                var selectedObjects = canvas.getActiveObjects();
+                selectedObjects.forEach(function (object) {
+                    if (object.originalFill) {
+                        object.getObjects()[0].set('fill', this.value);
                     }
-                });
-                canvas.renderAll(); // Renderizar el lienzo para aplicar los cambios
-            }
-
-// Llamar a la función changeSVGColor con el nuevo color deseado
-            var newColor = '#FF0000'; // Por ejemplo, rojo
-            changeSVGColor(newColor);
-
+                }, this);
+                canvas.renderAll();
+            });
 
 
             canvas.freeDrawingBrush.color = '#000000';
@@ -648,7 +636,6 @@
             });
 
             function disableDrawingMode() {
-                console.log('Iniciando disableDrawingMode()...');
                 drawingMode = false;
                 canvas.isDrawingMode = drawingMode;
 
@@ -660,16 +647,11 @@
                     return object instanceof fabric.Path && object.isEditing && object.paintFirstVertex;
                 });
 
-                // Mostrar en la consola los trazos filtrados
-                console.log('Trazos del lápiz filtrados:');
-                console.log(pencilPaths);
-
                 // Recorrer los trazos del lápiz y agregar sus datos SVG al array pencilPathsSVG
                 pencilPaths.forEach(function (path) {
                     var pencilPathSVG = path.toSVG();
                     pencilPathsSVG.push(pencilPathSVG);
                 });
-                console.log('Completado disableDrawingMode()');
             }
 
 
