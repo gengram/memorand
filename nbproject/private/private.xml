@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/memorand/web/XM-Resources/styles/styless.css</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/UsersController.java</file>
             <file>file:/C:/memorand/src/java/com/memorand/controller/InstitutionsController.java</file>
@@ -12,6 +13,10 @@
             <file>file:/C:/memorand/web/staff/admin.jsp</file>
             <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/InstitutionNew.java</file>
             <file>file:/C:/memorand/web/staff/instnew.jsp</file>
+=======
+            <file>file:/C:/memorand/web/index.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/api/ApiLogin.java</file>
+>>>>>>> a846dd9c9a6c1d4a976bb5852ece466cefad6861
         </group>
     </open-files>
 </project-private>

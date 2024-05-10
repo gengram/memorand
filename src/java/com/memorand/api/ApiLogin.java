@@ -6,13 +6,13 @@ import com.memorand.controller.UsersController;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ApiLogin extends HttpServlet {
+public class ApiLogin extends HttpServlet
+{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -23,9 +23,12 @@ public class ApiLogin extends HttpServlet {
         StringBuilder requestBody = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
         String line;
-        while ((line = reader.readLine()) != null) {
+        
+        while ((line = reader.readLine()) != null)
+        {
             requestBody.append(line);
         }
+        
         reader.close();
 
         Gson gson = new Gson();
