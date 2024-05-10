@@ -6,8 +6,10 @@
     // REDIRECCIONAR SI YA INICIÓ SESIÓN
     String user_type = (String) session.getAttribute("user_type");
 
-    if (user_type != null || "".equals(user_type)) {
-        switch (user_type) {
+    if (user_type != null || "".equals(user_type))
+    {
+        switch (user_type)
+        {
             case "staff":
                 response.sendRedirect("staff/home.jsp");
                 break;
