@@ -222,7 +222,8 @@ public class ProjectsController {
         return htmlcode;
     }
 
-    public String modelGetProjects(String team_id, String user_id) {
+    public String modelGetProjects(String team_id, String user_id)
+    {
         String htmlcode = "";
 
         ProjectsModel projm = new ProjectsModel();
@@ -233,8 +234,10 @@ public class ProjectsController {
 
         String user_type = user.getUser_type();
 
-        if (user_type != null) {
-            switch (user_type) {
+        if (user_type != null)
+        {
+            switch (user_type)
+            {
                 case "ch":
                     projects = projm.getAllProjectsByTeamAndCh(team_id, user_id);
                     break;
@@ -247,11 +250,15 @@ public class ProjectsController {
             }
         }
 
-        if (projects.isEmpty()) {
+        if (projects.isEmpty())
+        {
             htmlcode = "<p>No hay proyectos por mostrar.</p>";
             return htmlcode;
-        } else {
-            for (Project p : projects) {
+        }
+        else
+        {
+            for (Project p : projects)
+            {
                 String proj_id = p.getProj_id();
 
                 CollabsModel collabm = new CollabsModel();
@@ -259,14 +266,14 @@ public class ProjectsController {
 
                 String collab_id = collab.getCollab_id();
 
-                htmlcode += "<p class=\"titulo\">\n"
-                        + "<i style=\"color: #" + p.getProj_color() + ";\" class=\"bi bi-square-fill\"></i>\n"
-                        + "<b style=\"color: #2A2927\" class=\"ms-4 mb-0\">" + p.getProj_name() + "</b>"
-                        + "<a href=\"collab.jsp?id=" + collab_id + "\">"
-                        + "<i class=\"bi bi-chevron-right\"></i>"
-                        + "</a>"
-                        + "</p>";
-                htmlcode += "<hr>";
+                htmlcode += "   <p class=\"titulo ms-2\" style=\"color: #2A2927\">\n"
+                        + "         <i style=\"color: #" + p.getProj_color() + ";\" class=\"bi bi-square-fill\"></i>\n"
+                        + "         <span class=\"ms-4\">" + p.getProj_name() + "</span>\n"
+                        + "         <a href='collab.jsp?id=" + collab_id + "' class='mr-4'>\n"
+                        + "             <i class='bi bi-chevron-right mr-4'></i>\n"
+                        + "         </a>\n"
+                        + "     </p>\n";
+                htmlcode += "<hr>\n";
             }
         }
 
