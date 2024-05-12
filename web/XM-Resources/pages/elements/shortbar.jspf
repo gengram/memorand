@@ -1,8 +1,8 @@
 <nav class="navbar shadow-sm sticky-top navbar-expand-lg bg-body-tertiary" style="padding: 1%;">
     <div class="container-fluid">
         <!-- Logo Memorand -->
-        <a class="navbar-brand">
-            <a href="index.jsp"><img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230" style="margin-left: 80%"></a>
+        <a href="index.jsp" class="navbar-brand" style="margin-left: 14%;">
+            <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" width="200">
         </a>
 
         <!-- Botón para mostrar el menú en dispositivos móviles -->
@@ -11,15 +11,20 @@
         </button>
 
         <!-- Modal de inicio de sesión -->
-        <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent">
+        <div class="me-5">
+        <div class="me-5">
+        <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent" >
             <a href="ventas.jsp">
-                <button class="btn custom-b4 btn-sm me-5 fs-5 border-opacity-25 rounded-4">
-                    <h6 class="ms-3 me-3 mt-1" style="font-size: 22px;">Contactar ventas</h6>
+                <button class="btn custom-b4 btn-sm me-3 fs-5 border-opacity-25 rounded-4">
+                    <h6 class="ms-3 me-3 mt-1" style="font-size: 18px;">Contactar ventas</h6>
                 </button>
             </a>
             <button class="btn custom-bsign btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                <h6 class="ms-3 me-3 mt-1" style="font-size: 22px;">Iniciar sesi&oacute;n</h6>
+                <h6 class="ms-3 me-3 mt-1" style="font-size: 18px;">Iniciar sesi&oacute;n</h6>
             </button>
         </div>
+        </div>
+        </div>
+        
     </div>
 </nav>

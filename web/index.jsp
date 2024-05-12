@@ -67,7 +67,7 @@
         <jsp:include page="XM-Resources/pages/elements/login.jspf"/>
 
         <div class="container">
-            <div class="row mt-5">
+            <div class="row mt-5 mb-5">
                 <div class="col-1"></div>
                 <div class="col-10 text-center" >
                     <h1 class="titulo animate__animated animate__bounce" style="font-family: 'Pacifico', cursive; color: #25ce7b; font-size: 55px;"> Organízate</h1> 
@@ -83,22 +83,22 @@
                 </div>
                 <div class="col-lg-4" >
                     <br><br><br><br>
-                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927;">Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h4>
+                    <h4 class="mt-lg-5" style="color: #2A2927;">Memorand es una aplicación de gestión para empresas y toma de apuntes colaborativos que ayuda a la comunicación en equipos de trabajo.</h4>
                 </div>
-                <div class="col-lg-1"></div>
+                <div class="col-lg-2"></div>
             </div>
             <div class="row mt-3">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-4">
                     <br><br><br><br>
-                    <h4 class="mt-lg-5 ms-2" style="color: #2A2927;">Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h4>
+                    <h4 class="mt-lg-4 ms-2" style="color: #2A2927;">Está diseñada para mejorar la coordinación y la productividad a través de un sistema accesible y multiplataforma de manera grupal.</h4>
                 </div>
                 <div class="col-lg-6 text-sm-end">
                     <img class="img-fluid" src="XM-Resources/imagen/Collab-amico.png" alt="Imagen" style="max-width: 450px;">
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-            <div class="row mt-3">
+            <div class="row mt-3 mb-5">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-6">
                     <img class="img-fluid" src="XM-Resources/imagen/Time management-amico.png" alt="Imagen" style="max-width: 450px;">
@@ -109,7 +109,14 @@
                 </div>
                 <div class="col-lg-1"></div>
             </div>
-            <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
+            
+            <div class="row mt-5">
+                <div class="col-1"></div>
+                <div class="col-10 text-center" >
+                    <jsp:include page="XM-Resources/pages/elements/footer.jspf"/>
+                </div>
+                <div class="col-1"></div>
+            </div>
 
         </div>
 
