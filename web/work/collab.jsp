@@ -118,7 +118,6 @@
             background-color: #E3E4E5; /* Fondo transparente */
         }
 
-
         .custom-p {
             margin-bottom: 0.1rem; /* Ajusta el margen inferior según sea necesario */
         }
@@ -160,7 +159,6 @@
                                 <div class="col-md-10 ">
                                     <div class="card-header" style="background-color: transparent;">
                                         <p class="titulo" style="color: #2A2927; font-size: 20px;">
-
                                             <b style="color: #2A2927" class="ms-4 mb-0"><%= team_name%></b>
                                         </p>
                                     </div>
@@ -168,8 +166,8 @@
                             </div>
                         </div>
                     </a>
-
                 </div>
+                                        
                 <div class="col-2 d-flex justify-content-center align-items-center text-center">
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
                 </div>

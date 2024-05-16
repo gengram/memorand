@@ -5053,7 +5053,7 @@ textarea.form-control-lg {
     --bs-list-group-disabled-color: var(--bs-secondary-color);
     --bs-list-group-disabled-bg: var(--bs-body-bg);
     --bs-list-group-active-color: #fff;
-    --bs-list-group-active-bg: #0d6efd;
+    --bs-list-group-active-bg: #25CE7B;
     --bs-list-group-active-border-color: #0d6efd;
     display: flex;
     flex-direction: column;
@@ -5367,6 +5367,19 @@ textarea.form-control-lg {
     --bs-list-group-active-border-color: var(--bs-light-text-emphasis);
 }
 
+.list-group-item-memorand{
+   --bs-list-group-color: var(--bs-light-text-emphasis);
+    --bs-list-group-bg: var(--bs-light-bg-subtle);
+    --bs-list-group-border-color: var(--bs-light-border-subtle);
+    --bs-list-group-action-hover-color: var(--bs-emphasis-color);
+    --bs-list-group-action-hover-bg:  #BDE7D2;
+    --bs-list-group-action-active-color: var(--bs-emphasis-color);
+    --bs-list-group-action-active-bg:  #BDE7D2;
+    --bs-list-group-active-color: #000;
+    --bs-list-group-active-bg: #BDE7D2;
+    --bs-list-group-active-border-color: #BDE7D2;
+}
+
 .list-group-item-dark {
     --bs-list-group-color: var(--bs-dark-text-emphasis);
     --bs-list-group-bg: var(--bs-dark-bg-subtle);
@@ -5659,12 +5672,12 @@ textarea.form-control-lg {
 @media (min-width: 992px) {
     .modal-lg,
     .modal-xl {
-        --bs-modal-width: 800px;
+        --bs-modal-width: 1000px;
     }
 }
 @media (min-width: 1200px) {
     .modal-xl {
-        --bs-modal-width: 1140px;
+        --bs-modal-width: 1340px;
     }
 }
 .modal-fullscreen {
