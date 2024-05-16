@@ -87,8 +87,6 @@
                         </div>
                     </div>
 
-                    <hr>
-
                     <div class="row mt-4">
                         <div class="col-10">
                             <h3>Instituciones</h3>
