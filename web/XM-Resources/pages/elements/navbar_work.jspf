@@ -2,13 +2,13 @@
     <div class="container-fluid">
 
         <!-- Empresa -->
-        <a class="navbar-brand" href="/memorand/work/home.jsp">
-            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230" style="margin-left:90%">
+        <a class="navbar-brand" href="/memorand/work/home.jsp"  style="margin-left:18%">
+            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230">
         </a>
         
         
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 67%;">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 41%;">
             <!-- Perfil -->
             <div class="btn-group dropstart">
                 <button type="button" class="btn border-0 rounded-circle" style="color: #25ce7b;" data-bs-toggle="dropdown" aria-expanded="false">
