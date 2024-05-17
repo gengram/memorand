@@ -148,6 +148,10 @@
         <servlet-name>ApiHomeInfo</servlet-name>
         <servlet-class>com.memorand.api.ApiHomeInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApiCanvaInfo</servlet-name>
+        <servlet-class>com.memorand.api.ApiCanvaInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -295,6 +299,10 @@
     <servlet-mapping>
         <servlet-name>ApiHomeInfo</servlet-name>
         <url-pattern>/api/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiCanvaInfo</servlet-name>
+        <url-pattern>/ApiCanvaInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
