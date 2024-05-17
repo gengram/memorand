@@ -111,7 +111,7 @@ public class TeamsModel extends Conexion {
     
     }
     
-    public ArrayList<Team> getAllTeamsByUser(String user_id) {
+    public ArrayList<Team> getAllTeamsByWk(String user_id) {
     
         ArrayList<Team> all_teams = new ArrayList<>();
         

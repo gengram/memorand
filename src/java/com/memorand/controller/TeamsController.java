@@ -1,9 +1,7 @@
 package com.memorand.controller;
 
-import com.memorand.beans.Project;
 import com.memorand.beans.Team;
 import com.memorand.beans.User;
-import com.memorand.model.ProjectsModel;
 import com.memorand.model.TeamsModel;
 import java.util.ArrayList;
 
@@ -122,7 +120,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByUser(user_id)) {
+        for (Team team : teamm.getAllTeamsByWk(user_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</text></td>\n"
@@ -143,7 +141,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByUser(user_id)) {
+        for (Team team : teamm.getAllTeamsByWk(user_id)) {
             htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
         }
 
@@ -181,7 +179,7 @@ public class TeamsController {
         } else {
             TeamsModel teamm = new TeamsModel();
 
-            for (Team team : teamm.getAllTeamsByUser(user_id)) {
+            for (Team team : teamm.getAllTeamsByWk(user_id)) {
 
                 htmlcode
                         += "<tr>\n"
@@ -255,7 +253,7 @@ public class TeamsController {
                     teams = teamm.getAllTeamsByCh(user_id);
                     break;
                 case "wk":
-                    teams = teamm.getAllTeamsByUser(user_id);
+                    teams = teamm.getAllTeamsByWk(user_id);
                     break;
                 default:
                     return htmlcode;
