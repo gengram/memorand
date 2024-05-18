@@ -572,108 +572,6 @@
                 }
             });
 
-            document.getElementById('circle').addEventListener('click', function () {
-                var circle = new fabric.Circle({
-                    radius: 50,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
-                    stroke: document.getElementById('color').value,
-                    strokeWidth: 2,
-                    left: canvas.width / 4,
-                    top: canvas.height / 7
-                });
-                addObjectToCanvas(circle); // Agrega el circulo al lienzo y lo almacena en canvasObjects
-            });
-
-            document.getElementById('square').addEventListener('click', function () {
-                var square = new fabric.Rect({
-                    width: 100,
-                    height: 100,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
-                    stroke: document.getElementById('color').value,
-                    strokeWidth: 2,
-                    left: canvas.width / 4 - 50,
-                    top: canvas.height / 7 - 50
-                });
-                addObjectToCanvas(square); // Agrega el cuadrado al lienzo y lo almacena en canvasObjects
-            });
-
-            document.getElementById('diamond').addEventListener('click', function () {
-                var diamond = new fabric.Polygon([
-                    {x: 0, y: 50},
-                    {x: 50, y: 0},
-                    {x: 100, y: 50},
-                    {x: 50, y: 100}
-                ], {
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
-                    stroke: document.getElementById('color').value,
-                    strokeWidth: 2,
-                    left: canvas.width / 4 - 50,
-                    top: canvas.height / 7 - 50
-                });
-                addObjectToCanvas(diamond); // Agrega el diamante al lienzo y lo almacena en canvasObjects
-            });
-
-            document.getElementById('rectangle').addEventListener('click', function () {
-                var rectangle = new fabric.Rect({
-                    width: 150,
-                    height: 75,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
-                    stroke: document.getElementById('color').value,
-                    strokeWidth: 2,
-                    left: canvas.width / 4 - 75,
-                    top: canvas.height / 7 - 37.5
-                });
-                addObjectToCanvas(rectangle); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
-            });
-
-            document.getElementById('line').addEventListener('click', function () {
-                var line = new fabric.Rect({
-                    width: 4,
-                    height: 170,
-                    fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
-                    stroke: document.getElementById('color').value,
-                    strokeWidth: 3,
-                    left: canvas.width / 4 - 75,
-                    top: canvas.height / 7 - 37.5
-                });
-                keepLineInsideCanvas(line);
-                addObjectToCanvas(line); // Agrega una linea al lienzo y la almacena en canvasObjects
-            });
-
-            document.getElementById('add-text').addEventListener('click', function () {
-                var text = new fabric.Textbox('Texto aquí', {
-                    fontSize: 20,
-                    fill: document.getElementById('color').value,
-                    left: canvas.width / 4,
-                    top: canvas.height / 7
-                });
-                addObjectToCanvas(text); // Agrega el texto al lienzo y lo almacena en canvasObjects
-            });
-
-            document.getElementById('add-image').addEventListener('click', function () {
-                var input = document.createElement('input');
-                input.type = 'file';
-                input.accept = 'image/*';
-                input.click();
-                input.addEventListener('change', function (e) {
-                    var file = e.target.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function (event) {
-                        var img = new Image();
-                        img.onload = function () {
-                            var fabricImg = new fabric.Image(img, {
-                                left: canvas.width / 4 - img.width / 4,
-                                top: canvas.height / 7 - img.height / 7,
-                                selectable: true
-                            });
-                            addObjectToCanvas(fabricImg);
-                        };
-                        img.src = event.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                });
-            });
-
             // Función para activar o desactivar el modo de dibujo libre
             document.getElementById('free-drawing').addEventListener('click', function () {
                 canvas.isDrawingMode = !canvas.isDrawingMode;
@@ -687,7 +585,6 @@
                     });
                 }
             });
-
 
             document.getElementById('delete-all').addEventListener('click', function () {
                 canvas.getObjects().forEach(function (obj) {
@@ -711,7 +608,6 @@
                     }
                 }
             });
-
 
             // Función para descargar la imagen del lienzo
             document.getElementById('download-image').addEventListener('click', function () {
@@ -751,7 +647,6 @@
 
                 //toggleGrid();
             });
-
 
             document.getElementById('download-image').addEventListener('click', function () {
                 downloadImage();
@@ -813,15 +708,190 @@
                 }
             });
 
-            canvas.on('mouse:down', function (event) {
-                // Obtener las coordenadas del clic dentro del lienzo
-                var pointer = canvas.getPointer(event.e);
-                var x = pointer.x;
-                var y = pointer.y;
+            var isAddingNewElement = false; // Variable para controlar si se está agregando un nuevo elemento
+            var elementTypeToAdd = ''; // Variable para almacenar el tipo de elemento que se está agregando
 
-                // Mostrar las coordenadas en la consola
-                console.log('Coordenadas del clic: x = ' + x + ', y = ' + y);
+            // Event listener para los botones de formas
+            document.getElementById('circle').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'circle';
             });
+
+            document.getElementById('square').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'square';
+            });
+
+            document.getElementById('diamond').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'diamond';
+            });
+
+            document.getElementById('rectangle').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'rectangle';
+            });
+
+            document.getElementById('line').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'line';
+            });
+
+            document.getElementById('add-text').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'text';
+            });
+
+            document.getElementById('add-image').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'image';
+            });
+
+            document.getElementById('uploads-svg').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'svg';
+            });
+
+
+            // Event listener para el lienzo
+            canvas.on('mouse:down', function (event) {
+                // Verificar si se está agregando un nuevo elemento
+                if (isAddingNewElement) {
+                    // Obtener las coordenadas del clic dentro del lienzo
+                    var pointer = canvas.getPointer(event.e);
+
+                    var x1 = pointer.x;
+                    var y1 = pointer.y;
+                    // Guardar las coordenadas en la consola
+                    console.log('Coordenadas del clic: x1 = ' + x1 + ', y1 = ' + y1);
+
+                    // Crear el nuevo elemento según el tipo de elemento a agregar
+                    if (elementTypeToAdd === 'circle') {
+                        var circle = new fabric.Circle({
+                            radius: 50,
+                            fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: 2,
+                            left: x1 - 50,
+                            top: y1 - 50
+                        });
+                        addObjectToCanvas(circle); // Agrega el círculo al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'square') {
+                        var square = new fabric.Rect({
+                            width: 100,
+                            height: 100,
+                            fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: 2,
+                            left: x1 - 50,
+                            top: y1 - 50
+                        });
+                        addObjectToCanvas(square); // Agrega el cuadrado al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'diamond') {
+                        var diamond = new fabric.Polygon([
+                            {x: x1 - 50, y: y1},
+                            {x: x1, y: y1 - 50},
+                            {x: x1 + 50, y: y1},
+                            {x: x1, y: y1 + 50}
+                        ], {
+                            fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: 2
+                        });
+                        addObjectToCanvas(diamond); // Agrega el diamante al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'rectangle') {
+                        var rectangle = new fabric.Rect({
+                            width: 150,
+                            height: 75,
+                            fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: 2,
+                            left: x1 - 75,
+                            top: y1 - 37.5
+                        });
+                        addObjectToCanvas(rectangle); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'line') {
+                        var line = new fabric.Rect({
+                            width: 4,
+                            height: 170,
+                            fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: 3,
+                            left: x1 - 75,
+                            top: y1 - 37.5
+                        });
+                        addObjectToCanvas(line); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'text') {
+                        var text = new fabric.Textbox('Texto aquí', {
+                            fontSize: 20,
+                            fill: document.getElementById('color').value,
+                            left: x1 - 25,
+                            top: y1 - 17.5
+                        });
+                        addObjectToCanvas(text); // Agrega el texto al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'image') {
+                        var input = document.createElement('input');
+                        input.type = 'file';
+                        input.accept = 'image/*';
+                        input.click();
+                        input.addEventListener('change', function (e) {
+                            var file = e.target.files[0];
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                var img = new Image();
+                                img.onload = function () {
+                                    var fabricImg = new fabric.Image(img, {
+                                        left: x1 - 75,
+                                        top: y1 - 37.5,
+                                        selectable: true
+                                    });
+                                    addObjectToCanvas(fabricImg);
+                                };
+                                img.src = event.target.result;
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                    } else if (elementTypeToAdd === 'svg') {
+                        var input = document.createElement('input');
+                        input.type = 'file';
+                        input.accept = 'image/svg+xml';
+                        input.click();
+                        input.addEventListener('change', function (e) {
+                            var files = e.target.files;
+                            for (var i = 0; i < files.length; i++) {
+                                var file = files[i];
+                                var reader = new FileReader();
+                                reader.onload = function (event) {
+                                    var svgString = event.target.result;
+                                    fabric.loadSVGFromString(svgString, function (objects, options) {
+                                        // Procesar objetos SVG cargados
+                                        objects.forEach(function (obj) {
+                                            // Ajustar la posición del objeto si es necesario
+                                            // Aquí puedes agregar lógica para posicionar los objetos SVG correctamente en el lienzo
+                                            var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
+                                            var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
+                                            obj.set({
+                                                left: obj.left + offsetX,
+                                                top: obj.top + offsetY
+                                            });
+                                            canvas.add(obj); // Agregar objeto al lienzo
+                                        });
+                                        canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                                    });
+                                };
+                                reader.readAsText(file);
+                            }
+                            isAddingNewElement = false; // Restablecer la bandera después de la carga del SVG
+                            elementTypeToAdd = ''; // Restablecer el tipo de elemento
+                        });
+                    }
+
+                    // Restablecer la bandera después de agregar el elemento
+                    isAddingNewElement = false;
+                    elementTypeToAdd = ''; // Restablecer el tipo de elemento
+                }
+            });
+
 
             canvas.on('mouse:move', function (opt) {
                 if (this.isDragging) {
@@ -834,12 +904,10 @@
                     this.lastPosY = e.clientY;
                 }
             });
-
             canvas.on('mouse:up', function (opt) {
                 this.isDragging = false;
                 this.selection = true;
             });
-
             function keepLineInsideCanvas(line) {
                 line.setCoords();
                 var boundingRect = line.getBoundingRect();
@@ -859,7 +927,6 @@
                     canvas.renderAll();
                 }
             });
-
             canvas.on('mouse:wheel', function (opt) {
                 var delta = opt.e.deltaY;
                 var zoom = canvas.getZoom();
@@ -872,7 +939,6 @@
                 opt.e.preventDefault();
                 opt.e.stopPropagation();
             });
-
             canvas.on('mouse:down', function (opt) {
                 var evt = opt.e;
                 if (evt.altKey === true) {
@@ -882,7 +948,6 @@
                     this.lastPosY = evt.clientY;
                 }
             });
-
             canvas.on('mouse:move', function (opt) {
                 if (this.isDragging) {
                     var e = opt.e;
@@ -894,7 +959,6 @@
                     this.lastPosY = e.clientY;
                 }
             });
-
             canvas.on('mouse:up', function (opt) {
                 // on mouse up we want to recalculate new interaction
                 // for all objects, so we call setViewportTransform
@@ -902,7 +966,6 @@
                 this.isDragging = false;
                 this.selection = true;
             });
-
             // Función para actualizar las propiedades de un objeto en canvasObjects cuando se modifica en el lienzo
             function updateObjectPropertiesInCanvasObjects(object) {
                 var index = canvasObjects.findIndex(function (item) {
@@ -912,51 +975,6 @@
                     canvasObjects[index].properties = object.toObject(['left', 'top', 'width', 'height', 'fill', 'stroke', 'strokeWidth']);
                 }
             }
-
-            document.getElementById('uploads-svg').addEventListener('change', function (e) {
-                var files = e.target.files;
-
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    var reader = new FileReader();
-                    reader.onload = function (event) {
-                        var svgString = event.target.result;
-                        var parser = new DOMParser();
-                        var svgDoc = parser.parseFromString(svgString, "image/svg+xml");
-                        fabric.loadSVGFromString(svgString, function (objects, options) {
-                            objects.forEach(function (obj) {
-                                var matrix = obj.calcTransformMatrix();
-                                var e = matrix[4]; // Coordenada de traslación en el eje x
-                                var f = matrix[5]; // Coordenada de traslación en el eje y
-                                if (obj.type === 'text') {
-                                    
-                                    var bbox = obj.getBoundingRect();
-                                    var offsetX = canvas.width / 2 - (bbox.left + bbox.width / 2);
-                                    var offsetY = canvas.height / 2 - (bbox.top + bbox.height / 2);
-                                    // Si es un elemento <text>, obtener la posición directamente de los atributos x y y
-                                    canvas.add(obj.set({
-                                        left: e + obj.left,
-                                        top: f + obj.top
-                                    }));
-                                    
-                                } else {
-                                    // Si es otro tipo de objeto, aplicar la lógica anterior
-                                    var bbox = obj.getBoundingRect();
-                                    var offsetX = canvas.width / 2 - (bbox.left + bbox.width / 2);
-                                    var offsetY = canvas.height / 2 - (bbox.top + bbox.height / 2);
-                                    obj.set({
-                                        left: obj.left + offsetX + e,
-                                        top: obj.top + offsetY + f
-                                    });
-                                    canvas.add(obj);
-                                }
-                            });
-                        });
-                    };
-                    reader.readAsText(file);
-                }
-            });
-
 
             document.getElementById('upload-svg').addEventListener('change', function (e) {
                 var files = e.target.files;
@@ -971,10 +989,8 @@
                             var svgObjects = fabric.util.groupSVGElements(objects, options);
                             svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
                             addObjectToCanvas(svgObjects);
-
                             // Almacenar una referencia al objeto SVG cargado
                             svgObjects.originalFill = svgObjects.getObjects()[0].fill;
-
                             console.log('SVG cargado correctamente:', svgObjects);
                         });
                     };

@@ -3,16 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/memorand/src/java/com/memorand/controller/TeamsController.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/model/TeamsModel.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiHomeInfo.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiUserInfo.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiLogin.java</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/ApiTeamInfo.java</file>
+            <file>file:/C:/memorand/web/work/home.jsp</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/CanvasController.java</file>
             <file>file:/C:/memorand/web/work/lienzo.jsp</file>
             <file>file:/C:/memorand/web/work/collab.jsp</file>
-            <file>file:/C:/memorand/web/XM-Resources/pages/elements/navbar_staff.jspf</file>
-            <file>file:/C:/memorand/web/XM-Resources/pages/elements/shortbar.jspf</file>
         </group>
     </open-files>
 </project-private>
