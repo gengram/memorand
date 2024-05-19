@@ -169,7 +169,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <div class="btn-group dropend capa2 start-0 ms-4">
+                    <div class="btn-group dropend capa2 start-0 ms-4 mt-2">
                         <button type="button" class="btn btn-light rounded-2 des" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
@@ -182,16 +182,18 @@
                                 <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Insertar</text></label>
                             </li>
                             <li>
-                                <input type="file" class="custom-file-input"  id="uploads-svg" accept="image/svg+xml" multiple/>
+                                <input type="file" class="custom-file-input"   accept="image/svg+xml" multiple/>
                                 <label for="uploads-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Ins elementos</text></label>
                             </li>
                             <li><a id="DB-svg" class="dropdown-item"><i class="bi bi-save-fill me-2" style="color: #25ce7b"></i>Guardar</a></li>
+                            <!-- <li></li> -->
                         </ul>
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="btn-group capa1 shadow-lg" style=" margin-left: 10rem " role="group" aria-label="Basic radio toggle button group">
                         <button id="openModalButton" type="button" class="btn btn-h des"><i class="bi bi-boxes icon-tools"></i></button>
+
                         <button id="figuras" type="button" class="btn btn-h des">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <g clip-path="url(#clip0_1651_4085)"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 -0.0397949L18.2098 10.9999H5.79015L12 -0.0397949ZM9.20985 8.99993H14.7902L12 4.03966L9.20985 8.99993Z" fill="#25ce7b"/><path fill-rule="evenodd" clip-rule="evenodd" d="M1 17.9999C1 15.2385 3.23858 12.9999 6 12.9999C8.76142 12.9999 11 15.2385 11 17.9999C11 20.7614 8.76142 22.9999 6 22.9999C3.23858 22.9999 1 20.7614 1 17.9999ZM6 14.9999C4.34315 14.9999 3 16.3431 3 17.9999C3 19.6568 4.34315 20.9999 6 20.9999C7.65685 20.9999 9 19.6568 9 17.9999C9 16.3431 7.65685 14.9999 6 14.9999Z" fill="#25ce7b"/><path fill-rule="evenodd" clip-rule="evenodd" d="M13 12.9999H23V22.9999H13V12.9999ZM15 14.9999V20.9999H21V14.9999H15Z" fill="#25ce7b"/></g><defs><clipPath id="clip0_1651_4085"><rect width="24" height="24" fill="white"/></clipPath></defs>
@@ -199,12 +201,31 @@
                         </button>
 
                         <button id="add-text" type="button" class="btn btn-h des"><i class="bi bi-textarea-t icon-tools"></i></button>
+
+                        <button id="arrows" type="button" class="btn btn-h des"><svg width="24" height="24" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <style type="text/css">.st0{
+                                    fill:#25ce7b;
+                                }</style>
+                            <path class="st0" d="M17,5.1l-5-5l-5,5l1.4,1.4L11,3.9V24h2V4l2.6,2.6L17,5.1z M0,15l1.4,1.4L4,13.9V22H0v2h6V13.8l2.7,2.7l1.4-1.4  l-5-5L0,15z M20,13.8l2.7,2.7l1.4-1.4l-5-5l-5,5l1.4,1.4l2.6-2.6V24h6v-2h-4V13.8z"/>
+                            </svg>
+                        </button>
+
                         <button id="line" type="button" class="btn btn-h des"><i class="bi bi-slash-lg icon-tools"></i></button>
 
                         <button id="free-drawing" type="button" class="btn btn-h"><i class="bi bi-brush-fill icon-tools"></i></button>
 
+                        <button onclick="Copy()" type="button" class="btn btn-h">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+                            </svg>
+                        </button>
+
+                        <button onclick="Paste()" type="button" class="btn btn-h"><i class="bi bi-clipboard" style="font-size: 20px"></i></button>
+
                         <button id="add-image" type="button" class="btn btn-h des"><i class="bi bi-images icon-tools"></i></button>
+
                         <button id="delete-all" type="button" class="btn btn-h des"><i class="bi bi-trash3 icon-tools"></i></button>
+
                         <button id="delete-selected" type="button" class="btn btn-h des"><i class="bi bi-eraser-fill icon-tools"></i></button>
                     </div>
                 </div>
@@ -235,18 +256,19 @@
                                     <button type="button" class="list-group-item list-group-item-action list-group-item-memorand">Otros</button>
                                 </div>
                             </div>
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function () {
-                                    const card = document.getElementById("organigramaCard");
-                                    card.addEventListener("click", function () {
-                                        console.log("Card clicked!");
-                                    });
-                                });
-                            </script>
                             <div class="col-10">
                                 <div class="row">
                                     <div class="col-3">
-                                        <div class="card shadow" type="button" style="height: 9.5rem;" id="organigramaCard">
+                                        <div class="card shadow" type="button" style="height: 9.5rem;" data-bs-dismiss="modal" aria-label="Close">
+                                            <div class="card-header">
+                                                Vac&iacute;o
+                                            </div>
+                                            <div class="card-body" width="200" height="70">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div id="uSVG-1" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -256,7 +278,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-2" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -266,17 +288,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
-                                            <div class="card-header">
-                                                Organigrama
-                                            </div>
-                                            <div class="card-body">
-                                                <img width="200" height="70" src="../XM-Resources/imagen/plantillas/diagrama.png" class="img-fluid rounded-start ms-2 mb-2" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-3" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -288,7 +300,7 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-4" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -298,7 +310,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-5" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -308,7 +320,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-6" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -318,7 +330,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-7" class="card shadow" style="height: 9.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -342,7 +354,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <input class="ms-3 me-3 form-control form-control-color" type="color" id="color" value="#000000">
+                        <input class="ms-3 me-3 form-control form-control-color" type="color" id="color" name="color" value="#000000">
                     </div>
                 </div>
             </div>
@@ -359,6 +371,69 @@
                     <div class="row mt-2">
                         <div class="col-6 text-center">
                             <input type="range" id="grosor" min="1" max="60" value="4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow mt-2" id="card3" style="display: none;">
+                <div class="card-body ms-3 me-3 mb-2">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label for="grosor">Grosor de la l&iacute;nea:</label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-6 text-center">
+                            <input type="range" id="line-width" min="1" max="7" value="3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow mt-2" id="card4" style="display: none;">
+                <div class="card-body ms-3 me-3 mt-2 mb-2">
+                    <div class="row mt-2">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button id="arrow-up" type="button" class="btn btn-h ms-2"><i class="bi bi-arrow-up icon-card"></i></button>
+                            <button id="arrow2" type="button" class="btn btn-h me-3"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                   fill="#25ce7b" stroke="none">
+                                <path d="M4620 4808 c-45 -30 -66 -72 -54 -107 5 -14 39 -50 75 -81 36 -30 67
+                                      -59 68 -65 1 -5 -29 -13 -66 -18 -1120 -128 -2082 -510 -2822 -1120 -514 -423
+                                      -962 -967 -1324 -1607 -246 -437 -409 -878 -477 -1290 -26 -161 -26 -166 10
+                                      -202 28 -27 36 -30 77 -25 33 3 54 13 75 34 26 26 31 43 49 154 52 325 159
+                                      639 341 1004 395 788 974 1486 1603 1930 574 406 1248 689 1970 829 137 26
+                                      464 76 502 76 19 0 14 -8 -34 -54 -51 -50 -55 -57 -49 -88 13 -64 86 -110 149
+                                      -94 23 5 262 204 361 299 85 81 64 125 -128 272 -76 59 -156 120 -176 137 -52
+                                      41 -105 47 -150 16z"/>
+                                </g>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button id="arrow3" type="button" class="btn btn-h ms-2"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                   fill="#25ce7b" stroke="none">
+                                <path d="M201 4964 c-12 -15 -21 -32 -21 -38 0 -7 214 -534 476 -1172 262
+                                      -637 479 -1169 481 -1181 3 -14 -166 -439 -472 -1185 -263 -640 -480 -1172
+                                      -482 -1183 -6 -30 33 -75 65 -75 32 0 4623 2346 4664 2383 16 14 28 35 28 47
+                                      0 12 -12 33 -28 47 -41 37 -4632 2383 -4664 2383 -17 0 -34 -10 -47 -26z"/>
+                                </g>
+                                </svg>
+                            </button>
+                            <button id="arrow4" type="button" class="btn btn-h me-3"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                   fill="#25ce7b" stroke="none">
+                                <path d="M1400 5098 c-44 -17 -77 -44 -171 -137 -144 -143 -163 -177 -164
+                                      -286 0 -58 5 -91 19 -120 13 -27 333 -355 995 -1018 l976 -977 -977 -978
+                                      c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
+                                      -291 98 -97 127 -119 175 -137 73 -28 131 -28 204 -1 56 20 108 71 1230 1193
+                                      1297 1296 1223 1214 1223 1346 0 132 74 50 -1223 1346 -1123 1123 -1174 1173
+                                      -1230 1193 -72 26 -136 26 -207 -1z"/>
+                                </g>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -383,7 +458,36 @@
                     <div class="row mt-2">
                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                             <button id="circle" type="button" class="btn btn-h ms-2"><i class="bi bi-circle icon-card"></i></button>
-                            <button id="rectangle" type="button" class="btn btn-h me-3"><i class="bi bi-tablet-landscape icon-card"></i></button>
+                            <button id="rectangle" type="button" class="btn btn-h me-3">
+                                <svg height="24" version="1.1" viewBox="0 0 20 20" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <g id="layer1"><path d="M 1 3 L 1 17 L 19 17 L 19 3 L 1 3 z M 2 4 L 18 4 L 18 16 L 2 16 L 2 4 z " style="fill:#25ce7b; fill-opacity:1; stroke:none; stroke-width:0px;"/></g>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button id="hexa" type="button" class="btn btn-h ms-2">
+                                <svg height="24" width="24" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                <rect fill="none" height="400" width="400"/>
+                                <path d="M220,175.3V80.7a8.1,8.1,0,0,0-4.1-7l-84-47.5a7.8,7.8,0,0,0-7.8,0l-84,47.5a8.1,8.1,0,0,0-4.1,7v94.6a8.1,8.1,0,0,0,4.1,7l84,47.5a7.8,7.8,0,0,0,7.8,0l84-47.5A8.1,8.1,0,0,0,220,175.3Z" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+                                </svg>
+                            </button>
+                            <button id="rect-pill" type="button" class="btn btn-h me-3"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                                                             width="35" height="15" viewBox="0 0 512.000000 512.000000"
+                                                                                             preserveAspectRatio="xMidYMid meet">
+
+                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                   fill="#25ce7b" stroke="none">
+                                <path d="M1530 3989 c-315 -41 -591 -174 -820 -395 -209 -203 -341 -433 -408
+                                      -717 -24 -101 -26 -131 -27 -312 0 -159 4 -217 19 -285 62 -284 183 -515 376
+                                      -714 214 -221 470 -361 777 -423 81 -17 166 -18 1118 -18 l1030 0 102 23 c301
+                                      66 543 201 753 418 193 199 314 430 376 714 15 67 19 127 19 280 0 153 -4 213
+                                      -19 280 -62 284 -183 515 -376 714 -208 215 -449 350 -748 418 -96 22 -105 22
+                                      -1102 24 -553 1 -1034 -2 -1070 -7z"/>
+                                </g>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -396,33 +500,53 @@
         <!-- Incluye Bootstrap JS -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
-                                // Función para mostrar el modal al cargar la página
-                                $(document).ready(function () {
-                                    $('#myModal').modal('show');
-                                });
+                            // Función para mostrar el modal al cargar la página
+                            $(document).ready(function () {
+                                $('#myModal').modal('show');
+                            });
 
-                                // Función para mostrar el modal al hacer clic en el botón
-                                $('#openModalButton').click(function () {
-                                    $('#myModal').modal('show');
-                                });
+                            // Función para mostrar el modal al hacer clic en el botón
+                            $('#openModalButton').click(function () {
+                                $('#myModal').modal('show');
+                            });
         </script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
+                // Event listener para el botón "arrows"
+                document.getElementById('arrows').addEventListener('click', function () {
+                    document.getElementById('card4').style.display = 'block'; // Mostrar la tarjeta 3
+                    document.getElementById('card1').style.display = 'none'; // Ocultar la tarjeta 1
+                    document.getElementById('card2').style.display = 'none'; // Ocultar la tarjeta 2
+                    document.getElementById('card3').style.display = 'none'; // Ocultar la tarjeta 3
+                });
+
+                // Event listener para el botón "line"
+                document.getElementById('line').addEventListener('click', function () {
+                    document.getElementById('card3').style.display = 'block'; // Mostrar la tarjeta 3
+                    document.getElementById('card1').style.display = 'none'; // Ocultar la tarjeta 1
+                    document.getElementById('card2').style.display = 'none'; // Ocultar la tarjeta 2
+                    document.getElementById('card4').style.display = 'none'; // Ocultar la tarjeta 4
+                });
+
                 // Event listener para el botón "figuras"
                 document.getElementById('figuras').addEventListener('click', function () {
                     document.getElementById('card2').style.display = 'block'; // Mostrar la tarjeta 2
                     document.getElementById('card1').style.display = 'none'; // Ocultar la tarjeta 1
+                    document.getElementById('card3').style.display = 'none'; // Ocultar la tarjeta 3
+                    document.getElementById('card4').style.display = 'none'; // Ocultar la tarjeta 4
                 });
 
                 // Event listener para el botón "free-drawing"
                 document.getElementById('free-drawing').addEventListener('click', function () {
                     document.getElementById('card1').style.display = 'block'; // Mostrar la tarjeta 1
                     document.getElementById('card2').style.display = 'none'; // Ocultar la tarjeta 2
+                    document.getElementById('card3').style.display = 'none'; // Ocultar la tarjeta 3
+                    document.getElementById('card4').style.display = 'none'; // Ocultar la tarjeta 4
                 });
 
                 // Event listener para los otros botones
-                var otrosBotones = ['add-text', 'line', 'add-image', 'delete-all', 'delete-selected'];
+                var otrosBotones = ['add-text', 'add-image', 'delete-all', 'delete-selected'];
                 otrosBotones.forEach(function (id) {
                     document.getElementById(id).addEventListener('click', function () {
                         var cardContainer = document.querySelector('.card-container');
@@ -587,9 +711,9 @@
             });
 
             document.getElementById('delete-all').addEventListener('click', function () {
-                canvas.getObjects().forEach(function (obj) {
-                    if (!(obj instanceof fabric.Line)) {
-                        canvas.remove(obj);
+                canvas.getObjects().forEach(function (object) {
+                    if (!(object instanceof fabric.Line)) {
+                        canvas.remove(object);
                     }
                 });
             });
@@ -690,7 +814,6 @@
                 });
             });
 
-
             canvas.on('mouse:move', function (opt) {
                 if (panningEnabled && opt && opt.e && opt.e.buttons === 1) {
                     var delta = new fabric.Point(opt.e.movementX, opt.e.movementY);
@@ -732,6 +855,16 @@
                 elementTypeToAdd = 'rectangle';
             });
 
+            document.getElementById('hexa').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'hexagon';
+            });
+
+            document.getElementById('rect-pill').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'pill';
+            });
+
             document.getElementById('line').addEventListener('click', function () {
                 isAddingNewElement = true;
                 elementTypeToAdd = 'line';
@@ -747,11 +880,88 @@
                 elementTypeToAdd = 'image';
             });
 
-            document.getElementById('uploads-svg').addEventListener('click', function () {
+            document.getElementById('arrow-up').addEventListener('click', function () {
                 isAddingNewElement = true;
-                elementTypeToAdd = 'svg';
+                elementTypeToAdd = 'arrow1';
+            });
+            document.getElementById('arrow2').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'arrow2';
+            });
+            document.getElementById('arrow3').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'arrow3';
+            });
+            document.getElementById('arrow4').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'arrow4';
             });
 
+            document.getElementById('uSVG-1').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'sv1';
+            });
+            document.getElementById('uSVG-2').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'sv2';
+            });
+            document.getElementById('uSVG-3').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'sv3';
+            });
+            document.getElementById('uSVG-4').addEventListener('click', function () {
+                isAddingNewElement = true;
+                elementTypeToAdd = 'sv4';
+            });
+
+            // Contenido del SVG de las arrow
+            var svgArrow1 = `<svg viewBox="0 0 32 35" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 2" id="Layer_2"><path d="M9.05,10.05a1,1,0,0,0,1.42,0l4.6-4.6V35a1,1,0,0,0,2,0V5.48l4.57,4.57a1,1,0,0,0,1.41-1.41L16.69,2.27a.9.9,0,0,0-1.27,0L9.05,8.64A1,1,0,0,0,9.05,10.05Z"/></g></svg>`;
+            var svgArrow2 = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M4620 4808 c-45 -30 -66 -72 -54 -107 5 -14 39 -50 75 -81 36 -30 67
+-59 68 -65 1 -5 -29 -13 -66 -18 -1120 -128 -2082 -510 -2822 -1120 -514 -423
+-962 -967 -1324 -1607 -246 -437 -409 -878 -477 -1290 -26 -161 -26 -166 10
+-202 28 -27 36 -30 77 -25 33 3 54 13 75 34 26 26 31 43 49 154 52 325 159
+639 341 1004 395 788 974 1486 1603 1930 574 406 1248 689 1970 829 137 26
+464 76 502 76 19 0 14 -8 -34 -54 -51 -50 -55 -57 -49 -88 13 -64 86 -110 149
+-94 23 5 262 204 361 299 85 81 64 125 -128 272 -76 59 -156 120 -176 137 -52
+41 -105 47 -150 16z"/>
+</g>
+</svg>
+`;
+            var svgArrow3 = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="150" height="150" viewBox="0 0 512.000000 512.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M201 4964 c-12 -15 -21 -32 -21 -38 0 -7 214 -534 476 -1172 262
+-637 479 -1169 481 -1181 3 -14 -166 -439 -472 -1185 -263 -640 -480 -1172
+-482 -1183 -6 -30 33 -75 65 -75 32 0 4623 2346 4664 2383 16 14 28 35 28 47
+0 12 -12 33 -28 47 -41 37 -4632 2383 -4664 2383 -17 0 -34 -10 -47 -26z"/>
+</g>
+</svg>
+`;
+            var svgArrow4 = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="150" height="150" viewBox="0 0 512.000000 512.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M1400 5098 c-44 -17 -77 -44 -171 -137 -144 -143 -163 -177 -164
+-286 0 -58 5 -91 19 -120 13 -27 333 -355 995 -1018 l976 -977 -977 -978
+c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
+-291 98 -97 127 -119 175 -137 73 -28 131 -28 204 -1 56 20 108 71 1230 1193
+1297 1296 1223 1214 1223 1346 0 132 74 50 -1223 1346 -1123 1123 -1174 1173
+-1230 1193 -72 26 -136 26 -207 -1z"/>
+</g>
+</svg>
+`;
+            // Contenido del SVG que deseas insertar
+            var svgString1 = ``;
+            var svgString2 = ``;
+            var svgString3 = ``;
+            var svgString4 = ``;
 
             // Event listener para el lienzo
             canvas.on('mouse:down', function (event) {
@@ -762,6 +972,8 @@
 
                     var x1 = pointer.x;
                     var y1 = pointer.y;
+                    // Obtener el color seleccionado
+                    var color = document.getElementById('color').value;
                     // Guardar las coordenadas en la consola
                     console.log('Coordenadas del clic: x1 = ' + x1 + ', y1 = ' + y1);
 
@@ -810,17 +1022,44 @@
                             top: y1 - 37.5
                         });
                         addObjectToCanvas(rectangle); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
-                    } else if (elementTypeToAdd === 'line') {
-                        var line = new fabric.Rect({
-                            width: 4,
-                            height: 170,
+                    } else if (elementTypeToAdd === 'hexagon') {
+                        var hexagon = new fabric.Polygon([
+                            {x: 50, y: 0},
+                            {x: 100, y: 0},
+                            {x: 125, y: 50},
+                            {x: 100, y: 100},
+                            {x: 50, y: 100},
+                            {x: 25, y: 50}
+                        ], {
                             fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
                             stroke: document.getElementById('color').value,
-                            strokeWidth: 3,
+                            strokeWidth: 2,
                             left: x1 - 75,
                             top: y1 - 37.5
                         });
-                        addObjectToCanvas(line); // Agrega el rectángulo al lienzo y lo almacena en canvasObjects
+                        addObjectToCanvas(hexagon); // Agrega el hexágono al lienzo y lo almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'pill') {
+                        var pill = new fabric.Rect({
+                            width: 150, // Ancho del rectángulo
+                            height: 50, // Alto del rectángulo
+                            fill: document.getElementById('shape-fill').checked ? document.getElementById('color').value : '',
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: 2,
+                            rx: 25, // Radio de redondeo de las esquinas
+                            ry: 25, // Radio de redondeo de las esquinas
+                            left: x1 - 75, // Posición horizontal
+                            top: y1 - 25   // Posición vertical
+                        });
+                        addObjectToCanvas(pill); // Agrega la pastilla al lienzo y la almacena en canvasObjects
+                    } else if (elementTypeToAdd === 'line') {
+                        lineWidth = parseInt(document.getElementById('line-width').value); // Obtener el grosor de la línea del control deslizante
+                        var line = new fabric.Line([50, 50, 200, 200], {
+                            stroke: document.getElementById('color').value,
+                            strokeWidth: lineWidth, // Establecer el grosor de la línea
+                            left: x1 - 75,
+                            top: y1 - 37.5
+                        });
+                        addObjectToCanvas(line); // Agrega una linea al lienzo y la almacena en canvasObjects
                     } else if (elementTypeToAdd === 'text') {
                         var text = new fabric.Textbox('Texto aquí', {
                             fontSize: 20,
@@ -851,38 +1090,97 @@
                             };
                             reader.readAsDataURL(file);
                         });
-                    } else if (elementTypeToAdd === 'svg') {
-                        var input = document.createElement('input');
-                        input.type = 'file';
-                        input.accept = 'image/svg+xml';
-                        input.click();
-                        input.addEventListener('change', function (e) {
-                            var files = e.target.files;
-                            for (var i = 0; i < files.length; i++) {
-                                var file = files[i];
-                                var reader = new FileReader();
-                                reader.onload = function (event) {
-                                    var svgString = event.target.result;
-                                    fabric.loadSVGFromString(svgString, function (objects, options) {
-                                        // Procesar objetos SVG cargados
-                                        objects.forEach(function (obj) {
-                                            // Ajustar la posición del objeto si es necesario
-                                            // Aquí puedes agregar lógica para posicionar los objetos SVG correctamente en el lienzo
-                                            var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
-                                            var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
-                                            obj.set({
-                                                left: obj.left + offsetX,
-                                                top: obj.top + offsetY
-                                            });
-                                            canvas.add(obj); // Agregar objeto al lienzo
-                                        });
-                                        canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
-                                    });
-                                };
-                                reader.readAsText(file);
-                            }
-                            isAddingNewElement = false; // Restablecer la bandera después de la carga del SVG
-                            elementTypeToAdd = ''; // Restablecer el tipo de elemento
+                    } else if (elementTypeToAdd === 'arrow1') {
+                        fabric.loadSVGFromString(svgArrow1, function (objects, options) {
+                            changeSVGColor(objects, color);
+                            objects.forEach(function (obj) {
+                                obj.set({left: x1 - 15, top: y1 - 5});
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'arrow2') {
+                        fabric.loadSVGFromString(svgArrow2, function (objects, options) {
+                            changeSVGColor(objects, color);
+                            objects.forEach(function (obj) {
+                                obj.set({left: x1 - 15, top: y1 - 5});
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'arrow3') {
+                        fabric.loadSVGFromString(svgArrow3, function (objects, options) {
+                            changeSVGColor(objects, color);
+                            objects.forEach(function (obj) {
+                                obj.set({left: x1 - 15, top: y1 - 5});
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'arrow4') {
+                        fabric.loadSVGFromString(svgArrow4, function (objects, options) {
+                            changeSVGColor(objects, color);
+                            objects.forEach(function (obj) {
+                                obj.set({left: x1 - 15, top: y1 - 5});
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'svg1') {
+                        fabric.loadSVGFromString(svgString1, function (objects, options) {
+                            objects.forEach(function (obj) {
+                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
+                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
+                                obj.set({
+                                    left: obj.left + offsetX,
+                                    top: obj.top + offsetY
+                                });
+
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'svg2') {
+                        fabric.loadSVGFromString(svgString2, function (objects, options) {
+                            objects.forEach(function (obj) {
+                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
+                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
+                                obj.set({
+                                    left: obj.left + offsetX,
+                                    top: obj.top + offsetY
+                                });
+
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'svg3') {
+                        fabric.loadSVGFromString(svgString3, function (objects, options) {
+                            objects.forEach(function (obj) {
+                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
+                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
+                                obj.set({
+                                    left: obj.left + offsetX,
+                                    top: obj.top + offsetY
+                                });
+
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
+                        });
+                    } else if (elementTypeToAdd === 'sv4') {
+                        fabric.loadSVGFromString(svgString4, function (objects, options) {
+                            objects.forEach(function (obj) {
+                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
+                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
+                                obj.set({
+                                    left: obj.left + offsetX,
+                                    top: obj.top + offsetY
+                                });
+
+                                canvas.add(obj); // Agregar objeto al lienzo
+                            });
+                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
                     }
 
@@ -891,7 +1189,6 @@
                     elementTypeToAdd = ''; // Restablecer el tipo de elemento
                 }
             });
-
 
             canvas.on('mouse:move', function (opt) {
                 if (this.isDragging) {
@@ -927,6 +1224,7 @@
                     canvas.renderAll();
                 }
             });
+
             canvas.on('mouse:wheel', function (opt) {
                 var delta = opt.e.deltaY;
                 var zoom = canvas.getZoom();
@@ -939,6 +1237,7 @@
                 opt.e.preventDefault();
                 opt.e.stopPropagation();
             });
+
             canvas.on('mouse:down', function (opt) {
                 var evt = opt.e;
                 if (evt.altKey === true) {
@@ -959,6 +1258,7 @@
                     this.lastPosY = e.clientY;
                 }
             });
+
             canvas.on('mouse:up', function (opt) {
                 // on mouse up we want to recalculate new interaction
                 // for all objects, so we call setViewportTransform
@@ -998,6 +1298,54 @@
                 }
             });
 
+            var _clipboard = null; // Variable para almacenar el objeto copiado
+
+            function Copy() {
+                // Clonar el objeto activo para copiarlo
+                canvas.getActiveObject().clone(function (cloned) {
+                    _clipboard = cloned;
+                });
+            }
+
+            function Paste() {
+                // Clonar nuevamente el objeto del portapapeles
+                _clipboard.clone(function (clonedObj) {
+                    canvas.discardActiveObject();
+                    // Establecer nuevas propiedades para el objeto clonado
+                    clonedObj.set({
+                        left: clonedObj.left + 10, // Desplazamiento a la derecha
+                        top: clonedObj.top + 10, // Desplazamiento hacia abajo
+                        evented: true,
+                    });
+                    if (clonedObj.type === 'activeSelection') {
+                        // Si es una selección activa, agregar una referencia al lienzo
+                        clonedObj.canvas = canvas;
+                        clonedObj.forEachObject(function (obj) {
+                            canvas.add(obj);
+                        });
+                        // Actualizar las coordenadas de los objetos de la selección activa
+                        clonedObj.setCoords();
+                    } else {
+                        // Agregar el objeto clonado al lienzo
+                        canvas.add(clonedObj);
+                    }
+                    _clipboard.top += 10; // Ajustar la posición del portapapeles
+                    _clipboard.left += 10; // Ajustar la posición del portapapeles
+                    canvas.setActiveObject(clonedObj); // Establecer el objeto clonado como activo
+                    canvas.requestRenderAll(); // Renderizar el lienzo
+                });
+            }
+
+// Obtener el color del input por defecto o seleccionado
+            function getColor() {
+                return document.getElementById('color').value;
+            }
+            // Función para cambiar el color de un objeto SVG
+            function changeSVGColor(objects, color) {
+                objects.forEach(function (obj) {
+                    obj.set({fill: color, stroke: color});
+                });
+            }
         </script>
 
     </body>
