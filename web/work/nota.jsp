@@ -361,14 +361,10 @@
         }
     </script>
 
-
     <script src="../XM-Resources/scripts/voice-text.js"></script>
     <script src="../XM-Resources/scripts/voice_1text.js"></script>
     <script src="../XM-Resources/scripts/imageTtext.js"></script>
     <script src="../XM-Resources/scripts/styles_apunte.js"></script>
-
-
-
 
 </html>
 

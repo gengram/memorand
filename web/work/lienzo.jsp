@@ -182,7 +182,7 @@
                                 <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Insertar</text></label>
                             </li>
                             <li>
-                                <input type="file" class="custom-file-input" <%= "uploads-svg" %> accept="image/svg+xml" multiple/>
+                                <input type="file" class="custom-file-input" <%= "uploads-svg"%> accept="image/svg+xml" multiple/>
                                 <label for="uploads-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Ins elementos</text></label>
                             </li>
                             <li><a id="DB-svg" class="dropdown-item"><i class="bi bi-save-fill me-2" style="color: #25ce7b"></i>Guardar</a></li>
@@ -448,7 +448,7 @@
                             </div>
                         </div>
                         <div class="col-6 text-start">
-                            <input class="form-control form-control-color" type="color" id="colorBorder" name="colorBorder" value="#000000">
+                            <input class="form-control form-control-color" type="color" id="colorBorder" name="colorBorder" value="#FFFFFF">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -603,14 +603,19 @@
 
             // Array list para almacenar los objetos en formato SVG
             var svgObjects = [];
+            var objectIdCounter = 0;
             var pencilPathsSVG = [];
 
             // Función para agregar un objeto al lienzo y almacenarlo en canvasObjects
             function addObjectToCanvas(object) {
+                // Asignar un identificador único al objeto
+                object.id = 'object-' + (++objectIdCounter);
+
                 // Agrega el objeto al lienzo
                 canvas.add(object);
                 // Almacena el objeto y sus propiedades en canvasObjects
                 canvasObjects.push({
+                    id: object.id, // Unique ID for each object
                     type: object.type, // Tipo de objeto (por ejemplo, 'circle', 'rect', etc.)
                     properties: object.toObject(['left', 'top', 'width', 'height', 'fill', 'stroke', 'strokeWidth']) // Propiedades del objeto
                 });
@@ -620,13 +625,37 @@
                     console.log('saveSVG es true. Convirtiendo objeto a SVG');
                     var clonedObject = fabric.util.object.clone(object);
                     var svgObject = clonedObject.toSVG();
-                    svgObjects.push(svgObject);
-
-                    // Verificar si el objeto es un trazo del lápiz y convertirlo a SVG si es necesario
-
-
+                    svgObjects.push({id: object.id, svg: svgObject});
                 } else {
                     console.log('saveSVG es false. No se convierte el objeto a SVG');
+                }
+            }
+
+            // Escucha el evento 'path:created' para capturar los trazos del lápiz creados
+            canvas.on('path:created', function (event) {
+                var path = event.path;
+                console.log('Nuevo trazo de lápiz creado:', path);
+                var pencilPathSVG = path.toSVG();
+                svgObjects.push({id: path.id, svg: pencilPathSVG});
+            });
+
+            // Escuchar los eventos de modificación de los objetos
+            canvas.on('object:modified', function (event) {
+                var object = event.target;
+                updateSVGObject(object);
+            });
+
+            // Función para actualizar el objeto SVG correspondiente en svgObjects
+            function updateSVGObject(object) {
+                var updatedSVG = object.toSVG();
+                var objectId = object.id;
+
+                // Encontrar el objeto en svgObjects y actualizar su representación SVG
+                for (var i = 0; i < svgObjects.length; i++) {
+                    if (svgObjects[i].id === objectId) {
+                        svgObjects[i].svg = updatedSVG;
+                        break;
+                    }
                 }
             }
 
@@ -639,39 +668,26 @@
                 } else {
                     console.log('svgObjects contiene ' + svgObjects.length + ' elementos.');
 
-                    // Itera sobre todos los objetos en svgObjects y haz lo que necesites con ellos
-                    svgObjects.forEach(function (svgObject, index) {
-                        // Aquí puedes guardar svgObject en la base de datos o hacer cualquier otra cosa que necesites
-                        console.log(svgObject);
-                    });
-                }
-
-                if (pencilPathsSVG.length === 0) {
-                    console.log('pencilPathObjects está vacío. No hay elementos para procesar.');
-                } else {
-
-                    // Itera sobre todos los trazos creados con el lápiz y haz lo que necesites con ellos
-                    pencilPathsSVG.forEach(function (pencilPaths, index) {
-                        // Aquí puedes guardar pathSVG en la base de datos o hacer cualquier otra cosa que necesites
-                        console.log('Trazo de lápiz SVG #' + (index + 1) + ':', pencilPaths);
-                    });
+                    var svgFinal = generateSVGFromObjects(svgObjects);
+                    console.log(svgFinal);
                 }
             });
+
+// Función para generar svgFinal a partir de svgObjects
+            function generateSVGFromObjects(objects) {
+                var svgFinal = [];
+                svgFinal.push('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
+                objects.forEach(function (svgObject) {
+                    svgFinal.push(svgObject.svg); // Suponiendo que cada objeto en svgObjects tiene un método toSVG()
+                });
+                svgFinal.push('</svg>');
+                return svgFinal.join("");
+            }
 
             function toggleDrawingMode() {
                 drawingMode = !drawingMode;
                 canvas.isDrawingMode = drawingMode;
             }
-
-            // Escucha el evento 'path:created' para capturar los trazos del lápiz creados
-            canvas.on('path:created', function (event) {
-                var path = event.path;
-                console.log('Nuevo trazo de lápiz creado:', path);
-                var pencilPathSVG = path.toSVG();
-                pencilPathsSVG.push(pencilPathSVG);
-
-                // Aquí puedes realizar cualquier acción adicional con el trazo creado, si es necesario
-            });
 
             function togglePanning() {
                 panningEnabled = !panningEnabled;
@@ -707,18 +723,32 @@
                 var activeObjects = canvas.getActiveObjects();
                 if (activeObjects.length > 0) {
                     activeObjects.forEach(function (object) {
+                        // Eliminar el objeto del lienzo
                         canvas.remove(object);
+
+                        // Eliminar el objeto de svgObjects si es un objeto SVG
+                        var index = svgObjects.findIndex(function (svgObject) {
+                            return svgObject.id === object.id;
+                        });
+                        if (index !== -1) {
+                            svgObjects.splice(index, 1);
+                        }
+
+                        // Volver a generar svgFinal si es necesario
+                        svgFinal = generateSVGFromObjects(svgObjects);
                     });
                 }
             });
 
             document.getElementById('delete-all').addEventListener('click', function () {
-                canvas.getObjects().forEach(function (object) {
-                    if (!(object instanceof fabric.Line)) {
-                        canvas.remove(object);
-                    }
-                });
+                // Eliminar todos los objetos del lienzo y también del arreglo canvasObjects
+                canvas.clear();
+
+                // Limpiar svgFinal y svgObjects
+                svgFinal = [];
+                svgObjects = [];
             });
+
 
             document.addEventListener('keydown', function (e) {
                 var activeObject = canvas.getActiveObject();
@@ -730,9 +760,22 @@
                 if (e.keyCode === 46 || e.keyCode === 8) { // Código de tecla para borrar
                     var activeObject = canvas.getActiveObject();
                     if (activeObject) {
+                        // Eliminar el objeto del lienzo
                         canvas.remove(activeObject);
+
+                        // Eliminar el objeto de svgObjects si es un objeto SVG
+                        var index = svgObjects.findIndex(function (svgObject) {
+                            return svgObject.id === activeObject.id;
+                        });
+                        if (index !== -1) {
+                            svgObjects.splice(index, 1);
+                        }
+
+                        // Volver a generar svgFinal si es necesario
+                        svgFinal = generateSVGFromObjects(svgObjects);
                     }
                 }
+
             });
 
             // Función para descargar la imagen del lienzo
@@ -917,38 +960,38 @@
             });
 
             // Manejo de SVGs personalizados del usuario
-           /* document.getElementById('uploads-svg').addEventListener('change', function (e) {
-                var files = e.target.files;
-
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    var reader = new FileReader();
-                    reader.onload = function (event) {
-                        var svgString = event.target.result;
-                        fabric.loadSVGFromString(svgString, function (objects, options) {
-                            objects.forEach(function (obj) {
-                                obj.set({
-                                    left: 100, // Ajusta según sea necesario
-                                    top: 100  // Ajusta según sea necesario
-                                });
-
-                                // Evento para cambiar solo el contorno (stroke) del SVG
-                                obj.on('mousedown', function (options) {
-                                    var color = document.getElementById('color').value;
-                                    obj.set({
-                                        stroke: color
-                                    });
-                                    canvas.renderAll();
-                                });
-
-                                canvas.add(obj);
-                            });
-                            canvas.renderAll();
-                        });
-                    };
-                    reader.readAsText(file);
-                }
-            }); */
+            /* document.getElementById('uploads-svg').addEventListener('change', function (e) {
+             var files = e.target.files;
+             
+             for (var i = 0; i < files.length; i++) {
+             var file = files[i];
+             var reader = new FileReader();
+             reader.onload = function (event) {
+             var svgString = event.target.result;
+             fabric.loadSVGFromString(svgString, function (objects, options) {
+             objects.forEach(function (obj) {
+             obj.set({
+             left: 100, // Ajusta según sea necesario
+             top: 100  // Ajusta según sea necesario
+             });
+             
+             // Evento para cambiar solo el contorno (stroke) del SVG
+             obj.on('mousedown', function (options) {
+             var color = document.getElementById('color').value;
+             obj.set({
+             stroke: color
+             });
+             canvas.renderAll();
+             });
+             
+             canvas.add(obj);
+             });
+             canvas.renderAll();
+             });
+             };
+             reader.readAsText(file);
+             }
+             }); */
 
             // Contenido del SVG de las arrow
             var svgArrow1 = `<svg viewBox="0 0 32 35" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 2" id="Layer_2"><path d="M9.05,10.05a1,1,0,0,0,1.42,0l4.6-4.6V35a1,1,0,0,0,2,0V5.48l4.57,4.57a1,1,0,0,0,1.41-1.41L16.69,2.27a.9.9,0,0,0-1.27,0L9.05,8.64A1,1,0,0,0,9.05,10.05Z"/></g></svg>`;
@@ -1487,8 +1530,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                                     });
                                     canvas.renderAll();
                                 });
-
-                                canvas.add(obj);
+                                addObjectToCanvas(obj);
                             });
                             canvas.renderAll();
                         });
@@ -1613,7 +1655,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                             changeSVGColor(objects, color);
                             objects.forEach(function (obj) {
                                 obj.set({left: x1 - 15, top: y1 - 5});
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1622,7 +1664,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                             changeSVGColor(objects, color);
                             objects.forEach(function (obj) {
                                 obj.set({left: x1 - 15, top: y1 - 5});
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1631,7 +1673,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                             changeSVGColor(objects, color);
                             objects.forEach(function (obj) {
                                 obj.set({left: x1 - 15, top: y1 - 5});
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1640,7 +1682,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                             changeSVGColor(objects, color);
                             objects.forEach(function (obj) {
                                 obj.set({left: x1 - 15, top: y1 - 5});
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1654,7 +1696,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                                     top: obj.top + offsetY
                                 });
 
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1668,7 +1710,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                                     top: obj.top + offsetY
                                 });
 
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1682,7 +1724,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                                     top: obj.top + offsetY
                                 });
 
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1696,7 +1738,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                                     top: obj.top + offsetY
                                 });
 
-                                canvas.add(obj); // Agregar objeto al lienzo
+                                addObjectToCanvas(obj); // Agregar objeto al lienzo
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
@@ -1784,15 +1826,6 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                 this.isDragging = false;
                 this.selection = true;
             });
-            // Función para actualizar las propiedades de un objeto en canvasObjects cuando se modifica en el lienzo
-            function updateObjectPropertiesInCanvasObjects(object) {
-                var index = canvasObjects.findIndex(function (item) {
-                    return item.id === object.id;
-                });
-                if (index !== -1) {
-                    canvasObjects[index].properties = object.toObject(['left', 'top', 'width', 'height', 'fill', 'stroke', 'strokeWidth']);
-                }
-            }
 
             document.getElementById('upload-svg').addEventListener('change', function (e) {
                 var files = e.target.files;
@@ -1828,6 +1861,10 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
             function Paste() {
                 // Clonar nuevamente el objeto del portapapeles
                 _clipboard.clone(function (clonedObj) {
+                    // Generar un nuevo ID único para el objeto clonado
+                    var newId = 'object-' + (++objectIdCounter);
+                    clonedObj.id = newId;
+
                     canvas.discardActiveObject();
                     // Establecer nuevas propiedades para el objeto clonado
                     clonedObj.set({
@@ -1847,6 +1884,11 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                         // Agregar el objeto clonado al lienzo
                         canvas.add(clonedObj);
                     }
+
+                    // Agregar el objeto clonado a svgObjects con su nuevo ID
+                    var clonedSVG = clonedObj.toSVG();
+                    svgObjects.push({id: newId, svg: clonedSVG});
+
                     _clipboard.top += 10; // Ajustar la posición del portapapeles
                     _clipboard.left += 10; // Ajustar la posición del portapapeles
                     canvas.setActiveObject(clonedObj); // Establecer el objeto clonado como activo
@@ -1854,7 +1896,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                 });
             }
 
-// Obtener el color del input por defecto o seleccionado
+            // Obtener el color del input por defecto o seleccionado
             function getColor() {
                 return document.getElementById('color').value;
             }
