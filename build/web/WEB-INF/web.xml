@@ -152,6 +152,18 @@
         <servlet-name>ApiCanvaInfo</servlet-name>
         <servlet-class>com.memorand.api.ApiCanvaInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApiTaskInfo</servlet-name>
+        <servlet-class>com.memorand.api.ApiTaskInfo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApiIdeaInfo</servlet-name>
+        <servlet-class>com.memorand.api.ApiIdeaInfo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApiNoteInfo</servlet-name>
+        <servlet-class>com.memorand.api.ApiNoteInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -303,6 +315,18 @@
     <servlet-mapping>
         <servlet-name>ApiCanvaInfo</servlet-name>
         <url-pattern>/ApiCanvaInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiTaskInfo</servlet-name>
+        <url-pattern>/ApiTaskInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiIdeaInfo</servlet-name>
+        <url-pattern>/ApiIdeaInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApiNoteInfo</servlet-name>
+        <url-pattern>/ApiNoteInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
