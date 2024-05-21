@@ -27,16 +27,16 @@ public class NoteText extends HttpServlet {
         {
             try
             {
-                BufferedReader reader = request.getReader();
-                StringBuilder sb = new StringBuilder();
-                String line;
-                
-                while ((line = reader.readLine()) != null)
+                StringBuilder sb;
+                try (BufferedReader reader = request.getReader())
                 {
-                    sb.append(line);
+                    sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                    }
                 }
-                
-                reader.close();
 
                 JsonObject json = new Gson().fromJson(sb.toString(), JsonObject.class);
 

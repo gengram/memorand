@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CanvasModel extends Conexion
 {
@@ -153,5 +154,43 @@ public class CanvasModel extends Conexion
         }
         
         return canvas;
+    }
+    
+    public boolean updateCanvaDraw(String canva_id, String canva_draw)
+    {
+        boolean flag = true;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE canvas SET canva_draw = ?, canva_mdate = ? WHERE canva_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
+            
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(currentTimestamp);
+            cal.add(Calendar.HOUR_OF_DAY, -1);
+            
+            Timestamp newTimestamp = new Timestamp(cal.getTimeInMillis());
+            
+            ps.setString(1, canva_draw);
+            ps.setTimestamp(2, newTimestamp);
+            ps.setString(3, canva_id);
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+       
+        return flag;
     }
 }

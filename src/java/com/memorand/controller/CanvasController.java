@@ -12,6 +12,12 @@ public class CanvasController {
         CanvasModel canvam = new CanvasModel();
         return canvam.createCanva(canva);
     }
+    
+    public boolean modelUpdateCanvaDraw(String canva_id, String canva_draw)
+    {
+        CanvasModel canvam = new CanvasModel();
+        return canvam.updateCanvaDraw(canva_id, canva_draw);
+    }
 
     public Canva modelGetCanvaById(String c_id) {
         CanvasModel canvam = new CanvasModel();

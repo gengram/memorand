@@ -659,18 +659,35 @@
                 }
             }
 
-            document.getElementById('DB-svg').addEventListener('click', function () {
-                saveSVG = true; // Establece saveSVG como true para comenzar a almacenar objetos en formato SVG
+            document.getElementById('DB-svg').addEventListener('click', function ()
+            {
+                saveSVG = true;
+                
+                let urlParams = new URLSearchParams(window.location.search);
+                let note_id = urlParams.get('id');
 
-                // Verifica si svgObjects contiene elementos antes de iterar sobre ellos
-                if (svgObjects.length === 0) {
-                    console.log('svgObjects está vacío. No hay elementos para procesar.');
-                } else {
-                    console.log('svgObjects contiene ' + svgObjects.length + ' elementos.');
+                var svgFinal = generateSVGFromObjects(svgObjects);
 
-                    var svgFinal = generateSVGFromObjects(svgObjects);
-                    console.log(svgFinal);
-                }
+                let data = {
+                    "canva_id": note_id,
+                    "canva_draw": svgFinal
+                };
+
+                let xhr = new XMLHttpRequest();
+                let url = "/memorand/canvadraw";
+
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    }
+                };
+
+                xhr.send(JSON.stringify(data));
+
+                console.log(svgFinal);
             });
 
 // Función para generar svgFinal a partir de svgObjects
