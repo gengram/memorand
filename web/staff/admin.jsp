@@ -9,12 +9,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null || !u.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String admin_id = request.getParameter("id");
     String inst_id = "null";
 
     InstitutionsController instc = new InstitutionsController();
-
-    // PROTECCIÓN
+    
     // VARIABLES DEL ADMINISTRADOR
     String admin_email = "null", admin_name = "null", admin_pat = "null", admin_mat = "null";
     String admin_type = "null", admin_status = "null", admin_profile = "null";

@@ -123,7 +123,7 @@ public class PostsController {
                 htmlcode += "<div class=\"row card-set\" id=\"cardSet" + cardSetCounter + "\">\n"
                         + "<div class=\"col-1\"></div>\n"
                         + "                <div class=\"col-10\">\n"
-                        + "                    <div class=\"card mb-3 border border-2\">\n"
+                        + "                    <div class=\"card mb-3 border border-1\">\n"
                         + "                        <div class=\"card-body\">\n"
                         + "                            <div class=\"row mt-0\">\n"
                         + "                                <div class=\"col-1 card-title\" style=\" padding-top: 0px;\">\n"

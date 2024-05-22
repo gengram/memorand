@@ -174,7 +174,7 @@ public class TasksController {
                 htmlcode += "<div class=\"col-5\">";
 
                 // Generar HTML para la tarjeta
-                htmlcode += "<div class=\"card mb-3 border border-2\">\n"
+                htmlcode += "<div class=\"card mb-3 border border-1\">\n"
                         + "<div class=\"card-body\">\n"
                         + "<div class=\"row\">\n"
                         + "<div class=\"col-6 card-title\">\n"

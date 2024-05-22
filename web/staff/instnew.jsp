@@ -8,6 +8,12 @@
 
 <%
     // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null || !u.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
 %>
 
 <!DOCTYPE html>
