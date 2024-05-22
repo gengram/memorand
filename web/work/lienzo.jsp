@@ -174,16 +174,18 @@
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
-                            <li><a href="tarea.jsp?id=<%= task_id%>" class="dropdown-item"><i class="bi  bi-box-arrow-left me-2" style="color: #25ce7b"></i>Imagen</a></li>
+                            <li><a href="tarea.jsp?id=<%= task_id%>" class="dropdown-item"><i class="bi  bi-box-arrow-left me-2" style="color: #25ce7b"></i>Regresar</a></li>
                             <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
                             <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
+                            <!--
                             <li>
                                 <input type="file" class="custom-file-input"  id="upload-svg" accept="image/svg+xml" multiple/>
-                                <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Insertar</text></label>
+                                <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Añadir</text></label>
                             </li>
+                            -->
                             <li>
                                 <input type="file" class="custom-file-input" <%= "uploads-svg"%> accept="image/svg+xml" multiple/>
-                                <label for="uploads-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Ins elementos</text></label>
+                                <label for="uploads-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Añadir SVG</text></label>
                             </li>
                             <li><a id="DB-svg" class="dropdown-item"><i class="bi bi-save-fill me-2" style="color: #25ce7b"></i>Guardar</a></li>
                         </ul>
@@ -242,6 +244,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
+                            <!--
                             <div class="col-2">
                                 <div class="list-group list-group-flush rounded-2">
                                     <button type="button" class="list-group-item list-group-item-action list-group-item-memorand active" aria-current="true">
@@ -254,11 +257,12 @@
                                     <button type="button" class="list-group-item list-group-item-action list-group-item-memorand">Diagramas</button>
                                     <button type="button" class="list-group-item list-group-item-action list-group-item-memorand">Otros</button>
                                 </div>
-                            </div>
-                            <div class="col-10">
+                            </div> 
+                            -->
+                            <div class="col-12">
                                 <div class="row">
                                     <div class="col-3">
-                                        <div class="card shadow" type="button" style="height: 9.5rem;" data-bs-dismiss="modal" aria-label="Close">
+                                        <div class="card shadow" type="button" style="height: 10.5rem;" data-bs-dismiss="modal" aria-label="Close">
                                             <div class="card-header">
                                                 Vac&iacute;o
                                             </div>
@@ -267,39 +271,39 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div id="uSVG-1" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-1" class="card shadow template-card" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Mapa conceptual
                                             </div>
                                             <div class="card-body">
-                                                <img width="200" height="70" src="../XM-Resources/imagen/plantillas/map_c_1.png" class="img-fluid rounded-start ms-2 mb-2" alt="...">
+                                                <img width="200" height="70" src="../XM-Resources/imagen/plantillas/map_c_1.png" class="img-fluid rounded-start mb-2" style="margin-left: 2.5rem;" alt="...">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div id="uSVG-2" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-2" class="card shadow template-card" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Mapa conceptual 2
                                             </div>
                                             <div class="card-body">
-                                                <img width="157.5" height="1" src="../XM-Resources/imagen/plantillas/map_c_2.png" class="img-fluid rounded-start mb-2" style="margin-left: 2rem;" alt="...">
+                                                <img width="157.5" height="1" src="../XM-Resources/imagen/plantillas/map_c_2.png" class="img-fluid rounded-start mb-2" style="margin-left: 3rem;" alt="...">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div id="uSVG-3" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-3" class="card shadow template-card" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Mapa conceptual 3
                                             </div>
                                             <div class="card-body">
-                                                <img width="157.5" height="70" src="../XM-Resources/imagen/plantillas/map_c_3.png" class="img-fluid rounded-start mb-2"  style="margin-left: 2rem;"alt="...">
+                                                <img width="157.5" height="70" src="../XM-Resources/imagen/plantillas/map_c_3.png" class="img-fluid rounded-start mb-2"  style="margin-left: 3rem;"alt="...">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-3">
-                                        <div id="uSVG-4" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-4" class="card shadow" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -309,7 +313,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div id="uSVG-5" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-5" class="card shadow" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -319,7 +323,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div id="uSVG-6" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-6" class="card shadow" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -329,7 +333,7 @@
                                         </div>
                                     </div>
                                     <div class="col-3">
-                                        <div id="uSVG-7" class="card shadow" style="height: 9.5rem;">
+                                        <div id="uSVG-7" class="card shadow" style="height: 10.5rem;">
                                             <div class="card-header">
                                                 Organigrama
                                             </div>
@@ -343,7 +347,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn custom-bsign rounded-pill">Insertar</button>
+                        <button type="button" class="btn custom-bsign rounded-pill"  id="insert-template-btn">Insertar</button>
                     </div>
                 </div>
             </div>
@@ -662,7 +666,7 @@
             document.getElementById('DB-svg').addEventListener('click', function ()
             {
                 saveSVG = true;
-                
+
                 let urlParams = new URLSearchParams(window.location.search);
                 let note_id = urlParams.get('id');
 
@@ -775,21 +779,23 @@
                 }
 
                 if (e.keyCode === 46 || e.keyCode === 8) { // Código de tecla para borrar
-                    var activeObject = canvas.getActiveObject();
-                    if (activeObject) {
-                        // Eliminar el objeto del lienzo
-                        canvas.remove(activeObject);
+                    var activeObjects = canvas.getActiveObjects();
+                    if (activeObjects.length > 0) {
+                        activeObjects.forEach(function (object) {
+                            // Eliminar el objeto del lienzo
+                            canvas.remove(object);
 
-                        // Eliminar el objeto de svgObjects si es un objeto SVG
-                        var index = svgObjects.findIndex(function (svgObject) {
-                            return svgObject.id === activeObject.id;
+                            // Eliminar el objeto de svgObjects si es un objeto SVG
+                            var index = svgObjects.findIndex(function (svgObject) {
+                                return svgObject.id === object.id;
+                            });
+                            if (index !== -1) {
+                                svgObjects.splice(index, 1);
+                            }
+
+                            // Volver a generar svgFinal si es necesario
+                            svgFinal = generateSVGFromObjects(svgObjects);
                         });
-                        if (index !== -1) {
-                            svgObjects.splice(index, 1);
-                        }
-
-                        // Volver a generar svgFinal si es necesario
-                        svgFinal = generateSVGFromObjects(svgObjects);
                     }
                 }
 
@@ -890,8 +896,28 @@
                     this.selection = false;
                     this.lastPosX = evt.clientX;
                     this.lastPosY = evt.clientY;
+                    disableDrawingMode();
                 }
             });
+
+            canvas.on('mouse:move', function (opt) {
+                if (this.isDragging) {
+                    var e = opt.e;
+                    var vpt = this.viewportTransform;
+                    vpt[4] += e.clientX - this.lastPosX;
+                    vpt[5] += e.clientY - this.lastPosY;
+                    this.requestRenderAll();
+                    this.lastPosX = e.clientX;
+                    this.lastPosY = e.clientY;
+                }
+            });
+
+            canvas.on('mouse:up', function (opt) {
+                // Termina el arrastre del lienzo
+                this.isDragging = false;
+                this.selection = true;
+            });
+
 
             var isAddingNewElement = false; // Variable para controlar si se está agregando un nuevo elemento
             var elementTypeToAdd = ''; // Variable para almacenar el tipo de elemento que se está agregando
@@ -959,22 +985,6 @@
                 elementTypeToAdd = 'arrow4';
             });
 
-            document.getElementById('uSVG-1').addEventListener('click', function () {
-                isAddingNewElement = true;
-                elementTypeToAdd = 'sv1';
-            });
-            document.getElementById('uSVG-2').addEventListener('click', function () {
-                isAddingNewElement = true;
-                elementTypeToAdd = 'sv2';
-            });
-            document.getElementById('uSVG-3').addEventListener('click', function () {
-                isAddingNewElement = true;
-                elementTypeToAdd = 'sv3';
-            });
-            document.getElementById('uSVG-4').addEventListener('click', function () {
-                isAddingNewElement = true;
-                elementTypeToAdd = 'sv4';
-            });
 
             // Manejo de SVGs personalizados del usuario
             /* document.getElementById('uploads-svg').addEventListener('change', function (e) {
@@ -1703,68 +1713,77 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                             });
                             canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
                         });
-                    } else if (elementTypeToAdd === 'sv1') {
-                        fabric.loadSVGFromString(svgString1, function (objects, options) {
-                            objects.forEach(function (obj) {
-                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
-                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
-                                obj.set({
-                                    left: obj.left + offsetX,
-                                    top: obj.top + offsetY
-                                });
-
-                                addObjectToCanvas(obj); // Agregar objeto al lienzo
-                            });
-                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
-                        });
-                    } else if (elementTypeToAdd === 'sv2') {
-                        fabric.loadSVGFromString(svgString2, function (objects, options) {
-                            objects.forEach(function (obj) {
-                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
-                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
-                                obj.set({
-                                    left: obj.left + offsetX,
-                                    top: obj.top + offsetY
-                                });
-
-                                addObjectToCanvas(obj); // Agregar objeto al lienzo
-                            });
-                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
-                        });
-                    } else if (elementTypeToAdd === 'sv3') {
-                        fabric.loadSVGFromString(svgString3, function (objects, options) {
-                            objects.forEach(function (obj) {
-                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
-                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
-                                obj.set({
-                                    left: obj.left + offsetX,
-                                    top: obj.top + offsetY
-                                });
-
-                                addObjectToCanvas(obj); // Agregar objeto al lienzo
-                            });
-                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
-                        });
-                    } else if (elementTypeToAdd === 'sv4') {
-                        fabric.loadSVGFromString(svgString4, function (objects, options) {
-                            objects.forEach(function (obj) {
-                                var offsetX = x1 - 550; // Ejemplo: desplazamiento horizontal
-                                var offsetY = y1 - 400; // Ejemplo: desplazamiento vertical
-                                obj.set({
-                                    left: obj.left + offsetX,
-                                    top: obj.top + offsetY
-                                });
-
-                                addObjectToCanvas(obj); // Agregar objeto al lienzo
-                            });
-                            canvas.renderAll(); // Renderizar el lienzo después de agregar los objetos SVG
-                        });
                     }
 
                     // Restablecer la bandera después de agregar el elemento
                     isAddingNewElement = false;
                     elementTypeToAdd = ''; // Restablecer el tipo de elemento
                 }
+            });
+
+            var selectedTemplateId = null;
+            var lastClickX = 500;
+            var lastClickY = 165;
+
+            // Manejador para seleccionar la plantilla
+            document.querySelectorAll('.template-card').forEach(function (card) {
+                card.addEventListener('click', function () {
+                    selectedTemplateId = this.id;
+                    document.querySelectorAll('.template-card').forEach(function (card) {
+                        card.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+
+            // Manejador para el botón "Insertar"
+            document.getElementById('insert-template-btn').addEventListener('click', function () {
+                if (selectedTemplateId) {
+                    var templateSVG;
+                    switch (selectedTemplateId) {
+                        case 'uSVG-1':
+                            templateSVG = svgString1; // Asume que svgString1 contiene el SVG correspondiente
+                            break;
+                        case 'uSVG-2':
+                            templateSVG = svgString2;
+                            break;
+                        case 'uSVG-3':
+                            templateSVG = svgString3;
+                            break;
+                        case 'uSVG-4':
+                            templateSVG = svgString4;
+                            break;
+                            // Agregar más casos según sea necesario
+                    }
+
+                    if (templateSVG) {
+                        addSvgToCanvas(templateSVG);
+                    }
+
+                    // Cerrar el modal después de insertar la plantilla
+                    $('#myModal').modal('hide');
+                }
+            });
+            
+            // Función para agregar SVG al lienzo respetando las posiciones relativas y separando los objetos
+            function addSvgToCanvas(svgString) {
+                fabric.loadSVGFromString(svgString, function (objects, options) {
+                    objects.forEach(function (obj) {
+                        obj.set({
+                            left: obj.left + lastClickX,
+                            top: obj.top + lastClickY
+                        });
+                        addObjectToCanvas(obj); // Agregar objeto individual al lienzo
+                    });
+                    canvas.renderAll();
+                });
+            }
+
+            // Manejador para registrar la última posición del clic en el lienzo
+            canvas.on('mouse:down', function (event) {
+                var pointer = canvas.getPointer(event.e);
+                lastClickX = pointer.x;
+                lastClickY = pointer.y;
             });
 
             canvas.on('mouse:move', function (opt) {
@@ -1844,27 +1863,27 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                 this.selection = true;
             });
 
-            document.getElementById('upload-svg').addEventListener('change', function (e) {
-                var files = e.target.files;
-                var offsetX = canvas.width / 4; // Definir la posición X por defecto
-                var offsetY = canvas.height / 7; // Definir la posición Y por defecto
-
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    var reader = new FileReader();
-                    reader.onload = function (event) {
-                        fabric.loadSVGFromURL(event.target.result, function (objects, options) {
-                            var svgObjects = fabric.util.groupSVGElements(objects, options);
-                            svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
-                            addObjectToCanvas(svgObjects);
-                            // Almacenar una referencia al objeto SVG cargado
-                            svgObjects.originalFill = svgObjects.getObjects()[0].fill;
-                            console.log('SVG cargado correctamente:', svgObjects);
-                        });
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
+            /*document.getElementById('upload-svg').addEventListener('change', function (e) {
+             var files = e.target.files;
+             var offsetX = canvas.width / 4; // Definir la posición X por defecto
+             var offsetY = canvas.height / 7; // Definir la posición Y por defecto
+             
+             for (var i = 0; i < files.length; i++) {
+             var file = files[i];
+             var reader = new FileReader();
+             reader.onload = function (event) {
+             fabric.loadSVGFromURL(event.target.result, function (objects, options) {
+             var svgObjects = fabric.util.groupSVGElements(objects, options);
+             svgObjects.set({left: offsetX, top: offsetY}); // Establecer la posición del SVG
+             addObjectToCanvas(svgObjects);
+             // Almacenar una referencia al objeto SVG cargado
+             svgObjects.originalFill = svgObjects.getObjects()[0].fill;
+             console.log('SVG cargado correctamente:', svgObjects);
+             });
+             };
+             reader.readAsDataURL(file);
+             }
+             });*/
 
             var _clipboard = null; // Variable para almacenar el objeto copiado
 
@@ -1913,6 +1932,18 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                 });
             }
 
+            // Escuchar el evento de teclado
+            document.addEventListener('keydown', function (e) {
+                // Verificar si se presionó la tecla Ctrl + C (67 es el código de tecla para la tecla C)
+                if (e.ctrlKey && e.keyCode === 67) {
+                    Copy();
+                }
+                // Verificar si se presionó la tecla Ctrl + V (86 es el código de tecla para la tecla V)
+                else if (e.ctrlKey && e.keyCode === 86) {
+                    Paste();
+                }
+            });
+
             // Obtener el color del input por defecto o seleccionado
             function getColor() {
                 return document.getElementById('color').value;
@@ -1923,6 +1954,41 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                     obj.set({fill: color, stroke: color});
                 });
             }
+
+            // Función para mover el objeto activo
+            function moveObject(keyCode) {
+                var activeObject = canvas.getActiveObject();
+                if (activeObject) {
+                    switch (keyCode) {
+                        case 37: // Flecha izquierda
+                            activeObject.left -= 5;
+                            break;
+                        case 38: // Flecha arriba
+                            activeObject.top -= 5;
+                            break;
+                        case 39: // Flecha derecha
+                            activeObject.left += 5;
+                            break;
+                        case 40: // Flecha abajo
+                            activeObject.top += 5;
+                            break;
+                    }
+                    activeObject.setCoords(); // Actualiza las coordenadas del objeto
+                    canvas.renderAll(); // Vuelve a renderizar el lienzo
+                }
+            }
+
+// Escuchar el evento de teclado
+            document.addEventListener('keydown', function (e) {
+                if (e.keyCode >= 37 && e.keyCode <= 40) {
+                    e.preventDefault(); // Prevenir el comportamiento por defecto de las flechas
+                    moveObject(e.keyCode);
+                }
+            });
+
+
+            var canva_draw = '<%= canva_draw%>';
+            console.log(canva_draw);
         </script>
 
     </body>
