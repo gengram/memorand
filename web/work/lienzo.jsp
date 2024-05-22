@@ -1,3 +1,4 @@
+<%@page import="java.util.Base64"%>
 <%@page import="com.memorand.beans.Canva"%>
 <%@page import="com.memorand.controller.CanvasController"%>
 <%@page import="java.sql.Timestamp"%>
@@ -697,7 +698,7 @@
 // Función para generar svgFinal a partir de svgObjects
             function generateSVGFromObjects(objects) {
                 var svgFinal = [];
-                svgFinal.push('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">');
+                svgFinal.push('<svg>');
                 objects.forEach(function (svgObject) {
                     svgFinal.push(svgObject.svg); // Suponiendo que cada objeto en svgObjects tiene un método toSVG()
                 });
@@ -1353,7 +1354,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
 <rect style="stroke: rgb(70,169,168); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  x="-75" y="-37.5" rx="0" ry="0" width="150" height="75" />
 </g>
 </svg>`;
-            var svgString3 = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="3000" height="2500" viewBox="-572.19 -278.54 5499.63 4583.03" xml:space="preserve">
+            var svgString3 = `<svg >
 <desc>Created with Fabric.js 4.5.0</desc>
 <defs>
 </defs>
@@ -1764,7 +1765,7 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                     $('#myModal').modal('hide');
                 }
             });
-            
+
             // Función para agregar SVG al lienzo respetando las posiciones relativas y separando los objetos
             function addSvgToCanvas(svgString) {
                 fabric.loadSVGFromString(svgString, function (objects, options) {
@@ -1986,9 +1987,32 @@ c-760 -760 -982 -987 -997 -1022 -14 -30 -21 -67 -21 -110 0 -103 29 -153 168
                 }
             });
 
+            var canva_draw = atob('<%= new String(Base64.getEncoder().encode(canva_draw.getBytes()))%>');
 
-            var canva_draw = '<%= canva_draw%>';
-            console.log(canva_draw);
+            // Verificar si canva_draw no es null y no está vacío
+            if (canva_draw !== null && canva_draw !== '') {
+                // Dividir la cadena canva_draw en múltiples SVG
+                var svgArray = canva_draw.split('<svg');
+                svgArray.shift(); // Eliminar el primer elemento vacío
+
+                // Cargar cada SVG en el lienzo
+                svgArray.forEach(function (svgString) {
+                    // Agregar el prefijo <svg para reconstruir el SVG completo
+                    svgString = '<svg' + svgString;
+
+                    fabric.loadSVGFromString(svgString, function (objects, options) {
+                        // Agregar los objetos SVG al lienzo
+                        objects.forEach(function (obj) {
+                            canvas.add(obj);
+                        });
+
+                        // Renderizar el lienzo después de agregar los objetos SVG
+                        canvas.renderAll();
+                    });
+                });
+            }
+
+
         </script>
 
     </body>
