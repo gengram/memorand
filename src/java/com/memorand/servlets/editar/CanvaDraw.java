@@ -3,7 +3,7 @@ package com.memorand.servlets.editar;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import com.memorand.controller.NotesController;
+import com.memorand.controller.CanvasController;
 import java.io.BufferedReader;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class NoteText extends HttpServlet {
-
+public class CanvaDraw extends HttpServlet
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -39,14 +39,14 @@ public class NoteText extends HttpServlet {
 
                 JsonObject json = new Gson().fromJson(sb.toString(), JsonObject.class);
 
-                String note_id = json.get("note_id").getAsString();
-                String note_text = json.get("note_text").getAsString();
+                String canva_id = json.get("canva_id").getAsString();
+                String canva_draw = json.get("canva_draw").getAsString();
 
-                if (note_id != null && note_text != null)
+                if (canva_id != null && canva_draw != null)
                 {
-                    NotesController notec = new NotesController();
+                    CanvasController canvac = new CanvasController();
 
-                    if (notec.modelUpdateNoteText(note_id, note_text))
+                    if (canvac.modelUpdateCanvaDraw(canva_id, canva_draw))
                     {
                         response.setStatus(HttpServletResponse.SC_OK);
                     } else
@@ -69,4 +69,5 @@ public class NoteText extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
+
 }
