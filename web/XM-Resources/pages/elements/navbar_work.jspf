@@ -2,8 +2,8 @@
     <div class="container-fluid">
 
         <!-- Empresa -->
-        <a class="navbar-brand" href="/memorand/work/home.jsp"  style="margin-left:18%">
-            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="230">
+        <a class="navbar-brand" href="/memorand/work/home.jsp"  style="margin-left:21%">
+            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="200">
         </a>
         
         

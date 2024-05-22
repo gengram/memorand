@@ -160,7 +160,7 @@
                 <div class="col-1"></div>
                 <div class="col-4 mt-2">
                     <a href="collab.jsp?id=<%= collab_id%>" id="backLink">
-                        <div class="card border border-2" style="max-height: 50px;">
+                        <div class="card border border-1" style="max-height: 50px;">
                             <div class="row g-0">
                                 <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px">
                                     <i class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
@@ -180,7 +180,7 @@
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
                 </div>
                 <div class="col-4 mt-2">
-                    <div class="card border border-2" style="max-height: 50px;">
+                    <div class="card border border-1" style="max-height: 50px;">
                         <div class="row g-0">
                             <div class="col-md-2 rounded-start" style="background-color: #<%=task_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
