@@ -18,7 +18,6 @@ public class NoteText extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
         HttpSession session = request.getSession();
 
         String user_type = (String) session.getAttribute("user_type");
