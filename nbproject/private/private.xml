@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/memorand/web/WEB-INF/web.xml</file>
+            <file>file:/C:/memorand/src/java/com/memorand/util/Sanitizante.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/servlets/nuevo/PostNew.java</file>
+            <file>file:/C:/memorand/src/java/com/memorand/controller/PostsController.java</file>
             <file>file:/C:/memorand/web/work/collab.jsp</file>
-            <file>file:/C:/memorand/src/java/com/memorand/api/obtener/ApiUserInfoGet.java</file>
         </group>
     </open-files>
 </project-private>

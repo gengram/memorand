@@ -7,6 +7,7 @@ import com.memorand.controller.CoPostsController;
 import com.memorand.controller.PostsController;
 import com.memorand.controller.UserPostsController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -62,6 +63,12 @@ public class PostNew extends HttpServlet
             {
                 if (user_type.equals("wk") || user_type.equals("ch"))
                 {
+                    String post_text = post_fields.get(0);
+                    
+                    Sanitizante s = new Sanitizante();
+                    
+                    post_text = s.sanitizar(post_text);
+                    
                     Generador g = new Generador();
                 
                     String post_id = g.newID();
@@ -69,7 +76,7 @@ public class PostNew extends HttpServlet
                     
                     Timestamp ts = new Timestamp(System.currentTimeMillis());
                     
-                    Post post = new Post(post_id, post_fields.get(0),0,0,0,ts);
+                    Post post = new Post(post_id, post_text,0,0,0,ts);
                     PostsController postc = new PostsController();
                     
                     if (postc.modelCreatePost(post))
