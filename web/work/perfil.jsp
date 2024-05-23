@@ -1,22 +1,18 @@
+<%@page import="com.memorand.controller.UsersController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-
-    String user_email = null;
-    String user_pass = null;
-    String user_type = null;
-    String user_name = null;
-    String user_pat = null;
-    String user_mat = null;
-    String user_status = null;
-    String user_profile = null;
-
-    String inst_id = null;
-    String inst_name = null;
-    String inst_type = null;
-    String inst_profile = null;
-
-  
+    UsersController userc = new UsersController();
+    
+    String user_id = (String) session.getAttribute("user_id");
+    String user_email = (String) session.getAttribute("user_email");
+    String user_name = (String) session.getAttribute("user_name");
+    String user_pat = (String) session.getAttribute("user_pat");
+    String user_mat = (String) session.getAttribute("user_mat");
+    String user_status = (String) session.getAttribute("user_status");
+    String user_profile = (String) session.getAttribute("user_profile");
+    
+    String user_statusS = userc.modelConvUserStatus(user_status);
 %>
 
 <!DOCTYPE html>
@@ -24,24 +20,62 @@
 <html>
     
     <head>
+
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
+        <title>Memorand | <%= user_name%> <%= user_pat%></title>
+
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
-        <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
-        <title>Memorand | </title>
+
     </head>
     
-    <head>
+    <style>
+        .btn-red {
+            border-color: red;
+            color: red;
+            background-color: transparent;
+        }
+        .btn-red:hover {
+            border-color: red;
+            color: #fff;
+            background-color: red;
+        }
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        .btn-gray {
+            border-color: #E3E4E5;
+            color: #000;
+            background-color: #E3E4E5;
+        }
+        .btn-gray:hover {
+            border-color: #E3E4E5;
+            color: #000;
+            background-color: transparent;
+        }
 
-        <title>Memorand - <%= user_name%></title>
+        .custom-admin{
+            display: inline-block;
+            padding: 4px 12px;
+            border: 2px solid #25ce7b; /* Color del contorno */
+            color: #fff; /* Color del texto */
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #25ce7b; /* Fondo transparente */
+        }
+        .custom-admin:hover {
+            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+            border: 2px solid #25ce7b; /* Color del contorno */
+            color: #25ce7b; /* Cambiar el color del texto al pasar el ratón */
+        }
 
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
+        .modal-custom {
+            max-width: 510px;
+        }
 
-    </head>
+    </style>
     
     <body>
         
@@ -49,18 +83,36 @@
         
         <div class="container">
             <div class="row mt-5">
-                <div class="col-2"></div>
-                <div class="col-7">
-                    <h1>Mi perfil</h1>
+                <div class="col-1"></div>
+                <div class="col-9">
+                    <h1> Mi perfil</h1>
                 </div>
                 <div class="col-2 mt-3">
-                    <p style="color: #00ce7c; font-size: 18px;"><a id="backLink" href='home.jsp' style="color: #00ce7c;"><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
+
             <div class="row mt-4">
-                
-                
+                <div class="col-1"></div>
+                <div class="col-2" >
+                    <img class="rounded-1" src="../<%=user_profile%>" width="150" height="150" alt="inst_profile"/>
+                </div>
+                <div class="col-6">
+                    <div class="mt-2">
+                        <p><texto style="color: #AFB2B3">Nombre: </texto><texto style="color: #2A2927"><%=user_name%> <%=user_pat%> <%=user_mat%></texto></p>
+                        <p><text  style="color: #AFB2B3">Correo: </text><text style="color: #2A2927"><%=user_email%></text></p>
+                        <p><text  style="color: #AFB2B3">Estatus: </text><text style="color: #2A2927"><%=user_statusS%></text></p>
+                    </div>
+                </div>
+                <div class="col-2 text-end" >
+                    <a href="?user_id=<%= user_id%>">
+                        <button class="btn btn-gray rounded-pill mt-3"><text class="ms-3 me-3">Editar perfil</text></button>
+                    </a>
+                        <button class="btn btn-gray rounded-pill mt-2">Cambiar contrase&ntilde;a</button>
+                </div>
+                <div class="col-1"></div>
             </div>
+            
         </div>
         
     </body>
