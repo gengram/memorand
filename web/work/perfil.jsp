@@ -83,35 +83,39 @@
         
         <div class="container">
             <div class="row mt-5">
-                <div class="col-1"></div>
-                <div class="col-9">
+                <div class="col-2"></div>
+                <div class="col-7">
                     <h1> Mi perfil</h1>
                 </div>
-                <div class="col-2 mt-3">
+                <div class="col-3 mt-3">
                     <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
 
             <div class="row mt-4">
-                <div class="col-1"></div>
+                <div class="col-2"></div>
                 <div class="col-2" >
                     <img class="rounded-1" src="../<%=user_profile%>" width="150" height="150" alt="inst_profile"/>
                 </div>
-                <div class="col-6">
-                    <div class="mt-2">
+                <div class="col-4">
+                    <div class="mt-4">
                         <p><texto style="color: #AFB2B3">Nombre: </texto><texto style="color: #2A2927"><%=user_name%> <%=user_pat%> <%=user_mat%></texto></p>
                         <p><text  style="color: #AFB2B3">Correo: </text><text style="color: #2A2927"><%=user_email%></text></p>
                         <p><text  style="color: #AFB2B3">Estatus: </text><text style="color: #2A2927"><%=user_statusS%></text></p>
                     </div>
                 </div>
-                <div class="col-2 text-end" >
-                    <a href="?user_id=<%= user_id%>">
-                        <button class="btn btn-gray rounded-pill mt-3"><text class="ms-3 me-3">Editar perfil</text></button>
+                <div class="col-2 text-end mt-3">
+                    <a href="">
+                        <button class="btn btn-gray rounded-pill mt-3">Editar foto de perfil</button>
                     </a>
+                    <a href="">
                         <button class="btn btn-gray rounded-pill mt-2">Cambiar contrase&ntilde;a</button>
+                    </a>
                 </div>
-                <div class="col-1"></div>
+                <div class="col-2"></div>
             </div>
+                        
+            
             
         </div>
         

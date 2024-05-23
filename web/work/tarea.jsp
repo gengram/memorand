@@ -156,7 +156,7 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-4 mt-2">
                     <a href="collab.jsp?id=<%= collab_id%>" id="backLink">
