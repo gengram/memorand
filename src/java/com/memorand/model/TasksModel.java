@@ -254,4 +254,46 @@ public class TasksModel extends Conexion
         
         return flag;
     }
+    
+    public int getResourceCount(String task_id, String res_name)
+    {
+        int count = 0;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql;
+            
+            switch (res_name)
+            {
+                case "ideas":
+                    sql = "SELECT COUNT(*) AS count FROM taskideas WHERE task_id = ?";
+                    break;
+                case "notes":
+                    sql = "SELECT COUNT(*) AS count FROM tasknotes WHERE task_id = ?";
+                    break;
+                case "canvas":
+                    sql = "SELECT COUNT(*) AS count FROM taskcanvas WHERE task_id = ?";
+                    break;
+                default:
+                    return count;
+            }
+            
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, task_id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                count = rs.getInt("count");
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        return count;
+    }
 }

@@ -112,6 +112,7 @@ public class InstitutionsModel extends Conexion {
     public int getResourceCount(String inst_id, String res_name)
     {
         int count = 0;
+        
         PreparedStatement ps;
 
         try

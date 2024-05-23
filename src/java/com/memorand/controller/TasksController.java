@@ -213,4 +213,10 @@ public class TasksController {
 
         return htmlcode;
     }
+    
+    public String modelGetResourceCount(String task_id, String res_name)
+    {
+        TasksModel taskm = new TasksModel();
+        return String.valueOf(taskm.getResourceCount(task_id, res_name));
+    }
 }

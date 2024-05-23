@@ -21,6 +21,8 @@
     if (task_id == null || task_id.isEmpty()) {
         response.sendRedirect("home.jsp");
     } else {
+        TasksController taskcounter = new TasksController();
+        
         TasksController taskc = new TasksController();
         Task task = taskc.modelGetTaskInfoById(task_id);
 
@@ -242,7 +244,8 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3 text-end">
-                            <text class="me-5">Ideas agregadas por ti: 2</text>
+                            <text class="me-5">Ideas agregadas: <%= taskcounter.modelGetResourceCount(task_id, "ideas") %></text>
+                            <text class="me-5">Agregadas por ti: </text>
                         </div>
                         <div class="col-1"></div>
                     </div>
@@ -279,7 +282,8 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3 text-end">
-                            <text class="me-5">Notas agregadas por ti: 2</text>
+                            <text class="me-5">Notas agregadas: <%= taskcounter.modelGetResourceCount(task_id, "notes") %></text>
+                            <text class="me-5">Agregadas por ti: </text>
                         </div>
                         <div class="col-1"></div>
                     </div>
@@ -306,7 +310,8 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3 text-end">
-                            <text class="me-5">Lienzos creados por ti: 2</text>
+                            <text class="me-5">Lienzos agregados: <%= taskcounter.modelGetResourceCount(task_id, "canvas") %></text>
+                            <text class="me-5">Agregados por ti: </text>
                         </div>
                         <div class="col-1"></div>
                     </div>
