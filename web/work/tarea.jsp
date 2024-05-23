@@ -167,8 +167,8 @@
                                 </div>
                                 <div class="col-md-10 ">
                                     <div class="card-header" style="background-color: transparent;">
-                                        <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                            <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
+                                        <p class="titulo ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                            <%= proj_name%>
                                         </p>
                                     </div>
                                 </div>
@@ -185,8 +185,8 @@
                             <div class="col-md-2 rounded-start" style="background-color: #<%=task_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
-                                        <b style="color: #2A2927" class="ms-4 mb-0"><%=task_name%></b>
+                                    <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                        <%=task_name%>
                                     </p>
                                 </div>
                             </div>

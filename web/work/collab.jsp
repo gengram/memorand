@@ -45,8 +45,10 @@
 
 <!DOCTYPE html>
 <html>
+    
     <!-- HEAD -->
     <head>
+        
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -55,6 +57,7 @@
         <title>Memorand | <%= proj_name%></title>
 
     </head>
+    
     <style>
         /* Estilos CSS */
         .titulo {
@@ -144,6 +147,7 @@
     </style>
     <!-- BODY -->
     <body>
+        
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
@@ -158,8 +162,8 @@
                                 </div>
                                 <div class="col-md-10 ">
                                     <div class="card-header" style="background-color: transparent;">
-                                        <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                            <b style="color: #2A2927" class="ms-4 mb-0"><%= team_name%></b>
+                                        <p class="titulo ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                            <%= team_name%>
                                         </p>
                                     </div>
                                 </div>
@@ -177,8 +181,8 @@
                             <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
-                                        <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
+                                    <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                        <%= proj_name%>
                                     </p>
                                 </div>
                             </div>
