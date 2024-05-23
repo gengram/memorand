@@ -22,6 +22,7 @@ public class PostsGet extends HttpServlet
         
         HttpSession session = request.getSession();
         
+        String user_id = (String) session.getAttribute("user_id");
         String user_type = (String) session.getAttribute("user_type");
         
         if (user_type != null && reqby != null)
@@ -33,7 +34,7 @@ public class PostsGet extends HttpServlet
             switch (reqby)
             {
                 case "collab":
-                    htmlContent = postc.modelGetPosts(collab);
+                    htmlContent = postc.modelGetPosts(user_id, collab);
                     out.println(htmlContent);
                     break;
                     

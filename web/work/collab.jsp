@@ -11,6 +11,7 @@
 
 <%
     String collab_id = request.getParameter("id");
+    String user_id = (String) session.getAttribute("user_id");
 
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";
@@ -296,7 +297,7 @@
                     case "posts":
                         PostsController postc1 = new PostsController();
                 %>
-                <%= postc1.modelGetPosts(collab_id)%>
+                <%= postc1.modelGetPosts(user_id, collab_id)%>
                 <%
                         break;
                     case "people":

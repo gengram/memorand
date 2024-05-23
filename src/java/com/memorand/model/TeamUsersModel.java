@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 public class TeamUsersModel extends Conexion {
     
-    public boolean createTeamUser(TeamUser teamuser) {
-        
+    public boolean createTeamUser(TeamUser teamuser)
+    {
         boolean flag = false;
         
         PreparedStatement ps;
@@ -46,8 +46,8 @@ public class TeamUsersModel extends Conexion {
         return flag;
     }
  
-    public boolean deleteTeamUser(String user_id, String team_id) {
-    
+    public boolean deleteTeamUser(String user_id, String team_id)
+    {
         boolean flag = false;
         
         PreparedStatement ps;

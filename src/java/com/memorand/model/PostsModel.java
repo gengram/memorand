@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class PostsModel extends Conexion {
     
-    public boolean createPost(Post post) {
-        
+    public boolean createPost(Post post)
+    {
         boolean flag = false;
         
         PreparedStatement ps;
@@ -55,8 +55,47 @@ public class PostsModel extends Conexion {
     
     }
     
-    public ArrayList<Post> getAllPostsByCollab(String collab_id) {
+    public boolean deletePost(String post_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM posts WHERE post_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, post_id);
+            
+            if (ps.executeUpdate() == 1)
+            {
+                flag = true;
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    }
     
+    public ArrayList<Post> getAllPostsByCollab(String collab_id)
+    {
         ArrayList<Post> all_post = new ArrayList<>();
         
         PreparedStatement ps;
@@ -108,47 +147,4 @@ public class PostsModel extends Conexion {
         return all_post;
 
     }
-    
-    public boolean isAnyPostByCollab(String collab_id) {
-    
-        boolean flag = false;
-        
-        PreparedStatement ps;
-        
-        try
-        {
-            String sql1 = "SELECT post_id FROM coposts WHERE collab_id = ?";
-            
-            ps = getConnection().prepareStatement(sql1);
-            
-            ps.setString(1, collab_id);
-            
-            ResultSet rs = ps.executeQuery();
-            
-            if (rs.next())
-            {
-                flag = true;
-            }
-        }
-        
-        catch (SQLException e)
-        {
-            System.err.println(e.getMessage());
-        }
-        
-        finally
-        {
-            if (getConnection() != null)
-            {
-                try
-                { getConnection().close(); }
-                catch (SQLException ex)
-                { System.err.println(ex.getMessage()); }
-            }
-        }
-        
-        return flag;
-    
-    }
-    
 }

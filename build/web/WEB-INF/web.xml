@@ -168,6 +168,10 @@
         <servlet-name>CanvaDraw</servlet-name>
         <servlet-class>com.memorand.servlets.editar.CanvaDraw</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.PostDelete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -335,6 +339,10 @@
     <servlet-mapping>
         <servlet-name>CanvaDraw</servlet-name>
         <url-pattern>/canvadraw</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostDelete</servlet-name>
+        <url-pattern>/postdelete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

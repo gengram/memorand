@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class UsersModel extends Conexion {
     
-    public boolean createUser(User user) {
-        
+    public boolean createUser(User user)
+    {
         boolean flag = false;
         
         PreparedStatement ps;
@@ -694,8 +694,8 @@ public class UsersModel extends Conexion {
         return user_info;
     }
     
-    public User getUserInfoByPost(String post_id) {
-    
+    public User getUserInfoByPost(String post_id)
+    {
         User user_info = null;
         
         PreparedStatement ps1;
