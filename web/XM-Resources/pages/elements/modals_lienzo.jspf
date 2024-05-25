@@ -1,0 +1,162 @@
+<!-- Modal Plantillas-->
+<div class="modal fade" id="myModal" role="dialog" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Plantillas</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!--
+                    <div class="col-2">
+                        <div class="list-group list-group-flush rounded-2">
+                            <button type="button" class="list-group-item list-group-item-action list-group-item-memorand active" aria-current="true">
+                                Todos
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action list-group-item-memorand" aria-current="true">
+                                Mapa conceptual
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action list-group-item-memorand">Mapa mental</button>
+                            <button type="button" class="list-group-item list-group-item-action list-group-item-memorand">Diagramas</button>
+                            <button type="button" class="list-group-item list-group-item-action list-group-item-memorand">Otros</button>
+                        </div>
+                    </div> 
+                    -->
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="card shadow" type="button" style="height: 10.5rem;" data-bs-dismiss="modal" aria-label="Close">
+                                    <div class="card-header">
+                                        Vac&iacute;o
+                                    </div>
+                                    <div class="card-body" width="200" height="70">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="uSVG-1" class="card shadow template-card" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Mapa conceptual
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="200" height="70" src="../XM-Resources/imagen/plantillas/map_c_1.png" class="img-fluid rounded-start mb-2" style="margin-left: 2.5rem;" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="uSVG-2" class="card shadow template-card" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Mapa conceptual 2
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="157.5" height="1" src="../XM-Resources/imagen/plantillas/map_c_2.png" class="img-fluid rounded-start mb-2" style="margin-left: 3rem;" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="uSVG-3" class="card shadow template-card" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Mapa conceptual 3
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="157.5" height="70" src="../XM-Resources/imagen/plantillas/map_c_3.png" class="img-fluid rounded-start mb-2"  style="margin-left: 3rem;"alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-3">
+                                <div id="uSVG-4" class="card shadow" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Organigrama
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="200" height="70" src="../XM-Resources/imagen/plantillas/diagrama.png" class="img-fluid rounded-start ms-2 mb-2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="uSVG-5" class="card shadow" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Organigrama
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="200" height="70" src="../XM-Resources/imagen/plantillas/diagrama.png" class="img-fluid rounded-start ms-2 mb-2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="uSVG-6" class="card shadow" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Organigrama
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="200" height="70" src="../XM-Resources/imagen/plantillas/diagrama.png" class="img-fluid rounded-start ms-2 mb-2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div id="uSVG-7" class="card shadow" style="height: 10.5rem;">
+                                    <div class="card-header">
+                                        Organigrama
+                                    </div>
+                                    <div class="card-body">
+                                        <img width="200" height="70" src="../XM-Resources/imagen/plantillas/diagrama.png" class="img-fluid rounded-start ms-2 mb-2" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn custom-bsign rounded-2"  id="insert-template-btn">Insertar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .btn-red {
+        border-color: red;
+        color: #fff;
+        background-color: red;
+    }
+    .btn-red:hover {
+        border-color: red;
+        color: red;
+        background-color: transparent;
+    }
+
+    .btn-gray {
+        border-color: #E3E4E5;
+        color: #000;
+        background-color: #E3E4E5;
+    }
+    .btn-gray:hover {
+        border-color: #E3E4E5;
+        color: #000;
+        background-color: transparent;
+    }
+
+</style>
+
+<!-- Modal DELETE-ALL-->
+<div class="modal fade" role="dialog" data-bs-keyboard="false" tabindex="-1" id="modalDeleteAll">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 27%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class=" mt-2" style="font-size: 20px"><i class="bi bi-exclamation-triangle-fill me-2" style="color: red"></i>Eliminar contenido</p>
+            </div>
+            <div class="modal-body">
+                <p>¿Est&aacute;s seguro de eliminar todo el contenido del lienzo?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-gray" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                <button id="delete-all" type="button" class="btn btn-red" aria-label="Close" data-bs-dismiss="modal">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div> 
