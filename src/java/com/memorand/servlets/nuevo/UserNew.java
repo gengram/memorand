@@ -6,6 +6,7 @@ import com.memorand.controller.InUsersController;
 import com.memorand.controller.UsersController;
 import com.memorand.util.Generador;
 import com.memorand.util.Modificador;
+import com.memorand.util.Sanitizante;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,177 +20,196 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 
 public class UserNew extends HttpServlet
 {
+    private static final String DEFAULT_USER_IMAGE = "XM-Uploads/users/profile/default-user.png";
+    private static final String STAFF_HOME = "staff/home.jsp";
+    private static final String ADMIN_HOME = "admin/home.jsp";
+    private static final String INDEX_PAGE = "index.jsp";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        
-        if(session != null)
+            throws ServletException, IOException
+    {
+        HttpSession session = request.getSession(false);
+
+        if (session != null)
         {
-            Modificador m = new Modificador();
-            FileItemFactory fif = new DiskFileItemFactory();
-            ServletFileUpload sfu = new ServletFileUpload(fif);
-
-            ArrayList<String> user_fields = new ArrayList<>();
-
-            String img_directory = m.getUsersDirectory(request);
-            String user_img = "";
             String user_type = (String) session.getAttribute("user_type");
 
-            try
-            {
-                List items = sfu.parseRequest(request);
-
-                for (int i = 0; i < items.size(); i++)
-                {
-                    FileItem fi = (FileItem) items.get(i);
-
-                    if (!fi.isFormField())
-                    {
-                        if (!fi.getName().isEmpty())
-                        {
-                            File file = new File(img_directory+fi.getName());
-                            fi.write(file);
-                            user_img = "XM-Uploads/users/profile/"+fi.getName();
-                        }
-                        else
-                        {
-                            user_img = "XM-Uploads/users/profile/default-user.png";
-                        }
-                    }
-                    else
-                    {
-                        user_fields.add(fi.getString());
-                    }
-                }
-
-            }
-            catch (Exception e)
-            {
-                System.err.println(e.getMessage());
-            }
-            
             if (user_type != null)
             {
-                switch (user_type)
+                Modificador modificador = new Modificador();
+                FileItemFactory fileItemFactory = new DiskFileItemFactory();
+                ServletFileUpload fileUpload = new ServletFileUpload(fileItemFactory);
+
+                List<String> userFields = new ArrayList<>();
+                String imgDirectory = modificador.getUsersDirectory(request);
+                String userImg = handleFileUpload(request, fileUpload, userFields, imgDirectory);
+
+                if (userImg.isEmpty())
                 {
-                    case "staff":
-                        
-                        Generador g1 = new Generador();
+                    userImg = DEFAULT_USER_IMAGE;
+                }
 
-                        String user_id1 = g1.newID();
-                        String inst_id1 = request.getParameter("id");
+                processUserCreation(request, response, session, user_type, userFields, userImg);
+            }
+            else
+            {
+                redirectWithError(response, INDEX_PAGE, "100-4");
+            }
+        }
+        else
+        {
+            redirectWithError(response, INDEX_PAGE, "101");
+        }
+    }
 
-                        User admin = new User(user_id1, user_fields.get(0), user_fields.get(1), "admin", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                        UsersController userc1 = new UsersController();
-                        
-                        if(!userc1.modelValidateUserEmail(user_fields.get(0)))
+    private String handleFileUpload(HttpServletRequest request, ServletFileUpload fileUpload, List<String> userFields, String imgDirectory) throws IOException
+    {
+        String userImg = "";
+        
+        try
+        {
+            List<FileItem> items = fileUpload.parseRequest(request);
+            for (FileItem item : items)
+            {
+                if (!item.isFormField())
+                {
+                    String fileName = item.getName();
+                    if (!fileName.isEmpty())
+                    {
+                        String fileExtension = getFileExtension(fileName);
+                        if (isValidImageExtension(fileExtension)) 
                         {
-                            if(userc1.modelCreateUser(admin))
-                            {
-                                InUser inusers = new InUser(inst_id1, user_id1);
-                                InUsersController inusersc = new InUsersController();
-
-                                if (inusersc.modelCreateInUsers(inusers))
-                                { response.sendRedirect("staff/institucion.jsp?id="+inst_id1); }
-                                else
-                                { response.sendRedirect("staff/home.jsp"); }
-                            }
-                            else
-                            { response.sendRedirect("staff/home.jsp"); }
+                            File tempFile = new File(imgDirectory + fileName);
+                            item.write(tempFile);
+                            userImg = "XM-Uploads/users/profile/" + convertAndResizeImage(tempFile, imgDirectory);
                         }
                         else
-                        { response.sendRedirect("staff/home.jsp"); }
-
-                        break;
-
-                    case "admin":
-
-                        Generador g2 = new Generador();
-
-                        String user_id2 = g2.newID();
-                        String inst_id2 = (String) session.getAttribute("inst_id");
-                        String new_type = request.getParameter("user_type");
-
-                        if (new_type != null)
                         {
-                            switch (new_type)
-                            {
-                                case "ch":
-
-                                    User lider = new User(user_id2, user_fields.get(0), user_fields.get(1), "ch", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                                    UsersController userc2 = new UsersController();
-                                    
-                                    if(!userc2.modelValidateUserEmail(user_fields.get(0)))
-                                    {
-                                        if (userc2.modelCreateUser(lider))
-                                        {
-                                            InUser inlider = new InUser(inst_id2, user_id2);
-                                            InUsersController inliderc = new InUsersController();
-
-                                            if (inliderc.modelCreateInUsers(inlider))
-                                            { response.sendRedirect("admin/home.jsp"); }
-                                            else
-                                            { response.sendRedirect("admin/home.jsp?error=100-1"); }
-                                        }
-                                        else
-                                        { response.sendRedirect("admin/home.jsp?error=100-2"); }
-                                    }
-                                    else
-                                    { response.sendRedirect("admin/home.jsp?error=300"); }
-
-
-                                    break;
-
-                                case "wk":
-
-                                    User integrante = new User(user_id2, user_fields.get(0), user_fields.get(1), "wk", user_fields.get(2), user_fields.get(3), user_fields.get(4), "si", user_img);
-                                    UsersController userc3 = new UsersController();
-
-                                    if(!userc3.modelValidateUserEmail(user_fields.get(0))) 
-                                    {
-                                        if (userc3.modelCreateUser(integrante))
-                                        {
-                                            InUser ininteg = new InUser(inst_id2, user_id2);
-                                            InUsersController inintegc = new InUsersController();
-
-                                            if (inintegc.modelCreateInUsers(ininteg))
-                                            { response.sendRedirect("admin/home.jsp"); }
-                                            else
-                                            { response.sendRedirect("admin/home.jsp?error=100-1"); }
-                                        }
-                                        else
-                                        { response.sendRedirect("admin/home.jsp?error=100-2"); }
-                                    }
-                                    else
-                                    { response.sendRedirect("admin/home.jsp?error=300"); }
-
-                                    break;
-                                default:
-                                    response.sendRedirect("admin/home.jsp?error=100-3");
-                            }
+                            throw new IOException("Invalid file type: " + fileExtension);
                         }
-                        else
-                        { response.sendRedirect("admin/home.jsp?error=100-4"); }
-                        break;
+                    }
+                }
+                else
+                {
+                    userFields.add(item.getString());
+                }
+            }
+        }
+        
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return userImg;
+    }
 
-                    default:
-                        response.sendRedirect("index.jsp?error=100-4");
-                        break;
+    private String getFileExtension(String fileName)
+    {
+        int dotIndex = fileName.lastIndexOf('.');
+        return (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1).toLowerCase();
+    }
+
+    private boolean isValidImageExtension(String extension)
+    {
+        return extension.equals("png") || extension.equals("jpg") || extension.equals("jpeg") || extension.equals("webp");
+    }
+
+    private String convertAndResizeImage(File file, String outputDirectory) throws IOException
+    {
+        BufferedImage originalImage = ImageIO.read(file);
+        BufferedImage resizedImage = new BufferedImage(1080, 1080, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = resizedImage.createGraphics();
+        g2d.drawImage(originalImage, 0, 0, 1080, 1080, null);
+        g2d.dispose();
+
+        String outputFileName = outputDirectory + System.currentTimeMillis() + ".jpg";
+        File outputFile = new File(outputFileName);
+        ImageIO.write(resizedImage, "jpg", outputFile);
+        file.delete();
+        
+        return outputFile.getName();
+    }
+
+    private void processUserCreation(HttpServletRequest request, HttpServletResponse response, HttpSession session, String userType, List<String> userFields, String userImg) throws IOException
+    {
+        switch (userType)
+        {
+            case "staff":
+                handleStaffCreation(request, response, userFields, userImg);
+                break;
+            case "admin":
+                handleAdminCreation(request, response, session, userFields, userImg);
+                break;
+            default:
+                redirectWithError(response, INDEX_PAGE, "100-4");
+        }
+    }
+
+    private void handleStaffCreation(HttpServletRequest request, HttpServletResponse response, List<String> userFields, String userImg) throws IOException
+    {
+        String instId = request.getParameter("id");
+        createUserAndRedirect(request, response, userFields, userImg, instId, "admin", STAFF_HOME);
+    }
+
+    private void handleAdminCreation(HttpServletRequest request, HttpServletResponse response, HttpSession session, List<String> userFields, String userImg) throws IOException
+    {
+        String instId = (String) session.getAttribute("inst_id");
+        String newUserType = request.getParameter("user_type");
+
+        if (newUserType != null)
+        {
+            createUserAndRedirect(request, response, userFields, userImg, instId, newUserType, ADMIN_HOME);
+        }
+        else
+        {
+            redirectWithError(response, ADMIN_HOME, "100-4");
+        }
+    }
+
+    private void createUserAndRedirect(HttpServletRequest request, HttpServletResponse response, List<String> userFields, String userImg, String instId, String userType, String redirectPage) throws IOException
+    {
+        Generador generador = new Generador();
+        String userId = generador.newID();
+        User user = new User(userId, Sanitizante.sanitizar(userFields.get(0)), Sanitizante.sanitizar(userFields.get(1)), userType, Sanitizante.sanitizar(userFields.get(2)), Sanitizante.sanitizar(userFields.get(3)), Sanitizante.sanitizar(userFields.get(4)), "si", userImg);
+        UsersController usersController = new UsersController();
+
+        if (!usersController.modelValidateUserEmail(userFields.get(0)))
+        {
+            if (usersController.modelCreateUser(user))
+            {
+                InUser inUser = new InUser(instId, userId);
+                InUsersController inUsersController = new InUsersController();
+
+                if (inUsersController.modelCreateInUsers(inUser))
+                {
+                    response.sendRedirect(redirectPage);
+                }
+                else
+                {
+                    redirectWithError(response, redirectPage, "100-1");
                 }
             }
             else
             {
-                response.sendRedirect("index.jsp?error=101");
+                redirectWithError(response, redirectPage, "100-2");
             }
-            
         }
         else
         {
-            response.sendRedirect("index.jsp?error=101");
+            redirectWithError(response, redirectPage, "300");
         }
+    }
+
+    private void redirectWithError(HttpServletResponse response, String page, String errorCode) throws IOException
+    {
+        response.sendRedirect(page + "?error=" + errorCode);
     }
 }

@@ -4,6 +4,7 @@ import com.memorand.beans.Institution;
 import com.memorand.beans.User;
 import com.memorand.controller.InstitutionsController;
 import com.memorand.controller.UsersController;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-public class Login extends HttpServlet {
-
+public class Login extends HttpServlet
+{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
@@ -26,70 +27,36 @@ public class Login extends HttpServlet {
         FileItemFactory fif = new DiskFileItemFactory();
         ServletFileUpload sfu = new ServletFileUpload(fif);
         
-        ArrayList<String> user_fields = new ArrayList<>();
+        ArrayList<String> userFields = new ArrayList<>();
         
         try
         {
-            List items = sfu.parseRequest(request);
-            
-            for (int i = 0; i < items.size(); i++)
-            {
-                FileItem fi = (FileItem) items.get(i);
-                
-                if (fi.isFormField())
-                    user_fields.add(fi.getString());
-            }
-            
+            List<FileItem> items = sfu.parseRequest(request);
+            processFormFields(items, userFields);
         }
         catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         
-        User user = new User(user_fields.get(0), user_fields.get(1));
-        UsersController userc = new UsersController();
+        Sanitizante s = new Sanitizante();
         
-        if (userc.modelLoginUser(user))
+        //String email = s.sanitizar(userFields.get(0));
+        //String password = s.sanitizar(userFields.get(1));
+        
+        String email = userFields.get(0);
+        String password = userFields.get(1);
+        
+        User user = new User(email, password);
+        UsersController userController = new UsersController();
+        
+        if (userController.modelLoginUser(user))
         {
-            User user_info = userc.modelGetUserInfoByLogin(user);
+            User userInfo = userController.modelGetUserInfoByLogin(user);
             
-            if ("si".equals(user_info.getUser_status()))
+            if ("si".equals(userInfo.getUser_status()))
             {
-                if (user_info.getUser_type().equals("staff"))
-                {
-                    SetUserInfo(request, response, user_info);
-                    response.sendRedirect("staff/home.jsp");
-                }
-                else
-                {
-                    InstitutionsController instc = new InstitutionsController();
-                    Institution inst = instc.modelGetInstByUser(user_info.getUser_id());
-                    
-                    if (inst.getInst_status().equals("si"))
-                    {
-                        switch (user_info.getUser_type())
-                        {
-                            case "admin":
-                                SetUserInfo(request, response, user_info);
-                                SetInstInfo(request, response, inst); 
-                                response.sendRedirect("admin/home.jsp");
-                                break;
-                            case "ch":
-                            case "wk":
-                                SetUserInfo(request, response, user_info);
-                                SetInstInfo(request, response, inst); 
-                                response.sendRedirect("work/home.jsp");
-                                break;
-                            default:
-                                response.sendRedirect("index.jsp?error=InvalidUserType");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        response.sendRedirect("index.jsp?error=InnactiveInstitution");
-                    }
-                }
+                handleUserLogin(request, response, userInfo);
             }
             else
             {
@@ -100,38 +67,86 @@ public class Login extends HttpServlet {
         {
             response.sendRedirect("index.jsp?error=InvalidLogin");
         }
-        
-    }
-    
-    public void SetUserInfo(HttpServletRequest request, HttpServletResponse response, User user_info)
-            throws ServletException, IOException
-    {
-        HttpSession session = request.getSession();
-        
-        session.setAttribute("user_id", user_info.getUser_id());
-        session.setAttribute("user_email", user_info.getUser_email());
-        session.setAttribute("user_pass", user_info.getUser_pass());
-        session.setAttribute("user_type", user_info.getUser_type());
-        session.setAttribute("user_name", user_info.getUser_name());
-        session.setAttribute("user_pat", user_info.getUser_pat());
-        session.setAttribute("user_mat", user_info.getUser_mat());
-        session.setAttribute("user_status", user_info.getUser_status());
-        session.setAttribute("user_profile", user_info.getUser_profile());
-    }
-    
-    public void SetInstInfo(HttpServletRequest request, HttpServletResponse response, Institution inst_info)
-            throws ServletException, IOException
-    {
-        HttpSession session = request.getSession();
-        
-        session.setAttribute("inst_id", inst_info.getInst_id());
-        session.setAttribute("inst_name", inst_info.getInst_name());
-        session.setAttribute("inst_type", inst_info.getInst_type());
-        session.setAttribute("inst_profile", inst_info.getInst_profile());
-        session.setAttribute("lim_ch", inst_info.getLim_ch());
-        session.setAttribute("lim_wk", inst_info.getLim_wk());
-        session.setAttribute("lim_gp", inst_info.getLim_gp());
-        session.setAttribute("lim_ks", inst_info.getLim_ks());
     }
 
+    private void processFormFields(List<FileItem> items, List<String> userFields)
+    {
+        for (FileItem item : items)
+        {
+            if (item.isFormField())
+            {
+                userFields.add(item.getString());
+            }
+        }
+    }
+
+    private void handleUserLogin(HttpServletRequest request, HttpServletResponse response, User userInfo)
+            throws IOException, ServletException
+    {
+        if (userInfo.getUser_type().equals("staff"))
+        {
+            setUserInfo(request, userInfo);
+            response.sendRedirect("staff/home.jsp");
+        }
+        else
+        {
+            InstitutionsController instController = new InstitutionsController();
+            Institution inst = instController.modelGetInstByUser(userInfo.getUser_id());
+            
+            if ("si".equals(inst.getInst_status()))
+            {
+                setUserInfo(request, userInfo);
+                setInstInfo(request, inst);
+                redirectUserByType(response, userInfo.getUser_type());
+            }
+            else
+            {
+                response.sendRedirect("index.jsp?error=InnactiveInstitution");
+            }
+        }
+    }
+
+    private void setUserInfo(HttpServletRequest request, User userInfo)
+    {
+        HttpSession session = request.getSession();
+        session.setAttribute("user_id", userInfo.getUser_id());
+        session.setAttribute("user_email", userInfo.getUser_email());
+        session.setAttribute("user_pass", userInfo.getUser_pass());
+        session.setAttribute("user_type", userInfo.getUser_type());
+        session.setAttribute("user_name", userInfo.getUser_name());
+        session.setAttribute("user_pat", userInfo.getUser_pat());
+        session.setAttribute("user_mat", userInfo.getUser_mat());
+        session.setAttribute("user_status", userInfo.getUser_status());
+        session.setAttribute("user_profile", userInfo.getUser_profile());
+    }
+
+    private void setInstInfo(HttpServletRequest request, Institution instInfo)
+    {
+        HttpSession session = request.getSession();
+        session.setAttribute("inst_id", instInfo.getInst_id());
+        session.setAttribute("inst_name", instInfo.getInst_name());
+        session.setAttribute("inst_type", instInfo.getInst_type());
+        session.setAttribute("inst_profile", instInfo.getInst_profile());
+        session.setAttribute("lim_ch", instInfo.getLim_ch());
+        session.setAttribute("lim_wk", instInfo.getLim_wk());
+        session.setAttribute("lim_gp", instInfo.getLim_gp());
+        session.setAttribute("lim_ks", instInfo.getLim_ks());
+    }
+
+    private void redirectUserByType(HttpServletResponse response, String userType) throws IOException
+    {
+        switch (userType)
+        {
+            case "admin":
+                response.sendRedirect("admin/home.jsp");
+                break;
+            case "ch":
+            case "wk":
+                response.sendRedirect("work/home.jsp");
+                break;
+            default:
+                response.sendRedirect("index.jsp?error=InvalidUserType");
+                break;
+        }
+    }
 }

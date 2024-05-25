@@ -5,7 +5,7 @@ import org.owasp.html.PolicyFactory;
 
 public class Sanitizante
 {
-    public String sanitizar(String input)
+    public static String sanitizar(String input)
     {
         PolicyFactory policy = new HtmlPolicyBuilder().toFactory();
         

@@ -7,6 +7,7 @@ import com.memorand.controller.CoPostsController;
 import com.memorand.controller.PostsController;
 import com.memorand.controller.UserPostsController;
 import com.memorand.util.Generador;
+import com.memorand.util.HtmlEscapes;
 import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -65,9 +66,8 @@ public class PostNew extends HttpServlet
                 {
                     String post_text = post_fields.get(0);
                     
-                    Sanitizante s = new Sanitizante();
-                    
-                    post_text = s.sanitizar(post_text);
+                    post_text = HtmlEscapes.escapeHtml(post_text);
+                    post_text = Sanitizante.sanitizar(post_text);
                     
                     Generador g = new Generador();
                 
