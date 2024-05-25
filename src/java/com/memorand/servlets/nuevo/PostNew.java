@@ -30,6 +30,8 @@ public class PostNew extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        request.setCharacterEncoding("UTF-8");
+        
         HttpSession session = request.getSession();
         
         if (session != null)
@@ -44,14 +46,18 @@ public class PostNew extends HttpServlet
             
             try
             {
-                List items = sfu.parseRequest(request);
+                List<FileItem> items = sfu.parseRequest(request);
 
-                for (int i = 0; i < items.size(); i++)
+                for (FileItem item : items)
                 {
-                    FileItem fi = (FileItem) items.get(i);
-
-                    if (fi.isFormField())
-                        post_fields.add(fi.getString());
+                    if (item.isFormField())
+                    {
+                        String fieldValue = item.getString();
+                        if (fieldValue != null)
+                        {
+                            post_fields.add(fieldValue);
+                        }
+                    }
                 }
             }
         
