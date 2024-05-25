@@ -192,7 +192,7 @@
                 </div>
                 <div class="col-1"></div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
                     <hr class="mt-4">
@@ -278,7 +278,7 @@
             </div>
 
             <!-- PARTE PRINCIPAL - POR DEFECTO TAREAS, VER CONTROLLERS PARA MODIFICAR HTML -->
-            <div id="content">
+            <div id="content" >
 
                 <%
                     String view = request.getParameter("view");

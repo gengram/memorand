@@ -120,7 +120,7 @@ public class TasksController {
     public String modelGetTasksPanel(String collab_id, String task_order)
     {
         String htmlcode
-                = "<div class=\"row mt-4\">"
+                = "<div class=\"row mt-4\" >"
                 + " <div class=\"col-1\" ></div>"
                 + "     <div class=\"col-5\" >"
                 + "         <button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
@@ -155,7 +155,7 @@ public class TasksController {
 
         if (tasks.isEmpty())
         {
-            htmlcode += "<div class='row'>"
+            htmlcode += "<div class='row' class=\"mt-3\">"
                     + "<div class='col-1'></div>"
                     + "<div class='col-10'>"
                     + "<p>No hay tareas por mostrar.</p>"

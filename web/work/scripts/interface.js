@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Agregar event listener al enlace para regresar al inicio
     const backButton = document.getElementById('backL');
-    console.log(backButton);
     backButton.addEventListener('click', function () {
         // Elimina la clase 'active' de todos los botones
         console.log('Click en enlace de regreso');
@@ -49,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('activeButton', defaultButton.id);
     });
 });
-console.log(document.getElementById('backL'));
 
 
 document.addEventListener('DOMContentLoaded', function () {

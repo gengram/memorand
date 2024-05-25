@@ -89,7 +89,7 @@
                     <p style="color: #7473C0; font-size: 18px;"><a id="backLink" href='home.jsp' style="color: #7473C0;"><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-5">
                     <h2>Solicitudes</h2>

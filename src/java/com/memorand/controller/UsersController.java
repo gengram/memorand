@@ -344,7 +344,15 @@ public class UsersController {
 
             if (chs.isEmpty())
             {
-                htmlcode += "<p>No hay l&iacute;deres disponibles.</p>";
+                htmlcode += "<div class=\"row\">"
+                        + "<div class=\"col-1\"></div>"
+                        + "<div class=\"col-10\">"
+                         + "<h2>L&iacute;deres</h2>"
+                        + "<p>No hay l&iacute;deres disponibles.</p>"
+                        + "</div>"
+                        + "</div>"
+                        + "<div class=\"col-1\"></div>"
+                        + "</div>";
             }
             else
             {
@@ -379,7 +387,15 @@ public class UsersController {
 
             if (wks.isEmpty())
             {
-                htmlcode += "<p>No hay integrantes disponibles.</p>";
+                 htmlcode += "<div class=\"row\">"
+                        + "<div class=\"col-1\"></div>"
+                        + "<div class=\"col-10\">"
+                         + "<h2>Integrantes</h2>"
+                        + "<p>No hay integrantes disponibles.</p>"
+                         + "</div>"
+                        + "</div>"
+                        + "<div class=\"col-1\"></div>"
+                        + "</div>";
             }
             else
             {
