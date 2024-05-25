@@ -21,6 +21,8 @@
     if (task_id == null || task_id.isEmpty()) {
         response.sendRedirect("home.jsp");
     } else {
+        TasksController taskcounter = new TasksController();
+        
         TasksController taskc = new TasksController();
         Task task = taskc.modelGetTaskInfoById(task_id);
 
@@ -156,19 +158,19 @@
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-3">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-4 mt-2">
                     <a href="collab.jsp?id=<%= collab_id%>" id="backLink">
-                        <div class="card border border-2" style="max-height: 50px;">
+                        <div class="card border border-1" style="max-height: 50px;">
                             <div class="row g-0">
                                 <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px">
                                     <i class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
                                 </div>
                                 <div class="col-md-10 ">
                                     <div class="card-header" style="background-color: transparent;">
-                                        <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                            <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
+                                        <p class="titulo ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                            <%= proj_name%>
                                         </p>
                                     </div>
                                 </div>
@@ -180,13 +182,13 @@
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
                 </div>
                 <div class="col-4 mt-2">
-                    <div class="card border border-2" style="max-height: 50px;">
+                    <div class="card border border-1" style="max-height: 50px;">
                         <div class="row g-0">
                             <div class="col-md-2 rounded-start" style="background-color: #<%=task_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
-                                        <b style="color: #2A2927" class="ms-4 mb-0"><%=task_name%></b>
+                                    <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                        <%=task_name%>
                                     </p>
                                 </div>
                             </div>
@@ -242,7 +244,8 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3 text-end">
-                            <text class="me-5">Ideas agregadas por ti: 2</text>
+                            <text class="me-5">Ideas agregadas: <%= taskcounter.modelGetResourceCount(task_id, "ideas") %></text>
+                            <text class="me-5">Agregadas por ti: </text>
                         </div>
                         <div class="col-1"></div>
                     </div>
@@ -279,7 +282,8 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3 text-end">
-                            <text class="me-5">Notas agregadas por ti: 2</text>
+                            <text class="me-5">Notas agregadas: <%= taskcounter.modelGetResourceCount(task_id, "notes") %></text>
+                            <text class="me-5">Agregadas por ti: </text>
                         </div>
                         <div class="col-1"></div>
                     </div>
@@ -306,7 +310,8 @@
                             </div>
                         </div>
                         <div class="col-6 mt-3 text-end">
-                            <text class="me-5">Lienzos creados por ti: 2</text>
+                            <text class="me-5">Lienzos agregados: <%= taskcounter.modelGetResourceCount(task_id, "canvas") %></text>
+                            <text class="me-5">Agregados por ti: </text>
                         </div>
                         <div class="col-1"></div>
                     </div>

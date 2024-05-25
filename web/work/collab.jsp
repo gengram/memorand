@@ -11,6 +11,7 @@
 
 <%
     String collab_id = request.getParameter("id");
+    String user_id = (String) session.getAttribute("user_id");
 
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";
@@ -45,8 +46,10 @@
 
 <!DOCTYPE html>
 <html>
+    
     <!-- HEAD -->
     <head>
+        
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -55,6 +58,7 @@
         <title>Memorand | <%= proj_name%></title>
 
     </head>
+    
     <style>
         /* Estilos CSS */
         .titulo {
@@ -144,22 +148,23 @@
     </style>
     <!-- BODY -->
     <body>
+        
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
-            <div class="row mt-3">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-4 mt-2">
                     <a href="home.jsp" id="backL">
-                        <div class="card border border-2" style="max-height: 50px;">
+                        <div class="card border border-1" style="max-height: 50px;">
                             <div class="row g-0">
                                 <div class="col-md-2 rounded-start" style="background-color: #<%=team_color%>; max-height: 47px; max-width: 40px">
                                     <i class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
                                 </div>
                                 <div class="col-md-10 ">
                                     <div class="card-header" style="background-color: transparent;">
-                                        <p class="titulo" style="color: #2A2927; font-size: 20px;">
-                                            <b style="color: #2A2927" class="ms-4 mb-0"><%= team_name%></b>
+                                        <p class="titulo ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                            <%= team_name%>
                                         </p>
                                     </div>
                                 </div>
@@ -172,13 +177,13 @@
                     <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
                 </div>
                 <div class="col-4 mt-2">
-                    <div class="card border border-2" style="max-height: 50px;">
+                    <div class="card border border-1" style="max-height: 50px;">
                         <div class="row g-0">
                             <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px"></div>
                             <div class="col-md-10 ">
                                 <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo ali" style="color: #2A2927; font-size: 20px;">
-                                        <b style="color: #2A2927" class="ms-4 mb-0"><%= proj_name%></b>
+                                    <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                        <%= proj_name%>
                                     </p>
                                 </div>
                             </div>
@@ -292,7 +297,7 @@
                     case "posts":
                         PostsController postc1 = new PostsController();
                 %>
-                <%= postc1.modelGetPosts(collab_id)%>
+                <%= postc1.modelGetPosts(user_id, collab_id)%>
                 <%
                         break;
                     case "people":

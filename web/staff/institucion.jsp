@@ -8,9 +8,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null || !u.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String inst_id = request.getParameter("id");
 
-    // PROTECCIÓN
     // VARIABLES DE LA INSTITUCIÓN
     String inst_name = "null", inst_type = "null", inst_profile = "null", inst_status = "null";
     String lim_ch = "null", lim_wk = "null", lim_gp = "null", lim_ks = "null";

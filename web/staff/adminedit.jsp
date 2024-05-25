@@ -9,9 +9,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    String user_id = request.getParameter("id");
-    
     // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null || !u.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
+    String user_id = request.getParameter("id");
     
     // VARIABLES DEL USUARIO
     

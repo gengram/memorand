@@ -158,7 +158,7 @@ public class UsersController {
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='" + add1 + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='" + add2 + "lideres/ver.jsp?user_id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
+                    + "<a href='" + add2 + "lider.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
 

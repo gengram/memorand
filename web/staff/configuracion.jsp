@@ -6,6 +6,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null || !u.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     ServicesModel servicem = new ServicesModel();
     ServicesUtil serviceu = new ServicesUtil();
 

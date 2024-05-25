@@ -7,6 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null || !u.equals("staff"))
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String req_id = request.getParameter("id");
     
     String req_name = "", req_pat = "", req_mat = "", req_email = "", req_phone = "", req_job = "";

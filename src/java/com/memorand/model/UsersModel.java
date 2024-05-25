@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class UsersModel extends Conexion {
-    
-    public boolean createUser(User user) {
-        
+public class UsersModel extends Conexion
+{
+    public boolean createUser(User user)
+    {
         boolean flag = false;
         
         PreparedStatement ps;
@@ -57,8 +57,8 @@ public class UsersModel extends Conexion {
         return flag;
     }
     
-    public boolean loginUser(User user) {
-    
+    public boolean loginUser(User user)
+    {
         boolean flag = false;
         
         PreparedStatement ps;
@@ -104,10 +104,10 @@ public class UsersModel extends Conexion {
         }
         
         return flag;
-    
     }
     
-    public boolean validateUserEmail(String u_email) {
+    public boolean validateUserEmail(String u_email)
+    {
         
         boolean flag = false;
         
@@ -147,11 +147,10 @@ public class UsersModel extends Conexion {
         }
         
         return flag;
-        
     }
     
-    public User getUserInfoByLogin(User user) {
-        
+    public User getUserInfoByLogin(User user)
+    {
         User user_info = null;
         
         PreparedStatement ps = null;
@@ -694,8 +693,8 @@ public class UsersModel extends Conexion {
         return user_info;
     }
     
-    public User getUserInfoByPost(String post_id) {
-    
+    public User getUserInfoByPost(String post_id)
+    {
         User user_info = null;
         
         PreparedStatement ps1;

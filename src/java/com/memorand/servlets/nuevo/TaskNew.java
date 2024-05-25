@@ -59,7 +59,7 @@ public class TaskNew extends HttpServlet
             
             if (user_type != null)
             {
-                if (user_type.equals("ch"))
+                if (user_type.equals("ch") || user_type.equals("wk"))
                 {
                     Generador g = new Generador();
                 

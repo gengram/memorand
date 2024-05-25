@@ -14,11 +14,6 @@
     String inst_id = (String) session.getAttribute("inst_id");
     String team_id = request.getParameter("team_id");
 
-    //if (user_type == null || !user_type.equals("admin"))
-    //{
-    //    response.sendRedirect("../index.jsp?error=100");
-    //    session.invalidate();
-    //}
     UsersController userc = new UsersController();
     ProjectsController projc = new ProjectsController();
     TeamsController teamc = new TeamsController();
