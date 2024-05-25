@@ -70,8 +70,8 @@ public class PostsController
                 User user = userm.getUserInfoByPost(post_id);
 
                 String user_id = "null";
-                String user_name = "null";
-                String user_profile = "null";
+                String user_name = "Usuario Eliminado";
+                String user_profile = "XM-Uploads/users/profile/default-user.png";
 
                 if (user != null)
                 {

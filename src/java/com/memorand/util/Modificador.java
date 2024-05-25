@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public class Modificador
 {
-    
     public String getUsersDirectory(HttpServletRequest request)
     {
         String requestURL = request.getRequestURL().toString();
@@ -42,5 +41,4 @@ public class Modificador
 
         return null;
     }
-    
 }

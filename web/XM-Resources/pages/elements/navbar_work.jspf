@@ -1,19 +1,16 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding:1%;">
     <div class="container-fluid">
-
-        <!-- Empresa -->
-        <a class="navbar-brand" href="/memorand/work/home.jsp"  style="margin-left:21%">
-            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" width="200">
+        <a class="navbar-brand" href="/memorand/work/home.jsp"  style="margin-left:14%">
+            <img src="../XM-Resources/vector/memorand-ext.svg" alt="memorand" height="30">
         </a>
-        
-        
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 41%;">
-            <!-- Perfil -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 55%;">
             <div class="btn-group dropstart">
+                
                 <button type="button" class="btn border-0 rounded-circle" style="color: #25ce7b;" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-list" style="font-size: 32px;"></i>
                 </button>
+                
                 <ul class="dropdown-menu my-4 shadow">
                     <li>
                         <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="perfil.jsp">
@@ -28,19 +25,21 @@
                         </a>
                     </li>
                     <li>
-                        <a onclick="borrarAlmacenamientoLocal()" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
+                        <a onclick="clear()" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
                             <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
                             <b style="color: #25ce7b">Cerrar sesi&oacute;n</b>
                         </a>
                     </li>
                 </ul>
+                
             </div>
         </div>
     </div>
 </nav>
+
 <script>
-    function borrarAlmacenamientoLocal() {
+    function clear()
+    {
         localStorage.clear();
-        // Puedes agregar alguna lógica adicional aquí, como mostrar un mensaje de confirmación
     }
 </script>

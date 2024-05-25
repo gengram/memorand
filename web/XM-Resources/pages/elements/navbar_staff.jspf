@@ -12,45 +12,39 @@
             }
         </script>
         
-        <!-- Logo de la empresa -->
-        <a class="navbar-brand" href="/memorand/staff/home.jsp" style="margin-left: 13.5%">
-            <img src="../XM-Resources/vector/memorand-staff.svg" alt="memorand" width="260" >
+        <a class="navbar-brand" href="/memorand/staff/home.jsp" style="margin-left: 14%">
+            <img src="../XM-Resources/vector/memorand-staff.svg" alt="memorand" height="33" >
         </a>
-
-        <!-- Botón para el perfil -->
-        <button class="navbar-toggler border-0 rounded-circle ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="bi bi-gear-fill" style="color: #25ce7b; font-size: 21px;"></i>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 13%">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-list" style="color: #7473C0; font-size: 36px; "></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end shadow me-5" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="ventas.jsp">
-                                <i class="bi bi-credit-card-fill" style="color: #7473C0; font-size: 21px;"></i>
-                                Ventas
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center " href="configuracion.jsp">
-                                <i class="bi bi-gear-fill" style="color: #7473C0; font-size: 21px;"></i>
-                                Configuraci&oacute;n
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center " href="../signout">
-                                <i class="bi bi-box-arrow-left" style="color: #7473C0; font-size: 21px;"></i>
-                                <b style="color: #7473C0;">Cerrar sesi&oacute;n</b>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 53%;">
+            <div class="btn-group dropstart">
+                
+                <button type="button" class="btn border-0 rounded-circle" style="color: #7473C0;" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-list" style="font-size: 32px;"></i>
+                </button>
+                
+                <ul class="dropdown-menu my-4 shadow">
+                    <li>
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="ventas.jsp">
+                            <i class="bi bi-credit-card-fill" style="color: #7473C0"></i>
+                            Ventas
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="configuracion.jsp">
+                            <i class="bi bi-gear-fill" style="color: #7473C0"></i>
+                            Configuraci&oacute;n
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="clear()" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
+                            <i class="bi bi-box-arrow-left" style="color: #7473C0"></i>
+                            <b style="color: #7473C0">Cerrar sesi&oacute;n</b>
+                        </a>
+                    </li>
+                </ul>
+                
+            </div>
         </div>
-
     </div>
 </nav>

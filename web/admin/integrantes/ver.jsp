@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-6">
                     <div class="mt-2">
-                        <p>texto style="color: #AFB2B3">Email: </texto><texto style="color: #2A2927"><%=user_email%></texto></p>
+                        <p><text style="color: #AFB2B3">Email: </texto><texto style="color: #2A2927"><%=user_email%></texto></p>
                         <p><text  style="color: #AFB2B3">Tipo: </text><text style="color: #2A2927"><%=user_type%></text></p>
                         <p><text  style="color: #AFB2B3">Estatus: </text><text style="color: #2A2927"><%=user_status%></text></p>
                     </div>
