@@ -70,8 +70,7 @@
             <form action="../instnew" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                 <div class="row mt-4">
                     <div class="col-1"></div>
-                    <div class="col-2" >
-
+                    <div class="col-2">
                         <div class="btn card border" id="image-card" style="width: 180px; height: 180px; background-color: #F8F9FA; border-color: #AFB2B3;">
                             <div class="card-body text-center">
                                 <label for="inst_profile">
@@ -79,25 +78,22 @@
                                 </label>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-5 mt-3">
-                        <label for="exampleInputEmail1" class="form-label">Perfil del administrador</label>
+                        <label for="inst_profile" class="form-label">Perfil del administrador</label>
                         <input class="form-control" type="file" name="inst_profile" id="inst_profile" required>
                     </div>
-                    <div class="col-4 mt-3">
-
-                    </div>
+                    <div class="col-4 mt-3"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-1"></div>
                     <div class="col-5">
-                        <label for="exampleInputEmail1" class="form-label">Nombre de la instituci&oacute;n</label>
-                        <input type="text" class="form-control" name="inst_name" id="inst_name" placeholder="Instituci&oacute;n" required>
+                        <label for="inst_name" class="form-label">Nombre de la institución</label>
+                        <input type="text" class="form-control" name="inst_name" id="inst_name" placeholder="Institución" required>
                     </div>
                     <div class="col-5">
-                        <label for="exampleInputEmail1" class="form-label">Tipo</label>
-                        <select name="inst_type" id="inst_type" class="form-select" style="border-color: #AFB2B3; padding-bottom: 12px">
+                        <label for="inst_type" class="form-label">Tipo</label>
+                        <select name="inst_type" id="inst_type" class="form-select" style="border-color: #AFB2B3; padding-bottom: 12px" required>
                             <option value="" disabled selected hidden>Tipo</option>
                             <option value="Empresa">Empresa</option>
                             <option value="Escuela" disabled>Escuela</option>
@@ -110,34 +106,36 @@
                     <div class="col-10">
                         <div class="row">
                             <div class="col-3">
-                                <label for="exampleInputEmail1" class="form-label">L&iacute;deres</label>
+                                <label for="lim_ch" class="form-label">Líderes</label>
                                 <input class="form-control" name="lim_ch" id="lim_ch" type="text" placeholder="100" required>
                             </div>
                             <div class="col-3">
-                                <label for="exampleInputEmail1" class="form-label">Integrantes</label>
+                                <label for="lim_wk" class="form-label">Integrantes</label>
                                 <input class="form-control" name="lim_wk" id="lim_wk" type="text" placeholder="100" required>
                             </div>
                             <div class="col-3">
-                                <label for="exampleInputEmail1" class="form-label">Grupos</label>
+                                <label for="lim_gp" class="form-label">Grupos</label>
                                 <input class="form-control" name="lim_gp" id="lim_gp" type="text" placeholder="100" required>
                             </div>
                             <div class="col-3">
-                                <label for="exampleInputEmail1" class="form-label">Proyectos</label>
+                                <label for="lim_ks" class="form-label">Proyectos</label>
                                 <input class="form-control" name="lim_ks" id="lim_ks" type="text" placeholder="100" required>
                             </div>
                         </div>
                     </div>
                     <div class="col-1"></div>
                 </div>
-
                 <div class="row mt-4">
                     <div class="col-1"></div>
                     <div class="col-10 text-start">
-                        <button type="submit" class="btn custom-admin rounded-pill mt-2"><i class="bi bi-plus me-2" style="font-size: 20px"></i>Agregar instituci&oacute;n</button>
+                        <button type="submit" class="btn custom-admin rounded-pill mt-2">
+                            <i class="bi bi-plus me-2" style="font-size: 20px"></i>Agregar institución
+                        </button>
                     </div>
                     <div class="col-1"></div>
                 </div>
             </form>
+
         </div> 
 
     </body>

@@ -1,17 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding: 1%;">
     <div class="container-fluid">
-        <style>
-            /* Anula el estilo del triángulo en los dropdowns de Bootstrap */
-            .dropdown-toggle::after {
-                display: none;
-            }
-        </style>
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
-        
         <a class="navbar-brand" href="/memorand/staff/home.jsp" style="margin-left: 14%">
             <img src="../XM-Resources/vector/memorand-staff.svg" alt="memorand" height="33" >
         </a>
