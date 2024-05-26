@@ -83,7 +83,7 @@
                                 <td class="align-middle">
                                     <div class="row mt-2 mb-2">
                                         <div class="col-12">
-                                            <a href=''><p class="mt-2" style="color: #4A4F54;">Descargar formato de administradores</p></a>
+                                            <a href='../XM-Resources/formatos/usersAdmin.csv' download><p class="mt-2" style="color: #4A4F54;">Descargar formato de administradores</p></a>
                                         </div>
                                     </div>
                                 </td>
@@ -92,7 +92,7 @@
                                 <td class="align-middle">
                                     <div class="row mt-2 mb-2">
                                         <div class="col-12">
-                                            <a hrredef=''><p class="mt-2" style="color: #4A4F54;">Descargar formato de personal</p></a>
+                                            <a href='../XM-Resources/formatos/usersPersonal.csv' download><p class="mt-2" style="color: #4A4F54;">Descargar formato de personal</p></a>
                                         </div>
                                     </div>
                                 </td>
