@@ -13,7 +13,7 @@ public class AppRequestsController
                 + "                    <tr>\n"
                 + "                        <th scope='col'></th>\n"
                 + "                        <th scope='col'>Nombre</th>\n"
-                + "                        <th scope='col'>Correo</th>\n"
+                + "                        <th scope='col'></th>\n"
                 + "                        <th scope='col'>Fecha</th>\n"
                 + "                        <th scope='col'></th>\n"
                 + "                    </tr>\n"
@@ -64,9 +64,9 @@ public class AppRequestsController
                 htmlcode += "<tr>\n"
                         + "     <td class='align-middle'>"+ circleFillgreen +"</td>\n"
                         + "     <td class='align-middle'>"+ r.getReq_inst() +"</td>\n"
-                        + "     <td class='align-middle'>"+ r.getReq_email() +"</td>\n"
+                        + "     <td style='padding: 20px;' class='align-middle'><p class=\"mt-3\" style=\"color: #D9D9D9;\">"+ r.getReq_email() +"</p></td>\n"
                         + "     <td class='align-middle'>"+ task_edate +"</td>\n"
-                        + "     <td class='align-middle'><a href='solicitud.jsp?id="+ r.getReq_id() +"'>Ver</a></td>\n"
+                        + "     <td class='align-middle'><a href='solicitud.jsp?id="+ r.getReq_id() +"'><i class=\"bi bi-chevron-right\" style=\"color: #7473C0\"></i></a></td>\n"
                         + "</tr>\n";
             }
             

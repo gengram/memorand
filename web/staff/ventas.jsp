@@ -6,12 +6,11 @@
 <%
     // PROTECCIÓN
     String u = (String) session.getAttribute("user_type");
-    
-    if(session == null || u == null || !u.equals("staff"))
-    {
+
+    if (session == null || u == null || !u.equals("staff")) {
         response.sendRedirect("../index.jsp?error=InvalidSession");
     }
-    
+
     AppRequestsController reqc = new AppRequestsController();
 %>
 
@@ -30,7 +29,7 @@
         <title>Memorand Staff | Ventas</title>
 
     </head>
-    
+
     <style>
         .btn-h{
             padding: 0rem 20px;
@@ -72,6 +71,13 @@
             background-color: #D0D0E9;
             border-color: #E3E4E5;
         }
+
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
     </style>
 
     <!-- BODY -->
@@ -100,34 +106,44 @@
                             <text class="me-2">Estatus: </text>
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                 <input type="radio" class="btn-check" name="options" id="check" autocomplete="off" checked>
-                                <label class="btn btn-h" for="check" id="active_inst"><i class="bi bi-check-lg"></i></label>
+                                <label class="btn btn-h" for="check"  id="activasBtn"><i class="bi bi-check-lg"></i></label>
 
                                 <input type="radio" class="btn-check" name="options" id="x" autocomplete="off">
-                                <label class="btn btn-h" for="x" id="inactive_inst"><i class="bi bi-x"></i></label>
+                                <label class="btn btn-h" for="x" id="inactivasBtn"><i class="bi bi-x"></i></label>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="col-1"></div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
+                    <div id="inactivasContent" class="content">
+                        <%= reqc.modelGetRequests("no")%>
+                    </div>
 
+                    <div id="activasContent" class="content active">
+                        <%= reqc.modelGetRequests("si")%>
+                    </div>
                 </div>
                 <div class="col-1"></div>
             </div>
         </div>
 
+        <script>
+            document.getElementById("activasBtn").addEventListener("click", function () {
+                document.getElementById("activasContent").classList.add("active");
+                document.getElementById("inactivasContent").classList.remove("active");
+            });
 
-        <p>Estatus: <button onclick="getReqByStatus('si')">Activas</button> <button onclick="getReqByStatus('si')">Inactivas</button></p>
+            document.getElementById("inactivasBtn").addEventListener("click", function () {
+                document.getElementById("activasContent").classList.remove("active");
+                document.getElementById("inactivasContent").classList.add("active");
+            });
+        </script>
 
-        <%= reqc.modelGetRequests("no")%>
-
-        <hr>
-
-        <%= reqc.modelGetRequests("si")%>
 
     </body>
 
