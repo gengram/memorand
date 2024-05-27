@@ -41,7 +41,7 @@
 
         <title>Memorand</title>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.2.4/fabric.min.js"></script> <!-- Correct version of Fabric.js -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
         <style>
@@ -274,6 +274,7 @@
                         <button onclick="Paste()" type="button" class="btn btn-h"><i class="bi bi-clipboard" style="font-size: 20px"></i></button>
 
                         <button id="delete-selected" type="button" class="btn btn-h des"><i class="bi bi-eraser-fill icon-tools"></i></button>
+
                         <button id="toggle-dragging-btn" type="button" class="btn btn-h des"><svg  width="24" height="24"  viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none" height="256" width="256"/><path d="M128,92a20,20,0,0,0-40,0v24" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M168,108V92a20,20,0,0,0-40,0v32" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M88,148V116H68a20.1,20.1,0,0,0-20,20v16a80,80,0,0,0,160,0V108a20,20,0,0,0-40,0v16" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg></button>
                     </div>
                 </div>
@@ -693,7 +694,6 @@
                 var clonedObject = fabric.util.object.clone(object);
                 var svgObject = clonedObject.toSVG();
                 svgObjects.push({id: object.id, svg: svgObject});
-                //console.log("svgObjects object: " + svgObjects);
             } else {
                 console.log('saveSVG es false. No se convierte el objeto a SVG');
             }
@@ -711,6 +711,7 @@
         // Escuchar los eventos de modificación de los objetos
         canvas.on('object:modified', function (event) {
             var object = event.target;
+            console.log('Objeto modificado:', object);
             updateSVGObject(object);
         });
 
@@ -723,10 +724,56 @@
             for (var i = 0; i < svgObjects.length; i++) {
                 if (svgObjects[i].id === objectId) {
                     svgObjects[i].svg = updatedSVG;
+
+                    // Si el objeto es una imagen, también actualiza sus propiedades en canvasObjects
+                    if (object.type === 'image') {
+                        var objectIndex = canvasObjects.findIndex(function (obj) {
+                            return obj.id === objectId;
+                        });
+                        if (objectIndex !== -1) {
+                            canvasObjects[objectIndex].properties = object.toObject(['left', 'top', 'scaleX', 'scaleY', 'angle']);
+                            console.log('Propiedades de la imagen actualizadas:', canvasObjects[objectIndex]);
+                        }
+                    }
+
                     break;
                 }
             }
         }
+
+        document.getElementById('color').addEventListener('change', function () {
+            var selectedObjects = canvas.getActiveObjects();
+            if (selectedObjects.length > 0) {
+                selectedObjects.forEach(function (object) {
+                    // Verificar si el objeto es un grupo con un solo elemento de tipo path
+                    if (object.type === 'group' && object.size() === 1 && object.item(0) instanceof fabric.Path) {
+                        var path = object.item(0);
+                        path.set('fill', this.value); // Cambiar el color de relleno
+                        path.set('stroke', this.value); // Cambiar el color del contorno
+                    }
+                    // Verificar si el objeto es un texto
+                    else if (object instanceof fabric.Textbox) {
+                        object.set('fill', this.value); // Cambiar el color del texto
+                    }
+                    // Verificar si el objeto es un círculo, un cuadrado o un rectángulo
+                    else if (object instanceof fabric.Circle || object instanceof fabric.Rect || object instanceof fabric.Polygon) {
+                        object.set('fill', this.value); // Cambiar el relleno
+                        object.set('stroke', this.value); // Cambiar el contorno
+                    }
+                    // Verificar si el objeto es otro tipo de objeto
+                    else {
+                        object.set('fill', this.value); // Cambiar el color de relleno
+                        if (object.stroke) {
+                            object.set('stroke', this.value); // Cambiar el color del contorno si existe
+                        }
+                    }
+
+                    // Actualizar el objeto en svgObjects y canvasObjects
+                    updateSVGObject(object);
+                }, this);
+                canvas.renderAll();
+            }
+        });
 
         // Función para guardar el estado del lienzo en DB
         function saveCanvasState() {
@@ -736,6 +783,7 @@
             let note_id = urlParams.get('id');
 
             var svgActual = generateSVGFromObjects(svgObjects);
+            console.log("Actual: " + svgActual);
             var svgFinal = svgActual;
 
             let data = {
@@ -751,13 +799,11 @@
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    //console.log(xhr.responseText);
                 }
             };
 
             xhr.send(JSON.stringify(data));
 
-            //console.log("Final: " + svgFinal);
         }
 
         // Escuchar el evento 'object:selected' para guardar el estado del lienzo
@@ -774,9 +820,11 @@
             });
             svgFinal.push('</svg>');
             return svgFinal.join("");
+            console.log("Fin svg: " + svgFinal);
         }
 
         var canva_draw = atob('<%= new String(Base64.getEncoder().encode(canva_draw.getBytes()))%>');
+        console.log(canva_draw);
 
         // Verificar si canva_draw no es null y no está vacío
         if (canva_draw !== null && canva_draw !== '') {
@@ -807,7 +855,6 @@
         }
         //console.log("canva: " + canva_draw);
 
-
         function toggleDrawingMode() {
             drawingMode = !drawingMode;
             canvas.isDrawingMode = drawingMode;
@@ -819,30 +866,14 @@
             canvas.defaultCursor = panningEnabled ? 'default' : 'move';
         }
 
-        // Event listener para cambiar el color de los objetos seleccionados
-        document.getElementById('color').addEventListener('change', function () {
-            var selectedObjects = canvas.getActiveObjects();
-            if (selectedObjects.length > 0) {
-                selectedObjects.forEach(function (object) {
-                    // Verificar si el objeto es un círculo, un cuadrado o un rectángulo
-                    if (object instanceof fabric.Circle || object instanceof fabric.Rect || object instanceof fabric.Polygon) {
-                        object.set('fill', this.value); // Cambiar el relleno
-                        object.set('stroke', this.value); // Cambiar el contorno
-                    }
-                    // Verificar si el objeto es un texto
-                    else if (object instanceof fabric.Textbox) {
-                        object.set('fill', this.value); // Cambiar el color del texto
-                    }
-                }, this);
-                canvas.renderAll();
-            }
-        });
-
         // Función para activar o desactivar el modo de dibujo libre
         document.getElementById('free-drawing').addEventListener('click', function () {
             canvas.isDrawingMode = !canvas.isDrawingMode;
         });
 
+
+
+        // Evento para el botón de eliminar seleccionados
         document.getElementById('delete-selected').addEventListener('click', function () {
             var activeObjects = canvas.getActiveObjects();
             if (activeObjects.length > 0) {
@@ -867,7 +898,6 @@
             saveCanvasState();
         });
 
-
         document.getElementById('delete-all').addEventListener('click', function () {
             // Eliminar todos los objetos del lienzo y también del arreglo canvasObjects
             canvas.clear();
@@ -878,6 +908,7 @@
             canvas.renderAll();
             saveCanvasState();
         });
+
 
         document.addEventListener('keydown', function (e) {
             var activeObject = canvas.getActiveObject();
