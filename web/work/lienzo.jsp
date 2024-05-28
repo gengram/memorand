@@ -213,6 +213,7 @@
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
+                            <li><a href="chat.jsp?id=<%= canva_id %>" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Chat (test)</a></li>
                             <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
                             <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
                             <li>
