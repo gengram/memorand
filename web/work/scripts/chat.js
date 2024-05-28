@@ -1,7 +1,19 @@
 (function(window, document, JSON) {
     'use strict';
 
-    var URL = 'ws://' + window.location.host + '/memorand/chat';
+    var host = window.location.host;
+    
+    if (host === 'gengram.gerdoc.com')
+    {
+        host = 'gengram.gerdoc.com:8080';
+    }
+    
+    console.log(host);
+    
+    var URL = 'ws://' + host + '/memorand/chat';
+    
+    console.log(URL);
+    
     var ws = new WebSocket(URL);
 
     var chatter = document.getElementById('chatter');
