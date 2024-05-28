@@ -5,6 +5,7 @@ import com.memorand.beans.InTeam;
 import com.memorand.controller.TeamsController;
 import com.memorand.controller.InTeamsController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class TeamNew extends HttpServlet
             {
                 String team_color = team_fields.get(0).substring(1); 
                 
-                Team team = new Team(team_id, team_fields.get(1), team_color);
+                Team team = new Team(team_id, Sanitizante.sanitizar(team_fields.get(1)), team_color);
                 TeamsController teamc = new TeamsController();
                 
                 if (teamc.modelCreateTeam(team))

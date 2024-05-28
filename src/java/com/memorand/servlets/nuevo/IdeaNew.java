@@ -7,6 +7,7 @@ import com.memorand.controller.IdeasController;
 import com.memorand.controller.TaskIdeasController;
 import com.memorand.controller.UserIdeasController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -67,7 +68,6 @@ public class IdeaNew extends HttpServlet
                     String idea_id = g.newID();
                     String task_id = request.getParameter("id");
                     
-                    
                     String idea_color;
                     if(!idea_fields.get(0).isEmpty())
                     {
@@ -79,6 +79,8 @@ public class IdeaNew extends HttpServlet
                     }
                     
                     String idea_text = idea_fields.get(1).trim();
+                    
+                    idea_text = Sanitizante.sanitizar(idea_text);
                     
                     Timestamp idea_date = new Timestamp(System.currentTimeMillis());
                     

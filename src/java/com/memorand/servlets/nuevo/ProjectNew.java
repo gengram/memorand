@@ -5,6 +5,7 @@ import com.memorand.beans.Project;
 import com.memorand.controller.InProjectsController;
 import com.memorand.controller.ProjectsController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class ProjectNew extends HttpServlet
             {
                 String proj_color = proj_fields.get(0).substring(1);
             
-                Project project = new Project(proj_id, proj_fields.get(1), proj_color);
+                Project project = new Project(proj_id, Sanitizante.sanitizar(proj_fields.get(1)), proj_color);
                 ProjectsController projc = new ProjectsController();
                 
                 if (projc.modelCreateProject(project))
