@@ -61,7 +61,7 @@ function loadInfo(request, collab) {
             if (xhr.status === 200) {
                 document.getElementById("content").innerHTML = xhr.responseText;
             } else {
-                console.error("Error al cargar el contenido:", xhr.status);
+                console.error("Error al cargar el contenido: ", xhr.status);
             }
         }
     };

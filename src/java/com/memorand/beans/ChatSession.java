@@ -1,8 +1,9 @@
 package com.memorand.beans;
 
+import java.io.Serializable;
 import javax.websocket.Session;
 
-public class ChatSession
+public class ChatSession implements Serializable
 {
     private Session chat_session;
     private String chat_canva;

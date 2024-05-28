@@ -8,6 +8,9 @@
 
 <%
     String note_id = request.getParameter("id");
+    
+    session.setAttribute("upd_type", "note");
+    session.setAttribute("upd_id", note_id);
 
     if (note_id != null) {
         String task_id = "";
@@ -210,6 +213,9 @@
     </style>
 
     <body>
+        
+        <span id="type" style="display: none">note</span>
+
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container text-center" >
@@ -361,11 +367,12 @@
         }
     </script>
 
-    <script src="../XM-Resources/scripts/voice-text.js"></script>
     <script src="../XM-Resources/scripts/voice_1text.js"></script>
     <script src="../XM-Resources/scripts/imageTtext.js"></script>
     <script src="../XM-Resources/scripts/styles_apunte.js"></script>
 
+    <script src="scripts/broker.js"></script>
+    
 </html>
 
 <%

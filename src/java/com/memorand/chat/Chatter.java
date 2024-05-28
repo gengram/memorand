@@ -14,7 +14,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value="/chat", encoders = {MessagesEncoder.class}, decoders = {MessagesDecoder.class}, configurator = HttpConfigurator.class)
+@ServerEndpoint(value = "/chat", encoders = {MessagesEncoder.class}, decoders = {MessagesDecoder.class}, configurator = HttpConfigurator.class)
 
 public class Chatter
 {

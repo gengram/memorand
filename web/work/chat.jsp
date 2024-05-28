@@ -49,7 +49,6 @@
     </head>
 
     <body>
-        
         <h1>CHAT <%= (String) session.getAttribute("canva_id") %></h1>
         <a href="lienzo.jsp?id=<%= canva_id %>">Regresar al lienzo</a>
         <a href="tarea.jsp?id=<%= task_id %>">Regresar a la tarea</a>
