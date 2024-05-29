@@ -102,6 +102,36 @@ public class NotesModel extends Conexion
         return note;
     }
     
+    public String getNoteTextById(String n_id)
+    {
+        String note_text = null;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT note_text FROM notes WHERE note_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, n_id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next())
+            {
+                note_text = rs.getString(1);
+            }
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        return note_text;
+    }
+    
     public ArrayList<Note> getNotesByTask(String task_id)
     {
         ArrayList<Note> notes = new ArrayList<>();

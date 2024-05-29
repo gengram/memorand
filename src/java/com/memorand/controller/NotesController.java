@@ -23,6 +23,12 @@ public class NotesController {
         NotesModel notem = new NotesModel();
         return notem.getNoteById(n_id);
     }
+    
+    public String modelGetNoteTextById(String n_id)
+    {
+        NotesModel notem = new NotesModel();
+        return notem.getNoteTextById(n_id);
+    }
 
     public String modelGetNotesByTask(String task_id) {
         String htmlcode = "<div class='row'>"
