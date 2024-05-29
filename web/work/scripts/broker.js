@@ -67,7 +67,7 @@
             } catch (error) {
                 console.error("Error enviando mensaje:", error);
             }
-        }, 1000);
+        }, 5000);
     }
 
     function onMessage(evt)

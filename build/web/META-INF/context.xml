@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/memorand"/>
+<Context path="/memorand" reloadable="true" swallowOutput="true">
+
+    <!-- Configuración para permitir la exploración de directorios -->
+    <Resources allowLinking="true" />
+
+    <!-- Configuración para manejar recursos estáticos -->
+    <Resources cachingAllowed="true" cacheMaxSize="100000" />
+
+    <!-- Configuración de manejo de sesiones -->
+    <Manager pathname="" />
+
+    <!-- Configuración del recurso JDBC para la base de datos MySQL -->
+    <Resource name="jdbc/memorand" auth="Container"
+              type="javax.sql.DataSource"
+              maxTotal="10000" maxIdle="5000" maxWaitMillis="10000"
+              username="usuarioBD" password="contraseñaBD"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/memorand?useSSL=false&amp;serverTimezone=UTC"/>
+
+    <!-- Configuración de los parámetros de inicialización -->
+    <Parameter name="paramName" value="paramValue" override="false"/>
+
+    <!-- Configuración de los filtros -->
+    <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+           prefix="localhost_access_log" suffix=".txt"
+           pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+
+</Context>

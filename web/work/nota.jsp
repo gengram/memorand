@@ -319,30 +319,29 @@
     </body>
 
     <script>
+        let timeoutId;
+
         function saveChanges() {
-            let contenido = document.getElementById('contE').innerHTML.trim();
-
-            let urlParams = new URLSearchParams(window.location.search);
-            let note_id = urlParams.get('id');
-
-            let data = {
-                "note_id": note_id,
-                "note_text": contenido
-            };
-
-            let xhr = new XMLHttpRequest();
-            let url = "/memorand/notetext";
-
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log(xhr.responseText);
-                }
-            };
-
-            xhr.send(JSON.stringify(data));
+            clearTimeout(timeoutId); // Borra el temporizador existente
+            timeoutId = setTimeout(function () {
+                let contenido = document.getElementById('contE').innerHTML.trim();
+                let urlParams = new URLSearchParams(window.location.search);
+                let note_id = urlParams.get('id');
+                let data = {
+                    "note_id": note_id,
+                    "note_text": contenido
+                };
+                let xhr = new XMLHttpRequest();
+                let url = "/memorand/notetext";
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.send(JSON.stringify(data));
+            }, 4500); // 5000 milisegundos = 5 segundos
         }
 
         document.getElementById('contE').addEventListener('input', function () {

@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Conexion {
-    
+public class Conexion
+{
     private String username = "root";
     private String password = "1234";
     private String hostname = "localhost";
@@ -18,8 +18,8 @@ public class Conexion {
     
     private Connection connection;
     
-    public Conexion() {
-        
+    public Conexion()
+    {
         try
         {
             Class.forName(classname);
@@ -29,13 +29,10 @@ public class Conexion {
         {
             System.err.println(e.getMessage());
         }
-    
     }
     
-    public Connection getConnection() {
-    
+    public Connection getConnection()
+    {
         return connection;
-    
     }
-    
 }
