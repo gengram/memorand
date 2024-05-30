@@ -25,22 +25,17 @@ public class ProjectsController {
     }
 
     // DEPRECIADO
-    public String modelGetAllProjectsByInst(String inst_id, int level1) {
+    public String modelGetAllProjectsByInst(String inst_id) {
         String htmlcode = "";
-        String add1 = "";
 
         ProjectsModel projm = new ProjectsModel();
-
-        for (int i = 0; i < level1; i++) {
-            add1 += "../";
-        }
 
         for (Project project : projm.getAllProjectsByInst(inst_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><text class=\"ms-5\">" + "<i style=\"color: #" + project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2 mt-5\"></i> " + project.getProj_name() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "                       <a href='" + add1 + "proyectos/ver.jsp?proj_id=" + project.getProj_id() + "'> <i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i> </a><br>"
+                    + "                       <a href='proyecto.jsp?id=" + project.getProj_id() + "'> <i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i> </a><br>"
                     + "                    </td>\n"
                     + "           </tr>";
         }

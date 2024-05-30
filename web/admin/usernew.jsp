@@ -21,12 +21,12 @@
     <%-- HEAD --%>
     <head>
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
         <title>Memorand | Personal</title>
 
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
     </head>
 
@@ -56,19 +56,19 @@
     <%-- BODY --%>
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
         <div class="container">
-            <div class="row mt-4">
+            <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-9">
                     <h1>Agregar personal</h1>
                 </div>
                 <div class="col-2 mt-3">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
-            <form action="../../usernew?user_type=default" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+            <form action="../usernew?user_type=default" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                 <div class="row mt-4">
                     <div class="col-1"></div>
                     <div class="col-2" >
@@ -143,9 +143,9 @@
 
             selectTipoPersonal.addEventListener("change", function () {
                 if (selectTipoPersonal.value === "1") {
-                    form.action = "../../usernew?user_type=ch";
+                    form.action = "../usernew?user_type=ch";
                 } else if (selectTipoPersonal.value === "2") {
-                    form.action = "../../usernew?user_type=wk";
+                    form.action = "../usernew?user_type=wk";
                 }
             });
         });

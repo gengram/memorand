@@ -132,7 +132,7 @@
             <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <h2>Panel de administrador</h2>
+                    <h1>Panel de administrador</h1>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -189,7 +189,7 @@
                         <div class="col-10">
                             <div class="row ">
                                 <div class="col-3 mt-2 text-start">
-                                    <a href="lideres/nuevo.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3 "><i class="bi bi-plus-lg me-2"></i>Agregar personal</button></a>
+                                    <a href="usernew.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3 "><i class="bi bi-plus-lg me-2"></i>Agregar personal</button></a>
                                 </div>
 
                                 <div class="col-9 mt-2"  >
@@ -226,7 +226,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyProj'>
-                                        <%= userc.modelGetAllChByInst(inst_id, 1, 0)%>
+                                        <%= userc.modelGetAllChByInst(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -255,7 +255,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyInte">
-                                        <%= userc.modelGetAllWkByInst(inst_id, 1, 0)%>
+                                        <%= userc.modelGetAllWkByInst(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -285,7 +285,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyProyecto">
-                                        <%= projc.modelGetAllProjectsByInst(inst_id, 0)%>
+                                        <%= projc.modelGetAllProjectsByInst(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -315,7 +315,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyEquipo'>
-                                        <%=teamc.modelGetAllTeamsByInst(inst_id, 0)%>
+                                        <%=teamc.modelGetAllTeamsByInst(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -352,7 +352,7 @@
                                     </tr>
                                 </thead>
                                 <tbody  id="table-bodyProyecto">
-                                    <%= projc.modelGetAllProjectsByInst(inst_id, 0)%>
+                                    <%= projc.modelGetAllProjectsByInst(inst_id)%>
                                 </tbody>
                             </table>
                             <!--<h3>Proyectos</h3>

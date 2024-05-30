@@ -129,21 +129,11 @@ public class UsersController {
     }
 
     // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllChByInst(String inst_id, int level1, int level2) {
+    public String modelGetAllChByInst(String inst_id) {
 
         String htmlcode = "";
-        String add1 = "";
-        String add2 = "";
-
+        
         UsersModel userm = new UsersModel();
-
-        for (int i = 0; i < level1; i++) {
-            add1 += "../";
-        }
-
-        for (int i = 0; i < level2; i++) {
-            add2 += "../";
-        }
 
         for (User ch : userm.getAllChByInst(inst_id)) {
             String circleFillgreen;
@@ -155,10 +145,10 @@ public class UsersController {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='" + add1 + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='" + add2 + "lider.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
+                    + "<a href='lider.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
 
@@ -200,9 +190,10 @@ public class UsersController {
         for (User wk : userm.getAllWkByTeam(team_id)) {
             htmlcode
                     += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><img class='me-2 rounded-2' src='../../" + wk.getUser_profile() + "' width='40'></img>" + wk.getUser_name() + " " + wk.getUser_pat() + "</text></td>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><img class='me-2 rounded-2' src='../" + wk.getUser_profile() + "' width='40'></img>" + wk.getUser_name() + " " + wk.getUser_pat() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='../../tudelete?user_id=" + wk.getUser_id() + "&team_id=" + team_id + "'>Borrar</a><br>"
+                    + "<a style='color:red' href='../tudelete?user_id=" + wk.getUser_id() + "&team_id=" + team_id + "'>Borrar</a><br>"
+                    + "<a href='integrante.jsp?id=" + wk.getUser_id() + "&team_id=" + team_id + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
 
@@ -213,21 +204,13 @@ public class UsersController {
     }
 
     // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllWkByInst(String inst_id, int level1, int level2) {
+    public String modelGetAllWkByInst(String inst_id) {
 
         String htmlcode = "";
         String add1 = "";
         String add2 = "";
 
         UsersModel userm = new UsersModel();
-
-        for (int i = 0; i < level1; i++) {
-            add1 += "../";
-        }
-
-        for (int i = 0; i < level2; i++) {
-            add2 += "../";
-        }
 
         for (User ch : userm.getAllWkByInst(inst_id)) {
             String circleFillgreen;
@@ -240,10 +223,10 @@ public class UsersController {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='" + add1 + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
+                    + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='" + add2 + "integrantes/ver.jsp?user_id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
+                    + "<a href='integrante.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
 

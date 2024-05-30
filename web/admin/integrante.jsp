@@ -26,7 +26,7 @@
     Institution inst = new Institution();
     InstitutionsController instc = new InstitutionsController();
 
-    String user_id = request.getParameter("user_id");
+    String user_id = request.getParameter("id");
 
     String user_email = null;
     String user_pass = null;
@@ -73,14 +73,12 @@
 
     <%-- HEAD --%>
     <head>
+        <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
         <title>Memorand | <%= user_name%></title>
-
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
-
     </head>
 
     <style>
@@ -132,22 +130,22 @@
 
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
         <div class="container">
-            <div class="row mt-4">
+            <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-9">
                     <h1> <%= user_name%> <%= user_pat%> <%= user_mat%></h1>
                 </div>
                 <div class="col-2 mt-3">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-2" >
-                    <img class="rounded-1" src="../../<%=user_profile%>" width="150" height="150" alt="inst_profile"/>
+                    <img class="rounded-1" src="../<%=user_profile%>" width="150" height="150" alt="inst_profile"/>
                 </div>
                 <div class="col-6">
                     <div class="mt-2">
@@ -157,7 +155,7 @@
                     </div>
                 </div>
                 <div class="col-2 text-end" >
-                    <a href="?user_id=<%= user_id%>">
+                    <a href="#">
                         <button class="btn btn-gray rounded-pill mt-3"><text class="ms-3 me-3"><i class="bi bi-pencil-square me-2"></i>Editar</text></button>
                     </a>
                     <button class="btn btn-red rounded-pill mt-2"><i class="bi bi-power me-2"></i>Desactivar</button>
@@ -191,7 +189,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Tablita proyectos de cada lider -->
                             <%=teamc.modelGetAllTeamsByUserRed(user_id)%>
                         </tbody>
                     </table>

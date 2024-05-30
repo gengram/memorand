@@ -20,11 +20,11 @@ public class TeamUserDelete extends HttpServlet
         
         if(teamuserc.modelDeleteTeamUser(user_id, team_id))
         {
-            response.sendRedirect("admin/gestion/integrantes.jsp?team_id="+team_id);
+            response.sendRedirect("admin/equipo.jsp?id="+team_id);
         }
         else
         {
-            response.sendRedirect("admin/gestion/integrantes.jsp?team_id="+team_id+"&error=200-1");
+            response.sendRedirect("admin/equipo.jsp?id="+team_id+"&error=Model");
         }
     }
 }

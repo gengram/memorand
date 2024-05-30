@@ -112,7 +112,7 @@
             <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-9">
-                    <h2> <%= user_name%> <%= user_pat%> <%= user_mat%></h2>
+                    <h1> <%= user_name%> <%= user_pat%> <%= user_mat%></h1>
                 </div>
                 <div class="col-2 mt-3">
                     <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="col-2 text-end" >
-                    <a href="?user_id=<%= user_id%>">
+                    <a href="#">
                         <button class="btn btn-gray rounded-pill mt-3"><text class="ms-3 me-3"><i class="bi bi-pencil-square me-2"></i>Editar</text></button>
                     </a>
                     <button class="btn btn-red rounded-pill mt-2"><i class="bi bi-power me-2"></i>Desactivar</button>

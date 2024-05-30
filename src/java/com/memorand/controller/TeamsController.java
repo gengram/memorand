@@ -23,23 +23,19 @@ public class TeamsController {
     }
 
     // DEPRECIADO
-    public String modelGetAllTeamsByInst(String inst_id, int level1) {
+    public String modelGetAllTeamsByInst(String inst_id) {
 
         String htmlcode = "";
         String add1 = "";
 
         TeamsModel teamm = new TeamsModel();
 
-        for (int i = 0; i < level1; i++) {
-            add1 += "../";
-        }
-
         for (Team team : teamm.getAllTeamsByInst(inst_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "                       <a href='" + add1 + "departamentos/ver.jsp?team_id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
+                    + "                       <a href='equipo.jsp?id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
                     + "                    </td>\n"
                     + "           </tr>";
 
@@ -125,7 +121,7 @@ public class TeamsController {
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</text></td>\n"
                     + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "                       <a href='../departamentos/ver.jsp?team_id=" + team.getTeam_id() + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
+                    + "                       <a href='equipo.jsp?id=" + team.getTeam_id() + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
                     + "                    </td>\n"
                     + "           </tr>";
 

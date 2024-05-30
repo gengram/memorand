@@ -1,7 +1,8 @@
 <%-- Memorand by Gengram © 2023 --%>
 
 <%@page import="com.memorand.controller.TeamsController"%>
-<%@page import="com.memorand.beans.Team"%>
+<%@page import="com.memorand.controller.ProjectsController"%>
+<%@page import="com.memorand.beans.Project"%>
 <%@page import="com.memorand.controller.InstitutionsController"%>
 <%@page import="com.memorand.beans.Institution"%>
 <%@page import="com.memorand.beans.User"%>
@@ -18,22 +19,24 @@
     //    response.sendRedirect("../index.jsp?error=100");
     //    session.invalidate();
     //}
-    Team team = new Team();
+    Project proj = new Project();
+    ProjectsController projc = new ProjectsController();
     TeamsController teamc = new TeamsController();
-    UsersController userc = new UsersController();
 
-    String team_id = request.getParameter("team_id");
     String inst_id = (String) session.getAttribute("inst_id");
-    String team_name = null;
-    String team_color = null;
+    String team_id = request.getParameter("team_id");
 
-    if (team_id != null) {
-        team = teamc.modelGetTeamInfoById(team_id);
+    String proj_id = request.getParameter("id");
+    String proj_name = null;
+    String proj_color = null;
 
-        team_name = team.getTeam_name();
-        team_color = team.getTeam_color();
+    if (proj_id != null) {
+        proj = projc.modelGetProjectInfoById(proj_id);
+
+        proj_name = proj.getProj_name();
+        proj_color = proj.getProj_color();
     } else {
-        response.sendRedirect("../departamentos.jsp");
+        response.sendRedirect("../proyectos.jsp");
     }
 
 %>
@@ -43,13 +46,13 @@
     <%-- HEAD --%>
     <head>
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
-        <title><%= team_name%></title>
+        <title>Memorand | <%= proj_name%></title>
 
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="stylesheet" href="../../XM-Resources/styles/styless.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
     </head>
 
@@ -88,16 +91,16 @@
 
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
         <div class="container">
             <div class="row mt-5">
                 <div class="col-1"></div>
                 <div class="col-1">
-                    <i class="bi bi-square-fill ms-3" style="font-size: 45px; color: #<%= team_color%>"></i>
+                    <i class="bi bi-square-fill ms-3" style="font-size: 45px; color: #<%= proj_color%>"></i>
                 </div>
                 <div class="col-6 text-start mt-2">
-                    <h2><%= team_name%></h2>
+                    <h2><%= proj_name%></h2>
                 </div>
                 <div class="col-2 mt-3">
                     <a href="editar.jsp?user_id=">
@@ -105,16 +108,16 @@
                     </a>
                 </div>
                 <div class="col-2 mt-4">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-1"></div>
                 <div class="col-5">
-                    <h2 class="mt-4 ms-3">Integrantes</h2>
+                    <h2 class="mt-4 ms-3">Equipos</h2>
                 </div>
                 <div class="col-5 mt-4 text-end">
-                    <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalAsignarIntegrante"><i class="bi bi-plus-lg me-2"></i><text class="me-2 ms-2">Asignar integrante</text></button>
+                    <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalAsignarEquipo"><i class="bi bi-plus-lg me-2"></i><text class="me-2 ms-2">Asignar equipo</text></button>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -129,42 +132,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%= userc.modelGetAllWkByTeamRed(team_id)%>
+                            <%= teamc.modelGetAllTeamsByProjRed(proj_id)%>
                         </tbody>
                     </table>
                 </div>
                 <div class="col-1"></div>
-            </div>
+            </div>  
         </div>
 
         <!-- Modal Asignar proyecto-->
-        <div class="modal fade" tabindex="-1" role="dialog" id="modalAsignarIntegrante">
+        <div class="modal fade" tabindex="-1" role="dialog" id="modalAsignarEquipo">
 
             <div class="modal-dialog modal-dialog-centered text-center modal-custom" role="document">
 
                 <div class="modal-content rounded-4 shadow">
 
                     <div class="modal-header p-5 pb-4 border-bottom-0">
-                        <h2 class="mb-0 fs-2">Asignar integrante</h2>
+                        <h2 class="mb-0 fs-2">Asignar equipo</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-5 pt-2">
-                        <form action="" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <form action="../../collabnew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
                             <div class="row">
                                 <div class="col-12 text-start ms-5">
-                                    <select class="form-select form-control-lg" style="border-color: #AFB2B3; display: none;" name="team_name" id="team_name" required>
-                                        <option>Selecciona uno</option>
-                                        <%= teamc.modelGetListTeamsByInst2(inst_id, team_name)%> 
+                                    <label for="exampleInputEmail1" class="form-label">Equipo</label>
+                                    <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="team_name" id="team_name" required>
+                                        <option selected>Selecciona uno</option>
+                                        <%= teamc.modelGetListTeamsByInst(inst_id)%>
                                     </select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 text-start ms-5 mt-3 mb-2">
-                                    <label for="" class="form-label">Integrante</label>
-                                    <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="wk_name" id="wk_name" required>
+                                    <script>console.log("<%=proj_name%>");</script>
+                                    <select class="form-select form-control-lg" style="border-color: #AFB2B3; display: none " name="proj_name" id="proj_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= userc.modelGetListWkByInst(inst_id)%>
+                                        <%= projc.modelGetListProjectsByInst2(inst_id, proj_id)%> <!-- Utilizamos el resultado del método con el ID del proyecto seleccionado -->
                                     </select>
+
                                 </div>
                             </div>
                             <div class="text-start mt-3 ms-5">
@@ -175,6 +180,6 @@
                 </div>
             </div> 
         </div>
-
     </body>
+
 </html>
