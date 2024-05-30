@@ -26,7 +26,7 @@
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
-        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-staff_1.svg">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee-staff.svg">
 
         <title>Memorand Staff | Nueva instituci&oacute;n</title>
 
@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-5 mt-3">
                         <label for="inst_profile" class="form-label">Perfil del administrador</label>
-                        <input class="form-control" type="file" name="inst_profile" id="inst_profile" required>
+                        <input class="form-control" type="file" name="inst_profile" id="inst_profile" accept=".png, .jpg, .jpeg, .webp" required>
                     </div>
                     <div class="col-4 mt-3"></div>
                 </div>

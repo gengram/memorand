@@ -26,7 +26,7 @@
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
-        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-staff_1.svg">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee-staff.svg">
         <title>Memorand Staff | Home</title>
 
     </head>
@@ -83,10 +83,10 @@
                 <div class="col-1"></div>
                 <div class="col-10">
                     <div class="row mt-5">
-                        <div class="col-6 d-flex align-items-center">
-                            <h2>Panel de control</h2>
+                        <div class="col-8 d-flex align-items-center me-5">
+                            <h1>Panel de control</h1>
                         </div>
-                        <div class="col-6 d-flex justify-content-end align-items-center">
+                        <div class="ms-4 col-3 d-flex justify-content-end align-items-center">
                             <a href='instnew.jsp'>
                                 <button class="btn btn-sm rounded-pill custom-bstaff d-flex justify-content-center">
                                     <p class="mt-1 me-2 ms-2 mb-2"><i class="bi bi-plus-lg me-2"></i> Nueva instituci&oacute;n</p> 
@@ -101,11 +101,10 @@
                         </div>
                         <div class="col-2">
                             <div class="row mt-3">
-                                <div class="col-auto">
+                                <div class="col-4">
                                     <p>Estatus: </p>
                                 </div>
-                                <div class="col">
-
+                                <div class="col-6">
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                         <input type="radio" class="btn-check" name="options" id="check" autocomplete="off" checked>
                                         <label class="btn btn-h" for="check" id="active_inst"><i class="bi bi-check-lg"></i></label>

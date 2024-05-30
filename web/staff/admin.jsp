@@ -78,7 +78,7 @@
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
-        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-staff_1.svg">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee-staff.svg">
 
         <title>Memorand Staff | <%= admin_name%> <%= admin_pat%></title>
 
