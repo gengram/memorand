@@ -3,6 +3,7 @@
 <%@page import="com.memorand.controller.TeamsController"%>
 <%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.controller.UsersController"%>
+
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
@@ -20,20 +21,21 @@
 
 %>
 
+<!DOCTYPE html>
+
 <html>
 
     <%-- HEAD --%>
     <head>
-
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
-
-        <title>Memorand | Home Admin</title>
 
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
+        <title>Memorand | Home Admin</title>
     </head>
+    
     <style>
         .btn-h{
             border-color: #25ce7b;
@@ -124,7 +126,7 @@
     <%-- BODY --%>
     <body>
 
-        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf" />
 
         <div class="container">
             <div class="row mt-5">
@@ -206,7 +208,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mt-5 mb-5">
                                 <div class="col-3"><h4>L&iacute;deres</h4></div>
                                 <div class="col-6"><div class="input-group"> 
                                         <input id="searchInputLider" class="form-control me-2 rounded-pill" type="search" aria-label="Search" placeholder="&telrec;                                     Buscar l&iacute;der">
@@ -232,7 +234,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-2 mb-5">
+                    <div class="row mb-5">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row mb-3">
@@ -414,6 +416,7 @@
         </div>
 
         <jsp:include page="../XM-Resources/pages/elements/modals_admin.jspf"/>
+        
         <%--<table>
              <td>
                 <form action="/memorand/uploadfile" method="post" enctype="multipart/form-data">

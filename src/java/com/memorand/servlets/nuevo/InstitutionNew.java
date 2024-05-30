@@ -71,27 +71,52 @@ public class InstitutionNew extends HttpServlet
     {
         String instImg = "";
 
-        try {
+        try
+        {
             List<FileItem> items = fileUpload.parseRequest(request);
-            for (FileItem item : items) {
-                if (!item.isFormField()) {
-                    if (!item.getName().isEmpty()) {
-                        File file = new File(imgDirectory + item.getName());
-                        item.write(file);
-                        instImg = "XM-Uploads/institutions/" + convertAndResizeImage(file, imgDirectory);
+            for (FileItem item : items)
+            {
+                if (!item.isFormField())
+                {
+                    if (!item.getName().isEmpty())
+                    {
+                        String fileName = item.getName();
+                        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
+                        
+                        if (isValidImageExtension(fileExtension))
+                        {
+                            File file = new File(imgDirectory + fileName);
+                            item.write(file);
+                            instImg = "XM-Uploads/institutions/" + convertAndResizeImage(file, imgDirectory);
+                        }
+                        else
+                        {
+                            throw new ServletException("Invalid file type. Only PNG, JPG, and WEBP files are allowed.");
+                        }
                     }
-                } else {
+                }
+                else
+                {
                     instFields.add(item.getString());
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
+            throw new IOException("File upload failed.", e);
         }
 
         return instImg;
     }
 
-    private String convertAndResizeImage(File file, String outputDirectory) throws IOException {
+    private boolean isValidImageExtension(String extension)
+    {
+        return extension.equals("png") || extension.equals("jpg") || extension.equals("jpeg") || extension.equals("webp");
+    }
+
+    private String convertAndResizeImage(File file, String outputDirectory) throws IOException
+    {
         BufferedImage originalImage = ImageIO.read(file);
         BufferedImage resizedImage = new BufferedImage(1080, 1080, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = resizedImage.createGraphics();
@@ -106,7 +131,8 @@ public class InstitutionNew extends HttpServlet
         return outputFile.getName();
     }
 
-    private void processInstitutionCreation(HttpServletRequest request, HttpServletResponse response, HttpSession session, List<String> instFields, String instImg) throws IOException {
+    private void processInstitutionCreation(HttpServletRequest request, HttpServletResponse response, HttpSession session, List<String> instFields, String instImg) throws IOException
+    {
         Generador generador = new Generador();
         String instId = generador.newID();
         String instName = Sanitizante.sanitizar(instFields.get(0).trim());
@@ -120,14 +146,18 @@ public class InstitutionNew extends HttpServlet
         Institution institution = new Institution(instId, instName, instType, instImg, instStatus, limCh, limWk, limGp, limKs);
         InstitutionsController instController = new InstitutionsController();
 
-        if (instController.modelCreateInst(institution)) {
+        if (instController.modelCreateInst(institution))
+        {
             response.sendRedirect(STAFF_HOME);
-        } else {
+        }
+        else
+        {
             redirectWithError(response, STAFF_HOME, "CreationFailed");
         }
     }
 
-    private void redirectWithError(HttpServletResponse response, String page, String errorCode) throws IOException {
+    private void redirectWithError(HttpServletResponse response, String page, String errorCode) throws IOException
+    {
         response.sendRedirect(page + "?error=" + errorCode);
     }
 }

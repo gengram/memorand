@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow-sm" style="padding: 1%;">
     <div class="container-fluid">
         <a class="navbar-brand" href="/memorand/admin/home.jsp" style="margin-left: 14%">
-            <img src="../XM-Resources/vector/memorand-admin.svg" alt="memorand" height="31">
+            <img src="../XM-Resources/vector/memorand-ext-admin.svg" alt="memorand" height="31">
         </a>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 52%;">

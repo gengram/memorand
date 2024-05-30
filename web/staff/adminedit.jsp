@@ -60,6 +60,7 @@
     <head>
         
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee-staff.svg">
 
         <title>Memorand Staff | Editar administrador</title>
         
