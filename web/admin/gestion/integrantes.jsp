@@ -34,29 +34,30 @@
 
         <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
 
-        <!--<form action="../../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+        <form action="../../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <h3>Departamentos</h3>
                         <select name="team_name" id="team_name" required>
                             <option value="" disabled selected hidden>Departamento</option>
-        <%= teamc.modelGetListTeamsByInst(inst_id)%>
-    </select>
-</div>
-<div class="col">
-    <h3>Integrantes</h3>
-    <select name="wk_name" id="wk_name" required>
-        <option value="" disabled selected hidden>Integrante</option>
-        <%= userc.modelGetListWkByInst(inst_id)%>
-    </select>
-</div>
-</div>
+                            <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <h3>Integrantes</h3>
+                        <select name="wk_name" id="wk_name" required>
+                            <option value="" disabled selected hidden>Integrante</option>
+                            <%= userc.modelGetListWkByInst(inst_id)%>
+                        </select>
+                    </div>
+                </div>
 
-<br>
-<input type="submit" value="Agregar integrante">
-</div>
-</form> -->
+                <br>
+                <input type="submit" value="Agregar integrante">
+            </div>
+        </form>
+                        
         <div class="container">
             <div class="row mt-4">
                 <div class="col-1"></div>

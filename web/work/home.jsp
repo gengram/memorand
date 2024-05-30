@@ -110,18 +110,6 @@
                 <div class="col-2 d-none d-sm-block"></div>
                 <div class="col-8">
                     <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
-                    <div class="card border border-1" style="max-height: 60px; border-bottom-color: #28a745;">
-                        <div class="row g-0">
-                            <div class="col-md-2" ></div>
-                            <div class="col-md-11 ms-4">
-                                 <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo text-end mt-1" style="color: #2A2927; font-size: 21px;">
-                                        Programacion
-                                         </p>
-                                              </div>
-                                       </div>
-                             </div>
-                        </div>
                     <div id="content">
                         <%= teamc.modelGetTeams(user_id)%>
                     </div>

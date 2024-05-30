@@ -276,9 +276,9 @@ public class TeamsController {
                     }
                 }
 
-                htmlcode += "<div class=\"card border border-1\" style=\"max-height: 60px; border-bottom-color: #" + t.getTeam_color() + ";\">\n"
+                htmlcode += "<div class=\"card border border-1\" style=\"max-height: 60px;\">\n"
                         + "    <div class=\"row g-0\">\n"
-                        + "        <div class=\"col-md-2\" ></div>\n"
+                        + "        <div class=\"col-md-2\"></div>\n"
                         + "        <div class=\"col-md-11 ms-4\">\n"
                         + "            <div class=\"card-header\" style=\"background-color: transparent;\">\n"
                         + "                <p class=\"titulo text-end mt-1\" style=\"color: #2A2927; font-size: 21px;\">\n"
