@@ -1,14 +1,22 @@
+<style>
+    @media (max-width: 576px) { /* Establece el tamaño del modal grande en pantallas pequeñas */
+        .modal-W {
+            max-width: 90%; /* Define el ancho máximo del modal en porcentaje */
+        }
+    }
+    @media (max-width: 1500px) { /* Establece el tamaño del modal grande en pantallas pequeñas */
+        .modal-W {
+            max-width: 60%; /* Define el ancho máximo del modal en porcentaje */
+        }
+    }
+</style>
 <div class="modal fade" tabindex="-1" role="dialog" id="modalLogin">
-
-    <div class="modal-dialog modal-dialog-centered text-center" role="document">
-
+    <div class="modal-dialog modal-dialog-centered text-center modal-W" role="document">
         <div class="modal-content rounded-4 shadow">
-
             <div class="modal-header p-5 pb-4 border-bottom-0">
                 <h1 class="mb-0 fs-2" style="color: #4A4F54">Iniciar Sesi&oacute;n</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div class="modal-body p-5 pt-2">
                 <form action="login" method="post" enctype="multipart/form-data">
                     <div class="form-floating">
@@ -19,21 +27,17 @@
                     </div>
                     <input type="submit" value="Iniciar sesi&oacute;n" class="fw-bold w-100 mb-2 btn btn-lg rounded-3 custom-bsign">
                 </form>
-
                 <hr class="my-2">
                 <p class="mb-1 text-primary" style="font-size: 70%;">Condiciones de uso | Pol&iacute;tica de privacidad</p>
                 <p class="mb-1 text-primary btn" style="font-size: 70%;" data-bs-toggle="modal" data-bs-target="#modalRestore">Olvid&eacute; mi contrase&ntilde;a</p>
             </div>
-
         </div>
-
     </div> 
-
 </div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modalRestore">
 
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-W" role="document">
 
         <div class="modal-content rounded-4 shadow">
 
