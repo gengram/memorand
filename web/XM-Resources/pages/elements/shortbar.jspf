@@ -1,29 +1,41 @@
 <nav class="navbar shadow-sm sticky-top navbar-expand-lg bg-body-tertiary" style="padding: 1%;">
-    <div class="container-fluid">
-        <a href="index.jsp" class="navbar-brand" style="margin-left: 14%;">
-            <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" height="30">
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="me-5">
-            <div class="me-5">
-                <div class="collapse navbar-collapse justify-content-end me-5" id="navbarSupportedContent" >
-                    
-                    <a href="ventas.jsp">
-                        <button class="btn custom-b4 btn-sm me-3 fs-5 border-opacity-25 rounded-4">
-                            <h6 class="ms-3 me-3 mt-1" style="font-size: 18px;">Contactar ventas</h6>
-                        </button>
-                    </a>
-                    
-                    <button class="btn custom-bsign btn-sm me-5 fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                        <h6 class="ms-3 me-3 mt-1" style="font-size: 18px;">Iniciar sesi&oacute;n</h6>
+    <div class="container">
+        <div class="row w-100">
+            <div class="col-8 col-sm-4 d-flex align-items-center">
+                <a href="index.jsp" class="navbar-brand">
+                    <img src="XM-Resources/vector/memorand-ext.svg" alt="memorand" height="30">
+                </a>
+            </div>
+            <div class="col-4 col-sm-8 d-flex justify-content-end align-items-end">
+                <a href="ventas.jsp">
+                    <button class="btn custom-b4 btn-sm me-3 fs-5 border-opacity-25 rounded-4">
+                        <h6 class="ms-3 me-3 mt-1" style="font-size: 18px;">Contactar ventas</h6>
                     </button>
-                    
-                </div>
+                </a>
+                <button class="btn custom-bsign btn-sm fs-5 border-opacity-25 rounded-4" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                    <h6 class="ms-3 me-3 mt-1" style="font-size: 18px;">Iniciar sesión</h6>
+                </button>
             </div>
         </div>
     </div>
 </nav>
+<style>
+    .navbar-brand img {
+            max-height: 30px;
+        }
+        @media (max-width: 576px) {
+            .navbar-brand {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+            .custom-b4, .custom-bsign {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            .col-2, .col-8 {
+                justify-content: center !important;
+                align-items: center !important;
+            }
+        }
+</style>

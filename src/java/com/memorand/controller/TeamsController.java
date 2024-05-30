@@ -65,8 +65,8 @@ public class TeamsController {
         return htmlcode;
 
     }
-    
-     public String modelGetAllTeamsByInstRed2(String inst_id) {
+
+    public String modelGetAllTeamsByInstRed2(String inst_id) {
 
         String htmlcode = "";
 
@@ -86,8 +86,8 @@ public class TeamsController {
         return htmlcode;
 
     }
-     
-     public String modelGetAllTeamsByProjRed(String proj_id) {
+
+    public String modelGetAllTeamsByProjRed(String proj_id) {
 
         String htmlcode = "";
 
@@ -134,7 +134,7 @@ public class TeamsController {
         return htmlcode;
 
     }
-    
+
     public String modelGetAllTeamsByUserRed3(String user_id) {
 
         String htmlcode = "";
@@ -212,7 +212,7 @@ public class TeamsController {
 
         return htmlcode;
     }
-    
+
     public String modelGetListTeamsByInst2(String inst_id, String selectedTeamName) {
         StringBuilder htmlcode = new StringBuilder();
 
@@ -232,8 +232,7 @@ public class TeamsController {
         return htmlcode.toString();
     }
 
-    public String modelGetTeams(String user_id)
-    {
+    public String modelGetTeams(String user_id) {
         String htmlcode = "";
         String hrefcode = "";
 
@@ -245,10 +244,8 @@ public class TeamsController {
 
         String user_type = user.getUser_type();
 
-        if (user_type != null)
-        {
-            switch (user_type)
-            {
+        if (user_type != null) {
+            switch (user_type) {
                 case "ch":
                     teams = teamm.getAllTeamsByCh(user_id);
                     break;
@@ -260,22 +257,17 @@ public class TeamsController {
             }
         }
 
-        if (teams.isEmpty())
-        {
+        if (teams.isEmpty()) {
             htmlcode = "<p>No hay equipos por mostrar.</p>";
             return htmlcode;
-        }
-        else
-        {
-            for (Team t : teams)
-            {
+        } else {
+            for (Team t : teams) {
                 ProjectsController projc = new ProjectsController();
 
-                if (user_type != null)
-                {
+                if (user_type != null) {
                     switch (user_type) {
                         case "ch":
-                            hrefcode = "<a href='rendimiento.jsp?id="+ t.getTeam_id() +"'class='subtitulo text-end' style='color: #AFB2B3; font-size: 18px;'>Ver rendimiento <i class='bi bi-chevron-right' style='color: #AFB2B3;'></i></a>";
+                            hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'class='subtitulo text-end' style='color: #AFB2B3; font-size: 18px;'>Ver rendimiento <i class='bi bi-chevron-right' style='color: #AFB2B3;'></i></a>";
                             break;
                         case "wk":
                         default:
@@ -283,9 +275,10 @@ public class TeamsController {
                             break;
                     }
                 }
-                htmlcode += "<div class=\"card border border-1\" style=\"max-height: 60px;\">\n"
+
+                htmlcode += "<div class=\"card border border-1\" style=\"max-height: 60px; border-bottom-color: #" + t.getTeam_color() + ";\">\n"
                         + "    <div class=\"row g-0\">\n"
-                        + "        <div class=\"col-md-2\" style=\"background-color: #" + t.getTeam_color() + "; max-height: 58px; max-width: 40px\"></div>\n"
+                        + "        <div class=\"col-md-2\" ></div>\n"
                         + "        <div class=\"col-md-11 ms-4\">\n"
                         + "            <div class=\"card-header\" style=\"background-color: transparent;\">\n"
                         + "                <p class=\"titulo text-end mt-1\" style=\"color: #2A2927; font-size: 21px;\">\n"
@@ -296,6 +289,7 @@ public class TeamsController {
                         + "        </div>\n"
                         + "    </div>\n"
                         + "</div>";
+
                 htmlcode += "<div class='mt-3'></div>";
                 htmlcode += projc.modelGetProjects(t.getTeam_id(), user_id);
             }

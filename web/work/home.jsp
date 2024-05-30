@@ -43,7 +43,7 @@
             text-align: right;
 
         }
-        
+
         .titulo {
             display: flex;
             align-items: center; /* Alineación vertical */
@@ -68,6 +68,29 @@
             color: #2A2927;
             height: 32px; /* Altura fija */
         }
+        /* Estilos para tamaños de pantalla pequeños */
+        @media (max-width: 1500px) {
+            .col-2 {
+                flex: 0 0 auto;
+                width: 0%;
+            }
+            .col-8 {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+
+        /* Estilos para tamaños de pantalla medianos y grandes */
+        @media (max-width: 577px) {
+            .col-2 {
+                flex: 0 0 auto;
+                width: 16.66666667%;
+            }
+            .col-8 {
+                flex: 0 0 auto;
+                width: 66.66666667%;
+            }
+        }
     </style>
 
     <!-- BODY -->
@@ -75,24 +98,37 @@
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-2"></div>
+        <div class="container-sm mt-5">
+            <div class="row">
+                <div class="col-2 d-none d-sm-block"></div>
                 <div class="col-8">
-                    <h1>Mis equipos</h1>
+                    <h1 class="">Mis equipos</h1>
                 </div>
-                <div class="col-2"></div>
+                <div class="col-2 d-none d-sm-block"></div>
             </div>
             <div class="row mt-5">
-                <div class="col-2"></div>
+                <div class="col-2 d-none d-sm-block"></div>
                 <div class="col-8">
                     <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
+                    <div class="card border border-1" style="max-height: 60px; border-bottom-color: #28a745;">
+                        <div class="row g-0">
+                            <div class="col-md-2" ></div>
+                            <div class="col-md-11 ms-4">
+                                 <div class="card-header" style="background-color: transparent;">
+                                    <p class="titulo text-end mt-1" style="color: #2A2927; font-size: 21px;">
+                                        Programacion
+                                         </p>
+                                              </div>
+                                       </div>
+                             </div>
+                        </div>
                     <div id="content">
                         <%= teamc.modelGetTeams(user_id)%>
                     </div>
                 </div>
-                <div class="col-2"></div>
+                <div class="col-2 d-none d-sm-block"></div>
             </div>
         </div>
+
     </body>
 </html>
