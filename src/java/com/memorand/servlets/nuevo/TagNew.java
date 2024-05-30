@@ -5,6 +5,7 @@ import com.memorand.beans.Tag;
 import com.memorand.controller.CoTagsController;
 import com.memorand.controller.TagsController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class TagNew extends HttpServlet
                     
                     String tag_color = tag_fields.get(1).substring(1);
                     
-                    Tag tag = new Tag(tag_id, tag_fields.get(0), tag_color);
+                    Tag tag = new Tag(tag_id, Sanitizante.sanitizar(tag_fields.get(0)), tag_color);
                     TagsController tagc = new TagsController();
                     
                     if (tagc.modelCreateTag(tag))

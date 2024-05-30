@@ -70,9 +70,8 @@ public class PostNew extends HttpServlet
             {
                 if (user_type.equals("wk") || user_type.equals("ch"))
                 {
-                    String post_text = post_fields.get(0);
+                    String post_text = post_fields.get(0).trim();
                     
-                    post_text = HtmlEscapes.escapeHtml(post_text);
                     post_text = Sanitizante.sanitizar(post_text);
                     
                     Generador g = new Generador();

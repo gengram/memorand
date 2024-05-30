@@ -200,7 +200,7 @@
     </head>
     <body>
 
-        <jsp:include page="modals_lienzo.jspf"/>
+        <jsp:include page="pages/modals_lienzo.jspf"/>
 
         <div id="canvas-container">
             <canvas id="canvas"></canvas>
@@ -213,17 +213,9 @@
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
-                            <!--
-                            <li><a href="tarea.jsp?id=<%= task_id%>" class="dropdown-item"><i class="bi  bi-box-arrow-left me-2" style="color: #25ce7b"></i>Regresar</a></li>
-                            -->
+                            <li><a href="chat.jsp?id=<%= canva_id %>" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Chat (test)</a></li>
                             <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
                             <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
-                            <!--
-                            <li>
-                                <input type="file" class="custom-file-input"  id="upload-svg" accept="image/svg+xml" multiple/>
-                                <label for="upload-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Añadir</text></label>
-                            </li>
-                            -->
                             <li>
                                 <input type="file" class="custom-file-input" <%= "uploads-svg"%> accept="image/svg+xml" multiple/>
                                 <label for="uploads-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Añadir SVG</text></label>
@@ -235,10 +227,12 @@
 
                 <div class="col-4" style="background-color: #25ce7b">
                     <div class="capa5">
-                        <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
-                            <a href="tarea.jsp?id=<%= task_id%>"><button type="button" class="btn" style="background-color: #AFB2B3;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button></a>
-                            <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000"><%=canva_name%></b></button>
-                        </div>
+                        <a href="tarea.jsp?id=<%= task_id%>">
+                            <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
+                                <button type="button" class="btn" style="background-color: #AFB2B3;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
+                                <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000"><%=canva_name%></b></button>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-6">

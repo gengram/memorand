@@ -7,6 +7,7 @@ import com.memorand.controller.NotesController;
 import com.memorand.controller.TaskNotesController;
 import com.memorand.controller.UserNotesController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -67,6 +68,8 @@ public class NoteNew extends HttpServlet
                     String task_id = request.getParameter("id");
                     
                     String note_name = note_fields.get(0).trim();
+                    
+                    note_name = Sanitizante.sanitizar(note_name);
                     
                     Timestamp note_cdate = new Timestamp(System.currentTimeMillis());
                     Timestamp note_mdate = new Timestamp(System.currentTimeMillis());

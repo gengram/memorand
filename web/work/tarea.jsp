@@ -448,7 +448,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content rounded-4 shadow">
                     <div class="modal-header p-5 pb-4 border-bottom-0">
-                        <h3 class="fw-bold mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea</h3>
+                        <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea</h3>
                         <button type="button" class="btn-close btn_info" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body p-5 pt-2">

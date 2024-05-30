@@ -5,6 +5,7 @@ import com.memorand.beans.Task;
 import com.memorand.controller.CoTasksController;
 import com.memorand.controller.TasksController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -72,7 +73,7 @@ public class TaskNew extends HttpServlet
                     
                     Timestamp task_sdate = new Timestamp(System.currentTimeMillis());
                     
-                    Task task = new Task(task_id, task_fields.get(0), task_fields.get(3), task_sdate, task_edate, "Incompleta", task_fields.get(1), task_fields.get(2));
+                    Task task = new Task(task_id, task_fields.get(0), Sanitizante.sanitizar(task_fields.get(3)), task_sdate, task_edate, "Incompleta", task_fields.get(1), task_fields.get(2));
                     TasksController taskc = new TasksController();
                     
                     if (taskc.modelCreateTask(task))
