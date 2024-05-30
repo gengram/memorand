@@ -14,12 +14,12 @@
     <Resource name="jdbc/memorand" auth="Container"
               type="javax.sql.DataSource"
               maxTotal="10000" maxIdle="5000" maxWaitMillis="10000"
-              username="usuarioBD" password="contraseñaBD"
+              username="root" password="1234"
               driverClassName="com.mysql.cj.jdbc.Driver"
-              url="jdbc:mysql://localhost:3306/memorand?useSSL=false&amp;serverTimezone=UTC"/>
+              url="jdbc:mysql://localhost:3306/memorand" />
 
     <!-- Configuración de los parámetros de inicialización -->
-    <Parameter name="paramName" value="paramValue" override="false"/>
+    <Parameter name="paramName" value="paramValue" override="false" />
 
     <!-- Configuración de los filtros -->
     <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
