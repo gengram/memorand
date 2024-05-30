@@ -224,11 +224,12 @@
                 <div class="col-1"></div>
                 <div class="col-10">
                     <div class="row">
-                        <div class="col-2"><h2>Administradores</h2></div>
-                        <div class="col-6 text-center">
-
+                        <div class="col-4"><h2>Administradores</h2></div>
+                        <div class="col-3"></div>
+                        <div class="col-3 text-end">
+                            <a href='adminnew.jsp?id=<%= inst_id%>'><button type="submit" class="btn rounded-pill custom-admin"><i class="bi bi-plus-lg me-2"></i>Agregar admin.</button></a>
                         </div>
-                        <div class="col-4 text-end">
+                        <div class="col-2 text-end mt-1">
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                 <input type="radio" class="btn-check" name="options" id="check" autocomplete="off" checked>
                                 <label class="btn btn-h" for="check" id="active_admin"><i class="bi bi-check-lg"></i></label>
@@ -236,24 +237,6 @@
                                 <input type="radio" class="btn-check" name="options" id="x" autocomplete="off">
                                 <label class="btn btn-h" for="x" id="inactive_admin"><i class="bi bi-x"></i></label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-3 mt-2 text-start">
-                            <a href='adminnew.jsp?id=<%= inst_id%>'><button type="submit" class="btn rounded-pill custom-admin me-3 "><i class="bi bi-plus-lg me-2"></i>Agregar admin.</button></a>
-                        </div>
-
-                        <div class="col-9 mt-2">
-                            <form action="/memorand/readfile" method="post" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <label for="upload-csv" class="custom-file-input-label custom-admin rounded-pill" style="padding-bottom: 5px; padding-top: 5px"><i class="bi bi-upload ms-1 me-1"></i>Instant&aacute;neo</label>
-                                    </div>
-                                    <div class="col-6 text-start">
-                                        <input type="file" name="file" accept=".csv" id="" class="form-control">
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
