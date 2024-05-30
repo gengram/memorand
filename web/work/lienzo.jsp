@@ -260,10 +260,15 @@
                         </button>
 
                         <button id="add-text" type="button" class="btn btn-h des"><i class="bi bi-textarea-t icon-tools"></i></button>
+                        <!-- 
 
                         <button id="add-image" type="button" class="btn btn-h des"><i class="bi bi-images icon-tools"></i></button>
+                        -->
 
-                        <button id="free-drawing" type="button" class="btn btn-h"><i class="bi bi-brush-fill icon-tools"></i></button>
+                        <input type="radio" class="btn-check" name="options" id="free-drawing" autocomplete="off">
+                        <label class="btn btn-h" for="free-drawing">
+                            <i class="bi bi-brush-fill icon-tools"></i>
+                        </label>
 
                         <button onclick="Copy()" type="button" class="btn btn-h">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
@@ -275,7 +280,15 @@
 
                         <button id="delete-selected" type="button" class="btn btn-h des"><i class="bi bi-eraser-fill icon-tools"></i></button>
 
-                        <button id="toggle-dragging-btn" type="button" class="btn btn-h des"><svg  width="24" height="24"  viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none" height="256" width="256"/><path d="M128,92a20,20,0,0,0-40,0v24" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M168,108V92a20,20,0,0,0-40,0v32" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M88,148V116H68a20.1,20.1,0,0,0-20,20v16a80,80,0,0,0,160,0V108a20,20,0,0,0-40,0v16" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg></button>
+                        <input type="radio" class="btn-check" name="options" id="toggle-dragging-btn" autocomplete="off">
+                        <label class="btn btn-h des" for="toggle-dragging-btn">
+                            <svg  width="24" height="24"  viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <rect fill="none" height="256" width="256"/>
+                            <path d="M128,92a20,20,0,0,0-40,0v24" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+                            <path d="M168,108V92a20,20,0,0,0-40,0v32" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+                            <path d="M88,148V116H68a20.1,20.1,0,0,0-20,20v16a80,80,0,0,0,160,0V108a20,20,0,0,0-40,0v16" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+                            </svg>
+                        </label>
                     </div>
                 </div>
                 <div class="col-1">
@@ -577,6 +590,19 @@
     </script>
 
     <script>
+        document.querySelectorAll('.btn-check').forEach(radio => {
+            radio.addEventListener('click', function (event) {
+                if (this.previousValue) {
+                    this.checked = false;
+                    this.previousValue = false;
+                } else {
+                    this.previousValue = this.checked;
+                }
+            });
+        });
+    </script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Event listener para el botón "arrows"
             document.getElementById('arrows').addEventListener('click', function () {
@@ -611,7 +637,7 @@
             });
 
             // Event listener para los otros botones
-            var otrosBotones = ['add-text', 'add-image', 'delete-all', 'delete-selected'];
+            var otrosBotones = ['add-text', 'delete-all', 'delete-selected'];
             otrosBotones.forEach(function (id) {
                 document.getElementById(id).addEventListener('click', function () {
                     var cardContainer = document.querySelector('.card-container');
@@ -1027,6 +1053,7 @@
         let isDraggingMode = false;
 
         document.getElementById('toggle-dragging-btn').addEventListener('click', function () {
+            disableDrawingMode();
             isDraggingMode = !isDraggingMode;
             this.innerHTML = isDraggingMode ?
                     '<svg width="24" height="24" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h256v256H0z"></path><path d="M88 116H68a20.1 20.1 0 0 0-20 20v16a80 80 0 0 0 160 0v-44a20 20 0 0 0-40 0V92a20 20 0 0 0-40 0 20 20 0 0 0-40 0Z" opacity=".2" fill="#25ce7b" class="fill-000000"></path><path d="M128 92a20 20 0 0 0-40 0v24M168 108V92a20 20 0 0 0-40 0v32" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" class="stroke-000000"></path><path d="M88 148v-32H68a20.1 20.1 0 0 0-20 20v16a80 80 0 0 0 160 0v-44a20 20 0 0 0-40 0v16" fill="none" stroke="#25ce7b" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" class="stroke-000000"></path></svg>'
@@ -1147,10 +1174,6 @@
             elementTypeToAdd = 'text';
         });
 
-        document.getElementById('add-image').addEventListener('click', function () {
-            isAddingNewElement = true;
-            elementTypeToAdd = 'image';
-        });
 
         document.getElementById('arrow-up').addEventListener('click', function () {
             isAddingNewElement = true;
@@ -1831,6 +1854,7 @@
                     addObjectToCanvas(line); // Agrega una linea al lienzo y la almacena en canvasObjects
                 } else if (elementTypeToAdd === 'text') {
                     var text = new fabric.Textbox('Texto aquí', {
+                        fontFamily: 'Comic Sans',
                         fontSize: 20,
                         fill: document.getElementById('color').value,
                         left: x1 - 25,
