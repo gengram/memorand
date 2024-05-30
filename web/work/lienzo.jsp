@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
         <style>
+            
             body, html {
                 margin: 0;
                 padding: 0;
@@ -170,6 +171,13 @@
                 background-color: #25ce7b;
                 border-color: #E3E4E5;
             }
+            
+             /* Ocultar el grupo de botones en pantallas pequeñas */
+            @media (max-width: 768px) {
+                .invis {
+                    display: none;
+                }
+            }
         </style>
         <style>
             a.nav-link {
@@ -207,7 +215,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-1">
+                <div class="col-1 col-sm-3">
                     <div class="btn-group dropend capa2 start-0 ms-4">
                         <button type="button" class="btn btn-light rounded-2 des" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list" style="font-size: 25px"></i>
@@ -225,7 +233,7 @@
                     </div>
                 </div>
 
-                <div class="col-4" style="background-color: #25ce7b">
+                <div class="col-4 col-sm-9" style="background-color: #25ce7b">
                     <div class="capa5">
                         <a href="tarea.jsp?id=<%= task_id%>">
                             <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
@@ -236,7 +244,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="btn-group capa1 shadow-lg" role="group" aria-label="Basic radio toggle button group">
+                    <div class="btn-group invis capa1 shadow-lg" role="group" aria-label="Basic radio toggle button group">
                         <button id="openModalButton" type="button" class="btn btn-h des"><i class="bi bi-boxes icon-tools"></i></button>
 
                         <button id="figuras" type="button" class="btn btn-h des">
@@ -286,7 +294,7 @@
                     </div>
                 </div>
                 <div class="col-1">
-                    <div class="card shadow capa4" >
+                    <div class="card invis shadow capa4" >
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
@@ -2198,6 +2206,39 @@
 
             }
         });
+        
+        
+        // Función para verificar el tamaño de la pantalla y deshabilitar interacciones
+        function checkScreenSize() {
+            if (window.innerWidth <= 768) { // Puedes ajustar este valor según tus necesidades
+                canvas.selection = false; // Deshabilitar selección de objetos
+                canvas.forEachObject(function (obj) {
+                    obj.set({
+                        selectable: false, // Deshabilitar selección de cada objeto
+                        evented: false     // Deshabilitar eventos en cada objeto
+                    });
+                });
+                canvas.off('mouse:down'); // Desactivar eventos del ratón en el lienzo
+            } else {
+                canvas.selection = true;
+                canvas.forEachObject(function (obj) {
+                    obj.set({
+                        selectable: true,
+                        evented: true
+                    });
+                });
+                canvas.on('mouse:down', function (options) {
+                    console.log('Mouse down on canvas', options);
+                });
+            }
+            canvas.renderAll(); // Renderizar el lienzo nuevamente para aplicar los cambios
+        }
+
+        // Ejecutar la función cuando se carga la página
+        checkScreenSize();
+
+        // Añadir un event listener para cambiar de tamaño la ventana
+        window.addEventListener('resize', checkScreenSize);
     </script>
 
 </body>
