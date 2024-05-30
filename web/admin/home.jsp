@@ -142,23 +142,7 @@
                 <div class="col-10">
                     <div class="row">
                         <div class="col-2 mt-2"><h4 id="contentName">Personal</h4></div>
-                        <div class="col-5" >
-                            <div class="row ms-2">
-                                <div class="col-6"></div>
-                                <div class="col-3 mt-2">
-                                    <p>Estatus:</p>
-                                </div>
-                                <div class="col-3 mt-2">
-                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="options" id="check" autocomplete="off" checked>
-                                        <label class="btn btn-h rounded-start" for="check" id="active_inst"><i class="bi bi-check-lg"style="color: #000"></i></label>
-
-                                        <input type="radio" class="btn-check" name="options" id="x" autocomplete="off">
-                                        <label class="btn btn-h rounded-end" for="x" id="inactive_inst"><i class="bi bi-x-lg" style="color: #000"></i></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="col-5"></div>
                         <div class="col-5 text-start">
                             <div class="btn-group mt-2" role="group" aria-label="Basic radio toggle button group">
                                 <input type="radio" class="btn-check" name="btnradio" id="rPersonal" autocomplete="off" checked>
@@ -187,7 +171,7 @@
                     <div class="row mt-2">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <div class="row ">
+                            <div class="row">
                                 <div class="col-3 mt-2 text-start">
                                     <a href="usernew.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3 "><i class="bi bi-plus-lg me-2"></i>Agregar personal</button></a>
                                 </div>
@@ -226,7 +210,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyProj'>
-                                        <%= userc.modelGetAllChByInst(inst_id)%>
+                                        <%= userc.modelGetAllChByInst(inst_id) %>
                                     </tbody>
                                 </table>
                             </div>
@@ -255,7 +239,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyInte">
-                                        <%= userc.modelGetAllWkByInst(inst_id)%>
+                                        <%= userc.modelGetAllWkByInst(inst_id) %>
                                     </tbody>
                                 </table>
                             </div>
@@ -263,11 +247,12 @@
                         </div>
                     </div>
                 </div>
+                                    
                 <div id="proyectos_content" class="content hidden">
-                    <div class="row">
+                    <div class="row justify-content-center mt-4">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <div class="row mb-3 mt-3">
+                            <div class="row mb-3 mt-4">
                                 <div class="col-3">
                                     <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalProyectoNew"><i class="bi bi-plus-lg me-2"></i>Crear proyecto</button>
                                 </div>
@@ -292,19 +277,20 @@
                         </div>
                         <div class="col-1"></div>
                     </div>
-                </div>             
+                </div> 
+                                    
                 <div id="equipos_content" class="content hidden">
-                    <div class="row">
+                    <div class="row justify-content-center mt-4">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <div class="row mb-3 mt-3">
+                            <div class="row mb-3 mt-4">
                                 <div class="col-3">
                                     <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalEquipoNew"><i class="bi bi-plus-lg me-2"></i>Crear equipo</button>
                                 </div>
-                                <div class="col-6"><div class="input-group"> 
+                                <div class="col-6">
+                                    <div class="input-group"> 
                                         <input id="searchInputEquipo" class="form-control ms-3 rounded-pill" type="search" aria-label="Search" placeholder="&telrec;                                 Buscar equipo">
                                     </div>
-
                                     <div class="col-3"></div>
                                 </div>
                                 <table class="table mt-3" style="text-align: center;">
@@ -327,7 +313,7 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <div class="row mb-3 mt-3">
+                            <div class="row mb-3 mt-4">
                                 <div class="col-3">
                                     <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalAsignarProj"><i class="bi bi-plus-lg me-2"></i>Asignar proyecto</button>
                                 </div>

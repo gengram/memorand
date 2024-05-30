@@ -6,29 +6,34 @@ import com.memorand.model.CollabsModel;
 import com.memorand.model.UsersModel;
 import java.util.ArrayList;
 
-public class UsersController {
-
-    public boolean modelCreateUser(User user) {
+public class UsersController
+{
+    public boolean modelCreateUser(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.createUser(user);
     }
 
-    public boolean modelLoginUser(User user) {
+    public boolean modelLoginUser(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.loginUser(user);
     }
 
-    public boolean modelValidateUserEmail(String u_email) {
+    public boolean modelValidateUserEmail(String u_email)
+    {
         UsersModel userm = new UsersModel();
         return userm.validateUserEmail(u_email);
     }
 
-    public User modelGetUserInfoByLogin(User user) {
+    public User modelGetUserInfoByLogin(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.getUserInfoByLogin(user);
     }
 
-    public User modelGetUserInfoById(String u_id) {
+    public User modelGetUserInfoById(String u_id)
+    {
         UsersModel userm = new UsersModel();
         return userm.getUserInfoById(u_id);
     }
@@ -128,34 +133,37 @@ public class UsersController {
 
     }
 
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllChByInst(String inst_id) {
-
+    public String modelGetAllChByInst(String inst_id)
+    {
         String htmlcode = "";
         
         UsersModel userm = new UsersModel();
 
-        for (User ch : userm.getAllChByInst(inst_id)) {
+        for (User ch : userm.getAllChByInst(inst_id))
+        {
             String circleFillgreen;
-            if (ch.getUser_status().equals("si")) {
+            
+            if (ch.getUser_status().equals("si"))
+            {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-            } else {
+            }
+            else
+            {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
             }
+            
             htmlcode
                     += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>"
+                    + "<td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
+                    + "<td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
+                    + "<td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
+                    + "<td style='padding: 20px;' class='align-middle'>"
                     + "<a href='lider.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
                     + "</td>\n"
                     + "           </tr>";
-
         }
 
         return htmlcode;
-
     }
 
     // DEPRECIADO BORRAR CUANDO SEA SEGURO
@@ -268,7 +276,8 @@ public class UsersController {
 
     }
 
-    public String modelGetAdmins(String inst_id, String admin_status) {
+    public String modelGetAdmins(String inst_id, String admin_status)
+    {
         String htmlcode = "<table class='table mt-3'>\n"
                 + "                <thead>\n"
                 + "                    <tr>\n"
@@ -283,17 +292,26 @@ public class UsersController {
         UsersModel userm = new UsersModel();
         ArrayList<User> admins = userm.getAdmins(inst_id, admin_status);
 
-        if (admins.isEmpty()) {
+        if (admins.isEmpty())
+        {
             htmlcode = "<p class='mt-5'>No hay administradores disponibles.</p>";
             return htmlcode;
-        } else {
-            for (User admin : admins) {
+        }
+        else
+        {
+            for (User admin : admins)
+            {
                 String circleFillgreen;
-                if (admin.getUser_status().equals("si")) {
+                
+                if (admin.getUser_status().equals("si"))
+                {
                     circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-                } else {
+                }
+                else
+                {
                     circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
                 }
+                
                 htmlcode
                         += "<tr>\n"
                         + "     <td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>\n"
@@ -310,13 +328,15 @@ public class UsersController {
         return htmlcode;
     }
 
-    public String modelGetPeople(String collab_id) {
+    public String modelGetPeople(String collab_id)
+    {
         String htmlcode = "";
 
         CollabsModel collabm = new CollabsModel();
         Collab collab = collabm.getCollabInfoById(collab_id);
 
-        if (collab != null) {
+        if (collab != null)
+        {
             String team_id = collab.getTeam_id();
             String proj_id = collab.getProj_id();
 
@@ -415,11 +435,12 @@ public class UsersController {
         return htmlcode;
     }
 
-    public String modelConvUserType(String u_type) {
-
+    public String modelConvUserType(String u_type)
+    {
         String user_type;
 
-        switch (u_type) {
+        switch (u_type)
+        {
             case "staff":
                 user_type = "Staff";
                 break;
@@ -438,14 +459,14 @@ public class UsersController {
         }
 
         return user_type;
-
     }
 
-    public String modelConvUserStatus(String u_status) {
-
+    public String modelConvUserStatus(String u_status)
+    {
         String user_status;
 
-        switch (u_status) {
+        switch (u_status)
+        {
             case "si":
                 user_status = "Activo";
                 break;
@@ -455,15 +476,16 @@ public class UsersController {
         }
 
         return user_status;
-
     }
 
-    public boolean modelUpdateUser(User user) {
+    public boolean modelUpdateUser(User user)
+    {
         UsersModel userm = new UsersModel();
         return userm.updateUser(user);
     }
 
-    public boolean modelUpdateUserStatus(String user_id, String user_status) {
+    public boolean modelUpdateUserStatus(String user_id, String user_status)
+    {
         UsersModel userm = new UsersModel();
         return userm.updateUserStatus(user_id, user_status);
     }
