@@ -41,7 +41,7 @@ public class InstitutionStatus extends HttpServlet
                         break;
                 }
                 
-                if (instc.modelUpdateInstStatus(inst_id, new_status))
+                if (instc.modelUpdateInstitutionStatus(inst_id, new_status))
                 {
                     response.sendRedirect("staff/institucion.jsp?id="+inst_id);
                 }
