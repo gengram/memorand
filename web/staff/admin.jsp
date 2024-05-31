@@ -72,7 +72,6 @@
 
 <html>
 
-    <!-- HEAD -->
     <head>
 
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
@@ -118,16 +117,14 @@
             background-color: transparent;
         }
     </style>
-    <!-- BODY -->
+    
     <body>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
 
         <div class="container">
-            <!-- Flexbox container for aligning the toasts -->
             <div aria-live="polite" aria-atomic="true" class="position-relative">
                 <div class="toast-container top-0 end-0">
-                    <!-- Then put toasts within -->
                     <div class="toast align-items-center text-bg-light border-0" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
@@ -154,7 +151,7 @@
                     <img width="150" height="150" class="rounded-1" src="../<%= admin_profile%>" alt="Foto de <%= admin_name%> <%= admin_pat%>"/>
                 </div>
                 <div class="col-4">
-                    <div class="mt-2">
+                    <div class="mt-5">
                         <p class="inter"><texto style="color: #AFB2B3">Correo: </texto><texto style="color: #2A2927"><%=admin_email%></texto></p>
                         <p class="inter"><texto style="color: #AFB2B3">Estatus: </texto><texto style="color: #2A2927"><%=admin_statusC%></texto></p>
                     </div>
@@ -182,14 +179,13 @@
                 </div>
                 <div class="col-1"></div>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <!-- Tablita proyectos de cada lider -->
                     <div id="content">
-                        <%= instc.modelGetInstTable(inst_id)%>
+                        <%= instc.sGetInstitutionInfo(inst_id)%>
                     </div>
-                    <a href='admindel.jsp?id=<%= admin_id%>'><button class="btn btn-red2 rounded-pill">Eliminar administrador</button></a>
+                    <a href='admindel.jsp?id=<%= admin_id%>'><button class="mt-4 btn btn-red2 rounded-pill">Eliminar administrador</button></a>
                 </div>
                 <div class="col-1"></div>
             </div>

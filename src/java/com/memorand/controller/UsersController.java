@@ -123,23 +123,22 @@ public class UsersController
             add1 += "../";
         }
 
-        for (User ch : userm.getAllChByInst(inst_id)) {
+        for (User ch : userm.getAllChByInst(inst_id, true)) {
             htmlcode += "<a class=\"navbar-brand\" href=\"/memorand/work/perfil.jsp\">"
                     + "<img src='\"+ add1 + ch.getUser_profile() +\"' width=\"230\" style=\"margin-left: 10%\">"
                     + "</a>";
         }
 
         return htmlcode;
-
     }
 
-    public String modelGetAllChByInst(String inst_id)
+    public String modelGetAllChByInst(String inst_id, boolean all)
     {
         String htmlcode = "";
         
         UsersModel userm = new UsersModel();
 
-        for (User ch : userm.getAllChByInst(inst_id))
+        for (User ch : userm.getAllChByInst(inst_id, all))
         {
             String circleFillgreen;
             
@@ -212,15 +211,13 @@ public class UsersController
     }
 
     // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllWkByInst(String inst_id) {
+    public String modelGetAllWkByInst(String inst_id, boolean all) {
 
         String htmlcode = "";
-        String add1 = "";
-        String add2 = "";
-
+        
         UsersModel userm = new UsersModel();
 
-        for (User ch : userm.getAllWkByInst(inst_id)) {
+        for (User ch : userm.getAllWkByInst(inst_id, all)) {
             String circleFillgreen;
             if (ch.getUser_status().equals("si")) {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
@@ -251,7 +248,7 @@ public class UsersController
 
         UsersModel userm = new UsersModel();
 
-        for (User wk : userm.getAllWkByInst(inst_id)) {
+        for (User wk : userm.getAllWkByInst(inst_id, true)) {
             htmlcode
                     += "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
         }
@@ -267,7 +264,7 @@ public class UsersController
 
         UsersModel userm = new UsersModel();
 
-        for (User wk : userm.getAllChByInst(inst_id)) {
+        for (User wk : userm.getAllChByInst(inst_id, true)) {
             htmlcode
                     += "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
         }

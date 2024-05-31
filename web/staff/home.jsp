@@ -20,16 +20,18 @@
 
 <html>
 
-    <!-- HEAD -->
     <head>
 
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
+        
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee-staff.svg">
+        
         <title>Memorand Staff | Home</title>
 
     </head>
+    
     <style>
         .btn-h{
             padding: 0rem 20px;
@@ -73,7 +75,6 @@
         }
     </style>
 
-    <!-- BODY -->
     <body>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_staff.jspf"/>
@@ -119,8 +120,7 @@
 
                     <div class="row mt-3">
                         <div class="col-12" id="content">
-                            <!-- AQUI VA LA TABLA DE INSTITUCIONES, VER COM.MEMORAND.SERVLETS.OBTENER / InstitutionGet-->
-                            <%= instc.modelGetInsts("si")%>
+                            <%= instc.sGetAllInstitutions("si")%>
                         </div>
                     </div> 
                 </div>
@@ -141,5 +141,7 @@
         </script>
 
         <script src="scripts/home.js"></script>
+        
     </body>
+    
 </html>

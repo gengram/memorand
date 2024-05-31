@@ -4,68 +4,81 @@ import com.memorand.beans.Institution;
 import com.memorand.model.InstitutionsModel;
 import java.util.ArrayList;
 
-public class InstitutionsController {
+public class InstitutionsController
+{
+    private static final String htmlInstTable = "<table class='table'>"
+            + "<thead>\n"
+            + "<tr>\n"
+            + "<th scope='col'></th>\n"
+            + "<th scope='col'>Nombre</th>\n"
+            + "<th scope='col'>L&iacute;deres</th>\n"
+            + "<th scope='col'>Integrantes</th>\n"
+            + "<th scope='col'>Grupos</th>\n"
+            + "<th scope='col'>Proyectos</th>\n"
+            + "<th scope='col'></th>\n"
+            + "</tr>\n"
+            + "</thead>\n"
+            + "<tbody id='table-body'>";
 
-    private final String htmlInstTable = "<table class='table'>"
-            + "                <thead>\n"
-            + "                    <tr>\n"
-            + "                        <th scope='col'></th>\n"
-            + "                        <th scope='col'>Nombre</th>\n"
-            + "                        <th scope='col'>L&iacute;deres</th>\n"
-            + "                        <th scope='col'>Integrantes</th>\n"
-            + "                        <th scope='col'>Grupos</th>\n"
-            + "                        <th scope='col'>Proyectos</th>\n"
-            + "                        <th scope='col'></th>\n"
-            + "                    </tr>\n"
-            + "                </thead>\n"
-            + "                <tbody id='table-body'>";
+    private static final String htmlNoInst = "<p><i>No hay instituciones disponibles.</i></p>";
 
-    private final String htmlNoInst = "<p><i>No hay instituciones disponibles.</i></p>";
-
-    public boolean modelCreateInst(Institution inst) {
+    public boolean modelCreateInst(Institution inst)
+    {
         InstitutionsModel instm = new InstitutionsModel();
         return instm.createInst(inst);
     }
 
-    public boolean modelUpdateInstStatus(String inst_id, String inst_status) {
+    public boolean modelUpdateInstStatus(String inst_id, String inst_status)
+    {
         InstitutionsModel instm = new InstitutionsModel();
         return instm.updateInstStatus(inst_id, inst_status);
     }
 
-    public boolean modelUpdateInst(Institution inst) {
+    public boolean modelUpdateInst(Institution inst)
+    {
         InstitutionsModel instm = new InstitutionsModel();
         return instm.updateInst(inst);
     }
 
-    public Institution modelGetInst(String inst_id) {
+    public Institution modelGetInst(String inst_id)
+    {
         InstitutionsModel instm = new InstitutionsModel();
         return instm.getInstById(inst_id);
     }
 
-    public Institution modelGetInstByUser(String user_id) {
+    public Institution modelGetInstByUser(String user_id)
+    {
         InstitutionsModel instm = new InstitutionsModel();
         return instm.getInstByUser(user_id);
     }
 
-    public String modelGetResourceCount(String inst_id, String res_name) {
+    public String modelGetResourceCount(String inst_id, String res_name)
+    {
         InstitutionsModel instm = new InstitutionsModel();
         return String.valueOf(instm.getResourceCount(inst_id, res_name));
     }
 
-    public String modelGetInstTable(String inst_id) {
+    // STAFF - ADMIN.JSP
+    public String sGetInstitutionInfo (String inst_id)
+    {
         String htmlcode = htmlInstTable;
 
         InstitutionsModel instm = new InstitutionsModel();
 
         Institution i = instm.getInstById(inst_id);
 
-        if (i != null) {
+        if (i != null)
+        {
             InstitutionsModel inst_counter = new InstitutionsModel();
 
             String circleFillgreen;
-            if (i.getInst_status().equals("si")) {
+            
+            if (i.getInst_status().equals("si"))
+            {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-            } else {
+            }
+            else
+            {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
             }
 
@@ -89,24 +102,33 @@ public class InstitutionsController {
         return htmlcode;
     }
 
-    public String modelGetInsts(String inst_status) {
+    //STAFF - HOME.JSP
+    public String sGetAllInstitutions (String inst_status)
+    {
         String htmlcode = htmlInstTable;
 
         InstitutionsModel instm = new InstitutionsModel();
         ArrayList<Institution> insts = instm.getInsts(inst_status);
 
-        if (insts.isEmpty()) {
+        if (insts.isEmpty())
+        {
             htmlcode = htmlNoInst;
             return htmlcode;
-        } else {
-            for (Institution i : insts) {
+        }
+        else
+        {
+            for (Institution i : insts)
+            {
                 InstitutionsModel inst_counter = new InstitutionsModel();
 
                 String circleFillgreen;
 
-                if (i.getInst_status().equals("si")) {
+                if (i.getInst_status().equals("si"))
+                {
                     circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-                } else {
+                }
+                else
+                {
                     circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
                 }
 
@@ -130,5 +152,4 @@ public class InstitutionsController {
 
         return htmlcode;
     }
-
 }

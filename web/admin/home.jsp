@@ -168,7 +168,7 @@
             <div id="content" style="position: relative;">
 
                 <div id="personal_content" class="content">
-                    <div class="row mt-2">
+                    <div class="row mt-3">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row">
@@ -210,7 +210,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyProj'>
-                                        <%= userc.modelGetAllChByInst(inst_id) %>
+                                        <%= userc.modelGetAllChByInst(inst_id, false) %>
                                     </tbody>
                                 </table>
                             </div>
@@ -239,7 +239,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyInte">
-                                        <%= userc.modelGetAllWkByInst(inst_id) %>
+                                        <%= userc.modelGetAllWkByInst(inst_id, false) %>
                                     </tbody>
                                 </table>
                             </div>
@@ -249,7 +249,7 @@
                 </div>
                                     
                 <div id="proyectos_content" class="content hidden">
-                    <div class="row justify-content-center mt-4">
+                    <div class="row justify-content-center mt-0">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row mb-3 mt-4">
@@ -280,7 +280,7 @@
                 </div> 
                                     
                 <div id="equipos_content" class="content hidden">
-                    <div class="row justify-content-center mt-4">
+                    <div class="row justify-content-center mt-0">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div class="row mb-3 mt-4">
