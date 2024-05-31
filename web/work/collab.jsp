@@ -46,10 +46,10 @@
 
 <!DOCTYPE html>
 <html>
-    
+
     <!-- HEAD -->
     <head>
-        
+
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -58,7 +58,7 @@
         <title>Memorand | <%= proj_name%></title>
 
     </head>
-    
+
     <style>
         /* Estilos CSS */
         .titulo {
@@ -145,72 +145,121 @@
         .dropdown-toggle:after {
             display: none;
         }
+
+        /* Estilos para tamaños de pantalla pequeños */
+        @media (max-width: 1500px) {
+            .colC-1 {
+                flex: 0 0 auto;
+                width: 0%;
+            }
+            .colC-2 {
+                flex: 0 0 auto;
+                width: 16.66666667%;
+            }
+            .colC-4 {
+                flex: 0 0 auto;
+                width: 41.66666667%;
+            }
+            .colC-10{
+                flex: 0 0 auto;
+                width: 100%;
+            }
+        }
+
+        /* Estilos para tamaños de pantalla medianos y grandes */
+        @media (max-width: 577px) {
+            .colC-1 {
+                flex: 0 0 auto;
+                width: 16.66666667%;
+            }
+            .colC-2 {
+                flex: 0 0 auto;
+                width: 16.66666667%;
+            }
+            .colC-4 {
+                flex: 0 0 auto;
+                width: 33.33333333%;
+            }
+            .colC-10{
+                flex: 0 0 auto;
+                width: 83.33333333%;
+            }
+        }
     </style>
     <!-- BODY -->
     <body>
-        
+
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
 
         <div class="container">
             <div class="row mt-4">
-                <div class="col-1"></div>
-                <div class="col-4 mt-2">
-                    <a href="home.jsp" id="backL">
-                        <div class="card border border-1" style="max-height: 50px;">
-                            <div class="row g-0">
-                                <div class="col-md-2 rounded-start" style="background-color: #<%=team_color%>; max-height: 47px; max-width: 40px">
-                                    <i class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
-                                </div>
-                                <div class="col-md-10 ">
-                                    <div class="card-header" style="background-color: transparent;">
-                                        <p class="titulo ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
-                                            <%= team_name%>
-                                        </p>
+                <div class="colC-1 d-none d-sm-block"></div>
+                <div class="colC-10 mt-2">
+                    <div class="row">
+                        <div class="col-5 mt-2">
+                            <a href="home.jsp" id="backL">
+                                <div class="card border border-1" style="max-height: 50px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-2 rounded-start" style="background-color: #<%=team_color%>; max-height: 48px; max-width: 40px">
+                                            <i class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
+                                        </div>
+                                        <div class="col-md-10 ">
+                                            <div class="card-header" style="background-color: transparent;">
+                                                <p class="titulo ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                                    <%= team_name%>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                                        
-                <div class="col-2 d-flex justify-content-center align-items-center text-center">
-                    <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
-                </div>
-                <div class="col-4 mt-2">
-                    <div class="card border border-1" style="max-height: 50px;">
-                        <div class="row g-0">
-                            <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px"></div>
-                            <div class="col-md-10 ">
-                                <div class="card-header" style="background-color: transparent;">
-                                    <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
-                                        <%= proj_name%>
-                                    </p>
+                        <div class="colC-2 d-flex justify-content-center align-items-center text-center">
+                            <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
+                        </div>
+                        <div class="col-5 mt-2">
+                            <div class="card border border-1" style="max-height: 50px;">
+                                <div class="row g-0">
+                                    <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 48px; max-width: 40px"></div>
+                                    <div class="col-md-10 ">
+                                        <div class="card-header" style="background-color: transparent;">
+                                            <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">
+                                                <%= proj_name%>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div> 
+
                         </div>
-                    </div>                                        
+
+                        <!-- 
+                        -->
+
+                    </div>
+
                 </div>
-                <div class="col-1"></div>
+                <div class="colC-1 d-none d-sm-block"></div>
             </div>
             <div class="row mt-4">
-                <div class="col-1"></div>
-                <div class="col-10">
+                <div class="colC-1 d-none d-sm-block"></div>
+                <div class="colC-10">
                     <hr class="mt-4">
                 </div>
-                <div class="col-1"></div>
+                <div class="colC-1 d-none d-sm-block"></div>
             </div>
             <div class="row">
-                <div class="col-1"></div>
+                <div class="colC-1 d-none d-sm-block"></div>
                 <div class="col-3 text-end border-bottom">
                     <button class="btn navC rounded-1 btnnav active pred" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
                 </div>
-                <div class="col-4 text-center border-bottom">
+                <div class="colC-4 text-center border-bottom">
                     <button class="btn navC rounded-1 btnnav" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Publicaciones</p></button>
                 </div>
                 <div class="col-3 text-start border-bottom">
                     <button  class="btn navC rounded-1 btnnav" id="get_people"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Personal</p></button>
                 </div>
-                <div class="col-1"></div>
+                <div class="colC-1 d-none d-sm-block"></div>
             </div>
             <!-- Modal Nueva tarea -->                            
             <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskNew">
@@ -317,7 +366,6 @@
                 <%
                     }
                 %>
-
             </div>
         </div>
         <script src="scripts/collab.js"></script>

@@ -47,6 +47,27 @@ document.addEventListener('DOMContentLoaded', function () {
         // Guarda el ID del botón activo en el almacenamiento local
         localStorage.setItem('activeButton', defaultButton.id);
     });
+    
+    // Agregar event listener al enlace para regresar al inicio
+    const outButton = document.getElementById('outL');
+    outButton.addEventListener('click', function () {
+        // Elimina la clase 'active' de todos los botones
+        console.log('Click en enlace de regreso');
+        buttons.forEach(navC => {
+            navC.classList.remove('active');
+            navC.classList.remove('active-border');
+        });
+
+        // Obtén el botón predeterminado por su ID
+        const defaultButton = document.getElementById('get_tasks');
+        
+        // Agrega la clase 'active' y 'active-border' al botón predeterminado
+        defaultButton.classList.add('active');
+        defaultButton.classList.add('active-border');
+
+        // Guarda el ID del botón activo en el almacenamiento local
+        localStorage.setItem('activeButton', defaultButton.id);
+    });
 });
 
 
@@ -85,15 +106,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 activateButton(activeButton, buttons);
             }
         }
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('task_panel').addEventListener('click', function () {
-        document.getElementById('vbtn-radioPanel').checked = true;
-    });
-
-    document.getElementById('task_table').addEventListener('click', function () {
-        document.getElementById('vbtn-radioTabla').checked = true;
     });
 });

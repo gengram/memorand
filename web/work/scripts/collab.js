@@ -5,6 +5,45 @@ document.addEventListener("DOMContentLoaded", function () {
         collab = ""; // Asegúrate de que collab sea una cadena vacía si no se proporciona en la URL
     }
 
+    function loadInfo(request, collab) {
+        if (!collab) {
+            console.error("El parámetro 'collab' es requerido.");
+            return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        let url = "";
+
+        switch (request) {
+            case "tasks":
+                url = `/memorand/taskget?reqby=collab&collab=${collab}`;
+                break;
+            case "posts":
+                url = `/memorand/postget?reqby=collab&collab=${collab}`;
+                break;
+            case "people":
+                url = `/memorand/userget?reqby=collab&collab=${collab}`;
+                break;
+            default:
+                console.error("Tipo de solicitud no válido");
+                return;
+        }
+
+        xhr.open("GET", url, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    document.getElementById("content").innerHTML = xhr.responseText;
+                } else {
+                    console.error(`Error al cargar el contenido: ${xhr.status} - ${xhr.statusText}`);
+                }
+            }
+        };
+
+        xhr.send();
+    }
+
     // Asigna el evento click a los botones y actualiza la URL del navegador
     document.getElementById("get_tasks").addEventListener("click", function () {
         loadInfo("tasks", collab);
@@ -24,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const urlParams = new URLSearchParams(window.location.search);
         const view = urlParams.get('view');
         collab = urlParams.get('id');
-        if (!collab)
-        {
+        if (!collab) {
             collab = ""; // Asegúrate de que collab sea una cadena vacía si no se proporciona en la URL
         }
 
@@ -33,38 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
             loadInfo(view, collab);
         }
     });
-});
 
-function loadInfo(request, collab) {
-    const xhr = new XMLHttpRequest();
-    let url = "";
-
-    switch (request) {
-        case "tasks":
-            url = `/memorand/taskget?reqby=collab&collab=${collab}`;
-            break;
-        case "posts":
-            url = `/memorand/postget?reqby=collab&collab=${collab}`;
-            break;
-        case "people":
-            url = `/memorand/userget?reqby=collab&collab=${collab}`;
-            break;
-        default:
-            console.error("Tipo de solicitud no válido");
-            return;
+    // Inicial carga
+    const view = urlParams.get('view');
+    if (view) {
+        loadInfo(view, collab);
     }
-
-    xhr.open("GET", url, true);
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                document.getElementById("content").innerHTML = xhr.responseText;
-            } else {
-                console.error("Error al cargar el contenido: ", xhr.status);
-            }
-        }
-    };
-
-    xhr.send();
-}
+});

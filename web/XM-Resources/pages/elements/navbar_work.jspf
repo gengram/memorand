@@ -25,7 +25,7 @@
                             </a>
                         </li>
                         <li>
-                            <a onclick="clear()" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout">
+                            <a onclick="clear()" class="dropdown-item dropdown-item-danger d-flex gap-2 align-items-center" href="../signout" id="outL">
                                 <i class="bi bi-box-arrow-left" style="color: #25ce7b"></i>
                                 <b style="color: #25ce7b">Cerrar sesi&oacute;n</b>
                             </a>
