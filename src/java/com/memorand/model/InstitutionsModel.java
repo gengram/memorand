@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class InstitutionsModel extends Conexion
 {
-    public boolean createInst(Institution inst)
+    public boolean createInstitution(Institution i)
     {
         boolean flag = false;
         
@@ -20,15 +20,15 @@ public class InstitutionsModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inst.getInst_id());
-            ps.setString(2, inst.getInst_name());
-            ps.setString(3, inst.getInst_type());
-            ps.setString(4, inst.getInst_profile());
-            ps.setString(5, inst.getInst_status());
-            ps.setString(6, inst.getLim_ch());
-            ps.setString(7, inst.getLim_wk());
-            ps.setString(8, inst.getLim_gp());
-            ps.setString(9, inst.getLim_ks());
+            ps.setString(1, i.getInst_id());
+            ps.setString(2, i.getInst_name());
+            ps.setString(3, i.getInst_type());
+            ps.setString(4, i.getInst_profile());
+            ps.setString(5, i.getInst_status());
+            ps.setString(6, i.getLim_ch());
+            ps.setString(7, i.getLim_wk());
+            ps.setString(8, i.getLim_gp());
+            ps.setString(9, i.getLim_ks());
             
             if (ps.executeUpdate() == 1)
             {
@@ -56,9 +56,9 @@ public class InstitutionsModel extends Conexion
         return flag;
     }
     
-    public ArrayList<Institution> getInsts(String inst_s)
+    public ArrayList<Institution> getInstitutions(String i_status)
     {
-        ArrayList<Institution> insts = new ArrayList<>();
+        ArrayList<Institution> all_inst = new ArrayList<>();
         
         PreparedStatement ps;
         
@@ -68,7 +68,7 @@ public class InstitutionsModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inst_s);
+            ps.setString(1, i_status);
             
             ResultSet rs = ps.executeQuery();
             
@@ -85,7 +85,7 @@ public class InstitutionsModel extends Conexion
                 String lim_ks = rs.getString(9);
                 
                 Institution new_inst = new Institution(inst_id, inst_name, inst_type, inst_profile, inst_status, lim_ch, lim_wk, lim_gp, lim_ks);
-                insts.add(new_inst);
+                all_inst.add(new_inst);
             }
         }
         
@@ -105,57 +105,10 @@ public class InstitutionsModel extends Conexion
             }
         }
         
-        return insts;
+        return all_inst;
     }
     
-    public int getResourceCount(String inst_id, String res_name)
-    {
-        int count = 0;
-        
-        PreparedStatement ps;
-
-        try
-        {
-            String sql;
-            
-            switch (res_name)
-            {
-                case "ch":
-                case "wk":
-                    sql = "SELECT COUNT(*) AS count FROM inusers iu INNER JOIN users u ON iu.user_id = u.user_id WHERE iu.inst_id = ? AND u.user_type = ?";
-                    break;
-                case "teams":
-                    sql = "SELECT COUNT(*) AS count FROM inteams WHERE inst_id = ?";
-                    break;
-                case "projects":
-                    sql = "SELECT COUNT(*) AS count FROM inprojects WHERE inst_id = ?";
-                    break;
-                default:
-                    return count;
-            }
-
-            ps = getConnection().prepareStatement(sql);
-            ps.setString(1, inst_id);
-
-            if (res_name.equals("ch") || res_name.equals("wk"))
-                ps.setString(2, res_name);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next())
-                count = rs.getInt("count");
-            
-        }
-        
-        catch (SQLException e)
-        {
-            System.err.println(e.getMessage());
-        }
-
-        return count;
-    }
-    
-    public Institution getInstById(String inst_i)
+    public Institution getInstitution(String i_id)
     {
         Institution inst = null;
         
@@ -167,7 +120,7 @@ public class InstitutionsModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inst_i);
+            ps.setString(1, i_id);
             
             ResultSet rs = ps.executeQuery();
             
@@ -206,7 +159,7 @@ public class InstitutionsModel extends Conexion
         return inst;
     }
     
-    public Institution getInstByUser(String user_id)
+    public Institution getInstitutionByUser(String u_id)
     {
         Institution inst = null;
         
@@ -218,7 +171,7 @@ public class InstitutionsModel extends Conexion
             
             ps1 = getConnection().prepareStatement(sql1);
             
-            ps1.setString(1, user_id);
+            ps1.setString(1, u_id);
             
             ResultSet rs1 = ps1.executeQuery();
             
@@ -226,7 +179,7 @@ public class InstitutionsModel extends Conexion
             {
                 String i_id = rs1.getString(1);
                 
-                inst = getInstById(i_id);
+                inst = getInstitution(i_id);
             }
         }
         
@@ -249,7 +202,53 @@ public class InstitutionsModel extends Conexion
         return inst;
     }
 
-    public boolean updateInstStatus(String inst_id, String inst_status)
+    public int getInstitutionResource(String i_id, String resource)
+    {
+        int count = 0;
+        
+        PreparedStatement ps;
+
+        try
+        {
+            String sql;
+            
+            switch (resource)
+            {
+                case "ch":
+                case "wk":
+                    sql = "SELECT COUNT(*) AS count FROM inusers iu INNER JOIN users u ON iu.user_id = u.user_id WHERE iu.inst_id = ? AND u.user_type = ?";
+                    break;
+                case "teams":
+                    sql = "SELECT COUNT(*) AS count FROM inteams WHERE inst_id = ?";
+                    break;
+                case "projects":
+                    sql = "SELECT COUNT(*) AS count FROM inprojects WHERE inst_id = ?";
+                    break;
+                default:
+                    return count;
+            }
+
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, i_id);
+
+            if (resource.equals("ch") || resource.equals("wk"))
+                ps.setString(2, resource);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                count = rs.getInt("count");
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        return count;
+    }
+    
+    public boolean updateInstitution(Institution i)
     {
         boolean flag = false;
         
@@ -257,18 +256,22 @@ public class InstitutionsModel extends Conexion
         
         try
         {
-            String sql = "UPDATE institutions SET inst_status = ? WHERE inst_id = ?";
+            String sql = "UPDATE institutions SET inst_name = ?, inst_profile = ?, lim_ch = ?, lim_wk = ?, lim_gp = ?, lim_ks = ? WHERE inst_id = ?";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inst_status);
-            ps.setString(2, inst_id);
+            ps.setString(1, i.getInst_name());
+            ps.setString(2, i.getInst_profile());
+            ps.setString(3, i.getLim_ch());
+            ps.setString(4, i.getLim_wk());
+            ps.setString(5, i.getLim_gp());
+            ps.setString(6, i.getLim_ks());
+            ps.setString(7, i.getInst_id());
             
             if (ps.executeUpdate() == 1)
             {
                 flag = true;
             }
-        
         }
         
         catch (SQLException e)
@@ -290,7 +293,7 @@ public class InstitutionsModel extends Conexion
         return flag;
     }
     
-    public boolean updateInst(Institution inst)
+    public boolean updateInstitutionStatus(String i_id, String i_status)
     {
         boolean flag = false;
         
@@ -298,17 +301,12 @@ public class InstitutionsModel extends Conexion
         
         try
         {
-            String sql = "UPDATE institutions SET inst_name = ?, inst_profile = ?, lim_ch = ?, lim_wk = ?, lim_gp = ?, lim_ks = ? WHERE inst_id = ?";
+            String sql = "UPDATE institutions SET inst_status = ? WHERE inst_id = ?";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, inst.getInst_name());
-            ps.setString(2, inst.getInst_profile());
-            ps.setString(3, inst.getLim_ch());
-            ps.setString(4, inst.getLim_wk());
-            ps.setString(5, inst.getLim_gp());
-            ps.setString(6, inst.getLim_ks());
-            ps.setString(7, inst.getInst_id());
+            ps.setString(1, i_status);
+            ps.setString(2, i_id);
             
             if (ps.executeUpdate() == 1)
             {

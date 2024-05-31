@@ -154,7 +154,7 @@ public class InstitutionEdit extends HttpServlet
         Institution institution = new Institution(instId, instName, "", instImg, "", limCh, limWk, limGp, limKs);
         InstitutionsController instController = new InstitutionsController();
 
-        if (instController.modelUpdateInst(institution))
+        if (instController.modelUpdateInstitution(institution))
         {
             response.sendRedirect("staff/institucion.jsp?id=" + instId);
         }

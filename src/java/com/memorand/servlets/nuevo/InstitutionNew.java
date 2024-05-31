@@ -146,7 +146,7 @@ public class InstitutionNew extends HttpServlet
         Institution institution = new Institution(instId, instName, instType, instImg, instStatus, limCh, limWk, limGp, limKs);
         InstitutionsController instController = new InstitutionsController();
 
-        if (instController.modelCreateInst(institution))
+        if (instController.modelCreateInstitution(institution))
         {
             response.sendRedirect(STAFF_HOME);
         }
