@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class InstitutionsModel extends Conexion {
-
+public class InstitutionsModel extends Conexion
+{
     public boolean createInst(Institution inst)
     {
         boolean flag = false;
@@ -58,7 +58,6 @@ public class InstitutionsModel extends Conexion {
     
     public ArrayList<Institution> getInsts(String inst_s)
     {
-        
         ArrayList<Institution> insts = new ArrayList<>();
         
         PreparedStatement ps;
@@ -158,7 +157,6 @@ public class InstitutionsModel extends Conexion {
     
     public Institution getInstById(String inst_i)
     {
-    
         Institution inst = null;
         
         PreparedStatement ps;
@@ -210,7 +208,6 @@ public class InstitutionsModel extends Conexion {
     
     public Institution getInstByUser(String user_id)
     {
-    
         Institution inst = null;
         
         PreparedStatement ps1;

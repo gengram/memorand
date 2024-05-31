@@ -59,7 +59,7 @@ public class InstitutionsController
     }
 
     // STAFF - ADMIN.JSP
-    public String sGetInstitutionInfo (String inst_id)
+    public String sGetInstitutionInfo(String inst_id)
     {
         String htmlcode = htmlInstTable;
 
@@ -103,7 +103,7 @@ public class InstitutionsController
     }
 
     //STAFF - HOME.JSP
-    public String sGetAllInstitutions (String inst_status)
+    public String sGetAllInstitutions(String inst_status)
     {
         String htmlcode = htmlInstTable;
 
