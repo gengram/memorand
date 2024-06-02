@@ -181,7 +181,7 @@ public class UserNew extends HttpServlet
         User user = new User(userId, Sanitizante.sanitizar(userFields.get(0)), Sanitizante.sanitizar(userFields.get(1)), userType, Sanitizante.sanitizar(userFields.get(2)), Sanitizante.sanitizar(userFields.get(3)), Sanitizante.sanitizar(userFields.get(4)), "si", userImg);
         UsersController usersController = new UsersController();
 
-        if (!usersController.modelValidateUserEmail(userFields.get(0)))
+        if (!usersController.modelValidateUserByEmail(userFields.get(0)))
         {
             if (usersController.modelCreateUser(user))
             {

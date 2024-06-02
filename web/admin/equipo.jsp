@@ -122,7 +122,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%= userc.modelGetAllWkByTeamRed(team_id)%>
+                            <%= userc.adminGetUserWorkersByTeam(team_id)%>
                         </tbody>
                     </table>
                 </div>
@@ -156,7 +156,7 @@
                                     <label for="" class="form-label">Integrante</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="wk_name" id="wk_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= userc.modelGetListWkByInst(inst_id)%>
+                                        <%= userc.adminGetUserWorkersSelectByInst(inst_id, true)%>
                                     </select>
                                 </div>
                             </div>

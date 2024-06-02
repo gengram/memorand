@@ -36,7 +36,7 @@ public class ApiLogin extends HttpServlet
         UsersController userc = new UsersController();
         User user = gson.fromJson(requestBody.toString(), User.class);
 
-        if (userc.modelLoginUser(user))
+        if (userc.modelValidateUserByLogin(user))
         {
             response.setStatus(200);
         }

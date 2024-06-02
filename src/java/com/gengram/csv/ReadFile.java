@@ -67,7 +67,7 @@ public class ReadFile extends HttpServlet
                 String user_id = g.newID();
                 String user_email = row[0].replace("\"", "");
                 
-                if (!userc.modelValidateUserEmail(user_email))
+                if (!userc.modelValidateUserByEmail(user_email))
                 {
                     String user_pass = row[1].replace("\"", "");
                     String user_type = row[2].replace("\"", "");

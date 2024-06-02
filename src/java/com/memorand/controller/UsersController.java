@@ -8,272 +8,152 @@ import java.util.ArrayList;
 
 public class UsersController
 {
-    public boolean modelCreateUser(User user)
+    public boolean modelCreateUser(User u)
     {
         UsersModel userm = new UsersModel();
-        return userm.createUser(user);
+        return userm.createUser(u);
     }
 
-    public boolean modelLoginUser(User user)
+    public boolean modelValidateUserByLogin(User u)
     {
         UsersModel userm = new UsersModel();
-        return userm.loginUser(user);
+        return userm.validateUserByLogin(u);
     }
 
-    public boolean modelValidateUserEmail(String u_email)
+    public boolean modelValidateUserByEmail(String u_email)
     {
         UsersModel userm = new UsersModel();
-        return userm.validateUserEmail(u_email);
+        return userm.validateUserByEmail(u_email);
     }
 
-    public User modelGetUserInfoByLogin(User user)
+    public User beanGetUserByLogin(User u)
     {
         UsersModel userm = new UsersModel();
-        return userm.getUserInfoByLogin(user);
+        return userm.getUserByLogin(u);
     }
 
-    public User modelGetUserInfoById(String u_id)
+    public User beanGetUser(String u_id)
     {
         UsersModel userm = new UsersModel();
-        return userm.getUserInfoById(u_id);
+        return userm.getUser(u_id);
     }
 
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllAdminByInst(String inst_id, int level1, int level2) {
-
-        String htmlcode = "";
-        String add1 = "";
-        String add2 = "";
-
-        UsersModel userm = new UsersModel();
-
-        for (int i = 0; i < level1; i++) {
-            add1 += "../";
-        }
-
-        for (int i = 0; i < level2; i++) {
-            add2 += "../";
-        }
-
-        for (User admin : userm.getAllAdminByInst(inst_id)) {
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td> <img class=\"rounded-3\" src='" + add1 + admin.getUser_profile() + "' width='40'></img> </td>\n"
-                    + "                    <td>" + admin.getUser_pat() + "</td>\n"
-                    + "                    <td>" + admin.getUser_mat() + "</td>\n"
-                    + "                    <td>" + admin.getUser_name() + "</td>\n"
-                    + "                    <td>"
-                    + "<a href='" + add2 + "administradores/ver.jsp?user_id=" + admin.getUser_id() + "'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i>  </a><br>"
-                    + "</td>\n"
-                    + "           </tr>";
-
-        }
-
-        return htmlcode;
-
-    }
-
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllAdmin() {
-
-        String htmlcode = "";
-
-        UsersModel userm = new UsersModel();
-
-        for (User admin : userm.getAllAdmin()) {
-            String admin_status = admin.getUser_status();
-
-            switch (admin_status) {
-                case "si":
-                    admin_status = "Activo";
-                    break;
-                case "no":
-                    admin_status = "Inactivo";
-                    break;
-                default:
-                    admin_status = "ERROR";
-                    break;
-            }
-
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td>" + "<img class=\"rounded-3 me-2\" src='../" + admin.getUser_profile() + "' width='40'></img>" + admin.getUser_name() + "</td>\n"
-                    + "                    <td>" + admin.getUser_pat() + "</td>\n"
-                    + "                    <td>" + admin.getUser_mat() + "</td>\n"
-                    + "                    <td>" + admin_status + "</td>\n"
-                    + "                    <td>"
-                    + "<a href='administradores/ver.jsp?user_id=" + admin.getUser_id() + "'> <i class=\"bi bi-eye-fill\" style=\"font-size: 1.5em;\"></i> </a><br>"
-                    + "</td>\n"
-                    + "           </tr>";
-
-        }
-
-        return htmlcode;
-
-    }
-
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetImgUser(String inst_id, int level1) {
-        String htmlcode = "";
-        String add1 = "";
-
-        UsersModel userm = new UsersModel();
-
-        for (int i = 0; i < level1; i++) {
-            add1 += "../";
-        }
-
-        for (User ch : userm.getAllChByInst(inst_id, true)) {
-            htmlcode += "<a class=\"navbar-brand\" href=\"/memorand/work/perfil.jsp\">"
-                    + "<img src='\"+ add1 + ch.getUser_profile() +\"' width=\"230\" style=\"margin-left: 10%\">"
-                    + "</a>";
-        }
-
-        return htmlcode;
-    }
-
-    public String modelGetAllChByInst(String inst_id, boolean all)
+    public String adminGetUserChiefsByInst(String inst_id, boolean all)
     {
         String htmlcode = "";
         
         UsersModel userm = new UsersModel();
 
-        for (User ch : userm.getAllChByInst(inst_id, all))
+        for (User ch : userm.getUserChiefsByInst(inst_id, all))
         {
             String circleFillgreen;
             
             if (ch.getUser_status().equals("si"))
-            {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-            }
             else
-            {
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
-            }
             
-            htmlcode
-                    += "<tr>\n"
-                    + "<td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
-                    + "<td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
-                    + "<td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
-                    + "<td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='lider.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
-                    + "</td>\n"
-                    + "           </tr>";
+            htmlcode += "<tr>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
+                     + "<td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>"
+                     + "<a href='lider.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
+                     + "</td>\n"
+                     + "</tr>";
         }
 
         return htmlcode;
     }
-
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllChByCollabRed(String team_id, String proj_id) {
-
-        String htmlcode = "";
-
-        UsersModel userm = new UsersModel();
-
-        for (User ch : userm.getAllChByCollab(team_id, proj_id)) {
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td><img class='rounded-2 me-2' src='../../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
-                    + "                    <td>"
-                    + "<a href='' style='color: red'><i class=\"bi bi-trash3-fill\"></i></a><br>"
-                    + "</td>\n"
-                    + "           </tr>";
-
-        }
-
-        return htmlcode;
-
-    }
-
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllWkByTeamRed(String team_id) {
-
-        String htmlcode = "";
-
-        UsersModel userm = new UsersModel();
-
-        for (User wk : userm.getAllWkByTeam(team_id)) {
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><img class='me-2 rounded-2' src='../" + wk.getUser_profile() + "' width='40'></img>" + wk.getUser_name() + " " + wk.getUser_pat() + "</text></td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a style='color:red' href='../tudelete?user_id=" + wk.getUser_id() + "&team_id=" + team_id + "'>Borrar</a><br>"
-                    + "<a href='integrante.jsp?id=" + wk.getUser_id() + "&team_id=" + team_id + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
-                    + "</td>\n"
-                    + "           </tr>";
-
-        }
-
-        return htmlcode;
-
-    }
-
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetAllWkByInst(String inst_id, boolean all) {
-
+    
+    public String adminGetUserWorkersByInst(String inst_id, boolean all)
+    {
         String htmlcode = "";
         
         UsersModel userm = new UsersModel();
 
-        for (User ch : userm.getAllWkByInst(inst_id, all)) {
+        for (User ch : userm.getUserWorkersByInst(inst_id, all))
+        {
             String circleFillgreen;
-            if (ch.getUser_status().equals("si")) {
+            
+            if (ch.getUser_status().equals("si"))
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-            } else {
+            else
                 circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
-            }
 
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "<a href='integrante.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
-                    + "</td>\n"
-                    + "           </tr>";
-
+            htmlcode += "<tr>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>" + circleFillgreen + "</td>"
+                     + "<td style='padding: 20px;' class='align-middle text-start'><img class='me-2 rounded-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'><text style='color: #AFB2B3'>" + ch.getUser_email() + "</text></td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>"
+                     + "<a href='integrante.jsp?id=" + ch.getUser_id() + "'><i style='color: #25ce7b; font-size: 25px' class=\"bi bi-chevron-right\"></i></a><br>"
+                     + "</td>\n"
+                     + "</tr>";
         }
 
         return htmlcode;
-
     }
 
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetListWkByInst(String inst_id) {
-
+    public String adminGetUserChiefsByCollab(String team_id, String proj_id)
+    {
         String htmlcode = "";
 
         UsersModel userm = new UsersModel();
 
-        for (User wk : userm.getAllWkByInst(inst_id, true)) {
-            htmlcode
-                    += "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
-        }
+        for (User ch : userm.getUserChiefsByCollab(team_id, proj_id))
+            htmlcode += "<tr>\n"
+                     + "<td><img class='rounded-2 me-2' src='../../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
+                     + "<td>"
+                     + "<a href='' style='color: red'><i class=\"bi bi-trash3-fill\"></i></a><br>"
+                     + "</td>\n"
+                     + "</tr>";
 
         return htmlcode;
-
     }
 
-    // DEPRECIADO BORRAR CUANDO SEA SEGURO
-    public String modelGetListChByInst(String inst_id) {
-
+    public String adminGetUserWorkersByTeam(String team_id)
+    {
         String htmlcode = "";
 
         UsersModel userm = new UsersModel();
 
-        for (User wk : userm.getAllChByInst(inst_id, true)) {
-            htmlcode
-                    += "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
-        }
+        for (User wk : userm.getUserWorkersByTeam(team_id))
+            htmlcode += "<tr>\n"
+                     + "<td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><img class='me-2 rounded-2' src='../" + wk.getUser_profile() + "' width='40'></img>" + wk.getUser_name() + " " + wk.getUser_pat() + "</text></td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>"
+                     + "<a style='color:red' href='../tudelete?user_id=" + wk.getUser_id() + "&team_id=" + team_id + "'><i class=\"bi bi-trash3-fill\"></i></a><br>"
+                     + "<a href='integrante.jsp?id=" + wk.getUser_id() + "&team_id=" + team_id + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
+                     + "</td>\n"
+                     + "</tr>";
 
         return htmlcode;
-
     }
 
-    public String modelGetAdmins(String inst_id, String admin_status)
+    public String adminGetUserWorkersSelectByInst(String inst_id, boolean all)
+    {
+        String htmlcode = "";
+
+        UsersModel userm = new UsersModel();
+
+        for (User wk : userm.getUserWorkersByInst(inst_id, all))
+            htmlcode += "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
+
+        return htmlcode;
+    }
+
+    public String adminGetUserChiefsSelectByInst(String inst_id, boolean all)
+    {
+        String htmlcode = "";
+
+        UsersModel userm = new UsersModel();
+
+        for (User wk : userm.getUserChiefsByInst(inst_id, all))
+            htmlcode += "<option value='" + wk.getUser_id() + "' >" + wk.getUser_pat() + " " + wk.getUser_name() + "</option>";
+
+        return htmlcode;
+    }
+
+    public String staffGetUserAdminsByInst(String inst_id, String status)
     {
         String htmlcode = "<table class='table mt-3'>\n"
                 + "                <thead>\n"
@@ -287,7 +167,7 @@ public class UsersController
                 + "                <tbody>";
 
         UsersModel userm = new UsersModel();
-        ArrayList<User> admins = userm.getAdmins(inst_id, admin_status);
+        ArrayList<User> admins = userm.getUserAdminsByInst(inst_id, status);
 
         if (admins.isEmpty())
         {
@@ -301,13 +181,9 @@ public class UsersController
                 String circleFillgreen;
                 
                 if (admin.getUser_status().equals("si"))
-                {
                     circleFillgreen = "<i class='bi bi-circle-fill' style='color: #25ce7b'></i>";
-                }
                 else
-                {
                     circleFillgreen = "<i class='bi bi-circle-fill' style='color: #F24848'></i>";
-                }
                 
                 htmlcode
                         += "<tr>\n"
@@ -325,7 +201,7 @@ public class UsersController
         return htmlcode;
     }
 
-    public String modelGetPeople(String collab_id)
+    public String workGetUsersByCollab(String collab_id)
     {
         String htmlcode = "";
 
@@ -339,8 +215,8 @@ public class UsersController
 
             UsersModel userm = new UsersModel();
 
-            ArrayList<User> chs = userm.getAllChByCollab(team_id, proj_id);
-            ArrayList<User> wks = userm.getAllWkByTeam(team_id);
+            ArrayList<User> chs = userm.getUserChiefsByCollab(team_id, proj_id);
+            ArrayList<User> wks = userm.getUserWorkersByTeam(team_id);
 
             if (chs.isEmpty())
             {
@@ -432,11 +308,29 @@ public class UsersController
         return htmlcode;
     }
 
-    public String modelConvUserType(String u_type)
+    public boolean modelUpdateUserProfile(User u)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.updateUserProfile(u);
+    }
+    
+    public boolean modelUpdateUserStatus(String u_id, String u_status)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.updateUserStatus(u_id, u_status);
+    }
+
+    public boolean modelUpdateUserPassword(String u_id, String u_pass)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.updateUserPassword(u_id, u_pass);
+    }
+    
+    public String convertUserType(String type)
     {
         String user_type;
 
-        switch (u_type)
+        switch (type)
         {
             case "staff":
                 user_type = "Staff";
@@ -458,11 +352,11 @@ public class UsersController
         return user_type;
     }
 
-    public String modelConvUserStatus(String u_status)
+    public String convertUserStatus(String status)
     {
         String user_status;
 
-        switch (u_status)
+        switch (status)
         {
             case "si":
                 user_status = "Activo";
@@ -473,17 +367,5 @@ public class UsersController
         }
 
         return user_status;
-    }
-
-    public boolean modelUpdateUser(User user)
-    {
-        UsersModel userm = new UsersModel();
-        return userm.updateUser(user);
-    }
-
-    public boolean modelUpdateUserStatus(String user_id, String user_status)
-    {
-        UsersModel userm = new UsersModel();
-        return userm.updateUserStatus(user_id, user_status);
     }
 }

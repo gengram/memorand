@@ -44,7 +44,7 @@ public class IdeasController {
                 String idea_id = i.getIdea_id();
 
                 UsersModel userm = new UsersModel();
-                User user = userm.getUserInfoByIdea(idea_id);
+                User user = userm.getUserByIdea(idea_id);
 
                 String user_name = "null";
 

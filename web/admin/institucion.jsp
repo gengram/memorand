@@ -15,10 +15,10 @@
     String lim_gp = (String) session.getAttribute("lim_gp");
     String lim_ks = (String) session.getAttribute("lim_ks");
 
-    String count_ch = instc.modelGetResourceCount(inst_id, "ch");
-    String count_wk = instc.modelGetResourceCount(inst_id, "wk");
-    String count_gp = instc.modelGetResourceCount(inst_id, "gp");
-    String count_ks = instc.modelGetResourceCount(inst_id, "ks");
+    String count_ch = instc.modelGetInstitutionResource(inst_id, "ch");
+    String count_wk = instc.modelGetInstitutionResource(inst_id, "wk");
+    String count_gp = instc.modelGetInstitutionResource(inst_id, "gp");
+    String count_ks = instc.modelGetInstitutionResource(inst_id, "ks");
 %>
 
 <!DOCTYPE html>

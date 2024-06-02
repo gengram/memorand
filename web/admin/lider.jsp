@@ -16,7 +16,7 @@
     if (user_id != null || !user_id.isEmpty())
     {
         UsersController userc = new UsersController();
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
         
         if (user != null && user.getUser_type().equals("ch"))
         {
@@ -28,11 +28,11 @@
             String user_status = user.getUser_status();
             String user_profile = user.getUser_profile();
             
-            user_type = userc.modelConvUserType(user_type);
-            user_status = userc.modelConvUserStatus(user_status);
+            user_type = userc.convertUserType(user_type);
+            user_status = userc.convertUserStatus(user_status);
             
             InstitutionsController instc = new InstitutionsController();
-            Institution inst = instc.modelGetInstByUser(user_id);
+            Institution inst = instc.beanGetInstitutionByUser(user_id);
 
             String inst_id = inst.getInst_id();
             

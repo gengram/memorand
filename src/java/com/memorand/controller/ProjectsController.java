@@ -160,7 +160,7 @@ public class ProjectsController {
         String htmlcode = "";
 
         UsersController userc = new UsersController();
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
 
         String user_type = user.getUser_type();
 
@@ -225,7 +225,7 @@ public class ProjectsController {
         ArrayList<Project> projects = new ArrayList<>();
 
         UsersController userc = new UsersController();
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
 
         String user_type = user.getUser_type();
 

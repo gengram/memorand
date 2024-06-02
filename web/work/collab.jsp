@@ -352,7 +352,7 @@
                     case "people":
                         UsersController userc1 = new UsersController();
                 %>
-                <%= userc1.modelGetPeople(collab_id)%>
+                <%= userc1.workGetUsersByCollab(collab_id)%>
                 <%
                             break;
                         default:

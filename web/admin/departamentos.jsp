@@ -63,7 +63,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
-                                        <%=teamc.modelGetAllTeamsByInst(inst_id, 0)%>
+                                        <%=teamc.modelGetAllTeamsByInst(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>

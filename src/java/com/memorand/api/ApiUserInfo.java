@@ -25,8 +25,8 @@ public class ApiUserInfo extends HttpServlet
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
         
-        UsersController usersc = new UsersController();
-        User user = usersc.modelGetUserInfoById(user_id);
+        UsersController userc = new UsersController();
+        User user = userc.beanGetUser(user_id);
         
         Gson gson = new Gson();
         
