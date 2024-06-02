@@ -345,20 +345,20 @@ public class UsersController
             if (chs.isEmpty())
             {
                 htmlcode += "<div class=\"row\">"
-                        + "<div class=\"col-1\"></div>"
-                        + "<div class=\"col-10\">"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
+                        + "<div class=\"col-lg-10\">"
                          + "<h2>L&iacute;deres</h2>"
                         + "<p>No hay l&iacute;deres disponibles.</p>"
                         + "</div>"
                         + "</div>"
-                        + "<div class=\"col-1\"></div>"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
                         + "</div>";
             }
             else
             {
                 htmlcode += "<div class=\"row mt-3\">"
-                        + "<div class=\"col-1\"></div>"
-                        + "<div class=\"col-10\">"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
+                        + "<div class=\"col-lg-10\">"
                         + "<h2>L&iacute;deres</h2>"
                         + "<table class=\"table text-center mt-\">\n"
                         + "     <thead>\n"
@@ -382,26 +382,26 @@ public class UsersController
                 htmlcode += "</tbody>\n"
                         + "</table>"
                         + "</div>"
-                        + "<div class=\"col-1\"></div>";
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>";
             }
 
             if (wks.isEmpty())
             {
                  htmlcode += "<div class=\"row\">"
-                        + "<div class=\"col-1\"></div>"
-                        + "<div class=\"col-10\">"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
+                        + "<div class=\"col-lg-10\">"
                          + "<h2>Integrantes</h2>"
                         + "<p>No hay integrantes disponibles.</p>"
                          + "</div>"
                         + "</div>"
-                        + "<div class=\"col-1\"></div>"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
                         + "</div>";
             }
             else
             {
                 htmlcode += "<div class=\"row mt-2\">"
-                        + "<div class=\"col-1\"></div>"
-                        + "<div class=\"col-10\">"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
+                        + "<div class=\"col-lg-10\">"
                         + "<h2>Integrantes</h2>"
                         + "<table class=\"table text-center mt-3\" >\n"
                         + "     <thead>\n"
@@ -425,7 +425,7 @@ public class UsersController
                 htmlcode += "</tbody>\n"
                         + "</table>"
                         + "</div>"
-                        + "<div class=\"col-1\"></div>";
+                        + "<div class=\"col-lg-1 d-none d-lg-block\"></div>";
             }
         }
 
