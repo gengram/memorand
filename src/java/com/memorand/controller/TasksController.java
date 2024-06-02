@@ -114,19 +114,13 @@ public class TasksController {
     public String modelGetTasksPanel(String collab_id, String task_order) {
         String htmlcode
                 = "<div class=\"row mt-4\" >"
-                + " <div class=\"colC-1 d-none d-sm-block\" ></div>"
-                + "     <div class=\"col-5\" >"
-                + "         <button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
-                + "             <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
-                + "         </button>"
-                + "     </div>"
-                + "     <div class=\"col-5\" >"
-                + "         <div class=\"row \">"
-                + "             <div class=\"col-6 text-center \"></div>"
-                + "             <div class=\"col-6 mt-1 text-start\"></div>"
-                + "         </div>"
-                + "     </div>"
-                + "     <div class=\"colC-1 d-none d-sm-block\" ></div>"
+                + " <div class=\"col-lg-1 d-none d-lg-block\" ></div>"
+                + " <div class=\"col-lg-10\" >"
+                + "     <button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
+                + "         <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
+                + "     </button>"
+                + " </div>"
+                + "     <div class=\"col-lg-1 d-none d-lg-block\" ></div>"
                 + " </div>"
                 + "</div>";
 

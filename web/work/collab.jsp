@@ -147,18 +147,18 @@
         }
 
         /* Estilos para tamaños de pantalla pequeños */
-        @media (max-width: 1500px) {
+        @media (max-width: 2500px) {
             .colC-1 {
                 flex: 0 0 auto;
                 width: 0%;
             }
-            .colC-2 {
+            .colC-3 {
                 flex: 0 0 auto;
-                width: 16.66666667%;
+                width: 33.33333333%;
             }
             .colC-4 {
                 flex: 0 0 auto;
-                width: 41.66666667%;
+                width: 33.33333333%;
             }
             .colC-10{
                 flex: 0 0 auto;
@@ -170,11 +170,11 @@
         @media (max-width: 577px) {
             .colC-1 {
                 flex: 0 0 auto;
-                width: 16.66666667%;
+                width: 8.33333333%;
             }
-            .colC-2 {
+            .colC-3 {
                 flex: 0 0 auto;
-                width: 16.66666667%;
+                width: 25%;
             }
             .colC-4 {
                 flex: 0 0 auto;
@@ -193,8 +193,8 @@
 
         <div class="container">
             <div class="row mt-4">
-                <div class="colC-1 d-none d-sm-block"></div>
-                <div class="colC-10 mt-2">
+                <div class="col-lg-1 d-none d-lg-block"></div>
+                <div class="col-lg-10 mt-2">
                     <div class="row">
                         <div class="col-5 mt-2">
                             <a href="home.jsp" id="backL">
@@ -214,7 +214,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="colC-2 d-flex justify-content-center align-items-center text-center">
+                        <div class="col-2 d-flex justify-content-center align-items-center text-center">
                             <i class="bi bi-chevron-right" style="font-size: 40px; color: #AFB2B3"></i>
                         </div>
                         <div class="col-5 mt-2">
@@ -232,35 +232,39 @@
                             </div> 
 
                         </div>
-
-                        <!-- 
-                        -->
-
                     </div>
-
                 </div>
-                <div class="colC-1 d-none d-sm-block"></div>
+                <div class="col-lg-1 d-none d-lg-block"></div>
             </div>
+
             <div class="row mt-4">
-                <div class="colC-1 d-none d-sm-block"></div>
-                <div class="colC-10">
+                <div class="col-lg-1 d-none d-lg-block"></div>
+                <div class="col-lg-10">
                     <hr class="mt-4">
                 </div>
-                <div class="colC-1 d-none d-sm-block"></div>
+                <div class="col-lg-1 d-none d-lg-block"></div>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="colC-1 d-none d-sm-block"></div>
-                <div class="col-3 text-end border-bottom">
+                <div class="col-3 text-end">
                     <button class="btn navC rounded-1 btnnav active pred" id="get_tasks"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Tareas</p></button>
                 </div>
-                <div class="colC-4 text-center border-bottom">
+                <div class="colC-4 text-center">
                     <button class="btn navC rounded-1 btnnav" id="get_posts"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Publicaciones</p></button>
                 </div>
-                <div class="col-3 text-start border-bottom">
+                <div class="col-3 text-start">
                     <button  class="btn navC rounded-1 btnnav" id="get_people"><p class="mb-2 ms-3 me-3" style="font-size: 18px">Personal</p></button>
                 </div>
                 <div class="colC-1 d-none d-sm-block"></div>
             </div>
+            <div class="row mt-0">
+                <div class="col-lg-1 d-none d-lg-block"></div>
+                <div class="col-lg-10">
+                    <hr class="mt-4">
+                </div>
+                <div class="col-lg-1 d-none d-lg-block"></div>
+            </div>
+
             <!-- Modal Nueva tarea -->                            
             <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskNew">
                 <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -347,6 +351,7 @@
                         PostsController postc1 = new PostsController();
                 %>
                 <%= postc1.modelGetPosts(user_id, collab_id)%>
+
                 <%
                         break;
                     case "people":
