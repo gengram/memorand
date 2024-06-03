@@ -122,10 +122,6 @@
             color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
         }
 
-        .modal-custom {
-            max-width: 510px;
-        }
-
         .btn-color {
             border-color: #E3E4E5;
             background-color: transparent;
@@ -149,6 +145,20 @@
         /* Ocultar los contenidos de notas y lienzo inicialmente */
         .hidden {
             display: none;
+        }
+
+        /* Estilos para tamaños de pantalla pequeños */
+        @media (max-width: 2500px) {
+            .modal-wIdea{
+                max-width: 50%;
+            }
+        }
+
+        /* Estilos para tamaños de pantalla medianos y grandes */
+        @media (max-width: 577px) {
+            .modal-wIdea{
+                max-width: 50%;
+            }
         }
 
     </style>
@@ -350,7 +360,7 @@
 
     <!-- Modal Nueva Idea -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalIdeaNew">
-        <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva idea</h1>
@@ -405,7 +415,7 @@
 
     <!-- Modal Crear Nota -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalNameNota">
-        <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva nota</h1>
@@ -436,7 +446,7 @@
 
     <!-- Modal Crear Lienzo -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalLienzo">
-        <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Crear lienzo</h1>
@@ -467,7 +477,7 @@
 
     <!-- Modal Info -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalInfo">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea</h3>
@@ -487,10 +497,8 @@
                         </div>
                     </div>
                     <div class="row mt-1">
-                        <div class="col-9 text-end">
-                            <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
-                        </div>
-                        <div class="col-3 text-end">
+                        <div class="col-12 text-end">
+                            <button class="btn btn-light rounded-pill me-3" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
                             <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
                         </div>
                     </div>

@@ -48,11 +48,11 @@ public class TasksController
         if (tasks.isEmpty())
         {
             htmlcode += "<div class='row' class=\"mt-3\">"
-                    + "<div class='col-1'></div>"
-                    + "<div class='col-10'>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                    + "<div class='col-lg-10'>"
                     + "<p>No hay tareas por mostrar.</p>"
                     + "</div>"
-                    + "<div class='col-1'></div>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
         }
         else
