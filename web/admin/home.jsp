@@ -311,37 +311,7 @@
                 </div>             
                 <div id="gestion_content" class="content hidden">
                     <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-10">
-                            <div class="row mb-3 mt-4">
-                                <div class="col-3">
-                                    <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalAsignarProj"><i class="bi bi-plus-lg me-2"></i>Asignar proyecto</button>
-                                </div>
-                                <div class="col-3">
-                                    <a href="gestion/lideres.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3"><i class="bi bi-plus-lg me-2"></i>Asignar lider</button></a>
-                                </div>
-                                <div class="col-3 text-end mt-1" >
-                                    <span>Filtrar por equipo:</span>
-                                </div>
-                                <div class="col-3 text-start" >
-                                    <select class="form-select form-control" style="border-color: #AFB2B3" aria-label="Default select example">
-                                        <option selected>Selecciona uno</option>
-                                        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
-                                    </select>
-                                </div>
-                            </div>
-                            <table class="table mt-3" style="text-align: center;">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="text-start"><text class="ms-5">Nombre</text></th>
-                                        <th scope="col" ></th>
-                                    </tr>
-                                </thead>
-                                <tbody  id="table-bodyProyecto">
-                                    <%= projc.adminGetProjectsSelectByInstitution(inst_id)%>
-                                </tbody>
-                            </table>
-                        </div>
+                        
                     </div>
                     <div class="col-1"></div>
                 </div>
