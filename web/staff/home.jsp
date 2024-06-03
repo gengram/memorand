@@ -120,7 +120,7 @@
 
                     <div class="row mt-3">
                         <div class="col-12" id="content">
-                            <%= instc.staffGetInstitutionInfo("si")%>
+                            <%= instc.staffGetAllInstitutions("si")%>
                         </div>
                     </div> 
                 </div>

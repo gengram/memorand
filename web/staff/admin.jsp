@@ -183,7 +183,7 @@
                 <div class="col-1"></div>
                 <div class="col-10">
                     <div id="content">
-                        <%= instc.sGetInstitutionInfo(inst_id)%>
+                        <%= instc.staffGetInstitutionInfo(inst_id)%>
                     </div>
                     <a href='admindel.jsp?id=<%= admin_id%>'><button class="mt-4 btn btn-red2 rounded-pill">Eliminar administrador</button></a>
                 </div>
