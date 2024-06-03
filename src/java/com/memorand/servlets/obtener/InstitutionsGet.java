@@ -32,7 +32,7 @@ public class InstitutionsGet extends HttpServlet
                     
                     PrintWriter out = response.getWriter();
                     InstitutionsController instc = new InstitutionsController();
-                    String htmlContent = instc.sGetAllInstitutions(status);
+                    String htmlContent = instc.staffGetAllInstitutions(status);
                     out.println(htmlContent);
                     break;
                     

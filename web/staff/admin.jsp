@@ -32,7 +32,7 @@
     if (admin_id != null) {
         UsersController userc = new UsersController();
 
-        User admin = userc.modelGetUserInfoById(admin_id);
+        User admin = userc.beanGetUser(admin_id);
 
         if (admin != null) {
             admin_type = admin.getUser_type();
@@ -52,7 +52,7 @@
 
                 InstitutionsController ic = new InstitutionsController();
 
-                Institution inst = ic.modelGetInstByUser(admin_id);
+                Institution inst = ic.beanGetInstitutionByUser(admin_id);
 
                 inst_id = inst.getInst_id();
             } else {

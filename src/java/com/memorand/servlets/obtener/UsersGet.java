@@ -38,7 +38,7 @@ public class UsersGet extends HttpServlet
                     switch (reqby)
                     {
                         case "admin":
-                            htmlContent = userc.modelGetAdmins(inst, status);
+                            htmlContent = userc.staffGetUserAdminsByInst(inst, status);
                             out.println(htmlContent);
                             break;
                         default:
@@ -51,7 +51,7 @@ public class UsersGet extends HttpServlet
                     switch (reqby)
                     {
                         case "collab":
-                            htmlContent = userc.modelGetPeople(collab);
+                            htmlContent = userc.workGetUsersByCollab(collab);
                             out.println(htmlContent);
                             break;
                         default:

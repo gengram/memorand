@@ -52,9 +52,9 @@ public class Login extends HttpServlet
         UsersController userc = new UsersController();
         User user = new User(email, password);
         
-        if (userc.modelLoginUser(user))
+        if (userc.modelValidateUserByLogin(user))
         {
-            user = userc.modelGetUserInfoByLogin(user);
+            user = userc.beanGetUserByLogin(user);
             
             if ("si".equals(user.getUser_status()))
             {

@@ -29,7 +29,7 @@
     {
         UsersController userc = new UsersController();
         
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
         
         if (user != null)
         {

@@ -40,7 +40,7 @@ public class InstitutionsController
         return instm.updateInstitutionStatus(i_id, i_status);
     }
 
-    public Institution beanGetInstitutions(String i_id)
+    public Institution beanGetInstitution(String i_id)
     {
         InstitutionsModel instm = new InstitutionsModel();
         return instm.getInstitution(i_id);
@@ -59,7 +59,7 @@ public class InstitutionsController
     }
 
     // STAFF - ADMIN.JSP
-    public String sGetInstitutionInfo(String inst_id)
+    public String staffGetInstitutionInfo(String inst_id)
     {
         String htmlcode = HTML_INST_TABLE;
 
@@ -103,7 +103,7 @@ public class InstitutionsController
     }
 
     //STAFF - HOME.JSP
-    public String sGetAllInstitutions(String i_status)
+    public String staffGetAllInstitutions(String i_status)
     {
         String htmlcode = HTML_INST_TABLE;
 

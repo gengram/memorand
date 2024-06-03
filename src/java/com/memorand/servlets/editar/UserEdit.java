@@ -84,7 +84,7 @@ public class UserEdit extends HttpServlet
                 User user = new User(user_id, user_name, user_pat, user_mat, user_img);
                 UsersController userc = new UsersController();
                 
-                if (userc.modelUpdateUser(user))
+                if (userc.modelUpdateUserProfile(user))
                 {
                     switch (user_type)
                     {

@@ -40,7 +40,7 @@ public class ApiUserInfoGet extends HttpServlet
         
         String user_id = userinput.getUser_id();
         
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
         
         if (user != null)
         {

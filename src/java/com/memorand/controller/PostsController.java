@@ -60,7 +60,7 @@ public class PostsController {
                 String post_id = p.getPost_id();
 
                 UsersModel userm = new UsersModel();
-                User user = userm.getUserInfoByPost(post_id);
+                User user = userm.getUserByPost(post_id);
 
                 String user_id = "null";
                 String user_name = "Usuario Eliminado";

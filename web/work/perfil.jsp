@@ -12,7 +12,7 @@
     String user_status = (String) session.getAttribute("user_status");
     String user_profile = (String) session.getAttribute("user_profile");
     
-    String user_statusS = userc.modelConvUserStatus(user_status);
+    String user_statusS = userc.convertUserStatus(user_status);
 %>
 
 <!DOCTYPE html>

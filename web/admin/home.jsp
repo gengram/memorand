@@ -210,7 +210,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyProj'>
-                                        <%= userc.modelGetAllChByInst(inst_id, false) %>
+                                        <%= userc.adminGetUserChiefsByInst(inst_id, false) %>
                                     </tbody>
                                 </table>
                             </div>
@@ -239,7 +239,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyInte">
-                                        <%= userc.modelGetAllWkByInst(inst_id, false) %>
+                                        <%= userc.adminGetUserWorkersByInst(inst_id, false) %>
                                     </tbody>
                                 </table>
                             </div>

@@ -23,14 +23,13 @@ public class TeamsController {
     }
 
     // DEPRECIADO
-    public String modelGetAllTeamsByInst(String inst_id) {
-
+    public String modelGetAllTeamsByInst(String inst_id)
+    {
         String htmlcode = "";
-        String add1 = "";
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+        for (Team team : teamm.getAllTeamsByInst(inst_id))
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
@@ -39,10 +38,7 @@ public class TeamsController {
                     + "                    </td>\n"
                     + "           </tr>";
 
-        }
-
         return htmlcode;
-
     }
 
     // DEPRECIADO
@@ -149,7 +145,7 @@ public class TeamsController {
         String htmlcode = "";
 
         UsersController userc = new UsersController();
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
 
         String user_type = user.getUser_type();
 
@@ -235,7 +231,7 @@ public class TeamsController {
         ArrayList<Team> teams = new ArrayList<>();
 
         UsersController userc = new UsersController();
-        User user = userc.modelGetUserInfoById(user_id);
+        User user = userc.beanGetUser(user_id);
 
         String user_type = user.getUser_type();
 

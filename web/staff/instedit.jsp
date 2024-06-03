@@ -26,7 +26,7 @@
     if (inst_id != null) {
         InstitutionsController instc = new InstitutionsController();
         
-        Institution inst = instc.modelGetInst(inst_id);
+        Institution inst = instc.beanGetInstitution(inst_id);
         
         if (inst != null) {
             inst_name = inst.getInst_name();
@@ -40,10 +40,10 @@
 
             InstitutionsController instcounter = new InstitutionsController();
 
-            count_ch = instcounter.modelGetResourceCount(inst_id, "ch");
-            count_wk = instcounter.modelGetResourceCount(inst_id, "wk");
-            count_gp = instcounter.modelGetResourceCount(inst_id, "teams");
-            count_ks = instcounter.modelGetResourceCount(inst_id, "projects");
+            count_ch = instcounter.modelGetInstitutionResource(inst_id, "ch");
+            count_wk = instcounter.modelGetInstitutionResource(inst_id, "wk");
+            count_gp = instcounter.modelGetInstitutionResource(inst_id, "teams");
+            count_ks = instcounter.modelGetInstitutionResource(inst_id, "projects");
             
             ServicesUtil s = new ServicesUtil();
 

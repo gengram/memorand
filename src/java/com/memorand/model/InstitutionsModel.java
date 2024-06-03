@@ -159,7 +159,7 @@ public class InstitutionsModel extends Conexion
         return inst;
     }
     
-    public Institution getInstitutionByUser(String u_id)
+    public Institution getInstitutionByUser(String user_id)
     {
         Institution inst = null;
         
@@ -171,7 +171,7 @@ public class InstitutionsModel extends Conexion
             
             ps1 = getConnection().prepareStatement(sql1);
             
-            ps1.setString(1, u_id);
+            ps1.setString(1, user_id);
             
             ResultSet rs1 = ps1.executeQuery();
             

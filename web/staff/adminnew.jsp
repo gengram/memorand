@@ -20,7 +20,7 @@
     if (inst_id != null) {
         InstitutionsController instc = new InstitutionsController();
 
-        Institution inst = instc.modelGetInst(inst_id);
+        Institution inst = instc.beanGetInstitution(inst_id);
 
         if (inst == null) {
             response.sendRedirect("home.jsp");

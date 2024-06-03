@@ -43,7 +43,7 @@
     String inst_profile = null;
 
     if (user_id != null) {
-        user = userc.modelGetUserInfoById(user_id);
+        user = userc.beanGetUser(user_id);
 
         user_email = user.getUser_email();
         user_pass = user.getUser_pass();
@@ -54,10 +54,10 @@
         user_status = user.getUser_status();
         user_profile = user.getUser_profile();
 
-        user_type = userc.modelConvUserType(user_type);
-        user_status = userc.modelConvUserStatus(user_status);
+        user_type = userc.convertUserType(user_type);
+        user_status = userc.convertUserStatus(user_status);
 
-        inst = instc.modelGetInstByUser(user_id);
+        inst = instc.beanGetInstitutionByUser(user_id);
 
         inst_id = inst.getInst_id();
         inst_name = inst.getInst_name();
