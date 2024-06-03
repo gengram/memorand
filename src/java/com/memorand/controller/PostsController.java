@@ -41,7 +41,7 @@ public class PostsController {
                 + "</div>";
 
         PostsModel postm = new PostsModel();
-        ArrayList<Post> posts = postm.getAllPostsByCollab(collab_id);
+        ArrayList<Post> posts = postm.getPostsByCollab(collab_id);
 
         if (posts.isEmpty()) {
             htmlcode += "<div class='row'>"

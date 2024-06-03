@@ -206,7 +206,7 @@ public class UsersController
         String htmlcode = "";
 
         CollabsModel collabm = new CollabsModel();
-        Collab collab = collabm.getCollabInfoById(collab_id);
+        Collab collab = collabm.getCollab(collab_id);
 
         if (collab != null)
         {

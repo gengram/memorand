@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TeamsModel extends Conexion {
-    
-    public boolean createTeam(Team team) {
-        
+public class TeamsModel extends Conexion
+{
+    public boolean createTeam(Team t)
+    {
         boolean flag = false;
         
         PreparedStatement ps;
@@ -20,13 +20,12 @@ public class TeamsModel extends Conexion {
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, team.getTeam_id());
-            ps.setString(2, team.getTeam_name());
-            ps.setString(3, team.getTeam_color());
+            ps.setString(1, t.getTeam_id());
+            ps.setString(2, t.getTeam_name());
+            ps.setString(3, t.getTeam_color());
             
             if (ps.executeUpdate() == 1)
-            { flag = true; }
-            
+                flag = true;
         }
         
         catch (SQLException e)
@@ -46,48 +45,36 @@ public class TeamsModel extends Conexion {
         }
         
         return flag;
-        
     }
     
-    public ArrayList<Team> getAllTeamsByInst(String inst_id) {
-    
+    public ArrayList<Team> getTeamsByInstitution(String inst_id)
+    {
         ArrayList<Team> all_teams = new ArrayList<>();
         
-        PreparedStatement ps1;
-        PreparedStatement ps2;
+        PreparedStatement ps;
         
         try
         {
-            String sql1 = "SELECT team_id FROM inteams WHERE inst_id = ?";
+            String sql = "SELECT t.* FROM teams t "
+                       + "JOIN inteams it ON t.team_id = it.team_id "
+                       + "WHERE it.inst_id = ? "
+                       + "ORDER BY t.team_name";
             
-            ps1 = getConnection().prepareStatement(sql1);
+            ps = getConnection().prepareStatement(sql);
             
-            ps1.setString(1, inst_id);
+            ps.setString(1, inst_id);
             
-            ResultSet rs1 = ps1.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
-            while (rs1.next())
+            while (rs.next())
             {
-                String t_id = rs1.getString(1);
-                
-                String sql2 = "SELECT * FROM teams WHERE team_id = ? ORDER BY team_name";
-                
-                ps2 = getConnection().prepareStatement(sql2);
-                
-                ps2.setString(1, t_id);
-                
-                ResultSet rs2 = ps2.executeQuery();
-                
-                while (rs2.next())
-                {
-                    String team_id = rs2.getString(1);
-                    String team_name = rs2.getString(2);
-                    String team_color = rs2.getString(3);
+                String team_id = rs.getString(1);
+                String team_name = rs.getString(2);
+                String team_color = rs.getString(3);
                     
-                    Team team = new Team(team_id, team_name, team_color);
+                Team team = new Team(team_id, team_name, team_color);
                     
-                    all_teams.add(team);
-                }
+                all_teams.add(team);
             }
         }
         
@@ -108,48 +95,36 @@ public class TeamsModel extends Conexion {
         }
         
         return all_teams;
-    
     }
     
-    public ArrayList<Team> getAllTeamsByWk(String user_id) {
-    
+    public ArrayList<Team> getTeamsByUserWorker(String user_id)
+    {
         ArrayList<Team> all_teams = new ArrayList<>();
         
-        PreparedStatement ps1;
-        PreparedStatement ps2;
+        PreparedStatement ps;
         
         try
         {
-            String sql1 = "SELECT team_id FROM teamusers WHERE user_id = ?";
+            String sql = "SELECT t.* FROM teams t "
+                       + "JOIN teamusers tu ON t.team_id = tu.team_id "
+                       + "WHERE tu.user_id = ? "
+                       + "ORDER BY t.team_name";
             
-            ps1 = getConnection().prepareStatement(sql1);
+            ps = getConnection().prepareStatement(sql);
             
-            ps1.setString(1, user_id);
+            ps.setString(1, user_id);
             
-            ResultSet rs1 = ps1.executeQuery();
+            ResultSet rs = ps.executeQuery();
             
-            while (rs1.next())
+            while (rs.next())
             {
-                String t_id = rs1.getString(1);
-                
-                String sql2 = "SELECT * FROM teams WHERE team_id = ?";
-                
-                ps2 = getConnection().prepareStatement(sql2);
-                
-                ps2.setString(1, t_id);
-                
-                ResultSet rs2 = ps2.executeQuery();
-                
-                while (rs2.next())
-                {
-                    String team_id = rs2.getString(1);
-                    String team_name = rs2.getString(2);
-                    String team_color = rs2.getString(3);
+                String team_id = rs.getString(1);
+                String team_name = rs.getString(2);
+                String team_color = rs.getString(3);
                     
-                    Team team = new Team(team_id, team_name, team_color);
+                Team team = new Team(team_id, team_name, team_color);
                     
-                    all_teams.add(team);
-                }
+                all_teams.add(team);
             }
         }
         
@@ -170,11 +145,10 @@ public class TeamsModel extends Conexion {
         }
         
         return all_teams;
-    
     }
     
-    public ArrayList<Team> getAllTeamsByCh(String ch_id) {
-        
+    public ArrayList<Team> getTeamsByUserChief(String user_id)
+    {
         ArrayList<Team> all_teams = new ArrayList<>();
         
         PreparedStatement ps;
@@ -189,7 +163,7 @@ public class TeamsModel extends Conexion {
 
             ps = getConnection().prepareStatement(sql);
         
-            ps.setString(1, ch_id);
+            ps.setString(1, user_id);
             
             ResultSet rs = ps.executeQuery();
 
@@ -223,9 +197,9 @@ public class TeamsModel extends Conexion {
         return all_teams;
     }
     
-    public Team getTeamInfoById(String t_id) {
-    
-        Team team_info = null;
+    public Team getTeam(String t_id)
+    {
+        Team team = null;
         
         PreparedStatement ps;
         
@@ -245,7 +219,7 @@ public class TeamsModel extends Conexion {
                 String team_name = rs.getString(2);
                 String team_color = rs.getString(3);
                 
-                team_info = new Team(team_id, team_name, team_color);
+                team = new Team(team_id, team_name, team_color);
             }
         }
         
@@ -265,13 +239,12 @@ public class TeamsModel extends Conexion {
             }
         }
         
-        return team_info;
-    
+        return team;
     }
     
-    public Team getTeamInfoByCollab(String collab_id) {
-        
-        Team team_info = null;
+    public Team getTeamByCollab(String collab_id)
+    {
+        Team team = null;
         
         PreparedStatement ps;
         
@@ -295,7 +268,7 @@ public class TeamsModel extends Conexion {
                 String team_name = rs.getString(2);
                 String team_color = rs.getString(3);
                     
-                team_info = new Team(team_id, team_name, team_color);
+                team = new Team(team_id, team_name, team_color);
             }
         }
         
@@ -315,12 +288,11 @@ public class TeamsModel extends Conexion {
             }
         }
         
-        return team_info;
-        
+        return team;
     }
     
-    public ArrayList<Team> getGetAllTeamsByProject(String proj_id) {
-        
+    public ArrayList<Team> getTeamsByProject(String proj_id)
+    {
         ArrayList<Team> all_teams = new ArrayList<>();
         
         PreparedStatement ps;
@@ -368,5 +340,42 @@ public class TeamsModel extends Conexion {
         }
         
         return all_teams;
+    }
+    
+    public boolean deleteTeam(String t_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM teams WHERE team_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, t_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
     }
 }

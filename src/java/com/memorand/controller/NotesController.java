@@ -21,13 +21,13 @@ public class NotesController {
 
     public Note modelGetNoteById(String n_id) {
         NotesModel notem = new NotesModel();
-        return notem.getNoteById(n_id);
+        return notem.getNote(n_id);
     }
     
     public String modelGetNoteTextById(String n_id)
     {
         NotesModel notem = new NotesModel();
-        return notem.getNoteTextById(n_id);
+        return notem.getNoteText(n_id);
     }
 
     public String modelGetNotesByTask(String task_id) {

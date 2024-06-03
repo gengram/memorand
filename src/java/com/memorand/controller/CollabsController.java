@@ -21,13 +21,13 @@ public class CollabsController
     public Collab modelGetCollabInfoByTeamAndProject(String t_id, String p_id)
     {
         CollabsModel collabm = new CollabsModel();
-        return collabm.getCollabInfoByTeamAndProject(t_id, p_id);
+        return collabm.getCollabByTeamAndProject(t_id, p_id);
     }
     
     public Collab modelGetCollabInfoByTask(String task_id)
     {
         CollabsModel collabm = new CollabsModel();
-        return collabm.getCollabInfoByTask(task_id);
+        return collabm.getCollabByTask(task_id);
     }
     
 }

@@ -18,7 +18,7 @@ public class IdeasController {
 
     public Idea modelGetIdeaById(String i_id) {
         IdeasModel ideam = new IdeasModel();
-        return ideam.getIdeaById(i_id);
+        return ideam.getIdea(i_id);
     }
 
     public String modelGetIdeasByTask(String task_id) {

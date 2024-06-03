@@ -15,28 +15,23 @@ public class TasksController {
 
     public Task modelGetTaskInfoById(String t_id) {
         TasksModel taskm = new TasksModel();
-        return taskm.getTaskInfoById(t_id);
+        return taskm.getTask(t_id);
     }
-
-    public boolean modelIsAnyTaskByCollab(String collab_id) {
-        TasksModel taskm = new TasksModel();
-        return taskm.isAnyTaskByCollab(collab_id);
-    }
-
+    
     public Task modelgetTaskByTool(String tool_table, String tool_name, String tool_id) {
         TasksModel taskm = new TasksModel();
         return taskm.getTaskByTool(tool_table, tool_name, tool_id);
     }
 
     //DEPRECIADO
-    public String modelGetAllTasksByCollab(String collab_id, String arg) {
+    public String modelGetAllTasksByCollab(String collab_id, String order) {
         String htmlcode = "";
 
         TasksModel taskm = new TasksModel();
 
         int i = 0;
 
-        for (Task task : taskm.getAllTasksByCollab(collab_id, arg)) {
+        for (Task task : taskm.getTasksByCollab(collab_id, order)) {
             i++;
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
@@ -62,14 +57,14 @@ public class TasksController {
         return htmlcode;
     }
 
-    public String modelGetTasksTable(String collab_id, String task_order) {
+    public String modelGetTasksTable(String collab_id, String order) {
         String htmlcode = "<a href='tasknew.jsp?id=" + collab_id + "'>Nueva tarea</a>\n"
                 + "<a href='tagnew.jsp?id=" + collab_id + "'>Nueva etiqueta</a>\n"
                 + "<p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_table\">Tabla</button></p>"
                 + "<div id=\"tasks_zone\">";
 
         TasksModel taskm = new TasksModel();
-        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
+        ArrayList<Task> tasks = taskm.getTasksByCollab(collab_id, order);
 
         if (tasks.isEmpty()) {
             htmlcode += "<p>No hay tareas por mostrar.</p>";
@@ -111,7 +106,7 @@ public class TasksController {
         return htmlcode;
     }
 
-    public String modelGetTasksPanel(String collab_id, String task_order) {
+    public String modelGetTasksPanel(String collab_id, String order) {
         String htmlcode
                 = "<div class=\"row mt-4\" >"
                 + " <div class=\"col-lg-1 d-none d-lg-block\" ></div>"
@@ -127,7 +122,7 @@ public class TasksController {
         htmlcode += "<div class=\"row mt-4 mb-2\">";
 
         TasksModel taskm = new TasksModel();
-        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
+        ArrayList<Task> tasks = taskm.getTasksByCollab(collab_id, order);
 
         if (tasks.isEmpty()) {
             htmlcode += "<div class='row' class=\"mt-3\">"
@@ -192,8 +187,8 @@ public class TasksController {
 
     }
 
-    public String modelGetResourceCount(String task_id, String res_name) {
+    public String modelGetResourceCount(String task_id, String resource) {
         TasksModel taskm = new TasksModel();
-        return String.valueOf(taskm.getResourceCount(task_id, res_name));
+        return String.valueOf(taskm.getTaskResource(task_id, resource));
     }
 }

@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 public class CanvasModel extends Conexion
 {
-    public boolean createCanva(Canva canva)
+    public boolean createCanva(Canva c)
     {
         boolean flag = false;
         
@@ -22,17 +22,15 @@ public class CanvasModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, canva.getCanva_id());
-            ps.setString(2, canva.getCanva_name());
-            ps.setString(3, canva.getCanva_draw());
-            ps.setTimestamp(4, canva.getCanva_cdate());
-            ps.setTimestamp(5, canva.getCanva_mdate());
-            ps.setString(6, canva.getCanva_status());
+            ps.setString(1, c.getCanva_id());
+            ps.setString(2, c.getCanva_name());
+            ps.setString(3, c.getCanva_draw());
+            ps.setTimestamp(4, c.getCanva_cdate());
+            ps.setTimestamp(5, c.getCanva_mdate());
+            ps.setString(6, c.getCanva_status());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -54,7 +52,7 @@ public class CanvasModel extends Conexion
         return flag;
     }
     
-    public Canva getCanvaById(String c_id)
+    public Canva getCanva(String c_id)
     {
         Canva canva = null;
         
@@ -104,17 +102,17 @@ public class CanvasModel extends Conexion
     
     public ArrayList<Canva> getCanvasByTask(String task_id)
     {
-        ArrayList<Canva> canvas = new ArrayList<>();
+        ArrayList<Canva> all_canvas = new ArrayList<>();
         
         PreparedStatement ps;
         
         try
         {
             String sql = "SELECT c.canva_id, c.canva_name, c.canva_draw, c.canva_cdate, c.canva_mdate, c.canva_status "
-                    + "FROM canvas c "
-                    + "INNER JOIN taskcanvas t ON c.canva_id = t.canva_id "
-                    + "WHERE t.task_id = ? "
-                    + "ORDER BY c.canva_mdate";
+                       + "FROM canvas c "
+                       + "INNER JOIN taskcanvas t ON c.canva_id = t.canva_id "
+                       + "WHERE t.task_id = ? "
+                       + "ORDER BY c.canva_mdate";
             
             ps = getConnection().prepareStatement(sql);
             
@@ -133,7 +131,7 @@ public class CanvasModel extends Conexion
                 
                 Canva canva = new Canva(canva_id, canva_name, canva_draw, canva_cdate, canva_mdate, canva_status);
                 
-                canvas.add(canva);
+                all_canvas.add(canva);
             }
         }
         
@@ -153,10 +151,10 @@ public class CanvasModel extends Conexion
             }
         }
         
-        return canvas;
+        return all_canvas;
     }
     
-    public boolean updateCanvaDraw(String canva_id, String canva_draw)
+    public boolean updateCanvaDraw(String c_id, String c_draw)
     {
         boolean flag = true;
         
@@ -176,14 +174,12 @@ public class CanvasModel extends Conexion
             
             Timestamp newTimestamp = new Timestamp(cal.getTimeInMillis());
             
-            ps.setString(1, canva_draw);
+            ps.setString(1, c_draw);
             ps.setTimestamp(2, newTimestamp);
-            ps.setString(3, canva_id);
+            ps.setString(3, c_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -191,6 +187,43 @@ public class CanvasModel extends Conexion
             System.err.println(e.getMessage());
         }
        
+        return flag;
+    }
+    
+    public boolean deleteCanva(String c_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM canvas WHERE canva_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, c_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
         return flag;
     }
 }

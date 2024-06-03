@@ -8,7 +8,7 @@ public class InUsersController {
     public boolean modelCreateInUsers(InUser inusers) {
         
         InUsersModel inuserm = new InUsersModel();
-        return inuserm.createInUsers(inusers);
+        return inuserm.createInUser(inusers);
     
     }
     

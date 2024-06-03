@@ -14,12 +14,12 @@ public class TeamsController {
 
     public Team modelGetTeamInfoById(String t_id) {
         TeamsModel teamm = new TeamsModel();
-        return teamm.getTeamInfoById(t_id);
+        return teamm.getTeam(t_id);
     }
 
     public Team modelGetTeamInfoByCollab(String collab_id) {
         TeamsModel teamm = new TeamsModel();
-        return teamm.getTeamInfoByCollab(collab_id);
+        return teamm.getTeamByCollab(collab_id);
     }
 
     // DEPRECIADO
@@ -29,7 +29,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByInst(inst_id))
+        for (Team team : teamm.getTeamsByInstitution(inst_id))
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
@@ -48,7 +48,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
 
             htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
 
@@ -64,7 +64,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
@@ -85,7 +85,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getGetAllTeamsByProject(proj_id))
+        for (Team team : teamm.getTeamsByProject(proj_id))
         {
             htmlcode
                     += "<tr>\n"
@@ -111,7 +111,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByWk(user_id)) {
+        for (Team team : teamm.getTeamsByUserWorker(user_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</text></td>\n"
@@ -132,7 +132,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByWk(user_id)) {
+        for (Team team : teamm.getTeamsByUserWorker(user_id)) {
             htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
         }
 
@@ -152,7 +152,7 @@ public class TeamsController {
         if (user_type.equals("ch")) {
             TeamsModel teamm = new TeamsModel();
 
-            for (Team team : teamm.getAllTeamsByCh(user_id)) {
+            for (Team team : teamm.getTeamsByUserChief(user_id)) {
                 htmlcode
                         += "<tr>\n"
                         + "                    <td>" + team.getTeam_name() + "</td>\n"
@@ -170,7 +170,7 @@ public class TeamsController {
         } else {
             TeamsModel teamm = new TeamsModel();
 
-            for (Team team : teamm.getAllTeamsByWk(user_id)) {
+            for (Team team : teamm.getTeamsByUserWorker(user_id)) {
 
                 htmlcode
                         += "<tr>\n"
@@ -196,7 +196,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
             htmlcode
                     += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
         }
@@ -209,7 +209,7 @@ public class TeamsController {
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getAllTeamsByInst(inst_id)) {
+        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
             htmlcode.append("<option value='").append(team.getTeam_id()).append("' style='background-color:#").append(team.getTeam_color()).append("' ");
 
             // Marcar como seleccionada la opción correspondiente al equipo actual
@@ -238,10 +238,10 @@ public class TeamsController {
         if (user_type != null) {
             switch (user_type) {
                 case "ch":
-                    teams = teamm.getAllTeamsByCh(user_id);
+                    teams = teamm.getTeamsByUserChief(user_id);
                     break;
                 case "wk":
-                    teams = teamm.getAllTeamsByWk(user_id);
+                    teams = teamm.getTeamsByUserWorker(user_id);
                     break;
                 default:
                     return htmlcode;

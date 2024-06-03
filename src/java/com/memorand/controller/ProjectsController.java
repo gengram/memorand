@@ -16,12 +16,12 @@ public class ProjectsController {
 
     public Project modelGetProjectInfoById(String p_id) {
         ProjectsModel projm = new ProjectsModel();
-        return projm.getProjectInfoById(p_id);
+        return projm.getProject(p_id);
     }
 
     public Project modelGetProjectInfoByCollab(String collab_id) {
         ProjectsModel projm = new ProjectsModel();
-        return projm.getProjectInfoByCollab(collab_id);
+        return projm.getProjectByCollab(collab_id);
     }
 
     // DEPRECIADO
@@ -30,7 +30,7 @@ public class ProjectsController {
 
         ProjectsModel projm = new ProjectsModel();
 
-        for (Project project : projm.getAllProjectsByInst(inst_id)) {
+        for (Project project : projm.getProjectsByInstitution(inst_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><text class=\"ms-5\">" + "<i style=\"color: #" + project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2 mt-5\"></i> " + project.getProj_name() + "</text></td>\n"
@@ -53,7 +53,7 @@ public class ProjectsController {
             add1 += "../";
         }
 
-        for (Project project : projm.getAllProjectsByInst(inst_id)) {
+        for (Project project : projm.getProjectsByInstitution(inst_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td style='padding: 20px;' class='align-middle text-start'><text class=\"ms-5\">" + "<i style=\"color: #" + project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2 mt-5\"></i> " + project.getProj_name() + "</text></td>\n"
@@ -73,7 +73,7 @@ public class ProjectsController {
 
         ProjectsModel projm = new ProjectsModel();
 
-        for (Project project : projm.getAllProjectsByInst(inst_id)) {
+        for (Project project : projm.getProjectsByInstitution(inst_id)) {
             htmlcode
                     += "<option value='" + project.getProj_id() + "' style='background-color:#" + project.getProj_color() + "' >" + project.getProj_name() + "</option>";
         }
@@ -86,7 +86,7 @@ public class ProjectsController {
 
         ProjectsModel projm = new ProjectsModel();
 
-        for (Project project : projm.getAllProjectsByInst(inst_id)) {
+        for (Project project : projm.getProjectsByInstitution(inst_id)) {
             htmlcode.append("<option value='").append(project.getProj_id()).append("' style='background-color:#").append(project.getProj_color()).append("' ");
 
             // Marcar como seleccionada la opción correspondiente al proyecto actual
@@ -106,12 +106,12 @@ public class ProjectsController {
 
         ProjectsModel projm = new ProjectsModel();
 
-        for (Project project : projm.getAllProjectsByTeam(team_id)) {
+        for (Project project : projm.getProjectsByTeam(team_id)) {
             CollabsModel collabm = new CollabsModel();
 
             String p_id = project.getProj_id();
 
-            Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, p_id);
+            Collab collab = collabm.getCollabByTeamAndProject(team_id, p_id);
 
             String collab_status = collab.getCollab_status();
             
@@ -142,7 +142,7 @@ public class ProjectsController {
 
         ProjectsModel projm = new ProjectsModel();
 
-        for (Project project : projm.getAllProjectsByTeam(team_id)) {
+        for (Project project : projm.getProjectsByTeam(team_id)) {
             htmlcode
                     += "<tr>\n"
                     + "                    <td><i style=\"color: #" +  project.getProj_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + project.getProj_name() + "</td>\n"
@@ -167,11 +167,11 @@ public class ProjectsController {
         if (user_type.equals("ch")) {
             ProjectsModel projm = new ProjectsModel();
 
-            for (Project project : projm.getAllProjectsByTeamAndCh(team_id, user_id)) {
+            for (Project project : projm.getProjectsByTeamAndUserChief(team_id, user_id)) {
                 String proj_id = project.getProj_id();
 
                 CollabsModel collabm = new CollabsModel();
-                Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
+                Collab collab = collabm.getCollabByTeamAndProject(team_id, proj_id);
 
                 String collab_id = collab.getCollab_id();
 
@@ -191,11 +191,11 @@ public class ProjectsController {
         } else {
             ProjectsModel projm = new ProjectsModel();
 
-            for (Project project : projm.getAllProjectsByTeam(team_id)) {
+            for (Project project : projm.getProjectsByTeam(team_id)) {
                 String proj_id = project.getProj_id();
 
                 CollabsModel collabm = new CollabsModel();
-                Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
+                Collab collab = collabm.getCollabByTeamAndProject(team_id, proj_id);
 
                 String collab_id = collab.getCollab_id();
 
@@ -234,10 +234,10 @@ public class ProjectsController {
             switch (user_type)
             {
                 case "ch":
-                    projects = projm.getAllProjectsByTeamAndCh(team_id, user_id);
+                    projects = projm.getProjectsByTeamAndUserChief(team_id, user_id);
                     break;
                 case "wk":
-                    projects = projm.getAllProjectsByTeam(team_id);
+                    projects = projm.getProjectsByTeam(team_id);
                     break;
                 default:
                     htmlcode = "";
@@ -257,7 +257,7 @@ public class ProjectsController {
                 String proj_id = p.getProj_id();
 
                 CollabsModel collabm = new CollabsModel();
-                Collab collab = collabm.getCollabInfoByTeamAndProject(team_id, proj_id);
+                Collab collab = collabm.getCollabByTeamAndProject(team_id, proj_id);
 
                 String collab_id = collab.getCollab_id();
 

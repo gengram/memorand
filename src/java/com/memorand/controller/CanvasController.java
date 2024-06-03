@@ -21,7 +21,7 @@ public class CanvasController {
 
     public Canva modelGetCanvaById(String c_id) {
         CanvasModel canvam = new CanvasModel();
-        return canvam.getCanvaById(c_id);
+        return canvam.getCanva(c_id);
     }
 
     public String modelGetCanvasByTask(String task_id) {

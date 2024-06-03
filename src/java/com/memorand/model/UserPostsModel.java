@@ -4,9 +4,9 @@ import com.memorand.beans.UserPost;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UserPostsModel extends Conexion {
-    
-    public boolean createUserPost(UserPost userpost)
+public class UserPostsModel extends Conexion
+{
+    public boolean createUserPost(UserPost up)
     {
         boolean flag = false;
         
@@ -18,13 +18,11 @@ public class UserPostsModel extends Conexion {
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, userpost.getUser_id());
-            ps.setString(2, userpost.getPost_id());
+            ps.setString(1, up.getUser_id());
+            ps.setString(2, up.getPost_id());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -62,9 +60,7 @@ public class UserPostsModel extends Conexion {
             ps.setString(2, post_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class IdeasModel extends Conexion
 {
-    public boolean createIdea(Idea idea)
+    public boolean createIdea(Idea i)
     {
         boolean flag = false;
         
@@ -21,15 +21,13 @@ public class IdeasModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, idea.getIdea_id());
-            ps.setString(2, idea.getIdea_text());
-            ps.setTimestamp(3, idea.getIdea_date());
-            ps.setString(4, idea.getIdea_color());
+            ps.setString(1, i.getIdea_id());
+            ps.setString(2, i.getIdea_text());
+            ps.setTimestamp(3, i.getIdea_date());
+            ps.setString(4, i.getIdea_color());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -51,7 +49,7 @@ public class IdeasModel extends Conexion
         return flag;
     }
     
-    public Idea getIdeaById(String i_id)
+    public Idea getIdea(String i_id)
     {
         Idea idea = null;
         
@@ -99,17 +97,17 @@ public class IdeasModel extends Conexion
     
     public ArrayList<Idea> getIdeasByTask(String task_id)
     {
-        ArrayList<Idea> ideas = new ArrayList<>();
+        ArrayList<Idea> all_ideas = new ArrayList<>();
         
         PreparedStatement ps;
         
         try
         {
             String sql = "SELECT i.idea_id, i.idea_text, i.idea_date, i.idea_color "
-                    + "FROM ideas i "
-                    + "INNER JOIN taskideas t ON i.idea_id = t.idea_id "
-                    + "WHERE t.task_id = ? "
-                    + "ORDER BY i.idea_date";
+                       + "FROM ideas i "
+                       + "INNER JOIN taskideas t ON i.idea_id = t.idea_id "
+                       + "WHERE t.task_id = ? "
+                       + "ORDER BY i.idea_date";
             
             ps = getConnection().prepareStatement(sql);
             
@@ -126,7 +124,7 @@ public class IdeasModel extends Conexion
                 
                 Idea idea = new Idea(idea_id, idea_text, idea_date, idea_color);
                 
-                ideas.add(idea);
+                all_ideas.add(idea);
             }
         }
         
@@ -146,6 +144,43 @@ public class IdeasModel extends Conexion
             }
         }
         
-        return ideas;
+        return all_ideas;
+    }
+    
+    public boolean deleteIdea(String i_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM ideas WHERE idea_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, i_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
     }
 }

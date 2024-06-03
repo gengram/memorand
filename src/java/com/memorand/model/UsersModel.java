@@ -721,4 +721,41 @@ public class UsersModel extends Conexion
         
         return flag;
     }
+    
+    public boolean deleteUser(String u_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM users WHERE user_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, u_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    }
 } 
