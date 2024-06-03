@@ -5,225 +5,114 @@ import com.memorand.beans.User;
 import com.memorand.model.TeamsModel;
 import java.util.ArrayList;
 
-public class TeamsController {
-
-    public boolean modelCreateTeam(Team team) {
+public class TeamsController
+{
+    public boolean modelCreateTeam(Team t)
+    {
         TeamsModel teamm = new TeamsModel();
-        return teamm.createTeam(team);
+        return teamm.createTeam(t);
+    }
+    
+    public boolean modelDeleteTeam(String t_id)
+    {
+        TeamsModel teamm = new TeamsModel();
+        return teamm.deleteTeam(t_id);
     }
 
-    public Team modelGetTeamInfoById(String t_id) {
+    public Team beanGetTeam(String t_id)
+    {
         TeamsModel teamm = new TeamsModel();
         return teamm.getTeam(t_id);
     }
 
-    public Team modelGetTeamInfoByCollab(String collab_id) {
+    public Team beanGetTeamByCollab(String collab_id)
+    {
         TeamsModel teamm = new TeamsModel();
         return teamm.getTeamByCollab(collab_id);
     }
 
-    // DEPRECIADO
-    public String modelGetAllTeamsByInst(String inst_id)
+    public String adminGetTeamsByInstitution(String inst_id)
     {
         String htmlcode = "";
 
         TeamsModel teamm = new TeamsModel();
 
         for (Team team : teamm.getTeamsByInstitution(inst_id))
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "                       <a href='equipo.jsp?id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
-                    + "                    </td>\n"
-                    + "           </tr>";
+            htmlcode += "<tr>\n"
+                     + "<td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>"
+                     + "<a href='equipo.jsp?id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
+                     + "</td>\n"
+                     + "</tr>";
 
         return htmlcode;
     }
 
-    // DEPRECIADO
-    public String modelGetAllTeamsByInstRed(String inst_id) {
-
+    public String adminGetTeamsSelectByInstitution(String inst_id)
+    {
         String htmlcode = "";
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
-
+        for (Team team : teamm.getTeamsByInstitution(inst_id))
             htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
 
-        }
-
         return htmlcode;
-
     }
 
-    public String modelGetAllTeamsByInstRed2(String inst_id) {
-
-        String htmlcode = "";
-
-        TeamsModel teamm = new TeamsModel();
-
-        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle '>"
-                    + "                       <a href='?team_id=" + team.getTeam_id() + "'> <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
-                    + "                    </td>\n"
-                    + "           </tr>";
-
-        }
-
-        return htmlcode;
-
-    }
-
-    public String modelGetAllTeamsByProjRed(String proj_id)
+    public String adminGetTeamsByProject(String proj_id)
     {
         String htmlcode = "";
 
         TeamsModel teamm = new TeamsModel();
 
         for (Team team : teamm.getTeamsByProject(proj_id))
-        {
-            htmlcode
-                    += "<tr>\n"
-                    + "<td>" + team.getTeam_name() + "</td>\n"
-                    + "<td>"
-                    + "<svg width='50' height='50'>\n"
-                    + "<rect width='50' height='50' style='fill:#" + team.getTeam_color() + ";stroke:black;stroke-width:2'/>\n"
-                    + "</svg>"
-                    + "</td>\n"
-                    + "<td>"
-                    + "<a href='equipo.jsp?id=" + team.getTeam_id() + "'>Ver</a><br>"
-                    + "</td>\n"
-                    + "</tr>";
-        }
+            htmlcode += "<tr>\n"
+                     + "<td>" + team.getTeam_name() + "</td>\n"
+                     + "<td>"
+                     + "<svg width='50' height='50'>\n"
+                     + "<rect width='50' height='50' style='fill:#" + team.getTeam_color() + ";stroke:black;stroke-width:2'/>\n"
+                     + "</svg>"
+                     + "</td>\n"
+                     + "<td>"
+                     + "<a href='equipo.jsp?id=" + team.getTeam_id() + "'>Ver</a><br>"
+                     + "</td>\n"
+                     + "</tr>";
 
         return htmlcode;
     }
 
-    // DEPRECIADO
-    public String modelGetAllTeamsByUserRed(String user_id) {
-
+    public String adminGetTeamsByUserWorker(String user_id)
+    {
         String htmlcode = "";
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getTeamsByUserWorker(user_id)) {
-            htmlcode
-                    += "<tr>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</text></td>\n"
-                    + "                    <td style='padding: 20px;' class='align-middle'>"
-                    + "                       <a href='equipo.jsp?id=" + team.getTeam_id() + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
-                    + "                    </td>\n"
-                    + "           </tr>";
-
-        }
+        for (Team team : teamm.getTeamsByUserWorker(user_id))
+            htmlcode += "<tr>\n"
+                     + "<td style='padding: 20px;' class='align-middle text-start'><text class='ms-5'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</text></td>\n"
+                     + "<td style='padding: 20px;' class='align-middle'>"
+                     + "<a href='equipo.jsp?id=" + team.getTeam_id() + "'><i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i></a><br>"
+                     + "</td>\n"
+                     + "</tr>";
 
         return htmlcode;
-
     }
 
-    public String modelGetAllTeamsByUserRed3(String user_id) {
-
+    public String adminGetTeamsSelectByUserWorker(String user_id)
+    {
         String htmlcode = "";
 
         TeamsModel teamm = new TeamsModel();
 
-        for (Team team : teamm.getTeamsByUserWorker(user_id)) {
+        for (Team team : teamm.getTeamsByUserWorker(user_id))
             htmlcode += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
-        }
-
-        return htmlcode;
-
-    }
-
-    // DEPRECIADO
-    public String modelGetAllTeamsByUserRed2(String user_id) {
-        String htmlcode = "";
-
-        UsersController userc = new UsersController();
-        User user = userc.beanGetUser(user_id);
-
-        String user_type = user.getUser_type();
-
-        if (user_type.equals("ch")) {
-            TeamsModel teamm = new TeamsModel();
-
-            for (Team team : teamm.getTeamsByUserChief(user_id)) {
-                htmlcode
-                        += "<tr>\n"
-                        + "                    <td>" + team.getTeam_name() + "</td>\n"
-                        + "                    <td>"
-                        + "                       <svg width='50' height='50'>\n"
-                        + "                           <rect width='50' height='50' style='fill:#" + team.getTeam_color() + ";stroke:black;stroke-width:2'/>\n"
-                        + "                       </svg>"
-                        + "                    </td>\n"
-                        + "                    <td>"
-                        + "                       <a href='departamento.jsp?team_id=" + team.getTeam_id() + "&view=info'>Estadísticas</a><br>"
-                        + "                       <a href='?team_id=" + team.getTeam_id() + "'>Ver</a><br>"
-                        + "                    </td>\n"
-                        + "           </tr>";
-            }
-        } else {
-            TeamsModel teamm = new TeamsModel();
-
-            for (Team team : teamm.getTeamsByUserWorker(user_id)) {
-
-                htmlcode
-                        += "<tr>\n"
-                        + "                    <td>" + team.getTeam_name() + "</td>\n"
-                        + "                    <td>"
-                        + "                       <svg width='50' height='50'>\n"
-                        + "                           <rect width='50' height='50' style='fill:#" + team.getTeam_color() + ";stroke:black;stroke-width:2'/>\n"
-                        + "                       </svg>"
-                        + "                    </td>\n"
-                        + "                    <td>"
-                        + "                       <a href='?team_id=" + team.getTeam_id() + "'>Ver</a><br>"
-                        + "                    </td>\n"
-                        + "           </tr>";
-            }
-        }
 
         return htmlcode;
     }
 
-    // DEPRECIADO
-    public String modelGetListTeamsByInst(String inst_id) {
-        String htmlcode = "";
-
-        TeamsModel teamm = new TeamsModel();
-
-        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
-            htmlcode
-                    += "<option value='" + team.getTeam_id() + "' style='background-color:#" + team.getTeam_color() + "' >" + team.getTeam_name() + "</option>";
-        }
-
-        return htmlcode;
-    }
-
-    public String modelGetListTeamsByInst2(String inst_id, String selectedTeamName) {
-        StringBuilder htmlcode = new StringBuilder();
-
-        TeamsModel teamm = new TeamsModel();
-
-        for (Team team : teamm.getTeamsByInstitution(inst_id)) {
-            htmlcode.append("<option value='").append(team.getTeam_id()).append("' style='background-color:#").append(team.getTeam_color()).append("' ");
-
-            // Marcar como seleccionada la opción correspondiente al equipo actual
-            if (team.getTeam_name().equals(selectedTeamName)) {
-                htmlcode.append("selected");
-            }
-
-            htmlcode.append(">").append(team.getTeam_name()).append("</option>");
-        }
-
-        return htmlcode.toString();
-    }
-
-    public String modelGetTeams(String user_id) {
+    public String workGetTeamsByUser(String user_id)
+    {
         String htmlcode = "";
         String hrefcode = "";
 

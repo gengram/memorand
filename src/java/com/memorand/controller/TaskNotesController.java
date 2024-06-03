@@ -5,9 +5,15 @@ import com.memorand.model.TaskNotesModel;
 
 public class TaskNotesController
 {
-    public boolean modelCreateTaskNote(TaskNote tasknote)
+    public boolean modelCreateTaskNote(TaskNote tn)
     {
         TaskNotesModel tasknotem = new TaskNotesModel();
-        return tasknotem.createTaskNote(tasknote);
+        return tasknotem.createTaskNote(tn);
+    }
+    
+    public boolean modelDeleteTaskNote(String task_id, String note_id)
+    {
+        TaskNotesModel tasknotem = new TaskNotesModel();
+        return tasknotem.deleteTaskNote(task_id, note_id);
     }
 }

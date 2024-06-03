@@ -42,7 +42,8 @@ public class TasksGet extends HttpServlet
                                 htmlContent = taskc.modelGetTasksPanel(collab, "task_edate");
                                 break;
                             case "table":
-                                htmlContent = taskc.modelGetTasksTable(collab, "task_edate");
+                                htmlContent = "NOT SUPPORTED YET.";
+                                //htmlContent = taskc.modelGetTasksTable(collab, "task_edate");
                                 break;
                             default:
                                 throw new AssertionError();

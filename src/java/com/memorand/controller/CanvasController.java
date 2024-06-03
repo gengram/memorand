@@ -6,25 +6,34 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CanvasController {
-
-    public boolean modelCreateCanva(Canva canva) {
-        CanvasModel canvam = new CanvasModel();
-        return canvam.createCanva(canva);
-    }
-    
-    public boolean modelUpdateCanvaDraw(String canva_id, String canva_draw)
+public class CanvasController
+{
+    public boolean modelCreateCanva(Canva c)
     {
         CanvasModel canvam = new CanvasModel();
-        return canvam.updateCanvaDraw(canva_id, canva_draw);
+        return canvam.createCanva(c);
+    }
+    
+    public boolean modelDeleteCanva(String c_id)
+    {
+        CanvasModel canvam = new CanvasModel();
+        return canvam.deleteCanva(c_id);
+    }
+    
+    public boolean modelUpdateCanvaDraw(String c_id, String c_draw)
+    {
+        CanvasModel canvam = new CanvasModel();
+        return canvam.updateCanvaDraw(c_id, c_draw);
     }
 
-    public Canva modelGetCanvaById(String c_id) {
+    public Canva beanGetCanva(String c_id)
+    {
         CanvasModel canvam = new CanvasModel();
         return canvam.getCanva(c_id);
     }
 
-    public String modelGetCanvasByTask(String task_id) {
+    public String workGetCanvasByTask(String task_id)
+    {
         String htmlcode = "<div class='row'>"
                 + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "<div class='col-lg-10'>"
@@ -36,7 +45,8 @@ public class CanvasController {
         CanvasModel canvam = new CanvasModel();
         ArrayList<Canva> canvas = canvam.getCanvasByTask(task_id);
 
-        if (canvas.isEmpty()) {
+        if (canvas.isEmpty())
+        {
             htmlcode +="<div class='row mt-3'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -46,7 +56,9 @@ public class CanvasController {
                     + "</div>"
                     ;
             return htmlcode;
-        } else {
+        }
+        else
+        {
             htmlcode += "<diV class='row'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -62,7 +74,8 @@ public class CanvasController {
                     + "                </thead>\n"
                     + "                <tbody id='table-body'>";
 
-            for (Canva c : canvas) {
+            for (Canva c : canvas)
+            {
                 String canva_id = c.getCanva_id();
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));

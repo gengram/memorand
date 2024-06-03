@@ -5,10 +5,10 @@ import com.memorand.model.UserPostsModel;
 
 public class UserPostsController
 {
-    public boolean modelCreateUserPost(UserPost userpost)
+    public boolean modelCreateUserPost(UserPost up)
     {
         UserPostsModel userpostm = new UserPostsModel();
-        return userpostm.createUserPost(userpost);
+        return userpostm.createUserPost(up);
     }
     
     public boolean modelDeleteUserPost(String user_id, String post_id)

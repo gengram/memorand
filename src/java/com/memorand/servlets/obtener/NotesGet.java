@@ -26,7 +26,7 @@ public class NotesGet extends HttpServlet
         {
             PrintWriter out = response.getWriter();
             NotesController notec = new NotesController();
-            String htmlContent = notec.modelGetNoteTextById(note_id);
+            String htmlContent = notec.modelGetNoteText(note_id);
             
             if (htmlContent != null)
             {

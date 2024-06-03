@@ -7,19 +7,28 @@ import com.memorand.model.CollabsModel;
 import com.memorand.model.ProjectsModel;
 import java.util.ArrayList;
 
-public class ProjectsController {
-
-    public boolean modelCreateProject(Project project) {
+public class ProjectsController
+{
+    public boolean modelCreateProject(Project p)
+    {
         ProjectsModel projm = new ProjectsModel();
-        return projm.createProject(project);
+        return projm.createProject(p);
+    }
+    
+    public boolean modelDeleteProject(String p_id)
+    {
+        ProjectsModel projm = new ProjectsModel();
+        return projm.deleteProject(p_id);
     }
 
-    public Project modelGetProjectInfoById(String p_id) {
+    public Project beanGetProject(String p_id)
+    {
         ProjectsModel projm = new ProjectsModel();
         return projm.getProject(p_id);
     }
 
-    public Project modelGetProjectInfoByCollab(String collab_id) {
+    public Project beanGetProjectByCollab(String collab_id)
+    {
         ProjectsModel projm = new ProjectsModel();
         return projm.getProjectByCollab(collab_id);
     }

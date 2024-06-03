@@ -9,25 +9,35 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
-public class IdeasController {
-
-    public boolean modelCreateIdea(Idea idea) {
+public class IdeasController
+{
+    public boolean modelCreateIdea(Idea idea)
+    {
         IdeasModel ideam = new IdeasModel();
         return ideam.createIdea(idea);
     }
-
-    public Idea modelGetIdeaById(String i_id) {
+    
+    public boolean modelDeleteIdea(String i_id)
+    {
+        IdeasModel ideam = new IdeasModel();
+        return ideam.deleteIdea(i_id);
+    }
+    
+    public Idea beanGetIdea(String i_id)
+    {
         IdeasModel ideam = new IdeasModel();
         return ideam.getIdea(i_id);
     }
 
-    public String modelGetIdeasByTask(String task_id) {
+    public String workGetIdeasByTask(String task_id)
+    {
         String htmlcode = "";
 
         IdeasModel ideam = new IdeasModel();
         ArrayList<Idea> ideas = ideam.getIdeasByTask(task_id);
 
-        if (ideas.isEmpty()) {
+        if (ideas.isEmpty())
+        {
             htmlcode += "<div class='row'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -36,13 +46,16 @@ public class IdeasController {
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
             return htmlcode;
-        } else {
+        }
+        else
+        {
             htmlcode += "<div class='row mb-5'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
                     + "<div class='row'>";
 
-            for (Idea i : ideas) {
+            for (Idea i : ideas)
+            {
                 String idea_id = i.getIdea_id();
 
                 UsersModel userm = new UsersModel();
@@ -50,9 +63,8 @@ public class IdeasController {
 
                 String user_name = "null";
 
-                if (user != null) {
+                if (user != null)
                     user_name = user.getUser_name() + " " + user.getUser_pat();
-                }
 
                 Instant ideaInstant = i.getIdea_date().toInstant();
                 Instant now = Instant.now();
@@ -93,5 +105,4 @@ public class IdeasController {
         }
         return htmlcode;
     }
-
 }

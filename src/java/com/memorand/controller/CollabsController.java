@@ -5,29 +5,27 @@ import com.memorand.model.CollabsModel;
 
 public class CollabsController
 {
-    
-    public boolean modelCreateCollab(Collab collab)
+    public boolean modelCreateCollab(Collab c)
     {
         CollabsModel collabm = new CollabsModel();
-        return collabm.createCollab(collab);
+        return collabm.createCollab(c);
     }
     
-    public boolean modelDeleteCollab(String collab_id)
+    public boolean modelDeleteCollab(String c_id)
     {
         CollabsModel collabm = new CollabsModel();
-        return collabm.deleteCollab(collab_id);
+        return collabm.deleteCollab(c_id);
     }
     
-    public Collab modelGetCollabInfoByTeamAndProject(String t_id, String p_id)
+    public Collab beanGetCollabByTeamAndProject(String t_id, String p_id)
     {
         CollabsModel collabm = new CollabsModel();
         return collabm.getCollabByTeamAndProject(t_id, p_id);
     }
     
-    public Collab modelGetCollabInfoByTask(String task_id)
+    public Collab beanGetCollabByTask(String task_id)
     {
         CollabsModel collabm = new CollabsModel();
         return collabm.getCollabByTask(task_id);
     }
-    
 }

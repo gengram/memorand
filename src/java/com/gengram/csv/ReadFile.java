@@ -82,7 +82,7 @@ public class ReadFile extends HttpServlet
                         InUser inuser = new InUser(inst_id, user_id);
                         InUsersController inusersc = new InUsersController();
                         
-                        flag = inusersc.modelCreateInUsers(inuser);
+                        flag = inusersc.modelCreateInUser(inuser);
                     }
                     else
                     {

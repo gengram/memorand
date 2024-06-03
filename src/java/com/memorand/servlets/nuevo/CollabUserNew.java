@@ -55,7 +55,7 @@ public class CollabUserNew extends HttpServlet
             String ch_id = form_fields.get(2);
             
             CollabsController collabc = new CollabsController();
-            Collab collab = collabc.modelGetCollabInfoByTeamAndProject(t_id, p_id);
+            Collab collab = collabc.beanGetCollabByTeamAndProject(t_id, p_id);
             
             String c_id = collab.getCollab_id();
             

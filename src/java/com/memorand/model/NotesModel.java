@@ -221,4 +221,41 @@ public class NotesModel extends Conexion
         
         return flag;
     }
+    
+    public boolean deleteNote(String n_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM notesw WHERE note_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, n_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    }
 }
