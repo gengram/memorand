@@ -164,6 +164,9 @@
                 flex: 0 0 auto;
                 width: 100%;
             }
+            .modal-xlM{
+                max-width: 75%;
+            }
         }
 
         /* Estilos para tamaños de pantalla medianos y grandes */
@@ -183,6 +186,9 @@
             .colC-10{
                 flex: 0 0 auto;
                 width: 83.33333333%;
+            }
+            .modal-xlM{
+                max-width: 70%;
             }
         }
     </style>
@@ -267,7 +273,7 @@
 
             <!-- Modal Nueva tarea -->                            
             <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskNew">
-                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-xlM" role="document">
                     <div class="modal-content rounded-4 shadow">
                         <div class="modal-header p-5 pb-4 border-bottom-0">
                             <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva tarea</h1>
@@ -319,9 +325,11 @@
                                             <input class="form-control-sm" type="datetime-local" name="task_edate" id="task_edate" required>
                                         </div>
                                     </div>
-                                    <div class="col-6"></div>
-                                    <div class="col-3 mt-4 text-center">
-                                        <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva tarea</p></button>
+                                    <div class="col-3"></div>
+                                    <div class="col-6 mt-5 text-end">
+                                        <div class="me-4">
+                                            <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva tarea</p></button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
