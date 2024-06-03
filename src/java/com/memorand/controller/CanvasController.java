@@ -26,11 +26,11 @@ public class CanvasController {
 
     public String modelGetCanvasByTask(String task_id) {
         String htmlcode = "<div class='row'>"
-                + "<div class='col-1'></div>"
-                + "<div class='col-10'>"
+                + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                + "<div class='col-lg-10'>"
                 + "<h3>Lienzos del equipo</h3>"
                 + "</div>"
-                + "<div class='col-1'></div>"
+                + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "</div>";
 
         CanvasModel canvam = new CanvasModel();
@@ -38,18 +38,18 @@ public class CanvasController {
 
         if (canvas.isEmpty()) {
             htmlcode +="<div class='row mt-3'>"
-                    + "<div class='col-1'></div>"
-                    + "<div class='col-10'>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                    + "<div class='col-lg-10'>"
                     + "<p class=''>No hay lienzos por mostrar.</p>"
                     + "</div>"
-                    + "<div class='col-1'></div>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>"
                     ;
             return htmlcode;
         } else {
             htmlcode += "<diV class='row'>"
-                    + "<div class='col-1'></div>"
-                    + "<div class='col-10'>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                    + "<div class='col-lg-10'>"
                     + "<table class='table mb-5'>"
                     + "                <thead>\n"
                     + "                    <tr>\n"
@@ -83,7 +83,7 @@ public class CanvasController {
             htmlcode += "</tbody>\n"
                     + "            </table>"
                     + "</div>"
-                    + "<div class='col-1'></div>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
         }
 

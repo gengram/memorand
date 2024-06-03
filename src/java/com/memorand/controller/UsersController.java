@@ -249,7 +249,7 @@ public class UsersController
                 for (User ch : chs)
                 {
                     htmlcode += "<tr>\n"
-                            + "     <td class=\"align-middle\" ><img src='../"+ ch.getUser_profile() +"' width='40'/> </td>\n"
+                            + "     <td class=\"align-middle\" ><img class='rounded-2' src='../"+ ch.getUser_profile() +"' width='40'/> </td>\n"
                             + "     <td class=\"align-middle\" >" + ch.getUser_name() + " " + ch.getUser_pat() + " " + ch.getUser_mat() + "</td>\n"
                             + "     <td class=\"align-middle\">" + ch.getUser_email() + "</td>\n"
                             + "  </tr>";
@@ -292,7 +292,7 @@ public class UsersController
                 for (User wk : wks) 
                 {
                     htmlcode += "<tr>\n"
-                            + "     <td class=\"align-middle\" ><img src='../"+ wk.getUser_profile() +"' width='40'/> </td>\n"
+                            + "     <td class=\"align-middle\" ><img class='rounded-2' src='../"+ wk.getUser_profile() +"' width='40'/> </td>\n"
                             + "     <td class=\"align-middle\" >" + wk.getUser_name() + " " + wk.getUser_pat() + " " + wk.getUser_mat() + "</td>\n"
                             + "     <td class=\"align-middle\" >" + wk.getUser_email() + "</td>\n"
                             + "  </tr>";

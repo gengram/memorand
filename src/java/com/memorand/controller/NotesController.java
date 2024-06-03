@@ -32,11 +32,11 @@ public class NotesController {
 
     public String modelGetNotesByTask(String task_id) {
         String htmlcode = "<div class='row'>"
-                + "<div class='col-1'></div>"
-                + "<div class='col-10'>"
+                + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                + "<div class='col-lg-10'>"
                 + "<h3>Notas del equipo</h3>"
                 + "</div>"
-                + "<div class='col-1'></div>"
+                + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "</div>";
 
         NotesModel notem = new NotesModel();
@@ -44,17 +44,17 @@ public class NotesController {
 
         if (notes.isEmpty()) {
             htmlcode +=  "<div class='row mt-3'>"
-                    + "<div class='col-1'></div>"
-                    + "<div class='col-10'>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                    + "<div class='col-lg-10'>"
                     + "<p>No hay notas por mostrar.</p>"
                     + "</div>"
-                    + "<div class='col-1'></div>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
             return htmlcode;
         } else {
             htmlcode += "<diV class='row'>"
-                    + "<div class='col-1'></div>"
-                    + "<div class='col-10'>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                    + "<div class='col-lg-10'>"
                     + "<table class='table mb-5'>"
                     + "<thead>\n"
                     + "                    <tr>\n"
@@ -88,7 +88,7 @@ public class NotesController {
             htmlcode += "</tbody>\n"
                     + "            </table>"
                     + "</div>"
-                    + "<div class='col-1'></div>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
         }
 

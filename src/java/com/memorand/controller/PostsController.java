@@ -105,7 +105,7 @@ public class PostsController {
                         + "                 <div class='col-6 card-title' style='padding-top: 0px;'>\n"
                         + "                     <div class=\"row\">\n"
                         + "                         <div class=\"col-1\">"
-                        + "                             <img src='../" + user_profile + "' width='50' height='50' class='rounded-4 ms-4 me-2 mt-1'>\n"
+                        + "                             <img src='../" + user_profile + "' width='50' height='50' class='rounded-2 ms-4 me-2 mt-1'>\n"
                         + "                         </div>"
                         + "                         <div class=\"col-10 mt-1\">"
                         + "                             <p class='custom-p ms-5' style='font-size: 17px'><texto style='color: #2A2927;'>" + user_name + "</texto></p>\n"
