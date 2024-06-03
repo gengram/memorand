@@ -8,7 +8,7 @@
 
 <%
     String note_id = request.getParameter("id");
-    
+
     session.setAttribute("upd_type", "note");
     session.setAttribute("upd_id", note_id);
 
@@ -36,7 +36,7 @@
 
 <html>
     <head>
-        
+
         <jsp:include page="../XM-Resources/pages/imports.jspf"/>
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
@@ -59,7 +59,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
     </head>
-    
+
     <style>
         .btn-h{
             color: #000;
@@ -196,7 +196,7 @@
             border-color: #FAC7C7;
             background-color: #FAC7C7;
         }
-        
+
         /* Estilo para el botón personalizado #000 */
         .btn-color-000 {
             border-color: #E3E4E5;
@@ -213,7 +213,7 @@
     </style>
 
     <body>
-        
+
         <span id="type" style="display: none">note</span>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
@@ -314,6 +314,16 @@
                     </button>
                 </div>
             </div>
+
+            <!-- <div class="btn-group dropend" role="group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </button>
+                <ul class="dropdown-menu shadow-lg" style="width: auto;">
+                    <li><a class="dropdown-item" href="#">De</a></li>
+                    <li><a class="dropdown-item" href="#">De</a></li>
+                </ul>
+            </div> -->
         </div>
 
     </body>
@@ -371,7 +381,7 @@
     <script src="../XM-Resources/scripts/styles_apunte.js"></script>
 
     <script src="scripts/broker.js"></script>
-    
+
 </html>
 
 <%
