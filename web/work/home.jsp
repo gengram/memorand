@@ -111,7 +111,7 @@
                 <div class="col-8">
                     <!-- AQUI VA LA TABLA DE EQUIPOS Y PROYECTOS -->
                     <div id="content">
-                        <%= teamc.modelGetTeams(user_id)%>
+                        <%= teamc.workGetTeamsByUser(user_id)%>
                     </div>
                 </div>
                 <div class="col-2 d-none d-sm-block"></div>

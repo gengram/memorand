@@ -270,7 +270,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyProyecto">
-                                        <%= projc.modelGetAllProjectsByInst(inst_id)%>
+                                        <%= projc.adminGetProjectsByInstitution(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -301,7 +301,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyEquipo'>
-                                        <%=teamc.modelGetAllTeamsByInst(inst_id)%>
+                                        <%=teamc.adminGetTeamsByInstitution(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -326,7 +326,7 @@
                                 <div class="col-3 text-start" >
                                     <select class="form-select form-control" style="border-color: #AFB2B3" aria-label="Default select example">
                                         <option selected>Selecciona uno</option>
-                                        <%= teamc.modelGetAllTeamsByInstRed(inst_id)%>
+                                        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>
@@ -338,23 +338,9 @@
                                     </tr>
                                 </thead>
                                 <tbody  id="table-bodyProyecto">
-                                    <%= projc.modelGetAllProjectsByInst(inst_id)%>
+                                    <%= projc.adminGetProjectsSelectByInstitution(inst_id)%>
                                 </tbody>
                             </table>
-                            <!--<h3>Proyectos</h3>
-                            <table border="2" style="text-align: center">
-                                <thead>
-                                    <tr>
-                                        <th>proj_name</th>
-                                        <th>proj_color</th>
-                                        <th>collab_status</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%= projc.modelGetAllProjectsByTeamRed(team_id)%>
-                                </tbody>
-                            </table>-->
                         </div>
                     </div>
                     <div class="col-1"></div>
@@ -379,7 +365,7 @@
                                     <label for="exampleInputEmail1" class="form-label">Equipo</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="team_name" id="team_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                                        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>
@@ -388,7 +374,7 @@
                                     <label for="" class="form-label">Proyecto</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="proj_name" id="proj_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= projc.modelGetListProjectsByInst(inst_id)%>
+                                        <%= projc.adminGetProjectsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>

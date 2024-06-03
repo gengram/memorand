@@ -171,7 +171,7 @@ public class TeamsController
                         + "</div>";
 
                 htmlcode += "<div class='mt-3'></div>";
-                htmlcode += projc.modelGetProjects(t.getTeam_id(), user_id);
+                htmlcode += projc.workGetProjects(t.getTeam_id(), user_id);
             }
         }
 

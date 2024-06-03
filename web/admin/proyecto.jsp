@@ -132,7 +132,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%= teamc.modelGetAllTeamsByProjRed(proj_id)%>
+                            <%= teamc.adminGetTeamsByProject(proj_id)%>
                         </tbody>
                     </table>
                 </div>
@@ -158,7 +158,7 @@
                                     <label for="exampleInputEmail1" class="form-label">Equipo</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="team_name" id="team_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                                        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>
@@ -167,7 +167,6 @@
                                     <script>console.log("<%=proj_name%>");</script>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3; display: none " name="proj_name" id="proj_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= projc.modelGetListProjectsByInst2(inst_id, proj_id)%> <!-- Utilizamos el resultado del método con el ID del proyecto seleccionado -->
                                     </select>
 
                                 </div>

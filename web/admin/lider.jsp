@@ -153,7 +153,7 @@
                                 <div class="col-7 ">
                                     <select class="form-select form-control ms-5" aria-label="Default select example" style="border-color: #AFB2B3;">
                                         <option selected>Selecciona uno</option>
-                                        <%=teamc.modelGetAllTeamsByUserRed3(user_id)%>
+                                        <%=teamc.adminGetTeamsSelectByUserWorker(user_id)%>
                                     </select>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                     <label for="exampleInputEmail1" class="form-label">Equipo</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="team_name" id="team_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                                        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                                     <label for="" class="form-label">Proyecto</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="proj_name" id="proj_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= projc.modelGetListProjectsByInst(inst_id)%>
+                                        <%= projc.adminGetProjectsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>

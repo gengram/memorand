@@ -23,10 +23,10 @@
         response.sendRedirect("home.jsp");
     } else {
         TeamsController teamc = new TeamsController();
-        Team team = teamc.modelGetTeamInfoByCollab(collab_id);
+        Team team = teamc.beanGetTeamByCollab(collab_id);
 
         ProjectsController projc = new ProjectsController();
-        Project proj = projc.modelGetProjectInfoByCollab(collab_id);
+        Project proj = projc.beanGetProjectByCollab(collab_id);
 
         if (team == null || proj == null) {
             response.sendRedirect("home.jsp");
@@ -350,7 +350,7 @@
                     case "posts":
                         PostsController postc1 = new PostsController();
                 %>
-                <%= postc1.modelGetPosts(user_id, collab_id)%>
+                <%= postc1.workGetPostsByCollab(user_id, collab_id)%>
 
                 <%
                         break;

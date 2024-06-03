@@ -189,7 +189,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%=teamc.modelGetAllTeamsByUserRed(user_id)%>
+                            <%=teamc.adminGetTeamsByUserWorker(user_id)%>
                         </tbody>
                     </table>
                 </div>
