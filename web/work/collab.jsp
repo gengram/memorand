@@ -1,3 +1,4 @@
+<%@page import="com.memorand.util.TimeTransformer"%>
 <!-- Memorand by Gengram © 2023 --> 
 
 <%@page import="java.sql.Timestamp"%>
@@ -21,6 +22,7 @@
     // TEST HORA ACTUAL
     Date now = new Date();
     Timestamp timestamp = new Timestamp(now.getTime());
+    timestamp = TimeTransformer.convertToTimeZone(timestamp, "America/Los_Angeles");
     
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";

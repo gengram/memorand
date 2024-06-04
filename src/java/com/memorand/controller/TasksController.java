@@ -2,8 +2,11 @@ package com.memorand.controller;
 
 import com.memorand.beans.Task;
 import com.memorand.model.TasksModel;
+import com.memorand.util.TimeTransformer;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -76,6 +79,8 @@ public class TasksController
                 {
                     Date now = new Date();
                     Timestamp now_date = new Timestamp(now.getTime());
+                    
+                    now_date = TimeTransformer.convertToTimeZone(now_date, "America/Los_Angeles");
                     
                     if (!now_date.before(t.getTask_edate()))
                         new_task_status = "Atrasada";
