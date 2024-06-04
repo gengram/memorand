@@ -116,14 +116,10 @@
             .capa5 {
                 top: 18px;
                 z-index: 6;
-                position: fixed;
+                position: absolute;
             }
             .capa6 {
                 top: 90.5%;
-<<<<<<< HEAD
-=======
-                align-content: center;
->>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                 z-index: 6;
                 position: absolute;
             }
@@ -217,11 +213,7 @@
         </div>
         <div class="container">
             <div class="row">
-<<<<<<< HEAD
                 <div class="col-2">
-=======
-                <div class="col-1">
->>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                     <div class="btn-group dropend capa2 start-0 ms-4">
                         <button type="button" class="btn btn-light rounded-2 des" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list" style="font-size: 25px"></i>
@@ -239,17 +231,10 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
                 <div class="col-4" style="background-color: #25ce7b">
                     <div class="capa5">
                         <a href="tarea.jsp?id=<%= task_id%>">
                             <div class="btn-group me-5 mb-2" id="clearStorageButton" role="group" aria-label="Default button group">
-=======
-                <div class="col-4" >
-                    <div class="capa5 ms-5">
-                        <a href="tarea.jsp?id=<%= task_id%>">
-                            <div class="btn-group mb-2" role="group" aria-label="Default button group">
->>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                                 <button type="button" class="btn" style="background-color: #AFB2B3;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
                                 <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000"><%=canva_name%></b></button>
                             </div>
@@ -456,18 +441,11 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 capa6 text-end">
                     <button type="button" class="btn btn-h des me-5" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-chat-square-dots" style="font-size: 22px"></i></button>
-=======
-        <div class="container-fluid">
-            <div class="row text-end">
-                <div class="col-12 capa6">
-                    <button type="button" class="btn btn-h des" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-chat-square-dots" style="font-size: 22px"></i></button>
->>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                 </div>
             </div>
         </div>
