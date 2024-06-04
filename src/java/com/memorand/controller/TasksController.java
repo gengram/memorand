@@ -80,7 +80,7 @@ public class TasksController
                     Date now = new Date();
                     Timestamp now_date = new Timestamp(now.getTime());
                     
-                    now_date = TimeTransformer.convertToTimeZone(now_date, "America/Los_Angeles");
+                    now_date = TimeTransformer.convertToTimeZone(now_date, 6);
                     
                     if (!now_date.before(t.getTask_edate()))
                         new_task_status = "Atrasada";

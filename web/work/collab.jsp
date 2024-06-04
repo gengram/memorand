@@ -22,7 +22,7 @@
     // TEST HORA ACTUAL
     Date now = new Date();
     Timestamp timestamp = new Timestamp(now.getTime());
-    timestamp = TimeTransformer.convertToTimeZone(timestamp, "America/Los_Angeles");
+    timestamp = TimeTransformer.convertToTimeZone(timestamp, 6);
     
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";
