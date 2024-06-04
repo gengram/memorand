@@ -492,10 +492,10 @@ public class UsersModel extends Conexion
             if (rs.next())
             {
                 String user_id = rs.getString(1);
-                String user_name = rs.getString(5);
-                String user_pat = rs.getString(6);
-                String user_mat = rs.getString(7);
-                String user_profile = rs.getString(9);
+                String user_name = rs.getString(2);
+                String user_pat = rs.getString(3);
+                String user_mat = rs.getString(4);
+                String user_profile = rs.getString(5);
 
                 user = new User(user_id, user_name, user_pat, user_mat, user_profile);
             }

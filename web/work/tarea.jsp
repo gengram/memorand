@@ -63,12 +63,22 @@
 
             String s_status = "null";
 
-            switch (task_status) {
+            switch (task_status)
+            {
                 case "Incompleta":
-                case "Atrasada":
+                    task_color = "F3894D";
                     s_status = "Completada";
                     break;
+                case "Atrasada":
+                    task_color = "F24848";
+                    s_status = "Completada";
+                    break;
+                case "Fuera de plazo":
+                    task_color = "F24848";
+                    s_status = "Incompleta";
+                    break;
                 case "Completada":
+                    task_color = "25CE7B";
                     s_status = "Incompleta";
                     break;
                 default:
@@ -175,6 +185,9 @@
         /* Estilos para tamaños de pantalla medianos y grandes */
         @media (max-width: 577px) {
             .modal-wIdea{
+                max-width: 50%;
+            }
+            .modal-wInfo{
                 max-width: 70%;
             }
             .modal-xlM{
@@ -185,6 +198,9 @@
         /* Estilos para tamaños de pantalla pequeños */
         @media (max-width: 2500px) {
             .modal-wIdea{
+                max-width: 30%;
+            }
+            .modal-wInfo{
                 max-width: 75%;
             }
             .modal-xlM{
@@ -508,7 +524,7 @@
 
     <!-- Modal Info -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalInfo">
-        <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-wInfo" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea: <%=task_name%></h3>
@@ -529,11 +545,10 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-12 text-end">
-                            <a href="../editar">
-                                
-                            </a>
                             <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill me-3" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
-                            <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
+                            <a href="../taskstat?id=<%= task_id %>">
+                                <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
+                            </a>
                         </div>
                     </div>
                 </div>

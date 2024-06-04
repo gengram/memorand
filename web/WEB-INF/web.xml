@@ -180,6 +180,10 @@
         <servlet-name>TaskEdit</servlet-name>
         <servlet-class>com.memorand.servlets.editar.TaskEdit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TaskStatus</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.TaskStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -359,6 +363,10 @@
     <servlet-mapping>
         <servlet-name>TaskEdit</servlet-name>
         <url-pattern>/taskedit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskStatus</servlet-name>
+        <url-pattern>/taskstat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

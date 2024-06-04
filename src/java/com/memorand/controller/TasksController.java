@@ -22,6 +22,12 @@ public class TasksController
         TasksModel taskm = new TasksModel();
         return taskm.updateTask(t);
     }
+    
+    public boolean modelUpdateTaskStatus(String task_id, String task_status)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.updateTaskStatus(task_id, task_status);
+    }
 
     public Task beanGetTask(String t_id)
     {
