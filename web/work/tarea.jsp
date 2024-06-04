@@ -26,7 +26,7 @@
         TasksController taskc = new TasksController();
         Task task = taskc.beanGetTask(task_id);
 
-        String task_name = "null", task_info = "null", task_status = "null", task_prior = "null", task_diff = "null", task_color = "";
+        String task_name = "", task_info = "", task_status = "", task_prior = "", task_diff = "", task_color = "", btn_color = "";
         String s_edate = "null", s_sdate = "null";
 
         if (task == null) {
@@ -49,14 +49,6 @@
             task_prior = task.getTask_prior();
             task_diff = task.getTask_diff();
 
-            if (task_status.equals("Incompleta")) {
-                task_color = "F3894D";
-            } else if (task_status.equals("Completa")) {
-                task_color = "25CE7B";
-            } else if (task_status.equals("Atrasada")) {
-                task_color = "F24848";
-            }
-
             SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
             s_edate = sdf.format(task.getTask_edate());
             s_sdate = sdf.format(task.getTask_sdate());
@@ -67,18 +59,22 @@
             {
                 case "Incompleta":
                     task_color = "F3894D";
+                    btn_color = "25CE7B";
                     s_status = "Completada";
                     break;
                 case "Atrasada":
                     task_color = "F24848";
+                    btn_color = "F3894D";
                     s_status = "Completada";
                     break;
                 case "Fuera de plazo":
                     task_color = "F24848";
+                    btn_color = "F24848";
                     s_status = "Incompleta";
                     break;
                 case "Completada":
                     task_color = "25CE7B";
+                    btn_color = "F3894D";
                     s_status = "Incompleta";
                     break;
                 default:
@@ -545,9 +541,9 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-12 text-end">
-                            <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill me-3" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
+                            <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill me-3" style="background-color: #E3E4E5; white-space: nowrap;"><i class="bi bi-pencil-square me-1"></i></i>Editar tarea</button>
                             <a href="../taskstat?id=<%= task_id %>">
-                                <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
+                                <button class="btn btn-light rounded-pill" style="background-color: #<%= btn_color %>; color: #FFFFFF;"><i class="bi bi-check2-square me-1"></i><%= s_status%></button>
                             </a>
                         </div>
                     </div>

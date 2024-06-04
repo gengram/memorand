@@ -56,9 +56,9 @@ public class TaskStatus extends HttpServlet
                         }
                     
                         if (taskc2.modelUpdateTaskStatus(task_id, new_status))
-                            response.sendRedirect("work/task.jsp?id="+task_id);
+                            response.sendRedirect("work/tarea.jsp?id="+task_id);
                         else
-                            response.sendRedirect("work/task.jsp?id="+task_id+"error=Model");
+                            response.sendRedirect("work/tarea.jsp?id="+task_id+"error=Model");
                     }
                     else
                     {
