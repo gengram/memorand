@@ -456,88 +456,9 @@
                 </div>
             </div>
         </div>
-        <h1>CHAT <%= (String) session.getAttribute("canva_id")%></h1>
-        <a href="lienzo.jsp?id=<%= canva_id%>">Regresar al lienzo</a>
-        <a href="tarea.jsp?id=<%= task_id%>">Regresar a la tarea</a>
 
-        <hr>
-
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>
-                        <h3>Informaci&oacute;n del lienzo:</h3>
-                    </th>
-                    <th>
-                        <h3>Informaci&oacute;n del usuario:</h3>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <p>UUID: <%= canva_id%></p>
-                    </td>
-                    <td>
-                        <p>UUID: <%= user_id%></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>NAME: <%= canva_name%></p>
-                    </td>
-                    <td>
-                        <p>NAME: <%= user_name%> <%= user_pat%> <%= user_mat%></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>CDAT: <%= canva_cdate%></p>
-                    </td>
-                    <td>
-                        <p>MAIL: <%= user_email%></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>MDAT: <%= canva_mdate%></p>
-                    </td>
-                    <td>
-                        <img src="../<%= user_profile%>" width="40" alt="profile"/>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <hr>
-
-        <h3>SOURCE</h3>
-        <p id="msg_sender"><%= user_name%> <%= user_pat%> <%= user_mat%></p>
-        <div class="offcanvas offcanvas-end shadow" style="background-color: #E3E4E5; opacity: 95%; max-width: 100%; max-height: 88%;" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Chat</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div class="card mx-auto" style="max-width:100%; max-height: 100%;">
-                    <div class="card-body p-4" id="chatter" style="max-height: 100%; overflow: auto;">
-                        <!-- Mensajes de chat se añadirán aquí -->
-                    </div>
-                    <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
-                        <div class="input-group">
-                            <button id="submit" class="btn btn-light">
-                                <i class="bi bi-send-fill" style="color: #25ce7b;"></i>
-                            </button>
-                            <input type="text" id="msg_txt" class="form-control border-0" placeholder="Escribe un mensaje...">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        
-
+        <p id="msg_sender"><%= user_name%></p>
+        <jsp:include page="pages/chatt.jspf"/>
         <style>
             /* Solo para asegurar que el modal no se muestre en pantallas pequeñas */
             @media (max-width: 576px) {
@@ -2162,7 +2083,7 @@
         </script>
 
         <script src="scripts/chat.js"></script>
-        
+
     </body>
 </html>
 

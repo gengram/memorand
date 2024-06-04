@@ -58,6 +58,7 @@
         <a href="tarea.jsp?id=<%= task_id%>">Regresar a la tarea</a>
 
         <hr>
+        <h1>Canva id - <%= canva_id%> </h1>
 
         <table border="1">
             <thead>
@@ -109,7 +110,7 @@
         <hr>
 
         <h3>SOURCE</h3>
-        <p id="msg_sender"><%= user_name%> <%= user_pat%> <%= user_mat%></p>
+        <p id="msg_sender"><%= user_name%></p>
         <!-- <div>
             <div>
                 <label>MESG:</label>
@@ -172,7 +173,7 @@
             }
         </style>
 
-        <!--<script src="scripts/chat.js"></script>-->
+        <script src="scripts/chat.js"></script>
 
     </body>
 </html>
