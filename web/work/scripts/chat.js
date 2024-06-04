@@ -1,19 +1,19 @@
-(function(window, document, JSON) {
+(function (window, document, JSON) {
     'use strict';
 
     var host = window.location.host;
-    
+
     if (host === 'gengram.gerdoc.com')
     {
         host = 'gengram.gerdoc.com:8080';
     }
-    
+
     console.log(host);
-    
+
     var URL = 'ws://' + host + '/memorand/chat';
-    
+
     console.log(URL);
-    
+
     var ws = new WebSocket(URL);
 
     var chatter = document.getElementById('chatter');
@@ -70,8 +70,7 @@
         try
         {
             ws.send(JSON.stringify(msg));
-        }
-        catch (error)
+        } catch (error)
         {
             console.error("Error enviando mensaje:", error);
         }
@@ -82,10 +81,47 @@
     function onMessage(evt)
     {
         var obj = JSON.parse(evt.data);
-        var msg = obj.msg_sender + ' (' + new Date(obj.msg_time).toLocaleString() + '): ' + obj.msg_txt;
         
+        var msgTime = new Date(obj.msg_time).toLocaleString();
+        
+        var isCurrentUser = (obj.msg_sender === msg_sender);
+        
+        var messageAlignment = isCurrentUser ? 'text-end justify-content-end' : 'align-items-baseline';
+        
+        var avatarImage = isCurrentUser ? 'https://nextbootstrap.netlify.app/assets/images/profiles/2.jpg' : 'https://nextbootstrap.netlify.app/assets/images/profiles/1.jpg';
+        
+        var messageHtml = `
+        <div class="d-flex ${messageAlignment} mb-4">
+            ${isCurrentUser ? '' : `
+            <div class="position-relative avatar">
+                <img src="../XM-Uploads/users/profile/default-user.png" class="img-fluid rounded-circle" alt="">
+                <span class="position-absolute bottom-0 start-100 translate-middle p-1 border border-light rounded-pill">
+                    <span class="visually-hidden">New alerts</span>
+                </span>
+            </div>
+            `}
+            <div class="pe-2">
+                <div>
+                    <div class="card card-text d-inline-block p-2 px-3 m-1">${obj.msg_txt}</div>
+                </div>
+                <div>
+                    <div class="small" style="color: #AFB2B3;">${obj.msg_sender} - ${msgTime}</div>
+                </div>
+            </div>
+            ${isCurrentUser ? `
+            <div class="position-relative avatar">
+                <img src="${avatarImage}" class="img-fluid rounded-circle" alt="">
+                <span class="position-absolute bottom-0 start-100 translate-middle p-1 border border-light rounded-pill">
+                    <span class="visually-hidden">New alerts</span>
+                </span>
+            </div>
+            ` : ''}
+        </div>
+    `;
+
         var newMessage = document.createElement('div');
-        newMessage.textContent = msg;
+        newMessage.innerHTML = messageHtml;
         chatter.appendChild(newMessage);
     }
+
 })(window, document, JSON);
