@@ -45,7 +45,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
         <style>
-            
+
             body, html {
                 margin: 0;
                 padding: 0;
@@ -120,8 +120,6 @@
             }
             .capa6 {
                 top: 90.5%;
-                left: 92.5%;
-                align-content: center;
                 z-index: 6;
                 position: absolute;
             }
@@ -171,8 +169,8 @@
                 background-color: #25ce7b;
                 border-color: #E3E4E5;
             }
-            
-             /* Ocultar el grupo de botones en pantallas pequeñas */
+
+            /* Ocultar el grupo de botones en pantallas pequeñas */
             @media (max-width: 768px) {
                 .invis {
                     display: none;
@@ -215,13 +213,13 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-1 col-sm-3">
+                <div class="col-2">
                     <div class="btn-group dropend capa2 start-0 ms-4">
                         <button type="button" class="btn btn-light rounded-2 des" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
-                            <li><a href="chat.jsp?id=<%= canva_id %>" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Chat (test)</a></li>
+                            <li><a href="chat.jsp?id=<%= canva_id%>" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Chat (test)</a></li>
                             <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
                             <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
                             <li>
@@ -233,17 +231,17 @@
                     </div>
                 </div>
 
-                <div class="col-4 col-sm-9" style="background-color: #25ce7b">
+                <div class="col-4" style="background-color: #25ce7b">
                     <div class="capa5">
                         <a href="tarea.jsp?id=<%= task_id%>">
-                            <div class="btn-group me-5 mb-2" role="group" aria-label="Default button group">
+                            <div class="btn-group me-5 mb-2" id="clearStorageButton" role="group" aria-label="Default button group">
                                 <button type="button" class="btn" style="background-color: #AFB2B3;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
                                 <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000"><%=canva_name%></b></button>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="btn-group invis capa1 shadow-lg" role="group" aria-label="Basic radio toggle button group">
                         <button id="openModalButton" type="button" class="btn btn-h des"><i class="bi bi-boxes icon-tools"></i></button>
 
@@ -444,9 +442,12 @@
             </div>
         </div>
 
-        <div class="btn-group capa6" role="group" aria-label="Vertical button group">
-            <button type="button" class="btn btn-h des" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-chat-square-dots" style="font-size: 22px"></i></button>
-            <button type="button" class="btn btn-h des"><i class="bi bi-camera-video" style="font-size: 22px"></i></button>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 capa6 text-end">
+                    <button type="button" class="btn btn-h des me-5" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-chat-square-dots" style="font-size: 22px"></i></button>
+                </div>
+            </div>
         </div>
 
         <div class="offcanvas offcanvas-end shadow" style="background-color: #E3E4E5; opacity: 95%; max-width: 100%; max-height: 88%;" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -575,20 +576,44 @@
         </div>
     </div>
 
+    <style>
+        /* Solo para asegurar que el modal no se muestre en pantallas pequeñas */
+        @media (max-width: 576px) {
+            #myModal {
+                display: none;
+            }
+        }
+    </style>
     <!-- Incluye jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Incluye Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-                            // Función para mostrar el modal al cargar la página
-                            $(document).ready(function () {
-                                $('#myModal').modal('show');
-                            });
+        // Función para mostrar el modal al cargar la página, solo si no es una pantalla pequeña y si es la primera vez
+        $(document).ready(function () {
+            if ($(window).width() > 576 && !localStorage.getItem('modalShown')) {
+                $('#myModal').modal('show');
+                localStorage.setItem('modalShown', 'true');
+            }
+        });
 
-                            // Función para mostrar el modal al hacer clic en el botón
-                            $('#openModalButton').click(function () {
-                                $('#myModal').modal('show');
-                            });
+        // Función para mostrar el modal al hacer clic en el botón, solo si no es una pantalla pequeña
+        $('#openModalButton').click(function () {
+            if ($(window).width() > 576) {
+                $('#myModal').modal('show');
+            }
+        });
+
+        // Recalcular el tamaño de la ventana cuando se redimensiona para ocultar el modal si cambia a tamaño pequeño
+        $(window).resize(function () {
+            if ($(window).width() <= 576) {
+                $('#myModal').modal('hide');
+            }
+        });
+        // Función para eliminar el almacenamiento interno al hacer clic en el botón
+        $('#clearStorageButton').click(function () {
+            localStorage.removeItem('modalShown');
+        });
     </script>
 
     <script>
@@ -2206,8 +2231,8 @@
 
             }
         });
-        
-        
+
+
         // Función para verificar el tamaño de la pantalla y deshabilitar interacciones
         function checkScreenSize() {
             if (window.innerWidth <= 768) { // Puedes ajustar este valor según tus necesidades

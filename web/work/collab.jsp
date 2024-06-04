@@ -164,6 +164,9 @@
                 flex: 0 0 auto;
                 width: 100%;
             }
+            .modal-xlM{
+                max-width: 75%;
+            }
         }
 
         /* Estilos para tamaños de pantalla medianos y grandes */
@@ -183,6 +186,9 @@
             .colC-10{
                 flex: 0 0 auto;
                 width: 83.33333333%;
+            }
+            .modal-xlM{
+                max-width: 70%;
             }
         }
     </style>
@@ -267,7 +273,7 @@
 
             <!-- Modal Nueva tarea -->                            
             <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskNew">
-                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-xlM" role="document">
                     <div class="modal-content rounded-4 shadow">
                         <div class="modal-header p-5 pb-4 border-bottom-0">
                             <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">Nueva tarea</h1>
