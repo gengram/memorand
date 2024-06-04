@@ -88,5 +88,4 @@
         newMessage.textContent = msg;
         chatter.appendChild(newMessage);
     }
-    
 })(window, document, JSON);

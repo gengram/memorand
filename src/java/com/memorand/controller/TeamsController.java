@@ -124,8 +124,10 @@ public class TeamsController
 
         String user_type = user.getUser_type();
 
-        if (user_type != null) {
-            switch (user_type) {
+        if (user_type != null)
+        {
+            switch (user_type)
+            {
                 case "ch":
                     teams = teamm.getTeamsByUserChief(user_id);
                     break;
@@ -137,15 +139,21 @@ public class TeamsController
             }
         }
 
-        if (teams.isEmpty()) {
+        if (teams.isEmpty())
+        {
             htmlcode = "<p>No hay equipos por mostrar.</p>";
             return htmlcode;
-        } else {
-            for (Team t : teams) {
+        }
+        else
+        {
+            for (Team t : teams)
+            {
                 ProjectsController projc = new ProjectsController();
 
-                if (user_type != null) {
-                    switch (user_type) {
+                if (user_type != null)
+                {
+                    switch (user_type)
+                    {
                         case "ch":
                             hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'class='subtitulo text-end' style='color: #AFB2B3; font-size: 18px;'>Ver rendimiento <i class='bi bi-chevron-right' style='color: #AFB2B3;'></i></a>";
                             break;

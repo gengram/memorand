@@ -103,6 +103,24 @@
         .btnnav{
             border: none; /* Quita todos los bordes de los botones inactivos */
         }
+        
+        .custom-bcollab{
+            display: inline-block;
+            padding: 1px 10px;
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #fff; /* Color del texto */
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #<%=proj_color%>; /* Fondo transparente */
+        }
+        .custom-bcollab:hover {
+            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
+        }
 
         .custom-btarea{
             display: inline-block;
@@ -157,21 +175,20 @@
         /* Estilos para tamaños de pantalla medianos y grandes */
         @media (max-width: 577px) {
             .modal-wIdea{
-                max-width: 50%;
+                max-width: 70%;
+            }
+            .modal-xlM{
+                max-width: 70%;
             }
         }
 
         /* Estilos para tamaños de pantalla pequeños */
         @media (max-width: 2500px) {
             .modal-wIdea{
-                max-width: 50%;
+                max-width: 75%;
             }
-        }
-
-        /* Estilos para tamaños de pantalla medianos y grandes */
-        @media (max-width: 577px) {
-            .modal-wIdea{
-                max-width: 50%;
+            .modal-xlM{
+                max-width: 75%;
             }
         }
 
@@ -494,7 +511,7 @@
         <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea</h3>
+                    <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea: <%=task_name%></h3>
                     <button type="button" class="btn-close btn_info" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-2">
@@ -512,7 +529,10 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-12 text-end">
-                            <button class="btn btn-light rounded-pill me-3" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
+                            <a href="../editar">
+                                
+                            </a>
+                            <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill me-3" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
                             <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
                         </div>
                     </div>
@@ -521,6 +541,76 @@
         </div> 
     </div>
 
+    <!-- Modal Edit -->                    
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskEdit">
+        <div class="modal-dialog modal-dialog-centered modal-xlM" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">
+                        <i data-bs-toggle="modal" data-bs-target="#modalInfo" class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
+                        Editar tarea
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5 pt-2">
+                    <form action="../taskedit?id=<%= task_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <div class="row">
+                            <div class="col-6" >
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                    <input value="<%= task_name %>" type="text" name="task_name" id="task_name" class="form-control-sm rounded-3" placeholder="Deberes.." required>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label class="form-label ms-4">Prioridad</label>
+                                    <select name="task_prior" id="task_prior" class="form-select ms-4" style="border-color: #E3E4E5;" required>
+                                        <option value="" disabled selected hidden>Selecciona uno</option>
+                                        <option value="Baja">Baja</option>
+                                        <option value="Media">Media</option>
+                                        <option value="Alta">Alta</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label class="form-label">Dificultad</label>
+                                    <select  name="task_diff" id="task_diff" class="form-select me-4" style="border-color: #E3E4E5;" required>
+                                        <option value="" disabled selected hidden>Selecciona uno</option>
+                                        <option value="Sencilla">Sencilla</option>
+                                        <option value="Intermedia">Intermedia</option>
+                                        <option value="Compleja">Compleja</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-11">
+                                <label for="disabledSelect" class="form-label">Descripci&oacute;n</label>
+                                <textarea  class="form-control" name="task_info" id="task_info" rows="7" placeholder="Describe tu tarea" style="resize: none; border-color: #E3E4E5;" required><%= task_info %></textarea>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label for="disabledSelect" class="form-label">Fecha l&iacute;mite</label>
+                                    <input class="form-control-sm" type="datetime-local" name="task_edate" id="task_edate" required>
+                                </div>
+                            </div>
+                            <div class="col-3"></div>
+                            <div class="col-6 mt-5 text-end">
+                                <div class="me-4">
+                                    <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;">Editar tarea</p></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    </div>
+                        
 </body>
 <script>
     window.addEventListener('resize', function () {

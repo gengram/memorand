@@ -152,16 +152,12 @@ public class InstitutionEdit extends HttpServlet
         String limKs = Sanitizante.sanitizar(instFields.get(4).trim());
 
         Institution institution = new Institution(instId, instName, "", instImg, "", limCh, limWk, limGp, limKs);
-        InstitutionsController instController = new InstitutionsController();
+        InstitutionsController instc = new InstitutionsController();
 
-        if (instController.modelUpdateInstitution(institution))
-        {
+        if (instc.modelUpdateInstitution(institution))
             response.sendRedirect("staff/institucion.jsp?id=" + instId);
-        }
         else
-        {
             redirectWithError(response, STAFF_HOME, "Model");
-        }
     }
 
     private void redirectWithError(HttpServletResponse response, String page, String errorCode) throws IOException

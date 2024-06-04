@@ -176,6 +176,10 @@
         <servlet-name>NotesGet</servlet-name>
         <servlet-class>com.memorand.servlets.obtener.NotesGet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TaskEdit</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.TaskEdit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -351,6 +355,10 @@
     <servlet-mapping>
         <servlet-name>NotesGet</servlet-name>
         <url-pattern>/noteget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskEdit</servlet-name>
+        <url-pattern>/taskedit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

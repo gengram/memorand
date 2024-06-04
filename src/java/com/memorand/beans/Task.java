@@ -16,7 +16,18 @@ public class Task implements Serializable
 
     public Task() {}
 
-    public Task(String task_id, String task_name, String task_info, Timestamp task_sdate, Timestamp task_edate, String task_status, String task_prior, String task_diff) {
+    public Task(String task_id, String task_name, String task_info, Timestamp task_edate, String task_prior, String task_diff)
+    {
+        this.task_id = task_id;
+        this.task_name = task_name;
+        this.task_info = task_info;
+        this.task_edate = task_edate;
+        this.task_prior = task_prior;
+        this.task_diff = task_diff;
+    }
+    
+    public Task(String task_id, String task_name, String task_info, Timestamp task_sdate, Timestamp task_edate, String task_status, String task_prior, String task_diff)
+    {
         this.task_id = task_id;
         this.task_name = task_name;
         this.task_info = task_info;
