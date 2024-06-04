@@ -146,6 +146,20 @@
         .hidden {
             display: none;
         }
+        
+        /* Estilos para tamaños de pantalla pequeños */
+        @media (max-width: 2500px) {
+            .modal-wIdea{
+                max-width: 50%;
+            }
+        }
+
+        /* Estilos para tamaños de pantalla medianos y grandes */
+        @media (max-width: 577px) {
+            .modal-wIdea{
+                max-width: 50%;
+            }
+        }
 
         /* Estilos para tamaños de pantalla pequeños */
         @media (max-width: 2500px) {
@@ -176,7 +190,7 @@
                             <a href="collab.jsp?id=<%= collab_id%>" id="backLink">
                                 <div class="card border border-1" style="max-height: 50px;">
                                     <div class="row g-0">
-                                        <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 47px; max-width: 40px">
+                                        <div class="col-md-2 rounded-start" style="background-color: #<%=proj_color%>; max-height: 48px; max-width: 40px">
                                             <i class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
                                         </div>
                                         <div class="col-md-10 ">
@@ -197,7 +211,7 @@
                         <div class="col-5 mt-2">
                             <div class="card border border-1" style="max-height: 50px;">
                                 <div class="row g-0">
-                                    <div class="col-md-2 rounded-start" style="background-color: #<%=task_color%>; max-height: 47px; max-width: 40px"></div>
+                                    <div class="col-md-2 rounded-start" style="background-color: #<%=task_color%>; max-height: 48px; max-width: 40px"></div>
                                     <div class="col-md-10 ">
                                         <div class="card-header" style="background-color: transparent;">
                                             <p class="titulo ali ms-4 mb-0" style="color: #2A2927; font-size: 20px;">

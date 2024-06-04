@@ -120,7 +120,10 @@
             }
             .capa6 {
                 top: 90.5%;
+<<<<<<< HEAD
+=======
                 align-content: center;
+>>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                 z-index: 6;
                 position: absolute;
             }
@@ -214,7 +217,11 @@
         </div>
         <div class="container">
             <div class="row">
+<<<<<<< HEAD
+                <div class="col-2">
+=======
                 <div class="col-1">
+>>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                     <div class="btn-group dropend capa2 start-0 ms-4">
                         <button type="button" class="btn btn-light rounded-2 des" style="border-color: #E3E4E5" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-list" style="font-size: 25px"></i>
@@ -232,17 +239,24 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
+                <div class="col-4" style="background-color: #25ce7b">
+                    <div class="capa5">
+                        <a href="tarea.jsp?id=<%= task_id%>">
+                            <div class="btn-group me-5 mb-2" id="clearStorageButton" role="group" aria-label="Default button group">
+=======
                 <div class="col-4" >
                     <div class="capa5 ms-5">
                         <a href="tarea.jsp?id=<%= task_id%>">
                             <div class="btn-group mb-2" role="group" aria-label="Default button group">
+>>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                                 <button type="button" class="btn" style="background-color: #AFB2B3;"><i class="bi bi-chevron-left ms-1" style="color: #fff; font-size: 20px"></i></button>
                                 <button type="button" class="btn border-2" style="border-color: #AFB2B3" disabled><b class="ms-1 me-4" style="color: #000"><%=canva_name%></b></button>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="btn-group invis capa1 shadow-lg" role="group" aria-label="Basic radio toggle button group">
                         <button id="openModalButton" type="button" class="btn btn-h des"><i class="bi bi-boxes icon-tools"></i></button>
 
@@ -442,10 +456,18 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 capa6 text-end">
+                    <button type="button" class="btn btn-h des me-5" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-chat-square-dots" style="font-size: 22px"></i></button>
+=======
         <div class="container-fluid">
             <div class="row text-end">
                 <div class="col-12 capa6">
                     <button type="button" class="btn btn-h des" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-chat-square-dots" style="font-size: 22px"></i></button>
+>>>>>>> a68b2d9d1018e7fe6f125b4383483fa765240808
                 </div>
             </div>
         </div>
@@ -576,20 +598,44 @@
         </div>
     </div>
 
+    <style>
+        /* Solo para asegurar que el modal no se muestre en pantallas pequeñas */
+        @media (max-width: 576px) {
+            #myModal {
+                display: none;
+            }
+        }
+    </style>
     <!-- Incluye jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Incluye Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-                            // Función para mostrar el modal al cargar la página
-                            $(document).ready(function () {
-                                $('#myModal').modal('show');
-                            });
+        // Función para mostrar el modal al cargar la página, solo si no es una pantalla pequeña y si es la primera vez
+        $(document).ready(function () {
+            if ($(window).width() > 576 && !localStorage.getItem('modalShown')) {
+                $('#myModal').modal('show');
+                localStorage.setItem('modalShown', 'true');
+            }
+        });
 
-                            // Función para mostrar el modal al hacer clic en el botón
-                            $('#openModalButton').click(function () {
-                                $('#myModal').modal('show');
-                            });
+        // Función para mostrar el modal al hacer clic en el botón, solo si no es una pantalla pequeña
+        $('#openModalButton').click(function () {
+            if ($(window).width() > 576) {
+                $('#myModal').modal('show');
+            }
+        });
+
+        // Recalcular el tamaño de la ventana cuando se redimensiona para ocultar el modal si cambia a tamaño pequeño
+        $(window).resize(function () {
+            if ($(window).width() <= 576) {
+                $('#myModal').modal('hide');
+            }
+        });
+        // Función para eliminar el almacenamiento interno al hacer clic en el botón
+        $('#clearStorageButton').click(function () {
+            localStorage.removeItem('modalShown');
+        });
     </script>
 
     <script>
