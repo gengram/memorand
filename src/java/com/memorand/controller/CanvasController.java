@@ -29,10 +29,10 @@ public class CanvasController {
     }
 
     public String workGetCanvasByTask(String task_id) {
-        String htmlcode = "<div class='row'>"
+        String htmlcode = "<div class='row mt-2'>"
                 + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "<div class='col-lg-10'>"
-                + "<h3>Lienzos del equipo</h3>"
+                + "<h4>Lienzos del equipo</h4>"
                 + "</div>"
                 + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "</div>";
@@ -50,7 +50,7 @@ public class CanvasController {
                     + "</div>";
             return htmlcode;
         } else {
-            htmlcode += "<diV class='row'>"
+            htmlcode += "<diV class='row mt-3'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
                     + "<table class='table mb-5'>"

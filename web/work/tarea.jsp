@@ -295,7 +295,7 @@
         <div id="content" style="position: relative;">
             <!-- IDEAS -->
             <div id="ideas_content" class="content">
-                <div class="row mt-2">
+                <div class="row mt-0">
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
                         <div class="row">
@@ -324,10 +324,10 @@
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
 
-                <div class="row mt-1 mb-3" >
+                <div class="row mt-2 mb-3" >
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
-                        <h3>Lluvia de ideas</h3>
+                        <h4>Lluvia de ideas</h4>
                     </div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
@@ -336,12 +336,12 @@
             </div>
             <!-- NOTAS -->    
             <div id="notes_content" class="content hidden">
-                <div class="row mt-2">
+                <div class="row mt-0">
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="col-5">
-                                <h4 class=" mt-2">Crear nota</h4>
+                                <h4 class=" mt-2">Crear nota r&aacute;pida</h4>
                                 <div class="mt-3">
                                     <div class="card border" style="width: 16rem; background-color: #F8F9FA; border-color: #AFB2B3;">
                                         <div class="card-body text-center">
@@ -363,12 +363,11 @@
                     <div class="col-lg-10"><hr class="mt-4"></div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
-
                 <%= notec.workGetNotesByTask(task_id)%>
             </div>
             <!-- LIENZOS -->    
             <div id="canvas_content" class="content hidden">
-                <div class="row mt-2">
+                <div class="row mt-0">
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
                         <div class="row">
