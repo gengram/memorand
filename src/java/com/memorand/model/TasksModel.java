@@ -290,4 +290,31 @@ public class TasksModel extends Conexion
         
         return flag;
     }
+    
+    public boolean updateTaskStatus(String t_id, String t_status)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE tasks SET task_status = ? WHERE task_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, t_status);
+            ps.setString(2, t_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        return flag;
+    }
 }

@@ -1,4 +1,9 @@
-<!-- Memorand by Gengram © 2023 -->
+<!-- Memorand by Gengram © 2023 --> 
+
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="com.memorand.controller.UsersController"%>
 <%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
@@ -12,7 +17,11 @@
 <%
     String collab_id = request.getParameter("id");
     String user_id = (String) session.getAttribute("user_id");
-
+    
+    // TEST HORA ACTUAL
+    Date now = new Date();
+    Timestamp timestamp = new Timestamp(now.getTime());
+    
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";
 
@@ -196,6 +205,8 @@
     <body>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
+        
+        <p class="ms-5 mt-4" style="color: #2A2927;">DEBUG TMST SERVIDOR: <%= timestamp %> - COMPARAR CON HORA ACTUAL CENTRO DE MEXICO PARA DEPLOYMENT - ELIMINAR DESPUES DEL TEST</p>
 
         <div class="container">
             <div class="row mt-4">

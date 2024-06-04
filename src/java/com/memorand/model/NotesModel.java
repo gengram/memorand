@@ -209,9 +209,7 @@ public class NotesModel extends Conexion
             ps.setString(3, n_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)

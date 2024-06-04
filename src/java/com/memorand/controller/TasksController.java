@@ -2,8 +2,10 @@ package com.memorand.controller;
 
 import com.memorand.beans.Task;
 import com.memorand.model.TasksModel;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class TasksController
@@ -60,9 +62,48 @@ public class TasksController
             for (int i = 0; i < tasks.size(); i++)
             {
                 Task t = tasks.get(i);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
-                String task_sdate = sdf.format(t.getTask_sdate());
-                String task_edate = sdf.format(t.getTask_edate());
+                
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
+                SimpleDateFormat sdf2 = new SimpleDateFormat("dd 'de' MMMM 'a la(s):' hh:mm", new Locale("es"));
+                
+                String task_sdate = sdf1.format(t.getTask_sdate());
+                String task_edate = sdf2.format(t.getTask_edate());
+                
+                String task_status = t.getTask_status();
+                String new_task_status = "";
+                
+                if (task_status.equals("Incompleta") || task_status.equals("Atrasada"))
+                {
+                    Date now = new Date();
+                    Timestamp now_date = new Timestamp(now.getTime());
+                    
+                    if (!now_date.before(t.getTask_edate()))
+                        new_task_status = "Atrasada";
+                    else
+                        new_task_status = "Incompleta";
+                    
+                    TasksModel taskm1 = new TasksModel();
+                    taskm1.updateTaskStatus(t.getTask_id(), new_task_status);
+                }
+                
+                String status_color = "";
+                
+                switch (task_status)
+                {
+                    case "Incompleta":
+                        status_color = "#fd8d48";
+                        break;
+                    case "Fuera de plazo":
+                    case "Atrasada":
+                        status_color = "#ea3323";
+                        break;
+                    case "Completada":
+                        status_color = "#63cb83";
+                        break;
+                    default:
+                        status_color = "black";
+                        break;
+                }
 
                 if (i % 2 == 0)
                 {
@@ -82,7 +123,7 @@ public class TasksController
                         + "</div>\n"
                         + "</div>\n"
                         + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Fecha L&iacute;mite: </texto><texto style=\"color: #2A2927;\">" + task_edate + "</texto></p>\n"
-                        + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color: #F3894D;\">" + t.getTask_status() + "</texto></p>\n"
+                        + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color:"+ status_color +";\">" + t.getTask_status() + "</texto></p>\n"
                         + "<div class=\"row\">\n"
                         + "<div class=\"col-6 \">\n"
                         + "<p class=\"custom-p\"><texto style=\"color: #AFB2B3;margin-left:  0.5rem\">Prioridad: </texto><b style=\"color: #2A2927;\">" + t.getTask_prior() + "</b></p>\n"
