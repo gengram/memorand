@@ -19,11 +19,6 @@
     String collab_id = request.getParameter("id");
     String user_id = (String) session.getAttribute("user_id");
     
-    // TEST HORA ACTUAL
-    Date now = new Date();
-    Timestamp timestamp = new Timestamp(now.getTime());
-    timestamp = TimeTransformer.convertToTimeZone(timestamp, 6);
-    
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";
 
@@ -207,8 +202,6 @@
     <body>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
-        
-        <p class="ms-5 mt-4" style="color: #2A2927;">DEBUG TMST SERVIDOR: <%= timestamp %> - COMPARAR CON HORA ACTUAL CENTRO DE MEXICO PARA DEPLOYMENT - ELIMINAR DESPUES DEL TEST</p>
 
         <div class="container">
             <div class="row mt-4">

@@ -8,6 +8,7 @@ import com.memorand.controller.TaskIdeasController;
 import com.memorand.controller.UserIdeasController;
 import com.memorand.util.Generador;
 import com.memorand.util.Sanitizante;
+import com.memorand.util.TimeTransformer;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -83,6 +84,7 @@ public class IdeaNew extends HttpServlet
                     idea_text = Sanitizante.sanitizar(idea_text);
                     
                     Timestamp idea_date = new Timestamp(System.currentTimeMillis());
+                    idea_date = TimeTransformer.convertToTimeZone(idea_date, 6);
                     
                     Idea idea = new Idea(idea_id, idea_text, idea_date, idea_color);
                     IdeasController ideac = new IdeasController();

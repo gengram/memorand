@@ -1,6 +1,7 @@
 package com.memorand.model;
 
 import com.memorand.beans.Note;
+import com.memorand.util.TimeTransformer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -196,16 +197,11 @@ public class NotesModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
-        
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(currentTimestamp);
-            cal.add(Calendar.HOUR_OF_DAY, -1);
-            
-            Timestamp newTimestamp = new Timestamp(cal.getTimeInMillis());
-            
+            Timestamp note_mdate = new Timestamp(System.currentTimeMillis());
+            note_mdate = TimeTransformer.convertToTimeZone(note_mdate, 6);
+       
             ps.setString(1, n_text);
-            ps.setTimestamp(2, newTimestamp);
+            ps.setTimestamp(2, note_mdate);
             ps.setString(3, n_id);
             
             if (ps.executeUpdate() == 1)

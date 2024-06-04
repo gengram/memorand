@@ -8,6 +8,7 @@ import com.memorand.controller.TaskNotesController;
 import com.memorand.controller.UserNotesController;
 import com.memorand.util.Generador;
 import com.memorand.util.Sanitizante;
+import com.memorand.util.TimeTransformer;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -73,6 +74,9 @@ public class NoteNew extends HttpServlet
                     
                     Timestamp note_cdate = new Timestamp(System.currentTimeMillis());
                     Timestamp note_mdate = new Timestamp(System.currentTimeMillis());
+                    
+                    note_cdate = TimeTransformer.convertToTimeZone(note_cdate, 6);
+                    note_mdate = TimeTransformer.convertToTimeZone(note_mdate, 6);
                     
                     Note note = new Note(note_id, note_name, "", note_cdate, note_mdate, "Privado");
                     NotesController notec = new NotesController();

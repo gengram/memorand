@@ -9,6 +9,7 @@ import com.memorand.controller.UserPostsController;
 import com.memorand.util.Generador;
 import com.memorand.util.HtmlEscapes;
 import com.memorand.util.Sanitizante;
+import com.memorand.util.TimeTransformer;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -80,6 +81,7 @@ public class PostNew extends HttpServlet
                     String collab_id = request.getParameter("id");
                     
                     Timestamp ts = new Timestamp(System.currentTimeMillis());
+                    ts = TimeTransformer.convertToTimeZone(ts, 6);
                     
                     Post post = new Post(post_id, post_text,0,0,0,ts);
                     PostsController postc = new PostsController();

@@ -7,6 +7,7 @@ import com.memorand.controller.CanvasController;
 import com.memorand.controller.TaskCanvasController;
 import com.memorand.controller.UserCanvasController;
 import com.memorand.util.Generador;
+import com.memorand.util.TimeTransformer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
@@ -72,6 +73,9 @@ public class CanvaNew extends HttpServlet
                     
                     Timestamp canva_cdate = new Timestamp(System.currentTimeMillis());
                     Timestamp canva_mdate = new Timestamp(System.currentTimeMillis());
+                    
+                    canva_cdate = TimeTransformer.convertToTimeZone(canva_cdate, 6);
+                    canva_mdate = TimeTransformer.convertToTimeZone(canva_mdate, 6);
                     
                     Canva canva = new Canva(canva_id, canva_name, "", canva_cdate, canva_mdate, "Privado");
                     CanvasController canvac = new CanvasController();

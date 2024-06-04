@@ -1,12 +1,12 @@
 package com.memorand.model;
 
 import com.memorand.beans.Canva;
+import com.memorand.util.TimeTransformer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class CanvasModel extends Conexion
 {
@@ -166,16 +166,11 @@ public class CanvasModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
-            
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(currentTimestamp);
-            cal.add(Calendar.HOUR_OF_DAY, -1);
-            
-            Timestamp newTimestamp = new Timestamp(cal.getTimeInMillis());
+            Timestamp canva_mdate = new Timestamp(System.currentTimeMillis());
+            canva_mdate = TimeTransformer.convertToTimeZone(canva_mdate, 6);
             
             ps.setString(1, c_draw);
-            ps.setTimestamp(2, newTimestamp);
+            ps.setTimestamp(2, canva_mdate);
             ps.setString(3, c_id);
             
             if (ps.executeUpdate() == 1)
