@@ -34,7 +34,7 @@ public class PostsGet extends HttpServlet
             switch (reqby)
             {
                 case "collab":
-                    htmlContent = postc.modelGetPosts(user_id, collab);
+                    htmlContent = postc.workGetPostsByCollab(user_id, collab);
                     out.println(htmlContent);
                     break;
                     

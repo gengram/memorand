@@ -4,9 +4,9 @@ import com.memorand.beans.TeamUser;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class TeamUsersModel extends Conexion {
-    
-    public boolean createTeamUser(TeamUser teamuser)
+public class TeamUsersModel extends Conexion
+{
+    public boolean createTeamUser(TeamUser tu)
     {
         boolean flag = false;
         
@@ -18,13 +18,11 @@ public class TeamUsersModel extends Conexion {
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, teamuser.getTeam_id());
-            ps.setString(2, teamuser.getUser_id());
+            ps.setString(1, tu.getTeam_id());
+            ps.setString(2, tu.getUser_id());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -62,9 +60,7 @@ public class TeamUsersModel extends Conexion {
             ps.setString(2, team_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)

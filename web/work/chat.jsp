@@ -25,11 +25,11 @@
         Timestamp canva_cdate, canva_mdate;
 
         CanvasController canvac = new CanvasController();
-        Canva canva = canvac.modelGetCanvaById(canva_id);
+        Canva canva = canvac.beanGetCanva(canva_id);
 
         if (canva != null) {
             TasksController taskc = new TasksController();
-            Task task = taskc.modelgetTaskByTool("canvas", "canva_id", canva_id);
+            Task task = taskc.beanGetTaskByTool("canvas", "canva_id", canva_id);
 
             task_id = task.getTask_id();
 

@@ -18,11 +18,11 @@
         Timestamp note_cdate, note_mdate;
 
         NotesController notec = new NotesController();
-        Note note = notec.modelGetNoteById(note_id);
+        Note note = notec.beanGetNote(note_id);
 
         if (note != null) {
             TasksController taskc = new TasksController();
-            Task task = taskc.modelgetTaskByTool("notes", "note_id", note_id);
+            Task task = taskc.beanGetTaskByTool("notes", "note_id", note_id);
 
             task_id = task.getTask_id();
 

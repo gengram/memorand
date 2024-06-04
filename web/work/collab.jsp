@@ -1,4 +1,9 @@
-<!-- Memorand by Gengram © 2023 -->
+<!-- Memorand by Gengram © 2023 --> 
+
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="com.memorand.controller.UsersController"%>
 <%@page import="com.memorand.controller.PostsController"%>
 <%@page import="com.memorand.beans.Project"%>
@@ -12,7 +17,11 @@
 <%
     String collab_id = request.getParameter("id");
     String user_id = (String) session.getAttribute("user_id");
-
+    
+    // TEST HORA ACTUAL
+    Date now = new Date();
+    Timestamp timestamp = new Timestamp(now.getTime());
+    
     // VARIABLES EQUIPO
     String team_id = "null", team_name = "null", team_color = "null";
 
@@ -23,10 +32,10 @@
         response.sendRedirect("home.jsp");
     } else {
         TeamsController teamc = new TeamsController();
-        Team team = teamc.modelGetTeamInfoByCollab(collab_id);
+        Team team = teamc.beanGetTeamByCollab(collab_id);
 
         ProjectsController projc = new ProjectsController();
-        Project proj = projc.modelGetProjectInfoByCollab(collab_id);
+        Project proj = projc.beanGetProjectByCollab(collab_id);
 
         if (team == null || proj == null) {
             response.sendRedirect("home.jsp");
@@ -196,6 +205,8 @@
     <body>
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_work.jspf"/>
+        
+        <p class="ms-5 mt-4" style="color: #2A2927;">DEBUG TMST SERVIDOR: <%= timestamp %> - COMPARAR CON HORA ACTUAL CENTRO DE MEXICO PARA DEPLOYMENT - ELIMINAR DESPUES DEL TEST</p>
 
         <div class="container">
             <div class="row mt-4">
@@ -325,9 +336,11 @@
                                             <input class="form-control-sm" type="datetime-local" name="task_edate" id="task_edate" required>
                                         </div>
                                     </div>
-                                    <div class="col-6"></div>
-                                    <div class="col-3 mt-4 text-center">
-                                        <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva tarea</p></button>
+                                    <div class="col-3"></div>
+                                    <div class="col-6 mt-5 text-end">
+                                        <div class="me-4">
+                                            <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;"> <i class="bi bi-plus-lg me-2" style="font-size: 18px;"></i>Nueva tarea</p></button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -356,7 +369,7 @@
                     case "posts":
                         PostsController postc1 = new PostsController();
                 %>
-                <%= postc1.modelGetPosts(user_id, collab_id)%>
+                <%= postc1.workGetPostsByCollab(user_id, collab_id)%>
 
                 <%
                         break;

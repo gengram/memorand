@@ -5,10 +5,10 @@ import com.memorand.model.CoPostsModel;
 
 public class CoPostsController
 {
-    public boolean modelCreateCoPost(CoPost copost)
+    public boolean modelCreateCoPost(CoPost cp)
     {
         CoPostsModel copostm = new CoPostsModel();
-        return copostm.createCoPost(copost);
+        return copostm.createCoPost(cp);
     }
     
     public boolean modelDeleteUserPost(String collab_id, String post_id)

@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 public class NotesModel extends Conexion
 {
-    public boolean createNote(Note note)
+    public boolean createNote(Note n)
     {
         boolean flag = false;
         
@@ -22,17 +22,15 @@ public class NotesModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, note.getNote_id());
-            ps.setString(2, note.getNote_name());
-            ps.setString(3, note.getNote_text());
-            ps.setTimestamp(4, note.getNote_cdate());
-            ps.setTimestamp(5, note.getNote_mdate());
-            ps.setString(6, note.getNote_status());
+            ps.setString(1, n.getNote_id());
+            ps.setString(2, n.getNote_name());
+            ps.setString(3, n.getNote_text());
+            ps.setTimestamp(4, n.getNote_cdate());
+            ps.setTimestamp(5, n.getNote_mdate());
+            ps.setString(6, n.getNote_status());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -54,7 +52,7 @@ public class NotesModel extends Conexion
         return flag; 
     }
     
-    public Note getNoteById(String n_id)
+    public Note getNote(String n_id)
     {
         Note note = null;
         
@@ -102,7 +100,7 @@ public class NotesModel extends Conexion
         return note;
     }
     
-    public String getNoteTextById(String n_id)
+    public String getNoteText(String n_id)
     {
         String note_text = null;
         
@@ -134,17 +132,17 @@ public class NotesModel extends Conexion
     
     public ArrayList<Note> getNotesByTask(String task_id)
     {
-        ArrayList<Note> notes = new ArrayList<>();
+        ArrayList<Note> all_notes = new ArrayList<>();
         
         PreparedStatement ps;
         
         try
         {
             String sql = "SELECT n.note_id, n.note_name, n.note_text, n.note_cdate, n.note_mdate, n.note_status "
-                    + "FROM notes n "
-                    + "INNER JOIN tasknotes t ON n.note_id = t.note_id "
-                    + "WHERE t.task_id = ? "
-                    + "ORDER BY n.note_mdate DESC";
+                       + "FROM notes n "
+                       + "INNER JOIN tasknotes t ON n.note_id = t.note_id "
+                       + "WHERE t.task_id = ? "
+                       + "ORDER BY n.note_mdate DESC";
             
             ps = getConnection().prepareStatement(sql);
             
@@ -163,7 +161,7 @@ public class NotesModel extends Conexion
                 
                 Note note = new Note(note_id, note_name, note_text, note_cdate, note_mdate, note_status);
                 
-                notes.add(note);
+                all_notes.add(note);
             }
         }
         
@@ -183,10 +181,10 @@ public class NotesModel extends Conexion
             }
         }
         
-        return notes;
+        return all_notes;
     }
     
-    public boolean updateNoteText(String note_id, String note_text)
+    public boolean updateNoteText(String n_id, String n_text)
     {
         boolean flag = false;
         
@@ -206,19 +204,54 @@ public class NotesModel extends Conexion
             
             Timestamp newTimestamp = new Timestamp(cal.getTimeInMillis());
             
-            ps.setString(1, note_text);
+            ps.setString(1, n_text);
             ps.setTimestamp(2, newTimestamp);
-            ps.setString(3, note_id);
+            ps.setString(3, n_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
         {
             System.err.println(e.getMessage());
+        }
+        
+        return flag;
+    }
+    
+    public boolean deleteNote(String n_id)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "DELETE FROM notesw WHERE note_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, n_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
         }
         
         return flag;

@@ -9,19 +9,22 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
-public class PostsController {
-
-    public boolean modelCreatePost(Post post) {
+public class PostsController
+{
+    public boolean modelCreatePost(Post p)
+    {
         PostsModel postm = new PostsModel();
-        return postm.createPost(post);
+        return postm.createPost(p);
     }
 
-    public boolean modelDeletePost(String post_id) {
+    public boolean modelDeletePost(String p_id)
+    {
         PostsModel postm = new PostsModel();
-        return postm.deletePost(post_id);
+        return postm.deletePost(p_id);
     }
 
-    public String modelGetPosts(String u_id, String collab_id) {
+    public String workGetPostsByCollab(String u_id, String collab_id)
+    {
         String htmlcode = "<div class='row mt-3'>"
                 + "<div class='col-lg-1 d-none d-lg-block'></div>\n"
                 + "<div class='col-lg-10'>"
@@ -41,9 +44,10 @@ public class PostsController {
                 + "</div>";
 
         PostsModel postm = new PostsModel();
-        ArrayList<Post> posts = postm.getAllPostsByCollab(collab_id);
+        ArrayList<Post> posts = postm.getPostsByCollab(collab_id);
 
-        if (posts.isEmpty()) {
+        if (posts.isEmpty())
+        {
             htmlcode += "<div class='row'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -51,12 +55,15 @@ public class PostsController {
                     + "</div>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
-        } else {
+        }
+        else
+        {
             int i = 1;
 
             htmlcode += "<div class='mb-4'>";
 
-            for (Post p : posts) {
+            for (Post p : posts)
+            {
                 String post_id = p.getPost_id();
 
                 UsersModel userm = new UsersModel();
@@ -66,7 +73,8 @@ public class PostsController {
                 String user_name = "Usuario Eliminado";
                 String user_profile = "XM-Uploads/users/profile/default-user.png";
 
-                if (user != null) {
+                if (user != null)
+                {
                     user_id = user.getUser_id();
                     user_name = user.getUser_name() + " " + user.getUser_pat();
                     user_profile = user.getUser_profile();
@@ -74,7 +82,7 @@ public class PostsController {
 
                 String htmldelete = "";
 
-                if (u_id.equals(user_id)) {
+                if (u_id.equals(user_id))
                     htmldelete = "<div class='btn-group dropstart'>"
                             + "<p class='btn custom-p me-2 border-0' data-bs-toggle='dropdown' aria-expanded='false'>"
                             + "<texto style='color: #2A2927;'>"
@@ -85,7 +93,6 @@ public class PostsController {
                             + "<li><a style='color: red;' class='dropdown-item' href='../postdelete?collab_id=" + collab_id + "&post_id=" + post_id + "'><i class='bi bi-trash3 me-2'></i>Eliminar publicación</a></li>\n"
                             + "</ul>\n"
                             + "</div>\n";
-                }
 
                 Instant postInstant = p.getPost_date().toInstant();
                 Instant now = Instant.now();

@@ -6,31 +6,40 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class NotesController {
-
-    public boolean modelCreateNote(Note note) {
-        NotesModel notem = new NotesModel();
-        return notem.createNote(note);
-    }
-    
-    public boolean modelUpdateNoteText(String note_id, String note_text) 
+public class NotesController
+{
+    public boolean modelCreateNote(Note n)
     {
         NotesModel notem = new NotesModel();
-        return notem.updateNoteText(note_id, note_text);
-    }
-
-    public Note modelGetNoteById(String n_id) {
-        NotesModel notem = new NotesModel();
-        return notem.getNoteById(n_id);
+        return notem.createNote(n);
     }
     
-    public String modelGetNoteTextById(String n_id)
+    public boolean modelDeleteNote(String n_id)
     {
         NotesModel notem = new NotesModel();
-        return notem.getNoteTextById(n_id);
+        return notem.deleteNote(n_id);
+    }
+    
+    public boolean modelUpdateNoteText(String n_id, String n_text) 
+    {
+        NotesModel notem = new NotesModel();
+        return notem.updateNoteText(n_id, n_text);
     }
 
-    public String modelGetNotesByTask(String task_id) {
+    public Note beanGetNote(String n_id)
+    {
+        NotesModel notem = new NotesModel();
+        return notem.getNote(n_id);
+    }
+    
+    public String modelGetNoteText(String n_id)
+    {
+        NotesModel notem = new NotesModel();
+        return notem.getNoteText(n_id);
+    }
+
+    public String workGetNotesByTask(String task_id)
+    {
         String htmlcode = "<div class='row'>"
                 + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "<div class='col-lg-10'>"
@@ -42,7 +51,8 @@ public class NotesController {
         NotesModel notem = new NotesModel();
         ArrayList<Note> notes = notem.getNotesByTask(task_id);
 
-        if (notes.isEmpty()) {
+        if (notes.isEmpty())
+        {
             htmlcode +=  "<div class='row mt-3'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -51,7 +61,9 @@ public class NotesController {
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
             return htmlcode;
-        } else {
+        }
+        else
+        {
             htmlcode += "<diV class='row'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -67,7 +79,8 @@ public class NotesController {
                     + "                </thead>\n"
                     + "                <tbody id='table-body'>";
 
-            for (Note n : notes) {
+            for (Note n : notes)
+            {
                 String note_id = n.getNote_id();
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));

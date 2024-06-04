@@ -1,3 +1,5 @@
+<!-- Memorand by Gengram © 2023 -->
+
 <%@page import="com.memorand.controller.CanvasController"%>
 <%@page import="com.memorand.controller.NotesController"%>
 <%@page import="com.memorand.controller.IdeasController"%>
@@ -5,8 +7,6 @@
 <%@page import="com.memorand.controller.ProjectsController"%>
 <%@page import="com.memorand.beans.Collab"%>
 <%@page import="com.memorand.controller.CollabsController"%>
-<!-- Memorand by Gengram © 2023 -->
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Locale"%>
 <%@page import="com.memorand.beans.Task"%>
@@ -24,7 +24,7 @@
         TasksController taskcounter = new TasksController();
 
         TasksController taskc = new TasksController();
-        Task task = taskc.modelGetTaskInfoById(task_id);
+        Task task = taskc.beanGetTask(task_id);
 
         String task_name = "null", task_info = "null", task_status = "null", task_prior = "null", task_diff = "null", task_color = "";
         String s_edate = "null", s_sdate = "null";
@@ -33,12 +33,12 @@
             response.sendRedirect("home.jsp");
         } else {
             CollabsController collabc = new CollabsController();
-            Collab collab = collabc.modelGetCollabInfoByTask(task_id);
+            Collab collab = collabc.beanGetCollabByTask(task_id);
 
             String collab_id = collab.getCollab_id();
 
             ProjectsController projc = new ProjectsController();
-            Project proj = projc.modelGetProjectInfoByCollab(collab_id);
+            Project proj = projc.beanGetProjectByCollab(collab_id);
 
             String proj_name = proj.getProj_name();
             String proj_color = proj.getProj_color();
@@ -122,10 +122,6 @@
             color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
         }
 
-        .modal-custom {
-            max-width: 510px;
-        }
-
         .btn-color {
             border-color: #E3E4E5;
             background-color: transparent;
@@ -151,6 +147,20 @@
             display: none;
         }
         
+        /* Estilos para tamaños de pantalla pequeños */
+        @media (max-width: 2500px) {
+            .modal-wIdea{
+                max-width: 50%;
+            }
+        }
+
+        /* Estilos para tamaños de pantalla medianos y grandes */
+        @media (max-width: 577px) {
+            .modal-wIdea{
+                max-width: 50%;
+            }
+        }
+
         /* Estilos para tamaños de pantalla pequeños */
         @media (max-width: 2500px) {
             .modal-wIdea{
@@ -271,7 +281,7 @@
                                 </div>
                             </div>
                             <div class="col-7 mt-3 text-end">
-                                <text class="me-5">Ideas agregadas: <%= taskcounter.modelGetResourceCount(task_id, "ideas")%></text>
+                                <text class="me-5">Ideas agregadas: <%= taskcounter.modelGetTaskResource(task_id, "ideas")%></text>
                                 <text class="me-4">Agregadas por ti: </text>
                             </div>
                         </div>
@@ -292,7 +302,7 @@
                     </div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
-                <%= ideac.modelGetIdeasByTask(task_id)%>
+                <%= ideac.workGetIdeasByTask(task_id)%>
                 <br>
             </div>
             <!-- NOTAS -->    
@@ -312,7 +322,7 @@
                                 </div>
                             </div>
                             <div class="col-7 mt-3 text-end">
-                                <text class="me-5">Notas agregadas: <%= taskcounter.modelGetResourceCount(task_id, "notes")%></text>
+                                <text class="me-5">Notas agregadas: <%= taskcounter.modelGetTaskResource(task_id, "notes")%></text>
                                 <text class="me-4">Agregadas por ti: </text>
                             </div>
                         </div>
@@ -325,7 +335,7 @@
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
 
-                <%= notec.modelGetNotesByTask(task_id)%>
+                <%= notec.workGetNotesByTask(task_id)%>
             </div>
             <!-- LIENZOS -->    
             <div id="canvas_content" class="content hidden">
@@ -344,7 +354,7 @@
                                 </div>
                             </div>
                             <div class="col-7 mt-3 text-end">
-                                <text class="me-5">Lienzos agregados: <%= taskcounter.modelGetResourceCount(task_id, "canvas")%></text>
+                                <text class="me-5">Lienzos agregados: <%= taskcounter.modelGetTaskResource(task_id, "canvas")%></text>
                                 <text class="me-4">Agregados por ti: </text>
                             </div>
                         </div>
@@ -357,7 +367,7 @@
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
 
-                <%= canvac.modelGetCanvasByTask(task_id)%>
+                <%= canvac.workGetCanvasByTask(task_id)%>
             </div>
         </div>
     </div>

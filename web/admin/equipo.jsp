@@ -21,7 +21,7 @@
     String team_color = null;
 
     if (team_id != null) {
-        team = teamc.modelGetTeamInfoById(team_id);
+        team = teamc.beanGetTeam(team_id);
 
         team_name = team.getTeam_name();
         team_color = team.getTeam_color();
@@ -147,7 +147,6 @@
                                 <div class="col-12 text-start ms-5">
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3; display: none;" name="team_name" id="team_name" required>
                                         <option>Selecciona uno</option>
-                                        <%= teamc.modelGetListTeamsByInst2(inst_id, team_name)%> 
                                     </select>
                                 </div>
                             </div>

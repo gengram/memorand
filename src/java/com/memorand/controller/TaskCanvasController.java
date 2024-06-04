@@ -5,9 +5,15 @@ import com.memorand.model.TaskCanvasModel;
 
 public class TaskCanvasController
 {
-    public boolean modelCreateTaskCanva(TaskCanva taskcanva)
+    public boolean modelCreateTaskCanva(TaskCanva tc)
     {
         TaskCanvasModel taskcanvam = new TaskCanvasModel();
-        return taskcanvam.createTaskCanva(taskcanva);
+        return taskcanvam.createTaskCanva(tc);
+    }
+    
+    public boolean modelDeleteTaskCanva(String task_id, String canva_id)
+    {
+        TaskCanvasModel taskcanvam = new TaskCanvasModel();
+        return taskcanvam.deleteTaskCanva(task_id, canva_id);
     }
 }

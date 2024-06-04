@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class TasksModel extends Conexion
 {
-    public boolean createTask(Task task)
+    public boolean createTask(Task t)
     {
         boolean flag = false;
         
@@ -21,19 +21,17 @@ public class TasksModel extends Conexion
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, task.getTask_id());
-            ps.setString(2, task.getTask_name());
-            ps.setString(3, task.getTask_info());
-            ps.setTimestamp(4, task.getTask_sdate());
-            ps.setTimestamp(5, task.getTask_edate());
-            ps.setString(6, task.getTask_status());
-            ps.setString(7, task.getTask_prior());
-            ps.setString(8, task.getTask_diff());
+            ps.setString(1, t.getTask_id());
+            ps.setString(2, t.getTask_name());
+            ps.setString(3, t.getTask_info());
+            ps.setTimestamp(4, t.getTask_sdate());
+            ps.setTimestamp(5, t.getTask_edate());
+            ps.setString(6, t.getTask_status());
+            ps.setString(7, t.getTask_prior());
+            ps.setString(8, t.getTask_diff());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -55,7 +53,7 @@ public class TasksModel extends Conexion
         return flag;
     }
     
-    public Task getTaskInfoById(String t_id)
+    public Task getTask(String t_id)
     {
         Task task = null;
         
@@ -158,9 +156,9 @@ public class TasksModel extends Conexion
         return task;
     }
     
-    public ArrayList<Task> getAllTasksByCollab(String collab_id, String arg)
+    public ArrayList<Task> getTasksByCollab(String collab_id, String order)
     {
-        ArrayList<Task> all_task = new ArrayList<>();
+        ArrayList<Task> all_tasks = new ArrayList<>();
         
         PreparedStatement ps;
         
@@ -170,7 +168,7 @@ public class TasksModel extends Conexion
                          "FROM tasks t " +
                          "INNER JOIN cotasks c ON t.task_id = c.task_id " +
                          "WHERE c.collab_id = ? " +
-                         "ORDER BY t."+arg;
+                         "ORDER BY t."+order;
             
             ps = getConnection().prepareStatement(sql);
             
@@ -191,7 +189,7 @@ public class TasksModel extends Conexion
                 
                 Task task = new Task(task_id, task_name, task_info, task_sdate, task_edate, task_status, task_prior, task_diff);
                 
-                all_task.add(task);
+                all_tasks.add(task);
             }
         }
         
@@ -211,10 +209,52 @@ public class TasksModel extends Conexion
             }
         }
         
-        return all_task;
+        return all_tasks;
     }
     
-    public boolean isAnyTaskByCollab(String collab_id)
+    public int getTaskResource(String t_id, String resource)
+    {
+        int count = 0;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql;
+            
+            switch (resource)
+            {
+                case "ideas":
+                    sql = "SELECT COUNT(*) AS count FROM taskideas WHERE task_id = ?";
+                    break;
+                case "notes":
+                    sql = "SELECT COUNT(*) AS count FROM tasknotes WHERE task_id = ?";
+                    break;
+                case "canvas":
+                    sql = "SELECT COUNT(*) AS count FROM taskcanvas WHERE task_id = ?";
+                    break;
+                default:
+                    return count;
+            }
+            
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, t_id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                count = rs.getInt("count");
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        return count;
+    }
+    
+    public boolean deleteTask(String t_id)
     {
         boolean flag = false;
         
@@ -222,18 +262,14 @@ public class TasksModel extends Conexion
         
         try
         {
-            String sql1 = "SELECT task_id FROM cotasks WHERE collab_id = ?";
+            String sql = "DELETE FROM tasks WHERE task_id = ?";
             
-            ps = getConnection().prepareStatement(sql1);
+            ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, collab_id);
+            ps.setString(1, t_id);
             
-            ResultSet rs = ps.executeQuery();
-            
-            if (rs.next())
-            {
+            if (ps.executeUpdate() == 1)
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -255,45 +291,30 @@ public class TasksModel extends Conexion
         return flag;
     }
     
-    public int getResourceCount(String task_id, String res_name)
+    public boolean updateTaskStatus(String t_id, String t_status)
     {
-        int count = 0;
+        boolean flag = false;
         
         PreparedStatement ps;
         
         try
         {
-            String sql;
-            
-            switch (res_name)
-            {
-                case "ideas":
-                    sql = "SELECT COUNT(*) AS count FROM taskideas WHERE task_id = ?";
-                    break;
-                case "notes":
-                    sql = "SELECT COUNT(*) AS count FROM tasknotes WHERE task_id = ?";
-                    break;
-                case "canvas":
-                    sql = "SELECT COUNT(*) AS count FROM taskcanvas WHERE task_id = ?";
-                    break;
-                default:
-                    return count;
-            }
+            String sql = "UPDATE tasks SET task_status = ? WHERE task_id = ?";
             
             ps = getConnection().prepareStatement(sql);
-            ps.setString(1, task_id);
-
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next())
-                count = rs.getInt("count");
+            
+            ps.setString(1, t_status);
+            ps.setString(2, t_id);
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
         }
         
         catch (SQLException e)
         {
             System.err.println(e.getMessage());
         }
-
-        return count;
+        
+        return flag;
     }
 }

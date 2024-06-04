@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-public class PostsModel extends Conexion {
-    
-    public boolean createPost(Post post)
+public class PostsModel extends Conexion
+{
+    public boolean createPost(Post p)
     {
         boolean flag = false;
         
@@ -21,18 +21,15 @@ public class PostsModel extends Conexion {
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, post.getPost_id());
-            ps.setString(2, post.getPost_text());
-            ps.setInt(3, post.getPost_r1());
-            ps.setInt(4, post.getPost_r2());
-            ps.setInt(5, post.getPost_r3());
-            ps.setTimestamp(6, post.getPost_date());
+            ps.setString(1, p.getPost_id());
+            ps.setString(2, p.getPost_text());
+            ps.setInt(3, p.getPost_r1());
+            ps.setInt(4, p.getPost_r2());
+            ps.setInt(5, p.getPost_r3());
+            ps.setTimestamp(6, p.getPost_date());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
-            
         }
         
         catch (SQLException e)
@@ -52,10 +49,9 @@ public class PostsModel extends Conexion {
         }
         
         return flag;
-    
     }
     
-    public boolean deletePost(String post_id)
+    public boolean deletePost(String p_id)
     {
         boolean flag = false;
         
@@ -67,12 +63,10 @@ public class PostsModel extends Conexion {
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, post_id);
+            ps.setString(1, p_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -94,19 +88,19 @@ public class PostsModel extends Conexion {
         return flag;
     }
     
-    public ArrayList<Post> getAllPostsByCollab(String collab_id)
+    public ArrayList<Post> getPostsByCollab(String collab_id)
     {
-        ArrayList<Post> all_post = new ArrayList<>();
+        ArrayList<Post> all_posts = new ArrayList<>();
         
         PreparedStatement ps;
     
         try
         {
             String sql = "SELECT p.post_id, p.post_text, p.post_r1, p.post_r2, p.post_r3, p.post_date "
-                    + "FROM posts p "
-                    + "INNER JOIN coposts c ON p.post_id = c.post_id "
-                    + "WHERE c.collab_id = ? "
-                    + "ORDER BY p.post_date DESC";
+                       + "FROM posts p "
+                       + "INNER JOIN coposts c ON p.post_id = c.post_id "
+                       + "WHERE c.collab_id = ? "
+                       + "ORDER BY p.post_date DESC";
 
             ps = getConnection().prepareStatement(sql);
             ps.setString(1, collab_id);
@@ -124,7 +118,7 @@ public class PostsModel extends Conexion {
 
                 Post post = new Post(post_id, post_text, post_r1, post_r2, post_r3, post_date);
 
-                all_post.add(post);
+                all_posts.add(post);
             }
         }
         
@@ -144,7 +138,6 @@ public class PostsModel extends Conexion {
             }
         }
         
-        return all_post;
-
+        return all_posts;
     }
 }

@@ -188,7 +188,7 @@ public class UserNew extends HttpServlet
                 InUser inUser = new InUser(instId, userId);
                 InUsersController inUsersController = new InUsersController();
 
-                if (inUsersController.modelCreateInUsers(inUser))
+                if (inUsersController.modelCreateInUser(inUser))
                 {
                     response.sendRedirect(redirectPage);
                 }

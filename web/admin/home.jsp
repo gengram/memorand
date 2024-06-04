@@ -270,7 +270,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id="table-bodyProyecto">
-                                        <%= projc.modelGetAllProjectsByInst(inst_id)%>
+                                        <%= projc.adminGetProjectsByInstitution(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -301,7 +301,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyEquipo'>
-                                        <%=teamc.modelGetAllTeamsByInst(inst_id)%>
+                                        <%=teamc.adminGetTeamsByInstitution(inst_id)%>
                                     </tbody>
                                 </table>
                             </div>
@@ -311,51 +311,7 @@
                 </div>             
                 <div id="gestion_content" class="content hidden">
                     <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-10">
-                            <div class="row mb-3 mt-4">
-                                <div class="col-3">
-                                    <button type="submit" class="btn rounded-pill custom-admin me-3" data-bs-toggle="modal" data-bs-target="#modalAsignarProj"><i class="bi bi-plus-lg me-2"></i>Asignar proyecto</button>
-                                </div>
-                                <div class="col-3">
-                                    <a href="gestion/lideres.jsp"><button type="submit" class="btn rounded-pill custom-admin me-3"><i class="bi bi-plus-lg me-2"></i>Asignar lider</button></a>
-                                </div>
-                                <div class="col-3 text-end mt-1" >
-                                    <span>Filtrar por equipo:</span>
-                                </div>
-                                <div class="col-3 text-start" >
-                                    <select class="form-select form-control" style="border-color: #AFB2B3" aria-label="Default select example">
-                                        <option selected>Selecciona uno</option>
-                                        <%= teamc.modelGetAllTeamsByInstRed(inst_id)%>
-                                    </select>
-                                </div>
-                            </div>
-                            <table class="table mt-3" style="text-align: center;">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="text-start"><text class="ms-5">Nombre</text></th>
-                                        <th scope="col" ></th>
-                                    </tr>
-                                </thead>
-                                <tbody  id="table-bodyProyecto">
-                                    <%= projc.modelGetAllProjectsByInst(inst_id)%>
-                                </tbody>
-                            </table>
-                            <!--<h3>Proyectos</h3>
-                            <table border="2" style="text-align: center">
-                                <thead>
-                                    <tr>
-                                        <th>proj_name</th>
-                                        <th>proj_color</th>
-                                        <th>collab_status</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%= projc.modelGetAllProjectsByTeamRed(team_id)%>
-                                </tbody>
-                            </table>-->
-                        </div>
+                        
                     </div>
                     <div class="col-1"></div>
                 </div>
@@ -379,7 +335,7 @@
                                     <label for="exampleInputEmail1" class="form-label">Equipo</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="team_name" id="team_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                                        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>
@@ -388,7 +344,7 @@
                                     <label for="" class="form-label">Proyecto</label>
                                     <select class="form-select form-control-lg" style="border-color: #AFB2B3" name="proj_name" id="proj_name" required>
                                         <option selected>Selecciona uno</option>
-                                        <%= projc.modelGetListProjectsByInst(inst_id)%>
+                                        <%= projc.adminGetProjectsSelectByInstitution(inst_id)%>
                                     </select>
                                 </div>
                             </div>

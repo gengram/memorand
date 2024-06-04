@@ -2,116 +2,34 @@ package com.memorand.controller;
 
 import com.memorand.beans.Task;
 import com.memorand.model.TasksModel;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
-public class TasksController {
-
-    public boolean modelCreateTask(Task task) {
+public class TasksController
+{
+    public boolean modelCreateTask(Task t)
+    {
         TasksModel taskm = new TasksModel();
-        return taskm.createTask(task);
+        return taskm.createTask(t);
     }
 
-    public Task modelGetTaskInfoById(String t_id) {
+    public Task beanGetTask(String t_id)
+    {
         TasksModel taskm = new TasksModel();
-        return taskm.getTaskInfoById(t_id);
+        return taskm.getTask(t_id);
     }
-
-    public boolean modelIsAnyTaskByCollab(String collab_id) {
-        TasksModel taskm = new TasksModel();
-        return taskm.isAnyTaskByCollab(collab_id);
-    }
-
-    public Task modelgetTaskByTool(String tool_table, String tool_name, String tool_id) {
+    
+    public Task beanGetTaskByTool(String tool_table, String tool_name, String tool_id)
+    {
         TasksModel taskm = new TasksModel();
         return taskm.getTaskByTool(tool_table, tool_name, tool_id);
     }
 
-    //DEPRECIADO
-    public String modelGetAllTasksByCollab(String collab_id, String arg) {
-        String htmlcode = "";
-
-        TasksModel taskm = new TasksModel();
-
-        int i = 0;
-
-        for (Task task : taskm.getAllTasksByCollab(collab_id, arg)) {
-            i++;
-
-            SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
-
-            String task_edate = sdf.format(task.getTask_edate());
-            String task_sdate = sdf.format(task.getTask_sdate());
-
-            if (i % 4 == 0) {
-                htmlcode += "<div class='row'>";
-            }
-
-            htmlcode += "<div class='col'>"
-                    + "<p>" + task.getTask_name() + " <a href='tarea.jsp?task_id=" + task.getTask_id() + "'>Ver apuntes</a> </p>"
-                    + "<p> Inicio: " + task_sdate + " - Final: " + task_edate + "</p>"
-                    + "<p> Estatus: " + task.getTask_status() + " Prioridad: " + task.getTask_prior() + " Dificultad: " + task.getTask_diff() + "</p>"
-                    + "</div>";
-
-            if (i % 4 == 0) {
-                htmlcode += "</div>";
-            }
-        }
-
-        return htmlcode;
-    }
-
-    public String modelGetTasksTable(String collab_id, String task_order) {
-        String htmlcode = "<a href='tasknew.jsp?id=" + collab_id + "'>Nueva tarea</a>\n"
-                + "<a href='tagnew.jsp?id=" + collab_id + "'>Nueva etiqueta</a>\n"
-                + "<p>Vista <button id=\"task_panel\">Panel</button> <button id=\"task_table\">Tabla</button></p>"
-                + "<div id=\"tasks_zone\">";
-
-        TasksModel taskm = new TasksModel();
-        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
-
-        if (tasks.isEmpty()) {
-            htmlcode += "<p>No hay tareas por mostrar.</p>";
-        } else {
-            htmlcode += "<table border=\"1\">\n"
-                    + "             <thead>\n"
-                    + "                 <tr>\n"
-                    + "                     <th>Etiqueta</th>\n"
-                    + "                     <th>Nombre</th>\n"
-                    + "                     <th>Fecha l&iacute;mite</th>\n"
-                    + "                     <th>Estatus</th>\n"
-                    + "                     <th>Prioridad</th>\n"
-                    + "                     <th></th>\n"
-                    + "                 </tr>\n"
-                    + "             </thead>\n"
-                    + "             <tbody>";
-
-            for (Task t : tasks) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
-
-                String task_edate = sdf.format(t.getTask_edate());
-
-                htmlcode += "<tr>\n"
-                        + "                               <td></td>\n"
-                        + "                               <td>" + t.getTask_name() + "</td>\n"
-                        + "                               <td>" + task_edate + "</td>\n"
-                        + "                               <td>" + t.getTask_status() + "</td>\n"
-                        + "                               <td>" + t.getTask_prior() + "</td>\n"
-                        + "                               <td><a href='tarea.jsp?id=" + t.getTask_id() + "'>Ver</a></td>\n"
-                        + "                           </tr>";
-            }
-
-            htmlcode += "</tbody>\n"
-                    + "                </table>";
-        }
-
-        htmlcode += "</div>\n";
-
-        return htmlcode;
-    }
-
-    public String modelGetTasksPanel(String collab_id, String task_order) {
+    public String modelGetTasksPanel(String collab_id, String order)
+    {
         String htmlcode
                 = "<div class=\"row mt-4\" >"
                 + " <div class=\"col-lg-1 d-none d-lg-block\" ></div>"
@@ -127,24 +45,68 @@ public class TasksController {
         htmlcode += "<div class=\"row mt-4 mb-2\">";
 
         TasksModel taskm = new TasksModel();
-        ArrayList<Task> tasks = taskm.getAllTasksByCollab(collab_id, task_order);
+        ArrayList<Task> tasks = taskm.getTasksByCollab(collab_id, order);
 
-        if (tasks.isEmpty()) {
+        if (tasks.isEmpty())
+        {
             htmlcode += "<div class='row' class=\"mt-3\">"
-                    + "<div class='col-1'></div>"
-                    + "<div class='col-10'>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
+                    + "<div class='col-lg-10'>"
                     + "<p>No hay tareas por mostrar.</p>"
                     + "</div>"
-                    + "<div class='col-1'></div>"
+                    + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
-        } else {
-            for (int i = 0; i < tasks.size(); i++) {
+        }
+        else
+        {
+            for (int i = 0; i < tasks.size(); i++)
+            {
                 Task t = tasks.get(i);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
-                String task_sdate = sdf.format(t.getTask_sdate());
-                String task_edate = sdf.format(t.getTask_edate());
+                
+                SimpleDateFormat sdf1 = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
+                SimpleDateFormat sdf2 = new SimpleDateFormat("dd 'de' MMMM 'a la(s):' hh:mm", new Locale("es"));
+                
+                String task_sdate = sdf1.format(t.getTask_sdate());
+                String task_edate = sdf2.format(t.getTask_edate());
+                
+                String task_status = t.getTask_status();
+                String new_task_status = "";
+                
+                if (task_status.equals("Incompleta") || task_status.equals("Atrasada"))
+                {
+                    Date now = new Date();
+                    Timestamp now_date = new Timestamp(now.getTime());
+                    
+                    if (!now_date.before(t.getTask_edate()))
+                        new_task_status = "Atrasada";
+                    else
+                        new_task_status = "Incompleta";
+                    
+                    TasksModel taskm1 = new TasksModel();
+                    taskm1.updateTaskStatus(t.getTask_id(), new_task_status);
+                }
+                
+                String status_color = "";
+                
+                switch (task_status)
+                {
+                    case "Incompleta":
+                        status_color = "#fd8d48";
+                        break;
+                    case "Fuera de plazo":
+                    case "Atrasada":
+                        status_color = "#ea3323";
+                        break;
+                    case "Completada":
+                        status_color = "#63cb83";
+                        break;
+                    default:
+                        status_color = "black";
+                        break;
+                }
 
-                if (i % 2 == 0) {
+                if (i % 2 == 0)
+                {
                     htmlcode += "<div class=\"col-lg-1 d-none d-lg-block\"></div>"; // Columna vacía solo en pantallas grandes
                 }
 
@@ -161,7 +123,7 @@ public class TasksController {
                         + "</div>\n"
                         + "</div>\n"
                         + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Fecha L&iacute;mite: </texto><texto style=\"color: #2A2927;\">" + task_edate + "</texto></p>\n"
-                        + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color: #F3894D;\">" + t.getTask_status() + "</texto></p>\n"
+                        + "<p class=\"custom-p ms-2\"><texto style=\"color: #AFB2B3;\">Estatus: </texto><texto style=\"color:"+ status_color +";\">" + t.getTask_status() + "</texto></p>\n"
                         + "<div class=\"row\">\n"
                         + "<div class=\"col-6 \">\n"
                         + "<p class=\"custom-p\"><texto style=\"color: #AFB2B3;margin-left:  0.5rem\">Prioridad: </texto><b style=\"color: #2A2927;\">" + t.getTask_prior() + "</b></p>\n"
@@ -175,25 +137,29 @@ public class TasksController {
 
                 htmlcode += "</div>";
 
-                if (i % 2 == 1) {
+                if (i % 2 == 1)
                     htmlcode += "<div class=\"col-lg-1 d-none d-lg-block\"></div>"; // Columna vacía solo en pantallas grandes
-                }
 
-                if (i % 2 == 1 || i == tasks.size() - 1) {
+                if (i % 2 == 1 || i == tasks.size() - 1)
                     htmlcode += "</div><div class=\"row mt-2 mb-2\">"; // Cerrar y abrir fila después de 2 tarjetas o al final
-                }
             }
         }
 
-// Final cierre de la última fila
+        // Final cierre de la última fila
         htmlcode += "</div>";
 
         return htmlcode;
-
     }
 
-    public String modelGetResourceCount(String task_id, String res_name) {
+    public String modelGetTaskResource(String t_id, String resource)
+    {
         TasksModel taskm = new TasksModel();
-        return String.valueOf(taskm.getResourceCount(task_id, res_name));
+        return String.valueOf(taskm.getTaskResource(t_id, resource));
+    }
+    
+    public boolean modelDeleteTask(String t_id)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.deleteTask(t_id);
     }
 }
