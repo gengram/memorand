@@ -9,7 +9,7 @@
 
 <%
     String canva_id = request.getParameter("id");
-    
+
     String user_id = (String) session.getAttribute("user_id");
     String user_email = (String) session.getAttribute("user_email");
     String user_name = (String) session.getAttribute("user_name");
@@ -456,131 +456,30 @@
                 </div>
             </div>
         </div>
-
+        <h1>CHAT <%= (String) session.getAttribute("canva_id")%></h1>
+        <p id="msg_sender"><%= user_name%> <%= user_pat%> <%= user_mat%></p>
         <div class="offcanvas offcanvas-end shadow" style="background-color: #E3E4E5; opacity: 95%; max-width: 100%; max-height: 88%;" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">
-                    Chat
-                </h5>
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Chat</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="card mx-auto" style="max-width:100%; max-height: 100%;">
-                    <div class="card-body p-4" style="max-height: 100%; overflow: auto;">
-
-                        <div class="d-flex align-items-baseline mb-4">
-                            <div class="position-relative avatar">
-                                <img src="https://nextbootstrap.netlify.app/assets/images/profiles/1.jpg"
-                                     class="img-fluid rounded-circle" alt="">
-                                <span
-                                    class="position-absolute bottom-0 start-100 translate-middle p-1  border border-light rounded-pill">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="pe-2">
-                                <div>
-                                    <div class="card card-text d-inline-block p-2 px-3 m-1">Hi helh, are you available to chat?
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small" style="color: #AFB2B3;">Usuario - 01:10PM</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-baseline mb-4">
-                            <div class="position-relative avatar">
-                                <img src="https://nextbootstrap.netlify.app/assets/images/profiles/1.jpg"
-                                     class="img-fluid rounded-circle" alt="">
-                                <span
-                                    class="position-absolute bottom-0 start-100 translate-middle p-1  border border-light rounded-pill">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="pe-2">
-                                <div>
-                                    <div class="card card-text d-inline-block p-2 px-3 m-1">Hi helh, are you available to chat?
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small" style="color: #AFB2B3;">Usuario - 01:10PM</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                            <div class="pe-2">
-                                <div>
-                                    <div class="card card-text d-inline-block p-2 px-3 m-1">Sure lorem impsum sit amet, dolor forsetum pernice</div>
-                                </div>
-                                <div>
-                                    <div class="card card-text d-inline-block p-2 px-3 m-1">Let me know when you're available?
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small" style="color: #AFB2B3;">Usuario - 01:13PM</div>
-                                </div>
-                            </div>
-                            <div class="position-relative avatar">
-                                <img src="https://nextbootstrap.netlify.app/assets/images/profiles/2.jpg"
-                                     class="img-fluid rounded-circle" alt="">
-                                <span
-                                    class="position-absolute bottom-0 start-100 translate-middle p-1 border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="d-flex align-items-baseline mb-4">
-                            <div class="position-relative avatar">
-                                <img src="https://nextbootstrap.netlify.app/assets/images/profiles/1.jpg"
-                                     class="img-fluid rounded-circle" alt="">
-                                <span
-                                    class="position-absolute bottom-0 start-100 translate-middle p-1  border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                            <div class="pe-2">
-                                <div>
-                                    <div class="card card-text d-inline-block p-2 px-3 m-1">3:00pm??</div>
-                                </div>
-                                <div>
-                                    <div class="small" style="color: #AFB2B3;">Usuario - 01:13PM</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex align-items-baseline text-end justify-content-end mb-4">
-                            <div class="pe-2 mb-5">
-                                <div>
-                                    <div class="card card-text d-inline-block p-2 px-3 m-1 ">Cool</div>
-                                </div>
-                                <div>
-                                    <div class="small" style="color: #AFB2B3;">Usuario - 01:13PM</div>
-                                </div>
-                            </div>
-                            <div class="position-relative avatar">
-                                <img src="https://nextbootstrap.netlify.app/assets/images/profiles/2.jpg"
-                                     class="img-fluid rounded-circle" alt="">
-                                <span
-                                    class="position-absolute bottom-0 start-100 translate-middle p-1  border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </div>
-                        </div>
-
+                    <div class="card-body p-4" id="chatter" style="max-height: 100%; overflow: auto;">
+                        <!-- Mensajes de chat se añadirán aquí -->
                     </div>
                     <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
                         <div class="input-group">
-                            <button  id="submit" class="btn btn-light">
-                                <i class="bi bi-send-fill" style="color: #25ce7b;"></i> <!-- Color del equipo -->
+                            <button id="submit" class="btn btn-light">
+                                <i class="bi bi-send-fill" style="color: #25ce7b;"></i>
                             </button>
                             <input type="text" id="msg_txt" class="form-control border-0" placeholder="Escribe un mensaje...">
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
 
         <script src="scripts/chat.js"></script>
 
@@ -1227,40 +1126,6 @@
                 elementTypeToAdd = 'arrow4';
             });
 
-            // Manejo de SVGs personalizados del usuario
-            /* document.getElementById('uploads-svg').addEventListener('change', function (e) {
-             var files = e.target.files;
-             
-             for (var i = 0; i < files.length; i++) {
-             var file = files[i];
-             var reader = new FileReader();
-             reader.onload = function (event) {
-             var svgString = event.target.result;
-             fabric.loadSVGFromString(svgString, function (objects, options) {
-             objects.forEach(function (obj) {
-             obj.set({
-             left: 100, // Ajusta según sea necesario
-             top: 100  // Ajusta según sea necesario
-             });
-             
-             // Evento para cambiar solo el contorno (stroke) del SVG
-             obj.on('mousedown', function (options) {
-             var color = document.getElementById('color').value;
-             obj.set({
-             stroke: color
-             });
-             canvas.renderAll();
-             });
-             
-             canvas.add(obj);
-             });
-             canvas.renderAll();
-             });
-             };
-             reader.readAsText(file);
-             }
-             }); */
-
             // Contenido del SVG de las arrow
             var svgArrow1 = `<svg viewBox="0 0 32 35" xmlns="http://www.w3.org/2000/svg"><title/><g data-name="Layer 2" id="Layer_2"><path d="M9.05,10.05a1,1,0,0,0,1.42,0l4.6-4.6V35a1,1,0,0,0,2,0V5.48l4.57,4.57a1,1,0,0,0,1.41-1.41L16.69,2.27a.9.9,0,0,0-1.27,0L9.05,8.64A1,1,0,0,0,9.05,10.05Z"/></g></svg>`;
             var svgArrow2 = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
@@ -1312,9 +1177,6 @@
         <g transform="matrix(1.7 0 0 0.98 950.39 170.5)"  >
         <rect style="stroke: rgb(219,246,241); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(219,246,241); fill-rule: nonzero; opacity: 1;"  x="-75" y="-25" rx="25" ry="25" width="150" height="50" />
         </g>
-        <g transform="matrix(1.65 0 0 1.65 951.15 170.97)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(26,31,30); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-24.44" y="6.28" >Título</tspan></text>
-        </g>
         <g transform="matrix(-2.45 2.45 -2.45 -2.45 987.38 234.78)"  >
         <line style="stroke: rgb(81,82,76); stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"  x1="-75" y1="-75" x2="75" y2="75" />
         </g>
@@ -1339,20 +1201,11 @@
         <g transform="matrix(1.13 0 0 1.24 950.21 280.45)"  >
         <rect style="stroke: rgb(190,174,245); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(190,174,245); fill-rule: nonzero; opacity: 1;"  x="-75" y="-25" rx="25" ry="25" width="150" height="50" />
         </g>
-        <g transform="matrix(0.8 0 0 0.8 954.62 279.99)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(29,29,27); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-80.14" y="-6.83" >IDEA PRINCIPAL</tspan><tspan x="-80.14" y="19.39" >DEL PROYECTO</tspan></text>
-        </g>
         <g transform="matrix(1.13 0 0 1.24 622.97 279.78)"  >
         <rect style="stroke: rgb(240,184,233); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(240,182,231); fill-rule: nonzero; opacity: 1;"  x="-75" y="-25" rx="25" ry="25" width="150" height="50" />
         </g>
-        <g transform="matrix(0.8 0 0 0.8 627.8 281.09)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(29,29,27); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-80.14" y="-6.83" >IDEA PRINCIPAL</tspan><tspan x="-80.14" y="19.39" >DEL PROYECTO</tspan></text>
-        </g>
         <g transform="matrix(1.13 0 0 1.24 1357.1 281.47)"  >
         <rect style="stroke: rgb(230,246,175); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(230,246,175); fill-rule: nonzero; opacity: 1;"  x="-75" y="-25" rx="25" ry="25" width="150" height="50" />
-        </g>
-        <g transform="matrix(0.8 0 0 0.8 1360.99 281.41)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(29,29,27); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-80.14" y="-6.83" >IDEA PRINCIPAL</tspan><tspan x="-80.14" y="19.39" >DEL PROYECTO</tspan></text>
         </g>
         <g transform="matrix(0.14 0.14 -0.14 0.14 622.89 420.52)"  >
         <line style="stroke: rgb(83,83,81); stroke-width: 14; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"  x1="-75" y1="-75" x2="75" y2="75" />
@@ -1407,24 +1260,6 @@
         </g>
         <g transform="matrix(0.62 0 0 0.71 1430.23 487.58)"  >
         <rect style="stroke: rgb(230,214,250); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(230,214,250); fill-rule: nonzero; opacity: 1;"  x="-75" y="-25" rx="25" ry="25" width="150" height="50" />
-        </g>
-        <g transform="matrix(0.85 0 0 0.85 554.67 489.28)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,3,3); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-36.67" y="6.28" >Subtítulo</tspan></text>
-        </g>
-        <g transform="matrix(0.85 0 0 0.85 697.12 490.17)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,3,3); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-36.67" y="6.28" >Subtítulo</tspan></text>
-        </g>
-        <g transform="matrix(0.85 0 0 0.85 881.87 489.13)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,3,3); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-36.67" y="6.28" >Subtítulo</tspan></text>
-        </g>
-        <g transform="matrix(0.85 0 0 0.85 1026.99 488.74)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,3,3); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-36.67" y="6.28" >Subtítulo</tspan></text>
-        </g>
-        <g transform="matrix(0.85 0 0 0.85 1287.75 488.99)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,3,3); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-36.67" y="6.28" >Subtítulo</tspan></text>
-        </g>
-        <g transform="matrix(0.85 0 0 0.85 1431.57 487.3)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(3,3,3); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-36.67" y="6.28" >Subtítulo</tspan></text>
         </g>
         <g transform="matrix(0.09 0.09 -0.09 0.09 555.07 520.65)"  >
         <line style="stroke: rgb(83,83,81); stroke-width: 14; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"  x1="-75" y1="-75" x2="75" y2="75" />
@@ -1493,9 +1328,6 @@
         </g>
         <g transform="matrix(3.63 0 0 0.86 965.45 145.74)"  >
         <rect style="stroke: rgb(68,167,167); stroke-width: 2; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"  x="-75" y="-37.5" rx="0" ry="0" width="150" height="75" />
-        </g>
-        <g transform="matrix(1.78 0 0 1.78 965.81 146.64)" style=""  >
-                <text xml:space="preserve" font-family="Times New Roman" font-size="20" font-style="normal" font-weight="normal" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(22,19,19); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-98.51" y="6.28" >MAPA CONCEPTUAL</tspan></text>
         </g>
         <g transform="matrix(-1.86 -0.01 0.01 -2.51 961.12 222.21)"  >
         <path style="stroke: rgb(75,169,169); stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(75,169,169); fill-rule: nonzero; opacity: 1;"  transform=" translate(-16.02, -19)" d="M 9.05 10.05 C 9.237766599905557 10.239312650823097 9.493362463629442 10.34579832434167 9.760000000000002 10.34579832434167 C 10.02663753637056 10.34579832434167 10.282233400094444 10.239312650823097 10.47 10.05 L 15.07 5.450000000000001 L 15.07 35 C 15.07 35.5522847498308 15.517715250169207 36 16.07 36 C 16.622284749830794 36 17.07 35.5522847498308 17.07 35 L 17.07 5.48 L 21.64 10.05 C 22.036760277455702 10.389776795928704 22.628194171545708 10.366932269681033 22.99756322061337 9.99756322061337 C 23.366932269681033 9.628194171545706 23.389776795928704 9.0367602774557 23.05 8.64 L 16.69 2.27 C 16.338849900051684 1.9203855334820534 15.771150099948319 1.9203855334820534 15.420000000000002 2.27 L 9.05 8.64 C 8.662276405289202 9.030037454310923 8.662276405289202 9.659962545689076 9.05 10.05 Z" stroke-linecap="round" />

@@ -88,9 +88,23 @@ public class NotesController
 
                 String note_cdate = sdf1.format(n.getNote_cdate());
                 String note_mdate = sdf2.format(n.getNote_mdate());
+                
+                String htmldelete = "";
+
+                htmldelete = ""
+                        + "<div class='btn-group dropbottom'>"
+                        + " <p class='btn custom-p me-2 border-0' data-bs-toggle='dropdown' aria-expanded='false'>"
+                        + "     <texto style='color: #2A2927;'>"
+                        + "         <i class='bi bi-three-dots-vertical' style='font-size: 20px'></i>"
+                        + "     </texto>"
+                        + " </p>"
+                        + " <ul class='dropdown-menu shadow'>\n"
+                        + "     <li class='me-2'><a style='color: red;' class='dropdown-item' href=''><i class='bi bi-trash3 me-2'></i>Eliminar nota</a></li>\n"
+                        + " </ul>\n"
+                        + "</div>\n";
 
                 htmlcode += "<tr>\n"
-                        + "                        <td style='padding: 20px;' class='align-middle'><i class=\"bi bi-three-dots-vertical\"></i></td>\n"
+                        + "                        <td style='padding: 20px;' class='align-middle'>"+ htmldelete +"</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + n.getNote_name() + "</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + note_cdate + "</td>\n"
                         + "                        <td cstyle='padding: 20px;' class='align-middle'>" + note_mdate + "</td>\n"

@@ -6,34 +6,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class CanvasController
-{
-    public boolean modelCreateCanva(Canva c)
-    {
+public class CanvasController {
+
+    public boolean modelCreateCanva(Canva c) {
         CanvasModel canvam = new CanvasModel();
         return canvam.createCanva(c);
     }
-    
-    public boolean modelDeleteCanva(String c_id)
-    {
+
+    public boolean modelDeleteCanva(String c_id) {
         CanvasModel canvam = new CanvasModel();
         return canvam.deleteCanva(c_id);
     }
-    
-    public boolean modelUpdateCanvaDraw(String c_id, String c_draw)
-    {
+
+    public boolean modelUpdateCanvaDraw(String c_id, String c_draw) {
         CanvasModel canvam = new CanvasModel();
         return canvam.updateCanvaDraw(c_id, c_draw);
     }
 
-    public Canva beanGetCanva(String c_id)
-    {
+    public Canva beanGetCanva(String c_id) {
         CanvasModel canvam = new CanvasModel();
         return canvam.getCanva(c_id);
     }
 
-    public String workGetCanvasByTask(String task_id)
-    {
+    public String workGetCanvasByTask(String task_id) {
         String htmlcode = "<div class='row'>"
                 + "<div class='col-lg-1 d-none d-lg-block'></div>"
                 + "<div class='col-lg-10'>"
@@ -45,20 +40,16 @@ public class CanvasController
         CanvasModel canvam = new CanvasModel();
         ArrayList<Canva> canvas = canvam.getCanvasByTask(task_id);
 
-        if (canvas.isEmpty())
-        {
-            htmlcode +="<div class='row mt-3'>"
+        if (canvas.isEmpty()) {
+            htmlcode += "<div class='row mt-3'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
                     + "<p class=''>No hay lienzos por mostrar.</p>"
                     + "</div>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
-                    + "</div>"
-                    ;
+                    + "</div>";
             return htmlcode;
-        }
-        else
-        {
+        } else {
             htmlcode += "<diV class='row'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -74,8 +65,7 @@ public class CanvasController
                     + "                </thead>\n"
                     + "                <tbody id='table-body'>";
 
-            for (Canva c : canvas)
-            {
+            for (Canva c : canvas) {
                 String canva_id = c.getCanva_id();
 
                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
@@ -84,8 +74,22 @@ public class CanvasController
                 String canva_cdate = sdf1.format(c.getCanva_cdate());
                 String canva_mdate = sdf2.format(c.getCanva_mdate());
 
+                String htmldelete = "";
+
+                htmldelete = ""
+                        + "<div class='btn-group dropbottom'>"
+                        + " <p class='btn custom-p me-2 border-0' data-bs-toggle='dropdown' aria-expanded='false'>"
+                        + "     <texto style='color: #2A2927;'>"
+                        + "         <i class='bi bi-three-dots-vertical' style='font-size: 20px'></i>"
+                        + "     </texto>"
+                        + " </p>"
+                        + " <ul class='dropdown-menu shadow'>\n"
+                        + "     <li class='me-2'><a style='color: red;' class='dropdown-item' href=''><i class='bi bi-trash3 me-2'></i>Eliminar lienzo</a></li>\n"
+                        + " </ul>\n"
+                        + "</div>\n";
+
                 htmlcode += "<tr>\n"
-                        + "                        <td style='padding: 20px;' class='align-middle'><i class=\"bi bi-three-dots-vertical\"></i></td>\n"
+                        + "                        <td style='padding: 20px;' class='align-middle'>"+ htmldelete +"</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + c.getCanva_name() + "</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + canva_cdate + "</td>\n"
                         + "                        <td style='padding: 20px;' class='align-middle'>" + canva_mdate + "</td>\n"
