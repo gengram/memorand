@@ -43,9 +43,12 @@ public class TasksController
 
     public String modelGetTasksPanel(String collab_id, String order)
     {
-        String htmlcode = "<div class=\"row mt-4\" >"
+        String htmlcode = "<div class=\"row mt-3\" >"
                         + "<div class=\"col-lg-1 d-none d-lg-block\" ></div>"
-                        + "<div class=\"col-lg-10\" >"
+                        + "<div class=\"col-lg-8\" >"
+                        + "<h4>Tareas</h4>"
+                        + "</div>"
+                        + "<div class=\"col-lg-2\" >"
                         + "<button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
                         + "<p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
                         + "</button>"
