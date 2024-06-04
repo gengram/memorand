@@ -9,6 +9,13 @@
 
 <%
     String canva_id = request.getParameter("id");
+    
+    String user_id = (String) session.getAttribute("user_id");
+    String user_email = (String) session.getAttribute("user_email");
+    String user_name = (String) session.getAttribute("user_name");
+    String user_pat = (String) session.getAttribute("user_pat");
+    String user_mat = (String) session.getAttribute("user_mat");
+    String user_profile = (String) session.getAttribute("user_profile");
 
     if (canva_id != null) {
         String task_id = "";
