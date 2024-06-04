@@ -51,7 +51,7 @@ public class IdeasController {
                 String idea_id = i.getIdea_id();
 
                 UsersModel userm = new UsersModel();
-                User user = userm.getUserByIdea(idea_id);
+                User user = userm.getUserByTool("ideas","idea_id",idea_id);
 
                 String user_name = "null";
                 String user_id = "null";

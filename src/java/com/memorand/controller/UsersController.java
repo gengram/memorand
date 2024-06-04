@@ -38,12 +38,12 @@ public class UsersController
         return userm.getUser(u_id);
     }
     
-    public User beanGetUserByIdea(String idea_id)
+    public User beanGetUserByTool(String tool_table, String tool_name, String tool_id)
     {
         UsersModel userm = new UsersModel();
-        return userm.getUserByIdea(idea_id);
+        return userm.getUserByTool(tool_table, tool_name, tool_id);
     }
-
+    
     public String adminGetUserChiefsByInst(String inst_id, boolean all)
     {
         String htmlcode = "";

@@ -40,7 +40,7 @@ public class IdeaDelete extends HttpServlet
                         i_task_id = taskc.beanGetTaskByTool("ideas", "idea_id", idea_id).getTask_id();
                         
                         UsersController userc = new UsersController();
-                        i_user_id = userc.beanGetUserByIdea(idea_id).getUser_id();
+                        i_user_id = userc.beanGetUserByTool("ideas","idea_id",idea_id).getUser_id();
                         
                         TaskIdeasController taskideac = new TaskIdeasController();
                         UserIdeasController userideac = new UserIdeasController();

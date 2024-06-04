@@ -111,10 +111,11 @@ public class TasksModel extends Conexion
         
         try
         {
-            String sql = "SELECT t.task_id, t.task_name, t.task_info, t.task_sdate, t.task_edate, t.task_status, t.task_prior, t.task_diff " +
-                         "FROM tasks t " +
-                         "INNER JOIN task"+ tool_table +" c ON t.task_id = c.task_id " +
-                         "WHERE c."+ tool_name +" = ? ";
+            String sql = "SELECT t.task_id, t.task_name, t.task_info, t.task_sdate, t.task_edate, t.task_status, t.task_prior, t.task_diff "
+                       + "FROM tasks t "
+                       + "INNER JOIN task" + tool_table + " c ON t.task_id = c.task_id "
+                       + "WHERE c." + tool_name + " = ? "
+                       + "LIMIT 1";
             
             ps = getConnection().prepareStatement(sql);
             

@@ -188,6 +188,14 @@
         <servlet-name>IdeaDelete</servlet-name>
         <servlet-class>com.memorand.servlets.eliminar.IdeaDelete</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NoteDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.NoteDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CanvaDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.CanvaDelete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -375,6 +383,14 @@
     <servlet-mapping>
         <servlet-name>IdeaDelete</servlet-name>
         <url-pattern>/ideadelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoteDelete</servlet-name>
+        <url-pattern>/notedelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CanvaDelete</servlet-name>
+        <url-pattern>/canvadelete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
