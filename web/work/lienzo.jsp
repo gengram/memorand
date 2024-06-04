@@ -536,7 +536,7 @@
         </div>
 
 
-        <script src="scripts/chat.js"></script>
+        
 
         <style>
             /* Solo para asegurar que el modal no se muestre en pantallas pequeñas */
@@ -2161,6 +2161,8 @@
             window.addEventListener('resize', checkScreenSize);
         </script>
 
+        <script src="scripts/chat.js"></script>
+        
     </body>
 </html>
 

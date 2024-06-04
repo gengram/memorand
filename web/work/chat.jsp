@@ -172,7 +172,7 @@
             }
         </style>
 
-        <script src="scripts/chat.js"></script>
+        <!--<script src="scripts/chat.js"></script>-->
 
     </body>
 </html>
