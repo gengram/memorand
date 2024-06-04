@@ -37,6 +37,12 @@ public class UsersController
         UsersModel userm = new UsersModel();
         return userm.getUser(u_id);
     }
+    
+    public User beanGetUserByIdea(String idea_id)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.getUserByIdea(idea_id);
+    }
 
     public String adminGetUserChiefsByInst(String inst_id, boolean all)
     {

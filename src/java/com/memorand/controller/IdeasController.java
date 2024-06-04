@@ -79,7 +79,7 @@ public class IdeasController {
                         + "     </texto>"
                         + " </p>"
                         + " <ul class='dropdown-menu shadow'>\n"
-                        + "     <li class='me-2'><a style='color: red;' class='dropdown-item' href=''><i class='bi bi-trash3 me-2'></i>Eliminar idea</a></li>\n"
+                        + "     <li class='me-2'><a style='color: red;' class='dropdown-item' href='../ideadelete?id="+ i.getIdea_id() +"'><i class='bi bi-trash3 me-2'></i>Eliminar idea</a></li>\n"
                         + " </ul>\n"
                         + "</div>\n";
 
