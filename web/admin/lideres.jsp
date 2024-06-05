@@ -23,12 +23,12 @@
     <%-- HEAD --%>
     <head>
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
         <title>Memorand | Gestionar lideres</title>
 
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
     </head>
     <style>
@@ -54,7 +54,7 @@
     <%-- BODY --%>
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
         <div class="container">
             <div class="row mt-4">
                 <div class="col-1"></div>
@@ -62,7 +62,7 @@
                     <h2>Agregar lider</h2>
                 </div>
                 <div class="col-2 mt-3">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
             <div class="row">
@@ -79,7 +79,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= teamc.modelGetAllTeamsByInstRed2(inst_id)%>
+                                    <%= teamc.adminGetTeamsByInstitution(inst_id) %>
                                 </tbody>
                             </table>
                         </div>
@@ -93,7 +93,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= projc.modelGetAllProjectsByTeamRed1(team_id)%>
+                                    <%= projc.adminGetProjectsByTeam(team_id) %>
                                 </tbody>
                             </table>
                         </div>
@@ -107,7 +107,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= userc.modelGetAllChByCollabRed(team_id, proj_id)%>
+                                    <%= userc.adminGetUserChiefsByCollab(team_id, proj_id) %>
                                 </tbody>
                             </table>
                         </div>
@@ -130,7 +130,7 @@
                                 </select>
                                 <select class="form-select-sm" name="ch_name" id="ch_name" required>
                                     <option value="" disabled selected hidden>Lideres</option>
-                                    <%= userc.modelGetListChByInst(inst_id)%>
+                                    <%= userc.adminGetUserChiefsSelectByInst(inst_id, true) %>
                                 </select>
                             </div>
                         </div>
