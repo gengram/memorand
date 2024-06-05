@@ -20,12 +20,12 @@
     <%-- HEAD --%>
     <head>
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
         <title>Memorand | Gestionar proyectos</title>
 
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
     </head>
     
@@ -33,7 +33,7 @@
     <%-- BODY --%>
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
         <!--<h3>Agregar proyectos a departamento</h3>
         
@@ -44,14 +44,14 @@
                         <h3>Departamentos</h3>
                         <select name="team_name" id="team_name" required>
                             <option value="" disabled selected hidden>Departamento</option>
-        <%= teamc.modelGetListTeamsByInst(inst_id)%>
+        <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
     </select>
 </div>
 <div class="col">
     <h3>Proyectos</h3>
     <select name="proj_name" id="proj_name" required>
         <option value="" disabled selected hidden>Proyecto</option>
-        <%= projc.modelGetListProjectsByInst(inst_id)%>
+        <%= projc.adminGetProjectsByInstitution(inst_id)%>
     </select>
 </div>
 </div>
@@ -68,7 +68,7 @@
                     <h2>Ver proyectos por equipo</h2>
                 </div>
                 <div class="col-2 mt-3">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
             <div class="row">
@@ -85,7 +85,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= teamc.modelGetAllTeamsByInstRed2(inst_id)%>
+                                    <%= teamc.adminGetTeamsByInstitution(inst_id)%>
                                 </tbody>
                             </table>
                         </div>
@@ -100,7 +100,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= projc.modelGetAllProjectsByTeamRed(team_id)%>
+                                    <%= projc.adminGetProjectsByTeam(team_id)%>
                                 </tbody>
                             </table>
                         </div>
