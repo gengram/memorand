@@ -179,6 +179,7 @@
 </html>
 
 <%
+            response.sendRedirect("lienzo.jsp?id="+canva_id+"&v=true");
         } else {
             response.sendRedirect("home.jsp");
         }

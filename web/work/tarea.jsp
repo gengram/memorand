@@ -1,3 +1,7 @@
+<%@page import="com.memorand.model.TasksModel"%>
+<%@page import="com.memorand.util.TimeTransformer"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
 <!-- Memorand by Gengram © 2023 -->
 
 <%@page import="com.memorand.controller.CanvasController"%>
@@ -18,9 +22,12 @@
 <%
     String task_id = request.getParameter("id");
 
-    if (task_id == null || task_id.isEmpty()) {
+    if (task_id == null || task_id.isEmpty())
+    {
         response.sendRedirect("home.jsp");
-    } else {
+    }
+    else
+    {
         TasksController taskcounter = new TasksController();
 
         TasksController taskc = new TasksController();
@@ -29,9 +36,12 @@
         String task_name = "", task_info = "", task_status = "", task_prior = "", task_diff = "", task_color = "", btn_color = "";
         String s_edate = "null", s_sdate = "null";
 
-        if (task == null) {
+        if (task == null)
+        {
             response.sendRedirect("home.jsp");
-        } else {
+        }
+        else
+        {
             CollabsController collabc = new CollabsController();
             Collab collab = collabc.beanGetCollabByTask(task_id);
 
@@ -49,11 +59,28 @@
             task_prior = task.getTask_prior();
             task_diff = task.getTask_diff();
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM 'a la(s):' hh:mm", new Locale("es"));
             s_edate = sdf.format(task.getTask_edate());
             s_sdate = sdf.format(task.getTask_sdate());
 
             String s_status = "null";
+            String new_task_status = "";
+            
+            if (task_status.equals("Incompleta") || task_status.equals("Atrasada"))
+            {
+                Date now = new Date();
+                Timestamp now_date = new Timestamp(now.getTime());
+
+                now_date = TimeTransformer.convertToTimeZone(now_date, 6);
+
+                if (!now_date.before(task.getTask_edate()))
+                    new_task_status = "Atrasada";
+                else
+                    new_task_status = "Incompleta";
+
+                TasksModel taskm1 = new TasksModel();
+                taskm1.updateTaskStatus(task.getTask_id(), new_task_status);
+            }
 
             switch (task_status)
             {
@@ -194,7 +221,7 @@
         /* Estilos para tamaños de pantalla pequeños */
         @media (max-width: 2500px) {
             .modal-wIdea{
-                max-width: 30%;
+                max-width: 35%;
             }
             .modal-wInfo{
                 max-width: 75%;

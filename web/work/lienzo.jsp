@@ -8,8 +8,9 @@
 <!DOCTYPE html>
 
 <%
+    String verified = request.getParameter("v");
     String canva_id = request.getParameter("id");
-
+    
     String user_id = (String) session.getAttribute("user_id");
     String user_email = (String) session.getAttribute("user_email");
     String user_name = (String) session.getAttribute("user_name");
@@ -17,7 +18,13 @@
     String user_mat = (String) session.getAttribute("user_mat");
     String user_profile = (String) session.getAttribute("user_profile");
 
-    if (canva_id != null) {
+    if (canva_id != null)
+    {
+        if (verified == null || verified.isEmpty())
+        {
+            response.sendRedirect("chat.jsp?id=" + canva_id);
+        } 
+        
         String task_id = "";
         String canva_name = "", canva_draw = "", canva_status = "";
         Timestamp canva_cdate, canva_mdate;
