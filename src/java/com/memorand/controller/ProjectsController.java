@@ -112,6 +112,18 @@ public class ProjectsController
 
         return htmlcode;
     }
+    
+    public String adminGetProjectsSelectByTeam(String team_id)
+    {
+        String htmlcode = "";
+
+        ProjectsModel projm = new ProjectsModel();
+
+        for (Project project : projm.getProjectsByTeam(team_id))
+            htmlcode += "<option value='" + project.getProj_id() + "' style='background-color:#" + project.getProj_color() + "' >" + project.getProj_name() + "</option>";
+
+        return htmlcode;
+    }
 
     public String adminGetProjectsByTeamAndUser(String team_id, String user_id)
     {
