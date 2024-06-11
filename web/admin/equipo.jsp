@@ -15,7 +15,12 @@
     TeamsController teamc = new TeamsController();
     UsersController userc = new UsersController();
 
-    String team_id = request.getParameter("id");
+    String team_idx = request.getParameter("id");
+    String team_id = request.getParameter("team_id");
+    
+    if (team_id == null)
+        team_id = team_idx;
+        
     String inst_id = (String) session.getAttribute("inst_id");
     String team_name = null;
     String team_color = null;

@@ -319,7 +319,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyEquipo'>
-                                        <%=teamc.adminGetTeamsByInstitution(inst_id)%>
+                                        <%=teamc.adminGetTeamsByInstitution(inst_id,"equipo")%>
                                     </tbody>
                                 </table>
                             </div>

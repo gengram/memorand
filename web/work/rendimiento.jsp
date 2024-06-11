@@ -4,6 +4,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    response.sendRedirect("home.jsp");
+    
     String user_id = (String) session.getAttribute("user_id");
     
     String team_id = request.getParameter("id");

@@ -79,7 +79,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= teamc.adminGetTeamsByInstitution(inst_id) %>
+                                    <%= teamc.adminGetTeamsByInstitution(inst_id, "lideres") %>
                                 </tbody>
                             </table>
                         </div>
@@ -118,7 +118,7 @@
             <div class="row mt-3">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <form action="../../cunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+                    <form action="../cunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
                         <div class="row">
                             <div class="col">
                                 <h3>Lideres</h3>

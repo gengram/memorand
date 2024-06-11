@@ -31,7 +31,7 @@ public class TeamsController
         return teamm.getTeamByCollab(collab_id);
     }
 
-    public String adminGetTeamsByInstitution(String inst_id)
+    public String adminGetTeamsByInstitution(String inst_id, String page)
     {
         String htmlcode = "";
 
@@ -41,7 +41,7 @@ public class TeamsController
             htmlcode += "<tr>\n"
                      + "<td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
                      + "<td style='padding: 20px;' class='align-middle'>"
-                     + "<a href='equipo.jsp?id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
+                     + "<a href='"+ page +".jsp?team_id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
                      + "</td>\n"
                      + "</tr>";
 

@@ -233,14 +233,9 @@
                             <i class="bi bi-list" style="font-size: 25px"></i>
                         </button>
                         <ul class="dropdown-menu shadow ms-2 mt-0">
-                            <li><a href="chat.jsp?id=<%= canva_id%>" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Chat (test)</a></li>
-                            <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b"></i>Imagen</a></li>
-                            <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b"></i>SVG</a></li>
-                            <li>
-                                <input type="file" class="custom-file-input" <%= "uploads-svg"%> accept="image/svg+xml" multiple/>
-                                <label for="uploads-svg" class="custom-file-input-label btn-light  ms-1 border-0" id="customFileLabel"><i class="bi bi-upload me-2"></i><text style="color: #000">Añadir SVG</text></label>
-                            </li>
-                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteAll"><i class="bi bi-trash3 icon-tools me-2" style="color: red"></i>Eliminar todo</a></li>
+                            <li><a id="download-image" class="dropdown-item"><i class="bi bi-image me-2" style="color: #25ce7b; font-size: 20px;"></i>Exportar como imagen</a></li>
+                            <li><a id="download-svg" class="dropdown-item"><i class="bi bi-download me-2" style="color: #25ce7b; font-size: 20px;"></i>Exportar como SVG</a></li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalDeleteAll"><i class="bi bi-trash3 icon-tools me-2" style="color: red; font-size: 20px;"></i>Limpiar lienzo</a></li>
                         </ul>
                     </div>
                 </div>

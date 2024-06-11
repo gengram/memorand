@@ -7,7 +7,11 @@
 <%
     String inst_id = (String) session.getAttribute("inst_id");
 
+    String team_idx = request.getParameter("id");
     String team_id = request.getParameter("team_id");
+    
+    if (team_id == null)
+        team_id = team_idx;
 
     TeamsController teamc = new TeamsController();
     UsersController userc = new UsersController();
@@ -34,7 +38,7 @@
 
         <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
-        <form action="../../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+        <form action="../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -83,7 +87,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= teamc.adminGetTeamsByInstitution(inst_id)%>
+                                    <%= teamc.adminGetTeamsByInstitution(inst_id, "integrantes")%>
                                 </tbody>
                             </table>
                         </div>

@@ -108,7 +108,7 @@ public class UsersController
 
         for (User ch : userm.getUserChiefsByCollab(team_id, proj_id))
             htmlcode += "<tr>\n"
-                     + "<td><img class='rounded-2 me-2' src='../../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
+                     + "<td><img class='rounded-2 me-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
                      + "<td>"
                      + "<a href='' style='color: red'><i class=\"bi bi-trash3-fill\"></i></a><br>"
                      + "</td>\n"
