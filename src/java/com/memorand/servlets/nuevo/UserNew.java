@@ -86,9 +86,13 @@ public class UserNew extends HttpServlet
                         String fileExtension = getFileExtension(fileName);
                         if (isValidImageExtension(fileExtension)) 
                         {
-                            File tempFile = new File(imgDirectory + fileName);
-                            item.write(tempFile);
-                            userImg = "XM-Uploads/users/profile/" + convertAndResizeImage(tempFile, imgDirectory);
+                            File file = new File(imgDirectory + fileName);
+                            item.write(file);
+                            
+                            file.setReadable(true, false);
+                            file.setWritable(true, false);
+                            
+                            userImg = "XM-Uploads/users/profile/" + convertAndResizeImage(file, imgDirectory);
                         }
                         else
                         {
