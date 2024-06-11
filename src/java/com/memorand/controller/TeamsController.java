@@ -31,7 +31,7 @@ public class TeamsController
         return teamm.getTeamByCollab(collab_id);
     }
 
-    public String adminGetTeamsByInstitution(String inst_id)
+    public String adminGetTeamsByInstitution(String inst_id, String page)
     {
         String htmlcode = "";
 
@@ -41,7 +41,7 @@ public class TeamsController
             htmlcode += "<tr>\n"
                      + "<td style='padding: 20px;' class='align-middle text-start'><i style=\"color: #" + team.getTeam_color() + "; font-size: 2rem;\" class=\"bi bi-square-fill me-2\"></i>" + team.getTeam_name() + "</td>\n"
                      + "<td style='padding: 20px;' class='align-middle'>"
-                     + "<a href='equipo.jsp?id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
+                     + "<a href='"+ page +".jsp?team_id=" + team.getTeam_id() + "'>  <i class=\"bi bi-chevron-right\" style=\"font-size: 25px;\"></i> </a><br>"
                      + "</td>\n"
                      + "</tr>";
 
@@ -124,8 +124,10 @@ public class TeamsController
 
         String user_type = user.getUser_type();
 
-        if (user_type != null) {
-            switch (user_type) {
+        if (user_type != null)
+        {
+            switch (user_type)
+            {
                 case "ch":
                     teams = teamm.getTeamsByUserChief(user_id);
                     break;
@@ -137,15 +139,21 @@ public class TeamsController
             }
         }
 
-        if (teams.isEmpty()) {
+        if (teams.isEmpty())
+        {
             htmlcode = "<p>No hay equipos por mostrar.</p>";
             return htmlcode;
-        } else {
-            for (Team t : teams) {
+        }
+        else
+        {
+            for (Team t : teams)
+            {
                 ProjectsController projc = new ProjectsController();
 
-                if (user_type != null) {
-                    switch (user_type) {
+                if (user_type != null)
+                {
+                    switch (user_type)
+                    {
                         case "ch":
                             hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'class='subtitulo text-end' style='color: #AFB2B3; font-size: 18px;'>Ver rendimiento <i class='bi bi-chevron-right' style='color: #AFB2B3;'></i></a>";
                             break;

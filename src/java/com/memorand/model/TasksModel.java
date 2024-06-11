@@ -111,10 +111,11 @@ public class TasksModel extends Conexion
         
         try
         {
-            String sql = "SELECT t.task_id, t.task_name, t.task_info, t.task_sdate, t.task_edate, t.task_status, t.task_prior, t.task_diff " +
-                         "FROM tasks t " +
-                         "INNER JOIN task"+ tool_table +" c ON t.task_id = c.task_id " +
-                         "WHERE c."+ tool_name +" = ? ";
+            String sql = "SELECT t.task_id, t.task_name, t.task_info, t.task_sdate, t.task_edate, t.task_status, t.task_prior, t.task_diff "
+                       + "FROM tasks t "
+                       + "INNER JOIN task" + tool_table + " c ON t.task_id = c.task_id "
+                       + "WHERE c." + tool_name + " = ? "
+                       + "LIMIT 1";
             
             ps = getConnection().prepareStatement(sql);
             
@@ -313,6 +314,48 @@ public class TasksModel extends Conexion
         catch (SQLException e)
         {
             System.err.println(e.getMessage());
+        }
+        
+        return flag;
+    }
+    
+    public boolean updateTask(Task t)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE tasks SET task_name = ?, task_info = ?, task_edate = ?, task_prior = ?, task_diff = ? WHERE task_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, t.getTask_name());
+            ps.setString(2, t.getTask_info());
+            ps.setTimestamp(3, t.getTask_edate());
+            ps.setString(4, t.getTask_prior());
+            ps.setString(5, t.getTask_diff());
+            ps.setString(6, t.getTask_id());
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
         }
         
         return flag;

@@ -9,35 +9,30 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
-public class IdeasController
-{
-    public boolean modelCreateIdea(Idea idea)
-    {
+public class IdeasController {
+
+    public boolean modelCreateIdea(Idea idea) {
         IdeasModel ideam = new IdeasModel();
         return ideam.createIdea(idea);
     }
-    
-    public boolean modelDeleteIdea(String i_id)
-    {
+
+    public boolean modelDeleteIdea(String i_id) {
         IdeasModel ideam = new IdeasModel();
         return ideam.deleteIdea(i_id);
     }
-    
-    public Idea beanGetIdea(String i_id)
-    {
+
+    public Idea beanGetIdea(String i_id) {
         IdeasModel ideam = new IdeasModel();
         return ideam.getIdea(i_id);
     }
 
-    public String workGetIdeasByTask(String task_id)
-    {
+    public String workGetIdeasByTask(String task_id) {
         String htmlcode = "";
 
         IdeasModel ideam = new IdeasModel();
         ArrayList<Idea> ideas = ideam.getIdeasByTask(task_id);
 
-        if (ideas.isEmpty())
-        {
+        if (ideas.isEmpty()) {
             htmlcode += "<div class='row'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
@@ -46,25 +41,25 @@ public class IdeasController
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "</div>";
             return htmlcode;
-        }
-        else
-        {
+        } else {
             htmlcode += "<div class='row mb-5'>"
                     + "<div class='col-lg-1 d-none d-lg-block'></div>"
                     + "<div class='col-lg-10'>"
                     + "<div class='row'>";
 
-            for (Idea i : ideas)
-            {
+            for (Idea i : ideas) {
                 String idea_id = i.getIdea_id();
 
                 UsersModel userm = new UsersModel();
-                User user = userm.getUserByIdea(idea_id);
+                User user = userm.getUserByTool("ideas","idea_id",idea_id);
 
                 String user_name = "null";
+                String user_id = "null";
 
-                if (user != null)
+                if (user != null) {
+                    user_id = user.getUser_id();
                     user_name = user.getUser_name() + " " + user.getUser_pat();
+                }
 
                 Instant ideaInstant = i.getIdea_date().toInstant();
                 Instant now = Instant.now();
@@ -74,24 +69,39 @@ public class IdeasController
 
                 String timeAgo = d.formatDuration(duration);
 
+                String htmldelete = "";
+
+                htmldelete = ""
+                        + "<div class='btn-group dropstart'>"
+                        + " <p class='btn custom-p me-2 border-0' data-bs-toggle='dropdown' aria-expanded='false'>"
+                        + "     <texto style='color: #2A2927;'>"
+                        + "         <i class='bi bi-three-dots-vertical' style='font-size: 20px'></i>"
+                        + "     </texto>"
+                        + " </p>"
+                        + " <ul class='dropdown-menu shadow'>\n"
+                        + "     <li class='me-2'><a style='color: red;' class='dropdown-item' href='../ideadelete?id="+ i.getIdea_id() +"'><i class='bi bi-trash3 me-2'></i>Eliminar idea</a></li>\n"
+                        + " </ul>\n"
+                        + "</div>\n";
+
                 // Ajuste de las clases de la columna para pantallas pequeñas y grandes
                 htmlcode += "<div class=\"col-12 col-md-4 col-lg-3 mb-1\">";
 
-                htmlcode += "<div class=\"card mb-3 border\" style=\"max-width: 18rem; min-height: 16rem; background-color: #" + i.getIdea_color() + ";\">\n"
-                        + "<div class=\"card-body\">\n"
-                        + "<div class=\"row mt-0\">\n"
-                        + "<div class=\"col-10\">\n"
-                        + "<button class=\"btn btn-light text-start mb-3\" style=\"padding-bottom: 0rem; padding-top: 0rem;\">\n"
-                        + "<text style=\"font-size: 13px\">" + user_name + "</text>\n"
-                        + "<p style=\"font-size: 12px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;\">hace " + timeAgo + "</p>\n"
-                        + "</button>\n"
-                        + "</div>\n"
-                        + "<div class=\"col-2 text-end\">\n"
-                        + "<i class=\"bi bi-three-dots-vertical\" style=\"color: #2A2927;\"></i>\n"
-                        + "</div>\n"
-                        + "</div>\n"
-                        + "<b class=\"card-text\" style=\"font-size: 24px; color: #2A2927;\">" + i.getIdea_text() + "</b>\n"
-                        + "</div>\n"
+                htmlcode += ""
+                        + "<div class=\"card mb-3 border\" style=\"max-width: 18rem; min-height: 16rem; background-color: #" + i.getIdea_color() + ";\">\n"
+                        + " <div class=\"card-body\">\n"
+                        + "     <div class=\"row mt-0\">\n"
+                        + "         <div class=\"col-8\">\n"
+                        + "             <button class=\"btn btn-light text-start mb-3\" style=\"padding-bottom: 0rem; padding-top: 0rem;\">\n"
+                        + "                 <text style=\"font-size: 13px\">" + user_name + "</text>\n"
+                        + "                 <p style=\"font-size: 12px; color: #CEC7C7; padding-bottom: 0rem; padding-top: 0rem;\">hace " + timeAgo + "</p>\n"
+                        + "             </button>\n"
+                        + "         </div>\n"
+                        + "         <div class=\"col-4 text-end\">\n"
+                        + htmldelete
+                        + "         </div>\n"
+                        + "     </div>\n"
+                        + "     <b class=\"card-text\" style=\"font-size: 24px; color: #2A2927;\">" + i.getIdea_text() + "</b>\n"
+                        + " </div>\n"
                         + "</div>";
 
                 htmlcode += "</div>";

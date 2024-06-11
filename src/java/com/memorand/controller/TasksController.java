@@ -5,8 +5,6 @@ import com.memorand.model.TasksModel;
 import com.memorand.util.TimeTransformer;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -17,6 +15,18 @@ public class TasksController
     {
         TasksModel taskm = new TasksModel();
         return taskm.createTask(t);
+    }
+    
+    public boolean modelUpdateTask(Task t)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.updateTask(t);
+    }
+    
+    public boolean modelUpdateTaskStatus(String task_id, String task_status)
+    {
+        TasksModel taskm = new TasksModel();
+        return taskm.updateTaskStatus(task_id, task_status);
     }
 
     public Task beanGetTask(String t_id)
@@ -33,17 +43,19 @@ public class TasksController
 
     public String modelGetTasksPanel(String collab_id, String order)
     {
-        String htmlcode
-                = "<div class=\"row mt-4\" >"
-                + " <div class=\"col-lg-1 d-none d-lg-block\" ></div>"
-                + " <div class=\"col-lg-10\" >"
-                + "     <button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
-                + "         <p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
-                + "     </button>"
-                + " </div>"
-                + "     <div class=\"col-lg-1 d-none d-lg-block\" ></div>"
-                + " </div>"
-                + "</div>";
+        String htmlcode = "<div class=\"row mt-3\" >"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\" ></div>"
+                        + "<div class=\"col-lg-8\" >"
+                        + "<h4>Tareas</h4>"
+                        + "</div>"
+                        + "<div class=\"col-lg-2\" >"
+                        + "<button data-bs-toggle=\"modal\" data-bs-target=\"#modalTaskNew\" class=\"btn btn-lg rounded-pill custom-bcollab mb-2\">\n"
+                        + "<p class=\"mb-1 mt-1 me-2 ms-2\" style=\"font-size: 18px;\"><i class=\"bi bi-plus-lg me-2\" style=\"font-size: 20px;\"></i>Nueva tarea</p> \n"
+                        + "</button>"
+                        + "</div>"
+                        + "<div class=\"col-lg-1 d-none d-lg-block\" ></div>"
+                        + "</div>"
+                        + "</div>";
 
         htmlcode += "<div class=\"row mt-4 mb-2\">";
 

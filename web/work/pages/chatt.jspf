@@ -1,0 +1,21 @@
+<div class="offcanvas offcanvas-end shadow" style="background-color: #E3E4E5; opacity: 95%; max-width: 100%; max-height: 88%;" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Chat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="card mx-auto" style="max-width:100%; max-height: 100%;">
+            <div class="card-body p-4" id="chatter" style="max-height: 100%; overflow: auto;">
+                <!-- Mensajes de chat se añadirán aquí -->
+            </div>
+            <div class="card-footer bg-white position-absolute w-100 bottom-0 m-0 p-1">
+                <div class="input-group">
+                    <button id="submit" class="btn btn-light">
+                        <i class="bi bi-send-fill" style="color: #25ce7b;"></i>
+                    </button>
+                    <input type="text" id="msg_txt" class="form-control border-0" placeholder="Escribe un mensaje...">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

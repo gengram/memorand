@@ -176,6 +176,26 @@
         <servlet-name>NotesGet</servlet-name>
         <servlet-class>com.memorand.servlets.obtener.NotesGet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TaskEdit</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.TaskEdit</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TaskStatus</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.TaskStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IdeaDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.IdeaDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NoteDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.NoteDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CanvaDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.CanvaDelete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
         <url-pattern>/instnew</url-pattern>
@@ -351,6 +371,26 @@
     <servlet-mapping>
         <servlet-name>NotesGet</servlet-name>
         <url-pattern>/noteget</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskEdit</servlet-name>
+        <url-pattern>/taskedit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskStatus</servlet-name>
+        <url-pattern>/taskstat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IdeaDelete</servlet-name>
+        <url-pattern>/ideadelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NoteDelete</servlet-name>
+        <url-pattern>/notedelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CanvaDelete</servlet-name>
+        <url-pattern>/canvadelete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

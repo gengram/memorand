@@ -7,7 +7,11 @@
 <%
     String inst_id = (String) session.getAttribute("inst_id");
 
+    String team_idx = request.getParameter("id");
     String team_id = request.getParameter("team_id");
+    
+    if (team_id == null)
+        team_id = team_idx;
 
     TeamsController teamc = new TeamsController();
     UsersController userc = new UsersController();
@@ -20,35 +24,35 @@
     <%-- HEAD --%>
     <head>
 
-        <jsp:include page="../../XM-Resources/pages/imports.jspf"/>
+        <jsp:include page="../XM-Resources/pages/imports.jspf"/>
 
         <title>Memorand | Gestionar integrantes</title>
 
-        <link rel="stylesheet" href="../../XM-Resources/styles/bootstrap.css">
-        <link rel="shortcut icon" href="../../XM-Resources/vector/memorand-bee.svg">
+        <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
+        <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
     </head>
 
     <%-- BODY --%>
     <body>
 
-        <jsp:include page="../../XM-Resources/pages/elements/navbar_admin_sub.jspf"/>
+        <jsp:include page="../XM-Resources/pages/elements/navbar_admin.jspf"/>
 
-        <form action="../../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+        <form action="../tunew" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <h3>Departamentos</h3>
                         <select name="team_name" id="team_name" required>
                             <option value="" disabled selected hidden>Departamento</option>
-                            <%= teamc.modelGetListTeamsByInst(inst_id)%>
+                            <%= teamc.adminGetTeamsSelectByInstitution(inst_id)%>
                         </select>
                     </div>
                     <div class="col">
                         <h3>Integrantes</h3>
                         <select name="wk_name" id="wk_name" required>
                             <option value="" disabled selected hidden>Integrante</option>
-                            <%= userc.modelGetListWkByInst(inst_id)%>
+                            <%= userc.adminGetUserWorkersSelectByInst(inst_id, true)%>
                         </select>
                     </div>
                 </div>
@@ -65,7 +69,7 @@
                     <h2>Ver integrantes por equipo</h2>
                 </div>
                 <div class="col-2 mt-3">
-                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='../home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
+                    <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
                 </div>
             </div>
             <div class="row mt-3">
@@ -83,7 +87,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= teamc.modelGetAllTeamsByInstRed2(inst_id)%>
+                                    <%= teamc.adminGetTeamsByInstitution(inst_id, "integrantes")%>
                                 </tbody>
                             </table>
                         </div>
@@ -98,7 +102,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%= userc.modelGetAllWkByTeamRed(team_id)%>
+                                    <%= userc.adminGetUserWorkersByTeam(team_id)%>
                                 </tbody>
                             </table>
                         </div>

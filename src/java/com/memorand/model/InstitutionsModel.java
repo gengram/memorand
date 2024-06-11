@@ -269,9 +269,7 @@ public class InstitutionsModel extends Conexion
             ps.setString(7, i.getInst_id());
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
         }
         
         catch (SQLException e)
@@ -309,10 +307,7 @@ public class InstitutionsModel extends Conexion
             ps.setString(2, i_id);
             
             if (ps.executeUpdate() == 1)
-            {
                 flag = true;
-            }
-        
         }
         
         catch (SQLException e)

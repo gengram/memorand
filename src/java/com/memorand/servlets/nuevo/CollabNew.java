@@ -63,11 +63,11 @@ public class CollabNew extends HttpServlet
             
             if (collabc.modelCreateCollab(collab))
             {
-                response.sendRedirect("admin/gestion/proyectos.jsp?team_id="+ team_id);
+                response.sendRedirect("admin/proyectos.jsp?team_id="+ team_id);
             }
             else
             {
-                response.sendRedirect("admin/gestion/proyectos.jsp?error=200");
+                response.sendRedirect("admin/proyectos.jsp?error=200");
             }
         }
         else

@@ -1,6 +1,5 @@
 package com.memorand.servlets.editar;
 
-import com.memorand.beans.User;
 import com.memorand.controller.UsersController;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -43,20 +42,17 @@ public class UserStatus extends HttpServlet
                                 new_status = "si";
                                 break;
                             default:
-                                response.sendRedirect("home.jsp?error=InvalidInstStatus");
+                                response.sendRedirect("staff/home.jsp?error=InvalidInstStatus");
                                 break;
                         }
                         
                         if (userc.modelUpdateUserStatus(user_id, new_status))
-                        {
                             response.sendRedirect("staff/admin.jsp?id="+user_id);
-                        }
                         else
-                        { response.sendRedirect("staff/home.jsp?error=Model"); }
+                            response.sendRedirect("staff/home.jsp?error=Model");
                     }
                     else
-                    { response.sendRedirect("home.jsp?error=InvalidParams"); }
-                    
+                        response.sendRedirect("home.jsp?error=InvalidParams");
                     break;
                 default:
                     response.sendRedirect("index.jsp?error=InvalidUserType");

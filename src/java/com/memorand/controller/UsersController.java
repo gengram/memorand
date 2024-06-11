@@ -37,7 +37,13 @@ public class UsersController
         UsersModel userm = new UsersModel();
         return userm.getUser(u_id);
     }
-
+    
+    public User beanGetUserByTool(String tool_table, String tool_name, String tool_id)
+    {
+        UsersModel userm = new UsersModel();
+        return userm.getUserByTool(tool_table, tool_name, tool_id);
+    }
+    
     public String adminGetUserChiefsByInst(String inst_id, boolean all)
     {
         String htmlcode = "";
@@ -102,7 +108,7 @@ public class UsersController
 
         for (User ch : userm.getUserChiefsByCollab(team_id, proj_id))
             htmlcode += "<tr>\n"
-                     + "<td><img class='rounded-2 me-2' src='../../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
+                     + "<td><img class='rounded-2 me-2' src='../" + ch.getUser_profile() + "' width='40'></img>" + ch.getUser_name() + "</td>\n"
                      + "<td>"
                      + "<a href='' style='color: red'><i class=\"bi bi-trash3-fill\"></i></a><br>"
                      + "</td>\n"
@@ -223,7 +229,7 @@ public class UsersController
                 htmlcode += "<div class=\"row\">"
                         + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
                         + "<div class=\"col-lg-10\">"
-                         + "<h2>L&iacute;deres</h2>"
+                         + "<h4>L&iacute;deres</h4>"
                         + "<p>No hay l&iacute;deres disponibles.</p>"
                         + "</div>"
                         + "</div>"
@@ -235,12 +241,12 @@ public class UsersController
                 htmlcode += "<div class=\"row mt-3\">"
                         + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
                         + "<div class=\"col-lg-10\">"
-                        + "<h2>L&iacute;deres</h2>"
+                        + "<h4>L&iacute;deres</h4>"
                         + "<table class=\"table text-center mt-\">\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
-                        + "             <th scope=\"col\" ></th>\n"
                         + "             <th scope=\"col\" >Nombre</th>\n"
+                        + "             <th scope=\"col\" ></th>\n"
                         + "             <th scope=\"col\" >Correo</th>\n"
                         + "         </tr>\n"
                         + "     </thead>\n"
@@ -263,10 +269,10 @@ public class UsersController
 
             if (wks.isEmpty())
             {
-                 htmlcode += "<div class=\"row\">"
+                 htmlcode += "<div class=\"row mt-4\">"
                         + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
                         + "<div class=\"col-lg-10\">"
-                         + "<h2>Integrantes</h2>"
+                         + "<h4>Integrantes</h4>"
                         + "<p>No hay integrantes disponibles.</p>"
                          + "</div>"
                         + "</div>"
@@ -275,15 +281,15 @@ public class UsersController
             }
             else
             {
-                htmlcode += "<div class=\"row mt-2\">"
+                htmlcode += "<div class=\"row mt-4\">"
                         + "<div class=\"col-lg-1 d-none d-lg-block\"></div>"
                         + "<div class=\"col-lg-10\">"
-                        + "<h2>Integrantes</h2>"
+                        + "<h4>Integrantes</h4>"
                         + "<table class=\"table text-center mt-3\" >\n"
                         + "     <thead>\n"
                         + "         <tr>\n"
-                        + "             <th scope=\"col\"></th>\n"
                         + "             <th scope=\"col\">Nombre</th>\n"
+                        + "             <th scope=\"col\"></th>\n"
                         + "             <th scope=\"col\">Correo</th>\n"
                         + "         </tr>\n"
                         + "     </thead>\n"

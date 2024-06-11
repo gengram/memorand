@@ -94,6 +94,24 @@
             border: 2px solid #25ce7b; /* Color del contorno */
             color: #25ce7b; /* Cambiar el color del texto al pasar el ratón */
         }
+        
+        .custom-gestionar{
+            display: inline-block;
+            padding: 4px 12px;
+            border: 1px solid #AFB2B3; /* Color del contorno */
+            color: #2A2927; /* Color del texto */
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #F8F9FA; /* Fondo transparente */
+        }
+        .custom-gestionar:hover {
+            background-color: #25ce7b; /* Cambiar el color de fondo al pasar el ratón */
+            border: 1px solid #25ce7b; /* Color del contorno */
+            color: #fff; /* Cambiar el color del texto al pasar el ratón */
+        }
 
         .content {
             position: absolute;
@@ -301,7 +319,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  id='table-bodyEquipo'>
-                                        <%=teamc.adminGetTeamsByInstitution(inst_id)%>
+                                        <%=teamc.adminGetTeamsByInstitution(inst_id,"equipo")%>
                                     </tbody>
                                 </table>
                             </div>
@@ -310,8 +328,35 @@
                     </div>
                 </div>             
                 <div id="gestion_content" class="content hidden">
-                    <div class="row">
-                        
+                    <div class="row mt-4">
+                        <div class="col-1"></div>
+                        <div class="col-11">
+                            <a href="integrantes.jsp" >
+                                <button type="submit" class="btn rounded-4 custom-gestionar me-3" style="padding:25px">
+                                    <i class="bi bi-plus-lg me-2"></i> Integrantes por equipo
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-1"></div>
+                        <div class="col-11">
+                            <a href="lideres.jsp">
+                                <button type="submit" class="btn rounded-4 custom-gestionar me-3" style="padding:25px">
+                                    <i class="bi bi-plus-lg me-2"></i> L&iacute;deres por proyecto
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-1"></div>
+                        <div class="col-11">
+                            <a href="proyectos.jsp">
+                                <button type="submit" class="btn rounded-4 custom-gestionar me-3" style="padding:25px">
+                                    <i class="bi bi-plus-lg me-2"></i> Proyectos por equipo
+                                </button>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-1"></div>
                 </div>

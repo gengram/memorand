@@ -1,3 +1,7 @@
+<%@page import="com.memorand.model.TasksModel"%>
+<%@page import="com.memorand.util.TimeTransformer"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
 <!-- Memorand by Gengram © 2023 -->
 
 <%@page import="com.memorand.controller.CanvasController"%>
@@ -18,20 +22,26 @@
 <%
     String task_id = request.getParameter("id");
 
-    if (task_id == null || task_id.isEmpty()) {
+    if (task_id == null || task_id.isEmpty())
+    {
         response.sendRedirect("home.jsp");
-    } else {
+    }
+    else
+    {
         TasksController taskcounter = new TasksController();
 
         TasksController taskc = new TasksController();
         Task task = taskc.beanGetTask(task_id);
 
-        String task_name = "null", task_info = "null", task_status = "null", task_prior = "null", task_diff = "null", task_color = "";
+        String task_name = "", task_info = "", task_status = "", task_prior = "", task_diff = "", task_color = "", btn_color = "";
         String s_edate = "null", s_sdate = "null";
 
-        if (task == null) {
+        if (task == null)
+        {
             response.sendRedirect("home.jsp");
-        } else {
+        }
+        else
+        {
             CollabsController collabc = new CollabsController();
             Collab collab = collabc.beanGetCollabByTask(task_id);
 
@@ -49,26 +59,49 @@
             task_prior = task.getTask_prior();
             task_diff = task.getTask_diff();
 
-            if (task_status.equals("Incompleta")) {
-                task_color = "F3894D";
-            } else if (task_status.equals("Completa")) {
-                task_color = "25CE7B";
-            } else if (task_status.equals("Atrasada")) {
-                task_color = "F24848";
-            }
-
-            SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM", new Locale("es"));
+            SimpleDateFormat sdf = new SimpleDateFormat("dd 'de' MMMM 'a la(s):' hh:mm", new Locale("es"));
             s_edate = sdf.format(task.getTask_edate());
             s_sdate = sdf.format(task.getTask_sdate());
 
             String s_status = "null";
+            String new_task_status = "";
+            
+            if (task_status.equals("Incompleta") || task_status.equals("Atrasada"))
+            {
+                Date now = new Date();
+                Timestamp now_date = new Timestamp(now.getTime());
 
-            switch (task_status) {
+                now_date = TimeTransformer.convertToTimeZone(now_date, 6);
+
+                if (!now_date.before(task.getTask_edate()))
+                    new_task_status = "Atrasada";
+                else
+                    new_task_status = "Incompleta";
+
+                TasksModel taskm1 = new TasksModel();
+                taskm1.updateTaskStatus(task.getTask_id(), new_task_status);
+            }
+
+            switch (task_status)
+            {
                 case "Incompleta":
-                case "Atrasada":
+                    task_color = "F3894D";
+                    btn_color = "25CE7B";
                     s_status = "Completada";
                     break;
+                case "Atrasada":
+                    task_color = "F24848";
+                    btn_color = "F3894D";
+                    s_status = "Completada";
+                    break;
+                case "Fuera de plazo":
+                    task_color = "F24848";
+                    btn_color = "F24848";
+                    s_status = "Incompleta";
+                    break;
                 case "Completada":
+                    task_color = "25CE7B";
+                    btn_color = "F3894D";
                     s_status = "Incompleta";
                     break;
                 default:
@@ -102,6 +135,24 @@
         }
         .btnnav{
             border: none; /* Quita todos los bordes de los botones inactivos */
+        }
+        
+        .custom-bcollab{
+            display: inline-block;
+            padding: 1px 10px;
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #fff; /* Color del texto */
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            background-color: #<%=proj_color%>; /* Fondo transparente */
+        }
+        .custom-bcollab:hover {
+            background-color: #fff; /* Cambiar el color de fondo al pasar el ratón */
+            border: 2px solid #<%=proj_color%>; /* Color del contorno */
+            color: #<%=proj_color%>; /* Cambiar el color del texto al pasar el ratón */
         }
 
         .custom-btarea{
@@ -159,19 +210,24 @@
             .modal-wIdea{
                 max-width: 50%;
             }
+            .modal-wInfo{
+                max-width: 70%;
+            }
+            .modal-xlM{
+                max-width: 70%;
+            }
         }
 
         /* Estilos para tamaños de pantalla pequeños */
         @media (max-width: 2500px) {
             .modal-wIdea{
-                max-width: 50%;
+                max-width: 35%;
             }
-        }
-
-        /* Estilos para tamaños de pantalla medianos y grandes */
-        @media (max-width: 577px) {
-            .modal-wIdea{
-                max-width: 50%;
+            .modal-wInfo{
+                max-width: 75%;
+            }
+            .modal-xlM{
+                max-width: 75%;
             }
         }
 
@@ -266,7 +322,7 @@
         <div id="content" style="position: relative;">
             <!-- IDEAS -->
             <div id="ideas_content" class="content">
-                <div class="row mt-2">
+                <div class="row mt-0">
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
                         <div class="row">
@@ -295,10 +351,10 @@
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
 
-                <div class="row mt-1 mb-3" >
+                <div class="row mt-2 mb-3" >
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
-                        <h3>Lluvia de ideas</h3>
+                        <h4>Lluvia de ideas</h4>
                     </div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
@@ -307,12 +363,12 @@
             </div>
             <!-- NOTAS -->    
             <div id="notes_content" class="content hidden">
-                <div class="row mt-2">
+                <div class="row mt-0">
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="col-5">
-                                <h4 class=" mt-2">Crear nota</h4>
+                                <h4 class=" mt-2">Crear nota r&aacute;pida</h4>
                                 <div class="mt-3">
                                     <div class="card border" style="width: 16rem; background-color: #F8F9FA; border-color: #AFB2B3;">
                                         <div class="card-body text-center">
@@ -334,12 +390,11 @@
                     <div class="col-lg-10"><hr class="mt-4"></div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
-
                 <%= notec.workGetNotesByTask(task_id)%>
             </div>
             <!-- LIENZOS -->    
             <div id="canvas_content" class="content hidden">
-                <div class="row mt-2">
+                <div class="row mt-0">
                     <div class="col-lg-1 d-none d-lg-block"></div>
                     <div class="col-lg-10">
                         <div class="row">
@@ -491,10 +546,10 @@
 
     <!-- Modal Info -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalInfo">
-        <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-wInfo" role="document">
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea</h3>
+                    <h3 class="mb-0 fs-2" style="color: #2A2927">Informaci&oacute;n de la tarea: <%=task_name%></h3>
                     <button type="button" class="btn-close btn_info" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-5 pt-2">
@@ -512,8 +567,10 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-12 text-end">
-                            <button class="btn btn-light rounded-pill me-3" style="background-color: #F0F2FF; white-space: nowrap;"><i class="bi bi-pencil-square me-1" style="color: #<%=task_color%>;"></i></i>Editar tarea</button>
-                            <button class="btn btn-light rounded-pill" style="background-color: #F0F2FF"><i class="bi bi-check2-square me-1" style="color: #25ce7b;"></i><%= s_status%></button>
+                            <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill me-3" style="background-color: #E3E4E5; white-space: nowrap;"><i class="bi bi-pencil-square me-1"></i></i>Editar tarea</button>
+                            <a href="../taskstat?id=<%= task_id %>">
+                                <button class="btn btn-light rounded-pill" style="background-color: #<%= btn_color %>; color: #FFFFFF;"><i class="bi bi-check2-square me-1"></i><%= s_status%></button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -521,6 +578,76 @@
         </div> 
     </div>
 
+    <!-- Modal Edit -->                    
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskEdit">
+        <div class="modal-dialog modal-dialog-centered modal-xlM" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <h1 class="fw-bold mb-0 fs-2" style="color: #2A2927">
+                        <i data-bs-toggle="modal" data-bs-target="#modalInfo" class="bi bi-chevron-left ms-1" style="color: #2A2927; font-size: 30px"></i>
+                        Editar tarea
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5 pt-2">
+                    <form action="../taskedit?id=<%= task_id %>" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                        <div class="row">
+                            <div class="col-6" >
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                    <input value="<%= task_name %>" type="text" name="task_name" id="task_name" class="form-control-sm rounded-3" placeholder="Deberes.." required>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label class="form-label ms-4">Prioridad</label>
+                                    <select name="task_prior" id="task_prior" class="form-select ms-4" style="border-color: #E3E4E5;" required>
+                                        <option value="" disabled selected hidden>Selecciona uno</option>
+                                        <option value="Baja">Baja</option>
+                                        <option value="Media">Media</option>
+                                        <option value="Alta">Alta</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label class="form-label">Dificultad</label>
+                                    <select  name="task_diff" id="task_diff" class="form-select me-4" style="border-color: #E3E4E5;" required>
+                                        <option value="" disabled selected hidden>Selecciona uno</option>
+                                        <option value="Sencilla">Sencilla</option>
+                                        <option value="Intermedia">Intermedia</option>
+                                        <option value="Compleja">Compleja</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-11">
+                                <label for="disabledSelect" class="form-label">Descripci&oacute;n</label>
+                                <textarea  class="form-control" name="task_info" id="task_info" rows="7" placeholder="Describe tu tarea" style="resize: none; border-color: #E3E4E5;" required><%= task_info %></textarea>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <div class="mb-3">
+                                    <label for="disabledSelect" class="form-label">Fecha l&iacute;mite</label>
+                                    <input class="form-control-sm" type="datetime-local" name="task_edate" id="task_edate" required>
+                                </div>
+                            </div>
+                            <div class="col-3"></div>
+                            <div class="col-6 mt-5 text-end">
+                                <div class="me-4">
+                                    <button type="submit" class="btn btn-lg rounded-pill custom-bcollab mb-2 me-5"><p class="mt-1 mb-1 me-2 ms-2" style="font-size: 16px;">Editar tarea</p></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    </div>
+                        
 </body>
 <script>
     window.addEventListener('resize', function () {

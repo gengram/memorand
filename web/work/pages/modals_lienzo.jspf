@@ -151,7 +151,7 @@
                 <p class=" mt-2" style="font-size: 20px"><i class="bi bi-exclamation-triangle-fill me-2" style="color: red"></i>Eliminar contenido</p>
             </div>
             <div class="modal-body">
-                <p>¿Est&aacute;s seguro de eliminar todo el contenido del lienzo?</p>
+                <p>&iquest;Est&aacute;s seguro de eliminar todo el contenido?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-gray" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>

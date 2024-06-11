@@ -469,7 +469,7 @@ public class UsersModel extends Conexion
         return user;
     }
     
-    public User getUserByIdea(String idea_id)
+    public User getUserByTool(String tool_table, String tool_name, String tool_id)
     {
         User user = null;
         
@@ -479,23 +479,23 @@ public class UsersModel extends Conexion
         {
             String sql = "SELECT u.user_id, u.user_name, u.user_pat, u.user_mat, u.user_profile "
                        + "FROM users u "
-                       + "JOIN userideas ui ON u.user_id = ui.user_id "
-                       + "WHERE ui.idea_id = ? "
+                       + "INNER JOIN user"+ tool_table +" ut ON u.user_id = ut.user_id "
+                       + "WHERE ut."+ tool_name +" = ? "
                        + "LIMIT 1";
             
             ps = getConnection().prepareStatement(sql);
             
-            ps.setString(1, idea_id);
+            ps.setString(1, tool_id);
             
             ResultSet rs = ps.executeQuery();
             
             if (rs.next())
             {
                 String user_id = rs.getString(1);
-                String user_name = rs.getString(5);
-                String user_pat = rs.getString(6);
-                String user_mat = rs.getString(7);
-                String user_profile = rs.getString(9);
+                String user_name = rs.getString(2);
+                String user_pat = rs.getString(3);
+                String user_mat = rs.getString(4);
+                String user_profile = rs.getString(5);
 
                 user = new User(user_id, user_name, user_pat, user_mat, user_profile);
             }

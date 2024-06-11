@@ -64,11 +64,11 @@ public class CollabUserNew extends HttpServlet
             
             if (collabuserc.modelCreateCollabUser(collabuser))
             {
-                response.sendRedirect("admin/gestion/lideres.jsp?team_id="+ t_id +"&proj_id="+ p_id);
+                response.sendRedirect("admin/lideres.jsp?team_id="+ t_id +"&proj_id="+ p_id);
             }
             else
             {
-                response.sendRedirect("admin/gestion/lideres.jsp?error=200-1");
+                response.sendRedirect("admin/lideres.jsp?error=200-1");
             }
         }
         else

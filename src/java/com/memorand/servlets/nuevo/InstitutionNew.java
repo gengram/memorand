@@ -87,6 +87,10 @@ public class InstitutionNew extends HttpServlet
                         {
                             File file = new File(imgDirectory + fileName);
                             item.write(file);
+                            
+                            file.setReadable(true, false);
+                            file.setWritable(true, false);
+                        
                             instImg = "XM-Uploads/institutions/" + convertAndResizeImage(file, imgDirectory);
                         }
                         else
