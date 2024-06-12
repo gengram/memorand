@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null)
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String note_id = request.getParameter("id");
 
     session.setAttribute("upd_type", "note");

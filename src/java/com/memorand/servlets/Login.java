@@ -4,6 +4,7 @@ import com.memorand.beans.Institution;
 import com.memorand.beans.User;
 import com.memorand.controller.InstitutionsController;
 import com.memorand.controller.UsersController;
+import com.memorand.util.Sanitizante;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,8 @@ public class Login extends HttpServlet
             e.printStackTrace();
         }
         
-        String email = userFields.get(0);
-        String password = userFields.get(1);
+        String email = Sanitizante.sanitizar(userFields.get(0));
+        String password = Sanitizante.sanitizar(userFields.get(1));
         
         UsersController userc = new UsersController();
         User user = new User(email, password);

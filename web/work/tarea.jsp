@@ -20,6 +20,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null)
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String user_id = (String) session.getAttribute("user_id");
     String user_type = (String) session.getAttribute("user_type");
     
@@ -424,7 +432,7 @@
                     <div class="col-lg-10"><hr class="mt-4"></div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
-                <%= notec.workGetNotesByTask(task_id)%>
+                <%= notec.workGetNotesByTask(task_id, user_id)%>
             </div>
             <!-- LIENZOS -->    
             <div id="canvas_content" class="content hidden">

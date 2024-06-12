@@ -5,6 +5,7 @@ import com.memorand.beans.User;
 import com.memorand.controller.InUsersController;
 import com.memorand.controller.UsersController;
 import com.memorand.util.Generador;
+import com.memorand.util.Sanitizante;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,15 +66,15 @@ public class ReadFile extends HttpServlet
                 String[] row = rows.get(i);
                 
                 String user_id = g.newID();
-                String user_email = row[0].replace("\"", "");
+                String user_email = Sanitizante.sanitizar(row[0].replace("\"", ""));
                 
                 if (!userc.modelValidateUserByEmail(user_email))
                 {
-                    String user_pass = row[1].replace("\"", "");
-                    String user_type = row[2].replace("\"", "");
-                    String user_name = row[3].replace("\"", "");
-                    String user_pat = row[4].replace("\"", "");
-                    String user_mat = row[5].replace("\"", "");
+                    String user_pass = Sanitizante.sanitizar(row[1].replace("\"", ""));
+                    String user_type = Sanitizante.sanitizar(row[2].replace("\"", ""));
+                    String user_name = Sanitizante.sanitizar(row[3].replace("\"", ""));
+                    String user_pat = Sanitizante.sanitizar(row[4].replace("\"", ""));
+                    String user_mat = Sanitizante.sanitizar(row[5].replace("\"", ""));
                     
                     User user = new User(user_id, user_email, user_pass, user_type, user_name, user_pat, user_mat, "si", "XM-Uploads/users/profile/default-user.png");
                     

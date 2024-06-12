@@ -27,7 +27,7 @@ import javax.imageio.ImageIO;
 public class UserNew extends HttpServlet
 {
     private static final String DEFAULT_USER_IMAGE = "XM-Uploads/users/profile/default-user.png";
-    private static final String STAFF_HOME = "staff/home.jsp";
+    private static final String STAFF_HOME = "staff/institucion.jsp";
     private static final String ADMIN_HOME = "admin/home.jsp";
     private static final String INDEX_PAGE = "index.jsp";
 
@@ -160,7 +160,7 @@ public class UserNew extends HttpServlet
     private void handleStaffCreation(HttpServletRequest request, HttpServletResponse response, List<String> userFields, String userImg) throws IOException
     {
         String instId = request.getParameter("id");
-        createUserAndRedirect(request, response, userFields, userImg, instId, "admin", STAFF_HOME);
+        createUserAndRedirect(request, response, userFields, userImg, instId, "admin", STAFF_HOME+"?id="+instId);
     }
 
     private void handleAdminCreation(HttpServletRequest request, HttpServletResponse response, HttpSession session, List<String> userFields, String userImg) throws IOException

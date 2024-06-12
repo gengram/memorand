@@ -16,6 +16,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null)
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String collab_id = request.getParameter("id");
     String user_id = (String) session.getAttribute("user_id");
     

@@ -8,6 +8,14 @@
 <!DOCTYPE html>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null)
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     String verified = request.getParameter("v");
     String canva_id = request.getParameter("id");
     

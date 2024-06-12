@@ -2,6 +2,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // PROTECCIÓN
+    String u = (String) session.getAttribute("user_type");
+    
+    if(session == null || u == null)
+    {
+        response.sendRedirect("../index.jsp?error=InvalidSession");
+    }
+    
     UsersController userc = new UsersController();
     
     String user_id = (String) session.getAttribute("user_id");
