@@ -41,14 +41,6 @@
         <servlet-class>com.memorand.servlets.nuevo.CollabUserNew</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ApiLogin</servlet-name>
-        <servlet-class>com.memorand.api.ApiLogin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ApiUserInfo</servlet-name>
-        <servlet-class>com.memorand.api.ApiUserInfo</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PostNew</servlet-name>
         <servlet-class>com.memorand.servlets.nuevo.PostNew</servlet-class>
     </servlet>
@@ -145,26 +137,6 @@
         <servlet-class>com.memorand.servlets.editar.NoteText</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ApiHomeInfo</servlet-name>
-        <servlet-class>com.memorand.api.ApiHomeInfo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ApiCanvaInfo</servlet-name>
-        <servlet-class>com.memorand.api.ApiCanvaInfo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ApiTaskInfo</servlet-name>
-        <servlet-class>com.memorand.api.ApiTaskInfo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ApiIdeaInfo</servlet-name>
-        <servlet-class>com.memorand.api.ApiIdeaInfo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ApiNoteInfo</servlet-name>
-        <servlet-class>com.memorand.api.ApiNoteInfo</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CanvaDraw</servlet-name>
         <servlet-class>com.memorand.servlets.editar.CanvaDraw</servlet-class>
     </servlet>
@@ -195,6 +167,14 @@
     <servlet>
         <servlet-name>CanvaDelete</servlet-name>
         <servlet-class>com.memorand.servlets.eliminar.CanvaDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TaskDelete</servlet-name>
+        <servlet-class>com.memorand.servlets.eliminar.TaskDelete</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IdeaEdit</servlet-name>
+        <servlet-class>com.memorand.servlets.editar.IdeaEdit</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>InstitutionNew</servlet-name>
@@ -235,14 +215,6 @@
     <servlet-mapping>
         <servlet-name>CollabUserNew</servlet-name>
         <url-pattern>/cunew</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiLogin</servlet-name>
-        <url-pattern>/api/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiUserInfo</servlet-name>
-        <url-pattern>/api/userinfo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PostNew</servlet-name>
@@ -321,10 +293,6 @@
         <url-pattern>/useredit</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ApiUserInfoGet</servlet-name>
-        <url-pattern>/api/userinfoget</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AppRequestNew</servlet-name>
         <url-pattern>/reqnew</url-pattern>
     </servlet-mapping>
@@ -339,26 +307,6 @@
     <servlet-mapping>
         <servlet-name>NoteText</servlet-name>
         <url-pattern>/notetext</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiHomeInfo</servlet-name>
-        <url-pattern>/api/home</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiCanvaInfo</servlet-name>
-        <url-pattern>/ApiCanvaInfo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiTaskInfo</servlet-name>
-        <url-pattern>/ApiTaskInfo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiIdeaInfo</servlet-name>
-        <url-pattern>/ApiIdeaInfo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApiNoteInfo</servlet-name>
-        <url-pattern>/ApiNoteInfo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CanvaDraw</servlet-name>
@@ -391,6 +339,14 @@
     <servlet-mapping>
         <servlet-name>CanvaDelete</servlet-name>
         <url-pattern>/canvadelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TaskDelete</servlet-name>
+        <url-pattern>/taskdelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IdeaEdit</servlet-name>
+        <url-pattern>/ideaedit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

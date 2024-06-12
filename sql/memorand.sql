@@ -30,7 +30,7 @@ create table users
 
 create table inusers
 (
-	inst_id varchar(36),
+	inst_id varchar(3),
 	user_id varchar(36),
 	foreign key (inst_id) references institutions (inst_id),
 	foreign key (user_id) references users (user_id)

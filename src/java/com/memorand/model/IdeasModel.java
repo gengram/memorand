@@ -183,4 +183,43 @@ public class IdeasModel extends Conexion
         
         return flag;
     }
+    
+    public boolean updateIdea(Idea i)
+    {
+        boolean flag = false;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "UPDATE ideas SET idea_text = ?, idea_color = ? WHERE idea_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            
+            ps.setString(1, i.getIdea_text());
+            ps.setString(2, i.getIdea_color());
+            ps.setString(3, i.getIdea_id());
+            
+            if (ps.executeUpdate() == 1)
+                flag = true;
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+        
+        finally
+        {
+            if (getConnection() != null)
+            {
+                try
+                { getConnection().close(); }
+                catch (SQLException ex)
+                { System.err.println(ex.getMessage()); }
+            }
+        }
+        
+        return flag;
+    } 
 }

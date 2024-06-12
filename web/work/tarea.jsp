@@ -20,6 +20,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    String user_id = (String) session.getAttribute("user_id");
+    String user_type = (String) session.getAttribute("user_type");
+    
     String task_id = request.getParameter("id");
 
     if (task_id == null || task_id.isEmpty())
@@ -42,6 +45,8 @@
         }
         else
         {
+            String html_task_delete = "";
+            
             CollabsController collabc = new CollabsController();
             Collab collab = collabc.beanGetCollabByTask(task_id);
 
@@ -107,6 +112,9 @@
                 default:
                     break;
             }
+            
+            if (user_type.equals("ch"))
+                html_task_delete = "";
 
             IdeasController ideac = new IdeasController();
             NotesController notec = new NotesController();
@@ -129,6 +137,32 @@
         <title>Memorand | <%= task_name%></title>
 
     </head>
+    
+    <style>
+        .btn-red {
+            border-color: #F24848;
+            color: #fff;
+            background-color: #F24848;
+        }
+        .btn-red:hover {
+            border-color: #F24848;
+            color: #F24848;
+            background-color: transparent;
+        }
+
+        .btn-gray {
+            border-color: #E3E4E5;
+            color: #000;
+            background-color: #E3E4E5;
+        }
+        .btn-gray:hover {
+            border-color: #E3E4E5;
+            color: #000;
+            background-color: transparent;
+        }
+
+    </style>
+
     <style>
         .btnnav.active {
             border-bottom: 4px solid #<%=proj_color%>; /* Aplica el borde inferior cuando el botón está activo */
@@ -338,7 +372,7 @@
                             </div>
                             <div class="col-7 mt-3 text-end">
                                 <text class="me-5">Ideas agregadas: <%= taskcounter.modelGetTaskResource(task_id, "ideas")%></text>
-                                <text class="me-4">Agregadas por ti: </text>
+                                <text class="me-4">Agregadas por ti: <%= taskcounter.modelGetTaskResourceByUser(task_id, user_id, "ideas")%></text>
                             </div>
                         </div>
                     </div>
@@ -358,7 +392,7 @@
                     </div>
                     <div class="col-lg-1 d-none d-lg-block"></div>
                 </div>
-                <%= ideac.workGetIdeasByTask(task_id)%>
+                <%= ideac.workGetIdeasByTask(task_id, user_id)%>
                 <br>
             </div>
             <!-- NOTAS -->    
@@ -379,7 +413,7 @@
                             </div>
                             <div class="col-7 mt-3 text-end">
                                 <text class="me-5">Notas agregadas: <%= taskcounter.modelGetTaskResource(task_id, "notes")%></text>
-                                <text class="me-4">Agregadas por ti: </text>
+                                <text class="me-4">Agregadas por ti: <%= taskcounter.modelGetTaskResourceByUser(task_id, user_id, "notes")%></text>
                             </div>
                         </div>
                     </div>
@@ -410,7 +444,7 @@
                             </div>
                             <div class="col-7 mt-3 text-end">
                                 <text class="me-5">Lienzos agregados: <%= taskcounter.modelGetTaskResource(task_id, "canvas")%></text>
-                                <text class="me-4">Agregados por ti: </text>
+                                <text class="me-4">Agregados por ti: <%= taskcounter.modelGetTaskResourceByUser(task_id, user_id, "canvas")%></text>
                             </div>
                         </div>
                     </div>
@@ -446,13 +480,13 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
-                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#B9D7A2')"><i style="color: #B9D7A2; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#96D5D9')"><i style="color: #96D5D9; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#A9AFE4')"><i style="color: #A9AFE4; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#E2C1E4')"><i style="color: #E2C1E4; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F1B390')"><i style="color: #F1B390; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F8DE9B')"><i style="color: #F8DE9B; font-size: 30px;" class="bi bi-square-fill"></i></button>
-                                <button class="btn btn-color" type="button" onclick="selectColorIdea('#EFA1A1')"><i style="color: #EFA1A1; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#B9D7A2', 'idea_color')"><i style="color: #B9D7A2; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#96D5D9', 'idea_color')"><i style="color: #96D5D9; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#A9AFE4', 'idea_color')"><i style="color: #A9AFE4; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#E2C1E4', 'idea_color')"><i style="color: #E2C1E4; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F1B390', 'idea_color')"><i style="color: #F1B390; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color me-2" type="button" onclick="selectColorIdea('#F8DE9B', 'idea_color')"><i style="color: #F8DE9B; font-size: 30px;" class="bi bi-square-fill"></i></button>
+                                <button class="btn btn-color" type="button" onclick="selectColorIdea('#EFA1A1', 'idea_color')"><i style="color: #EFA1A1; font-size: 30px;" class="bi bi-square-fill"></i></button>
                                 <input type="hidden" name="idea_color" id="idea_color" required>
                             </div>
                         </div>
@@ -473,8 +507,9 @@
                         </div>
                     </form>
                     <script>
-                        function selectColorIdea(color) {
-                            document.getElementById("idea_color").value = color;
+                        function selectColorIdea(color, ideacolor)
+                        {
+                            document.getElementById(ideacolor).value = color;
                         }
                     </script>
                 </div>
@@ -512,7 +547,7 @@
             </div>
         </div> 
     </div>
-
+                        
     <!-- Modal Crear Lienzo -->                            
     <div class="modal fade" tabindex="-1" role="dialog" id="modalLienzo">
         <div class="modal-dialog modal-dialog-centered modal-wIdea" role="document">
@@ -567,16 +602,37 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-12 text-end">
-                            <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill me-3" style="background-color: #E3E4E5; white-space: nowrap;"><i class="bi bi-pencil-square me-1"></i></i>Editar tarea</button>
+                            <button data-bs-toggle="modal" data-bs-target="#modalTaskEdit" class="btn btn-light rounded-pill" style="background-color: #E3E4E5; white-space: nowrap;">Editar tarea</button>
                             <a href="../taskstat?id=<%= task_id %>">
-                                <button class="btn btn-light rounded-pill" style="background-color: #<%= btn_color %>; color: #FFFFFF;"><i class="bi bi-check2-square me-1"></i><%= s_status%></button>
+                                <button class="btn btn-light rounded-pill" style="background-color: #<%= btn_color %>; color: #FFFFFF;"><%= s_status%></button>
                             </a>
+                            <button data-bs-toggle="modal" data-bs-target="#modalTaskDelete" class="btn btn-light rounded-pill" style="background-color: #F24848; color: #FFFFFF;">Eliminar tarea</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div> 
     </div>
+                            
+    <!-- Modal DELETE-ALL-->
+    <div class="modal fade" role="dialog" data-bs-keyboard="false" tabindex="-1" id="modalTaskDelete">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 30%">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <p class=" mt-2" style="font-size: 20px"><i class="bi bi-exclamation-triangle-fill me-2" style="color: #F24848"></i>Eliminar tarea</p>
+                </div>
+                <div class="modal-body">
+                    <p>&iquest;Est&aacute;s seguro de eliminar todo el contenido de esta tarea?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-gray rounded-pill" data-bs-toggle="modal" data-bs-target="#modalInfo">Cancelar</button>
+                    <a href="../taskdelete?id=<%= task_id %>">
+                        <button id="delete-all" type="button" class="btn btn-red rounded-pill" aria-label="Close" data-bs-dismiss="modal">Eliminar</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>                         
 
     <!-- Modal Edit -->                    
     <div class="modal fade" tabindex="-1" role="dialog" id="modalTaskEdit">

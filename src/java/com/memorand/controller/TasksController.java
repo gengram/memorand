@@ -174,6 +174,12 @@ public class TasksController
         return String.valueOf(taskm.getTaskResource(t_id, resource));
     }
     
+    public String modelGetTaskResourceByUser(String t_id, String user_id, String resource)
+    {
+        TasksModel taskm = new TasksModel();
+        return String.valueOf(taskm.getTaskResourceByUser(t_id, user_id, resource));
+    }
+    
     public boolean modelDeleteTask(String t_id)
     {
         TasksModel taskm = new TasksModel();

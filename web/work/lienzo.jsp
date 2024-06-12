@@ -218,6 +218,7 @@
             }
         </style>
     </head>
+    
     <body>
 
         <jsp:include page="pages/modals_lienzo.jspf"/>

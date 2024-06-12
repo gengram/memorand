@@ -221,25 +221,41 @@ public class TasksModel extends Conexion
         
         try
         {
-            String sql;
-            
-            switch (resource)
-            {
-                case "ideas":
-                    sql = "SELECT COUNT(*) AS count FROM taskideas WHERE task_id = ?";
-                    break;
-                case "notes":
-                    sql = "SELECT COUNT(*) AS count FROM tasknotes WHERE task_id = ?";
-                    break;
-                case "canvas":
-                    sql = "SELECT COUNT(*) AS count FROM taskcanvas WHERE task_id = ?";
-                    break;
-                default:
-                    return count;
-            }
+            String sql = "SELECT COUNT(*) AS count FROM task"+resource+" WHERE task_id = ?";
             
             ps = getConnection().prepareStatement(sql);
             ps.setString(1, t_id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next())
+                count = rs.getInt("count");
+        }
+        
+        catch (SQLException e)
+        {
+            System.err.println(e.getMessage());
+        }
+
+        return count;
+    }
+    
+    public int getTaskResourceByUser(String t_id, String user_id, String resource)
+    {
+        int count = 0;
+        
+        PreparedStatement ps;
+        
+        try
+        {
+            String sql = "SELECT COUNT(*) AS count FROM task"+resource+" tr "
+                       + "INNER JOIN "+resource+" r ON tr."+resource.substring(0, resource.length() - 1)+"_id = r."+resource.substring(0, resource.length() - 1)+"_id "
+                       + "INNER JOIN user"+resource+" ur ON r."+resource.substring(0, resource.length() - 1)+"_id = ur."+resource.substring(0, resource.length() - 1)+"_id "
+                       + "WHERE tr.task_id = ? AND ur.user_id = ?";
+            
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, t_id);
+            ps.setString(2, user_id);
 
             ResultSet rs = ps.executeQuery();
 
