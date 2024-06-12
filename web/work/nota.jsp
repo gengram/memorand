@@ -86,8 +86,8 @@
         }
         .btn-h:hover {
             color: #BDECD5;
-            background-color: #E3E4E5;
-            border-color: #BDECD5;
+            background-color: #25CE7B;
+            border-color: #25CE7B;
         }
 
         .custom-btnA{
@@ -245,7 +245,7 @@
                                 </div>
                                 <div class="col-5 border-start">
                                     <input class="custom-file-input" type="file" id="imagenInput" accept="image/*" onchange="updateFileName()">
-                                    <label for="imagenInput" class="custom-file-input-label custom-btnA" id="customFileLabel"><i class="bi bi-upload"></i></label>
+                                    <label for="imagenInput" class="custom-file-input-label custom-btnA" id="customFileLabel"><i class="bi bi-upload" style="font-size: 10px"></i></label>
 
                                     <button class="btn custom-btnA" onclick="extraerTextoDeImagen()" style="padding: 0.5px 20px;">
                                         <span class="spinner-grow spinner-grow-sm" id="loader" style="display:none;"></span>
@@ -253,10 +253,18 @@
                                     </button>
                                     <button class="btn btn-h" type="button" id="btnStartcon"><i class="bi bi-mic-fill"></i></button>
                                     <button class="btn btn-h" type="button" id="btnStopcont"><i class="bi bi-mic-mute-fill"></i></button>
-                                    <!--<input class="form-control text-editor border-2" type="text"role="textbox" contenteditable="true" id="titulo">-->
                                 </div>
-                                <div class="col-3 text-end">
-                                    <i class="bi bi-three-dots-vertical me-4" style="font-size: 22px; color: #000"></i>
+                                <div class='col-2 btn-group dropstart ms-5'>
+                                    <p class='btn custom-p border-0' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    <texto style='color: #2A2927;'>
+                                        <i class='bi bi-three-dots-vertical' style='font-size: 20px'></i>
+                                    </texto>
+                                    </p>
+                                    <ul class='dropdown-menu shadow'>
+                                        <li><a class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalNoteEdit' href=''>Editar nombre</a></li>
+                                        <li onclick="generatePDF()"<a class='dropdown-item' href=''>Exportar como PDF</a></li>
+                                        <li><a style='color: #F25063;' class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalNoteDelete' href=''>Eliminar nota</a></li>
+                                    </ul>
                                 </div>
                             </div>
 
@@ -283,7 +291,8 @@
                                     <input type="hidden" id="exampleColorInput">
                                 </div>
                                 <script>
-                                    function selectColorApunte(color) {
+                                    function selectColorApunte(color)
+                                    {
                                         console.log("Color seleccionado:", color);
                                         document.getElementById("exampleColorInput").value = color;
                                         // Aplica el color al texto en el área de edición
@@ -303,35 +312,11 @@
 
             <div class="row" >
                 <div class="col-12">
-                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 350px;">
+                    <div class="form-control text-editor contenido border-1 mt-3 text-start" type="text"role="textbox" contenteditable="true" id="contE" style=" min-height: 1000px;">
                         <%= note_text%>
                     </div>
                 </div>
             </div>
-
-            <div class="row mt-3">
-                <div class="col-2"></div>
-                <div class="col-10 text-end">
-                    <button class="btn custom-bsign" onclick="generatePDF()">
-                        Descargar <i class="bi bi-filetype-pdf custom-icon6"></i>
-                    </button>
-                    <button class="btn custom-bsign"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" fill="currentColor" class="bi bi-floppy-fill" viewBox="0 0 16 16">
-                        <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0H3v5.5A1.5 1.5 0 0 0 4.5 7h7A1.5 1.5 0 0 0 13 5.5V0h.086a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5H14v-5.5A1.5 1.5 0 0 0 12.5 9h-9A1.5 1.5 0 0 0 2 10.5V16h-.5A1.5 1.5 0 0 1 0 14.5v-13Z"/>
-                        <path d="M3 16h10v-5.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5V16Zm9-16H4v5.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V0ZM9 1h2v4H9V1Z"/>
-                        </svg>  Guardar
-                    </button>
-                </div>
-            </div>
-
-            <!-- <div class="btn-group dropend" role="group">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </button>
-                <ul class="dropdown-menu shadow-lg" style="width: auto;">
-                    <li><a class="dropdown-item" href="#">De</a></li>
-                    <li><a class="dropdown-item" href="#">De</a></li>
-                </ul>
-            </div> -->
         </div>
 
     </body>
@@ -373,7 +358,7 @@
             // Opciones para la conversión a PDF
             let options = {
                 margin: 1,
-                filename: 'contenido.pdf',
+                filename: '<%=note_name%>.pdf',
                 image: {type: 'jpeg', quality: 0.98},
                 html2canvas: {scale: 2},
                 jsPDF: {unit: 'in', format: 'letter', orientation: 'portrait'}
