@@ -614,7 +614,9 @@
                             <a href="../taskstat?id=<%= task_id %>">
                                 <button class="btn btn-light rounded-pill" style="background-color: #<%= btn_color %>; color: #FFFFFF;"><%= s_status%></button>
                             </a>
+                            <!--
                             <button data-bs-toggle="modal" data-bs-target="#modalTaskDelete" class="btn btn-light rounded-pill" style="background-color: #F24848; color: #FFFFFF;">Eliminar tarea</button>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -627,7 +629,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 30%">
             <div class="modal-content rounded-4">
                 <div class="modal-header">
-                    <p class=" mt-2" style="font-size: 20px"><i class="bi bi-exclamation-triangle-fill me-2" style="color: #F24848"></i>Eliminar tarea</p>
+                    <p class=" mt-2" style="font-size: 20px"><i class="bi bi-exclamation-triangle-fill me-2" style="color: #F24848"></i><b>Eliminar tarea</b></p>
                 </div>
                 <div class="modal-body">
                     <p>&iquest;Est&aacute;s seguro de eliminar todo el contenido de esta tarea?</p>

@@ -69,6 +69,31 @@
     </head>
 
     <style>
+        .btn-red {
+            border-color: #F24848;
+            color: #fff;
+            background-color: #F24848;
+        }
+        .btn-red:hover {
+            border-color: #F24848;
+            color: #F24848;
+            background-color: transparent;
+        }
+        
+        .btn-gray {
+            border-color: #E3E4E5;
+            color: #000;
+            background-color: #E3E4E5;
+        }
+        .btn-gray:hover {
+            border-color: #E3E4E5;
+            color: #000;
+            background-color: transparent;
+        }
+
+    </style>
+    
+    <style>
         .btn-h{
             color: #000;
             border-color: #E3E4E5;
@@ -261,7 +286,9 @@
                                     </texto>
                                     </p>
                                     <ul class='dropdown-menu shadow'>
+                                        <!-- 
                                         <li><a class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalNoteEdit' href=''>Editar nombre</a></li>
+                                        -->
                                         <li onclick="generatePDF()"<a class='dropdown-item' href=''>Exportar como PDF</a></li>
                                         <li><a style='color: #F25063;' class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalNoteDelete' href=''>Eliminar nota</a></li>
                                     </ul>
@@ -318,6 +345,25 @@
                 </div>
             </div>
         </div>
+                     <!-- Modal DELETE-ALL-->
+        <div class="modal fade" role="dialog" data-bs-keyboard="false" tabindex="-1" id="modalNoteDelete">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 30%">
+                <div class="modal-content rounded-4">
+                    <div class="modal-header">
+                        <p class=" mt-2" style="font-size: 20px"><i class="bi bi-exclamation-triangle-fill me-2" style="color: #F24848"></i><b>Eliminar tarea</b></p>
+                    </div>
+                    <div class="modal-body">
+                        <p>&iquest;Est&aacute;s seguro de eliminar todo el contenido de esta tarea?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-gray rounded-pill" data-bs-toggle="modal" data-bs-target="#modalInfo">Cancelar</button>
+                        <a href="../notedelete?id=<%= note_id %>">
+                            <button id="delete-all" type="button" class="btn btn-red rounded-pill" aria-label="Close" data-bs-dismiss="modal">Eliminar</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>         
 
     </body>
 

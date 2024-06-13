@@ -79,11 +79,6 @@ public class IdeasController
 
                 String timeAgo = d.formatDuration(duration);
                 
-                String htmldelete = "";
-                
-                if (u_id.equals(user_id))
-                    htmldelete = "<li class='me-2'><a style='color: red;' class='dropdown-item' href='../ideadelete?id=" + i.getIdea_id() + "'>Eliminar idea</a></li>\n";
-                    
                 String htmldrop = "<div class='btn-group dropstart'>"
                                 + "<p class='btn custom-p me-2 border-0' data-bs-toggle='dropdown' aria-expanded='false'>"
                                 + "<texto style='color: #2A2927;'>"
@@ -92,7 +87,7 @@ public class IdeasController
                                 + "</p>"
                                 + "<ul class='dropdown-menu shadow'>\n"
                                 + "<li class='me-2'><a class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalIdeaEdit"+i.getIdea_id()+"' href=''>Editar idea</a></li>\n"
-                                + htmldelete
+                                + "<li class='me-2'><a style='color: red;' class='dropdown-item' href='../ideadelete?id=" + i.getIdea_id() + "'>Eliminar idea</a></li>\n"
                                 + "</ul>\n"
                                 + "</div>\n";
 

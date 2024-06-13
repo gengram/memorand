@@ -103,11 +103,6 @@ public class NotesController
                 String note_cdate = sdf1.format(n.getNote_cdate());
                 String note_mdate = sdf2.format(n.getNote_mdate());
                 
-                String htmldelete = "";
-                
-                if (u_id.equals(user_id))
-                    htmldelete = "<li class='me-2'><a style='color: red;' class='dropdown-item' href='../notedelete?id=" + n.getNote_id() + "'>Eliminar nota</a></li>\n";
-                    
                 String htmldrop = "<div class='btn-group dropstart'>"
                                 + "<p class='btn custom-p me-2 border-0' data-bs-toggle='dropdown' aria-expanded='false'>"
                                 + "<texto style='color: #2A2927;'>"
@@ -115,8 +110,8 @@ public class NotesController
                                 + "</texto>"
                                 + "</p>"
                                 + "<ul class='dropdown-menu shadow'>\n"
-                                + "<li class='me-2'><a class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalNoteEdit"+n.getNote_id()+"' href=''>Editar nota</a></li>\n"
-                                + htmldelete
+//                                + "<li class='me-2'><a class='dropdown-item' data-bs-toggle='modal' data-bs-target='#modalNoteEdit"+n.getNote_id()+"' href=''>Editar nota</a></li>\n"
+                                + "<li class='me-2'><a style='color: red;' class='dropdown-item' href='../notedelete?id=" + n.getNote_id() + "'>Eliminar nota</a></li>\n"
                                 + "</ul>\n"
                                 + "</div>\n";
 
