@@ -95,6 +95,12 @@ public class ProjectsController
 
         return htmlcode;
     }
+    
+    public ArrayList<Project> beanGetProjectsByTeam(String team_id)
+    {
+        ProjectsModel projm = new ProjectsModel();
+        return projm.getProjectsByTeam(team_id);
+    }
 
     public String adminGetProjectsByTeam(String team_id)
     {
