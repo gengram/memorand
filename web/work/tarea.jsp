@@ -142,7 +142,7 @@
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
-        <title>Memorand | <%= task_name%></title>
+        <title><%= proj_name %> | <%= task_name %></title>
 
     </head>
     

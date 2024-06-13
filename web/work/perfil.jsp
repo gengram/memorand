@@ -93,7 +93,7 @@
             <div class="row mt-5">
                 <div class="col-2"></div>
                 <div class="col-7">
-                    <h1> Mi perfil</h1>
+                    <h1>Memorand | Mi perfil</h1>
                 </div>
                 <div class="col-3 mt-3">
                     <p style="color: #25ce7b; font-size: 18px;"><a id="backLink" href='home.jsp'><i class="bi bi-chevron-left me-1"></i>Regresar</a></p>
@@ -112,6 +112,7 @@
                         <p><text  style="color: #AFB2B3">Estatus: </text><text style="color: #2A2927"><%=user_statusS%></text></p>
                     </div>
                 </div>
+                    <!-- 
                 <div class="col-2 text-end mt-3">
                     <a href="">
                         <button class="btn btn-gray rounded-pill mt-3">Editar foto de perfil</button>
@@ -120,6 +121,7 @@
                         <button class="btn btn-gray rounded-pill mt-2">Cambiar contrase&ntilde;a</button>
                     </a>
                 </div>
+                    -->
                 <div class="col-2"></div>
             </div>
                         

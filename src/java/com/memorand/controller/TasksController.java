@@ -159,6 +159,7 @@ public class TasksController
 
                 if (i % 2 == 1 || i == tasks.size() - 1)
                     htmlcode += "</div><div class=\"row mt-2 mb-2\">"; // Cerrar y abrir fila después de 2 tarjetas o al final
+
             }
         }
 

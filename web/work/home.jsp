@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="../XM-Resources/styles/bootstrap.css">
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
-        <title>Memorand | Home</title>
+        <title>Memorand | Mis equipos</title>
 
     </head>
     <style>
@@ -99,6 +99,28 @@
                 width: 66.66666667%;
             }
         }
+        
+        @media (max-width: 2500px) {
+            .colC-1 {
+                flex: 0 0 auto;
+                width: 0%;
+            }
+            .colC-3 {
+                flex: 0 0 auto;
+                width: 33.33333333%;
+            }
+            .colC-4 {
+                flex: 0 0 auto;
+                width: 33.33333333%;
+            }
+            .colC-10{
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            .modal-xlM{
+                max-width: 25%;
+            }
+        }
     </style>
 
     <!-- BODY -->
@@ -125,6 +147,17 @@
                 <div class="col-2 d-none d-sm-block"></div>
             </div>
         </div>
+                    
+        
 
+        <script>
+            function redirectToPage(page) {
+                var selectElement = document.getElementById(page);
+                var url = selectElement.value;
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+        </script>
     </body>
 </html>

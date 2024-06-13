@@ -33,18 +33,24 @@
     // VARIABLES PROYECTO
     String proj_id = "null", proj_name = "null", proj_color = "null";
 
-    if (collab_id == null || collab_id.isEmpty()) {
+    if (collab_id == null || collab_id.isEmpty())
+    {
         response.sendRedirect("home.jsp");
-    } else {
+    }
+    else
+    {
         TeamsController teamc = new TeamsController();
         Team team = teamc.beanGetTeamByCollab(collab_id);
 
         ProjectsController projc = new ProjectsController();
         Project proj = projc.beanGetProjectByCollab(collab_id);
 
-        if (team == null || proj == null) {
+        if (team == null || proj == null)
+        {
             response.sendRedirect("home.jsp");
-        } else {
+        }
+        else
+        {
             team_id = team.getTeam_id();
             team_name = team.getTeam_name();
             team_color = team.getTeam_color();
@@ -69,7 +75,7 @@
         <link rel="stylesheet" href="../XM-Resources/styles/styless.css">
         <link rel="shortcut icon" href="../XM-Resources/vector/memorand-bee.svg">
 
-        <title>Memorand | <%= proj_name%></title>
+        <title><%= team_name %> | <%= proj_name%></title>
 
     </head>
 

@@ -155,7 +155,7 @@ public class TeamsController
                     switch (user_type)
                     {
                         case "ch":
-                            hrefcode = "<a href='rendimiento.jsp?id=" + t.getTeam_id() + "'class='subtitulo text-end' style='color: #AFB2B3; font-size: 18px;'>Ver rendimiento <i class='bi bi-chevron-right' style='color: #AFB2B3;'></i></a>";
+                            hrefcode = "<a href='' data-bs-toggle=\"modal\" data-bs-target=\"#modalRendimiento"+t.getTeam_id()+"\" class='subtitulo text-end' style='color: #AFB2B3; font-size: 18px;'>Ver rendimiento <i class='bi bi-chevron-right' style='color: #AFB2B3;'></i></a>";
                             break;
                         case "wk":
                         default:
@@ -164,7 +164,7 @@ public class TeamsController
                     }
                 }
 
-               htmlcode += "<div class=\"card border border-1\" style=\"max-height: 60px;\">\n"
+               htmlcode += "<div class=\"card border border-1 mt-4\" style=\"max-height: 60px;\">\n"
                         + "    <div class=\"row g-0\">\n"
                         + "        <div class=\"col-2\" style=\"background-color: #" + t.getTeam_color() + "; max-height: 58px; min-width: 40px; width: 40px;\"></div>\n"
                         + "        <div class=\"col-10 ms-2 ms-md-4\">\n"
@@ -180,6 +180,31 @@ public class TeamsController
 
                 htmlcode += "<div class='mt-3'></div>";
                 htmlcode += projc.workGetProjects(t.getTeam_id(), user_id);
+                
+                //MODAL VER PROYECTO
+                htmlcode += "      <div class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" id=\"modalRendimiento"+t.getTeam_id()+"\">\n"
+                        + "            <div class=\"modal-dialog modal-dialog-centered modal-xlM\" role=\"document\">\n"
+                        + "                <div class=\"modal-content rounded-4 shadow\">\n"
+                        + "                    <div class=\"modal-header p-5 pb-4 border-bottom-0\">\n"
+                        + "                        <h1 class=\"fw-bold mb-0 fs-2\" style=\"color: #2A2927\">Rendimiento de "+ t.getTeam_name() +"</h1>\n"
+                        + "                        <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n"
+                        + "                    </div>\n"
+                        + "                    <div class=\"modal-body p-5 pt-2\">\n"
+                        + "                        <div class=\"row\">\n"
+                        + "                            <div class=\"col-12\">\n"
+                        + "                                <div>\n"
+                        + "                                    <label class=\"form-label ms-4\">Proyecto</label>\n"
+                        + "                                    <select id=\"proj_page"+t.getTeam_id()+"\" class=\"form-select ms-4\" style=\"border-color: #E3E4E5;\" required onchange=\"redirectToPage('proj_page"+t.getTeam_id()+"')\">\n"
+                        + "                                        <option value=\"\" disabled selected hidden>Selecciona uno</option>\n"
+                        + projc.workGetProjectsSelectByTeam(t.getTeam_id())
+                        + "                                    </select>\n"
+                        + "                                </div>\n"
+                        + "                            </div>\n"
+                        + "                        </div>\n"
+                        + "                    </div>\n"
+                        + "                </div>\n"
+                        + "            </div> \n"
+                        + "        </div>";
             }
         }
 

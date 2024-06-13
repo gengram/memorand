@@ -124,6 +124,27 @@ public class ProjectsController
 
         return htmlcode;
     }
+    
+    public String workGetProjectsSelectByTeam(String team_id)
+    {
+        String htmlcode = "";
+
+        ProjectsModel projm = new ProjectsModel();
+
+        for (Project project : projm.getProjectsByTeam(team_id))
+        {
+            String proj_id = project.getProj_id();
+
+            CollabsModel collabm = new CollabsModel();
+            Collab collab = collabm.getCollabByTeamAndProject(team_id, proj_id);
+
+            String collab_id = collab.getCollab_id();
+                
+            htmlcode += "<option value='rendimiento.jsp?id=" + collab_id + "'>" + project.getProj_name() + "</option>";
+        }
+
+        return htmlcode;
+    }
 
     public String adminGetProjectsByTeamAndUser(String team_id, String user_id)
     {
